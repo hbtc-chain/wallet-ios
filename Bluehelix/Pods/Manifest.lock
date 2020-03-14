@@ -1,0 +1,49 @@
+PODS:
+  - CBBase58 (0.9.1):
+    - OpenSSL-Universal
+  - IQKeyboardManager (4.0.13)
+  - MBProgressHUD (0.9.2)
+  - "MBProgressHUD+JDragon (0.0.5)":
+    - MBProgressHUD (~> 0.9.2)
+  - MJExtension (3.0.17)
+  - MJRefresh (3.1.17)
+  - OpenSSL-Universal (1.0.2.19):
+    - OpenSSL-Universal/Static (= 1.0.2.19)
+  - OpenSSL-Universal/Static (1.0.2.19)
+  - SDWebImage (4.0.0):
+    - SDWebImage/Core (= 4.0.0)
+  - SDWebImage/Core (4.0.0)
+
+DEPENDENCIES:
+  - CBBase58
+  - IQKeyboardManager (~> 4.0.10)
+  - "MBProgressHUD+JDragon"
+  - MJExtension (~> 3.0.13)
+  - MJRefresh (~> 3.1.12)
+  - OpenSSL-Universal
+  - SDWebImage (~> 4.0.0)
+
+SPEC REPOS:
+  https://github.com/cocoapods/specs.git:
+    - CBBase58
+    - IQKeyboardManager
+    - MBProgressHUD
+    - "MBProgressHUD+JDragon"
+    - MJExtension
+    - MJRefresh
+    - OpenSSL-Universal
+    - SDWebImage
+
+SPEC CHECKSUMS:
+  CBBase58: a86f26f59eaf3fbba2d9b81e3ef5b02563cdab3d
+  IQKeyboardManager: 8eab4d8111418414619d1df8e4779ce5d0f8d7e2
+  MBProgressHUD: 1569cf7ace17a8bac47aabfbb8580a49690386d1
+  "MBProgressHUD+JDragon": 15bf7583612f0bb9f0bcea634ba5eb247b17d014
+  MJExtension: 74ec83124a68891619fb7ba9c5c811bbf1691076
+  MJRefresh: ee5b68f639775462faba4db0fd243baf4d42c2cf
+  OpenSSL-Universal: 8b48cc0d10c1b2923617dfe5c178aa9ed2689355
+  SDWebImage: 76a6348bdc74eb5a55dd08a091ef298e56b55e41
+
+PODFILE CHECKSUM: 0624807932d79f4aa661d6cd28a84344715737b9
+
+COCOAPODS: 1.5.3

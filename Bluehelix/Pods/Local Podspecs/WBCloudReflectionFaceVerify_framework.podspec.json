@@ -1,0 +1,36 @@
+{
+  "name": "WBCloudReflectionFaceVerify_framework",
+  "version": "5.0.3",
+  "summary": "A short description of WBCloudReflectionFaceVerify_framework.",
+  "homepage": "https://github.com/brownfeng/WBCloudReflectionFaceVerify_framework",
+  "license": "MIT",
+  "authors": {
+    "brownfeng": "brownfeng@webank.com"
+  },
+  "description": "TODO: Add long description of the pod here.",
+  "frameworks": [
+    "UIKit",
+    "AVFoundation",
+    "MobileCoreServices",
+    "CoreVideo",
+    "Accelerate",
+    "Security",
+    "SystemConfiguration",
+    "CoreMedia",
+    "AudioToolbox",
+    "CoreTelephony",
+    "ImageIO",
+    "WebKit"
+  ],
+  "libraries": "c++",
+  "source": {
+    "path": "."
+  },
+  "platforms": {
+    "ios": "8.0"
+  },
+  "ios": {
+    "vendored_frameworks": "Libs/*.framework",
+    "resources": "Resources/*.bundle"
+  }
+}

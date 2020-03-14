@@ -1,0 +1,111 @@
+//
+//  PrefixHeader.pch
+//  Bhex
+//
+//  Created by BHEX on 2018/6/10.
+//  Copyright © 2018年 BHEX. All rights reserved.
+//
+
+#ifndef PrefixHeader_pch
+#define PrefixHeader_pch
+
+// Include any system framework and library headers here that should be included in all compilation units.
+// You will also need to set the Prefix Header build setting of one or more of your targets to reference this file.
+
+
+
+#ifdef __OBJC__
+#import <UIKit/UIKit.h>
+#import <Foundation/Foundation.h>
+#import <MBProgressHUD+JDragon.h>
+#import <MJExtension/MJExtension.h>
+#import <MJRefresh/MJRefresh.h>
+
+#import "XXNavigationController.h"
+#import "XXCategory.h"
+#import "XXFontHeader.h"
+#import "XXColorHeader.h"
+#import "LocalizeHelper.h" //国际化
+#import "XXKit.h"
+#import "BaseViewController.h"
+
+static inline BOOL IsEmpty(id thing) {
+    return thing == nil || [thing isEqual:[NSNull null]]
+    || ([thing respondsToSelector:@selector(length)]
+        && [(NSData *)thing length] == 0)
+    || ([thing respondsToSelector:@selector(count)]
+        && [(NSArray *)thing count] == 0);
+}
+#endif
+
+
+
+#define kApp_Name [[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleDisplayName"]
+#define kAppStoreBundle @"io.bhex.app"
+#define kGTID @"127fa24522a64cafea491594462e461c" // 极验场景id
+
+#define kScreen_Height [UIScreen mainScreen].bounds.size.height
+#define kScreen_Width [UIScreen mainScreen].bounds.size.width
+#define kStatusBarHeight [UIApplication sharedApplication].statusBarFrame.size.height
+#define kNavNormalHeight (CGRectGetMaxY([UIApplication sharedApplication].statusBarFrame) + 44)
+#define kNavHeight (CGRectGetMaxY([UIApplication sharedApplication].statusBarFrame) + 68)
+#define kNavBigHeight (CGRectGetMaxY([UIApplication sharedApplication].statusBarFrame) + 132)
+#define kNavShadowHeight 12 // 导航栏阴影完全显示出来的滚动高度
+#define DepthMapLineWidth 1 // 深度图线条宽度
+#define KLine_Height 1 // 分割线的高度
+#define KLeftSpace_20 (K375(24))
+#define kLeftSpace_70 72
+
+#define KString(str) (str) == nil ? @"" : [NSString stringWithFormat:@"%@",(str)]
+#define Kscal(value) ((kScreen_Width/1242)*(value))
+#define K375(value) ((kScreen_Width/375)*(value))
+#define KSpacing ((kScreen_Width/375)*(15))
+
+/** 是否夜间模式 */
+#define kIsNight NO
+
+#define KWindow [UIApplication sharedApplication].keyWindow
+#define BH_IS_IPHONE_5 ([UIScreen mainScreen].nativeBounds.size.height == 1136)
+#define BH_IS_IPHONE_6 ([UIScreen mainScreen].nativeBounds.size.height == 1334)
+#define BH_IS_IPHONE_6P ([UIScreen mainScreen].nativeBounds.size.height == 2208 || [UIScreen mainScreen].nativeBounds.size.height == 1920)
+#define BH_IS_IPHONE_X ([UIScreen mainScreen].nativeBounds.size.height == 2436 || [UIScreen mainScreen].nativeBounds.size.height == 1792 || [UIScreen mainScreen].nativeBounds.size.height == 2688)
+#define kTabbarHeight (BH_IS_IPHONE_X ? 83 : 59)
+#define TradeDepthHeight 64.5 // 交易盘口的高度
+#define UILabel_Line_Space 5.0f
+#define UILabel_Text_Space 0.2f
+
+#pragma mark - 数据
+// 数据
+#define KUser [UserData sharedUserData]
+#define KSystem [XXSystem sharedXXSystem]
+#define KTrade [XXTradeData sharedXXTradeData]
+#define KMarket [XXMarketData sharedXXMarketData]
+#define KConfigure [XXConfiguration sharedXXConfiguration]
+#define KQuoteSocket [XXQuoteSocket sharedXXQuoteSocket]
+#define KUserSocket [XXUserSocket sharedXXUserSocket]
+#define App_Delegate (AppDelegate *)[[UIApplication sharedApplication] delegate]
+#define BHUserDefaults [NSUserDefaults standardUserDefaults]
+#define KAccountData [XXAccountData sharedXXAccountData]
+#define KIndexModel [XXIndexModules sharedXXIndexModules]
+#define KDetail [KSymbolDetailData sharedKSymbolDetailData]
+#define KDecimal XXDecimalNumberHelper
+
+#define ISDictionary(object) (object != nil && [object isKindOfClass:[NSDictionary class]])
+
+#if TARGET_IPHONE_SIMULATOR
+#define SIMULATOR_TEST
+#else
+#endif
+
+#ifdef DEBUG
+#define NSLog(...) NSLog(__VA_ARGS__)
+
+//#define NSLog(FORMAT, ...) fprintf(stderr, "%s:%zd\t%s\n", [[[NSString stringWithUTF8String: __FILE__] lastPathComponent] UTF8String], __LINE__, [[NSString stringWithFormat: FORMAT, ## __VA_ARGS__] UTF8String]);
+
+#else
+#define NSLog(...)
+#endif
+
+#endif /* PrefixHeader_pch */
+
+

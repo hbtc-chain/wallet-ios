@@ -1,0 +1,28 @@
+/*
+  Localizable.strings
+  Bhex
+
+  Created by Bhex on 2018/8/9.
+  Copyright © 2018年 Bhex. All rights reserved.
+*/
+
+// Tabbar
+"Asset" = "资产";
+"Exchange" = "兑换";
+"Order" = "订单";
+"Me" = "我的";
+
+"CreateWallet" = "创建托管单元";
+"ImportWallet" = "导入托管单元";
+"VerifyMnemonicPhraseTip" = "请务必牢记并妥善保管这12个单词,一旦遗失，您的资产将无法找回";
+"CreateWalletSuccess" = "新钱包创建成功";
+"BackupImmediately" = "立即备份";
+"BackupLater" = "稍后备份";
+
+//我的
+"BackupMnemonicPhrase" = "备份助记词";
+"ModifyPassword" = "修改安全密码";
+"BindNotification" = "绑定通知";
+"HelpCenter" = "帮助中心";
+"TermsOfUse" = "使用条款";
+"AboutUs" = "关于我们";
