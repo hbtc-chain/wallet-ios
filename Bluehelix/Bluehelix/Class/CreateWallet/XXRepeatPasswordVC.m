@@ -1,15 +1,15 @@
 //
-//  XXCreateWalletVC.m
+//  XXRepeatPasswordVC.m
 //  Bluehelix
 //
-//  Created by 袁振 on 2020/03/10.
+//  Created by 袁振 on 2020/03/15.
 //  Copyright © 2020 Bhex. All rights reserved.
 //
 
-#import "XXCreateWalletVC.h"
-#import "XXCreateWalletSetPasswordVC.h"
+#import "XXRepeatPasswordVC.h"
+#import "XXCreateWalletSuccessVC.h"
 
-@interface XXCreateWalletVC ()
+@interface XXRepeatPasswordVC ()
 
 @property (nonatomic, strong) XXLabel *tipLabel;
 @property (nonatomic, strong) XXLabel *stepTipLabel;
@@ -20,7 +20,7 @@
 
 @end
 
-@implementation XXCreateWalletVC
+@implementation XXRepeatPasswordVC
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -50,23 +50,23 @@
 
 - (XXLabel *)tipLabel {
     if (!_tipLabel) {
-        CGFloat width = [NSString widthWithText:LocalizedString(@"SetName") font:kFontBold(26)];
-        _tipLabel = [XXLabel labelWithFrame:CGRectMake(K375(16), kNavHeight, width, 40) text:LocalizedString(@"SetName") font:kFontBold(26) textColor:kDark100 alignment:NSTextAlignmentLeft];
+        CGFloat width = [NSString widthWithText:LocalizedString(@"RepeatPassword") font:kFontBold(26)];
+        _tipLabel = [XXLabel labelWithFrame:CGRectMake(K375(16), kNavHeight, width, 40) text:LocalizedString(@"RepeatPassword") font:kFontBold(26) textColor:kDark100 alignment:NSTextAlignmentLeft];
     }
     return _tipLabel;
 }
 
 - (XXLabel *)stepTipLabel {
     if (!_stepTipLabel) {
-        _stepTipLabel = [XXLabel labelWithFrame:CGRectMake(CGRectGetMaxX(self.tipLabel.frame) + 5, kNavHeight + 15, kScreen_Width - K375(32) - self.tipLabel.width, 20) text:LocalizedString(@"Step1") font:kFont12 textColor:kTipColor alignment:NSTextAlignmentLeft];
+        _stepTipLabel = [XXLabel labelWithFrame:CGRectMake(CGRectGetMaxX(self.tipLabel.frame) + 5, kNavHeight + 15, kScreen_Width - K375(32) - self.tipLabel.width, 20) text:LocalizedString(@"Step3") font:kFont12 textColor:kDark50 alignment:NSTextAlignmentLeft];
     }
     return _stepTipLabel;
 }
 
 - (XXLabel *)contentLabel {
     if (!_contentLabel) {
-        CGFloat height = [NSString heightWithText:LocalizedString(@"SetNameTip") font:kFont(15) width:kScreen_Width - K375(32)];
-        _contentLabel = [XXLabel labelWithFrame:CGRectMake(K375(16), CGRectGetMaxY(self.tipLabel.frame) + 10, kScreen_Width - K375(32), height) text:LocalizedString(@"SetNameTip") font:kFont(15) textColor:kTipColor alignment:NSTextAlignmentLeft];
+        CGFloat height = [NSString heightWithText:LocalizedString(@"SetPasswordTip") font:kFont(15) width:kScreen_Width - K375(32)];
+        _contentLabel = [XXLabel labelWithFrame:CGRectMake(K375(16), CGRectGetMaxY(self.tipLabel.frame) + 10, kScreen_Width - K375(32), height) text:LocalizedString(@"SetPasswordTip") font:kFont(15) textColor:kTipColor alignment:NSTextAlignmentLeft];
         _contentLabel.numberOfLines = 0;
     }
     return _contentLabel;
@@ -74,7 +74,7 @@
 
 - (XXLabel *)nameLabel {
     if (!_nameLabel) {
-        _nameLabel = [XXLabel labelWithFrame:CGRectMake(K375(16), CGRectGetMaxY(self.contentLabel.frame) + 6, kScreen_Width - K375(32), 40) text:LocalizedString(@"WalletName") font:kFont15 textColor:kDark100 alignment:NSTextAlignmentLeft];
+        _nameLabel = [XXLabel labelWithFrame:CGRectMake(K375(16), CGRectGetMaxY(self.contentLabel.frame) + 6, kScreen_Width - K375(32), 40) text:LocalizedString(@"RepeatPassword") font:kFont15 textColor:kTipColor alignment:NSTextAlignmentLeft];
     }
     return _nameLabel;
 }
@@ -82,7 +82,7 @@
 - (XXTextFieldView *)textFieldView {
     if (!_textFieldView) {
         _textFieldView = [[XXTextFieldView alloc] initWithFrame:CGRectMake(K375(16), CGRectGetMaxY(self.nameLabel.frame), kScreen_Width - K375(32), 48)];
-        _textFieldView.textField.placeholder = LocalizedString(@"SetNamePlaceHolder");
+        _textFieldView.textField.placeholder = LocalizedString(@"SetPasswordPlaceHolder");
         _textFieldView.textField.secureTextEntry = YES;
         [_textFieldView.textField addTarget:self action:@selector(textFiledValueChange:) forControlEvents:UIControlEventEditingChanged];
 
@@ -93,8 +93,8 @@
 - (XXButton *)createBtn {
     if (!_createBtn) {
         _createBtn = [XXButton buttonWithFrame:CGRectMake(K375(16), CGRectGetMaxY(self.textFieldView.frame) + 24, kScreen_Width - K375(32), kBtnHeight) title:LocalizedString(@"NextStep") font:kFontBold18 titleColor:kWhite100 block:^(UIButton *button) {
-            XXCreateWalletSetPasswordVC *passwordVC = [[XXCreateWalletSetPasswordVC alloc] init];
-            [self.navigationController pushViewController:passwordVC animated:YES];
+            XXCreateWalletSuccessVC *successVC = [[XXCreateWalletSuccessVC alloc] init];
+            [self.navigationController pushViewController:successVC animated:YES];
         }];
         _createBtn.backgroundColor = kBtnNotEnableColor;
         _createBtn.layer.cornerRadius = kBtnBorderRadius;

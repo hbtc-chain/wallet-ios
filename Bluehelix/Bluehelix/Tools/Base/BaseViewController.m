@@ -46,7 +46,7 @@
     
     // 左侧按钮
     self.leftButton = [UIButton buttonWithType:UIButtonTypeCustom];
-    self.leftButton.frame = CGRectMake(K375(8), self.titleLabel.top, K375(56), self.titleLabel.height);
+    self.leftButton.frame = CGRectMake(K375(-10), self.titleLabel.top, K375(56), self.titleLabel.height);
     [self.leftButton setImage:[UIImage textImageName:@"icon_back_0"] forState:UIControlStateNormal];
     [self.leftButton addTarget:self action:@selector(leftButtonClick:) forControlEvents:UIControlEventTouchUpInside];
     [self.navView addSubview:self.leftButton];

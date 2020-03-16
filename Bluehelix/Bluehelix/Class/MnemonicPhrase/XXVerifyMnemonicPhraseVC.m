@@ -15,7 +15,8 @@
 @property (nonatomic, strong) UIView *formView; //顶部表格
 @property (nonatomic, strong) XXLabel *tipLabel;
 @property (nonatomic, strong) NSMutableArray *selectedWordsArray; //选中的助记词数组
-
+@property (nonatomic, strong) XXButton *backupBtn;
+@property (nonatomic, assign) CGFloat contentHeight; //scrollView Height
 @property (nonatomic, strong) NSArray *testArray; //测试助记词
 @end
 
@@ -34,6 +35,10 @@
     [self.scrollView addSubview:self.tipLabel];
     [self drawFormView]; //画顶部表格
     [self drawWords]; //画下边可选单词
+    [self.scrollView addSubview:self.backupBtn];
+    if (_contentHeight > self.scrollView.contentSize.height) {
+        self.scrollView.contentSize = CGSizeMake(kScreen_Width, _contentHeight);
+    }
 }
 
 - (void)reloadUI {
@@ -91,7 +96,7 @@
 }
 
 - (void)drawWords {
-    NSArray *phraseArr = @[@"useful",@"key",@"amatur",@"dearagon",@"shaft",@"orbit",@"series",@"slogan",@"float",@"cereal"];
+    NSArray *phraseArr = @[@"useful",@"key",@"amatur",@"dearagon",@"shaft",@"orbit",@"series",@"slogan",@"float",@"cereal",@"cereal",@"cereal",@"cereal",@"cereal",@"cereal",@"cereal",@"cereal",@"cereal"];
        int HSpace = K375(16);
        int VSpace = K375(8);
        int Width = (kScreen_Width - 4*HSpace)/3;
@@ -116,6 +121,7 @@
            btn.orderLabel.hidden = YES;
            [self.scrollView addSubview:btn];
        }
+    _contentHeight = Top + Height;
 }
 
 - (UIScrollView *)scrollView {
@@ -128,9 +134,25 @@
 
 - (XXLabel *)tipLabel {
     if (_tipLabel == nil) {
-        _tipLabel = [XXLabel labelWithFrame:CGRectMake(K375(16), kNavHeight, kScreen_Width - K375(32), 30) text:LocalizedString(@"VerifyMnemonicPhraseTip") font:kFont(15) textColor:kDark50 alignment:NSTextAlignmentLeft];
+        CGFloat height = [NSString heightWithText:LocalizedString(@"VerifyMnemonicPhraseTip") font:kFont(15) width:kScreen_Width - K375(32)];
+        _tipLabel = [XXLabel labelWithFrame:CGRectMake(K375(16), kNavHeight, kScreen_Width - K375(32), height) text:LocalizedString(@"VerifyMnemonicPhraseTip") font:kFont(15) textColor:kDark50 alignment:NSTextAlignmentLeft];
+        _tipLabel.numberOfLines = 0;
     }
     return _tipLabel;
+}
+
+- (XXButton *)backupBtn {
+    if (!_backupBtn) {
+        _backupBtn = [XXButton buttonWithFrame:CGRectMake(K375(16), _contentHeight > kScreen_Height - kBtnHeight - K375(16) ? _contentHeight + 20 : kScreen_Height - kBtnHeight - K375(16), kScreen_Width - K375(32), kBtnHeight) title:LocalizedString(@"StartBackup") font:kFontBold18 titleColor:kWhite100 block:^(UIButton *button) {
+            XXVerifyMnemonicPhraseVC *verifyVC = [[XXVerifyMnemonicPhraseVC alloc] init];
+            [self.navigationController pushViewController:verifyVC animated:YES];
+        }];
+        _backupBtn.backgroundColor = kBlue100;
+        _backupBtn.layer.cornerRadius = kBtnBorderRadius;
+        _backupBtn.layer.masksToBounds = YES;
+        _contentHeight = _contentHeight + kBtnHeight + 20 + K375(16);
+    }
+    return _backupBtn;
 }
 
 - (NSMutableArray *)selectedWordsArray {
@@ -139,15 +161,5 @@
     }
     return _selectedWordsArray;
 }
-
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
 
 @end

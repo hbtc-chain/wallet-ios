@@ -14,5 +14,6 @@
 #import "XXImageView.h"
 #import "XXShadowView.h"
 #import "XXTextField.h"
+#import "XXTextFieldView.h"
 
 #endif /* XXKit_h */

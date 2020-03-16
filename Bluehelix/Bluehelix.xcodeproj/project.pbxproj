@@ -106,6 +106,11 @@
 		EABD1BAC241BB25900B1A03A /* Account.m in Sources */ = {isa = PBXBuildFile; fileRef = EABD1B7A241BB25900B1A03A /* Account.m */; };
 		EABD1BAD241BB25900B1A03A /* Address.m in Sources */ = {isa = PBXBuildFile; fileRef = EABD1B7B241BB25900B1A03A /* Address.m */; };
 		EABD1BAE241BB25900B1A03A /* Payment.m in Sources */ = {isa = PBXBuildFile; fileRef = EABD1B7C241BB25900B1A03A /* Payment.m */; };
+		EABD1BB1241DFC3E00B1A03A /* XXTextFieldView.m in Sources */ = {isa = PBXBuildFile; fileRef = EABD1BB0241DFC3E00B1A03A /* XXTextFieldView.m */; };
+		EABD1BB4241E21B300B1A03A /* XXCreateWalletSetPasswordVC.m in Sources */ = {isa = PBXBuildFile; fileRef = EABD1BB3241E21B300B1A03A /* XXCreateWalletSetPasswordVC.m */; };
+		EABD1BB7241E2EAA00B1A03A /* XXRepeatPasswordVC.m in Sources */ = {isa = PBXBuildFile; fileRef = EABD1BB6241E2EAA00B1A03A /* XXRepeatPasswordVC.m */; };
+		EABD1BBB241E49EA00B1A03A /* XXImportWalletVC.m in Sources */ = {isa = PBXBuildFile; fileRef = EABD1BBA241E49EA00B1A03A /* XXImportWalletVC.m */; };
+		EABD1BBE241E52ED00B1A03A /* XXImportMnemonicPhraseVC.m in Sources */ = {isa = PBXBuildFile; fileRef = EABD1BBD241E52ED00B1A03A /* XXImportMnemonicPhraseVC.m */; };
 		EAC68719214F931200701874 /* NullSafe.m in Sources */ = {isa = PBXBuildFile; fileRef = EAC68718214F931200701874 /* NullSafe.m */; };
 		EAC6871D214FAD1C00701874 /* XXTabView.m in Sources */ = {isa = PBXBuildFile; fileRef = EAC6871B214FAD1600701874 /* XXTabView.m */; };
 		EAE4047E211C1DB300FFD028 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = EAE40478211C1DB300FFD028 /* Localizable.strings */; };
@@ -368,6 +373,16 @@
 		EABD1B7D241BB25900B1A03A /* BlockInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BlockInfo.h; sourceTree = "<group>"; };
 		EABD1B7E241BB25900B1A03A /* Transaction.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Transaction.h; sourceTree = "<group>"; };
 		EABD1B7F241BB25900B1A03A /* Hash.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Hash.h; sourceTree = "<group>"; };
+		EABD1BAF241DFC3E00B1A03A /* XXTextFieldView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = XXTextFieldView.h; sourceTree = "<group>"; };
+		EABD1BB0241DFC3E00B1A03A /* XXTextFieldView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = XXTextFieldView.m; sourceTree = "<group>"; };
+		EABD1BB2241E21B300B1A03A /* XXCreateWalletSetPasswordVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = XXCreateWalletSetPasswordVC.h; sourceTree = "<group>"; };
+		EABD1BB3241E21B300B1A03A /* XXCreateWalletSetPasswordVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = XXCreateWalletSetPasswordVC.m; sourceTree = "<group>"; };
+		EABD1BB5241E2EAA00B1A03A /* XXRepeatPasswordVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = XXRepeatPasswordVC.h; sourceTree = "<group>"; };
+		EABD1BB6241E2EAA00B1A03A /* XXRepeatPasswordVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = XXRepeatPasswordVC.m; sourceTree = "<group>"; };
+		EABD1BB9241E49EA00B1A03A /* XXImportWalletVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = XXImportWalletVC.h; sourceTree = "<group>"; };
+		EABD1BBA241E49EA00B1A03A /* XXImportWalletVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = XXImportWalletVC.m; sourceTree = "<group>"; };
+		EABD1BBC241E52ED00B1A03A /* XXImportMnemonicPhraseVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = XXImportMnemonicPhraseVC.h; sourceTree = "<group>"; };
+		EABD1BBD241E52ED00B1A03A /* XXImportMnemonicPhraseVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = XXImportMnemonicPhraseVC.m; sourceTree = "<group>"; };
 		EAC68718214F931200701874 /* NullSafe.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NullSafe.m; sourceTree = "<group>"; };
 		EAC6871B214FAD1600701874 /* XXTabView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XXTabView.m; sourceTree = "<group>"; };
 		EAC6871C214FAD1600701874 /* XXTabView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XXTabView.h; sourceTree = "<group>"; };
@@ -485,6 +500,8 @@
 				7AC4D72C234C808E00F5E5F8 /* XXImageView.m */,
 				7A1477E223617639008212B8 /* XXSegmentView.h */,
 				7A1477E323617639008212B8 /* XXSegmentView.m */,
+				EABD1BAF241DFC3E00B1A03A /* XXTextFieldView.h */,
+				EABD1BB0241DFC3E00B1A03A /* XXTextFieldView.m */,
 			);
 			path = XXKit;
 			sourceTree = "<group>";
@@ -523,6 +540,10 @@
 				EA15E96F2417BC6B00A3E14A /* XXCreateWalletSuccessVC.m */,
 				EA15E9712417CD4B00A3E14A /* XXCreateWalletVC.h */,
 				EA15E9722417CD4B00A3E14A /* XXCreateWalletVC.m */,
+				EABD1BB2241E21B300B1A03A /* XXCreateWalletSetPasswordVC.h */,
+				EABD1BB3241E21B300B1A03A /* XXCreateWalletSetPasswordVC.m */,
+				EABD1BB5241E2EAA00B1A03A /* XXRepeatPasswordVC.h */,
+				EABD1BB6241E2EAA00B1A03A /* XXRepeatPasswordVC.m */,
 				EA15E9782417E24100A3E14A /* XXScreenShotAlert.h */,
 				EA15E9792417E24100A3E14A /* XXScreenShotAlert.m */,
 			);
@@ -613,17 +634,14 @@
 		EA964BA32414D34A00A941E5 /* Class */ = {
 			isa = PBXGroup;
 			children = (
+				EABD1BB8241E496F00B1A03A /* MnemonicPhrase */,
 				EA15E9742417DEC500A3E14A /* Asset */,
 				EA15E96D2417BC2200A3E14A /* CreateWallet */,
 				EA15E9632417A70200A3E14A /* User */,
-				EA964BA52414D37F00A941E5 /* XXBackupMnemonicPhraseVC.h */,
-				EA964BA42414D37F00A941E5 /* XXBackupMnemonicPhraseVC.m */,
-				EA15E95B24168F5600A3E14A /* XXVerifyMnemonicPhraseVC.h */,
-				EA15E95C24168F5600A3E14A /* XXVerifyMnemonicPhraseVC.m */,
 				EA15E95524163FDC00A3E14A /* XXStartWalletVC.h */,
 				EA15E95624163FDC00A3E14A /* XXStartWalletVC.m */,
-				EA15E9582416702C00A3E14A /* XXMnemonicBtn.h */,
-				EA15E9592416702C00A3E14A /* XXMnemonicBtn.m */,
+				EABD1BB9241E49EA00B1A03A /* XXImportWalletVC.h */,
+				EABD1BBA241E49EA00B1A03A /* XXImportWalletVC.m */,
 			);
 			path = Class;
 			sourceTree = "<group>";
@@ -802,6 +820,21 @@
 				EABD1B77241BB25900B1A03A /* RegEx.m */,
 			);
 			path = Utilities;
+			sourceTree = "<group>";
+		};
+		EABD1BB8241E496F00B1A03A /* MnemonicPhrase */ = {
+			isa = PBXGroup;
+			children = (
+				EA964BA52414D37F00A941E5 /* XXBackupMnemonicPhraseVC.h */,
+				EA964BA42414D37F00A941E5 /* XXBackupMnemonicPhraseVC.m */,
+				EA15E95B24168F5600A3E14A /* XXVerifyMnemonicPhraseVC.h */,
+				EA15E95C24168F5600A3E14A /* XXVerifyMnemonicPhraseVC.m */,
+				EABD1BBC241E52ED00B1A03A /* XXImportMnemonicPhraseVC.h */,
+				EABD1BBD241E52ED00B1A03A /* XXImportMnemonicPhraseVC.m */,
+				EA15E9582416702C00A3E14A /* XXMnemonicBtn.h */,
+				EA15E9592416702C00A3E14A /* XXMnemonicBtn.m */,
+			);
+			path = MnemonicPhrase;
 			sourceTree = "<group>";
 		};
 		EAC6871A214FAD1600701874 /* XXTab */ = {
@@ -1091,6 +1124,7 @@
 				EABD1BA1241BB25900B1A03A /* Hash.m in Sources */,
 				EAC6871D214FAD1C00701874 /* XXTabView.m in Sources */,
 				EABD1BA5241BB25900B1A03A /* Promise.m in Sources */,
+				EABD1BBE241E52ED00B1A03A /* XXImportMnemonicPhraseVC.m in Sources */,
 				7AC4D793234C808F00F5E5F8 /* XXShadowView.m in Sources */,
 				EA30A0A9236F221A0098DE28 /* UIActivityIndicatorView+AFNetworking.m in Sources */,
 				EABD1B87241BB25900B1A03A /* secp256k1.c in Sources */,
@@ -1102,6 +1136,7 @@
 				EABD1B8E241BB25900B1A03A /* sha3.c in Sources */,
 				EA964BA62414D37F00A941E5 /* XXBackupMnemonicPhraseVC.m in Sources */,
 				F31F7A5020CF9693008B4403 /* XXTabBarController.m in Sources */,
+				EABD1BBB241E49EA00B1A03A /* XXImportWalletVC.m in Sources */,
 				EABD1B86241BB25900B1A03A /* curves.c in Sources */,
 				EABD1BAA241BB25900B1A03A /* TransactionInfo.m in Sources */,
 				EABD1B81241BB25900B1A03A /* aeskey.c in Sources */,
@@ -1155,6 +1190,7 @@
 				EA15E97A2417E24100A3E14A /* XXScreenShotAlert.m in Sources */,
 				EABD1BAD241BB25900B1A03A /* Address.m in Sources */,
 				EABD1B9A241BB25900B1A03A /* JsonRpcProvider.m in Sources */,
+				EABD1BB1241DFC3E00B1A03A /* XXTextFieldView.m in Sources */,
 				EABD1B8C241BB25900B1A03A /* aestab.c in Sources */,
 				EA15E95724163FDC00A3E14A /* XXStartWalletVC.m in Sources */,
 				EABD1B93241BB25900B1A03A /* scrypt_sha256.c in Sources */,
@@ -1164,7 +1200,9 @@
 				EABD1BAB241BB25900B1A03A /* Signature.m in Sources */,
 				F30EAF5E20D26536005ADD5C /* NSDate+convenience.m in Sources */,
 				F38839362108B30600EAC95D /* XYHNumbersLabel.m in Sources */,
+				EABD1BB4241E21B300B1A03A /* XXCreateWalletSetPasswordVC.m in Sources */,
 				EAE40482211C34A000FFD028 /* LocalizeHelper.m in Sources */,
+				EABD1BB7241E2EAA00B1A03A /* XXRepeatPasswordVC.m in Sources */,
 				EABD1B90241BB25900B1A03A /* ecdsa.c in Sources */,
 				EABD1BA6241BB25900B1A03A /* SecureData.m in Sources */,
 				EABD1B8F241BB25900B1A03A /* base58.c in Sources */,

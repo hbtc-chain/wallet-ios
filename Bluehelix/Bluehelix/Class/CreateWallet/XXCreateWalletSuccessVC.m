@@ -54,14 +54,14 @@
 - (XXButton *)immediatelyBtn {
     if (!_immediatelyBtn) {
         MJWeakSelf
-        _immediatelyBtn = [XXButton buttonWithFrame:CGRectMake(K375(16), kScreen_Height - 120, kScreen_Width - K375(32), 44) title:LocalizedString(@"BackupImmediately") font:kFont(17) titleColor:kWhite100 block:^(UIButton *button) {
+        _immediatelyBtn = [XXButton buttonWithFrame:CGRectMake(K375(16), kScreen_Height - 120, kScreen_Width - K375(32), kBtnHeight) title:LocalizedString(@"BackupImmediately") font:kFont(17) titleColor:kWhite100 block:^(UIButton *button) {
             [XXScreenShotAlert showWithSureBlock:^{
                 XXBackupMnemonicPhraseVC *backupVC = [[XXBackupMnemonicPhraseVC alloc] init];
                 [weakSelf.navigationController pushViewController:backupVC animated:YES];
             }];
         }];
         _immediatelyBtn.backgroundColor = kBlue100;
-        _immediatelyBtn.layer.cornerRadius = 4;
+        _immediatelyBtn.layer.cornerRadius = kBtnBorderRadius;
         _immediatelyBtn.layer.masksToBounds = YES;
     }
     return _immediatelyBtn;
@@ -69,11 +69,11 @@
 
 - (XXButton *)laterBtn {
     if (!_laterBtn) {
-        _laterBtn = [XXButton buttonWithFrame:CGRectMake(K375(16), kScreen_Height - 68, kScreen_Width - K375(32), 44) title:LocalizedString(@"BackupLater") font:kFontBold18 titleColor:kBlue100 block:^(UIButton *button) {
+        _laterBtn = [XXButton buttonWithFrame:CGRectMake(K375(16), kScreen_Height - 68, kScreen_Width - K375(32), kBtnHeight) title:LocalizedString(@"BackupLater") font:kFontBold18 titleColor:kBlue100 block:^(UIButton *button) {
             KWindow.rootViewController = [[XXTabBarController alloc] init];
         }];
         _laterBtn.backgroundColor = kWhite100;
-        _laterBtn.layer.cornerRadius = 4;
+        _laterBtn.layer.cornerRadius = kBtnBorderRadius;
         _laterBtn.layer.masksToBounds = YES;
     }
     return _laterBtn;

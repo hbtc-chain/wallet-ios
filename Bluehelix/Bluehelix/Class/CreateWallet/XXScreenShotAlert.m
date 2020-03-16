@@ -124,8 +124,8 @@
 
 - (UIButton *)dismissBtn {
     if (_dismissBtn == nil ) {
-        _dismissBtn = [[UIButton alloc] initWithFrame:CGRectMake(kScreen_Width - K375(30) - K375(50), 0, K375(50), K375(50))];
-        [_dismissBtn setImage:[UIImage imageNamed:@"Me_setting"] forState:UIControlStateNormal];
+        _dismissBtn = [[UIButton alloc] initWithFrame:CGRectMake(kScreen_Width - K375(50), 0, K375(50), K375(50))];
+        [_dismissBtn setImage:[UIImage imageNamed:@"dismiss"] forState:UIControlStateNormal];
         [_dismissBtn addTarget:self action:@selector(cancelAction) forControlEvents:UIControlEventTouchUpInside];
     }
     return _dismissBtn;
@@ -134,7 +134,7 @@
 - (UILabel *)titleLabel {
     if (_titleLabel == nil) {
         _titleLabel = [[UILabel alloc] initWithFrame:CGRectMake(16, 104, kScreen_Width - 32, 24)];
-        _titleLabel.text = LocalizedString(@"清无删了打开肌肤");
+        _titleLabel.text = LocalizedString(@"NoScreenShot");
         _titleLabel.font = kFontBold18;
         _titleLabel.textColor = kDark100;
         _titleLabel.textAlignment = NSTextAlignmentCenter;
@@ -144,8 +144,8 @@
 
 - (UILabel *)contentLabel {
     if (_contentLabel == nil) {
-        _contentLabel = [[UILabel alloc] initWithFrame:CGRectMake(16, 128, kScreen_Width - 32, 18)];
-        _contentLabel.text = LocalizedString(@"清无删了打开肌肤");
+        _contentLabel = [[UILabel alloc] initWithFrame:CGRectMake(16, 132, kScreen_Width - 32, 18)];
+        _contentLabel.text = LocalizedString(@"ScreenShotTip");
         _contentLabel.font = kFont14;
         _contentLabel.textColor = kDark50;
         _contentLabel.textAlignment = NSTextAlignmentCenter;
@@ -165,11 +165,11 @@
 
 - (UIButton *)okBtn {
     if (_okBtn == nil) {
-        _okBtn = [[UIButton alloc] initWithFrame:CGRectMake(K375(16), self.contentView.height - 64, kScreen_Width - K375(32), 44)];
-        [_okBtn setTitle:LocalizedString(@"知道了") forState:UIControlStateNormal];
+        _okBtn = [[UIButton alloc] initWithFrame:CGRectMake(K375(16), self.contentView.height - 64, kScreen_Width - K375(32), kBtnHeight)];
+        [_okBtn setTitle:LocalizedString(@"IKnow") forState:UIControlStateNormal];
         [_okBtn setBackgroundColor:kBlue100];
         [_okBtn.titleLabel setFont:kFontBold18];
-        _okBtn.layer.cornerRadius = 4;
+        _okBtn.layer.cornerRadius = kBtnBorderRadius;
         _okBtn.layer.masksToBounds = YES;
         [_okBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
         [_okBtn addTarget:self action:@selector(okAction) forControlEvents:UIControlEventTouchUpInside];
@@ -177,15 +177,4 @@
     return _okBtn;
 }
 
-//- (UIButton *)cancelBtn {
-//    if (_cancelBtn == nil) {
-//        _cancelBtn = [[UIButton alloc] initWithFrame:CGRectMake(K375(24), self.versionView.height - 56, kScreen_Width/2 - K375(88)/2, 40)];
-//        [_cancelBtn setTitle:LocalizedString(@"Cancel") forState:UIControlStateNormal];
-//        [_cancelBtn setBackgroundColor:KRGBA(244, 244, 245, 100)];
-//        [_cancelBtn setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
-//        [_cancelBtn.titleLabel setFont:kFontBold12];
-//        [_cancelBtn addTarget:self action:@selector(cancelAction) forControlEvents:UIControlEventTouchUpInside];
-//    }
-//    return _cancelBtn;
-//}
 @end

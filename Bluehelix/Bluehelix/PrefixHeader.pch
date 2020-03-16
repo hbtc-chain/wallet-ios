@@ -56,6 +56,12 @@ static inline BOOL IsEmpty(id thing) {
 #define KLeftSpace_20 (K375(24))
 #define kLeftSpace_70 72
 
+//wallet
+#define kBtnBorderRadius 6
+#define kBtnNotEnableColor kDark10
+#define kBtnHeight 48
+#define kTipColor [UIColor colorWithHexString:@"#6E8196"]
+
 #define KString(str) (str) == nil ? @"" : [NSString stringWithFormat:@"%@",(str)]
 #define Kscal(value) ((kScreen_Width/1242)*(value))
 #define K375(value) ((kScreen_Width/375)*(value))

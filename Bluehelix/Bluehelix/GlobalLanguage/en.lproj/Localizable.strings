@@ -14,14 +14,34 @@
 
 "CreateWallet" = "创建托管单元";
 "ImportWallet" = "导入托管单元";
-"VerifyMnemonicPhraseTip" = "请务必牢记并妥善保管这12个单词,一旦遗失，您的资产将无法找回";
+"VerifyMnemonicPhraseTip" = "请按顺序点击助记词，填入下方表格中";
 "CreateWalletSuccess" = "新钱包创建成功";
 "BackupImmediately" = "立即备份";
 "BackupLater" = "稍后备份";
 "StartBackup" = "开始备份";
 "StartCreate" = "开始创建";
 "VerifyMnemonicPhrase" = "验证助记词";
-
+"IKnow" = "知道了";
+"NoScreenShot"="请勿截屏";
+"ScreenShotTip"="截屏可能会被第三方恶意软件收集，造成资产损失";
+"BackupTip"="请务必";
+"BackupTipContent"="牢记并妥善保管这12个单词,一旦遗失，您的资产将无法找回";
+"NextStep" = "下一步";
+"SetName" = "设置名称";
+"SetNameTip" = "您正在创建BlueHelix钱包的托管单元，并将拥有一份跨链钱包";
+"SetPassword" = "设置密码";
+"SetPasswordTip" = "·安全密码是保护钱包私钥和操作资产的重要凭证\n·BlueHelix钱包不会缓存、上传、存储您的密码\n·请务必妥善保管密码";
+"RepeatPassword" = "重复密码";
+"Step1" = "(第1步，共3步)";
+"Step2" = "(第2步，共3步)";
+"Step3" = "(第3步，共3步)";
+"WalletName" = "钱包名称";
+"WalletPassword" = "钱包密码";
+"SetNamePlaceHolder" = "1-20个字符";
+"SetPasswordPlaceHolder" = "请设置钱包密码(不少于8位)";
+"ImportMnemonicPhrase" = "导入助记词";
+"ImportKeyStore" = "导入Keystore";
+"ImportSecurity" = "导入私钥";
 //我的
 "BackupMnemonicPhrase" = "备份助记词";
 "ModifyPassword" = "修改安全密码";
