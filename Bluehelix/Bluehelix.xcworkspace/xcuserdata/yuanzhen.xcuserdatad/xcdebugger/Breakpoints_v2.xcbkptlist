@@ -314,38 +314,6 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "298265C5-302D-467C-8875-AB80F91838D7"
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "Bluehelix/ethers/src/Account.m"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "267"
-            endingLineNumber = "267"
-            landmarkName = "-initWithMnemonicPhrase:"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "8B310649-86D2-4F03-A142-EB4C84B63F7E"
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "Bluehelix/ethers/src/Account.m"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "514"
-            endingLineNumber = "514"
-            landmarkName = "-encryptSecretStorageJSON:callback:"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
             uuid = "36DF2B51-E67D-4F9A-8A8C-F9A8A4EC20FB"
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
@@ -353,8 +321,8 @@
             filePath = "Bluehelix/ethers/src/Account.m"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "539"
-            endingLineNumber = "539"
+            startingLineNumber = "538"
+            endingLineNumber = "538"
             landmarkName = "-encryptSecretStorageJSON:callback:"
             landmarkType = "7">
          </BreakpointContent>
@@ -369,8 +337,8 @@
             filePath = "Bluehelix/ethers/src/Account.m"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "580"
-            endingLineNumber = "580"
+            startingLineNumber = "579"
+            endingLineNumber = "579"
             landmarkName = "-encryptSecretStorageJSON:callback:"
             landmarkType = "7">
             <Locations>
@@ -385,23 +353,23 @@
                   urlString = "file:///Users/yuanzhen/wallet-ios/Bluehelix/Bluehelix/ethers/src/Account.m"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "580"
-                  endingLineNumber = "580"
+                  startingLineNumber = "579"
+                  endingLineNumber = "579"
                   offsetFromSymbolStart = "2920">
                </Location>
                <Location
-                  uuid = "FAE293FF-EEEE-4382-A0BA-352587D3ECD9 - ee2444947fa5170d"
+                  uuid = "FAE293FF-EEEE-4382-A0BA-352587D3ECD9 - ee2444947fa5171b"
                   shouldBeEnabled = "Yes"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
-                  symbolName = "__45-[Account encryptSecretStorageJSON:callback:]_block_invoke.267"
+                  symbolName = "__45-[Account encryptSecretStorageJSON:callback:]_block_invoke.265"
                   moduleName = "Bluehelix"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/yuanzhen/wallet-ios/Bluehelix/Bluehelix/ethers/src/Account.m"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "580"
-                  endingLineNumber = "580"
+                  startingLineNumber = "579"
+                  endingLineNumber = "579"
                   offsetFromSymbolStart = "8">
                </Location>
             </Locations>
@@ -417,8 +385,8 @@
             filePath = "Bluehelix/ethers/src/Account.m"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "619"
-            endingLineNumber = "619"
+            startingLineNumber = "618"
+            endingLineNumber = "618"
             landmarkName = "-encryptSecretStorageJSON:callback:"
             landmarkType = "7">
          </BreakpointContent>
@@ -433,25 +401,9 @@
             filePath = "Bluehelix/ethers/src/Account.m"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "587"
-            endingLineNumber = "587"
+            startingLineNumber = "586"
+            endingLineNumber = "586"
             landmarkName = "-encryptSecretStorageJSON:callback:"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "FD016731-19BA-411C-9B8E-10107A6EE08D"
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "Bluehelix/ethers/src/Account.m"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "184"
-            endingLineNumber = "184"
-            landmarkName = "-initWithPrivateKey:"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -465,8 +417,8 @@
             filePath = "Bluehelix/ethers/src/Account.m"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "584"
-            endingLineNumber = "584"
+            startingLineNumber = "583"
+            endingLineNumber = "583"
             landmarkName = "-encryptSecretStorageJSON:callback:"
             landmarkType = "7">
             <Locations>
@@ -481,23 +433,23 @@
                   urlString = "file:///Users/yuanzhen/wallet-ios/Bluehelix/Bluehelix/ethers/src/Account.m"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "584"
-                  endingLineNumber = "584"
+                  startingLineNumber = "583"
+                  endingLineNumber = "583"
                   offsetFromSymbolStart = "3080">
                </Location>
                <Location
-                  uuid = "4781AFD2-37A4-4B01-947E-E3200DC9A498 - 19491ee998432b99"
+                  uuid = "4781AFD2-37A4-4B01-947E-E3200DC9A498 - 19491ee998432bff"
                   shouldBeEnabled = "Yes"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
-                  symbolName = "__45-[Account encryptSecretStorageJSON:callback:]_block_invoke_2.268"
+                  symbolName = "__45-[Account encryptSecretStorageJSON:callback:]_block_invoke_2.266"
                   moduleName = "Bluehelix"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/yuanzhen/wallet-ios/Bluehelix/Bluehelix/ethers/src/Account.m"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "584"
-                  endingLineNumber = "584"
+                  startingLineNumber = "583"
+                  endingLineNumber = "583"
                   offsetFromSymbolStart = "32">
                </Location>
                <Location
@@ -511,8 +463,8 @@
                   urlString = "file:///Users/yuanzhen/wallet-ios/Bluehelix/Bluehelix/ethers/src/Account.m"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "584"
-                  endingLineNumber = "584"
+                  startingLineNumber = "583"
+                  endingLineNumber = "583"
                   offsetFromSymbolStart = "13">
                </Location>
             </Locations>
@@ -528,8 +480,8 @@
             filePath = "Bluehelix/ethers/src/Account.m"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "596"
-            endingLineNumber = "596"
+            startingLineNumber = "595"
+            endingLineNumber = "595"
             landmarkName = "-encryptSecretStorageJSON:callback:"
             landmarkType = "7">
          </BreakpointContent>

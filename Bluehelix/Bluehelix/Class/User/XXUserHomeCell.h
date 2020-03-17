@@ -10,14 +10,8 @@
 
 @interface XXUserHomeCell : UITableViewCell
 
-/** 左icon */
-@property (strong, nonatomic) XXButton *leftIconImageView;
-
 /** 名称 */
 @property (strong, nonatomic) XXLabel *nameLabel;
-
-/** 值 */
-@property (strong, nonatomic) XXLabel *valueLabel;
 
 /** 右箭头 */
 @property (strong, nonatomic) UIImageView *rightIconImageView;

@@ -1,25 +1,27 @@
 //
-//  XXAssetVC.m
+//  XXLoginVC.m
 //  Bluehelix
 //
-//  Created by 袁振 on 2020/03/10.
+//  Created by 袁振 on 2020/03/16.
 //  Copyright © 2020 Bhex. All rights reserved.
 //
 
-#import "XXAssetVC.h"
-#import "XXUserData.h"
+#import "XXLoginVC.h"
 
-@interface XXAssetVC ()
+@interface XXLoginVC ()
 
 @end
 
-@implementation XXAssetVC
+@implementation XXLoginVC
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-    self.titleLabel.text = KUser.rootAccount[@"BHAddress"];
-    self.leftButton.hidden = YES;
+    [self buildUI];
+}
+
+- (void)buildUI {
+    
 }
 
 /*

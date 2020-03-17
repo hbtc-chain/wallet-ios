@@ -35,7 +35,8 @@
 }
 
 - (void)drawPhraseBtn {
-    NSArray *phraseArr = @[@"useful",@"key",@"amatur",@"dearagon",@"shaft",@"orbit",@"series",@"slogan",@"float",@"cereal"];
+    NSString *phraseStr = KUser.rootAccount[@"mnemonicPhrase"];
+    NSArray *phraseArr = [phraseStr componentsSeparatedByString:@" "];
     int HSpace = K375(16);
     int VSpace = K375(8);
     int Width = (kScreen_Width - 4*HSpace)/3;

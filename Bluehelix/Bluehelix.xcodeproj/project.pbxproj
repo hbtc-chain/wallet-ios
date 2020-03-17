@@ -113,6 +113,11 @@
 		EABD1BBE241E52ED00B1A03A /* XXImportMnemonicPhraseVC.m in Sources */ = {isa = PBXBuildFile; fileRef = EABD1BBD241E52ED00B1A03A /* XXImportMnemonicPhraseVC.m */; };
 		EAC68719214F931200701874 /* NullSafe.m in Sources */ = {isa = PBXBuildFile; fileRef = EAC68718214F931200701874 /* NullSafe.m */; };
 		EAC6871D214FAD1C00701874 /* XXTabView.m in Sources */ = {isa = PBXBuildFile; fileRef = EAC6871B214FAD1600701874 /* XXTabView.m */; };
+		EADDF977241F579F00072DD1 /* XXUserData.m in Sources */ = {isa = PBXBuildFile; fileRef = EADDF976241F579F00072DD1 /* XXUserData.m */; };
+		EADDF97A241F676D00072DD1 /* XXLoginVC.m in Sources */ = {isa = PBXBuildFile; fileRef = EADDF979241F676D00072DD1 /* XXLoginVC.m */; };
+		EADDF97D241F69D000072DD1 /* XXAccountManageVC.m in Sources */ = {isa = PBXBuildFile; fileRef = EADDF97C241F69D000072DD1 /* XXAccountManageVC.m */; };
+		EADDF980241F762C00072DD1 /* XXAccountCell.m in Sources */ = {isa = PBXBuildFile; fileRef = EADDF97F241F762C00072DD1 /* XXAccountCell.m */; };
+		EADDF983241F95FA00072DD1 /* XXAccountFooterView.m in Sources */ = {isa = PBXBuildFile; fileRef = EADDF982241F95FA00072DD1 /* XXAccountFooterView.m */; };
 		EAE4047E211C1DB300FFD028 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = EAE40478211C1DB300FFD028 /* Localizable.strings */; };
 		EAE4047F211C1DB300FFD028 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = EAE4047A211C1DB300FFD028 /* InfoPlist.strings */; };
 		EAE40482211C34A000FFD028 /* LocalizeHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = EAE40481211C34A000FFD028 /* LocalizeHelper.m */; };
@@ -386,6 +391,16 @@
 		EAC68718214F931200701874 /* NullSafe.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NullSafe.m; sourceTree = "<group>"; };
 		EAC6871B214FAD1600701874 /* XXTabView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XXTabView.m; sourceTree = "<group>"; };
 		EAC6871C214FAD1600701874 /* XXTabView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XXTabView.h; sourceTree = "<group>"; };
+		EADDF975241F579F00072DD1 /* XXUserData.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = XXUserData.h; sourceTree = "<group>"; };
+		EADDF976241F579F00072DD1 /* XXUserData.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = XXUserData.m; sourceTree = "<group>"; };
+		EADDF978241F676D00072DD1 /* XXLoginVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = XXLoginVC.h; sourceTree = "<group>"; };
+		EADDF979241F676D00072DD1 /* XXLoginVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = XXLoginVC.m; sourceTree = "<group>"; };
+		EADDF97B241F69D000072DD1 /* XXAccountManageVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = XXAccountManageVC.h; sourceTree = "<group>"; };
+		EADDF97C241F69D000072DD1 /* XXAccountManageVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = XXAccountManageVC.m; sourceTree = "<group>"; };
+		EADDF97E241F762C00072DD1 /* XXAccountCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = XXAccountCell.h; sourceTree = "<group>"; };
+		EADDF97F241F762C00072DD1 /* XXAccountCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = XXAccountCell.m; sourceTree = "<group>"; };
+		EADDF981241F95FA00072DD1 /* XXAccountFooterView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = XXAccountFooterView.h; sourceTree = "<group>"; };
+		EADDF982241F95FA00072DD1 /* XXAccountFooterView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = XXAccountFooterView.m; sourceTree = "<group>"; };
 		EAE40479211C1DB300FFD028 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/Localizable.strings"; sourceTree = "<group>"; };
 		EAE4047B211C1DB300FFD028 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/InfoPlist.strings"; sourceTree = "<group>"; };
 		EAE4047C211C1DB300FFD028 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
@@ -525,10 +540,20 @@
 			children = (
 				EA15E9682417A70200A3E14A /* XXUserHomeVC.h */,
 				EA15E9652417A70200A3E14A /* XXUserHomeVC.m */,
-				EA15E9662417A70200A3E14A /* XXUserHeaderView.m */,
 				EA15E9672417A70200A3E14A /* XXUserHeaderView.h */,
+				EA15E9662417A70200A3E14A /* XXUserHeaderView.m */,
 				EA15E9642417A70200A3E14A /* XXUserHomeCell.h */,
 				EA15E9692417A70200A3E14A /* XXUserHomeCell.m */,
+				EADDF975241F579F00072DD1 /* XXUserData.h */,
+				EADDF976241F579F00072DD1 /* XXUserData.m */,
+				EADDF978241F676D00072DD1 /* XXLoginVC.h */,
+				EADDF979241F676D00072DD1 /* XXLoginVC.m */,
+				EADDF97B241F69D000072DD1 /* XXAccountManageVC.h */,
+				EADDF97C241F69D000072DD1 /* XXAccountManageVC.m */,
+				EADDF97E241F762C00072DD1 /* XXAccountCell.h */,
+				EADDF97F241F762C00072DD1 /* XXAccountCell.m */,
+				EADDF981241F95FA00072DD1 /* XXAccountFooterView.h */,
+				EADDF982241F95FA00072DD1 /* XXAccountFooterView.m */,
 			);
 			path = User;
 			sourceTree = "<group>";
@@ -536,14 +561,14 @@
 		EA15E96D2417BC2200A3E14A /* CreateWallet */ = {
 			isa = PBXGroup;
 			children = (
-				EA15E96E2417BC6B00A3E14A /* XXCreateWalletSuccessVC.h */,
-				EA15E96F2417BC6B00A3E14A /* XXCreateWalletSuccessVC.m */,
 				EA15E9712417CD4B00A3E14A /* XXCreateWalletVC.h */,
 				EA15E9722417CD4B00A3E14A /* XXCreateWalletVC.m */,
 				EABD1BB2241E21B300B1A03A /* XXCreateWalletSetPasswordVC.h */,
 				EABD1BB3241E21B300B1A03A /* XXCreateWalletSetPasswordVC.m */,
 				EABD1BB5241E2EAA00B1A03A /* XXRepeatPasswordVC.h */,
 				EABD1BB6241E2EAA00B1A03A /* XXRepeatPasswordVC.m */,
+				EA15E96E2417BC6B00A3E14A /* XXCreateWalletSuccessVC.h */,
+				EA15E96F2417BC6B00A3E14A /* XXCreateWalletSuccessVC.m */,
 				EA15E9782417E24100A3E14A /* XXScreenShotAlert.h */,
 				EA15E9792417E24100A3E14A /* XXScreenShotAlert.m */,
 			);
@@ -1152,6 +1177,7 @@
 				EABD1B82241BB25900B1A03A /* hmac.c in Sources */,
 				F31F7A4F20CF9693008B4403 /* MainTabBtn.m in Sources */,
 				EA15E95D24168F5600A3E14A /* XXVerifyMnemonicPhraseVC.m in Sources */,
+				EADDF97D241F69D000072DD1 /* XXAccountManageVC.m in Sources */,
 				EA964C442414E18500A941E5 /* AppDelegate.m in Sources */,
 				F31F7A4E20CF9693008B4403 /* BaseViewController.m in Sources */,
 				EABD1B98241BB25900B1A03A /* Provider.m in Sources */,
@@ -1160,6 +1186,7 @@
 				7AC4D760234C808E00F5E5F8 /* XXFloadtTextField.m in Sources */,
 				EABD1BA0241BB25900B1A03A /* RoundRobinProvider.m in Sources */,
 				EA15E9702417BC6B00A3E14A /* XXCreateWalletSuccessVC.m in Sources */,
+				EADDF977241F579F00072DD1 /* XXUserData.m in Sources */,
 				EA15E95A2416702C00A3E14A /* XXMnemonicBtn.m in Sources */,
 				EABD1B88241BB25900B1A03A /* aes_modes.c in Sources */,
 				EABD1BA8241BB25900B1A03A /* Utilities.m in Sources */,
@@ -1179,6 +1206,7 @@
 				EA309E00236F21400098DE28 /* AFURLResponseSerialization.m in Sources */,
 				EABD1B91241BB25900B1A03A /* pbkdf2.c in Sources */,
 				EA309E78236F21410098DE28 /* AFURLSessionManager.m in Sources */,
+				EADDF983241F95FA00072DD1 /* XXAccountFooterView.m in Sources */,
 				EABD1B9E241BB25900B1A03A /* LightClientProvider.m in Sources */,
 				EABD1BA7241BB25900B1A03A /* RLPSerialization.m in Sources */,
 				EABD1B80241BB25900B1A03A /* bip39.c in Sources */,
@@ -1191,6 +1219,7 @@
 				EABD1BAD241BB25900B1A03A /* Address.m in Sources */,
 				EABD1B9A241BB25900B1A03A /* JsonRpcProvider.m in Sources */,
 				EABD1BB1241DFC3E00B1A03A /* XXTextFieldView.m in Sources */,
+				EADDF97A241F676D00072DD1 /* XXLoginVC.m in Sources */,
 				EABD1B8C241BB25900B1A03A /* aestab.c in Sources */,
 				EA15E95724163FDC00A3E14A /* XXStartWalletVC.m in Sources */,
 				EABD1B93241BB25900B1A03A /* scrypt_sha256.c in Sources */,
@@ -1220,6 +1249,7 @@
 				7AC4D72D234C808E00F5E5F8 /* XXTextField.m in Sources */,
 				EABD1B92241BB25900B1A03A /* mpi.c in Sources */,
 				EA309EF0236F21410098DE28 /* AFNetworkReachabilityManager.m in Sources */,
+				EADDF980241F762C00072DD1 /* XXAccountCell.m in Sources */,
 				EABD1B8A241BB25900B1A03A /* ripemd160.c in Sources */,
 				EAC68719214F931200701874 /* NullSafe.m in Sources */,
 				F30EAF6320D26536005ADD5C /* NSDate+Helper.m in Sources */,

@@ -7,28 +7,23 @@
 //
 
 #import "XXUserHomeVC.h"
-#import "XXUserHeaderView.h"
 #import "XXUserHomeCell.h"
 #import "XXTabBarController.h"
 #import <IQKeyboardManager.h>
+#import "XXAccountManageVC.h"
+#import "XXUserHeaderView.h"
 
 @interface XXUserHomeVC () <UITableViewDataSource, UITableViewDelegate, UIGestureRecognizerDelegate>
 
-/** 项目数组 */
 @property (strong, nonatomic) NSMutableArray *itemsArray;
 
-/** 设置按钮 */
 @property (strong, nonatomic) XXButton *settingButton;
 
-/** 头视图 */
-@property (strong, nonatomic) XXUserHeaderView *headView;
-
-/* 表示图 */
 @property (strong, nonatomic) UITableView *tableView;
 
-/** icon name */
 @property (strong, nonatomic) NSMutableArray *iconArray;
 
+@property (strong, nonatomic) XXUserHeaderView *headerView;
 @end
 
 @implementation XXUserHomeVC
@@ -37,12 +32,6 @@
     [super viewDidLoad];
     [self initData];
     [self setupUI];
-
-}
-
-- (void)viewDidAppear:(BOOL)animated {
-    [super viewDidAppear:animated];
-    [IQKeyboardManager sharedManager].enable = YES;
 }
 
 #pragma mark - 1. 初始化数据
@@ -56,13 +45,17 @@
 
 #pragma mark - 2. 初始化UI
 - (void)setupUI {
-    [self.rightButton setImage:[UIImage subTextImageName:@"Me_setting"] forState:UIControlStateNormal];
+    self.navView.hidden = YES;
     [self.view addSubview:self.tableView];
-    self.tableView.tableHeaderView = self.headView;
     self.tableView.separatorColor = KLine_Color;
+    self.tableView.tableHeaderView = self.headerView;
 }
 
-#pragma mark - 3. 标示图
+- (void)rightButtonClick:(UIButton *)sender {
+    XXAccountManageVC *accountVC = [[XXAccountManageVC alloc] init];
+    [self.navigationController pushViewController:accountVC animated:YES];
+}
+
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
     return self.itemsArray.count;
 }
@@ -91,14 +84,10 @@
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
     
     NSArray *namesArray = self.itemsArray[indexPath.section];
-    NSArray *imagesArray = self.iconArray[indexPath.section];
     cell.nameLabel.text = namesArray[indexPath.row];
     cell.contentView.backgroundColor = kViewBackgroundColor;
     cell.nameLabel.textColor = kDark100;
     cell.lineView.backgroundColor = KLine_Color;
-    UIImage *image = [UIImage textImageName:imagesArray[indexPath.row]];;
-    [cell.leftIconImageView setImage:image forState:UIControlStateNormal];
-    
     if (indexPath.row == namesArray.count - 1) {
         cell.lineView.hidden = YES;
     } else {
@@ -151,24 +140,23 @@
 #pragma mark - || 懒加载
 - (UITableView *)tableView {
     if (_tableView == nil) {
-        _tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, kNavHeight, kScreen_Width, kScreen_Height - kNavHeight) style:UITableViewStylePlain];
+        _tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, kScreen_Width, kScreen_Height - kTabbarHeight) style:UITableViewStylePlain];
         _tableView.dataSource = self;
         _tableView.delegate = self;
-        _tableView.backgroundColor = KBigLine_Color;
+        _tableView.backgroundColor = kWhite100;
         _tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
+        _tableView.showsVerticalScrollIndicator = NO;
         if (@available(iOS 11.0, *)) {
             _tableView.contentInsetAdjustmentBehavior = UIScrollViewContentInsetAdjustmentNever;
         }
-        _tableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, kScreen_Width, 60)];
     }
     return _tableView;
 }
 
-- (XXUserHeaderView *)headView {
-    if (_headView == nil) {
-        _headView = [[XXUserHeaderView alloc] initWithFrame:CGRectMake(0, 0, kScreen_Width, 184)];
+- (XXUserHeaderView *)headerView {
+    if (!_headerView) {
+        _headerView = [[XXUserHeaderView alloc] initWithFrame:CGRectMake(0, 0, kScreen_Width, 230)];
     }
-    return _headView;
+    return _headerView;
 }
-
 @end

@@ -38,6 +38,17 @@
     [self.view addSubview:self.createBtn];
 }
 
+- (void)nextStepAction {
+    if (self.textFieldView.textField.text.length > 20) {
+        //TODO alert
+        [MBProgressHUD showErrorMessage:LocalizedString(@"AccountNameRuleAlert")];
+        return;
+    }
+    KUser.localUserName = self.textFieldView.textField.text;
+    XXCreateWalletSetPasswordVC *passwordVC = [[XXCreateWalletSetPasswordVC alloc] init];
+    [self.navigationController pushViewController:passwordVC animated:YES];
+}
+
 - (void)textFiledValueChange:(UITextField *)textField {
     if (textField.text.length) {
         self.createBtn.enabled = YES;
@@ -83,7 +94,6 @@
     if (!_textFieldView) {
         _textFieldView = [[XXTextFieldView alloc] initWithFrame:CGRectMake(K375(16), CGRectGetMaxY(self.nameLabel.frame), kScreen_Width - K375(32), 48)];
         _textFieldView.textField.placeholder = LocalizedString(@"SetNamePlaceHolder");
-        _textFieldView.textField.secureTextEntry = YES;
         [_textFieldView.textField addTarget:self action:@selector(textFiledValueChange:) forControlEvents:UIControlEventEditingChanged];
 
     }
@@ -92,9 +102,9 @@
 
 - (XXButton *)createBtn {
     if (!_createBtn) {
+        MJWeakSelf
         _createBtn = [XXButton buttonWithFrame:CGRectMake(K375(16), CGRectGetMaxY(self.textFieldView.frame) + 24, kScreen_Width - K375(32), kBtnHeight) title:LocalizedString(@"NextStep") font:kFontBold18 titleColor:kWhite100 block:^(UIButton *button) {
-            XXCreateWalletSetPasswordVC *passwordVC = [[XXCreateWalletSetPasswordVC alloc] init];
-            [self.navigationController pushViewController:passwordVC animated:YES];
+            [weakSelf nextStepAction];
         }];
         _createBtn.backgroundColor = kBtnNotEnableColor;
         _createBtn.layer.cornerRadius = kBtnBorderRadius;

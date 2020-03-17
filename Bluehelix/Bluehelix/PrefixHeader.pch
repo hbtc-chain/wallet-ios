@@ -28,6 +28,7 @@
 #import "LocalizeHelper.h" //国际化
 #import "XXKit.h"
 #import "BaseViewController.h"
+#import "XXUserData.h"
 
 static inline BOOL IsEmpty(id thing) {
     return thing == nil || [thing isEqual:[NSNull null]]
@@ -82,13 +83,9 @@ static inline BOOL IsEmpty(id thing) {
 
 #pragma mark - 数据
 // 数据
-#define KUser [UserData sharedUserData]
+#define KUser [XXUserData sharedUserData]
 #define KSystem [XXSystem sharedXXSystem]
-#define KTrade [XXTradeData sharedXXTradeData]
-#define KMarket [XXMarketData sharedXXMarketData]
 #define KConfigure [XXConfiguration sharedXXConfiguration]
-#define KQuoteSocket [XXQuoteSocket sharedXXQuoteSocket]
-#define KUserSocket [XXUserSocket sharedXXUserSocket]
 #define App_Delegate (AppDelegate *)[[UIApplication sharedApplication] delegate]
 #define BHUserDefaults [NSUserDefaults standardUserDefaults]
 #define KAccountData [XXAccountData sharedXXAccountData]

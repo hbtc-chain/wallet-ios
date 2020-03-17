@@ -35,11 +35,13 @@
 
 - (void)reloadUI {
     self.orderLabel.hidden = NO;
+    self.userInteractionEnabled = YES;
     if (self.state == MnemonicBtnType_Normal) {
         self.titleLabel.textColor = kDark100;
     } else if (self.state == MnemonicBtnType_Selected) {
         self.titleLabel.textColor = kDark20;
         self.orderLabel.hidden = YES;
+        self.userInteractionEnabled = NO;
     } else if (self.state == MnemonicBtnType_Wrong) {
         self.titleLabel.textColor = kRed100;
     } else {

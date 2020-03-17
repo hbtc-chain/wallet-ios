@@ -175,12 +175,12 @@ static NSDateFormatter *TimeFormatter = nil;
         
         SecureData *publicKey = [SecureData secureDataWithLength:33];
         ecdsa_get_public_key33(&secp256k1, _privateKey.bytes, publicKey.mutableBytes);
-        //这里相当于SerializeCompressed 两次hash 取前33字节 不用ripemd160??? 一个字节 等于两个16进制字符 8byte
+        //这里相当于SerializeCompressed 两次hash 取前33字节 一个字节 等于两个16进制字符 8byte
         //        //生成公钥
         NSLog(@"%@",publicKey);
         SecureData *ripemdData = [self ripemd160:publicKey];
         SecureData *sum = [self checkSum:ripemdData];
-        NSString *address = [self base58:sum publicKey:publicKey];
+        NSString *address = [self base58:sum publicKey:ripemdData];
         _BHAddress = address;
 //        NSData *addressData = [[[publicKey subdataFromIndex:1] KECCAK256] subdataFromIndex:12].data;
 //        _address = [Address addressWithData:addressData]; //生成地址
@@ -266,10 +266,10 @@ static NSDateFormatter *TimeFormatter = nil;
     if (self) {
         _mnemonicPhrase = mnemonicPhrase;
         
-        SecureData *fullData = [SecureData secureDataWithLength:MAXIMUM_BIP39_DATA_LENGTH];
-        int length = data_from_mnemonic([_mnemonicPhrase cStringUsingEncoding:NSUTF8StringEncoding], fullData.mutableBytes);
-        
-        _mnemonicData = [fullData subdataToIndex:length].data;
+//        SecureData *fullData = [SecureData secureDataWithLength:MAXIMUM_BIP39_DATA_LENGTH];
+//        int length = data_from_mnemonic([_mnemonicPhrase cStringUsingEncoding:NSUTF8StringEncoding], fullData.mutableBytes);
+//
+//        _mnemonicData = [fullData subdataToIndex:length].data;
     }
     
     // Wipe the node
@@ -298,9 +298,8 @@ static NSDateFormatter *TimeFormatter = nil;
     
     int result = SecRandomCopyBytes(kSecRandomDefault, data.length, data.mutableBytes);
     if (result != noErr) { return nil; }
-    
-    //    NSString *mnemonicPhrase = [NSString stringWithCString:mnemonic_from_data(data.bytes, (int)data.length) encoding:NSUTF8StringEncoding]; //生成助记词
-    return [[Account alloc] initWithMnemonicPhrase:@"sniff float truck talent walk search mad boat away fossil sleep dune"];
+    NSString *mnemonicPhrase = [NSString stringWithCString:mnemonic_from_data(data.bytes, (int)data.length) encoding:NSUTF8StringEncoding]; //生成助记词
+    return [[Account alloc] initWithMnemonicPhrase:mnemonicPhrase];
 }
 
 - (NSString*)_privateKeyHash {

@@ -8,6 +8,8 @@
 
 #import "XXRepeatPasswordVC.h"
 #import "XXCreateWalletSuccessVC.h"
+#import "Account.h"
+#import "SecureData.h"
 
 @interface XXRepeatPasswordVC ()
 
@@ -36,6 +38,24 @@
     [self.view addSubview:self.nameLabel];
     [self.view addSubview:self.textFieldView];
     [self.view addSubview:self.createBtn];
+}
+
+- (void)createAction {
+    if (![self.textFieldView.textField.text isEqualToString:KUser.localPassword]) {
+        [MBProgressHUD showErrorMessage:LocalizedString(@"TwoPasswordInconsistent")];
+        return;
+    }
+    Account *account = [Account randomMnemonicAccount];
+    NSMutableDictionary *dic = [NSMutableDictionary dictionary];
+    [dic setObject:account.privateKey forKey:@"privateKey"];
+    [dic setObject:account.BHAddress forKey:@"BHAddress"];
+    [dic setObject:KUser.localUserName forKey:@"userName"];
+    [dic setObject:KUser.localPassword forKey:@"password"];
+    [dic setObject:account.mnemonicPhrase forKey:@"mnemonicPhrase"];
+    [KUser addAccount:dic];
+    KUser.rootAccount = dic;
+    XXCreateWalletSuccessVC *successVC = [[XXCreateWalletSuccessVC alloc] init];
+    [self.navigationController pushViewController:successVC animated:YES];
 }
 
 - (void)textFiledValueChange:(UITextField *)textField {
@@ -92,9 +112,9 @@
 
 - (XXButton *)createBtn {
     if (!_createBtn) {
-        _createBtn = [XXButton buttonWithFrame:CGRectMake(K375(16), CGRectGetMaxY(self.textFieldView.frame) + 24, kScreen_Width - K375(32), kBtnHeight) title:LocalizedString(@"NextStep") font:kFontBold18 titleColor:kWhite100 block:^(UIButton *button) {
-            XXCreateWalletSuccessVC *successVC = [[XXCreateWalletSuccessVC alloc] init];
-            [self.navigationController pushViewController:successVC animated:YES];
+        MJWeakSelf
+        _createBtn = [XXButton buttonWithFrame:CGRectMake(K375(16), CGRectGetMaxY(self.textFieldView.frame) + 24, kScreen_Width - K375(32), kBtnHeight) title:LocalizedString(@"StartCreate") font:kFontBold18 titleColor:kWhite100 block:^(UIButton *button) {
+            [weakSelf createAction];
         }];
         _createBtn.backgroundColor = kBtnNotEnableColor;
         _createBtn.layer.cornerRadius = kBtnBorderRadius;

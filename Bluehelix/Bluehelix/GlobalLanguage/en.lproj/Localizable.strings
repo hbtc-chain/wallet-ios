@@ -39,9 +39,23 @@
 "WalletPassword" = "钱包密码";
 "SetNamePlaceHolder" = "1-20个字符";
 "SetPasswordPlaceHolder" = "请设置钱包密码(不少于8位)";
+"RuleTip" = "为了保证您的资产安全，密码请包括:";
+"RuleTip1" = "·1个大写字母";
+"RuleTip2" = "·1个小写字母";
+"RuleTip3" = "·1个数字";
+"RuleTip4" = "·至少8位字符";
+"CreateWalletBackupTip" = "备份提示";
+"WeSuggest" = "我们建议";
+"CreateWalletBackupTipContent" = "·您将通过助记词备份钱包\n·助记词为12个英文单词\n·助记词可助您恢复钱包\n·请务必牢记您的助记词";
+"WeSuggestContent" = "请勿通过邮箱、通讯工具分享您的助记词\n请勿将您的助记词轻易告知他人\n请勿将助记词截屏、照相等方式保存于您的移动设备中";
 "ImportMnemonicPhrase" = "导入助记词";
 "ImportKeyStore" = "导入Keystore";
 "ImportSecurity" = "导入私钥";
+"ImportMnemonicPhraseTip" = "请在下方输入框中按顺序输入助记词，用空格分开";
+"AccountManage" = "管理托管单元";
+"TwoPasswordInconsistent" = "两次密码输入不一致！";
+"AccountNameRuleAlert" = "请输入1-20个字符";
+
 //我的
 "BackupMnemonicPhrase" = "备份助记词";
 "ModifyPassword" = "修改安全密码";
