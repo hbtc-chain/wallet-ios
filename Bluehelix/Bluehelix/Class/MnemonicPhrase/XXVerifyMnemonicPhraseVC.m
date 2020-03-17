@@ -91,8 +91,8 @@
         [self.formView addSubview:lineView];
     }
     
-    for (int i = 0; i < 2; i++) {
-        UIView *lineView = [[UIView alloc] initWithFrame:CGRectMake(i*K375(115), K375(48) + i*K375(48), KLine_Height, self.formView.width)];
+    for (int i = 1; i < 3; i++) {
+        UIView *lineView = [[UIView alloc] initWithFrame:CGRectMake(i*K375(115), 0, KLine_Height, self.formView.height)];
         lineView.backgroundColor = KLine_Color;
         [self.formView addSubview:lineView];
     }

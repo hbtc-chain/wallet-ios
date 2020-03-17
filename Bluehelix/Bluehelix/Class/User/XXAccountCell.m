@@ -10,7 +10,7 @@
 
 @interface XXAccountCell ()
 
-@property (strong, nonatomic) UIImageView *icon;
+@property (strong, nonatomic) XXLabel *icon;
 @property (strong, nonatomic) XXLabel *nameLabel;
 @property (strong, nonatomic) XXLabel *addressLabel;
 @property (strong, nonatomic) UIView *lineView;
@@ -35,9 +35,9 @@
     [self.contentView addSubview:self.nameLabel];
     [self.contentView addSubview:self.addressLabel];
     [self.contentView addSubview:self.checkView];
+    [self.contentView addSubview:self.lineView];
     self.selectionStyle = UITableViewCellSelectionStyleNone;
     self.contentView.backgroundColor = kViewBackgroundColor;
-    self.lineView.backgroundColor = KLine_Color;
 }
 
 - (void)configData:(NSDictionary *)dic {
@@ -48,12 +48,12 @@
     } else {
         self.checkView.image = [UIImage imageNamed:@"unCheck"];
     }
+    [self configIcon:dic];
 }
 
-- (UIImageView *)icon {
+- (XXLabel *)icon {
     if (!_icon) {
-        _icon = [[UIImageView alloc] initWithFrame:CGRectMake(16, 16, 40, 40)];
-        _icon.image = [UIImage imageNamed:@"CreateWalletSuccess"];
+        _icon = [XXLabel labelWithFrame:CGRectMake(16, 16, 40, 40) text:@"" font:kFont14 textColor:kWhite100 alignment:NSTextAlignmentCenter cornerRadius:20];
     }
     return _icon;
 }
@@ -92,16 +92,16 @@
     return 72;
 }
 
-- (void)configIcon:(NSDictionary *)model {
+- (void)configIcon:(NSDictionary *)dic{
     NSArray *colorArr = @[@"#54E19E",@"#66A3FF",@"#38a1e6",@"#E2C97F",@"#7887C5",@"#68B38F",@"#8B58DF",@"#66D0D7",@"#BEC65D",@"#F4934D"];
-//    if (!IsEmpty(model.accountId)) {
-//        NSString *lastNumStr =[model.accountId substringFromIndex:model.accountId.length - 1];
-//        int colorIndex = lastNumStr.intValue % 10;
-//        self.iconLabel.backgroundColor = [UIColor colorWithHexString:colorArr[colorIndex]];
-//    }
-//    if (!IsEmpty(model.nickName)) {
-//        self.iconLabel.text = [model.nickName substringToIndex:1];
-//    }
+    if (!IsEmpty(dic[@"userName"])) {
+        NSString *lastNumStr =[dic[@"userName"] substringFromIndex:[dic[@"userName"] length] - 1];
+        int colorIndex = lastNumStr.intValue % 10;
+        self.icon.backgroundColor = [UIColor colorWithHexString:colorArr[colorIndex]];
+    }
+    if (!IsEmpty(dic[@"userName"])) {
+        self.icon.text = [dic[@"userName"] substringToIndex:1];
+    }
 }
 
 @end

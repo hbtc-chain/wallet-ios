@@ -8,7 +8,7 @@
 
 @interface XXUserHeaderView ()
 
-@property (strong, nonatomic) UIImageView *iconImageView;
+@property (strong, nonatomic) XXLabel *icon;
 @property (strong, nonatomic) UITextField *textField;
 @property (strong, nonatomic) XXLabel *addressLabel;
 @property (strong, nonatomic) XXButton *manageBtn;
@@ -23,9 +23,10 @@
     if (self) {
         self.backgroundColor = kBlue100;
         [self addSubview:self.manageBtn];
-        [self addSubview:self.iconImageView];
+        [self addSubview:self.icon];
         [self addSubview:self.textField];
         [self addSubview:self.addressLabel];
+        [self configIcon];
     }
     return self;
 }
@@ -41,17 +42,16 @@
     return _manageBtn;
 }
 
-- (UIImageView *)iconImageView {
-    if (!_iconImageView) {
-        _iconImageView = [[UIImageView alloc] initWithFrame:CGRectMake(K375(21), K375(66), 56, 56)];
-        _iconImageView.image = [UIImage imageNamed:@"CreateWalletSuccess"];
+- (XXLabel *)icon {
+    if (!_icon) {
+        _icon = [XXLabel labelWithFrame:CGRectMake(K375(21), K375(66), 56, 56) text:@"" font:kFont14 textColor:kWhite100 alignment:NSTextAlignmentCenter cornerRadius:28];
     }
-    return _iconImageView;
+    return _icon;
 }
 
 - (UITextField *)textField {
     if (!_textField) {
-        _textField = [[UITextField alloc] initWithFrame:CGRectMake(CGRectGetMaxX(self.iconImageView.frame), K375(70), 100, 25)];
+        _textField = [[UITextField alloc] initWithFrame:CGRectMake(CGRectGetMaxX(self.icon.frame) + 8, K375(70), 100, 25)];
         _textField.text = KUser.rootAccount[@"userName"];
         _textField.textColor = kWhite100;
     }
@@ -64,6 +64,18 @@
         _addressLabel.text = KUser.rootAccount[@"BHAddress"];
     }
     return _addressLabel;
+}
+
+- (void)configIcon{
+    NSArray *colorArr = @[@"#54E19E",@"#66A3FF",@"#38a1e6",@"#E2C97F",@"#7887C5",@"#68B38F",@"#8B58DF",@"#66D0D7",@"#BEC65D",@"#F4934D"];
+    if (!IsEmpty(KUser.rootAccount[@"userName"])) {
+        NSString *lastNumStr =[KUser.rootAccount[@"userName"] substringFromIndex:[KUser.rootAccount[@"userName"] length] - 1];
+        int colorIndex = lastNumStr.intValue % 10;
+        self.icon.backgroundColor = [UIColor colorWithHexString:colorArr[colorIndex]];
+    }
+    if (!IsEmpty(KUser.rootAccount[@"userName"])) {
+        self.icon.text = [KUser.rootAccount[@"userName"] substringToIndex:1];
+    }
 }
 
 @end

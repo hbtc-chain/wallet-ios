@@ -11,6 +11,7 @@
 @interface XXMnemonicBtn()
 
 @property (nonatomic, strong) XXLabel *titleLabel;
+@property (nonatomic, strong) UIImageView *icon;
 
 @end
 
@@ -29,12 +30,14 @@
     self.backgroundColor = kDark5;
     [self addSubview:self.orderLabel];
     [self addSubview:self.titleLabel];
+    [self addSubview:self.icon];
     UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tapGes)];
     [self addGestureRecognizer:tap];
 }
 
 - (void)reloadUI {
     self.orderLabel.hidden = NO;
+    self.icon.hidden = YES;
     self.userInteractionEnabled = YES;
     if (self.state == MnemonicBtnType_Normal) {
         self.titleLabel.textColor = kDark100;
@@ -44,6 +47,7 @@
         self.userInteractionEnabled = NO;
     } else if (self.state == MnemonicBtnType_Wrong) {
         self.titleLabel.textColor = kRed100;
+        self.icon.hidden = NO;
     } else {
         
     }
@@ -67,6 +71,14 @@
         _titleLabel  = [XXLabel labelWithFrame:CGRectMake(0, self.height/7, self.width, self.height*5/7) text:self.title font:kFont18 textColor:kDark100 alignment:NSTextAlignmentCenter];
     }
     return _titleLabel;
+}
+
+- (UIImageView *)icon {
+    if (!_icon) {
+        _icon = [[UIImageView alloc] initWithFrame:CGRectMake(self.width - 20, 2, 18, 18)];
+        _icon.image = [UIImage imageNamed:@"phraseDelete"];
+    }
+    return _icon;
 }
 
 - (void)setState:(MnemonicBtnType)state {

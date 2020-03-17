@@ -12,6 +12,8 @@
 #import <IQKeyboardManager.h>
 #import "XXAccountManageVC.h"
 #import "XXUserHeaderView.h"
+#import "XXBackupMnemonicPhraseVC.h"
+
 
 @interface XXUserHomeVC () <UITableViewDataSource, UITableViewDelegate, UIGestureRecognizerDelegate>
 
@@ -34,13 +36,18 @@
     [self setupUI];
 }
 
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+    [self.tableView reloadData];
+}
+
 #pragma mark - 1. 初始化数据
 - (void)initData {
     self.itemsArray = [NSMutableArray array];
     self.iconArray = [NSMutableArray array];
-    self.itemsArray[0] = @[LocalizedString(@"BackupMnemonicPhrase"), LocalizedString(@"ModifyPassword"), LocalizedString(@"BindNotification")];
+    self.itemsArray[0] = @[LocalizedString(@"BackupMnemonicPhrase"), LocalizedString(@"ModifyPassword")];
     
-    self.itemsArray[1] = @[LocalizedString(@"HelpCenter"), LocalizedString(@"TermsOfUse"), LocalizedString(@"AboutUs")];
+//    self.itemsArray[1] = @[LocalizedString(@"HelpCenter"), LocalizedString(@"TermsOfUse"), LocalizedString(@"AboutUs")];
 }
 
 #pragma mark - 2. 初始化UI
@@ -88,11 +95,6 @@
     cell.contentView.backgroundColor = kViewBackgroundColor;
     cell.nameLabel.textColor = kDark100;
     cell.lineView.backgroundColor = KLine_Color;
-    if (indexPath.row == namesArray.count - 1) {
-        cell.lineView.hidden = YES;
-    } else {
-        cell.lineView.hidden = NO;
-    }
     return cell;
 }
 
@@ -114,27 +116,14 @@
         return;
     }
     
-//    if ([itemString isEqualToString:LocalizedString(@"SafeManagement")]) { // 安全
-//        [self pushSecurityVC];
-//    } else if ([itemString isEqualToString:LocalizedString(@"Verified")]) { // 实名认证
-//        [self headViewClick];
-//    } else if ([itemString isEqualToString:LocalizedString(@"OrderManagement")]) { // 订单
-//        [self pushOrderVC];
-//    } else if ([itemString isEqualToString:LocalizedString(@"WithdrawAddress")]) { // 提币地址
-//        [self pushAddressVC];
-//    } else if ([itemString isEqualToString:LocalizedString(@"MyInvitation")]) { // 我的邀请
-//        [self pushMyInvitation];
-//    }  else if ([itemString isEqualToString:LocalizedString(@"MyVoucher")]) { // 卡券
-//        [self pushMyVoucher];
-//    } else if ([itemString isEqualToString:LocalizedString(@"My_PointCard")]) { // 点卡
-//        [self pushPointCardVC];
-//    } else if ([itemString isEqualToString:LocalizedString(@"Notice")]) { // 公告
-//        [self pushNoticeVC];
-//    } else if ([itemString isEqualToString:LocalizedString(@"SubmitATicket")]) { // 提交工单
-//        [self pushSubmitATicketVC];
-//    } else if ([itemString isEqualToString:LocalizedString(@"Support")]) { // 支持
-//        [self pushBeginnerGuide];
-//    }
+    if ([itemString isEqualToString:LocalizedString(@"BackupMnemonicPhrase")]) { // 备份助记词
+        [self pushBackupPhrase];
+    }
+}
+
+- (void)pushBackupPhrase {
+    XXBackupMnemonicPhraseVC *backup = [[XXBackupMnemonicPhraseVC alloc] init];
+    [self.navigationController pushViewController:backup animated:YES];
 }
 
 #pragma mark - || 懒加载
