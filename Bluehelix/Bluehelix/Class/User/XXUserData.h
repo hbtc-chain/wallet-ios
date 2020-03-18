@@ -17,6 +17,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 @property (nonatomic, strong) NSString *localUserName;
 @property (nonatomic, strong) NSString *localPassword;
+@property (nonatomic, strong) NSString *localPhraseString; //临时助记词
+@property (nonatomic, strong) NSString *localPrivateKey; //临时私钥
 @property (nonatomic, strong) NSDictionary *rootAccount;
 @property (nonatomic, strong) NSMutableArray *accounts;
 

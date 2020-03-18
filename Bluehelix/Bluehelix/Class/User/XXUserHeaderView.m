@@ -5,14 +5,16 @@
 
 #import "XXUserHeaderView.h"
 #import "XXAccountManageVC.h"
+#import "XXAccountBtn.h"
 
 @interface XXUserHeaderView ()
 
 @property (strong, nonatomic) XXLabel *icon;
 @property (strong, nonatomic) UITextField *textField;
 @property (strong, nonatomic) XXLabel *addressLabel;
-@property (strong, nonatomic) XXButton *manageBtn;
-
+@property (strong, nonatomic) XXAccountBtn *manageBtn;
+@property (strong, nonatomic) UIImageView *backImageView;
+@property (strong, nonatomic) XXButton *copyButton;
 @end
 
 @implementation XXUserHeaderView
@@ -21,22 +23,32 @@
 {
     self = [super initWithFrame:frame];
     if (self) {
-        self.backgroundColor = kBlue100;
+        self.backgroundColor = kWhite100;
+        [self addSubview:self.backImageView];
         [self addSubview:self.manageBtn];
         [self addSubview:self.icon];
         [self addSubview:self.textField];
         [self addSubview:self.addressLabel];
+        [self addSubview:self.copyButton];
         [self configIcon];
     }
     return self;
 }
 
-- (XXButton *)manageBtn {
+- (UIImageView *)backImageView {
+    if (!_backImageView) {
+        _backImageView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, kScreen_Width, K375(224))];
+        _backImageView.image = [UIImage imageNamed:@"userHeaderBack"];
+    }
+    return _backImageView;
+}
+
+- (XXAccountBtn *)manageBtn {
     if (!_manageBtn) {
         MJWeakSelf;
-        _manageBtn = [XXButton buttonWithFrame:CGRectMake(kScreen_Width - 100, 46, 60, 26) title:LocalizedString(@"AccountManage") font:kFont10 titleColor:kWhite80 block:^(UIButton *button) {
-            XXAccountManageVC *accountVC = [[XXAccountManageVC alloc] init];
-            [weakSelf.viewController.navigationController pushViewController:accountVC animated:YES];
+        _manageBtn = [[XXAccountBtn alloc] initWithFrame:CGRectMake(00, 46, 0, 26) block:^{
+             XXAccountManageVC *accountVC = [[XXAccountManageVC alloc] init];
+             [weakSelf.viewController.navigationController pushViewController:accountVC animated:YES];
         }];
     }
     return _manageBtn;
@@ -64,6 +76,20 @@
         _addressLabel.text = KUser.rootAccount[@"BHAddress"];
     }
     return _addressLabel;
+}
+
+- (XXButton *)copyButton {
+    if (_copyButton == nil) {
+        _copyButton = [XXButton buttonWithFrame:CGRectMake(CGRectGetMaxX(self.addressLabel.frame), self.addressLabel.top - 12, 40, 40) block:^(UIButton *button) {
+            UIPasteboard *pab = [UIPasteboard generalPasteboard];
+            [pab setString:KUser.rootAccount[@"BHAddress"]];
+            Alert *alert = [[Alert alloc] initWithTitle:LocalizedString(@"CopySuccessfully") duration:kAlertDuration completion:^{
+            }];
+            [alert showAlert];
+        }];
+        [_copyButton setImage:[UIImage imageNamed:@"paste"] forState:UIControlStateNormal];
+    }
+    return _copyButton;
 }
 
 - (void)configIcon{

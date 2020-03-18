@@ -37,6 +37,24 @@ static XXUserData *_sharedUserData = nil;
     return [self getValueForKey:@"localPassword"];
 }
 
+// 临时助记词
+- (void)setLocalPhraseString:(NSString *)localPhraseString {
+    [self saveValeu:localPhraseString forKey:@"localPhraseString"];
+}
+
+- (NSString *)localPhraseString {
+    return [self getValueForKey:@"localPhraseString"];
+}
+
+// 临时私钥
+- (void)setLocalPrivateKey:(NSString *)localPrivateKey {
+    [self saveValeu:localPrivateKey forKey:@"localPrivateKey"];
+}
+
+- (NSString *)localPrivateKey {
+    return [self getValueForKey:@"localPrivateKey"];
+}
+
 // 当前账户
 - (void)setRootAccount:(NSDictionary *)rootAccount {
     [self saveValeu:rootAccount forKey:@"rootAccount"];

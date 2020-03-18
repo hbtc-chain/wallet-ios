@@ -17,7 +17,6 @@
 @property (nonatomic, strong) XXLabel *nameLabel;
 @property (nonatomic, strong) XXTextFieldView *textFieldView;
 @property (nonatomic, strong) XXButton *createBtn;
-
 @end
 
 @implementation XXCreateWalletVC
@@ -40,8 +39,9 @@
 
 - (void)nextStepAction {
     if (self.textFieldView.textField.text.length > 20) {
-        //TODO alert
-        [MBProgressHUD showErrorMessage:LocalizedString(@"AccountNameRuleAlert")];
+        Alert *alert = [[Alert alloc] initWithTitle:LocalizedString(@"AccountNameRuleAlert") duration:kAlertDuration completion:^{
+        }];
+        [alert showAlert];
         return;
     }
     KUser.localUserName = self.textFieldView.textField.text;

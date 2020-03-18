@@ -1,24 +1,22 @@
 //
-//  XXImportMnemonicPhraseVC.m
+//  XXImportPrivateKeyVC.m
 //  Bluehelix
 //
-//  Created by 袁振 on 2020/03/15.
+//  Created by 袁振 on 2020/03/18.
 //  Copyright © 2020 Bhex. All rights reserved.
 //
-
-#import "XXImportMnemonicPhraseVC.h"
+#import "XXImportPrivateKeyVC.h"
 #import "XXCreateWalletVC.h"
 
-@interface XXImportMnemonicPhraseVC () <UITextViewDelegate>
+@interface XXImportPrivateKeyVC () <UITextViewDelegate>
 
 @property (nonatomic, strong) XXLabel *tipLabel;
 @property (nonatomic, strong) UITextView *textView;
-@property (nonatomic, strong) UIView *textBackView;
 @property (nonatomic, strong) XXButton *createBtn;
-
+@property (nonatomic, strong) UIView *textBackView;
 @end
 
-@implementation XXImportMnemonicPhraseVC
+@implementation XXImportPrivateKeyVC
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -28,14 +26,14 @@
 
 - (void)nextStepAction {
     NSLog(@"%@",self.textView.text);
-    KUser.localPhraseString = self.textView.text;
-    KUser.localPrivateKey = @"";
+    KUser.localPrivateKey = self.textView.text;
+    KUser.localPhraseString = @"";
     XXCreateWalletVC *createVC = [[XXCreateWalletVC alloc] init];
     [self.navigationController pushViewController:createVC animated:YES];
 }
 
 - (void)buildUI {
-    self.titleLabel.text = LocalizedString(@"ImportMnemonicPhrase");
+    self.titleLabel.text = LocalizedString(@"ImportSecurity");
     [self.view addSubview:self.tipLabel];
     [self.view addSubview:self.textBackView];
     [self.textBackView addSubview:self.textView];
@@ -54,13 +52,12 @@
 
 - (XXLabel *)tipLabel {
     if (!_tipLabel) {
-        CGFloat height = [NSString heightWithText:LocalizedString(@"ImportMnemonicPhraseTip") font:kFont(15) width:kScreen_Width - K375(32)];
-        _tipLabel = [XXLabel labelWithFrame:CGRectMake(K375(16), kNavHeight, kScreen_Width - K375(32), height) text:LocalizedString(@"ImportMnemonicPhraseTip") font:kFont(15) textColor:kTipColor alignment:NSTextAlignmentLeft];
+        CGFloat height = [NSString heightWithText:LocalizedString(@"ImportSecurityTip") font:kFont(15) width:kScreen_Width - K375(32)];
+        _tipLabel = [XXLabel labelWithFrame:CGRectMake(K375(16), kNavHeight, kScreen_Width - K375(32), height) text:LocalizedString(@"ImportSecurityTip") font:kFont(15) textColor:kTipColor alignment:NSTextAlignmentLeft];
         _tipLabel.numberOfLines = 0;
     }
     return _tipLabel;
 }
-
 
 - (UIView *)textBackView {
     if (!_textBackView) {
@@ -97,4 +94,3 @@
 }
 
 @end
-

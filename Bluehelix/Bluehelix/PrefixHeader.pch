@@ -29,7 +29,7 @@
 #import "XXKit.h"
 #import "BaseViewController.h"
 #import "XXUserData.h"
-
+#import "Alert.h"
 static inline BOOL IsEmpty(id thing) {
     return thing == nil || [thing isEqual:[NSNull null]]
     || ([thing respondsToSelector:@selector(length)]
@@ -59,9 +59,11 @@ static inline BOOL IsEmpty(id thing) {
 
 //wallet
 #define kBtnBorderRadius 6
-#define kBtnNotEnableColor kDark10
+#define kBtnNotEnableColor [UIColor colorWithHexString:@"#E7ECF4"]
 #define kBtnHeight 48
 #define kTipColor [UIColor colorWithHexString:@"#6E8196"]
+#define kFieldBackColor [UIColor colorWithHexString:@"#F9F9FB"]
+#define kAlertDuration 2
 
 #define KString(str) (str) == nil ? @"" : [NSString stringWithFormat:@"%@",(str)]
 #define Kscal(value) ((kScreen_Width/1242)*(value))

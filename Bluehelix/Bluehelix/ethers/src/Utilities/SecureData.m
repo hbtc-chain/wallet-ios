@@ -155,14 +155,14 @@ static RegEx *RegExHex = nil;
 + (instancetype)secureDataWithHexString:(NSString*)hexString {
     
     // Make sure we are a valid hex string
-    if (![RegExHex matchesExactly:hexString]) { return nil; }
+//    if (![RegExHex matchesExactly:hexString]) { return nil; }
     
-    SecureData *secureData = [SecureData secureDataWithCapacity:hexString.length / 2 - 1];
+    SecureData *secureData = [SecureData secureDataWithCapacity:hexString.length / 2];
 
     uint8_t b = 0;
     unichar c;
     
-    for (NSUInteger i = 2; i < hexString.length; i++) {
+    for (NSUInteger i = 0; i < hexString.length; i++) {
         c = [hexString characterAtIndex:i];
         
         switch (c) {

@@ -14,7 +14,6 @@
 #import "XXUserHeaderView.h"
 #import "XXBackupMnemonicPhraseVC.h"
 
-
 @interface XXUserHomeVC () <UITableViewDataSource, UITableViewDelegate, UIGestureRecognizerDelegate>
 
 @property (strong, nonatomic) NSMutableArray *itemsArray;
@@ -144,7 +143,7 @@
 
 - (XXUserHeaderView *)headerView {
     if (!_headerView) {
-        _headerView = [[XXUserHeaderView alloc] initWithFrame:CGRectMake(0, 0, kScreen_Width, 230)];
+        _headerView = [[XXUserHeaderView alloc] initWithFrame:CGRectMake(0, 0, kScreen_Width, K375(256))];
     }
     return _headerView;
 }

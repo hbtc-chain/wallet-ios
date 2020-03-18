@@ -53,6 +53,10 @@
 		EA30A0E5236F221A0098DE28 /* UIWebView+AFNetworking.m in Sources */ = {isa = PBXBuildFile; fileRef = EA309F79236F22180098DE28 /* UIWebView+AFNetworking.m */; };
 		EA30A121236F221B0098DE28 /* AFAutoPurgingImageCache.m in Sources */ = {isa = PBXBuildFile; fileRef = EA309F7A236F22180098DE28 /* AFAutoPurgingImageCache.m */; };
 		EA30A15D236F221B0098DE28 /* AFImageDownloader.m in Sources */ = {isa = PBXBuildFile; fileRef = EA309F7C236F22180098DE28 /* AFImageDownloader.m */; };
+		EA35A5072421FC7D00ADF621 /* XXImportPrivateKeyVC.m in Sources */ = {isa = PBXBuildFile; fileRef = EA35A5062421FC7D00ADF621 /* XXImportPrivateKeyVC.m */; };
+		EA35A50A242221E000ADF621 /* XXAccountBtn.m in Sources */ = {isa = PBXBuildFile; fileRef = EA35A509242221E000ADF621 /* XXAccountBtn.m */; };
+		EA35A50D2422270600ADF621 /* XXAssetHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = EA35A50C2422270600ADF621 /* XXAssetHeaderView.m */; };
+		EA35A5102422426900ADF621 /* Alert.m in Sources */ = {isa = PBXBuildFile; fileRef = EA35A50F2422426900ADF621 /* Alert.m */; };
 		EA4F5E992179B5190025B350 /* AppDelegate+Category.m in Sources */ = {isa = PBXBuildFile; fileRef = EA4F5E982179B5190025B350 /* AppDelegate+Category.m */; };
 		EA6FA69721258EC5006305B8 /* FCUUID.m in Sources */ = {isa = PBXBuildFile; fileRef = EA6FA69521258EC5006305B8 /* FCUUID.m */; };
 		EA6FA69A21258FD3006305B8 /* UICKeyChainStore.m in Sources */ = {isa = PBXBuildFile; fileRef = EA6FA69821258FD3006305B8 /* UICKeyChainStore.m */; };
@@ -261,6 +265,14 @@
 		EA309F7C236F22180098DE28 /* AFImageDownloader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AFImageDownloader.m; sourceTree = "<group>"; };
 		EA32F30822A6CF2F00A5E32C /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/Localizable.strings; sourceTree = "<group>"; };
 		EA32F30922A6CF2F00A5E32C /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		EA35A5052421FC7D00ADF621 /* XXImportPrivateKeyVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = XXImportPrivateKeyVC.h; sourceTree = "<group>"; };
+		EA35A5062421FC7D00ADF621 /* XXImportPrivateKeyVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = XXImportPrivateKeyVC.m; sourceTree = "<group>"; };
+		EA35A508242221E000ADF621 /* XXAccountBtn.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = XXAccountBtn.h; sourceTree = "<group>"; };
+		EA35A509242221E000ADF621 /* XXAccountBtn.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = XXAccountBtn.m; sourceTree = "<group>"; };
+		EA35A50B2422270600ADF621 /* XXAssetHeaderView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = XXAssetHeaderView.h; sourceTree = "<group>"; };
+		EA35A50C2422270600ADF621 /* XXAssetHeaderView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = XXAssetHeaderView.m; sourceTree = "<group>"; };
+		EA35A50E2422426900ADF621 /* Alert.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Alert.h; sourceTree = "<group>"; };
+		EA35A50F2422426900ADF621 /* Alert.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Alert.m; sourceTree = "<group>"; };
 		EA42F2082289B20C0091EF78 /* vi-VN */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "vi-VN"; path = "vi-VN.lproj/Localizable.strings"; sourceTree = "<group>"; };
 		EA42F2092289B20C0091EF78 /* vi-VN */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "vi-VN"; path = "vi-VN.lproj/InfoPlist.strings"; sourceTree = "<group>"; };
 		EA4F5E972179B5190025B350 /* AppDelegate+Category.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "AppDelegate+Category.h"; sourceTree = "<group>"; };
@@ -554,6 +566,8 @@
 				EADDF97F241F762C00072DD1 /* XXAccountCell.m */,
 				EADDF981241F95FA00072DD1 /* XXAccountFooterView.h */,
 				EADDF982241F95FA00072DD1 /* XXAccountFooterView.m */,
+				EA35A508242221E000ADF621 /* XXAccountBtn.h */,
+				EA35A509242221E000ADF621 /* XXAccountBtn.m */,
 			);
 			path = User;
 			sourceTree = "<group>";
@@ -580,6 +594,8 @@
 			children = (
 				EA15E9752417DEE800A3E14A /* XXAssetVC.h */,
 				EA15E9762417DEE800A3E14A /* XXAssetVC.m */,
+				EA35A50B2422270600ADF621 /* XXAssetHeaderView.h */,
+				EA35A50C2422270600ADF621 /* XXAssetHeaderView.m */,
 			);
 			path = Asset;
 			sourceTree = "<group>";
@@ -831,17 +847,17 @@
 		EABD1B6B241BB25900B1A03A /* Utilities */ = {
 			isa = PBXGroup;
 			children = (
-				EABD1B6C241BB25900B1A03A /* BigNumber.m */,
 				EABD1B6D241BB25900B1A03A /* RLPSerialization.h */,
-				EABD1B6E241BB25900B1A03A /* Promise.m */,
-				EABD1B6F241BB25900B1A03A /* SecureData.m */,
-				EABD1B70241BB25900B1A03A /* Utilities.h */,
-				EABD1B71241BB25900B1A03A /* RegEx.h */,
-				EABD1B72241BB25900B1A03A /* BigNumber.h */,
-				EABD1B73241BB25900B1A03A /* SecureData.h */,
 				EABD1B74241BB25900B1A03A /* RLPSerialization.m */,
 				EABD1B75241BB25900B1A03A /* Promise.h */,
+				EABD1B6E241BB25900B1A03A /* Promise.m */,
+				EABD1B72241BB25900B1A03A /* BigNumber.h */,
+				EABD1B6C241BB25900B1A03A /* BigNumber.m */,
+				EABD1B73241BB25900B1A03A /* SecureData.h */,
+				EABD1B6F241BB25900B1A03A /* SecureData.m */,
+				EABD1B70241BB25900B1A03A /* Utilities.h */,
 				EABD1B76241BB25900B1A03A /* Utilities.m */,
+				EABD1B71241BB25900B1A03A /* RegEx.h */,
 				EABD1B77241BB25900B1A03A /* RegEx.m */,
 			);
 			path = Utilities;
@@ -856,6 +872,8 @@
 				EA15E95C24168F5600A3E14A /* XXVerifyMnemonicPhraseVC.m */,
 				EABD1BBC241E52ED00B1A03A /* XXImportMnemonicPhraseVC.h */,
 				EABD1BBD241E52ED00B1A03A /* XXImportMnemonicPhraseVC.m */,
+				EA35A5052421FC7D00ADF621 /* XXImportPrivateKeyVC.h */,
+				EA35A5062421FC7D00ADF621 /* XXImportPrivateKeyVC.m */,
 				EA15E9582416702C00A3E14A /* XXMnemonicBtn.h */,
 				EA15E9592416702C00A3E14A /* XXMnemonicBtn.m */,
 			);
@@ -1001,6 +1019,8 @@
 				F30EAF5320D26536005ADD5C /* XXCategory.h */,
 				EA0AA16523ED8AFD00E9472E /* XXDecimalNumberHelper.h */,
 				EA0AA16623ED8AFD00E9472E /* XXDecimalNumberHelper.m */,
+				EA35A50E2422426900ADF621 /* Alert.h */,
+				EA35A50F2422426900ADF621 /* Alert.m */,
 			);
 			path = Category;
 			sourceTree = "<group>";
@@ -1169,6 +1189,7 @@
 				EA6FA69A21258FD3006305B8 /* UICKeyChainStore.m in Sources */,
 				EABD1B99241BB25900B1A03A /* EtherchainProvider.m in Sources */,
 				EABD1BA3241BB25900B1A03A /* BlockInfo.m in Sources */,
+				EA35A50D2422270600ADF621 /* XXAssetHeaderView.m in Sources */,
 				F30EAF5F20D26536005ADD5C /* UIColor+helper.m in Sources */,
 				EA30A121236F221B0098DE28 /* AFAutoPurgingImageCache.m in Sources */,
 				F31F7A4D20CF9693008B4403 /* XXNavigationController.m in Sources */,
@@ -1198,6 +1219,7 @@
 				EA309EB4236F21410098DE28 /* AFURLRequestSerialization.m in Sources */,
 				EA4F5E992179B5190025B350 /* AppDelegate+Category.m in Sources */,
 				EA309F2C236F21410098DE28 /* AFSecurityPolicy.m in Sources */,
+				EA35A5072421FC7D00ADF621 /* XXImportPrivateKeyVC.m in Sources */,
 				7AC4D85F234C808F00F5E5F8 /* XXImageView.m in Sources */,
 				EA15E96A2417A70200A3E14A /* XXUserHomeVC.m in Sources */,
 				7AC4D7C6234C808F00F5E5F8 /* XXLabel.m in Sources */,
@@ -1217,6 +1239,7 @@
 				EA309E3C236F21410098DE28 /* AFHTTPSessionManager.m in Sources */,
 				EA15E97A2417E24100A3E14A /* XXScreenShotAlert.m in Sources */,
 				EABD1BAD241BB25900B1A03A /* Address.m in Sources */,
+				EA35A5102422426900ADF621 /* Alert.m in Sources */,
 				EABD1B9A241BB25900B1A03A /* JsonRpcProvider.m in Sources */,
 				EABD1BB1241DFC3E00B1A03A /* XXTextFieldView.m in Sources */,
 				EADDF97A241F676D00072DD1 /* XXLoginVC.m in Sources */,
@@ -1257,6 +1280,7 @@
 				F30EAF5720D26536005ADD5C /* colorModel.m in Sources */,
 				EA309F7D236F22190098DE28 /* UIProgressView+AFNetworking.m in Sources */,
 				EA30A06D236F221A0098DE28 /* UIButton+AFNetworking.m in Sources */,
+				EA35A50A242221E000ADF621 /* XXAccountBtn.m in Sources */,
 				F30EAF6120D26536005ADD5C /* UIView+VJQ.m in Sources */,
 				EA30A15D236F221B0098DE28 /* AFImageDownloader.m in Sources */,
 				F30EAF5B20D26536005ADD5C /* UITableViewCell+Extension.m in Sources */,

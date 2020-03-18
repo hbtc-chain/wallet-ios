@@ -58,6 +58,7 @@
     self.formView.layer.masksToBounds = YES;
     [self.scrollView addSubview:self.formView];
     
+    int rightCount = 0;
     int Width = (kScreen_Width - K375(32))/3;
     int Height = K375(48);
     int Left = 0;
@@ -78,6 +79,7 @@
         };
         if ([selectedWord isEqualToString:phraseArr[i]]) {
             btn.state = MnemonicBtnType_Normal;
+            rightCount ++;
         } else {
             btn.state = MnemonicBtnType_Wrong;
         }
@@ -95,6 +97,13 @@
         UIView *lineView = [[UIView alloc] initWithFrame:CGRectMake(i*K375(115), 0, KLine_Height, self.formView.height)];
         lineView.backgroundColor = KLine_Color;
         [self.formView addSubview:lineView];
+    }
+    if (rightCount == phraseArr.count) {
+        self.backupBtn.enabled = YES;
+        self.backupBtn.backgroundColor = kBlue100;
+    } else {
+        self.backupBtn.enabled = NO;
+        self.backupBtn.backgroundColor = kBtnNotEnableColor;
     }
 }
 
@@ -162,10 +171,11 @@
         _backupBtn = [XXButton buttonWithFrame:CGRectMake(K375(16), _contentHeight > kScreen_Height - kBtnHeight - K375(16) ? _contentHeight + 20 : kScreen_Height - kBtnHeight - K375(16), kScreen_Width - K375(32), kBtnHeight) title:LocalizedString(@"StartBackup") font:kFontBold18 titleColor:kWhite100 block:^(UIButton *button) {
             KWindow.rootViewController = [[XXTabBarController alloc] init];
         }];
-        _backupBtn.backgroundColor = kBlue100;
         _backupBtn.layer.cornerRadius = kBtnBorderRadius;
         _backupBtn.layer.masksToBounds = YES;
         _contentHeight = _contentHeight + kBtnHeight + 20 + K375(16);
+        _backupBtn.backgroundColor = kBtnNotEnableColor;
+        _backupBtn.enabled = NO;
     }
     return _backupBtn;
 }

@@ -12,6 +12,7 @@
 "Order" = "订单";
 "Me" = "我的";
 
+"logoName" = "Bluehelix Wallet";
 "CreateWallet" = "创建托管单元";
 "ImportWallet" = "导入托管单元";
 "VerifyMnemonicPhraseTip" = "请按顺序点击助记词，填入下方表格中";
@@ -52,9 +53,12 @@
 "ImportKeyStore" = "导入Keystore";
 "ImportSecurity" = "导入私钥";
 "ImportMnemonicPhraseTip" = "请在下方输入框中按顺序输入助记词，用空格分开";
+"ImportSecurityTip" = "请在下方输入框中输入私钥，并留意大小写";
 "AccountManage" = "管理托管单元";
 "TwoPasswordInconsistent" = "两次密码输入不一致！";
 "AccountNameRuleAlert" = "请输入1-20个字符";
+"IAgreeTo" = "我已阅读并同意";
+"ServiceAgreement" = "《Bluehelix服务协议》";
 
 //我的
 "BackupMnemonicPhrase" = "备份助记词";
@@ -63,3 +67,4 @@
 "HelpCenter" = "帮助中心";
 "TermsOfUse" = "使用条款";
 "AboutUs" = "关于我们";
+"CopySuccessfully" = "复制成功";

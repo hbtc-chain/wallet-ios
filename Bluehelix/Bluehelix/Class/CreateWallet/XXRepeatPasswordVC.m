@@ -19,7 +19,8 @@
 @property (nonatomic, strong) XXLabel *nameLabel;
 @property (nonatomic, strong) XXTextFieldView *textFieldView;
 @property (nonatomic, strong) XXButton *createBtn;
-
+@property (strong, nonatomic) XXButton *isAgreeButton;
+@property (strong, nonatomic) UITextView *textView;
 @end
 
 @implementation XXRepeatPasswordVC
@@ -37,25 +38,42 @@
     [self.view addSubview:self.contentLabel];
     [self.view addSubview:self.nameLabel];
     [self.view addSubview:self.textFieldView];
+    [self.view addSubview:self.isAgreeButton];
+    [self.view addSubview:self.textView];
     [self.view addSubview:self.createBtn];
 }
 
 - (void)createAction {
     if (![self.textFieldView.textField.text isEqualToString:KUser.localPassword]) {
-        [MBProgressHUD showErrorMessage:LocalizedString(@"TwoPasswordInconsistent")];
+        Alert *alert = [[Alert alloc] initWithTitle:LocalizedString(@"TwoPasswordInconsistent") duration:kAlertDuration completion:^{
+        }];
+        [alert showAlert];
         return;
     }
-    Account *account = [Account randomMnemonicAccount];
+    Account *account;
+    NSLog(@"%@   %@",KUser.localPrivateKey,KUser.localPhraseString);
+    if (!IsEmpty(KUser.localPhraseString)) { //通过助记词导入创建
+        account = [Account accountWithMnemonicPhrase:KUser.localPhraseString];
+    } else if (!IsEmpty(KUser.localPrivateKey)) { //通过私钥导入创建
+        SecureData * data = [SecureData secureDataWithHexString:KUser.localPrivateKey];
+        account = [Account accountWithPrivateKey:data.data];
+    } else {
+        account = [Account randomMnemonicAccount];
+    }
     NSMutableDictionary *dic = [NSMutableDictionary dictionary];
     [dic setObject:account.privateKey forKey:@"privateKey"];
     [dic setObject:account.BHAddress forKey:@"BHAddress"];
     [dic setObject:KUser.localUserName forKey:@"userName"];
-    [dic setObject:KUser.localPassword forKey:@"password"];
-    [dic setObject:account.mnemonicPhrase forKey:@"mnemonicPhrase"];
+    [dic setObject:[NSString md5:KUser.localPassword] forKey:@"password"];
+    if (account.mnemonicPhrase) {
+        [dic setObject:account.mnemonicPhrase forKey:@"mnemonicPhrase"];
+    }
     [KUser addAccount:dic];
     KUser.rootAccount = dic;
     XXCreateWalletSuccessVC *successVC = [[XXCreateWalletSuccessVC alloc] init];
     [self.navigationController pushViewController:successVC animated:YES];
+    KUser.localPassword = @"";
+    KUser.localUserName = @"";
 }
 
 - (void)textFiledValueChange:(UITextField *)textField {
@@ -110,10 +128,52 @@
     return _textFieldView;
 }
 
+- (XXButton *)isAgreeButton {
+    if (_isAgreeButton == nil) {
+        MJWeakSelf
+        _isAgreeButton = [XXButton buttonWithFrame:CGRectMake(K375(24), CGRectGetMaxY(self.textFieldView.frame) + 15, 30, 30) block:^(UIButton *button) {
+            weakSelf.isAgreeButton.selected = !weakSelf.isAgreeButton.selected;
+        }];
+        _isAgreeButton.contentHorizontalAlignment =UIControlContentHorizontalAlignmentLeft;
+        _isAgreeButton.contentVerticalAlignment = UIControlContentVerticalAlignmentCenter;
+        [_isAgreeButton setImage:[UIImage subTextImageName:@"unSelected"] forState:UIControlStateNormal];
+        [_isAgreeButton setImage:[UIImage mainImageName:@"selected"] forState:UIControlStateSelected];
+        _isAgreeButton.selected = NO;
+    }
+    return _isAgreeButton;
+}
+
+- (UITextView *)textView {
+    if (_textView == nil) {
+        _textView = [[UITextView alloc] initWithFrame:CGRectMake(CGRectGetMaxX(self.isAgreeButton.frame) - 5, self.isAgreeButton.top, K375(280), self.isAgreeButton.height)];
+        _textView.backgroundColor = kWhite100;
+        _textView.font = kFont12;
+        _textView.textColor = kDark80;
+//        _textView.delegate  = self;
+        _textView.editable  = NO;
+        _textView.scrollEnabled = NO;
+        _textView.textAlignment = NSTextAlignmentLeft;
+        NSString *fwxy = LocalizedString(@"ServiceAgreement");
+//        NSString *ysxy =LocalizedString(@"PrivacyAgreement");
+        NSMutableAttributedString *attributedString = [[NSMutableAttributedString alloc] initWithString:[NSString stringWithFormat:@"%@ %@", LocalizedString(@"IAgreeTo"), fwxy]];
+//        [attributedString addAttribute:NSLinkAttributeName
+//                                 value:@"fwxy://"
+//                                 range:[[attributedString string] rangeOfString:fwxy]];
+//        [attributedString addAttribute:NSLinkAttributeName
+//                                 value:@"ysxy://"
+//                                 range:[[attributedString string] rangeOfString:ysxy]];
+        [attributedString addAttribute:NSFontAttributeName value:kFont14 range:NSMakeRange(0, attributedString.length)];
+//        [attributedString addAttribute:NSForegroundColorAttributeName value:kDark100 range:NSMakeRange(0, attributedString.length)];
+        _textView.attributedText = attributedString;
+        _textView.linkTextAttributes = @{NSForegroundColorAttributeName:kBlue100};
+    }
+    return _textView;
+}
+
 - (XXButton *)createBtn {
     if (!_createBtn) {
         MJWeakSelf
-        _createBtn = [XXButton buttonWithFrame:CGRectMake(K375(16), CGRectGetMaxY(self.textFieldView.frame) + 24, kScreen_Width - K375(32), kBtnHeight) title:LocalizedString(@"StartCreate") font:kFontBold18 titleColor:kWhite100 block:^(UIButton *button) {
+        _createBtn = [XXButton buttonWithFrame:CGRectMake(K375(16), CGRectGetMaxY(self.textView.frame) + 24, kScreen_Width - K375(32), kBtnHeight) title:LocalizedString(@"StartCreate") font:kFontBold18 titleColor:kWhite100 block:^(UIButton *button) {
             [weakSelf createAction];
         }];
         _createBtn.backgroundColor = kBtnNotEnableColor;

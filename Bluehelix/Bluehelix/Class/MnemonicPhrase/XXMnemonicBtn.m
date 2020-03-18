@@ -77,6 +77,7 @@
     if (!_icon) {
         _icon = [[UIImageView alloc] initWithFrame:CGRectMake(self.width - 20, 2, 18, 18)];
         _icon.image = [UIImage imageNamed:@"phraseDelete"];
+        _icon.hidden = YES;
     }
     return _icon;
 }

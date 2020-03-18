@@ -8,6 +8,7 @@
 
 #import "XXImportWalletVC.h"
 #import "XXImportMnemonicPhraseVC.h"
+#import "XXImportPrivateKeyVC.h"
 
 @interface XXImportWalletVC ()
 
@@ -52,8 +53,8 @@
     if (!_keyStoreBtn) {
         MJWeakSelf
         _keyStoreBtn = [XXButton buttonWithFrame:CGRectMake(K375(16), CGRectGetMaxY(self.mnemonicPhraseBtn.frame) + K375(24), kScreen_Width - K375(32), kBtnHeight) title:LocalizedString(@"ImportKeyStore") font:kFont(17) titleColor:kBlue100 block:^(UIButton *button) {
-            XXImportWalletVC *importVC = [[XXImportWalletVC alloc] init];
-            [weakSelf.navigationController pushViewController:importVC animated:YES];
+//            XXImportWalletVC *importVC = [[XXImportWalletVC alloc] init];
+//            [weakSelf.navigationController pushViewController:importVC animated:YES];
         }];
         _keyStoreBtn.backgroundColor = kWhite100;
         _keyStoreBtn.layer.cornerRadius = kBtnBorderRadius;
@@ -68,7 +69,7 @@
     if (!_securityBtn) {
         MJWeakSelf
         _securityBtn = [XXButton buttonWithFrame:CGRectMake(K375(16), CGRectGetMaxY(self.keyStoreBtn.frame) + K375(24), kScreen_Width - K375(32), kBtnHeight) title:LocalizedString(@"ImportSecurity") font:kFont(17) titleColor:kBlue100 block:^(UIButton *button) {
-            XXImportWalletVC *importVC = [[XXImportWalletVC alloc] init];
+            XXImportPrivateKeyVC *importVC = [[XXImportPrivateKeyVC alloc] init];
             [weakSelf.navigationController pushViewController:importVC animated:YES];
         }];
         _securityBtn.backgroundColor = kWhite100;
