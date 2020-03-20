@@ -13,6 +13,7 @@
 #import "XXAccountManageVC.h"
 #import "XXUserHeaderView.h"
 #import "XXBackupMnemonicPhraseVC.h"
+#import "XXPasswordView.h"
 
 @interface XXUserHomeVC () <UITableViewDataSource, UITableViewDelegate, UIGestureRecognizerDelegate>
 
@@ -40,16 +41,16 @@
     [self.tableView reloadData];
 }
 
-#pragma mark - 1. 初始化数据
 - (void)initData {
     self.itemsArray = [NSMutableArray array];
     self.iconArray = [NSMutableArray array];
-    self.itemsArray[0] = @[LocalizedString(@"BackupMnemonicPhrase"), LocalizedString(@"ModifyPassword")];
-    
-//    self.itemsArray[1] = @[LocalizedString(@"HelpCenter"), LocalizedString(@"TermsOfUse"), LocalizedString(@"AboutUs")];
+    if (KUser.rootAccount[@"mnemonicPhrase"]) {
+        self.itemsArray[0] = @[LocalizedString(@"BackupMnemonicPhrase"), LocalizedString(@"ModifyPassword")];
+    } else {
+        self.itemsArray[0] = @[LocalizedString(@"ModifyPassword")];
+    }
 }
 
-#pragma mark - 2. 初始化UI
 - (void)setupUI {
     self.navView.hidden = YES;
     [self.view addSubview:self.tableView];
@@ -121,11 +122,14 @@
 }
 
 - (void)pushBackupPhrase {
-    XXBackupMnemonicPhraseVC *backup = [[XXBackupMnemonicPhraseVC alloc] init];
-    [self.navigationController pushViewController:backup animated:YES];
+    MJWeakSelf
+    [XXPasswordView showWithSureBtnBlock:^(NSString * _Nonnull text) {
+        XXBackupMnemonicPhraseVC *backup = [[XXBackupMnemonicPhraseVC alloc] init];
+        backup.text = text;
+        [weakSelf.navigationController pushViewController:backup animated:YES];
+    }];
 }
 
-#pragma mark - || 懒加载
 - (UITableView *)tableView {
     if (_tableView == nil) {
         _tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, kScreen_Width, kScreen_Height - kTabbarHeight) style:UITableViewStylePlain];

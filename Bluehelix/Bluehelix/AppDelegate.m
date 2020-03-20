@@ -9,14 +9,33 @@
 #import "AppDelegate.h"
 #import "XXTabBarController.h"
 #import "XXStartWalletVC.h"
+#import "Account.h"
+#import "SecureData.h"
+#import "XXLoginVC.h"
+
 @implementation AppDelegate
 
 #pragma mark - 1. 程序开始
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
+    
+//    if (!IsEmpty(KUser.localPhraseString)) { //通过助记词导入创建
+//           account = [Account accountWithMnemonicPhrase:KUser.localPhraseString];
+//       } else if (!IsEmpty(KUser.localPrivateKey)) { //通过私钥导入创建
+//           SecureData * data = [SecureData secureDataWithHexString:KUser.localPrivateKey];
+//           account = [Account accountWithPrivateKey:data.data];
+//       } else {
+//           account = [Account randomMnemonicAccount];
+//       }
+    
+     SecureData * data = [SecureData secureDataWithHexString:@"abcde234234234234"];
+     Account *account = [Account accountWithPrivateKey:data.data];
+    
     KWindow.backgroundColor = [UIColor whiteColor];
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     if (KUser.rootAccount) {
-        self.window.rootViewController = [[XXTabBarController alloc] init];
+        XXLoginVC *loginVC = [[XXLoginVC alloc] init];
+        self.window.rootViewController = loginVC;
+//        self.window.rootViewController = [[XXTabBarController alloc] init];
     } else {
         XXStartWalletVC *startVC = [[XXStartWalletVC alloc] init];
         XXNavigationController *startNav = [[XXNavigationController alloc] initWithRootViewController:startVC];

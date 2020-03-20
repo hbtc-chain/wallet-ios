@@ -10,6 +10,7 @@
 #import "XXCreateWalletSuccessVC.h"
 #import "Account.h"
 #import "SecureData.h"
+#import "AESCrypt.h"
 
 @interface XXRepeatPasswordVC ()
 
@@ -66,18 +67,20 @@
     [dic setObject:KUser.localUserName forKey:@"userName"];
     [dic setObject:[NSString md5:KUser.localPassword] forKey:@"password"];
     if (account.mnemonicPhrase) {
-        [dic setObject:account.mnemonicPhrase forKey:@"mnemonicPhrase"];
+        NSString *mnemonicPhrase = [AESCrypt encrypt:account.mnemonicPhrase password:KUser.localPassword];
+        [dic setObject:mnemonicPhrase forKey:@"mnemonicPhrase"];
     }
     [KUser addAccount:dic];
     KUser.rootAccount = dic;
     XXCreateWalletSuccessVC *successVC = [[XXCreateWalletSuccessVC alloc] init];
+    successVC.text = KUser.localPassword;
     [self.navigationController pushViewController:successVC animated:YES];
     KUser.localPassword = @"";
     KUser.localUserName = @"";
 }
 
 - (void)textFiledValueChange:(UITextField *)textField {
-    if (textField.text.length) {
+    if (textField.text.length && self.isAgreeButton.isSelected) {
         self.createBtn.enabled = YES;
         self.createBtn.backgroundColor = kBlue100;
     } else {
@@ -133,6 +136,13 @@
         MJWeakSelf
         _isAgreeButton = [XXButton buttonWithFrame:CGRectMake(K375(24), CGRectGetMaxY(self.textFieldView.frame) + 15, 30, 30) block:^(UIButton *button) {
             weakSelf.isAgreeButton.selected = !weakSelf.isAgreeButton.selected;
+            if (weakSelf.isAgreeButton.selected && weakSelf.textFieldView.textField.text.length) {
+                weakSelf.createBtn.enabled = YES;
+                weakSelf.createBtn.backgroundColor = kBlue100;
+            } else {
+                weakSelf.createBtn.enabled = NO;
+                weakSelf.createBtn.backgroundColor = kBtnNotEnableColor;
+            }
         }];
         _isAgreeButton.contentHorizontalAlignment =UIControlContentHorizontalAlignmentLeft;
         _isAgreeButton.contentVerticalAlignment = UIControlContentVerticalAlignmentCenter;

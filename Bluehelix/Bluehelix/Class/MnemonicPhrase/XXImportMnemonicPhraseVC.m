@@ -8,6 +8,8 @@
 
 #import "XXImportMnemonicPhraseVC.h"
 #import "XXCreateWalletVC.h"
+#import "Account.h"
+#import "SecureData.h"
 
 @interface XXImportMnemonicPhraseVC () <UITextViewDelegate>
 
@@ -28,10 +30,18 @@
 
 - (void)nextStepAction {
     NSLog(@"%@",self.textView.text);
-    KUser.localPhraseString = self.textView.text;
-    KUser.localPrivateKey = @"";
-    XXCreateWalletVC *createVC = [[XXCreateWalletVC alloc] init];
-    [self.navigationController pushViewController:createVC animated:YES];
+    SecureData * data = [SecureData secureDataWithHexString:self.textView.text];
+    Account *account = [Account accountWithPrivateKey:data.data];
+    if (account) {
+        KUser.localPhraseString = self.textView.text;
+        KUser.localPrivateKey = @"";
+        XXCreateWalletVC *createVC = [[XXCreateWalletVC alloc] init];
+        [self.navigationController pushViewController:createVC animated:YES];
+    } else {
+        Alert *alert = [[Alert alloc] initWithTitle:LocalizedString(@"MnemonicPhraseOutOfOrder") duration:kAlertDuration completion:^{
+        }];
+        [alert showAlert];
+    }
 }
 
 - (void)buildUI {
@@ -43,13 +53,13 @@
 }
 
 - (void)textViewDidChange:(UITextView *)textView {
-        if (textView.text.length) {
-            self.createBtn.enabled = YES;
-            self.createBtn.backgroundColor = kBlue100;
-        } else {
-            self.createBtn.enabled = NO;
-            self.createBtn.backgroundColor = kBtnNotEnableColor;
-        }
+    if (textView.text.length) {
+        self.createBtn.enabled = YES;
+        self.createBtn.backgroundColor = kBlue100;
+    } else {
+        self.createBtn.enabled = NO;
+        self.createBtn.backgroundColor = kBtnNotEnableColor;
+    }
 }
 
 - (XXLabel *)tipLabel {

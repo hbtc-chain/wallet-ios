@@ -36,6 +36,8 @@
  */
 +(NSString *)md5:(NSString *)string;
 
++ (NSString *)encryptAES:(NSString *)content key:(NSString *)key;
+
 /**
  将时间戳转换成时间
  */

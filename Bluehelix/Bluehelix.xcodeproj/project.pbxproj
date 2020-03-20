@@ -38,6 +38,7 @@
 		EA264481211C7D0800FCEC6E /* libz.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = EA264480211C7D0800FCEC6E /* libz.tbd */; };
 		EA264483211C7D1400FCEC6E /* libc++.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = EA264482211C7D1400FCEC6E /* libc++.tbd */; };
 		EA2931B822CCB22B003B60E8 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F30AC1AC20CCC642000652BB /* Assets.xcassets */; };
+		EA2F95312423A02B0070AC62 /* XXLoginVC.m in Sources */ = {isa = PBXBuildFile; fileRef = EA2F95302423A02B0070AC62 /* XXLoginVC.m */; };
 		EA309E00236F21400098DE28 /* AFURLResponseSerialization.m in Sources */ = {isa = PBXBuildFile; fileRef = EA309DF6236F21400098DE28 /* AFURLResponseSerialization.m */; };
 		EA309E3C236F21410098DE28 /* AFHTTPSessionManager.m in Sources */ = {isa = PBXBuildFile; fileRef = EA309DF7236F21400098DE28 /* AFHTTPSessionManager.m */; };
 		EA309E78236F21410098DE28 /* AFURLSessionManager.m in Sources */ = {isa = PBXBuildFile; fileRef = EA309DF9236F21400098DE28 /* AFURLSessionManager.m */; };
@@ -64,6 +65,11 @@
 		EA8F8C89240FA9F200D26E10 /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = EA8F8C87240FA9F200D26E10 /* Info.plist */; };
 		EA964BA62414D37F00A941E5 /* XXBackupMnemonicPhraseVC.m in Sources */ = {isa = PBXBuildFile; fileRef = EA964BA42414D37F00A941E5 /* XXBackupMnemonicPhraseVC.m */; };
 		EA964C442414E18500A941E5 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = EA964C432414E18500A941E5 /* AppDelegate.m */; };
+		EABBC08924232DCD00B7E412 /* NSString+Base64.m in Sources */ = {isa = PBXBuildFile; fileRef = EABBC08124232DCD00B7E412 /* NSString+Base64.m */; };
+		EABBC08A24232DCD00B7E412 /* AESCrypt.m in Sources */ = {isa = PBXBuildFile; fileRef = EABBC08224232DCD00B7E412 /* AESCrypt.m */; };
+		EABBC08B24232DCD00B7E412 /* NSData+CommonCrypto.m in Sources */ = {isa = PBXBuildFile; fileRef = EABBC08724232DCD00B7E412 /* NSData+CommonCrypto.m */; };
+		EABBC08C24232DCD00B7E412 /* NSData+Base64.m in Sources */ = {isa = PBXBuildFile; fileRef = EABBC08824232DCD00B7E412 /* NSData+Base64.m */; };
+		EABBC0922423435D00B7E412 /* XXPasswordView.m in Sources */ = {isa = PBXBuildFile; fileRef = EABBC0912423435D00B7E412 /* XXPasswordView.m */; };
 		EABD1B80241BB25900B1A03A /* bip39.c in Sources */ = {isa = PBXBuildFile; fileRef = EABD1B18241BB25900B1A03A /* bip39.c */; };
 		EABD1B81241BB25900B1A03A /* aeskey.c in Sources */ = {isa = PBXBuildFile; fileRef = EABD1B19241BB25900B1A03A /* aeskey.c */; };
 		EABD1B82241BB25900B1A03A /* hmac.c in Sources */ = {isa = PBXBuildFile; fileRef = EABD1B1A241BB25900B1A03A /* hmac.c */; };
@@ -118,7 +124,6 @@
 		EAC68719214F931200701874 /* NullSafe.m in Sources */ = {isa = PBXBuildFile; fileRef = EAC68718214F931200701874 /* NullSafe.m */; };
 		EAC6871D214FAD1C00701874 /* XXTabView.m in Sources */ = {isa = PBXBuildFile; fileRef = EAC6871B214FAD1600701874 /* XXTabView.m */; };
 		EADDF977241F579F00072DD1 /* XXUserData.m in Sources */ = {isa = PBXBuildFile; fileRef = EADDF976241F579F00072DD1 /* XXUserData.m */; };
-		EADDF97A241F676D00072DD1 /* XXLoginVC.m in Sources */ = {isa = PBXBuildFile; fileRef = EADDF979241F676D00072DD1 /* XXLoginVC.m */; };
 		EADDF97D241F69D000072DD1 /* XXAccountManageVC.m in Sources */ = {isa = PBXBuildFile; fileRef = EADDF97C241F69D000072DD1 /* XXAccountManageVC.m */; };
 		EADDF980241F762C00072DD1 /* XXAccountCell.m in Sources */ = {isa = PBXBuildFile; fileRef = EADDF97F241F762C00072DD1 /* XXAccountCell.m */; };
 		EADDF983241F95FA00072DD1 /* XXAccountFooterView.m in Sources */ = {isa = PBXBuildFile; fileRef = EADDF982241F95FA00072DD1 /* XXAccountFooterView.m */; };
@@ -229,6 +234,8 @@
 		EA26447E211C7CF400FCEC6E /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
 		EA264480211C7D0800FCEC6E /* libz.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libz.tbd; path = usr/lib/libz.tbd; sourceTree = SDKROOT; };
 		EA264482211C7D1400FCEC6E /* libc++.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = "libc++.tbd"; path = "usr/lib/libc++.tbd"; sourceTree = SDKROOT; };
+		EA2F952F2423A02B0070AC62 /* XXLoginVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = XXLoginVC.h; sourceTree = "<group>"; };
+		EA2F95302423A02B0070AC62 /* XXLoginVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = XXLoginVC.m; sourceTree = "<group>"; };
 		EA309DF2236F21400098DE28 /* AFSecurityPolicy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFSecurityPolicy.h; sourceTree = "<group>"; };
 		EA309DF3236F21400098DE28 /* AFNetworkReachabilityManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFNetworkReachabilityManager.h; sourceTree = "<group>"; };
 		EA309DF4236F21400098DE28 /* AFURLSessionManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFURLSessionManager.h; sourceTree = "<group>"; };
@@ -293,6 +300,16 @@
 		EA964BA52414D37F00A941E5 /* XXBackupMnemonicPhraseVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XXBackupMnemonicPhraseVC.h; sourceTree = "<group>"; };
 		EA964C422414E18500A941E5 /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		EA964C432414E18500A941E5 /* AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		EABBC08124232DCD00B7E412 /* NSString+Base64.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+Base64.m"; sourceTree = "<group>"; };
+		EABBC08224232DCD00B7E412 /* AESCrypt.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AESCrypt.m; sourceTree = "<group>"; };
+		EABBC08324232DCD00B7E412 /* NSData+Base64.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSData+Base64.h"; sourceTree = "<group>"; };
+		EABBC08424232DCD00B7E412 /* NSData+CommonCrypto.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSData+CommonCrypto.h"; sourceTree = "<group>"; };
+		EABBC08524232DCD00B7E412 /* AESCrypt.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AESCrypt.h; sourceTree = "<group>"; };
+		EABBC08624232DCD00B7E412 /* NSString+Base64.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+Base64.h"; sourceTree = "<group>"; };
+		EABBC08724232DCD00B7E412 /* NSData+CommonCrypto.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSData+CommonCrypto.m"; sourceTree = "<group>"; };
+		EABBC08824232DCD00B7E412 /* NSData+Base64.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSData+Base64.m"; sourceTree = "<group>"; };
+		EABBC0902423435D00B7E412 /* XXPasswordView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = XXPasswordView.h; sourceTree = "<group>"; };
+		EABBC0912423435D00B7E412 /* XXPasswordView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = XXPasswordView.m; sourceTree = "<group>"; };
 		EABD1B15241BB25900B1A03A /* ethers.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ethers.h; sourceTree = "<group>"; };
 		EABD1B18241BB25900B1A03A /* bip39.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = bip39.c; sourceTree = "<group>"; };
 		EABD1B19241BB25900B1A03A /* aeskey.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = aeskey.c; sourceTree = "<group>"; };
@@ -405,8 +422,6 @@
 		EAC6871C214FAD1600701874 /* XXTabView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XXTabView.h; sourceTree = "<group>"; };
 		EADDF975241F579F00072DD1 /* XXUserData.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = XXUserData.h; sourceTree = "<group>"; };
 		EADDF976241F579F00072DD1 /* XXUserData.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = XXUserData.m; sourceTree = "<group>"; };
-		EADDF978241F676D00072DD1 /* XXLoginVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = XXLoginVC.h; sourceTree = "<group>"; };
-		EADDF979241F676D00072DD1 /* XXLoginVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = XXLoginVC.m; sourceTree = "<group>"; };
 		EADDF97B241F69D000072DD1 /* XXAccountManageVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = XXAccountManageVC.h; sourceTree = "<group>"; };
 		EADDF97C241F69D000072DD1 /* XXAccountManageVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = XXAccountManageVC.m; sourceTree = "<group>"; };
 		EADDF97E241F762C00072DD1 /* XXAccountCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = XXAccountCell.h; sourceTree = "<group>"; };
@@ -558,8 +573,6 @@
 				EA15E9692417A70200A3E14A /* XXUserHomeCell.m */,
 				EADDF975241F579F00072DD1 /* XXUserData.h */,
 				EADDF976241F579F00072DD1 /* XXUserData.m */,
-				EADDF978241F676D00072DD1 /* XXLoginVC.h */,
-				EADDF979241F676D00072DD1 /* XXLoginVC.m */,
 				EADDF97B241F69D000072DD1 /* XXAccountManageVC.h */,
 				EADDF97C241F69D000072DD1 /* XXAccountManageVC.m */,
 				EADDF97E241F762C00072DD1 /* XXAccountCell.h */,
@@ -568,6 +581,8 @@
 				EADDF982241F95FA00072DD1 /* XXAccountFooterView.m */,
 				EA35A508242221E000ADF621 /* XXAccountBtn.h */,
 				EA35A509242221E000ADF621 /* XXAccountBtn.m */,
+				EABBC0902423435D00B7E412 /* XXPasswordView.h */,
+				EABBC0912423435D00B7E412 /* XXPasswordView.m */,
 			);
 			path = User;
 			sourceTree = "<group>";
@@ -683,8 +698,25 @@
 				EA15E95624163FDC00A3E14A /* XXStartWalletVC.m */,
 				EABD1BB9241E49EA00B1A03A /* XXImportWalletVC.h */,
 				EABD1BBA241E49EA00B1A03A /* XXImportWalletVC.m */,
+				EA2F952F2423A02B0070AC62 /* XXLoginVC.h */,
+				EA2F95302423A02B0070AC62 /* XXLoginVC.m */,
 			);
 			path = Class;
+			sourceTree = "<group>";
+		};
+		EABBC08024232DCD00B7E412 /* AES */ = {
+			isa = PBXGroup;
+			children = (
+				EABBC08524232DCD00B7E412 /* AESCrypt.h */,
+				EABBC08224232DCD00B7E412 /* AESCrypt.m */,
+				EABBC08624232DCD00B7E412 /* NSString+Base64.h */,
+				EABBC08124232DCD00B7E412 /* NSString+Base64.m */,
+				EABBC08324232DCD00B7E412 /* NSData+Base64.h */,
+				EABBC08824232DCD00B7E412 /* NSData+Base64.m */,
+				EABBC08424232DCD00B7E412 /* NSData+CommonCrypto.h */,
+				EABBC08724232DCD00B7E412 /* NSData+CommonCrypto.m */,
+			);
+			path = AES;
 			sourceTree = "<group>";
 		};
 		EABD1B14241BB25900B1A03A /* ethers */ = {
@@ -971,6 +1003,7 @@
 		F3D9397520CCCB560055070B /* Tools */ = {
 			isa = PBXGroup;
 			children = (
+				EABBC08024232DCD00B7E412 /* AES */,
 				EA309F68236F22180098DE28 /* UIKit+AFNetworking */,
 				EA309DF1236F21400098DE28 /* AFNetworking */,
 				7AC4D71D234C808E00F5E5F8 /* XXKit */,
@@ -1201,6 +1234,8 @@
 				EADDF97D241F69D000072DD1 /* XXAccountManageVC.m in Sources */,
 				EA964C442414E18500A941E5 /* AppDelegate.m in Sources */,
 				F31F7A4E20CF9693008B4403 /* BaseViewController.m in Sources */,
+				EABBC08A24232DCD00B7E412 /* AESCrypt.m in Sources */,
+				EA2F95312423A02B0070AC62 /* XXLoginVC.m in Sources */,
 				EABD1B98241BB25900B1A03A /* Provider.m in Sources */,
 				EABD1BA2241BB25900B1A03A /* Transaction.m in Sources */,
 				EABD1B95241BB25900B1A03A /* crypto_scrypt-ref.c in Sources */,
@@ -1212,10 +1247,12 @@
 				EABD1B88241BB25900B1A03A /* aes_modes.c in Sources */,
 				EABD1BA8241BB25900B1A03A /* Utilities.m in Sources */,
 				EABD1BAC241BB25900B1A03A /* Account.m in Sources */,
+				EABBC08B24232DCD00B7E412 /* NSData+CommonCrypto.m in Sources */,
 				EA6FA69721258EC5006305B8 /* FCUUID.m in Sources */,
 				EABD1B94241BB25900B1A03A /* crypto_scrypt-nosse.c in Sources */,
 				7A3298152320EE9900196336 /* NSArray+Safe.m in Sources */,
 				7A3298752320EE9900196336 /* NSObject+Swizzling.m in Sources */,
+				EABBC0922423435D00B7E412 /* XXPasswordView.m in Sources */,
 				EA309EB4236F21410098DE28 /* AFURLRequestSerialization.m in Sources */,
 				EA4F5E992179B5190025B350 /* AppDelegate+Category.m in Sources */,
 				EA309F2C236F21410098DE28 /* AFSecurityPolicy.m in Sources */,
@@ -1234,6 +1271,7 @@
 				EABD1B80241BB25900B1A03A /* bip39.c in Sources */,
 				EA309FF5236F221A0098DE28 /* AFNetworkActivityIndicatorManager.m in Sources */,
 				EABD1B9C241BB25900B1A03A /* InfuraProvider.m in Sources */,
+				EABBC08C24232DCD00B7E412 /* NSData+Base64.m in Sources */,
 				EA15E96B2417A70200A3E14A /* XXUserHeaderView.m in Sources */,
 				F30EAF5D20D26536005ADD5C /* UIImage+helper.m in Sources */,
 				EA309E3C236F21410098DE28 /* AFHTTPSessionManager.m in Sources */,
@@ -1242,13 +1280,13 @@
 				EA35A5102422426900ADF621 /* Alert.m in Sources */,
 				EABD1B9A241BB25900B1A03A /* JsonRpcProvider.m in Sources */,
 				EABD1BB1241DFC3E00B1A03A /* XXTextFieldView.m in Sources */,
-				EADDF97A241F676D00072DD1 /* XXLoginVC.m in Sources */,
 				EABD1B8C241BB25900B1A03A /* aestab.c in Sources */,
 				EA15E95724163FDC00A3E14A /* XXStartWalletVC.m in Sources */,
 				EABD1B93241BB25900B1A03A /* scrypt_sha256.c in Sources */,
 				EA15E9772417DEE800A3E14A /* XXAssetVC.m in Sources */,
 				EABD1BA9241BB25900B1A03A /* RegEx.m in Sources */,
 				EABD1B96241BB25900B1A03A /* crypto_scrypt-sse.c in Sources */,
+				EABBC08924232DCD00B7E412 /* NSString+Base64.m in Sources */,
 				EABD1BAB241BB25900B1A03A /* Signature.m in Sources */,
 				F30EAF5E20D26536005ADD5C /* NSDate+convenience.m in Sources */,
 				F38839362108B30600EAC95D /* XYHNumbersLabel.m in Sources */,

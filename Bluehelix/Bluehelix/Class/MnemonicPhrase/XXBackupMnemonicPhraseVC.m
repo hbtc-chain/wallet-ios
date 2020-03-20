@@ -9,6 +9,7 @@
 #import "XXBackupMnemonicPhraseVC.h"
 #import "XXMnemonicBtn.h"
 #import "XXVerifyMnemonicPhraseVC.h"
+#import "AESCrypt.h"
 
 @interface XXBackupMnemonicPhraseVC ()
 
@@ -35,7 +36,8 @@
 }
 
 - (void)drawPhraseBtn {
-    NSString *phraseStr = KUser.rootAccount[@"mnemonicPhrase"];
+    NSString *sectureStr = KUser.rootAccount[@"mnemonicPhrase"];
+    NSString *phraseStr = [AESCrypt decrypt:sectureStr password:self.text];
     NSArray *phraseArr = [phraseStr componentsSeparatedByString:@" "];
     int HSpace = K375(16);
     int VSpace = K375(8);
@@ -72,9 +74,11 @@
 
 - (XXButton *)backupBtn {
     if (!_backupBtn) {
+        MJWeakSelf
         _backupBtn = [XXButton buttonWithFrame:CGRectMake(K375(16), kScreen_Height - kBtnHeight - K375(16), kScreen_Width - K375(32), 44) title:LocalizedString(@"StartBackup") font:kFontBold18 titleColor:kWhite100 block:^(UIButton *button) {
             XXVerifyMnemonicPhraseVC *verifyVC = [[XXVerifyMnemonicPhraseVC alloc] init];
-            [self.navigationController pushViewController:verifyVC animated:YES];
+            verifyVC.text = weakSelf.text;
+            [weakSelf.navigationController pushViewController:verifyVC animated:YES];
         }];
         _backupBtn.backgroundColor = kBlue100;
         _backupBtn.layer.cornerRadius = kBtnBorderRadius;

@@ -9,6 +9,7 @@
 #import "XXVerifyMnemonicPhraseVC.h"
 #import "XXMnemonicBtn.h"
 #import "XXTabBarController.h"
+#import "AESCrypt.h"
 
 @interface XXVerifyMnemonicPhraseVC ()
 
@@ -19,6 +20,7 @@
 @property (nonatomic, strong) XXButton *backupBtn;
 @property (nonatomic, assign) CGFloat contentHeight; //scrollView Height
 @property (nonatomic, strong) NSArray *drawArray;
+@property (nonatomic, strong) NSArray *phraseArray;
 @end
 
 @implementation XXVerifyMnemonicPhraseVC
@@ -27,9 +29,16 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     self.titleLabel.text = LocalizedString(@"VerifyMnemonicPhrase");
-    self.drawArray = [self randomArray];
+    [self initPhraseData];
     [self.view addSubview:self.scrollView];
     [self buildUI];
+}
+
+- (void)initPhraseData {
+    NSString *sectureStr = KUser.rootAccount[@"mnemonicPhrase"];
+    NSString *phraseStr = [AESCrypt decrypt:sectureStr password:self.text];
+    self.phraseArray = [phraseStr componentsSeparatedByString:@" "];
+    self.drawArray = [self randomArray];
 }
 
 - (void)buildUI {
@@ -48,8 +57,6 @@
 }
 
 - (void)drawFormView {
-    NSString *phraseStr = KUser.rootAccount[@"mnemonicPhrase"];
-    NSArray *phraseArr = [phraseStr componentsSeparatedByString:@" "];
     self.formView = [[UIView alloc] initWithFrame:CGRectMake(K375(16), self.tipLabel.bottom + K375(24), kScreen_Width - K375(32), K375(192))];
     self.formView.backgroundColor = kWhite100;
     self.formView.layer.borderColor = [KLine_Color CGColor];
@@ -77,7 +84,7 @@
             [weakSelf reloadUI];
             NSLog(@"%@",weakSelf.selectedWordsArray);
         };
-        if ([selectedWord isEqualToString:phraseArr[i]]) {
+        if ([selectedWord isEqualToString:self.phraseArray[i]]) {
             btn.state = MnemonicBtnType_Normal;
             rightCount ++;
         } else {
@@ -98,7 +105,7 @@
         lineView.backgroundColor = KLine_Color;
         [self.formView addSubview:lineView];
     }
-    if (rightCount == phraseArr.count) {
+    if (rightCount == self.phraseArray.count) {
         self.backupBtn.enabled = YES;
         self.backupBtn.backgroundColor = kBlue100;
     } else {
@@ -136,8 +143,7 @@
 }
 
 - (NSArray *)randomArray {
-    NSString *phraseStr = KUser.rootAccount[@"mnemonicPhrase"];
-    NSArray *phraseArr = [phraseStr componentsSeparatedByString:@" "];
+    NSArray *phraseArr = self.phraseArray;
     phraseArr = [phraseArr sortedArrayUsingComparator:^NSComparisonResult(NSString *str1, NSString *str2) {
         int seed = arc4random_uniform(2);
         if (seed) {

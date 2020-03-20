@@ -7,6 +7,8 @@
 //
 #import "XXImportPrivateKeyVC.h"
 #import "XXCreateWalletVC.h"
+#import "SecureData.h"
+#import "Account.h"
 
 @interface XXImportPrivateKeyVC () <UITextViewDelegate>
 
@@ -26,10 +28,18 @@
 
 - (void)nextStepAction {
     NSLog(@"%@",self.textView.text);
-    KUser.localPrivateKey = self.textView.text;
-    KUser.localPhraseString = @"";
-    XXCreateWalletVC *createVC = [[XXCreateWalletVC alloc] init];
-    [self.navigationController pushViewController:createVC animated:YES];
+    SecureData * data = [SecureData secureDataWithHexString:self.textView.text];
+    Account *account = [Account accountWithPrivateKey:data.data];
+    if (account) {
+        KUser.localPrivateKey = self.textView.text;
+        KUser.localPhraseString = @"";
+        XXCreateWalletVC *createVC = [[XXCreateWalletVC alloc] init];
+        [self.navigationController pushViewController:createVC animated:YES];
+    } else {
+        Alert *alert = [[Alert alloc] initWithTitle:LocalizedString(@"PrivateKeyOutOfOrder") duration:kAlertDuration completion:^{
+                   }];
+        [alert showAlert];
+    } 
 }
 
 - (void)buildUI {

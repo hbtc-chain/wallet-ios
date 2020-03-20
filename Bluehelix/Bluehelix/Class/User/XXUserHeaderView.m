@@ -15,6 +15,7 @@
 @property (strong, nonatomic) XXAccountBtn *manageBtn;
 @property (strong, nonatomic) UIImageView *backImageView;
 @property (strong, nonatomic) XXButton *copyButton;
+
 @end
 
 @implementation XXUserHeaderView
@@ -47,8 +48,8 @@
     if (!_manageBtn) {
         MJWeakSelf;
         _manageBtn = [[XXAccountBtn alloc] initWithFrame:CGRectMake(00, 46, 0, 26) block:^{
-             XXAccountManageVC *accountVC = [[XXAccountManageVC alloc] init];
-             [weakSelf.viewController.navigationController pushViewController:accountVC animated:YES];
+            XXAccountManageVC *accountVC = [[XXAccountManageVC alloc] init];
+            [weakSelf.viewController.navigationController pushViewController:accountVC animated:YES];
         }];
     }
     return _manageBtn;
