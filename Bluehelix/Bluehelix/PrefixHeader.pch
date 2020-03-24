@@ -30,6 +30,7 @@
 #import "BaseViewController.h"
 #import "XXUserData.h"
 #import "Alert.h"
+#import "XXSystem.h"
 static inline BOOL IsEmpty(id thing) {
     return thing == nil || [thing isEqual:[NSNull null]]
     || ([thing respondsToSelector:@selector(length)]
@@ -59,10 +60,10 @@ static inline BOOL IsEmpty(id thing) {
 
 //wallet
 #define kBtnBorderRadius 6
-#define kBtnNotEnableColor [UIColor colorWithHexString:@"#E7ECF4"]
+#define kBtnNotEnableColor kIsNight ? [UIColor grayColor] : [UIColor colorWithHexString:@"#E7ECF4"]
 #define kBtnHeight 48
-#define kTipColor [UIColor colorWithHexString:@"#6E8196"]
-#define kFieldBackColor [UIColor colorWithHexString:@"#F9F9FB"]
+#define kTipColor kIsNight ? [UIColor whiteColor] : [UIColor colorWithHexString:@"#6E8196"]
+#define kFieldBackColor kIsNight ? [UIColor whiteColor] : [UIColor colorWithHexString:@"#F9F9FB"]
 #define kAlertDuration 2
 
 #define KString(str) (str) == nil ? @"" : [NSString stringWithFormat:@"%@",(str)]
@@ -71,7 +72,7 @@ static inline BOOL IsEmpty(id thing) {
 #define KSpacing ((kScreen_Width/375)*(15))
 
 /** 是否夜间模式 */
-#define kIsNight NO
+#define kIsNight [XXUserData sharedUserData].isNightType
 
 #define KWindow [UIApplication sharedApplication].keyWindow
 #define BH_IS_IPHONE_5 ([UIScreen mainScreen].nativeBounds.size.height == 1136)
@@ -86,7 +87,7 @@ static inline BOOL IsEmpty(id thing) {
 #pragma mark - 数据
 // 数据
 #define KUser [XXUserData sharedUserData]
-#define KSystem [XXSystem sharedXXSystem]
+#define KSystem [XXSystem sharedSystemData]
 #define KConfigure [XXConfiguration sharedXXConfiguration]
 #define App_Delegate (AppDelegate *)[[UIApplication sharedApplication] delegate]
 #define BHUserDefaults [NSUserDefaults standardUserDefaults]

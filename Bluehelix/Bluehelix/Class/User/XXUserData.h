@@ -14,6 +14,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 + (XXUserData *)sharedUserData;
 - (void)addAccount:(NSDictionary *)account;
+- (void)replaceAccount:(NSDictionary *)dic;
+- (NSString *)increaseID; //获取主键自增ID
 
 @property (nonatomic, strong) NSString *localUserName;
 @property (nonatomic, strong) NSString *localPassword;
@@ -21,7 +23,8 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, strong) NSString *localPrivateKey; //临时私钥
 @property (nonatomic, strong) NSDictionary *rootAccount;
 @property (nonatomic, strong) NSMutableArray *accounts;
-
+@property (assign, nonatomic) BOOL isNightType; //是否夜间模式
+@property (assign, nonatomic) BOOL isSettedNightType; //手动设置的夜间模式
 @end
 
 NS_ASSUME_NONNULL_END

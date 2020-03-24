@@ -12,12 +12,15 @@
 #import "Account.h"
 #import "SecureData.h"
 #import "XXLoginVC.h"
+#import "XXRepeatPasswordVC.h"
 
 @implementation AppDelegate
 
 #pragma mark - 1. 程序开始
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
-    
+    if (!KUser.isSettedNightType) {
+        KUser.isNightType = KSystem.isDarkStyle;
+    }
 //    if (!IsEmpty(KUser.localPhraseString)) { //通过助记词导入创建
 //           account = [Account accountWithMnemonicPhrase:KUser.localPhraseString];
 //       } else if (!IsEmpty(KUser.localPrivateKey)) { //通过私钥导入创建
@@ -33,9 +36,10 @@
     KWindow.backgroundColor = [UIColor whiteColor];
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     if (KUser.rootAccount) {
-        XXLoginVC *loginVC = [[XXLoginVC alloc] init];
-        self.window.rootViewController = loginVC;
-//        self.window.rootViewController = [[XXTabBarController alloc] init];
+//        XXLoginVC *loginVC = [[XXLoginVC alloc] init];
+//        XXNavigationController *loginNav = [[XXNavigationController alloc] initWithRootViewController:loginVC];
+//        self.window.rootViewController = loginNav;
+        self.window.rootViewController = [[XXTabBarController alloc] init];
     } else {
         XXStartWalletVC *startVC = [[XXStartWalletVC alloc] init];
         XXNavigationController *startNav = [[XXNavigationController alloc] initWithRootViewController:startVC];

@@ -18,12 +18,12 @@ typedef NS_ENUM(NSInteger, MnemonicBtnType) {
 
 @interface XXMnemonicBtn : UIView
 
-- (instancetype)initWithFrame:(CGRect)frame order:(NSString *)order title:(NSString *)title;
+- (instancetype)initWithFrame:(CGRect)frame order:(NSString *)order dic:(NSDictionary *)dic;
 
 @property (nonatomic, assign) MnemonicBtnType state;
-@property (nonatomic, copy) NSString *title;
+@property (nonatomic, copy) NSDictionary *dic;
 @property (nonatomic, copy) NSString *order;
-@property (nonatomic, copy) void(^clickBlock)(NSString *title);
+@property (nonatomic, copy) void(^clickBlock)(NSDictionary *dic, XXMnemonicBtn *btn);
 
 @property (nonatomic, strong) XXLabel *orderLabel;
 @end

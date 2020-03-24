@@ -13,7 +13,9 @@ NS_ASSUME_NONNULL_BEGIN
 @interface XXTextFieldView : UIView
 
 @property (nonatomic, strong) UITextField *textField;
+@property (nonatomic, strong) XXButton *lookButton;
 
+@property (nonatomic, assign) BOOL showLookBtn;
 @end
 
 NS_ASSUME_NONNULL_END

@@ -11,14 +11,16 @@
 #import "Account.h"
 #import "SecureData.h"
 #import "AESCrypt.h"
+#import "XXServiceAgreementVC.h"
 
-@interface XXRepeatPasswordVC ()
+@interface XXRepeatPasswordVC () <UITextViewDelegate>
 
 @property (nonatomic, strong) XXLabel *tipLabel;
 @property (nonatomic, strong) XXLabel *stepTipLabel;
 @property (nonatomic, strong) XXLabel *contentLabel;
 @property (nonatomic, strong) XXLabel *nameLabel;
 @property (nonatomic, strong) XXTextFieldView *textFieldView;
+@property (nonatomic, strong) XXLabel *charCountLabel;
 @property (nonatomic, strong) XXButton *createBtn;
 @property (strong, nonatomic) XXButton *isAgreeButton;
 @property (strong, nonatomic) UITextView *textView;
@@ -39,6 +41,7 @@
     [self.view addSubview:self.contentLabel];
     [self.view addSubview:self.nameLabel];
     [self.view addSubview:self.textFieldView];
+    [self.view addSubview:self.charCountLabel];
     [self.view addSubview:self.isAgreeButton];
     [self.view addSubview:self.textView];
     [self.view addSubview:self.createBtn];
@@ -62,6 +65,7 @@
         account = [Account randomMnemonicAccount];
     }
     NSMutableDictionary *dic = [NSMutableDictionary dictionary];
+    [dic setObject:KUser.increaseID forKey:@"ID"];
     [dic setObject:account.privateKey forKey:@"privateKey"];
     [dic setObject:account.BHAddress forKey:@"BHAddress"];
     [dic setObject:KUser.localUserName forKey:@"userName"];
@@ -70,6 +74,7 @@
         NSString *mnemonicPhrase = [AESCrypt encrypt:account.mnemonicPhrase password:KUser.localPassword];
         [dic setObject:mnemonicPhrase forKey:@"mnemonicPhrase"];
     }
+    [dic setObject:@0 forKey:@"backupFlag"];
     [KUser addAccount:dic];
     KUser.rootAccount = dic;
     XXCreateWalletSuccessVC *successVC = [[XXCreateWalletSuccessVC alloc] init];
@@ -86,6 +91,11 @@
     } else {
         self.createBtn.enabled = NO;
         self.createBtn.backgroundColor = kBtnNotEnableColor;
+    }
+    if (textField.text.length) {
+        self.charCountLabel.text = NSLocalizedFormatString(LocalizedString(@"CharCount"),[NSString stringWithFormat:@"%lu",(unsigned long)textField.text.length]);
+    } else {
+        self.charCountLabel.text = @"";
     }
 }
 
@@ -124,17 +134,23 @@
     if (!_textFieldView) {
         _textFieldView = [[XXTextFieldView alloc] initWithFrame:CGRectMake(K375(16), CGRectGetMaxY(self.nameLabel.frame), kScreen_Width - K375(32), 48)];
         _textFieldView.textField.placeholder = LocalizedString(@"SetPasswordPlaceHolder");
-        _textFieldView.textField.secureTextEntry = YES;
+        _textFieldView.showLookBtn = YES;
         [_textFieldView.textField addTarget:self action:@selector(textFiledValueChange:) forControlEvents:UIControlEventEditingChanged];
-
     }
     return _textFieldView;
+}
+
+- (XXLabel *)charCountLabel {
+    if (!_charCountLabel) {
+        _charCountLabel = [XXLabel labelWithFrame:CGRectMake(K375(16), CGRectGetMaxY(self.textFieldView.frame)+3, kScreen_Width - K375(32), 20) text:@"" font:kFont(15) textColor:kTipColor alignment:NSTextAlignmentRight];
+    }
+    return _charCountLabel;
 }
 
 - (XXButton *)isAgreeButton {
     if (_isAgreeButton == nil) {
         MJWeakSelf
-        _isAgreeButton = [XXButton buttonWithFrame:CGRectMake(K375(24), CGRectGetMaxY(self.textFieldView.frame) + 15, 30, 30) block:^(UIButton *button) {
+        _isAgreeButton = [XXButton buttonWithFrame:CGRectMake(K375(24), CGRectGetMaxY(self.charCountLabel.frame), 30, 30) block:^(UIButton *button) {
             weakSelf.isAgreeButton.selected = !weakSelf.isAgreeButton.selected;
             if (weakSelf.isAgreeButton.selected && weakSelf.textFieldView.textField.text.length) {
                 weakSelf.createBtn.enabled = YES;
@@ -153,27 +169,33 @@
     return _isAgreeButton;
 }
 
+- (BOOL)textView:(UITextView *)textView shouldInteractWithURL:(NSURL *)URL inRange:(NSRange)characterRange {
+    if ([[URL scheme] isEqualToString:@"fwxy"]) {
+//        XXServiceAgreementVC *serviceVC = [[XXServiceAgreementVC alloc] init];
+//        XXNavigationController *nav = [[XXNavigationController alloc] initWithRootViewController:serviceVC];
+//        serviceVC.modalPresentationStyle = UIModalPresentationOverCurrentContext;
+//        [self presentViewController:nav animated:YES completion:nil];
+    }
+    return NO;
+}
+
 - (UITextView *)textView {
     if (_textView == nil) {
         _textView = [[UITextView alloc] initWithFrame:CGRectMake(CGRectGetMaxX(self.isAgreeButton.frame) - 5, self.isAgreeButton.top, K375(280), self.isAgreeButton.height)];
         _textView.backgroundColor = kWhite100;
         _textView.font = kFont12;
         _textView.textColor = kDark80;
-//        _textView.delegate  = self;
+        _textView.delegate  = self;
         _textView.editable  = NO;
         _textView.scrollEnabled = NO;
         _textView.textAlignment = NSTextAlignmentLeft;
         NSString *fwxy = LocalizedString(@"ServiceAgreement");
-//        NSString *ysxy =LocalizedString(@"PrivacyAgreement");
         NSMutableAttributedString *attributedString = [[NSMutableAttributedString alloc] initWithString:[NSString stringWithFormat:@"%@ %@", LocalizedString(@"IAgreeTo"), fwxy]];
-//        [attributedString addAttribute:NSLinkAttributeName
-//                                 value:@"fwxy://"
-//                                 range:[[attributedString string] rangeOfString:fwxy]];
-//        [attributedString addAttribute:NSLinkAttributeName
-//                                 value:@"ysxy://"
-//                                 range:[[attributedString string] rangeOfString:ysxy]];
+        [attributedString addAttribute:NSLinkAttributeName
+                                 value:@"fwxy://"
+                                 range:[[attributedString string] rangeOfString:fwxy]];
         [attributedString addAttribute:NSFontAttributeName value:kFont14 range:NSMakeRange(0, attributedString.length)];
-//        [attributedString addAttribute:NSForegroundColorAttributeName value:kDark100 range:NSMakeRange(0, attributedString.length)];
+        [attributedString addAttribute:NSForegroundColorAttributeName value:kDark100 range:NSMakeRange(0, attributedString.length)];
         _textView.attributedText = attributedString;
         _textView.linkTextAttributes = @{NSForegroundColorAttributeName:kBlue100};
     }

@@ -9,6 +9,8 @@
 #import "XXAccountManageVC.h"
 #import "XXAccountCell.h"
 #import "XXAccountFooterView.h"
+#import "XXTabBarController.h"
+#import "AppDelegate.h"
 
 @interface XXAccountManageVC () <UITableViewDataSource, UITableViewDelegate, UIGestureRecognizerDelegate>
 
@@ -29,6 +31,13 @@
     [self setupUI];
 }
 
+- (void)leftButtonClick:(UIButton *)sender {
+    XXTabBarController *tabVC = [[XXTabBarController alloc] init];
+    [tabVC setIndex:3];
+    AppDelegate *delegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
+    delegate.window.rootViewController = tabVC;
+}
+
 - (void)setupUI {
     self.titleLabel.text = LocalizedString(@"AccountManage");
     [self.view addSubview:self.tableView];
@@ -37,7 +46,6 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     return KUser.accounts.count;
-//    return 22;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -68,15 +76,34 @@
     }
 }
 
-- (UITableViewCellEditingStyle)tableView:(UITableView *)tableView editingStyleForRowAtIndexPath:(NSIndexPath *)indexPath {
-    return UITableViewCellEditingStyleDelete;
-}
+//- (UITableViewCellEditingStyle)tableView:(UITableView *)tableView editingStyleForRowAtIndexPath:(NSIndexPath *)indexPath {
+//    return UITableViewCellEditingStyleDelete;
+//}
+//
+//- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
+//    if (editingStyle == UITableViewCellEditingStyleDelete) {
+//        NSMutableArray *array = [NSMutableArray arrayWithArray:KUser.accounts];
+//        NSDictionary *selectedDic = KUser.accounts[indexPath.row];
+//        if ([selectedDic[@"BHAddress"] isEqualToString:KUser.rootAccount[@"BHAddress"]]) {
+//            [array removeObjectAtIndex:indexPath.row];
+//            KUser.rootAccount = [array firstObject];
+//        } else {
+//            [array removeObjectAtIndex:indexPath.row];
+//        }
+//        KUser.accounts = array;
+//        [self.tableView reloadData];
+//    }
+//}
+//
+//- (NSString *)tableView:(UITableView *)tableView titleForDeleteConfirmationButtonForRowAtIndexPath:(nonnull NSIndexPath *)indexPath {
+//    return LocalizedString(@"Delete");
+//}
 
-- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
-    if (editingStyle == UITableViewCellEditingStyleDelete) {
+- (NSArray *)tableView:(UITableView *)tableView editActionsForRowAtIndexPath:(nonnull NSIndexPath *)indexPath {
+    UITableViewRowAction *deleteAction = [UITableViewRowAction rowActionWithStyle:UITableViewRowActionStyleNormal title:LocalizedString(@"Delete") handler:^(UITableViewRowAction * _Nonnull action, NSIndexPath * _Nonnull indexPath) {
         NSMutableArray *array = [NSMutableArray arrayWithArray:KUser.accounts];
         NSDictionary *selectedDic = KUser.accounts[indexPath.row];
-        if ([selectedDic[@"BHAddress"] isEqualToString:KUser.rootAccount[@"BHAddress"]]) {
+        if ([selectedDic[@"ID"] isEqualToString:KUser.rootAccount[@"ID"]]) {
             [array removeObjectAtIndex:indexPath.row];
             KUser.rootAccount = [array firstObject];
         } else {
@@ -84,7 +111,9 @@
         }
         KUser.accounts = array;
         [self.tableView reloadData];
-    }
+    }];
+    deleteAction.backgroundColor = kBlue100;
+    return @[deleteAction];
 }
 
 #pragma mark - || 懒加载

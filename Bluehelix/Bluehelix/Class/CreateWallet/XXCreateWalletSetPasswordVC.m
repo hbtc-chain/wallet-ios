@@ -16,6 +16,7 @@
 @property (nonatomic, strong) XXLabel *contentLabel;
 @property (nonatomic, strong) XXLabel *nameLabel;
 @property (nonatomic, strong) XXTextFieldView *textFieldView;
+@property (nonatomic, strong) XXLabel *charCountLabel;
 @property (nonatomic, strong) XXButton *createBtn;
 
 @property (nonatomic, strong) XXLabel *ruleTip;
@@ -40,6 +41,7 @@
     [self.view addSubview:self.contentLabel];
     [self.view addSubview:self.nameLabel];
     [self.view addSubview:self.textFieldView];
+    [self.view addSubview:self.charCountLabel];
     [self.view addSubview:self.ruleTip];
     [self.view addSubview:self.rule1];
     [self.view addSubview:self.rule2];
@@ -62,6 +64,11 @@
     self.ruleTip.textColor = textField.text.length ? kTipColor : kRed100;
     self.createBtn.backgroundColor =  [self isValidPasswordString:0] ? kBlue100 : kBtnNotEnableColor;
     self.createBtn.enabled = [self isValidPasswordString:0];
+    if (textField.text.length) {
+        self.charCountLabel.text = NSLocalizedFormatString(LocalizedString(@"CharCount"),[NSString stringWithFormat:@"%lu",(unsigned long)textField.text.length]);
+    } else {
+        self.charCountLabel.text = @"";
+    }
 }
 
 -(BOOL)isValidPasswordString:(int)type {
@@ -132,16 +139,23 @@
     if (!_textFieldView) {
         _textFieldView = [[XXTextFieldView alloc] initWithFrame:CGRectMake(K375(16), CGRectGetMaxY(self.nameLabel.frame), kScreen_Width - K375(32), 48)];
         _textFieldView.textField.placeholder = LocalizedString(@"SetPasswordPlaceHolder");
-        _textFieldView.textField.secureTextEntry = YES;
+        _textFieldView.showLookBtn = YES;
         [_textFieldView.textField addTarget:self action:@selector(textFiledValueChange:) forControlEvents:UIControlEventEditingChanged];
     }
     return _textFieldView;
 }
 
+- (XXLabel *)charCountLabel {
+    if (!_charCountLabel) {
+        _charCountLabel = [XXLabel labelWithFrame:CGRectMake(K375(16), CGRectGetMaxY(self.textFieldView.frame)+3, kScreen_Width - K375(32), 20) text:@"" font:kFont(15) textColor:kTipColor alignment:NSTextAlignmentRight];
+    }
+    return _charCountLabel;
+}
+
 - (XXLabel *)ruleTip {
     if (!_ruleTip) {
         CGFloat height = [NSString heightWithText:LocalizedString(@"RuleTip") font:kFont(15) width:kScreen_Width - K375(32)];
-        _ruleTip = [XXLabel labelWithFrame:CGRectMake(K375(16), CGRectGetMaxY(self.textFieldView.frame) + 10, kScreen_Width - K375(32), height) text:LocalizedString(@"RuleTip") font:kFont(15) textColor:kRed100 alignment:NSTextAlignmentLeft];
+        _ruleTip = [XXLabel labelWithFrame:CGRectMake(K375(16), CGRectGetMaxY(self.charCountLabel.frame), kScreen_Width - K375(32), height) text:LocalizedString(@"RuleTip") font:kFont(15) textColor:kRed100 alignment:NSTextAlignmentLeft];
         _ruleTip.numberOfLines = 0;
     }
     return _ruleTip;

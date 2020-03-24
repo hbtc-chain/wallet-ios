@@ -17,9 +17,9 @@
 
 @implementation XXMnemonicBtn
 
-- (instancetype)initWithFrame:(CGRect)frame order:(NSString *)order title:(NSString *)title  {
+- (instancetype)initWithFrame:(CGRect)frame order:(NSString *)order dic:(NSDictionary *)dic  {
     if (self = [super initWithFrame:frame]) {
-        self.title = title;
+        self.dic = dic;
         self.order = order;
         [self buildUI];
     }
@@ -55,7 +55,7 @@
 
 - (void)tapGes {
     if (self.clickBlock) {
-        self.clickBlock(self.title);
+        self.clickBlock(self.dic,self);
     }
 }
 
@@ -68,7 +68,7 @@
 
 - (XXLabel *)titleLabel {
     if (!_titleLabel) {
-        _titleLabel  = [XXLabel labelWithFrame:CGRectMake(0, self.height/7, self.width, self.height*5/7) text:self.title font:kFont18 textColor:kDark100 alignment:NSTextAlignmentCenter];
+        _titleLabel  = [XXLabel labelWithFrame:CGRectMake(0, self.height/7, self.width, self.height*5/7) text:self.dic[@"word"] font:kFont18 textColor:kDark100 alignment:NSTextAlignmentCenter];
     }
     return _titleLabel;
 }

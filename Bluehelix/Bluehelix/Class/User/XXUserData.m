@@ -19,6 +19,24 @@ static XXUserData *_sharedUserData = nil;
     return _sharedUserData;
 }
 
+// 夜间模式
+- (void)setIsNightType:(BOOL)isNightType {
+    [self saveValeu:@(isNightType) forKey:@"isNightType"];
+}
+
+- (BOOL)isNightType {
+    return [[self getValueForKey:@"isNightType"] boolValue];
+}
+
+// 手动设置夜间模式 非系统默认
+- (void)setIsSettedNightType:(BOOL)isSettedNightType {
+    [self saveValeu:@(isSettedNightType) forKey:@"isSettedNightTypeKey"];
+}
+
+- (BOOL)isSettedNightType {
+    return [[self getValueForKey:@"isSettedNightTypeKey"] integerValue];
+}
+
 // 临时用户名
 - (void)setLocalUserName:(NSString *)localUserName {
     [self saveValeu:localUserName forKey:@"localUserName"];
@@ -73,6 +91,21 @@ static XXUserData *_sharedUserData = nil;
     return [self getValueForKey:@"accounts"];
 }
 
+- (void)replaceAccount:(NSDictionary *)dic {
+    NSMutableArray *array = [NSMutableArray arrayWithArray:KUser.accounts];
+    int index = 1000;
+    for (int i=0; i<array.count; i++) {
+        NSDictionary *tempDic = array[i];
+        if ([tempDic[@"BHAddress"] isEqualToString:dic[@"BHAddress"]]) {
+            index = i;
+        }
+    }
+    if (index != 1000) {
+        [array replaceObjectAtIndex:index withObject:dic];
+        KUser.accounts = array;
+    }
+}
+
 -(id)getValueForKey:(NSString*)key{
     id value = [[NSUserDefaults standardUserDefaults] objectForKey:key];
     return value;
@@ -91,6 +124,18 @@ static XXUserData *_sharedUserData = nil;
     NSMutableArray *array = [NSMutableArray arrayWithArray:oldArray];
     [array addObject:account];
     [self saveValeu:array forKey:@"accounts"];
+}
+
+- (NSString *)increaseID {
+   NSString *increaseID = [self getValueForKey:@"increaseID"];
+    if (increaseID) {
+        int num = increaseID.intValue +1;
+        [self saveValeu:[NSString stringWithFormat:@"%d",num] forKey:@"increaseID"];
+        return [NSString stringWithFormat:@"%d",num];
+    } else {
+        [self saveValeu:@"0" forKey:@"increaseID"];
+        return @"0";
+    }
 }
 
 @end

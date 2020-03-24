@@ -16,11 +16,11 @@
 @property (nonatomic, strong) UIScrollView *scrollView;
 @property (nonatomic, strong) UIView *formView; //顶部表格
 @property (nonatomic, strong) XXLabel *tipLabel;
-@property (nonatomic, strong) NSMutableArray *selectedWordsArray; //选中的助记词数组
+@property (nonatomic, strong) NSMutableArray *selectedArray; //选中的助记词数组
 @property (nonatomic, strong) XXButton *backupBtn;
 @property (nonatomic, assign) CGFloat contentHeight; //scrollView Height
-@property (nonatomic, strong) NSArray *drawArray;
-@property (nonatomic, strong) NSArray *phraseArray;
+@property (nonatomic, strong) NSArray *drawArray; //随机改变顺序后
+@property (nonatomic, strong) NSArray *phraseArray; //正确的顺序
 @end
 
 @implementation XXVerifyMnemonicPhraseVC
@@ -38,10 +38,12 @@
     NSString *sectureStr = KUser.rootAccount[@"mnemonicPhrase"];
     NSString *phraseStr = [AESCrypt decrypt:sectureStr password:self.text];
     self.phraseArray = [phraseStr componentsSeparatedByString:@" "];
+//    self.phraseArray = @[@"111",@"222",@"333",@"111",@"222",@"333",@"111",@"222",@"333",@"444",@"111",@"555"];
     self.drawArray = [self randomArray];
 }
 
 - (void)buildUI {
+    
     [self.scrollView addSubview:self.tipLabel];
     [self drawFormView]; //画顶部表格
     [self drawWords]; //画下边可选单词
@@ -56,6 +58,7 @@
     [self buildUI];
 }
 
+//上边选中的
 - (void)drawFormView {
     self.formView = [[UIView alloc] initWithFrame:CGRectMake(K375(16), self.tipLabel.bottom + K375(24), kScreen_Width - K375(32), K375(192))];
     self.formView.backgroundColor = kWhite100;
@@ -70,21 +73,21 @@
     int Height = K375(48);
     int Left = 0;
     int Top = 0;
-    for (int i = 0; i < self.selectedWordsArray.count; i++) {
+    for (int i = 0; i < self.selectedArray.count; i++) {
         Left = Width*(i%3);
         if (i % 3 == 0 && i != 0) {
             Top = Top + Height;
             Left = 0;
         }
-        NSString *selectedWord = self.selectedWordsArray[i];
-        XXMnemonicBtn *btn = [[XXMnemonicBtn alloc] initWithFrame:CGRectMake(Left, Top, Width, Height) order:[NSString stringWithFormat:@"%d",i+1] title:self.selectedWordsArray[i]];
+        NSDictionary *selectedDic = self.selectedArray[i];
+        XXMnemonicBtn *btn = [[XXMnemonicBtn alloc] initWithFrame:CGRectMake(Left, Top, Width, Height) order:[NSString stringWithFormat:@"%d",i+1] dic:self.selectedArray[i]];
         MJWeakSelf
-        btn.clickBlock = ^(NSString * _Nonnull title) {
-            [weakSelf.selectedWordsArray removeObject:title];
+        btn.clickBlock = ^(NSDictionary * _Nonnull dic, XXMnemonicBtn * _Nonnull btn) {
+            [weakSelf.selectedArray removeObject:dic];
             [weakSelf reloadUI];
-            NSLog(@"%@",weakSelf.selectedWordsArray);
+            NSLog(@"%@",weakSelf.selectedArray);
         };
-        if ([selectedWord isEqualToString:self.phraseArray[i]]) {
+        if ([selectedDic[@"word"] isEqualToString:self.phraseArray[i]]) {
             btn.state = MnemonicBtnType_Normal;
             rightCount ++;
         } else {
@@ -114,6 +117,7 @@
     }
 }
 
+// 下边待选择的
 - (void)drawWords {
     int HSpace = K375(16);
     int VSpace = K375(8);
@@ -127,15 +131,17 @@
             Top = Top + Height + VSpace;
             Left = HSpace;
         }
-        XXMnemonicBtn *btn = [[XXMnemonicBtn alloc] initWithFrame:CGRectMake(Left, Top, Width, Height) order:[NSString stringWithFormat:@"%d",i+1] title:self.drawArray[i]];
+        NSDictionary *dic = self.drawArray[i];
+        XXMnemonicBtn *btn = [[XXMnemonicBtn alloc] initWithFrame:CGRectMake(Left, Top, Width, Height) order:[NSString stringWithFormat:@"%d",i+1] dic:dic];
         MJWeakSelf
-        btn.clickBlock = ^(NSString * _Nonnull title) {
-            [weakSelf.selectedWordsArray addObject:title];
+        btn.clickBlock = ^(NSDictionary * _Nonnull dic,XXMnemonicBtn *btn) {
+            [weakSelf.selectedArray addObject:dic];
             [weakSelf reloadUI];
         };
-        if ([self.selectedWordsArray containsObject:btn.title]) {
+        if ([self.selectedArray containsObject:btn.dic]) {
             btn.state = MnemonicBtnType_Selected;
         }
+
         btn.orderLabel.hidden = YES;
         [self.scrollView addSubview:btn];
     }
@@ -144,6 +150,7 @@
 
 - (NSArray *)randomArray {
     NSArray *phraseArr = self.phraseArray;
+    NSMutableArray *array = [NSMutableArray array];
     phraseArr = [phraseArr sortedArrayUsingComparator:^NSComparisonResult(NSString *str1, NSString *str2) {
         int seed = arc4random_uniform(2);
         if (seed) {
@@ -152,7 +159,13 @@
             return [str2 compare:str1];
         }
     }];
-    return phraseArr;
+    for (int i=0; i<phraseArr.count; i++) {
+        NSMutableDictionary *dic = [NSMutableDictionary dictionary];
+        [dic setObject:phraseArr[i] forKey:@"word"];
+        [dic setObject:[NSString stringWithFormat:@"%d",i] forKey:@"id"];
+        [array addObject:dic];
+    }
+    return array;
 }
 
 - (UIScrollView *)scrollView {
@@ -175,6 +188,10 @@
 - (XXButton *)backupBtn {
     if (!_backupBtn) {
         _backupBtn = [XXButton buttonWithFrame:CGRectMake(K375(16), _contentHeight > kScreen_Height - kBtnHeight - K375(16) ? _contentHeight + 20 : kScreen_Height - kBtnHeight - K375(16), kScreen_Width - K375(32), kBtnHeight) title:LocalizedString(@"StartBackup") font:kFontBold18 titleColor:kWhite100 block:^(UIButton *button) {
+            NSMutableDictionary *dic = [NSMutableDictionary dictionaryWithDictionary:KUser.rootAccount];
+            [dic setObject:@1 forKey:@"backupFlag"];
+            [KUser replaceAccount:dic];
+            KUser.rootAccount = dic;
             KWindow.rootViewController = [[XXTabBarController alloc] init];
         }];
         _backupBtn.layer.cornerRadius = kBtnBorderRadius;
@@ -186,11 +203,11 @@
     return _backupBtn;
 }
 
-- (NSMutableArray *)selectedWordsArray {
-    if (_selectedWordsArray == nil) {
-        _selectedWordsArray = [[NSMutableArray alloc] init];
+- (NSMutableArray *)selectedArray {
+    if (_selectedArray == nil) {
+        _selectedArray = [[NSMutableArray alloc] init];
     }
-    return _selectedWordsArray;
+    return _selectedArray;
 }
 
 @end

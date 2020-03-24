@@ -51,7 +51,8 @@
             Top = Top + Height + VSpace;
             Left = HSpace;
         }
-        XXMnemonicBtn *btn = [[XXMnemonicBtn alloc] initWithFrame:CGRectMake(Left, Top, Width, Height) order:[NSString stringWithFormat:@"%d",i+1] title:phraseArr[i]];
+        NSDictionary *dic = @{@"word":phraseArr[i],@"id":[NSString stringWithFormat:@"%d",i]};
+        XXMnemonicBtn *btn = [[XXMnemonicBtn alloc] initWithFrame:CGRectMake(Left, Top, Width, Height) order:[NSString stringWithFormat:@"%d",i+1] dic:dic];
         [self.view addSubview:btn];
     }
 }

@@ -36,8 +36,8 @@
     [self addSubview:self.contentView];
     [self.contentView addSubview:self.titleLabel];
     [self.contentView addSubview:self.passwordView];
-    [self.contentView addSubview:self.okButton];
     [self.contentView addSubview:self.cancelButton];
+    [self.contentView addSubview:self.okButton];
 }
 
 + (void)showWithSureBtnBlock:(void (^)(NSString *text))sureBtnBlock {
@@ -57,6 +57,26 @@
             passwordView.contentView.transform = CGAffineTransformIdentity;
         }];
     }];
+}
+
+- (void)okButtonClick:(UIButton *)sender {
+     NSString *pwd = [NSString md5:self.passwordView.textField.text];
+    if ([pwd isEqualToString:KUser.rootAccount[@"password"]] && self.sureBtnBlock) {
+        [[self class] removeFromSuperView];
+        self.sureBtnBlock(self.passwordView.textField.text);
+    } else {
+        Alert *alert = [[Alert alloc] initWithTitle:LocalizedString(@"PasswordWrong") duration:kAlertDuration completion:^{
+                   }];
+        [alert showAlert];
+    }
+}
+
+- (void)textFieldValueChange:(UITextField *)textField {
+//    if ([self.passwordView.textField.text trimmingCharacters].length > 0) {
+//        self.okButton.enabled = YES;
+//    } else {
+//        self.okButton.enabled = NO;
+//    }
 }
 
 + (void)dismiss {
@@ -99,69 +119,24 @@
 
 - (UIView *)contentView {
     if (_contentView == nil) {
-        _contentView = [[UIView alloc] initWithFrame:CGRectMake(K375(15.5), (self.height - 209)/2, K375(344), 209)];
+        _contentView = [[UIView alloc] initWithFrame:CGRectMake((kScreen_Width - K375(280))/2, (self.height - K375(184))/2, K375(280), K375(184))];
         _contentView.backgroundColor = kWhite100;
-        _contentView.layer.cornerRadius = 3;
+        _contentView.layer.cornerRadius = 6;
         _contentView.layer.masksToBounds = YES;
     }
     return _contentView;
 }
 
-- (XXButton *)cancelButton {
-    if (_cancelButton == nil) {
-        MJWeakSelf
-        _cancelButton = [XXButton buttonWithFrame:CGRectMake(kScreen_Width - 70, 18, 20,20) title:LocalizedString(@"") font:kFontBold14 titleColor:kDark100 block:^(UIButton *button) {
-            [[weakSelf class] dismiss];
-        }];
-        [_cancelButton setImage:[UIImage textImageName:@"dismiss"] forState:UIControlStateNormal];
-    }
-    return _cancelButton;
-}
-
-- (void)okButtonClick:(UIButton *)sender {
-     NSString *pwd = [NSString md5:self.passwordView.textField.text];
-    if ([pwd isEqualToString:KUser.rootAccount[@"password"]] && self.sureBtnBlock) {
-        [[self class] removeFromSuperView];
-        self.sureBtnBlock(self.passwordView.textField.text);
-    } else {
-        Alert *alert = [[Alert alloc] initWithTitle:LocalizedString(@"密码不正确") duration:kAlertDuration completion:^{
-                   }];
-        [alert showAlert];
-    }
-}
-
-- (void)textFieldValueChange:(UITextField *)textField {
-    if ([self.passwordView.textField.text trimmingCharacters].length > 0) {
-        self.okButton.enabled = YES;
-    } else {
-        self.okButton.enabled = NO;
-    }
-}
-
-- (XXButton *)okButton {
-    if (_okButton == nil) {
-        MJWeakSelf
-        _okButton = [XXButton buttonWithFrame:CGRectMake(24, CGRectGetMaxY(self.passwordView.frame) + 20, K375(344) - 48, 40) title:LocalizedString(@"Sure") font:kFontBold14 titleColor:[UIColor whiteColor] block:^(UIButton *button) {
-            [weakSelf okButtonClick:button];
-        }];
-        _okButton.layer.cornerRadius = 3;
-        _okButton.layer.masksToBounds = YES;
-        [_okButton setBackgroundImage:[UIImage createImageWithColor:kBlue100] forState:UIControlStateNormal];
-        _okButton.enabled = NO;
-    }
-    return _okButton;
-}
-
 - (XXLabel *)titleLabel {
     if (_titleLabel == nil) {
-        _titleLabel = [XXLabel labelWithFrame:CGRectMake(50, 16, kScreen_Width - 100, 24) text:LocalizedString(@"Password") font:kFontBold18 textColor:kDark100 alignment:NSTextAlignmentCenter];
+        _titleLabel = [XXLabel labelWithFrame:CGRectMake(0, K375(16), self.contentView.width, K375(24)) text:LocalizedString(@"SecurityTip") font:kFontBold20 textColor:kDark100 alignment:NSTextAlignmentCenter];
     }
     return _titleLabel;
 }
 
 - (XXTextFieldView *)passwordView {
     if (_passwordView == nil) {
-        _passwordView = [[XXTextFieldView alloc] initWithFrame:CGRectMake(24, 70, K375(344) - 48, 40)];
+        _passwordView = [[XXTextFieldView alloc] initWithFrame:CGRectMake(K375(20), K375(64), self.contentView.width - K375(40), K375(48))];
         _passwordView.textField.placeholder = LocalizedString(@"PleaseEnterPassword");
         _passwordView.textField.delegate = self;
         _passwordView.textField.secureTextEntry = YES;
@@ -169,4 +144,32 @@
     }
     return _passwordView;
 }
+
+- (XXButton *)okButton {
+    if (_okButton == nil) {
+        MJWeakSelf
+        _okButton = [XXButton buttonWithFrame:CGRectMake(self.contentView.width/2 + K375(4), CGRectGetMaxY(self.passwordView.frame) + K375(24), (self.contentView.width - K375(24))/2, K375(40)) title:LocalizedString(@"Sure") font:kFontBold14 titleColor:[UIColor whiteColor] block:^(UIButton *button) {
+            [weakSelf okButtonClick:button];
+        }];
+        _okButton.layer.cornerRadius = kBtnBorderRadius;
+        _okButton.layer.masksToBounds = YES;
+        _okButton.backgroundColor = kBlue100;
+//        _okButton.enabled = NO;
+    }
+    return _okButton;
+}
+
+- (XXButton *)cancelButton {
+    if (_cancelButton == nil) {
+        MJWeakSelf
+        _cancelButton = [XXButton buttonWithFrame:CGRectMake(K375(8), CGRectGetMaxY(self.passwordView.frame) + K375(24), (self.contentView.width - K375(24))/2, K375(40)) title:LocalizedString(@"Cancel") font:kFontBold14 titleColor:[UIColor whiteColor] block:^(UIButton *button) {
+            [[weakSelf class] dismiss];
+        }];
+        _cancelButton.layer.cornerRadius = kBtnBorderRadius;
+        _cancelButton.layer.masksToBounds = YES;
+        _cancelButton.backgroundColor = kBlue20;
+    }
+    return _cancelButton;
+}
+
 @end

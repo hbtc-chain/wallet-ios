@@ -11,6 +11,7 @@
 "Exchange" = "兑换";
 "Order" = "订单";
 "Me" = "我的";
+"Verify" = "验证";
 
 "logoName" = "Bluehelix Wallet";
 "CreateWallet" = "创建托管单元";
@@ -62,10 +63,20 @@
 "PleaseEnterPassword" = "请输入密码";
 "Password" = "验证密码";
 "ForgetPassword" = "忘记密码";
-"Sure" = "确定";
+"Sure" = "确认";
+"Cancel" = "取消";
 "PrivateKeyOutOfOrder" = "您输入的私钥不符合规则";
 "MnemonicPhraseOutOfOrder" = "您输入的助记词不符合规则";
 "PasswordWrong" = "密码错误";
+"SecurityTip" = "安全提醒";
+"Delete" = "删除";
+"BackupSecurityTip" = "安全提醒";
+"BackupSecurityTip1" = "您的钱包助记词未备份，请务必备份助记词";
+"BackupSecurityTip2" = "助记词可用于:";
+"BackupSecurityContent" = "·恢复钱包下的钱包资产\n·防止忘记密码\n·应用删除、手机丢失\n等情况导致的资产损失";
+"BackupLaterRemind" = "稍后提醒";
+"CharCount" = "%@位字符";
+
 //我的
 "BackupMnemonicPhrase" = "备份助记词";
 "ModifyPassword" = "修改安全密码";

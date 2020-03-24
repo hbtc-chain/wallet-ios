@@ -8,6 +8,9 @@
 
 #import "XXAssetVC.h"
 #import "XXAssetHeaderView.h"
+#import "XXSecurityAlertView.h"
+#import "XXPasswordView.h"
+#import "XXBackupMnemonicPhraseVC.h"
 
 @interface XXAssetVC ()<UITableViewDataSource, UITableViewDelegate>
 
@@ -34,6 +37,16 @@
     [self.view addSubview:self.tableView];
     self.tableView.separatorColor = KLine_Color;
     self.tableView.tableHeaderView = self.headerView;
+    if ([KUser.rootAccount[@"backupFlag"] intValue] == 0) {
+        MJWeakSelf
+        [XXSecurityAlertView showWithSureBlock:^{
+            [XXPasswordView showWithSureBtnBlock:^(NSString * _Nonnull text) {
+                XXBackupMnemonicPhraseVC *backupVC = [[XXBackupMnemonicPhraseVC alloc] init];
+                backupVC.text = text;
+                [weakSelf.navigationController pushViewController:backupVC animated:YES];
+            }];
+        }];
+    }
 }
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {

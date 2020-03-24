@@ -172,8 +172,8 @@
         
         [_namesArray addObject:@{
                                  @"title":LocalizedString(@"Me"),
-                                 @"normalImage":[UIImage textImageName:@"tabbarNew_4"],
-                                 @"selectedImage":[UIImage mainImageName:@"tabbarNew_4"]
+                                 @"normalImage":[UIImage textImageName:@"tabbarNew_3"],
+                                 @"selectedImage":[UIImage mainImageName:@"tabbarNew_3"]
                                  }];
     }
     return _namesArray;
