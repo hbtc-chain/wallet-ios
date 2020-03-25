@@ -93,7 +93,7 @@
 - (XXTextFieldView *)textFieldView {
     if (!_textFieldView) {
         _textFieldView = [[XXTextFieldView alloc] initWithFrame:CGRectMake(K375(16), CGRectGetMaxY(self.nameLabel.frame), kScreen_Width - K375(32), 48)];
-        _textFieldView.textField.placeholder = LocalizedString(@"SetNamePlaceHolder");
+        _textFieldView.placeholder = LocalizedString(@"SetNamePlaceHolder");
         [_textFieldView.textField addTarget:self action:@selector(textFiledValueChange:) forControlEvents:UIControlEventEditingChanged];
 
     }

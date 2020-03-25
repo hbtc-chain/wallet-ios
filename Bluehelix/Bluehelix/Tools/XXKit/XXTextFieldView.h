@@ -16,6 +16,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, strong) XXButton *lookButton;
 
 @property (nonatomic, assign) BOOL showLookBtn;
+@property (nonatomic, strong) NSString *placeholder;
 @end
 
 NS_ASSUME_NONNULL_END

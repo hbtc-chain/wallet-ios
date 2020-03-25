@@ -72,7 +72,7 @@ static inline BOOL IsEmpty(id thing) {
 #define KSpacing ((kScreen_Width/375)*(15))
 
 /** 是否夜间模式 */
-#define kIsNight [XXUserData sharedUserData].isNightType
+#define kIsNight NO
 
 #define KWindow [UIApplication sharedApplication].keyWindow
 #define BH_IS_IPHONE_5 ([UIScreen mainScreen].nativeBounds.size.height == 1136)

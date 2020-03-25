@@ -45,6 +45,12 @@
     return _textField;
 }
 
+- (void)setPlaceholder:(NSString *)placeholder {
+    NSString *text = placeholder ? placeholder : @"";
+    NSAttributedString *attrString = [[NSAttributedString alloc] initWithString:text attributes:@{NSForegroundColorAttributeName:kTipColor, NSFontAttributeName:kFont14}];
+    self.textField.attributedPlaceholder = attrString;
+}
+
 - (XXButton *)lookButton {
     if (_lookButton == nil) {
         MJWeakSelf

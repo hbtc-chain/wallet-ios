@@ -107,7 +107,7 @@
 - (XXTextFieldView *)textFieldView {
     if (!_textFieldView) {
         _textFieldView = [[XXTextFieldView alloc] initWithFrame:CGRectMake(K375(16), CGRectGetMaxY(self.walletNameLabel.frame), kScreen_Width - K375(32), 48)];
-        _textFieldView.textField.placeholder = LocalizedString(@"PleaseEnterPassword");
+        _textFieldView.placeholder = LocalizedString(@"PleaseEnterPassword");
         _textFieldView.textField.secureTextEntry = YES;
         [_textFieldView.textField addTarget:self action:@selector(textFieldValueChange:) forControlEvents:UIControlEventEditingChanged];
     }

@@ -137,7 +137,7 @@
 - (XXTextFieldView *)passwordView {
     if (_passwordView == nil) {
         _passwordView = [[XXTextFieldView alloc] initWithFrame:CGRectMake(K375(20), K375(64), self.contentView.width - K375(40), K375(48))];
-        _passwordView.textField.placeholder = LocalizedString(@"PleaseEnterPassword");
+        _passwordView.placeholder = LocalizedString(@"PleaseEnterPassword");
         _passwordView.textField.delegate = self;
         _passwordView.textField.secureTextEntry = YES;
         [_passwordView.textField addTarget:self action:@selector(textFieldValueChange:) forControlEvents:UIControlEventEditingChanged];

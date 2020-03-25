@@ -10,6 +10,7 @@
 #import "XXTabBarController.h"
 #import "XXBackupMnemonicPhraseVC.h"
 #import "XXScreenShotAlert.h"
+#import "XYHNumbersLabel.h"
 
 @interface XXCreateWalletSuccessVC ()
 
@@ -18,8 +19,8 @@
 @property (nonatomic, strong) UIView *tipView;
 @property (nonatomic, strong) XXLabel *tipNamelabel1;
 @property (nonatomic, strong) XXLabel *tipNamelabel2;
-@property (nonatomic, strong) XXLabel *tipContentlabel1;
-@property (nonatomic, strong) XXLabel *tipContentlabel2;
+@property (nonatomic, strong) XYHNumbersLabel *tipContentlabel1;
+@property (nonatomic, strong) XYHNumbersLabel *tipContentlabel2;
 @property (nonatomic, strong) XXButton *immediatelyBtn;
 @property (nonatomic, strong) XXButton *laterBtn;
 
@@ -79,11 +80,11 @@
     return _tipNamelabel1;
 }
 
-- (XXLabel *)tipContentlabel1 {
+- (XYHNumbersLabel *)tipContentlabel1 {
     if (!_tipContentlabel1) {
-        CGFloat height = [NSString heightWithText:LocalizedString(@"CreateWalletBackupTipContent") font:kFont(15) width:kScreen_Width - K375(64)];
-        _tipContentlabel1 = [XXLabel labelWithFrame:CGRectMake(K375(16), CGRectGetMaxY(self.tipNamelabel1.frame) + 10, kScreen_Width - K375(64), height) text:LocalizedString(@"CreateWalletBackupTipContent") font:kFont(15) textColor:kTipColor alignment:NSTextAlignmentLeft];
-        _tipContentlabel1.numberOfLines = 0;
+        _tipContentlabel1 = [[XYHNumbersLabel alloc] initWithFrame:CGRectMake(K375(16), CGRectGetMaxY(self.tipNamelabel1.frame) + 10, kScreen_Width - K375(64), 0) font:kFont(15)];
+        _tipContentlabel1.textColor = kTipColor;
+        [_tipContentlabel1 setText:LocalizedString(@"CreateWalletBackupTipContent") alignment:NSTextAlignmentLeft];
     }
     return _tipContentlabel1;
 }
@@ -95,11 +96,11 @@
     return _tipNamelabel2;
 }
 
-- (XXLabel *)tipContentlabel2 {
+- (XYHNumbersLabel *)tipContentlabel2 {
     if (!_tipContentlabel2) {
-        CGFloat height = [NSString heightWithText:LocalizedString(@"WeSuggestContent") font:kFont(15) width:kScreen_Width - K375(64)];
-        _tipContentlabel2 = [XXLabel labelWithFrame:CGRectMake(K375(16), CGRectGetMaxY(self.tipNamelabel2.frame) + 10, kScreen_Width - K375(64), height) text:LocalizedString(@"WeSuggestContent") font:kFont(15) textColor:kTipColor alignment:NSTextAlignmentLeft];
-        _tipContentlabel2.numberOfLines = 0;
+        _tipContentlabel2 = [[XYHNumbersLabel alloc] initWithFrame:CGRectMake(K375(16), CGRectGetMaxY(self.tipNamelabel2.frame) + 10, kScreen_Width - K375(64), 0) font:kFont(15)];
+        _tipContentlabel2.textColor = kTipColor;
+        [_tipContentlabel2 setText:LocalizedString(@"WeSuggestContent") alignment:NSTextAlignmentLeft];
     }
     return _tipContentlabel2;
 }

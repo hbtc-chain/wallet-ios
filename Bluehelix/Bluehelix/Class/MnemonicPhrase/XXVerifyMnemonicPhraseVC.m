@@ -38,7 +38,6 @@
     NSString *sectureStr = KUser.rootAccount[@"mnemonicPhrase"];
     NSString *phraseStr = [AESCrypt decrypt:sectureStr password:self.text];
     self.phraseArray = [phraseStr componentsSeparatedByString:@" "];
-//    self.phraseArray = @[@"111",@"222",@"333",@"111",@"222",@"333",@"111",@"222",@"333",@"444",@"111",@"555"];
     self.drawArray = [self randomArray];
 }
 

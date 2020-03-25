@@ -12,12 +12,13 @@
 #import "SecureData.h"
 #import "AESCrypt.h"
 #import "XXServiceAgreementVC.h"
+#import "XYHNumbersLabel.h"
 
 @interface XXRepeatPasswordVC () <UITextViewDelegate>
 
 @property (nonatomic, strong) XXLabel *tipLabel;
 @property (nonatomic, strong) XXLabel *stepTipLabel;
-@property (nonatomic, strong) XXLabel *contentLabel;
+@property (nonatomic, strong) XYHNumbersLabel *contentLabel;
 @property (nonatomic, strong) XXLabel *nameLabel;
 @property (nonatomic, strong) XXTextFieldView *textFieldView;
 @property (nonatomic, strong) XXLabel *charCountLabel;
@@ -114,11 +115,11 @@
     return _stepTipLabel;
 }
 
-- (XXLabel *)contentLabel {
+- (XYHNumbersLabel *)contentLabel {
     if (!_contentLabel) {
-        CGFloat height = [NSString heightWithText:LocalizedString(@"SetPasswordTip") font:kFont(15) width:kScreen_Width - K375(32)];
-        _contentLabel = [XXLabel labelWithFrame:CGRectMake(K375(16), CGRectGetMaxY(self.tipLabel.frame) + 10, kScreen_Width - K375(32), height) text:LocalizedString(@"SetPasswordTip") font:kFont(15) textColor:kTipColor alignment:NSTextAlignmentLeft];
-        _contentLabel.numberOfLines = 0;
+        _contentLabel = [[XYHNumbersLabel alloc] initWithFrame:CGRectMake(K375(16), CGRectGetMaxY(self.tipLabel.frame) + 10, kScreen_Width - K375(32), 0) font:kFont(15)];
+        _contentLabel.textColor = kTipColor;
+        [_contentLabel setText:LocalizedString(@"SetPasswordTip") alignment:NSTextAlignmentLeft];
     }
     return _contentLabel;
 }
@@ -133,7 +134,7 @@
 - (XXTextFieldView *)textFieldView {
     if (!_textFieldView) {
         _textFieldView = [[XXTextFieldView alloc] initWithFrame:CGRectMake(K375(16), CGRectGetMaxY(self.nameLabel.frame), kScreen_Width - K375(32), 48)];
-        _textFieldView.textField.placeholder = LocalizedString(@"SetPasswordPlaceHolder");
+        _textFieldView.placeholder = LocalizedString(@"SetPasswordPlaceHolder");
         _textFieldView.showLookBtn = YES;
         [_textFieldView.textField addTarget:self action:@selector(textFiledValueChange:) forControlEvents:UIControlEventEditingChanged];
     }

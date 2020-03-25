@@ -8,17 +8,17 @@
 
 #import "XXCreateWalletSetPasswordVC.h"
 #import "XXRepeatPasswordVC.h"
+#import "XYHNumbersLabel.h"
 
 @interface XXCreateWalletSetPasswordVC ()
-
+@property (nonatomic, strong) UIScrollView *scrollView;
 @property (nonatomic, strong) XXLabel *tipLabel;
 @property (nonatomic, strong) XXLabel *stepTipLabel;
-@property (nonatomic, strong) XXLabel *contentLabel;
+@property (nonatomic, strong) XYHNumbersLabel *contentLabel;
 @property (nonatomic, strong) XXLabel *nameLabel;
 @property (nonatomic, strong) XXTextFieldView *textFieldView;
 @property (nonatomic, strong) XXLabel *charCountLabel;
 @property (nonatomic, strong) XXButton *createBtn;
-
 @property (nonatomic, strong) XXLabel *ruleTip;
 @property (nonatomic, strong) XXLabel *rule1;
 @property (nonatomic, strong) XXLabel *rule2;
@@ -36,18 +36,20 @@
 
 - (void)buildUI {
     self.titleLabel.text = LocalizedString(@"CreateWallet");
-    [self.view addSubview:self.tipLabel];
-    [self.view addSubview:self.stepTipLabel];
-    [self.view addSubview:self.contentLabel];
-    [self.view addSubview:self.nameLabel];
-    [self.view addSubview:self.textFieldView];
-    [self.view addSubview:self.charCountLabel];
-    [self.view addSubview:self.ruleTip];
-    [self.view addSubview:self.rule1];
-    [self.view addSubview:self.rule2];
-    [self.view addSubview:self.rule3];
-    [self.view addSubview:self.rule4];
-    [self.view addSubview:self.createBtn];
+    [self.view addSubview:self.scrollView];
+    [self.scrollView addSubview:self.tipLabel];
+    [self.scrollView addSubview:self.stepTipLabel];
+    [self.scrollView addSubview:self.contentLabel];
+    [self.scrollView addSubview:self.nameLabel];
+    [self.scrollView addSubview:self.textFieldView];
+    [self.scrollView addSubview:self.charCountLabel];
+    [self.scrollView addSubview:self.ruleTip];
+    [self.scrollView addSubview:self.rule1];
+    [self.scrollView addSubview:self.rule2];
+    [self.scrollView addSubview:self.rule3];
+    [self.scrollView addSubview:self.rule4];
+    [self.scrollView addSubview:self.createBtn];
+    self.scrollView.contentSize = CGSizeMake(0, CGRectGetMaxY(self.createBtn.frame) + 30);
 }
 
 - (void)nextStepAction {
@@ -104,6 +106,14 @@
     }
 }
 
+- (UIScrollView *)scrollView {
+    if (_scrollView == nil) {
+        _scrollView = [[UIScrollView alloc] initWithFrame:self.view.bounds];
+        _scrollView.showsVerticalScrollIndicator = NO;
+    }
+    return _scrollView;
+}
+
 - (XXLabel *)tipLabel {
     if (!_tipLabel) {
         CGFloat width = [NSString widthWithText:LocalizedString(@"SetPassword") font:kFontBold(26)];
@@ -119,11 +129,11 @@
     return _stepTipLabel;
 }
 
-- (XXLabel *)contentLabel {
+- (XYHNumbersLabel *)contentLabel {
     if (!_contentLabel) {
-        CGFloat height = [NSString heightWithText:LocalizedString(@"SetPasswordTip") font:kFont(15) width:kScreen_Width - K375(32)];
-        _contentLabel = [XXLabel labelWithFrame:CGRectMake(K375(16), CGRectGetMaxY(self.tipLabel.frame) + 10, kScreen_Width - K375(32), height) text:LocalizedString(@"SetPasswordTip") font:kFont(15) textColor:kTipColor alignment:NSTextAlignmentLeft];
-        _contentLabel.numberOfLines = 0;
+        _contentLabel = [[XYHNumbersLabel alloc] initWithFrame:CGRectMake(K375(16), CGRectGetMaxY(self.tipLabel.frame) + 10, kScreen_Width - K375(32), 0) font:kFont(15)];
+        _contentLabel.textColor = kTipColor;
+        [_contentLabel setText:LocalizedString(@"SetPasswordTip") alignment:NSTextAlignmentLeft];
     }
     return _contentLabel;
 }
@@ -138,8 +148,9 @@
 - (XXTextFieldView *)textFieldView {
     if (!_textFieldView) {
         _textFieldView = [[XXTextFieldView alloc] initWithFrame:CGRectMake(K375(16), CGRectGetMaxY(self.nameLabel.frame), kScreen_Width - K375(32), 48)];
-        _textFieldView.textField.placeholder = LocalizedString(@"SetPasswordPlaceHolder");
+        _textFieldView.placeholder = LocalizedString(@"SetPasswordPlaceHolder");
         _textFieldView.showLookBtn = YES;
+        _textFieldView.textField.delegate = self;
         [_textFieldView.textField addTarget:self action:@selector(textFiledValueChange:) forControlEvents:UIControlEventEditingChanged];
     }
     return _textFieldView;

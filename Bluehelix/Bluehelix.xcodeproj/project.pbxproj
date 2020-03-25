@@ -1518,12 +1518,12 @@
 				INFOPLIST_FILE = "$(SRCROOT)/Bluehelix/AppResource/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				MARKETING_VERSION = 1.0.0;
+				MARKETING_VERSION = 0.0.1;
 				OTHER_LDFLAGS = (
 					"$(inherited)",
 					"-ObjC",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = io.bhex.app;
+				PRODUCT_BUNDLE_IDENTIFIER = com.bluehelix.wallet.ios;
 				PRODUCT_NAME = Bluehelix;
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				TARGETED_DEVICE_FAMILY = 1;
@@ -1555,12 +1555,12 @@
 				INFOPLIST_FILE = "$(SRCROOT)/Bluehelix/AppResource/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				MARKETING_VERSION = 1.0.0;
+				MARKETING_VERSION = 0.0.1;
 				OTHER_LDFLAGS = (
 					"$(inherited)",
 					"-ObjC",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = io.bhex.app;
+				PRODUCT_BUNDLE_IDENTIFIER = com.bluehelix.wallet.ios;
 				PRODUCT_NAME = Bluehelix;
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				TARGETED_DEVICE_FAMILY = 1;

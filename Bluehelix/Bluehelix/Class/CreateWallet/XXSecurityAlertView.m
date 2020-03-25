@@ -8,6 +8,7 @@
 
 #import "XXSecurityAlertView.h"
 #import "XXPasswordView.h"
+#import "XYHNumbersLabel.h"
 
 @interface XXSecurityAlertView ()
 
@@ -19,7 +20,7 @@
 @property (nonatomic, strong) UILabel *contentLabel;
 @property (nonatomic, strong) UIView *tipView;
 @property (nonatomic, strong) XXLabel *tipNamelabel;
-@property (nonatomic, strong) XXLabel *tipContentlabel;
+@property (nonatomic, strong) XYHNumbersLabel *tipContentlabel;
 @property (nonatomic, strong) XXButton *laterBtn;
 @property (nonatomic, strong) XXButton *immediatelyBtn;
 
@@ -171,11 +172,11 @@
     return _tipNamelabel;
 }
 
-- (XXLabel *)tipContentlabel {
+- (XYHNumbersLabel *)tipContentlabel {
     if (!_tipContentlabel) {
-        CGFloat height = [NSString heightWithText:LocalizedString(@"BackupSecurityContent") font:kFont(15) width:kScreen_Width - K375(64)];
-        _tipContentlabel = [XXLabel labelWithFrame:CGRectMake(K375(16), CGRectGetMaxY(self.tipNamelabel.frame) + 10, kScreen_Width - K375(64), height) text:LocalizedString(@"BackupSecurityContent") font:kFont(15) textColor:kTipColor alignment:NSTextAlignmentLeft];
-        _tipContentlabel.numberOfLines = 0;
+        _tipContentlabel = [[XYHNumbersLabel alloc] initWithFrame:CGRectMake(K375(16), CGRectGetMaxY(self.tipNamelabel.frame) + 10, kScreen_Width - K375(64), 0) font:kFont(15)];
+        _tipContentlabel.textColor = kTipColor;
+        [_tipContentlabel setText:LocalizedString(@"BackupSecurityContent") alignment:NSTextAlignmentLeft];
     }
     return _tipContentlabel;
 }
