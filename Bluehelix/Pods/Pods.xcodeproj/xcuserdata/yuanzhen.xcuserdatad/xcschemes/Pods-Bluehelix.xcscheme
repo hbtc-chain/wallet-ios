@@ -14,7 +14,7 @@
             buildForArchiving = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "56E0D9888218FA669553DA61E955E19D"
+               BlueprintIdentifier = "05A091DC6379F3EB9F7F1406FBA81651"
                BuildableName = "libPods-Bluehelix.a"
                BlueprintName = "Pods-Bluehelix"
                ReferencedContainer = "container:Pods.xcodeproj">

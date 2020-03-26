@@ -30,8 +30,7 @@
 
 - (void)nextStepAction {
     NSLog(@"%@",self.textView.text);
-    SecureData * data = [SecureData secureDataWithHexString:self.textView.text];
-    Account *account = [Account accountWithPrivateKey:data.data];
+    Account *account = [Account accountWithMnemonicPhrase:self.textView.text];
     if (account) {
         KUser.localPhraseString = self.textView.text;
         KUser.localPrivateKey = @"";

@@ -9,8 +9,9 @@
 #import "XXCreateWalletSetPasswordVC.h"
 #import "XXRepeatPasswordVC.h"
 #import "XYHNumbersLabel.h"
+#import "IQKeyboardManager.h"
 
-@interface XXCreateWalletSetPasswordVC ()
+@interface XXCreateWalletSetPasswordVC ()<UITextFieldDelegate>
 @property (nonatomic, strong) UIScrollView *scrollView;
 @property (nonatomic, strong) XXLabel *tipLabel;
 @property (nonatomic, strong) XXLabel *stepTipLabel;
@@ -31,6 +32,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    [IQKeyboardManager sharedManager].enable = NO;
     [self buildUI];
 }
 
@@ -71,6 +73,18 @@
     } else {
         self.charCountLabel.text = @"";
     }
+}
+
+- (void)textFieldDidEndEditing:(UITextField *)textField {
+    [UIView animateWithDuration:0.25 animations:^{
+        self.scrollView.contentOffset = CGPointMake(0, 0);
+    }];
+}
+
+- (void)textFieldDidBeginEditing:(UITextField *)textField {
+    [UIView animateWithDuration:0.25 animations:^{
+        self.scrollView.contentOffset = CGPointMake(0, 130);
+    }];
 }
 
 -(BOOL)isValidPasswordString:(int)type {
