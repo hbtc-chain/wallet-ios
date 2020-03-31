@@ -13,7 +13,7 @@
 #import "SecureData.h"
 #import "XXLoginVC.h"
 #import "XXRepeatPasswordVC.h"
-
+#import "Bluehelix-Swift.h"
 @implementation AppDelegate
 
 #pragma mark - 1. 程序开始
@@ -21,18 +21,6 @@
     if (!KUser.isSettedNightType) {
         KUser.isNightType = KSystem.isDarkStyle;
     }
-//    if (!IsEmpty(KUser.localPhraseString)) { //通过助记词导入创建
-//           account = [Account accountWithMnemonicPhrase:KUser.localPhraseString];
-//       } else if (!IsEmpty(KUser.localPrivateKey)) { //通过私钥导入创建
-//           SecureData * data = [SecureData secureDataWithHexString:KUser.localPrivateKey];
-//           account = [Account accountWithPrivateKey:data.data];
-//       } else {
-//           account = [Account randomMnemonicAccount];
-//       }
-    
-     SecureData * data = [SecureData secureDataWithHexString:@"abcde234234234234"];
-     Account *account = [Account accountWithPrivateKey:data.data];
-    
     KWindow.backgroundColor = [UIColor whiteColor];
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     if (KUser.rootAccount) {

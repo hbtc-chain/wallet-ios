@@ -36,6 +36,8 @@
 		EA04ABB2242D015B004403FF /* IQUIView+Hierarchy.m in Sources */ = {isa = PBXBuildFile; fileRef = EA04ABA1242D015B004403FF /* IQUIView+Hierarchy.m */; };
 		EA04ABB3242D015B004403FF /* IQUIViewController+Additions.m in Sources */ = {isa = PBXBuildFile; fileRef = EA04ABA5242D015B004403FF /* IQUIViewController+Additions.m */; };
 		EA04ABB4242D015B004403FF /* IQKeyboardReturnKeyHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = EA04ABA7242D015B004403FF /* IQKeyboardReturnKeyHandler.m */; };
+		EA04AD3824323C73004403FF /* Bech32.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA04AD3724323C72004403FF /* Bech32.swift */; };
+		EA04AD3A243305B6004403FF /* SegwitAddrCoder.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA04AD39243305B6004403FF /* SegwitAddrCoder.swift */; };
 		EA15E95724163FDC00A3E14A /* XXStartWalletVC.m in Sources */ = {isa = PBXBuildFile; fileRef = EA15E95624163FDC00A3E14A /* XXStartWalletVC.m */; };
 		EA15E95A2416702C00A3E14A /* XXMnemonicBtn.m in Sources */ = {isa = PBXBuildFile; fileRef = EA15E9592416702C00A3E14A /* XXMnemonicBtn.m */; };
 		EA15E95D24168F5600A3E14A /* XXVerifyMnemonicPhraseVC.m in Sources */ = {isa = PBXBuildFile; fileRef = EA15E95C24168F5600A3E14A /* XXVerifyMnemonicPhraseVC.m */; };
@@ -253,6 +255,9 @@
 		EA04ABA5242D015B004403FF /* IQUIViewController+Additions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "IQUIViewController+Additions.m"; sourceTree = "<group>"; };
 		EA04ABA6242D015B004403FF /* IQUIView+Hierarchy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "IQUIView+Hierarchy.h"; sourceTree = "<group>"; };
 		EA04ABA7242D015B004403FF /* IQKeyboardReturnKeyHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IQKeyboardReturnKeyHandler.m; sourceTree = "<group>"; };
+		EA04ACC1242E0CCD004403FF /* Bluehelix-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Bluehelix-Bridging-Header.h"; sourceTree = "<group>"; };
+		EA04AD3724323C72004403FF /* Bech32.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Bech32.swift; sourceTree = "<group>"; };
+		EA04AD39243305B6004403FF /* SegwitAddrCoder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SegwitAddrCoder.swift; sourceTree = "<group>"; };
 		EA0AA16523ED8AFD00E9472E /* XXDecimalNumberHelper.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = XXDecimalNumberHelper.h; sourceTree = "<group>"; };
 		EA0AA16623ED8AFD00E9472E /* XXDecimalNumberHelper.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = XXDecimalNumberHelper.m; sourceTree = "<group>"; };
 		EA15E95524163FDC00A3E14A /* XXStartWalletVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = XXStartWalletVC.h; sourceTree = "<group>"; };
@@ -680,6 +685,16 @@
 				EA04ABA6242D015B004403FF /* IQUIView+Hierarchy.h */,
 			);
 			path = Categories;
+			sourceTree = "<group>";
+		};
+		EA04ACBB242DED8E004403FF /* bech32 */ = {
+			isa = PBXGroup;
+			children = (
+				EA04AD3724323C72004403FF /* Bech32.swift */,
+				EA04AD39243305B6004403FF /* SegwitAddrCoder.swift */,
+				EA04ACC1242E0CCD004403FF /* Bluehelix-Bridging-Header.h */,
+			);
+			path = bech32;
 			sourceTree = "<group>";
 		};
 		EA15E9632417A70200A3E14A /* User */ = {
@@ -1129,6 +1144,7 @@
 		F3D9397520CCCB560055070B /* Tools */ = {
 			isa = PBXGroup;
 			children = (
+				EA04ACBB242DED8E004403FF /* bech32 */,
 				EA04AB87242D015B004403FF /* IQKeyboardManager */,
 				EABBC08024232DCD00B7E412 /* AES */,
 				EA309F68236F22180098DE28 /* UIKit+AFNetworking */,
@@ -1223,6 +1239,7 @@
 					F30AC19F20CCC641000652BB = {
 						CreatedOnToolsVersion = 9.4;
 						DevelopmentTeam = 768MYA9JJQ;
+						LastSwiftMigration = 1130;
 						ProvisioningStyle = Automatic;
 						SystemCapabilities = {
 							com.apple.Push = {
@@ -1340,6 +1357,7 @@
 				EA04ABB0242D015B004403FF /* IQUITextFieldView+Additions.m in Sources */,
 				EA30A0E5236F221A0098DE28 /* UIWebView+AFNetworking.m in Sources */,
 				EABD1B83241BB25900B1A03A /* sha2.c in Sources */,
+				EA04AD3A243305B6004403FF /* SegwitAddrCoder.swift in Sources */,
 				EABD1B89241BB25900B1A03A /* bignum.c in Sources */,
 				EABD1B8E241BB25900B1A03A /* sha3.c in Sources */,
 				EA964BA62414D37F00A941E5 /* XXBackupMnemonicPhraseVC.m in Sources */,
@@ -1355,6 +1373,7 @@
 				EABD1BA3241BB25900B1A03A /* BlockInfo.m in Sources */,
 				EA35A50D2422270600ADF621 /* XXAssetHeaderView.m in Sources */,
 				F30EAF5F20D26536005ADD5C /* UIColor+helper.m in Sources */,
+				EA04AD3824323C73004403FF /* Bech32.swift in Sources */,
 				EA30A121236F221B0098DE28 /* AFAutoPurgingImageCache.m in Sources */,
 				F31F7A4D20CF9693008B4403 /* XXNavigationController.m in Sources */,
 				7AC4D7F9234C808F00F5E5F8 /* XXButton.m in Sources */,
@@ -1620,16 +1639,19 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = Icon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = Launch;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = "";
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = NO;
 				DEVELOPMENT_TEAM = 768MYA9JJQ;
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
 				);
+				GCC_INPUT_FILETYPE = automatic;
 				GCC_PREFIX_HEADER = Bluehelix/PrefixHeader.pch;
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"$(inherited)",
@@ -1646,6 +1668,9 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.bluehelix.wallet.ios;
 				PRODUCT_NAME = Bluehelix;
 				PROVISIONING_PROFILE_SPECIFIER = "";
+				SWIFT_OBJC_BRIDGING_HEADER = "Bluehelix/Tools/bech32/Bluehelix-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
@@ -1657,16 +1682,19 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = Icon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = Launch;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = "";
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = NO;
 				DEVELOPMENT_TEAM = 768MYA9JJQ;
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
 				);
+				GCC_INPUT_FILETYPE = automatic;
 				GCC_PREFIX_HEADER = Bluehelix/PrefixHeader.pch;
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"$(inherited)",
@@ -1683,6 +1711,8 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.bluehelix.wallet.ios;
 				PRODUCT_NAME = Bluehelix;
 				PROVISIONING_PROFILE_SPECIFIER = "";
+				SWIFT_OBJC_BRIDGING_HEADER = "Bluehelix/Tools/bech32/Bluehelix-Bridging-Header.h";
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;

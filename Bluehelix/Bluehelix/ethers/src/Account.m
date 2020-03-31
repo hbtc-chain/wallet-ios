@@ -43,6 +43,7 @@
 #import <CommonCrypto/CommonDigest.h>
 #include "ripemd160.h"
 #import <BTCBase58.h>
+#import "Bluehelix-Swift.h"
 static NSErrorDomain ErrorDomain = @"io.ethers.AccountError";
 
 NSObject *getPath(NSObject *object, NSString *path, Class expectedClass) {
@@ -182,10 +183,21 @@ static NSDateFormatter *TimeFormatter = nil;
         SecureData *sum = [self checkSum:ripemdData];
         NSString *address = [self base58:sum publicKey:ripemdData];
         _BHAddress = address;
-//        NSData *addressData = [[[publicKey subdataFromIndex:1] KECCAK256] subdataFromIndex:12].data;
-//        _address = [Address addressWithData:addressData]; //生成地址
+        [self publicKeyStr:publicKey];
+
     }
     return self;
+}
+
+- (NSString *)publicKeyStr:(SecureData*)publicKey {
+    SegwitAddrCoder *seg = [[SegwitAddrCoder alloc] init];
+    SecureData *secData = [SecureData secureDataWithHexString:@"EB5AE98721"]; //pubkeysecp256k1 前缀 0xEB5AE987
+    [secData appendData:publicKey.data];
+    NSData *convertedData = [seg convertBitsFrom:8 to:5 pad:YES idata:secData.data error:nil];
+    NSLog(@"%@",convertedData);
+    Bech32 *bech32 = [[Bech32 alloc] init];
+    NSString *result = [bech32 encode:@"bhpub" values:convertedData];
+    return result;
 }
 
 - (SecureData *)ripemd160:(SecureData*)publicKey {
@@ -198,7 +210,7 @@ static NSDateFormatter *TimeFormatter = nil;
     }
 //    if (CC_SHA256([sha1 bytes], [sha1 length], hash)) {
 //        sha2 = [NSData dataWithBytes:hash length:CC_SHA256_DIGEST_LENGTH];
-//    } //这里为什么是一次hash ? 两次hash 答案不对？？？
+//    } //这里为什么是一次hash ? 两次hash 不对？？？
     NSLog(@"%@",sha2);
     SecureData *ripemdData = [SecureData secureDataWithLength:20];
     ripemd160(sha1.bytes, sha1.length, ripemdData.mutableBytes);
@@ -257,7 +269,7 @@ static NSDateFormatter *TimeFormatter = nil;
     hdnode_private_ckd(&node, 0);                     // 0   - External
     hdnode_private_ckd(&node, 0);                     // 0   - Slot #0
     
-    //一句话概括下 BIP44 就是：给 BIP32 的分层路径定义规范 m / purpose' / coin' / account' / change / address_index
+    //BIP44 就是：给 BIP32 的分层路径定义规范 m / purpose' / coin' / account' / change / address_index
     SecureData *privateKey = [SecureData secureDataWithLength:32];
     
     
@@ -299,7 +311,7 @@ static NSDateFormatter *TimeFormatter = nil;
     int result = SecRandomCopyBytes(kSecRandomDefault, data.length, data.mutableBytes);
     if (result != noErr) { return nil; }
     NSString *mnemonicPhrase = [NSString stringWithCString:mnemonic_from_data(data.bytes, (int)data.length) encoding:NSUTF8StringEncoding]; //生成助记词
-    return [[Account alloc] initWithMnemonicPhrase:mnemonicPhrase];
+    return [[Account alloc] initWithMnemonicPhrase:@"sniff float truck talent walk search mad boat away fossil sleep dune"];
 }
 
 - (NSString*)_privateKeyHash {
