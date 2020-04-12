@@ -22,11 +22,11 @@
         self.layer.shadowRadius = 10.0;
         self.layer.shadowOpacity = 1;
         
-//        if (KUser.isNightType) {
-//            self.layer.shadowColor = (KBigLine_Color).CGColor;
-//        } else {
-//            self.layer.shadowColor = (kDark5).CGColor;
-//        }
+        if (KUser.isNightType) {
+            self.layer.shadowColor = (KBigLine_Color).CGColor;
+        } else {
+            self.layer.shadowColor = (kDark5).CGColor;
+        }
 
         self.shadowView = [[UIView alloc] initWithFrame:self.bounds];
         self.shadowView.layer.shadowRadius = 1.0;
@@ -37,11 +37,11 @@
         self.shadowView.layer.shadowOffset = CGSizeMake(0.0, 1.0);
         self.shadowView.layer.shadowOpacity = 1;
         
-//        if (KUser.isNightType) {
-//            self.shadowView.layer.shadowColor = (KRGBA(4,11.5,18,100)).CGColor;
-//        } else {
-//            self.shadowView.layer.shadowColor = (kDark10).CGColor;
-//        }
+        if (KUser.isNightType) {
+            self.shadowView.layer.shadowColor = (KRGBA(4,11.5,18,100)).CGColor;
+        } else {
+            self.shadowView.layer.shadowColor = (kDark10).CGColor;
+        }
     }
     return self;
 }

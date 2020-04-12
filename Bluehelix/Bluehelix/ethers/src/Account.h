@@ -37,7 +37,7 @@
 #import "Address.h"
 #import "Signature.h"
 #import "Transaction.h"
-
+#import "SecureData.h"
 
 #pragma mark - Errors
 
@@ -96,6 +96,7 @@
 @property (nonatomic, readonly) NSString *BHAddress;
 
 @property (nonatomic, readonly) NSData *privateKey;
+@property (nonatomic, readonly) NSData *pubKey;
 
 @property (nonatomic, readonly) NSString *mnemonicPhrase; //助记符
 @property (nonatomic, readonly) NSData *mnemonicData;
@@ -112,4 +113,5 @@
 + (BOOL)isValidMnemonicPhrase: (NSString*)phrase;
 + (BOOL)isValidMnemonicWord: (NSString*)word;
 
+- (SecureData *)signData:(NSData *)data; //签名数据
 @end

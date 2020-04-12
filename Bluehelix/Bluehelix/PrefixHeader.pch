@@ -20,7 +20,6 @@
 #import <MBProgressHUD+JDragon.h>
 #import <MJExtension/MJExtension.h>
 #import <MJRefresh/MJRefresh.h>
-
 #import "XXNavigationController.h"
 #import "XXCategory.h"
 #import "XXFontHeader.h"
@@ -31,6 +30,11 @@
 #import "XXUserData.h"
 #import "Alert.h"
 #import "XXSystem.h"
+#import "HttpManager.h"
+#import "XXSqliteManager.h"
+#import "XXDecimalNumberHelper.h"
+#import "XXAccountModel.h"
+#import "RatesManager.h"
 static inline BOOL IsEmpty(id thing) {
     return thing == nil || [thing isEqual:[NSNull null]]
     || ([thing respondsToSelector:@selector(length)]
@@ -38,13 +42,42 @@ static inline BOOL IsEmpty(id thing) {
     || ([thing respondsToSelector:@selector(count)]
         && [(NSArray *)thing count] == 0);
 }
+
+typedef NS_ENUM(NSUInteger, NetworkMethod) {
+    Get = 0,
+    Post
+};
 #endif
 
+//wallet
+#define kBtnBorderRadius 6
+#define kBtnNotEnableColor kIsNight ? [UIColor grayColor] : [UIColor colorWithHexString:@"#E7ECF4"]
+#define kBtnHeight 48
+#define kTipColor kIsNight ? [UIColor whiteColor] : [UIColor colorWithHexString:@"#6E8196"]
+#define kFieldBackColor kIsNight ? [UIColor whiteColor] : [UIColor colorWithHexString:@"#F9F9FB"]
+#define kAlertDuration 2
+#define kGreen kIsNight ? [UIColor whiteColor] : [UIColor colorWithHexString:@"#269A99"]
+#define kGray kIsNight ? [UIColor whiteColor] : [UIColor colorWithHexString:@"#475563"]
 
 
-#define kApp_Name [[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleDisplayName"]
-#define kAppStoreBundle @"io.bhex.app"
-#define kGTID @"127fa24522a64cafea491594462e461c" // 极验场景id
+#define kDomain @""
+#define kServerChainUrl @"http://bhchain-testnet-node1-751700059.ap-northeast-1.elb.amazonaws.com:1317"
+#define kServerUrl @"http://public-chain-web-1081294751.ap-northeast-1.elb.amazonaws.com:11994/"
+#define kChainId @"bhchain-testnet" //链名称
+#define kCu_number @"0"
+#define kMainToken @"bht" //原生主代币
+#define kPubKeyType @"tendermint/PubKeySecp256k1" //公钥加密方式
+#define kMsgSend @"cosmos-sdk/MsgSend" //转账
+#define kMsgDelegate @"cosmos-sdk/MsgDelegate" //委托
+#define kMsgUndelegate @"cosmos-sdk/MsgUndelegate" //转委托
+#define kMsgKeyGen @"bhchain/keygen/MsgKeyGen" //生成跨链地址
+
+#define kPrecision 1000000000000000000 //精度是10的18次方
+#define kPrecision_U 0.000001 //10的负6次方
+
+#define kPrecisionDecimal [NSDecimalNumber decimalNumberWithString:@"1000000000000000000"]
+#define kPrecisionDecimal_U [NSDecimalNumber decimalNumberWithString:@"0.000001"]
+
 
 #define kScreen_Height [UIScreen mainScreen].bounds.size.height
 #define kScreen_Width [UIScreen mainScreen].bounds.size.width
@@ -57,14 +90,6 @@ static inline BOOL IsEmpty(id thing) {
 #define KLine_Height 1 // 分割线的高度
 #define KLeftSpace_20 (K375(24))
 #define kLeftSpace_70 72
-
-//wallet
-#define kBtnBorderRadius 6
-#define kBtnNotEnableColor kIsNight ? [UIColor grayColor] : [UIColor colorWithHexString:@"#E7ECF4"]
-#define kBtnHeight 48
-#define kTipColor kIsNight ? [UIColor whiteColor] : [UIColor colorWithHexString:@"#6E8196"]
-#define kFieldBackColor kIsNight ? [UIColor whiteColor] : [UIColor colorWithHexString:@"#F9F9FB"]
-#define kAlertDuration 2
 
 #define KString(str) (str) == nil ? @"" : [NSString stringWithFormat:@"%@",(str)]
 #define Kscal(value) ((kScreen_Width/1242)*(value))
@@ -91,9 +116,6 @@ static inline BOOL IsEmpty(id thing) {
 #define KConfigure [XXConfiguration sharedXXConfiguration]
 #define App_Delegate (AppDelegate *)[[UIApplication sharedApplication] delegate]
 #define BHUserDefaults [NSUserDefaults standardUserDefaults]
-#define KAccountData [XXAccountData sharedXXAccountData]
-#define KIndexModel [XXIndexModules sharedXXIndexModules]
-#define KDetail [KSymbolDetailData sharedKSymbolDetailData]
 #define KDecimal XXDecimalNumberHelper
 
 #define ISDictionary(object) (object != nil && [object isKindOfClass:[NSDictionary class]])

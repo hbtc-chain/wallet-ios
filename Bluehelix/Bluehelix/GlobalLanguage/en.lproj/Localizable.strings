@@ -73,9 +73,10 @@
 "BackupSecurityTip" = "安全提醒";
 "BackupSecurityTip1" = "您的钱包助记词未备份，请务必备份助记词";
 "BackupSecurityTip2" = "助记词可用于:";
-"BackupSecurityContent" = "·恢复钱包下的钱包资产\n·防止忘记密码\n·应用删除、手机丢失\n等情况导致的资产损失";
+"BackupSecurityContent" = "·恢复钱包下的钱包资产\n·防止忘记密码\n·应用删除、手机丢失等情况导致的资产损失";
 "BackupLaterRemind" = "稍后提醒";
 "CharCount" = "%@位字符";
+
 
 //我的
 "BackupMnemonicPhrase" = "备份助记词";
@@ -85,3 +86,43 @@
 "TermsOfUse" = "使用条款";
 "AboutUs" = "关于我们";
 "CopySuccessfully" = "复制成功";
+
+//资产
+"HideSmallCurrency" = "隐藏小额币种";
+"SearchPairs" = "搜索币种";
+"ReceiveMoney" = "收款";
+"CopyAddress" = "复制地址";
+"WalletAddress" = "托管单元地址";
+"CopySuccessfully" = "复制成功";
+"CopyFailed" = "复制失败";
+"HoldAsset" = "当前持有";
+"NativeCoin" = "原生代币";
+"UnnativeCoin" = "跨链代币";
+
+//提币
+"PleaseEnterAmountReceived" = "请输入到账数量";
+"PleaseEnterAmount" = "请输入提币数量";
+"WithdrawAll" = "全部提币";
+"WithdrawAmount" = "提币数量";
+"ReceiveAmount"="到账数量";
+"Fee"="手续费";
+"WithdrawAddress" = "提币地址";
+"CashWithdrawal" = "提币加速";
+"EnterAddress" = "请输入或粘贴地址";
+"Withdraw" = "提币";
+"CurrentlyAvailable" = "可用";
+"WithdrawChainAddress" = "生成跨链地址";
+
+//币种详情
+"ReceiveMoney" = "收款";
+"PayMoney" = "转出";
+"WithdrawMoney" = "提取分红";
+"InMoney" = "复投分红";
+"ChainReceiveMoney" = "跨链充币";
+"ChainPayMoney" = "跨链提币";
+"Transfer" = "转账";
+"Delegate" = "委托";
+"TransferDelegate" = "转委托";
+"Bonded" = "委托中";
+"Unbonding" = "赎回中";
+"ClaimedReward" = "已收益";

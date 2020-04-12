@@ -2,7 +2,7 @@
 //  XXCreateWalletSuccessVC.m
 //  Bluehelix
 //
-//  Created by 袁振 on 2020/03/10.
+//  Created by Bhex on 2020/03/10.
 //  Copyright © 2020 Bhex. All rights reserved.
 //
 

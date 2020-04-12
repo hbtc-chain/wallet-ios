@@ -39,11 +39,12 @@
 #include "base58.h"
 #include "sha2.h"
 #import "BigNumber.h"
-#import "SecureData.h"
 #import <CommonCrypto/CommonDigest.h>
 #include "ripemd160.h"
 #import <BTCBase58.h>
 #import "Bluehelix-Swift.h"
+#import "NSData+Base64.h"
+#import "NSString+Base64.h"
 static NSErrorDomain ErrorDomain = @"io.ethers.AccountError";
 
 NSObject *getPath(NSObject *object, NSString *path, Class expectedClass) {
@@ -183,6 +184,7 @@ static NSDateFormatter *TimeFormatter = nil;
         SecureData *sum = [self checkSum:ripemdData];
         NSString *address = [self base58:sum publicKey:ripemdData];
         _BHAddress = address;
+        _pubKey = publicKey.data;
         [self publicKeyStr:publicKey];
 
     }
@@ -191,12 +193,16 @@ static NSDateFormatter *TimeFormatter = nil;
 
 - (NSString *)publicKeyStr:(SecureData*)publicKey {
     SegwitAddrCoder *seg = [[SegwitAddrCoder alloc] init];
-    SecureData *secData = [SecureData secureDataWithHexString:@"EB5AE98721"]; //pubkeysecp256k1 前缀 0xEB5AE987
+    Byte preByte[] ={235,90,233,135,33};
+    NSData *preData = [NSData dataWithBytes:preByte length:5];
+//    SecureData *secData = [SecureData secureDataWithHexString:@"EB5AE98721"]; //pubkeysecp256k1 前缀 0xEB5AE987
+    SecureData *secData = [SecureData secureDataWithData:preData];
     [secData appendData:publicKey.data];
     NSData *convertedData = [seg convertBitsFrom:8 to:5 pad:YES idata:secData.data error:nil];
     NSLog(@"%@",convertedData);
     Bech32 *bech32 = [[Bech32 alloc] init];
     NSString *result = [bech32 encode:@"bhpub" values:convertedData];
+//    KUser.pubKey = result;
     return result;
 }
 
@@ -255,14 +261,10 @@ static NSDateFormatter *TimeFormatter = nil;
 - (instancetype)initWithMnemonicPhrase: (NSString*)mnemonicPhrase {
     const char* phraseStr = [mnemonicPhrase cStringUsingEncoding:NSUTF8StringEncoding];
     if (!mnemonic_check(phraseStr)) { return nil; }
-    
     SecureData *seed = [SecureData secureDataWithLength:(512 / 8)]; //空的 后边会生成种子 <SecureMutableData data=0x00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000>
     mnemonic_to_seed(phraseStr, "", seed.mutableBytes, NULL); //助记词生成种子
-    
     HDNode node;
     hdnode_from_seed([seed bytes], (int)[seed length], SECP256K1_NAME, &node); //secp256k1曲线生成私钥，是由32字节随机数组成
-    
-    
     hdnode_private_ckd(&node, (0x80000000 | (44)));   // 44' - BIP 44 (purpose field)
     hdnode_private_ckd(&node, (0x80000000 | (496)));   // 60' - Ethereum (see SLIP 44) //bht496
     hdnode_private_ckd(&node, (0x80000000 | (0)));    // 0'  - Account 0
@@ -306,12 +308,11 @@ static NSDateFormatter *TimeFormatter = nil;
 #define MNEMONIC_STRENGTH    (128 / 8)
 
 + (instancetype)randomMnemonicAccount {
-    SecureData* data = [SecureData secureDataWithLength:MNEMONIC_STRENGTH]; //mutabledata??  <SecureMutableData data=0xac7f81b2d1be10d38ab51f28aa4f9a84>
-    
+    SecureData* data = [SecureData secureDataWithLength:MNEMONIC_STRENGTH];
     int result = SecRandomCopyBytes(kSecRandomDefault, data.length, data.mutableBytes);
     if (result != noErr) { return nil; }
     NSString *mnemonicPhrase = [NSString stringWithCString:mnemonic_from_data(data.bytes, (int)data.length) encoding:NSUTF8StringEncoding]; //生成助记词
-    return [[Account alloc] initWithMnemonicPhrase:@"sniff float truck talent walk search mad boat away fossil sleep dune"];
+    return [[Account alloc] initWithMnemonicPhrase:mnemonicPhrase];
 }
 
 - (NSString*)_privateKeyHash {
@@ -697,6 +698,16 @@ static NSDateFormatter *TimeFormatter = nil;
     uint8_t pby;
     ecdsa_sign_digest(&secp256k1, [_privateKey bytes], digestData.bytes, signatureData.mutableBytes, &pby, NULL);
     return [Signature signatureWithData:signatureData.data v:pby];
+}
+
+- (SecureData *)signData:(NSData *)data {
+    if (data.length == 32) {
+    SecureData *signatureData = [SecureData secureDataWithLength:64];;
+    uint8_t pby;
+    ecdsa_sign_digest(&secp256k1, [_privateKey bytes], data.bytes, signatureData.mutableBytes, &pby, NULL);
+        return signatureData;
+    }
+    return nil;
 }
 
 static NSString *MessagePrefix = @"Ethereum Signed Message:\n%d";

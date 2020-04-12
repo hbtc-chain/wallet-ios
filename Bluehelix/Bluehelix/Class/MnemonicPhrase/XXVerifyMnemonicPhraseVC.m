@@ -2,7 +2,7 @@
 //  XXVerifyMnemonicPhraseVC.m
 //  Bluehelix
 //
-//  Created by 袁振 on 2020/03/09.
+//  Created by Bhex on 2020/03/09.
 //  Copyright © 2020 Bhex. All rights reserved.
 //
 
@@ -10,6 +10,7 @@
 #import "XXMnemonicBtn.h"
 #import "XXTabBarController.h"
 #import "AESCrypt.h"
+
 
 @interface XXVerifyMnemonicPhraseVC ()
 
@@ -35,7 +36,10 @@
 }
 
 - (void)initPhraseData {
-    NSString *sectureStr = KUser.rootAccount[@"mnemonicPhrase"];
+    XXAccountModel *model = [[XXSqliteManager sharedSqlite] accountByAddress:KUser.address];
+        NSString *sectureStr = model.mnemonicPhrase;
+    //    KUser.rootAccount[@"mnemonicPhrase"];
+//    NSString *sectureStr = KUser.rootAccount[@"mnemonicPhrase"];
     NSString *phraseStr = [AESCrypt decrypt:sectureStr password:self.text];
     self.phraseArray = [phraseStr componentsSeparatedByString:@" "];
     self.drawArray = [self randomArray];
@@ -187,10 +191,11 @@
 - (XXButton *)backupBtn {
     if (!_backupBtn) {
         _backupBtn = [XXButton buttonWithFrame:CGRectMake(K375(16), _contentHeight > kScreen_Height - kBtnHeight - K375(16) ? _contentHeight + 20 : kScreen_Height - kBtnHeight - K375(16), kScreen_Width - K375(32), kBtnHeight) title:LocalizedString(@"StartBackup") font:kFontBold18 titleColor:kWhite100 block:^(UIButton *button) {
-            NSMutableDictionary *dic = [NSMutableDictionary dictionaryWithDictionary:KUser.rootAccount];
-            [dic setObject:@1 forKey:@"backupFlag"];
-            [KUser replaceAccount:dic];
-            KUser.rootAccount = dic;
+//            NSMutableDictionary *dic = [NSMutableDictionary dictionaryWithDictionary:KUser.rootAccount];
+//            [dic setObject:@1 forKey:@"backupFlag"];
+            [[XXSqliteManager sharedSqlite] updateAccountColumn:@"backupFlag" value:@1];
+//            [KUser replaceAccount:dic];
+//            KUser.rootAccount = dic;
             KWindow.rootViewController = [[XXTabBarController alloc] init];
         }];
         _backupBtn.layer.cornerRadius = kBtnBorderRadius;

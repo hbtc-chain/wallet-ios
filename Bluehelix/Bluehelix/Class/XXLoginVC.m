@@ -2,7 +2,7 @@
 //  XXLoginVC.m
 //  Bluehelix
 //
-//  Created by 袁振 on 2020/03/19.
+//  Created by Bhex on 2020/03/19.
 //  Copyright © 2020 Bhex. All rights reserved.
 //
 
@@ -11,6 +11,7 @@
 #import "XXAccountFooterView.h"
 #import "XXImportWalletVC.h"
 #import "XXAddressView.h"
+
 
 @interface XXLoginVC ()
 
@@ -51,7 +52,7 @@
 
 - (void)okAction {
     NSString *inputPws = self.textFieldView.textField.text;
-    NSString *pws = KUser.rootAccount[@"password"];
+    NSString *pws = KUser.currentAccount.password;
     if ([[NSString md5:inputPws] isEqualToString: pws]) {
         KWindow.rootViewController = [[XXTabBarController alloc] init];
     } else {
@@ -81,7 +82,7 @@
 
 - (XXLabel *)userNameLabel {
     if (!_userNameLabel) {
-        _userNameLabel = [XXLabel labelWithFrame:CGRectMake(K375(16), CGRectGetMaxY(self.icon.frame), kScreen_Width - K375(32), 16) text:KUser.rootAccount[@"userName"] font:kFont15 textColor:kTipColor alignment:NSTextAlignmentCenter];
+        _userNameLabel = [XXLabel labelWithFrame:CGRectMake(K375(16), CGRectGetMaxY(self.icon.frame), kScreen_Width - K375(32), 16) text:KUser.currentAccount.userName font:kFont15 textColor:kTipColor alignment:NSTextAlignmentCenter];
     }
     return _userNameLabel;
 }
@@ -91,7 +92,7 @@
         MJWeakSelf
         _addressView = [[XXAddressView alloc] initWithFrame:CGRectMake(0, CGRectGetMaxY(self.userNameLabel.frame)+16, kScreen_Width, 16)];
         _addressView.sureBtnBlock = ^{
-            weakSelf.userNameLabel.text = KUser.rootAccount[@"userName"];
+            weakSelf.userNameLabel.text = KUser.currentAccount.userName;
         };
     }
     return _addressView;

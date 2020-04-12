@@ -167,10 +167,10 @@
 #pragma mark - 5.0 将时间戳转换成时间
 + (NSString *)dateStringFromTimestampWithTimeTamp:(long long)time {
     
-    NSDate * myDate=[NSDate dateWithTimeIntervalSince1970:time/1000.0];
+    NSDate * myDate=[NSDate dateWithTimeIntervalSince1970:time];
     //设置时间格式
     NSDateFormatter * formatter=[[NSDateFormatter alloc]init];
-    [formatter setDateFormat:@"HH:mm:ss yyyy/MM/dd"];
+    [formatter setDateFormat:@"yyyy/MM/dd HH:mm:ss"];
     //将时间转换为字符串
     NSString *timeStr=[formatter stringFromDate:myDate];
     return timeStr;

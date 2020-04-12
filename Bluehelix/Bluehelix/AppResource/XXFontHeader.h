@@ -24,6 +24,9 @@
 #define kFont18 [UIFont fontWithName:@"Roboto-Regular" size:18.0f]
 #define kFontBold18 [UIFont fontWithName:@"Roboto-Bold" size:18.0f]
 
+#define kFont17 [UIFont fontWithName:@"Roboto-Regular" size:17.0f]
+#define kFontBold17 [UIFont fontWithName:@"Roboto-Bold" size:17.0f]
+
 #define kFont16 [UIFont fontWithName:@"Roboto-Regular" size:16.0f]
 #define kFontBold16 [UIFont fontWithName:@"Roboto-Bold" size:16.0f]
 
@@ -32,6 +35,9 @@
 
 #define kFont14 [UIFont fontWithName:@"Roboto-Regular" size:14.0f]
 #define kFontBold14 [UIFont fontWithName:@"Roboto-Bold" size:14.0f]
+
+#define kFont13 [UIFont fontWithName:@"Roboto-Regular" size:13.0f]
+#define kFontBold13 [UIFont fontWithName:@"Roboto-Bold" size:13.0f]
 
 #define kFont12 [UIFont fontWithName:@"Roboto-Regular" size:12.0f]
 #define kFontBold12 [UIFont fontWithName:@"Roboto-Bold" size:12.0f]

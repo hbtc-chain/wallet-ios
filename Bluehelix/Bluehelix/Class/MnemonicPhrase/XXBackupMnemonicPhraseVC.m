@@ -2,7 +2,7 @@
 //  XXBackupMnemonicPhraseVC.m
 //  Wallet
 //
-//  Created by 袁振 on 2020/03/06.
+//  Created by Bhex on 2020/03/06.
 //  Copyright © 2020 yuanzhen. All rights reserved.
 //
 
@@ -10,6 +10,8 @@
 #import "XXMnemonicBtn.h"
 #import "XXVerifyMnemonicPhraseVC.h"
 #import "AESCrypt.h"
+#import "XXSqliteManager.h"
+
 
 @interface XXBackupMnemonicPhraseVC ()
 
@@ -36,7 +38,9 @@
 }
 
 - (void)drawPhraseBtn {
-    NSString *sectureStr = KUser.rootAccount[@"mnemonicPhrase"];
+    XXAccountModel *model = [[XXSqliteManager sharedSqlite] accountByAddress:KUser.address];
+    NSString *sectureStr = model.mnemonicPhrase;
+//    KUser.rootAccount[@"mnemonicPhrase"];
     NSString *phraseStr = [AESCrypt decrypt:sectureStr password:self.text];
     NSArray *phraseArr = [phraseStr componentsSeparatedByString:@" "];
     int HSpace = K375(16);

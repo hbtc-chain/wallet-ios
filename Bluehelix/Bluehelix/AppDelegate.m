@@ -18,16 +18,19 @@
 
 #pragma mark - 1. 程序开始
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
+    KUser.ratesKey = @"cny";
+    [[RatesManager shareRatesManager] loadDataOfRates];
     if (!KUser.isSettedNightType) {
         KUser.isNightType = KSystem.isDarkStyle;
     }
+    
     KWindow.backgroundColor = [UIColor whiteColor];
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
-    if (KUser.rootAccount) {
-//        XXLoginVC *loginVC = [[XXLoginVC alloc] init];
-//        XXNavigationController *loginNav = [[XXNavigationController alloc] initWithRootViewController:loginVC];
-//        self.window.rootViewController = loginNav;
-        self.window.rootViewController = [[XXTabBarController alloc] init];
+    if (KUser.address) {
+        XXLoginVC *loginVC = [[XXLoginVC alloc] init];
+        XXNavigationController *loginNav = [[XXNavigationController alloc] initWithRootViewController:loginVC];
+        self.window.rootViewController = loginNav;
+//        self.window.rootViewController = [[XXTabBarController alloc] init];
     } else {
         XXStartWalletVC *startVC = [[XXStartWalletVC alloc] init];
         XXNavigationController *startNav = [[XXNavigationController alloc] initWithRootViewController:startVC];
