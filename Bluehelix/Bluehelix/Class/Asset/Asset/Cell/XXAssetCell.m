@@ -126,7 +126,7 @@
 
 - (XXLabel *)amountLabel {
     if (_amountLabel == nil) {
-        _amountLabel = [XXLabel labelWithFrame:CGRectMake(CGRectGetMaxX(self.coinNameLabel.frame), 16, kScreen_Width - 16 - CGRectGetMaxX(self.coinNameLabel.frame), 24) font:kNumberFont(17) textColor:kDark100];
+        _amountLabel = [XXLabel labelWithFrame:CGRectMake(CGRectGetMaxX(self.coinNameLabel.frame), 16, kScreen_Width - 16 - CGRectGetMaxX(self.coinNameLabel.frame), 24) font:kNumberFontBold(17) textColor:kDark100];
         _amountLabel.textAlignment = NSTextAlignmentRight;
     }
     return _amountLabel;

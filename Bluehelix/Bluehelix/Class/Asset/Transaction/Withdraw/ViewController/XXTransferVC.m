@@ -34,7 +34,7 @@
 #pragma mark - 1. 初始化UI
 - (void)setupUI {
     
-    self.titleLabel.text = [NSString stringWithFormat:@"%@ %@",self.tokenModel.symbol,LocalizedString(@"Withdraw")];
+    self.titleLabel.text = [NSString stringWithFormat:@"%@ %@",self.tokenModel.symbol,LocalizedString(@"Transfer")];
     
     [self.view addSubview:self.withdrawView];
     self.withdrawView.amountView.currentlyAvailable = self.tokenModel.amount;

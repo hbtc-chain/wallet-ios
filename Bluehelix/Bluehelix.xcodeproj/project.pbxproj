@@ -11,9 +11,6 @@
 		7A3298152320EE9900196336 /* NSArray+Safe.m in Sources */ = {isa = PBXBuildFile; fileRef = 7A3298102320EE9500196336 /* NSArray+Safe.m */; };
 		7A3298452320EE9900196336 /* NSMutableArray+Safe.m in Sources */ = {isa = PBXBuildFile; fileRef = 7A3298112320EE9600196336 /* NSMutableArray+Safe.m */; };
 		7A3298752320EE9900196336 /* NSObject+Swizzling.m in Sources */ = {isa = PBXBuildFile; fileRef = 7A3298132320EE9700196336 /* NSObject+Swizzling.m */; };
-		7A3B8A5B215A08A400B50ADD /* Roboto-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 7A3B8A58215A08A400B50ADD /* Roboto-Regular.ttf */; };
-		7A3B8A5C215A08A400B50ADD /* Roboto-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 7A3B8A59215A08A400B50ADD /* Roboto-Bold.ttf */; };
-		7A3B8A5D215A08A400B50ADD /* Roboto-Black.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 7A3B8A5A215A08A400B50ADD /* Roboto-Black.ttf */; };
 		7AA9D8C422D84192008FAA4B /* CoreTelephony.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7AA9D8C322D84192008FAA4B /* CoreTelephony.framework */; };
 		7AC4D72D234C808E00F5E5F8 /* XXTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = 7AC4D71F234C808E00F5E5F8 /* XXTextField.m */; };
 		7AC4D760234C808E00F5E5F8 /* XXFloadtTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = 7AC4D725234C808E00F5E5F8 /* XXFloadtTextField.m */; };
@@ -74,8 +71,6 @@
 		EA35A5072421FC7D00ADF621 /* XXImportPrivateKeyVC.m in Sources */ = {isa = PBXBuildFile; fileRef = EA35A5062421FC7D00ADF621 /* XXImportPrivateKeyVC.m */; };
 		EA35A5102422426900ADF621 /* Alert.m in Sources */ = {isa = PBXBuildFile; fileRef = EA35A50F2422426900ADF621 /* Alert.m */; };
 		EA3E5872244359580080B98F /* XXKeyGenRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = EA3E5871244359580080B98F /* XXKeyGenRequest.m */; };
-		EA3E5877244416EF0080B98F /* Lato-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = EA3E5876244416EF0080B98F /* Lato-Regular.ttf */; };
-		EA3E5879244416FB0080B98F /* Lato-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = EA3E5878244416FB0080B98F /* Lato-Bold.ttf */; };
 		EA3E58CF24441B980080B98F /* XXSymbolDetailVC.m in Sources */ = {isa = PBXBuildFile; fileRef = EA3E58AD24441B980080B98F /* XXSymbolDetailVC.m */; };
 		EA3E58D024441B980080B98F /* XXSymbolDetailFooterView.m in Sources */ = {isa = PBXBuildFile; fileRef = EA3E58AF24441B980080B98F /* XXSymbolDetailFooterView.m */; };
 		EA3E58D124441B980080B98F /* XXTokenModel.m in Sources */ = {isa = PBXBuildFile; fileRef = EA3E58B324441B980080B98F /* XXTokenModel.m */; };
@@ -105,6 +100,13 @@
 		EA3E594024441D950080B98F /* XXWithdrawSpeedView.m in Sources */ = {isa = PBXBuildFile; fileRef = EA3E592E24441D950080B98F /* XXWithdrawSpeedView.m */; };
 		EA3E594124441D950080B98F /* XXTransferVC.m in Sources */ = {isa = PBXBuildFile; fileRef = EA3E593724441D950080B98F /* XXTransferVC.m */; };
 		EA3E594224441D950080B98F /* XXWithdrawChainVC.m in Sources */ = {isa = PBXBuildFile; fileRef = EA3E593824441D950080B98F /* XXWithdrawChainVC.m */; };
+		EA3E594524445B510080B98F /* XXTransferView.m in Sources */ = {isa = PBXBuildFile; fileRef = EA3E594424445B510080B98F /* XXTransferView.m */; };
+		EA3E594824445DAE0080B98F /* XXTransferAmountView.m in Sources */ = {isa = PBXBuildFile; fileRef = EA3E594724445DAE0080B98F /* XXTransferAmountView.m */; };
+		EA3E595124446A310080B98F /* Lato-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = EA3E594C24446A310080B98F /* Lato-Bold.ttf */; };
+		EA3E595224446A310080B98F /* Roboto-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = EA3E594D24446A310080B98F /* Roboto-Regular.ttf */; };
+		EA3E595324446A310080B98F /* Lato-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = EA3E594E24446A310080B98F /* Lato-Regular.ttf */; };
+		EA3E595424446A310080B98F /* Roboto-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = EA3E594F24446A310080B98F /* Roboto-Bold.ttf */; };
+		EA3E595524446A310080B98F /* Roboto-Black.ttf in Resources */ = {isa = PBXBuildFile; fileRef = EA3E595024446A310080B98F /* Roboto-Black.ttf */; };
 		EA44259E2441C823008962E2 /* XXAccountCell.m in Sources */ = {isa = PBXBuildFile; fileRef = EA4425862441C822008962E2 /* XXAccountCell.m */; };
 		EA44259F2441C823008962E2 /* XXUserHomeCell.m in Sources */ = {isa = PBXBuildFile; fileRef = EA4425872441C822008962E2 /* XXUserHomeCell.m */; };
 		EA4425A02441C823008962E2 /* XXUserHomeVC.m in Sources */ = {isa = PBXBuildFile; fileRef = EA44258A2441C822008962E2 /* XXUserHomeVC.m */; };
@@ -247,9 +249,6 @@
 		7A3298122320EE9700196336 /* NSArray+Safe.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSArray+Safe.h"; sourceTree = "<group>"; };
 		7A3298132320EE9700196336 /* NSObject+Swizzling.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+Swizzling.m"; sourceTree = "<group>"; };
 		7A3298142320EE9800196336 /* NSObject+Swizzling.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+Swizzling.h"; sourceTree = "<group>"; };
-		7A3B8A58215A08A400B50ADD /* Roboto-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Roboto-Regular.ttf"; sourceTree = "<group>"; };
-		7A3B8A59215A08A400B50ADD /* Roboto-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Roboto-Bold.ttf"; sourceTree = "<group>"; };
-		7A3B8A5A215A08A400B50ADD /* Roboto-Black.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Roboto-Black.ttf"; sourceTree = "<group>"; };
 		7AA9D8C322D84192008FAA4B /* CoreTelephony.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreTelephony.framework; path = System/Library/Frameworks/CoreTelephony.framework; sourceTree = SDKROOT; };
 		7AC4D71E234C808E00F5E5F8 /* XXFloadtTextField.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XXFloadtTextField.h; sourceTree = "<group>"; };
 		7AC4D71F234C808E00F5E5F8 /* XXTextField.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XXTextField.m; sourceTree = "<group>"; };
@@ -374,8 +373,6 @@
 		EA35A50F2422426900ADF621 /* Alert.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Alert.m; sourceTree = "<group>"; };
 		EA3E5870244359570080B98F /* XXKeyGenRequest.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = XXKeyGenRequest.h; sourceTree = "<group>"; };
 		EA3E5871244359580080B98F /* XXKeyGenRequest.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = XXKeyGenRequest.m; sourceTree = "<group>"; };
-		EA3E5876244416EF0080B98F /* Lato-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Lato-Regular.ttf"; sourceTree = "<group>"; };
-		EA3E5878244416FB0080B98F /* Lato-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Lato-Bold.ttf"; sourceTree = "<group>"; };
 		EA3E58AD24441B980080B98F /* XXSymbolDetailVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XXSymbolDetailVC.m; sourceTree = "<group>"; };
 		EA3E58AE24441B980080B98F /* XXTokenModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XXTokenModel.h; sourceTree = "<group>"; };
 		EA3E58AF24441B980080B98F /* XXSymbolDetailFooterView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XXSymbolDetailFooterView.m; sourceTree = "<group>"; };
@@ -434,6 +431,15 @@
 		EA3E593624441D950080B98F /* XXWithdrawChainVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XXWithdrawChainVC.h; sourceTree = "<group>"; };
 		EA3E593724441D950080B98F /* XXTransferVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XXTransferVC.m; sourceTree = "<group>"; };
 		EA3E593824441D950080B98F /* XXWithdrawChainVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XXWithdrawChainVC.m; sourceTree = "<group>"; };
+		EA3E594324445B510080B98F /* XXTransferView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = XXTransferView.h; sourceTree = "<group>"; };
+		EA3E594424445B510080B98F /* XXTransferView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = XXTransferView.m; sourceTree = "<group>"; };
+		EA3E594624445DAE0080B98F /* XXTransferAmountView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = XXTransferAmountView.h; sourceTree = "<group>"; };
+		EA3E594724445DAE0080B98F /* XXTransferAmountView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = XXTransferAmountView.m; sourceTree = "<group>"; };
+		EA3E594C24446A310080B98F /* Lato-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Lato-Bold.ttf"; sourceTree = "<group>"; };
+		EA3E594D24446A310080B98F /* Roboto-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Roboto-Regular.ttf"; sourceTree = "<group>"; };
+		EA3E594E24446A310080B98F /* Lato-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Lato-Regular.ttf"; sourceTree = "<group>"; };
+		EA3E594F24446A310080B98F /* Roboto-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Roboto-Bold.ttf"; sourceTree = "<group>"; };
+		EA3E595024446A310080B98F /* Roboto-Black.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Roboto-Black.ttf"; sourceTree = "<group>"; };
 		EA42F2082289B20C0091EF78 /* vi-VN */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "vi-VN"; path = "vi-VN.lproj/Localizable.strings"; sourceTree = "<group>"; };
 		EA42F2092289B20C0091EF78 /* vi-VN */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "vi-VN"; path = "vi-VN.lproj/InfoPlist.strings"; sourceTree = "<group>"; };
 		EA4425852441C822008962E2 /* XXUserHomeCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XXUserHomeCell.h; sourceTree = "<group>"; };
@@ -695,18 +701,6 @@
 			children = (
 			);
 			name = "Recovered References";
-			sourceTree = "<group>";
-		};
-		7A3B8A57215A08A400B50ADD /* Foot */ = {
-			isa = PBXGroup;
-			children = (
-				EA3E5878244416FB0080B98F /* Lato-Bold.ttf */,
-				EA3E5876244416EF0080B98F /* Lato-Regular.ttf */,
-				7A3B8A58215A08A400B50ADD /* Roboto-Regular.ttf */,
-				7A3B8A59215A08A400B50ADD /* Roboto-Bold.ttf */,
-				7A3B8A5A215A08A400B50ADD /* Roboto-Black.ttf */,
-			);
-			path = Foot;
 			sourceTree = "<group>";
 		};
 		7AC4D71D234C808E00F5E5F8 /* XXKit */ = {
@@ -1007,12 +1001,12 @@
 		EA3E590424441D160080B98F /* View */ = {
 			isa = PBXGroup;
 			children = (
-				EA3E590524441D160080B98F /* XXAssetSearchView.m */,
-				EA3E590624441D160080B98F /* XXAssetSearchHeaderView.m */,
-				EA3E590724441D160080B98F /* XXAssetHeaderView.m */,
-				EA3E590824441D160080B98F /* XXAssetSearchHeaderView.h */,
-				EA3E590924441D160080B98F /* XXAssetSearchView.h */,
 				EA3E590A24441D160080B98F /* XXAssetHeaderView.h */,
+				EA3E590724441D160080B98F /* XXAssetHeaderView.m */,
+				EA3E590924441D160080B98F /* XXAssetSearchView.h */,
+				EA3E590524441D160080B98F /* XXAssetSearchView.m */,
+				EA3E590824441D160080B98F /* XXAssetSearchHeaderView.h */,
+				EA3E590624441D160080B98F /* XXAssetSearchHeaderView.m */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -1031,10 +1025,10 @@
 		EA3E591024441D160080B98F /* Cell */ = {
 			isa = PBXGroup;
 			children = (
-				EA3E591124441D160080B98F /* XXAddAssetCell.h */,
-				EA3E591224441D160080B98F /* XXAssetCell.m */,
-				EA3E591324441D160080B98F /* XXAddAssetCell.m */,
 				EA3E591424441D160080B98F /* XXAssetCell.h */,
+				EA3E591224441D160080B98F /* XXAssetCell.m */,
+				EA3E591124441D160080B98F /* XXAddAssetCell.h */,
+				EA3E591324441D160080B98F /* XXAddAssetCell.m */,
 			);
 			path = Cell;
 			sourceTree = "<group>";
@@ -1043,8 +1037,8 @@
 			isa = PBXGroup;
 			children = (
 				EA3E591624441D160080B98F /* XXAssetVC.h */,
-				EA3E591724441D160080B98F /* XXAddNewAssetVC.h */,
 				EA3E591824441D160080B98F /* XXAssetVC.m */,
+				EA3E591724441D160080B98F /* XXAddNewAssetVC.h */,
 				EA3E591924441D160080B98F /* XXAddNewAssetVC.m */,
 			);
 			path = ViewController;
@@ -1053,8 +1047,12 @@
 		EA3E592324441D950080B98F /* View */ = {
 			isa = PBXGroup;
 			children = (
+				EA3E594324445B510080B98F /* XXTransferView.h */,
+				EA3E594424445B510080B98F /* XXTransferView.m */,
 				EA3E593224441D950080B98F /* XXWithdrawView.h */,
 				EA3E592A24441D950080B98F /* XXWithdrawView.m */,
+				EA3E594624445DAE0080B98F /* XXTransferAmountView.h */,
+				EA3E594724445DAE0080B98F /* XXTransferAmountView.m */,
 				EA3E592424441D950080B98F /* XXWithdrawAmountView.h */,
 				EA3E592D24441D950080B98F /* XXWithdrawAmountView.m */,
 				EA3E592524441D950080B98F /* XXWithdrawSpeedView.h */,
@@ -1082,6 +1080,18 @@
 				EA3E593824441D950080B98F /* XXWithdrawChainVC.m */,
 			);
 			path = ViewController;
+			sourceTree = "<group>";
+		};
+		EA3E594B24446A310080B98F /* Font */ = {
+			isa = PBXGroup;
+			children = (
+				EA3E594C24446A310080B98F /* Lato-Bold.ttf */,
+				EA3E594D24446A310080B98F /* Roboto-Regular.ttf */,
+				EA3E594E24446A310080B98F /* Lato-Regular.ttf */,
+				EA3E594F24446A310080B98F /* Roboto-Bold.ttf */,
+				EA3E595024446A310080B98F /* Roboto-Black.ttf */,
+			);
+			path = Font;
 			sourceTree = "<group>";
 		};
 		EA4425842441C822008962E2 /* Cell */ = {
@@ -1150,7 +1160,7 @@
 		EA8F8C83240FA9F200D26E10 /* AppResource */ = {
 			isa = PBXGroup;
 			children = (
-				7A3B8A57215A08A400B50ADD /* Foot */,
+				EA3E594B24446A310080B98F /* Font */,
 				EA8F8C84240FA9F200D26E10 /* XXFontHeader.h */,
 				EA8F8C85240FA9F200D26E10 /* XXColorHeader.h */,
 				EA8F8C86240FA9F200D26E10 /* Icon.xcassets */,
@@ -1632,18 +1642,18 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				EA3E595424446A310080B98F /* Roboto-Bold.ttf in Resources */,
+				EA3E595124446A310080B98F /* Lato-Bold.ttf in Resources */,
+				EA3E595524446A310080B98F /* Roboto-Black.ttf in Resources */,
 				EAE4047E211C1DB300FFD028 /* Localizable.strings in Resources */,
 				EABD1B8B241BB25900B1A03A /* secp256k1.table in Resources */,
 				EA8F8C89240FA9F200D26E10 /* Info.plist in Resources */,
 				EAE4047F211C1DB300FFD028 /* InfoPlist.strings in Resources */,
-				7A3B8A5B215A08A400B50ADD /* Roboto-Regular.ttf in Resources */,
+				EA3E595224446A310080B98F /* Roboto-Regular.ttf in Resources */,
 				EA2931B822CCB22B003B60E8 /* Assets.xcassets in Resources */,
-				7A3B8A5C215A08A400B50ADD /* Roboto-Bold.ttf in Resources */,
-				EA3E5879244416FB0080B98F /* Lato-Bold.ttf in Resources */,
-				7A3B8A5D215A08A400B50ADD /* Roboto-Black.ttf in Resources */,
+				EA3E595324446A310080B98F /* Lato-Regular.ttf in Resources */,
 				F30EAF5C20D26536005ADD5C /* README.textile in Resources */,
 				EA8F8C88240FA9F200D26E10 /* Icon.xcassets in Resources */,
-				EA3E5877244416EF0080B98F /* Lato-Regular.ttf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1722,6 +1732,7 @@
 				EABD1B83241BB25900B1A03A /* sha2.c in Sources */,
 				EA04AD3A243305B6004403FF /* SegwitAddrCoder.swift in Sources */,
 				EABD1B89241BB25900B1A03A /* bignum.c in Sources */,
+				EA3E594824445DAE0080B98F /* XXTransferAmountView.m in Sources */,
 				EABD1B8E241BB25900B1A03A /* sha3.c in Sources */,
 				EA964BA62414D37F00A941E5 /* XXBackupMnemonicPhraseVC.m in Sources */,
 				EA04ABAC242D015B004403FF /* IQUIView+IQKeyboardToolbar.m in Sources */,
@@ -1793,6 +1804,7 @@
 				EA3E591B24441D160080B98F /* XXAssetSearchHeaderView.m in Sources */,
 				EA30A031236F221A0098DE28 /* UIImageView+AFNetworking.m in Sources */,
 				EA309E00236F21400098DE28 /* AFURLResponseSerialization.m in Sources */,
+				EA3E594524445B510080B98F /* XXTransferView.m in Sources */,
 				EABD1B91241BB25900B1A03A /* pbkdf2.c in Sources */,
 				EA309E78236F21410098DE28 /* AFURLSessionManager.m in Sources */,
 				EA04ABAF242D015B004403FF /* IQNSArray+Sort.m in Sources */,

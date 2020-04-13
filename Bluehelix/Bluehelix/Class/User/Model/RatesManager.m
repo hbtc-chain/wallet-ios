@@ -67,7 +67,7 @@ static RatesManager *_ratesManager;
     }
     
     NSMutableDictionary *params = [NSMutableDictionary dictionary];
-    params[@"symbols"] = @"btc,eth,bht";
+    params[@"symbols"] = @"hbc,eth,btc,usdt";
     MJWeakSelf
     [HttpManager getWithPath:@"/api/v1/tokenprices" params:params andBlock:^(id data, NSString *msg, NSInteger code) {
         if (code == 0) {

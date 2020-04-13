@@ -1,14 +1,16 @@
 //
-//  XXWithdrawAmountView.m
-//  Bhex
+//  XXTransferAmountView.m
+//  Bluehelix
 //
-//  Created by Bhex on 2019/12/17.
-//  Copyright © 2019 Bhex. All rights reserved.
+//  Created by 袁振 on 2020/04/13.
+//  Copyright © 2020 Bhex. All rights reserved.
 //
 
-#import "XXWithdrawAmountView.h"
+#import "XXTransferAmountView.h"
+@interface XXTransferAmountView () <UITextFieldDelegate>
+@end
 
-@implementation XXWithdrawAmountView
+@implementation XXTransferAmountView
 
 - (instancetype)initWithFrame:(CGRect)frame
 {
@@ -50,7 +52,7 @@
     }
 }
 
-#pragma mark - 3. 当前可提赋值
+#pragma mark - 3. 当前可用赋值
 - (void)setCurrentlyAvailable:(NSString *)currentlyAvailable {
     _currentlyAvailable = currentlyAvailable;
     
@@ -70,7 +72,7 @@
 - (XXLabel *)nameLabel {
     if (_nameLabel == nil) {
         _nameLabel = [XXLabel labelWithFrame:CGRectMake(KSpacing, 10, kScreen_Width - KSpacing*2, 24) font:kFontBold14 textColor:kDark80];
-        _nameLabel.text = LocalizedString(@"WithdrawAmount");
+        _nameLabel.text = LocalizedString(@"Transfer");
     }
     return _nameLabel;
 }
@@ -97,7 +99,7 @@
 - (XXButton *)allButton {
     if (_allButton == nil) {
         MJWeakSelf
-        NSString *titleString = LocalizedString(@"WithdrawAll");
+        NSString *titleString = LocalizedString(@"TransferAll");
         CGFloat btnWidth = [NSString widthWithText:titleString font:kFont14] + 16;
         _allButton = [XXButton buttonWithFrame:CGRectMake(self.banView.width - btnWidth, 0, btnWidth, self.banView.height) title:titleString font:kFont14 titleColor:kBlue100 block:^(UIButton *button) {
             [weakSelf allButtonClick:button];
@@ -140,4 +142,5 @@
     }
     return _alertButton;
 }
+
 @end

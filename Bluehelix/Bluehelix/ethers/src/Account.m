@@ -227,8 +227,8 @@ static NSDateFormatter *TimeFormatter = nil;
 - (SecureData *)checkSum:(SecureData *)publicKey {
 //    Byte byte[] = {5, -54, 81, -16, -9, 38, -118, 94, -72, 36, 87, 111, -12, 49, -85, 23, 77, -126, 119, 88, -112, 125};
 //    NSData *Bytedata = [[NSData alloc] initWithBytes:byte length:22];
-    Byte prefix[] = {5, -54}; //BH
-    NSData *prefixData = [[NSData alloc] initWithBytes:prefix length:2];
+    Byte prefix[] = {2,16,103}; //HBT
+    NSData *prefixData = [[NSData alloc] initWithBytes:prefix length:3];
     SecureData *newData = [SecureData secureData];
     [newData appendData:prefixData];
     [newData appendData:publicKey.data];
@@ -248,8 +248,8 @@ static NSDateFormatter *TimeFormatter = nil;
 
 - (NSString *)base58:(SecureData *)sumData publicKey:(SecureData *)publicKey{ //最后输出地址
     SecureData *before58Data = [SecureData secureData];
-    Byte prefix[] = {5, -54}; //BH
-    NSData *prefixData = [[NSData alloc] initWithBytes:prefix length:2];
+    Byte prefix[] = {2,16,103}; //HBT
+    NSData *prefixData = [[NSData alloc] initWithBytes:prefix length:3];
     [before58Data appendData:prefixData];
     [before58Data appendData:publicKey.data];
     [before58Data appendData:[sumData subdataToIndex:4].data];

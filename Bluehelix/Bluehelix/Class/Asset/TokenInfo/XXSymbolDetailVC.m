@@ -71,6 +71,7 @@
 - (void)pushTransferVC {
     XXTransferVC *transferVC = [[XXTransferVC alloc] init];
     transferVC.tokenModel = self.tokenModel;
+    transferVC.InnerChain = YES;
     [self.navigationController pushViewController:transferVC animated:YES];
 }
 
@@ -109,6 +110,7 @@
     } else {
         XXTransferVC *transferVC = [[XXTransferVC alloc] init];
         transferVC.tokenModel = self.tokenModel;
+        transferVC.InnerChain = NO;
         [self.navigationController pushViewController:transferVC animated:YES];
     }
 }

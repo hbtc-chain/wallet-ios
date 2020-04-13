@@ -114,6 +114,7 @@
 "Withdraw" = "提币";
 "CurrentlyAvailable" = "可用";
 "WithdrawChainAddress" = "生成跨链地址";
+"TransferAll" = "全部转账";
 
 //币种详情
 "ReceiveMoney" = "收款";
