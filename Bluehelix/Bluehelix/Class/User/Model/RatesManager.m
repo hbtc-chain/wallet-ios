@@ -60,6 +60,12 @@ static RatesManager *_ratesManager;
 //        return;
 //    }
     
+    if (IsEmpty(self.tokenString)) {
+        NSArray *tokens = [[XXSqliteManager sharedSqlite] tokens];
+        
+        //        self.tokenString =
+    }
+    
     NSMutableDictionary *params = [NSMutableDictionary dictionary];
     params[@"symbols"] = @"btc,eth,bht";
     MJWeakSelf

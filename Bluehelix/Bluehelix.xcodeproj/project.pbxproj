@@ -41,7 +41,6 @@
 		EA04AD3E2434D6CB004403FF /* XXTransactionRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = EA04AD3D2434D6CB004403FF /* XXTransactionRequest.m */; };
 		EA04AD4F24362964004403FF /* NetAPIClient.m in Sources */ = {isa = PBXBuildFile; fileRef = EA04AD4D24362963004403FF /* NetAPIClient.m */; };
 		EA04AD5024362964004403FF /* HttpManager.m in Sources */ = {isa = PBXBuildFile; fileRef = EA04AD4E24362963004403FF /* HttpManager.m */; };
-		EA04AD572436EE2F004403FF /* XXTokenModel.m in Sources */ = {isa = PBXBuildFile; fileRef = EA04AD562436EE2F004403FF /* XXTokenModel.m */; };
 		EA15E95724163FDC00A3E14A /* XXStartWalletVC.m in Sources */ = {isa = PBXBuildFile; fileRef = EA15E95624163FDC00A3E14A /* XXStartWalletVC.m */; };
 		EA15E95A2416702C00A3E14A /* XXMnemonicBtn.m in Sources */ = {isa = PBXBuildFile; fileRef = EA15E9592416702C00A3E14A /* XXMnemonicBtn.m */; };
 		EA15E95D24168F5600A3E14A /* XXVerifyMnemonicPhraseVC.m in Sources */ = {isa = PBXBuildFile; fileRef = EA15E95C24168F5600A3E14A /* XXVerifyMnemonicPhraseVC.m */; };
@@ -74,9 +73,38 @@
 		EA30A15D236F221B0098DE28 /* AFImageDownloader.m in Sources */ = {isa = PBXBuildFile; fileRef = EA309F7C236F22180098DE28 /* AFImageDownloader.m */; };
 		EA35A5072421FC7D00ADF621 /* XXImportPrivateKeyVC.m in Sources */ = {isa = PBXBuildFile; fileRef = EA35A5062421FC7D00ADF621 /* XXImportPrivateKeyVC.m */; };
 		EA35A5102422426900ADF621 /* Alert.m in Sources */ = {isa = PBXBuildFile; fileRef = EA35A50F2422426900ADF621 /* Alert.m */; };
-		EA3E586F244338C20080B98F /* XXMainSymbolHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = EA3E586E244338C20080B98F /* XXMainSymbolHeaderView.m */; };
 		EA3E5872244359580080B98F /* XXKeyGenRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = EA3E5871244359580080B98F /* XXKeyGenRequest.m */; };
-		EA44258324408596008962E2 /* XXAccountModel.m in Sources */ = {isa = PBXBuildFile; fileRef = EA44258224408596008962E2 /* XXAccountModel.m */; };
+		EA3E5877244416EF0080B98F /* Lato-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = EA3E5876244416EF0080B98F /* Lato-Regular.ttf */; };
+		EA3E5879244416FB0080B98F /* Lato-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = EA3E5878244416FB0080B98F /* Lato-Bold.ttf */; };
+		EA3E58CF24441B980080B98F /* XXSymbolDetailVC.m in Sources */ = {isa = PBXBuildFile; fileRef = EA3E58AD24441B980080B98F /* XXSymbolDetailVC.m */; };
+		EA3E58D024441B980080B98F /* XXSymbolDetailFooterView.m in Sources */ = {isa = PBXBuildFile; fileRef = EA3E58AF24441B980080B98F /* XXSymbolDetailFooterView.m */; };
+		EA3E58D124441B980080B98F /* XXTokenModel.m in Sources */ = {isa = PBXBuildFile; fileRef = EA3E58B324441B980080B98F /* XXTokenModel.m */; };
+		EA3E58D224441B980080B98F /* XXMainSymbolHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = EA3E58B424441B980080B98F /* XXMainSymbolHeaderView.m */; };
+		EA3E58D324441B980080B98F /* XXSymbolDetailHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = EA3E58B624441B980080B98F /* XXSymbolDetailHeaderView.m */; };
+		EA3E58F524441C7B0080B98F /* XXDepositCoinVC.m in Sources */ = {isa = PBXBuildFile; fileRef = EA3E58D524441C7B0080B98F /* XXDepositCoinVC.m */; };
+		EA3E58F624441C7B0080B98F /* XXTransferDetailVC.m in Sources */ = {isa = PBXBuildFile; fileRef = EA3E58D824441C7B0080B98F /* XXTransferDetailVC.m */; };
+		EA3E58F724441C7B0080B98F /* XXTransferHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = EA3E58DC24441C7B0080B98F /* XXTransferHeaderView.m */; };
+		EA3E58F824441C7B0080B98F /* XXTransactionCell.m in Sources */ = {isa = PBXBuildFile; fileRef = EA3E58DE24441C7B0080B98F /* XXTransactionCell.m */; };
+		EA3E58F924441C7B0080B98F /* XXTransactionModel.m in Sources */ = {isa = PBXBuildFile; fileRef = EA3E58DF24441C7B0080B98F /* XXTransactionModel.m */; };
+		EA3E591A24441D160080B98F /* XXAssetSearchView.m in Sources */ = {isa = PBXBuildFile; fileRef = EA3E590524441D160080B98F /* XXAssetSearchView.m */; };
+		EA3E591B24441D160080B98F /* XXAssetSearchHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = EA3E590624441D160080B98F /* XXAssetSearchHeaderView.m */; };
+		EA3E591C24441D160080B98F /* XXAssetHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = EA3E590724441D160080B98F /* XXAssetHeaderView.m */; };
+		EA3E591D24441D160080B98F /* XXAssetModel.m in Sources */ = {isa = PBXBuildFile; fileRef = EA3E590E24441D160080B98F /* XXAssetModel.m */; };
+		EA3E591E24441D160080B98F /* XXAccountModel.m in Sources */ = {isa = PBXBuildFile; fileRef = EA3E590F24441D160080B98F /* XXAccountModel.m */; };
+		EA3E591F24441D160080B98F /* XXAssetCell.m in Sources */ = {isa = PBXBuildFile; fileRef = EA3E591224441D160080B98F /* XXAssetCell.m */; };
+		EA3E592024441D160080B98F /* XXAddAssetCell.m in Sources */ = {isa = PBXBuildFile; fileRef = EA3E591324441D160080B98F /* XXAddAssetCell.m */; };
+		EA3E592124441D160080B98F /* XXAssetVC.m in Sources */ = {isa = PBXBuildFile; fileRef = EA3E591824441D160080B98F /* XXAssetVC.m */; };
+		EA3E592224441D160080B98F /* XXAddNewAssetVC.m in Sources */ = {isa = PBXBuildFile; fileRef = EA3E591924441D160080B98F /* XXAddNewAssetVC.m */; };
+		EA3E593924441D950080B98F /* XXWithdrawFeeView.m in Sources */ = {isa = PBXBuildFile; fileRef = EA3E592624441D950080B98F /* XXWithdrawFeeView.m */; };
+		EA3E593A24441D950080B98F /* XXWithdrawAddressView.m in Sources */ = {isa = PBXBuildFile; fileRef = EA3E592724441D950080B98F /* XXWithdrawAddressView.m */; };
+		EA3E593B24441D950080B98F /* XXWithdrawAmountReceivedView.m in Sources */ = {isa = PBXBuildFile; fileRef = EA3E592824441D950080B98F /* XXWithdrawAmountReceivedView.m */; };
+		EA3E593C24441D950080B98F /* XXWithdrawChainView.m in Sources */ = {isa = PBXBuildFile; fileRef = EA3E592924441D950080B98F /* XXWithdrawChainView.m */; };
+		EA3E593D24441D950080B98F /* XXWithdrawView.m in Sources */ = {isa = PBXBuildFile; fileRef = EA3E592A24441D950080B98F /* XXWithdrawView.m */; };
+		EA3E593E24441D950080B98F /* XXWithdrawTipView.m in Sources */ = {isa = PBXBuildFile; fileRef = EA3E592B24441D950080B98F /* XXWithdrawTipView.m */; };
+		EA3E593F24441D950080B98F /* XXWithdrawAmountView.m in Sources */ = {isa = PBXBuildFile; fileRef = EA3E592D24441D950080B98F /* XXWithdrawAmountView.m */; };
+		EA3E594024441D950080B98F /* XXWithdrawSpeedView.m in Sources */ = {isa = PBXBuildFile; fileRef = EA3E592E24441D950080B98F /* XXWithdrawSpeedView.m */; };
+		EA3E594124441D950080B98F /* XXTransferVC.m in Sources */ = {isa = PBXBuildFile; fileRef = EA3E593724441D950080B98F /* XXTransferVC.m */; };
+		EA3E594224441D950080B98F /* XXWithdrawChainVC.m in Sources */ = {isa = PBXBuildFile; fileRef = EA3E593824441D950080B98F /* XXWithdrawChainVC.m */; };
 		EA44259E2441C823008962E2 /* XXAccountCell.m in Sources */ = {isa = PBXBuildFile; fileRef = EA4425862441C822008962E2 /* XXAccountCell.m */; };
 		EA44259F2441C823008962E2 /* XXUserHomeCell.m in Sources */ = {isa = PBXBuildFile; fileRef = EA4425872441C822008962E2 /* XXUserHomeCell.m */; };
 		EA4425A02441C823008962E2 /* XXUserHomeVC.m in Sources */ = {isa = PBXBuildFile; fileRef = EA44258A2441C822008962E2 /* XXUserHomeVC.m */; };
@@ -89,8 +117,6 @@
 		EA4425A72441C823008962E2 /* XXAccountManageVC.m in Sources */ = {isa = PBXBuildFile; fileRef = EA44259B2441C822008962E2 /* XXAccountManageVC.m */; };
 		EA4425A82441C823008962E2 /* XXSqliteManager.m in Sources */ = {isa = PBXBuildFile; fileRef = EA44259C2441C822008962E2 /* XXSqliteManager.m */; };
 		EA4425AB244211D1008962E2 /* RatesManager.m in Sources */ = {isa = PBXBuildFile; fileRef = EA4425A9244211D1008962E2 /* RatesManager.m */; };
-		EA4425AE2442512E008962E2 /* XXWithdrawChainVC.m in Sources */ = {isa = PBXBuildFile; fileRef = EA4425AD2442512E008962E2 /* XXWithdrawChainVC.m */; };
-		EA4425B124425214008962E2 /* XXWithdrawChainView.m in Sources */ = {isa = PBXBuildFile; fileRef = EA4425B024425214008962E2 /* XXWithdrawChainView.m */; };
 		EA4F5E992179B5190025B350 /* AppDelegate+Category.m in Sources */ = {isa = PBXBuildFile; fileRef = EA4F5E982179B5190025B350 /* AppDelegate+Category.m */; };
 		EA6FA69721258EC5006305B8 /* FCUUID.m in Sources */ = {isa = PBXBuildFile; fileRef = EA6FA69521258EC5006305B8 /* FCUUID.m */; };
 		EA6FA69A21258FD3006305B8 /* UICKeyChainStore.m in Sources */ = {isa = PBXBuildFile; fileRef = EA6FA69821258FD3006305B8 /* UICKeyChainStore.m */; };
@@ -106,29 +132,6 @@
 		EAB35664243DFD0900D750D6 /* XXAssetRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = EAB35663243DFD0900D750D6 /* XXAssetRequest.m */; };
 		EAB35667243E19FA00D750D6 /* XXDecimalNumberHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = EAB35666243E19FA00D750D6 /* XXDecimalNumberHelper.m */; };
 		EAB3566A243E402100D750D6 /* JSONKit.m in Sources */ = {isa = PBXBuildFile; fileRef = EAB35668243E402100D750D6 /* JSONKit.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
-		EAB35699243F573A00D750D6 /* XXAssetModel.m in Sources */ = {isa = PBXBuildFile; fileRef = EAB3566E243F573900D750D6 /* XXAssetModel.m */; };
-		EAB3569A243F573A00D750D6 /* XXTransactionModel.m in Sources */ = {isa = PBXBuildFile; fileRef = EAB3566F243F573900D750D6 /* XXTransactionModel.m */; };
-		EAB3569B243F573A00D750D6 /* XXAssetCell.m in Sources */ = {isa = PBXBuildFile; fileRef = EAB35673243F573900D750D6 /* XXAssetCell.m */; };
-		EAB3569C243F573A00D750D6 /* XXAddAssetCell.m in Sources */ = {isa = PBXBuildFile; fileRef = EAB35674243F573900D750D6 /* XXAddAssetCell.m */; };
-		EAB3569D243F573A00D750D6 /* XXTransactionCell.m in Sources */ = {isa = PBXBuildFile; fileRef = EAB35675243F573900D750D6 /* XXTransactionCell.m */; };
-		EAB3569E243F573A00D750D6 /* XXWithdrawFeeView.m in Sources */ = {isa = PBXBuildFile; fileRef = EAB3567A243F573900D750D6 /* XXWithdrawFeeView.m */; };
-		EAB3569F243F573A00D750D6 /* XXWithdrawAddressView.m in Sources */ = {isa = PBXBuildFile; fileRef = EAB3567B243F573900D750D6 /* XXWithdrawAddressView.m */; };
-		EAB356A0243F573A00D750D6 /* XXWithdrawAmountReceivedView.m in Sources */ = {isa = PBXBuildFile; fileRef = EAB3567C243F573900D750D6 /* XXWithdrawAmountReceivedView.m */; };
-		EAB356A1243F573A00D750D6 /* XXAssetSearchView.m in Sources */ = {isa = PBXBuildFile; fileRef = EAB3567D243F573900D750D6 /* XXAssetSearchView.m */; };
-		EAB356A2243F573A00D750D6 /* XXSymbolDetailFooterView.m in Sources */ = {isa = PBXBuildFile; fileRef = EAB3567E243F573900D750D6 /* XXSymbolDetailFooterView.m */; };
-		EAB356A3243F573A00D750D6 /* XXWithdrawView.m in Sources */ = {isa = PBXBuildFile; fileRef = EAB3567F243F573900D750D6 /* XXWithdrawView.m */; };
-		EAB356A4243F573A00D750D6 /* XXAssetHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = EAB35680243F573900D750D6 /* XXAssetHeaderView.m */; };
-		EAB356A5243F573A00D750D6 /* XXWithdrawTipView.m in Sources */ = {isa = PBXBuildFile; fileRef = EAB35682243F573900D750D6 /* XXWithdrawTipView.m */; };
-		EAB356A6243F573A00D750D6 /* XXWithdrawAmountView.m in Sources */ = {isa = PBXBuildFile; fileRef = EAB35684243F573900D750D6 /* XXWithdrawAmountView.m */; };
-		EAB356A7243F573A00D750D6 /* XXWithdrawSpeedView.m in Sources */ = {isa = PBXBuildFile; fileRef = EAB35685243F573900D750D6 /* XXWithdrawSpeedView.m */; };
-		EAB356A8243F573A00D750D6 /* XXSymbolDetailHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = EAB3568D243F573900D750D6 /* XXSymbolDetailHeaderView.m */; };
-		EAB356A9243F573A00D750D6 /* XXSymbolDetailVC.m in Sources */ = {isa = PBXBuildFile; fileRef = EAB3568F243F573900D750D6 /* XXSymbolDetailVC.m */; };
-		EAB356AA243F573A00D750D6 /* XXDepositCoinVC.m in Sources */ = {isa = PBXBuildFile; fileRef = EAB35693243F573900D750D6 /* XXDepositCoinVC.m */; };
-		EAB356AB243F573A00D750D6 /* XXAssetVC.m in Sources */ = {isa = PBXBuildFile; fileRef = EAB35694243F573900D750D6 /* XXAssetVC.m */; };
-		EAB356AC243F573A00D750D6 /* XXTransferVC.m in Sources */ = {isa = PBXBuildFile; fileRef = EAB35696243F573900D750D6 /* XXTransferVC.m */; };
-		EAB356AD243F573A00D750D6 /* XXAddNewAssetVC.m in Sources */ = {isa = PBXBuildFile; fileRef = EAB35697243F573900D750D6 /* XXAddNewAssetVC.m */; };
-		EAB356E4243F893500D750D6 /* XXTransferDetailVC.m in Sources */ = {isa = PBXBuildFile; fileRef = EAB356E3243F893500D750D6 /* XXTransferDetailVC.m */; };
-		EAB356E7243F914000D750D6 /* XXTransferHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = EAB356E6243F914000D750D6 /* XXTransferHeaderView.m */; };
 		EABBC08924232DCD00B7E412 /* NSString+Base64.m in Sources */ = {isa = PBXBuildFile; fileRef = EABBC08124232DCD00B7E412 /* NSString+Base64.m */; };
 		EABBC08A24232DCD00B7E412 /* AESCrypt.m in Sources */ = {isa = PBXBuildFile; fileRef = EABBC08224232DCD00B7E412 /* AESCrypt.m */; };
 		EABBC08B24232DCD00B7E412 /* NSData+CommonCrypto.m in Sources */ = {isa = PBXBuildFile; fileRef = EABBC08724232DCD00B7E412 /* NSData+CommonCrypto.m */; };
@@ -303,8 +306,6 @@
 		EA04AD4C24362963004403FF /* HttpManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HttpManager.h; sourceTree = "<group>"; };
 		EA04AD4D24362963004403FF /* NetAPIClient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NetAPIClient.m; sourceTree = "<group>"; };
 		EA04AD4E24362963004403FF /* HttpManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HttpManager.m; sourceTree = "<group>"; };
-		EA04AD552436EE2F004403FF /* XXTokenModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = XXTokenModel.h; sourceTree = "<group>"; };
-		EA04AD562436EE2F004403FF /* XXTokenModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = XXTokenModel.m; sourceTree = "<group>"; };
 		EA0AA16523ED8AFD00E9472E /* XXDecimalNumberHelper.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = XXDecimalNumberHelper.h; sourceTree = "<group>"; };
 		EA0AA16623ED8AFD00E9472E /* XXDecimalNumberHelper.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = XXDecimalNumberHelper.m; sourceTree = "<group>"; };
 		EA15E95524163FDC00A3E14A /* XXStartWalletVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = XXStartWalletVC.h; sourceTree = "<group>"; };
@@ -371,14 +372,70 @@
 		EA35A5062421FC7D00ADF621 /* XXImportPrivateKeyVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = XXImportPrivateKeyVC.m; sourceTree = "<group>"; };
 		EA35A50E2422426900ADF621 /* Alert.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Alert.h; sourceTree = "<group>"; };
 		EA35A50F2422426900ADF621 /* Alert.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Alert.m; sourceTree = "<group>"; };
-		EA3E586D244338C20080B98F /* XXMainSymbolHeaderView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = XXMainSymbolHeaderView.h; sourceTree = "<group>"; };
-		EA3E586E244338C20080B98F /* XXMainSymbolHeaderView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = XXMainSymbolHeaderView.m; sourceTree = "<group>"; };
 		EA3E5870244359570080B98F /* XXKeyGenRequest.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = XXKeyGenRequest.h; sourceTree = "<group>"; };
 		EA3E5871244359580080B98F /* XXKeyGenRequest.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = XXKeyGenRequest.m; sourceTree = "<group>"; };
+		EA3E5876244416EF0080B98F /* Lato-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Lato-Regular.ttf"; sourceTree = "<group>"; };
+		EA3E5878244416FB0080B98F /* Lato-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Lato-Bold.ttf"; sourceTree = "<group>"; };
+		EA3E58AD24441B980080B98F /* XXSymbolDetailVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XXSymbolDetailVC.m; sourceTree = "<group>"; };
+		EA3E58AE24441B980080B98F /* XXTokenModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XXTokenModel.h; sourceTree = "<group>"; };
+		EA3E58AF24441B980080B98F /* XXSymbolDetailFooterView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XXSymbolDetailFooterView.m; sourceTree = "<group>"; };
+		EA3E58B024441B980080B98F /* XXMainSymbolHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XXMainSymbolHeaderView.h; sourceTree = "<group>"; };
+		EA3E58B124441B980080B98F /* XXSymbolDetailHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XXSymbolDetailHeaderView.h; sourceTree = "<group>"; };
+		EA3E58B224441B980080B98F /* XXSymbolDetailVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XXSymbolDetailVC.h; sourceTree = "<group>"; };
+		EA3E58B324441B980080B98F /* XXTokenModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XXTokenModel.m; sourceTree = "<group>"; };
+		EA3E58B424441B980080B98F /* XXMainSymbolHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XXMainSymbolHeaderView.m; sourceTree = "<group>"; };
+		EA3E58B524441B980080B98F /* XXSymbolDetailFooterView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XXSymbolDetailFooterView.h; sourceTree = "<group>"; };
+		EA3E58B624441B980080B98F /* XXSymbolDetailHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XXSymbolDetailHeaderView.m; sourceTree = "<group>"; };
+		EA3E58D524441C7B0080B98F /* XXDepositCoinVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XXDepositCoinVC.m; sourceTree = "<group>"; };
+		EA3E58D624441C7B0080B98F /* XXDepositCoinVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XXDepositCoinVC.h; sourceTree = "<group>"; };
+		EA3E58D824441C7B0080B98F /* XXTransferDetailVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XXTransferDetailVC.m; sourceTree = "<group>"; };
+		EA3E58D924441C7B0080B98F /* XXTransferHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XXTransferHeaderView.h; sourceTree = "<group>"; };
+		EA3E58DA24441C7B0080B98F /* XXTransactionCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XXTransactionCell.h; sourceTree = "<group>"; };
+		EA3E58DB24441C7B0080B98F /* XXTransactionModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XXTransactionModel.h; sourceTree = "<group>"; };
+		EA3E58DC24441C7B0080B98F /* XXTransferHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XXTransferHeaderView.m; sourceTree = "<group>"; };
+		EA3E58DD24441C7B0080B98F /* XXTransferDetailVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XXTransferDetailVC.h; sourceTree = "<group>"; };
+		EA3E58DE24441C7B0080B98F /* XXTransactionCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XXTransactionCell.m; sourceTree = "<group>"; };
+		EA3E58DF24441C7B0080B98F /* XXTransactionModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XXTransactionModel.m; sourceTree = "<group>"; };
+		EA3E590524441D160080B98F /* XXAssetSearchView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XXAssetSearchView.m; sourceTree = "<group>"; };
+		EA3E590624441D160080B98F /* XXAssetSearchHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XXAssetSearchHeaderView.m; sourceTree = "<group>"; };
+		EA3E590724441D160080B98F /* XXAssetHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XXAssetHeaderView.m; sourceTree = "<group>"; };
+		EA3E590824441D160080B98F /* XXAssetSearchHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XXAssetSearchHeaderView.h; sourceTree = "<group>"; };
+		EA3E590924441D160080B98F /* XXAssetSearchView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XXAssetSearchView.h; sourceTree = "<group>"; };
+		EA3E590A24441D160080B98F /* XXAssetHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XXAssetHeaderView.h; sourceTree = "<group>"; };
+		EA3E590C24441D160080B98F /* XXAssetModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XXAssetModel.h; sourceTree = "<group>"; };
+		EA3E590D24441D160080B98F /* XXAccountModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XXAccountModel.h; sourceTree = "<group>"; };
+		EA3E590E24441D160080B98F /* XXAssetModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XXAssetModel.m; sourceTree = "<group>"; };
+		EA3E590F24441D160080B98F /* XXAccountModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XXAccountModel.m; sourceTree = "<group>"; };
+		EA3E591124441D160080B98F /* XXAddAssetCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XXAddAssetCell.h; sourceTree = "<group>"; };
+		EA3E591224441D160080B98F /* XXAssetCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XXAssetCell.m; sourceTree = "<group>"; };
+		EA3E591324441D160080B98F /* XXAddAssetCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XXAddAssetCell.m; sourceTree = "<group>"; };
+		EA3E591424441D160080B98F /* XXAssetCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XXAssetCell.h; sourceTree = "<group>"; };
+		EA3E591624441D160080B98F /* XXAssetVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XXAssetVC.h; sourceTree = "<group>"; };
+		EA3E591724441D160080B98F /* XXAddNewAssetVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XXAddNewAssetVC.h; sourceTree = "<group>"; };
+		EA3E591824441D160080B98F /* XXAssetVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XXAssetVC.m; sourceTree = "<group>"; };
+		EA3E591924441D160080B98F /* XXAddNewAssetVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XXAddNewAssetVC.m; sourceTree = "<group>"; };
+		EA3E592424441D950080B98F /* XXWithdrawAmountView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XXWithdrawAmountView.h; sourceTree = "<group>"; };
+		EA3E592524441D950080B98F /* XXWithdrawSpeedView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XXWithdrawSpeedView.h; sourceTree = "<group>"; };
+		EA3E592624441D950080B98F /* XXWithdrawFeeView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XXWithdrawFeeView.m; sourceTree = "<group>"; };
+		EA3E592724441D950080B98F /* XXWithdrawAddressView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XXWithdrawAddressView.m; sourceTree = "<group>"; };
+		EA3E592824441D950080B98F /* XXWithdrawAmountReceivedView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XXWithdrawAmountReceivedView.m; sourceTree = "<group>"; };
+		EA3E592924441D950080B98F /* XXWithdrawChainView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XXWithdrawChainView.m; sourceTree = "<group>"; };
+		EA3E592A24441D950080B98F /* XXWithdrawView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XXWithdrawView.m; sourceTree = "<group>"; };
+		EA3E592B24441D950080B98F /* XXWithdrawTipView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XXWithdrawTipView.m; sourceTree = "<group>"; };
+		EA3E592C24441D950080B98F /* XXWithdrawAddressView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XXWithdrawAddressView.h; sourceTree = "<group>"; };
+		EA3E592D24441D950080B98F /* XXWithdrawAmountView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XXWithdrawAmountView.m; sourceTree = "<group>"; };
+		EA3E592E24441D950080B98F /* XXWithdrawSpeedView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XXWithdrawSpeedView.m; sourceTree = "<group>"; };
+		EA3E592F24441D950080B98F /* XXWithdrawFeeView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XXWithdrawFeeView.h; sourceTree = "<group>"; };
+		EA3E593024441D950080B98F /* XXWithdrawChainView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XXWithdrawChainView.h; sourceTree = "<group>"; };
+		EA3E593124441D950080B98F /* XXWithdrawAmountReceivedView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XXWithdrawAmountReceivedView.h; sourceTree = "<group>"; };
+		EA3E593224441D950080B98F /* XXWithdrawView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XXWithdrawView.h; sourceTree = "<group>"; };
+		EA3E593324441D950080B98F /* XXWithdrawTipView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XXWithdrawTipView.h; sourceTree = "<group>"; };
+		EA3E593524441D950080B98F /* XXTransferVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XXTransferVC.h; sourceTree = "<group>"; };
+		EA3E593624441D950080B98F /* XXWithdrawChainVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XXWithdrawChainVC.h; sourceTree = "<group>"; };
+		EA3E593724441D950080B98F /* XXTransferVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XXTransferVC.m; sourceTree = "<group>"; };
+		EA3E593824441D950080B98F /* XXWithdrawChainVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XXWithdrawChainVC.m; sourceTree = "<group>"; };
 		EA42F2082289B20C0091EF78 /* vi-VN */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "vi-VN"; path = "vi-VN.lproj/Localizable.strings"; sourceTree = "<group>"; };
 		EA42F2092289B20C0091EF78 /* vi-VN */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "vi-VN"; path = "vi-VN.lproj/InfoPlist.strings"; sourceTree = "<group>"; };
-		EA44258124408596008962E2 /* XXAccountModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = XXAccountModel.h; sourceTree = "<group>"; };
-		EA44258224408596008962E2 /* XXAccountModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = XXAccountModel.m; sourceTree = "<group>"; };
 		EA4425852441C822008962E2 /* XXUserHomeCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XXUserHomeCell.h; sourceTree = "<group>"; };
 		EA4425862441C822008962E2 /* XXAccountCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XXAccountCell.m; sourceTree = "<group>"; };
 		EA4425872441C822008962E2 /* XXUserHomeCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XXUserHomeCell.m; sourceTree = "<group>"; };
@@ -403,10 +460,6 @@
 		EA44259D2441C822008962E2 /* XXUserData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XXUserData.h; sourceTree = "<group>"; };
 		EA4425A9244211D1008962E2 /* RatesManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RatesManager.m; sourceTree = "<group>"; };
 		EA4425AA244211D1008962E2 /* RatesManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RatesManager.h; sourceTree = "<group>"; };
-		EA4425AC2442512E008962E2 /* XXWithdrawChainVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = XXWithdrawChainVC.h; sourceTree = "<group>"; };
-		EA4425AD2442512E008962E2 /* XXWithdrawChainVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = XXWithdrawChainVC.m; sourceTree = "<group>"; };
-		EA4425AF24425214008962E2 /* XXWithdrawChainView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = XXWithdrawChainView.h; sourceTree = "<group>"; };
-		EA4425B024425214008962E2 /* XXWithdrawChainView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = XXWithdrawChainView.m; sourceTree = "<group>"; };
 		EA4F5E972179B5190025B350 /* AppDelegate+Category.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "AppDelegate+Category.h"; sourceTree = "<group>"; };
 		EA4F5E982179B5190025B350 /* AppDelegate+Category.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "AppDelegate+Category.m"; sourceTree = "<group>"; };
 		EA51B5EC2123DE5F0041FA72 /* BHChooseLanguageCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BHChooseLanguageCell.h; sourceTree = "<group>"; };
@@ -442,52 +495,6 @@
 		EAB35666243E19FA00D750D6 /* XXDecimalNumberHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = XXDecimalNumberHelper.m; path = ../../../../../iOS/Bhex/Bhex/Tools/Category/XXDecimalNumberHelper.m; sourceTree = "<group>"; };
 		EAB35668243E402100D750D6 /* JSONKit.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JSONKit.m; sourceTree = "<group>"; };
 		EAB35669243E402100D750D6 /* JSONKit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JSONKit.h; sourceTree = "<group>"; };
-		EAB3566C243F573900D750D6 /* XXAssetModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XXAssetModel.h; sourceTree = "<group>"; };
-		EAB3566D243F573900D750D6 /* XXTransactionModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XXTransactionModel.h; sourceTree = "<group>"; };
-		EAB3566E243F573900D750D6 /* XXAssetModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XXAssetModel.m; sourceTree = "<group>"; };
-		EAB3566F243F573900D750D6 /* XXTransactionModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XXTransactionModel.m; sourceTree = "<group>"; };
-		EAB35671243F573900D750D6 /* XXAddAssetCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XXAddAssetCell.h; sourceTree = "<group>"; };
-		EAB35672243F573900D750D6 /* XXTransactionCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XXTransactionCell.h; sourceTree = "<group>"; };
-		EAB35673243F573900D750D6 /* XXAssetCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XXAssetCell.m; sourceTree = "<group>"; };
-		EAB35674243F573900D750D6 /* XXAddAssetCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XXAddAssetCell.m; sourceTree = "<group>"; };
-		EAB35675243F573900D750D6 /* XXTransactionCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XXTransactionCell.m; sourceTree = "<group>"; };
-		EAB35676243F573900D750D6 /* XXAssetCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XXAssetCell.h; sourceTree = "<group>"; };
-		EAB35678243F573900D750D6 /* XXWithdrawAmountView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XXWithdrawAmountView.h; sourceTree = "<group>"; };
-		EAB35679243F573900D750D6 /* XXWithdrawSpeedView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XXWithdrawSpeedView.h; sourceTree = "<group>"; };
-		EAB3567A243F573900D750D6 /* XXWithdrawFeeView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XXWithdrawFeeView.m; sourceTree = "<group>"; };
-		EAB3567B243F573900D750D6 /* XXWithdrawAddressView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XXWithdrawAddressView.m; sourceTree = "<group>"; };
-		EAB3567C243F573900D750D6 /* XXWithdrawAmountReceivedView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XXWithdrawAmountReceivedView.m; sourceTree = "<group>"; };
-		EAB3567D243F573900D750D6 /* XXAssetSearchView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XXAssetSearchView.m; sourceTree = "<group>"; };
-		EAB3567E243F573900D750D6 /* XXSymbolDetailFooterView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XXSymbolDetailFooterView.m; sourceTree = "<group>"; };
-		EAB3567F243F573900D750D6 /* XXWithdrawView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XXWithdrawView.m; sourceTree = "<group>"; };
-		EAB35680243F573900D750D6 /* XXAssetHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XXAssetHeaderView.m; sourceTree = "<group>"; };
-		EAB35681243F573900D750D6 /* XXSymbolDetailHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XXSymbolDetailHeaderView.h; sourceTree = "<group>"; };
-		EAB35682243F573900D750D6 /* XXWithdrawTipView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XXWithdrawTipView.m; sourceTree = "<group>"; };
-		EAB35683243F573900D750D6 /* XXWithdrawAddressView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XXWithdrawAddressView.h; sourceTree = "<group>"; };
-		EAB35684243F573900D750D6 /* XXWithdrawAmountView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XXWithdrawAmountView.m; sourceTree = "<group>"; };
-		EAB35685243F573900D750D6 /* XXWithdrawSpeedView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XXWithdrawSpeedView.m; sourceTree = "<group>"; };
-		EAB35686243F573900D750D6 /* XXWithdrawFeeView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XXWithdrawFeeView.h; sourceTree = "<group>"; };
-		EAB35687243F573900D750D6 /* XXAssetSearchView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XXAssetSearchView.h; sourceTree = "<group>"; };
-		EAB35688243F573900D750D6 /* XXWithdrawAmountReceivedView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XXWithdrawAmountReceivedView.h; sourceTree = "<group>"; };
-		EAB35689243F573900D750D6 /* XXAssetHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XXAssetHeaderView.h; sourceTree = "<group>"; };
-		EAB3568A243F573900D750D6 /* XXWithdrawView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XXWithdrawView.h; sourceTree = "<group>"; };
-		EAB3568B243F573900D750D6 /* XXSymbolDetailFooterView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XXSymbolDetailFooterView.h; sourceTree = "<group>"; };
-		EAB3568C243F573900D750D6 /* XXWithdrawTipView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XXWithdrawTipView.h; sourceTree = "<group>"; };
-		EAB3568D243F573900D750D6 /* XXSymbolDetailHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XXSymbolDetailHeaderView.m; sourceTree = "<group>"; };
-		EAB3568F243F573900D750D6 /* XXSymbolDetailVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XXSymbolDetailVC.m; sourceTree = "<group>"; };
-		EAB35690243F573900D750D6 /* XXAssetVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XXAssetVC.h; sourceTree = "<group>"; };
-		EAB35691243F573900D750D6 /* XXTransferVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XXTransferVC.h; sourceTree = "<group>"; };
-		EAB35692243F573900D750D6 /* XXAddNewAssetVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XXAddNewAssetVC.h; sourceTree = "<group>"; };
-		EAB35693243F573900D750D6 /* XXDepositCoinVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XXDepositCoinVC.m; sourceTree = "<group>"; };
-		EAB35694243F573900D750D6 /* XXAssetVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XXAssetVC.m; sourceTree = "<group>"; };
-		EAB35695243F573900D750D6 /* XXSymbolDetailVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XXSymbolDetailVC.h; sourceTree = "<group>"; };
-		EAB35696243F573900D750D6 /* XXTransferVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XXTransferVC.m; sourceTree = "<group>"; };
-		EAB35697243F573900D750D6 /* XXAddNewAssetVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XXAddNewAssetVC.m; sourceTree = "<group>"; };
-		EAB35698243F573900D750D6 /* XXDepositCoinVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XXDepositCoinVC.h; sourceTree = "<group>"; };
-		EAB356E2243F893500D750D6 /* XXTransferDetailVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = XXTransferDetailVC.h; sourceTree = "<group>"; };
-		EAB356E3243F893500D750D6 /* XXTransferDetailVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = XXTransferDetailVC.m; sourceTree = "<group>"; };
-		EAB356E5243F914000D750D6 /* XXTransferHeaderView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = XXTransferHeaderView.h; sourceTree = "<group>"; };
-		EAB356E6243F914000D750D6 /* XXTransferHeaderView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = XXTransferHeaderView.m; sourceTree = "<group>"; };
 		EABBC08124232DCD00B7E412 /* NSString+Base64.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+Base64.m"; sourceTree = "<group>"; };
 		EABBC08224232DCD00B7E412 /* AESCrypt.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AESCrypt.m; sourceTree = "<group>"; };
 		EABBC08324232DCD00B7E412 /* NSData+Base64.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSData+Base64.h"; sourceTree = "<group>"; };
@@ -693,6 +700,8 @@
 		7A3B8A57215A08A400B50ADD /* Foot */ = {
 			isa = PBXGroup;
 			children = (
+				EA3E5878244416FB0080B98F /* Lato-Bold.ttf */,
+				EA3E5876244416EF0080B98F /* Lato-Regular.ttf */,
 				7A3B8A58215A08A400B50ADD /* Roboto-Regular.ttf */,
 				7A3B8A59215A08A400B50ADD /* Roboto-Bold.ttf */,
 				7A3B8A5A215A08A400B50ADD /* Roboto-Black.ttf */,
@@ -869,10 +878,9 @@
 		EA15E9742417DEC500A3E14A /* Asset */ = {
 			isa = PBXGroup;
 			children = (
-				EAB35670243F573900D750D6 /* Cell */,
-				EAB3566B243F573900D750D6 /* Model */,
-				EAB3568E243F573900D750D6 /* VC */,
-				EAB35677243F573900D750D6 /* View */,
+				EA3E589924441B980080B98F /* Asset */,
+				EA3E58AC24441B980080B98F /* TokenInfo */,
+				EA3E587A24441B980080B98F /* Transaction */,
 			);
 			path = Asset;
 			sourceTree = "<group>";
@@ -923,6 +931,157 @@
 				EA309F7C236F22180098DE28 /* AFImageDownloader.m */,
 			);
 			path = "UIKit+AFNetworking";
+			sourceTree = "<group>";
+		};
+		EA3E587A24441B980080B98F /* Transaction */ = {
+			isa = PBXGroup;
+			children = (
+				EA3E58D424441C7B0080B98F /* Deposit */,
+				EA3E58D724441C7B0080B98F /* Transaction */,
+				EA3E58E024441C7B0080B98F /* Withdraw */,
+			);
+			path = Transaction;
+			sourceTree = "<group>";
+		};
+		EA3E589924441B980080B98F /* Asset */ = {
+			isa = PBXGroup;
+			children = (
+				EA3E591024441D160080B98F /* Cell */,
+				EA3E590B24441D160080B98F /* Model */,
+				EA3E590424441D160080B98F /* View */,
+				EA3E591524441D160080B98F /* ViewController */,
+			);
+			path = Asset;
+			sourceTree = "<group>";
+		};
+		EA3E58AC24441B980080B98F /* TokenInfo */ = {
+			isa = PBXGroup;
+			children = (
+				EA3E58AE24441B980080B98F /* XXTokenModel.h */,
+				EA3E58B324441B980080B98F /* XXTokenModel.m */,
+				EA3E58B224441B980080B98F /* XXSymbolDetailVC.h */,
+				EA3E58AD24441B980080B98F /* XXSymbolDetailVC.m */,
+				EA3E58AF24441B980080B98F /* XXSymbolDetailFooterView.m */,
+				EA3E58B124441B980080B98F /* XXSymbolDetailHeaderView.h */,
+				EA3E58B024441B980080B98F /* XXMainSymbolHeaderView.h */,
+				EA3E58B424441B980080B98F /* XXMainSymbolHeaderView.m */,
+				EA3E58B524441B980080B98F /* XXSymbolDetailFooterView.h */,
+				EA3E58B624441B980080B98F /* XXSymbolDetailHeaderView.m */,
+			);
+			path = TokenInfo;
+			sourceTree = "<group>";
+		};
+		EA3E58D424441C7B0080B98F /* Deposit */ = {
+			isa = PBXGroup;
+			children = (
+				EA3E58D624441C7B0080B98F /* XXDepositCoinVC.h */,
+				EA3E58D524441C7B0080B98F /* XXDepositCoinVC.m */,
+			);
+			path = Deposit;
+			sourceTree = "<group>";
+		};
+		EA3E58D724441C7B0080B98F /* Transaction */ = {
+			isa = PBXGroup;
+			children = (
+				EA3E58DD24441C7B0080B98F /* XXTransferDetailVC.h */,
+				EA3E58D824441C7B0080B98F /* XXTransferDetailVC.m */,
+				EA3E58D924441C7B0080B98F /* XXTransferHeaderView.h */,
+				EA3E58DC24441C7B0080B98F /* XXTransferHeaderView.m */,
+				EA3E58DA24441C7B0080B98F /* XXTransactionCell.h */,
+				EA3E58DE24441C7B0080B98F /* XXTransactionCell.m */,
+				EA3E58DB24441C7B0080B98F /* XXTransactionModel.h */,
+				EA3E58DF24441C7B0080B98F /* XXTransactionModel.m */,
+			);
+			path = Transaction;
+			sourceTree = "<group>";
+		};
+		EA3E58E024441C7B0080B98F /* Withdraw */ = {
+			isa = PBXGroup;
+			children = (
+				EA3E592324441D950080B98F /* View */,
+				EA3E593424441D950080B98F /* ViewController */,
+			);
+			path = Withdraw;
+			sourceTree = "<group>";
+		};
+		EA3E590424441D160080B98F /* View */ = {
+			isa = PBXGroup;
+			children = (
+				EA3E590524441D160080B98F /* XXAssetSearchView.m */,
+				EA3E590624441D160080B98F /* XXAssetSearchHeaderView.m */,
+				EA3E590724441D160080B98F /* XXAssetHeaderView.m */,
+				EA3E590824441D160080B98F /* XXAssetSearchHeaderView.h */,
+				EA3E590924441D160080B98F /* XXAssetSearchView.h */,
+				EA3E590A24441D160080B98F /* XXAssetHeaderView.h */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		EA3E590B24441D160080B98F /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				EA3E590C24441D160080B98F /* XXAssetModel.h */,
+				EA3E590D24441D160080B98F /* XXAccountModel.h */,
+				EA3E590E24441D160080B98F /* XXAssetModel.m */,
+				EA3E590F24441D160080B98F /* XXAccountModel.m */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		EA3E591024441D160080B98F /* Cell */ = {
+			isa = PBXGroup;
+			children = (
+				EA3E591124441D160080B98F /* XXAddAssetCell.h */,
+				EA3E591224441D160080B98F /* XXAssetCell.m */,
+				EA3E591324441D160080B98F /* XXAddAssetCell.m */,
+				EA3E591424441D160080B98F /* XXAssetCell.h */,
+			);
+			path = Cell;
+			sourceTree = "<group>";
+		};
+		EA3E591524441D160080B98F /* ViewController */ = {
+			isa = PBXGroup;
+			children = (
+				EA3E591624441D160080B98F /* XXAssetVC.h */,
+				EA3E591724441D160080B98F /* XXAddNewAssetVC.h */,
+				EA3E591824441D160080B98F /* XXAssetVC.m */,
+				EA3E591924441D160080B98F /* XXAddNewAssetVC.m */,
+			);
+			path = ViewController;
+			sourceTree = "<group>";
+		};
+		EA3E592324441D950080B98F /* View */ = {
+			isa = PBXGroup;
+			children = (
+				EA3E593224441D950080B98F /* XXWithdrawView.h */,
+				EA3E592A24441D950080B98F /* XXWithdrawView.m */,
+				EA3E592424441D950080B98F /* XXWithdrawAmountView.h */,
+				EA3E592D24441D950080B98F /* XXWithdrawAmountView.m */,
+				EA3E592524441D950080B98F /* XXWithdrawSpeedView.h */,
+				EA3E592E24441D950080B98F /* XXWithdrawSpeedView.m */,
+				EA3E592F24441D950080B98F /* XXWithdrawFeeView.h */,
+				EA3E592624441D950080B98F /* XXWithdrawFeeView.m */,
+				EA3E592C24441D950080B98F /* XXWithdrawAddressView.h */,
+				EA3E592724441D950080B98F /* XXWithdrawAddressView.m */,
+				EA3E593024441D950080B98F /* XXWithdrawChainView.h */,
+				EA3E592924441D950080B98F /* XXWithdrawChainView.m */,
+				EA3E593324441D950080B98F /* XXWithdrawTipView.h */,
+				EA3E592B24441D950080B98F /* XXWithdrawTipView.m */,
+				EA3E593124441D950080B98F /* XXWithdrawAmountReceivedView.h */,
+				EA3E592824441D950080B98F /* XXWithdrawAmountReceivedView.m */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		EA3E593424441D950080B98F /* ViewController */ = {
+			isa = PBXGroup;
+			children = (
+				EA3E593524441D950080B98F /* XXTransferVC.h */,
+				EA3E593724441D950080B98F /* XXTransferVC.m */,
+				EA3E593624441D950080B98F /* XXWithdrawChainVC.h */,
+				EA3E593824441D950080B98F /* XXWithdrawChainVC.m */,
+			);
+			path = ViewController;
 			sourceTree = "<group>";
 		};
 		EA4425842441C822008962E2 /* Cell */ = {
@@ -1034,90 +1193,6 @@
 				EAB3562F2438369200D750D6 /* FMResultSet.m */,
 			);
 			path = fmdb;
-			sourceTree = "<group>";
-		};
-		EAB3566B243F573900D750D6 /* Model */ = {
-			isa = PBXGroup;
-			children = (
-				EA04AD552436EE2F004403FF /* XXTokenModel.h */,
-				EA04AD562436EE2F004403FF /* XXTokenModel.m */,
-				EAB3566C243F573900D750D6 /* XXAssetModel.h */,
-				EAB3566E243F573900D750D6 /* XXAssetModel.m */,
-				EAB3566D243F573900D750D6 /* XXTransactionModel.h */,
-				EAB3566F243F573900D750D6 /* XXTransactionModel.m */,
-				EA44258124408596008962E2 /* XXAccountModel.h */,
-				EA44258224408596008962E2 /* XXAccountModel.m */,
-			);
-			path = Model;
-			sourceTree = "<group>";
-		};
-		EAB35670243F573900D750D6 /* Cell */ = {
-			isa = PBXGroup;
-			children = (
-				EAB35672243F573900D750D6 /* XXTransactionCell.h */,
-				EAB35675243F573900D750D6 /* XXTransactionCell.m */,
-				EAB35671243F573900D750D6 /* XXAddAssetCell.h */,
-				EAB35674243F573900D750D6 /* XXAddAssetCell.m */,
-				EAB35676243F573900D750D6 /* XXAssetCell.h */,
-				EAB35673243F573900D750D6 /* XXAssetCell.m */,
-			);
-			path = Cell;
-			sourceTree = "<group>";
-		};
-		EAB35677243F573900D750D6 /* View */ = {
-			isa = PBXGroup;
-			children = (
-				EAB35679243F573900D750D6 /* XXWithdrawSpeedView.h */,
-				EAB35685243F573900D750D6 /* XXWithdrawSpeedView.m */,
-				EAB35686243F573900D750D6 /* XXWithdrawFeeView.h */,
-				EAB3567A243F573900D750D6 /* XXWithdrawFeeView.m */,
-				EAB35683243F573900D750D6 /* XXWithdrawAddressView.h */,
-				EAB3567B243F573900D750D6 /* XXWithdrawAddressView.m */,
-				EAB35688243F573900D750D6 /* XXWithdrawAmountReceivedView.h */,
-				EAB3567C243F573900D750D6 /* XXWithdrawAmountReceivedView.m */,
-				EAB35687243F573900D750D6 /* XXAssetSearchView.h */,
-				EAB3567D243F573900D750D6 /* XXAssetSearchView.m */,
-				EAB3568A243F573900D750D6 /* XXWithdrawView.h */,
-				EAB3567F243F573900D750D6 /* XXWithdrawView.m */,
-				EA4425AF24425214008962E2 /* XXWithdrawChainView.h */,
-				EA4425B024425214008962E2 /* XXWithdrawChainView.m */,
-				EAB3568C243F573900D750D6 /* XXWithdrawTipView.h */,
-				EAB35682243F573900D750D6 /* XXWithdrawTipView.m */,
-				EAB35678243F573900D750D6 /* XXWithdrawAmountView.h */,
-				EAB35684243F573900D750D6 /* XXWithdrawAmountView.m */,
-				EAB35689243F573900D750D6 /* XXAssetHeaderView.h */,
-				EAB35680243F573900D750D6 /* XXAssetHeaderView.m */,
-				EAB3568B243F573900D750D6 /* XXSymbolDetailFooterView.h */,
-				EAB3567E243F573900D750D6 /* XXSymbolDetailFooterView.m */,
-				EAB35681243F573900D750D6 /* XXSymbolDetailHeaderView.h */,
-				EAB3568D243F573900D750D6 /* XXSymbolDetailHeaderView.m */,
-				EA3E586D244338C20080B98F /* XXMainSymbolHeaderView.h */,
-				EA3E586E244338C20080B98F /* XXMainSymbolHeaderView.m */,
-				EAB356E5243F914000D750D6 /* XXTransferHeaderView.h */,
-				EAB356E6243F914000D750D6 /* XXTransferHeaderView.m */,
-			);
-			path = View;
-			sourceTree = "<group>";
-		};
-		EAB3568E243F573900D750D6 /* VC */ = {
-			isa = PBXGroup;
-			children = (
-				EAB35690243F573900D750D6 /* XXAssetVC.h */,
-				EAB35694243F573900D750D6 /* XXAssetVC.m */,
-				EAB35695243F573900D750D6 /* XXSymbolDetailVC.h */,
-				EAB3568F243F573900D750D6 /* XXSymbolDetailVC.m */,
-				EAB35691243F573900D750D6 /* XXTransferVC.h */,
-				EAB35696243F573900D750D6 /* XXTransferVC.m */,
-				EAB35692243F573900D750D6 /* XXAddNewAssetVC.h */,
-				EAB35697243F573900D750D6 /* XXAddNewAssetVC.m */,
-				EAB35698243F573900D750D6 /* XXDepositCoinVC.h */,
-				EAB35693243F573900D750D6 /* XXDepositCoinVC.m */,
-				EAB356E2243F893500D750D6 /* XXTransferDetailVC.h */,
-				EAB356E3243F893500D750D6 /* XXTransferDetailVC.m */,
-				EA4425AC2442512E008962E2 /* XXWithdrawChainVC.h */,
-				EA4425AD2442512E008962E2 /* XXWithdrawChainVC.m */,
-			);
-			path = VC;
 			sourceTree = "<group>";
 		};
 		EABBC08024232DCD00B7E412 /* AES */ = {
@@ -1564,9 +1639,11 @@
 				7A3B8A5B215A08A400B50ADD /* Roboto-Regular.ttf in Resources */,
 				EA2931B822CCB22B003B60E8 /* Assets.xcassets in Resources */,
 				7A3B8A5C215A08A400B50ADD /* Roboto-Bold.ttf in Resources */,
+				EA3E5879244416FB0080B98F /* Lato-Bold.ttf in Resources */,
 				7A3B8A5D215A08A400B50ADD /* Roboto-Black.ttf in Resources */,
 				F30EAF5C20D26536005ADD5C /* README.textile in Resources */,
 				EA8F8C88240FA9F200D26E10 /* Icon.xcassets in Resources */,
+				EA3E5877244416EF0080B98F /* Lato-Regular.ttf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1623,10 +1700,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				EABD1B84241BB25900B1A03A /* rand.c in Sources */,
-				EAB356A7243F573A00D750D6 /* XXWithdrawSpeedView.m in Sources */,
 				EABD1BA1241BB25900B1A03A /* Hash.m in Sources */,
 				EA04ABAB242D015B004403FF /* IQBarButtonItem.m in Sources */,
-				EAB356A5243F573A00D750D6 /* XXWithdrawTipView.m in Sources */,
 				EAC6871D214FAD1C00701874 /* XXTabView.m in Sources */,
 				EA3E5872244359580080B98F /* XXKeyGenRequest.m in Sources */,
 				EABD1BA5241BB25900B1A03A /* Promise.m in Sources */,
@@ -1634,15 +1709,16 @@
 				7AC4D793234C808F00F5E5F8 /* XXShadowView.m in Sources */,
 				EA30A0A9236F221A0098DE28 /* UIActivityIndicatorView+AFNetworking.m in Sources */,
 				EA04ABA8242D015B004403FF /* IQTextView.m in Sources */,
+				EA3E58CF24441B980080B98F /* XXSymbolDetailVC.m in Sources */,
 				EABD1B87241BB25900B1A03A /* secp256k1.c in Sources */,
 				EABD1B85241BB25900B1A03A /* aescrypt.c in Sources */,
 				F30EAF5A20D26536005ADD5C /* NSString+TL.m in Sources */,
 				EAB35667243E19FA00D750D6 /* XXDecimalNumberHelper.m in Sources */,
 				EA44259F2441C823008962E2 /* XXUserHomeCell.m in Sources */,
+				EA3E593E24441D950080B98F /* XXWithdrawTipView.m in Sources */,
 				EA04ABB0242D015B004403FF /* IQUITextFieldView+Additions.m in Sources */,
 				EA30A0E5236F221A0098DE28 /* UIWebView+AFNetworking.m in Sources */,
 				EAB356322438369200D750D6 /* FMDatabase.m in Sources */,
-				EAB3569E243F573A00D750D6 /* XXWithdrawFeeView.m in Sources */,
 				EABD1B83241BB25900B1A03A /* sha2.c in Sources */,
 				EA04AD3A243305B6004403FF /* SegwitAddrCoder.swift in Sources */,
 				EABD1B89241BB25900B1A03A /* bignum.c in Sources */,
@@ -1651,30 +1727,29 @@
 				EA04ABAC242D015B004403FF /* IQUIView+IQKeyboardToolbar.m in Sources */,
 				F31F7A5020CF9693008B4403 /* XXTabBarController.m in Sources */,
 				EABD1BBB241E49EA00B1A03A /* XXImportWalletVC.m in Sources */,
-				EAB356A2243F573A00D750D6 /* XXSymbolDetailFooterView.m in Sources */,
-				EA4425B124425214008962E2 /* XXWithdrawChainView.m in Sources */,
 				EABD1B86241BB25900B1A03A /* curves.c in Sources */,
 				EABD1BAA241BB25900B1A03A /* TransactionInfo.m in Sources */,
 				EABD1B81241BB25900B1A03A /* aeskey.c in Sources */,
 				F30EAF6020D26536005ADD5C /* UILabel+Extension.m in Sources */,
+				EA3E591C24441D160080B98F /* XXAssetHeaderView.m in Sources */,
+				EA3E591F24441D160080B98F /* XXAssetCell.m in Sources */,
 				EA6FA69A21258FD3006305B8 /* UICKeyChainStore.m in Sources */,
-				EAB356A4243F573A00D750D6 /* XXAssetHeaderView.m in Sources */,
+				EA3E594124441D950080B98F /* XXTransferVC.m in Sources */,
 				EABD1B99241BB25900B1A03A /* EtherchainProvider.m in Sources */,
 				EABD1BA3241BB25900B1A03A /* BlockInfo.m in Sources */,
 				F30EAF5F20D26536005ADD5C /* UIColor+helper.m in Sources */,
+				EA3E58F724441C7B0080B98F /* XXTransferHeaderView.m in Sources */,
 				EA04AD3824323C73004403FF /* Bech32.swift in Sources */,
 				EA30A121236F221B0098DE28 /* AFAutoPurgingImageCache.m in Sources */,
 				F31F7A4D20CF9693008B4403 /* XXNavigationController.m in Sources */,
 				7AC4D7F9234C808F00F5E5F8 /* XXButton.m in Sources */,
 				EABD1B82241BB25900B1A03A /* hmac.c in Sources */,
 				F31F7A4F20CF9693008B4403 /* MainTabBtn.m in Sources */,
-				EAB356A6243F573A00D750D6 /* XXWithdrawAmountView.m in Sources */,
-				EAB3569B243F573A00D750D6 /* XXAssetCell.m in Sources */,
 				EA15E95D24168F5600A3E14A /* XXVerifyMnemonicPhraseVC.m in Sources */,
-				EAB356A1243F573A00D750D6 /* XXAssetSearchView.m in Sources */,
 				EA04ABA9242D015B004403FF /* IQToolbar.m in Sources */,
 				EA04ABB2242D015B004403FF /* IQUIView+Hierarchy.m in Sources */,
 				EA964C442414E18500A941E5 /* AppDelegate.m in Sources */,
+				EA3E592024441D160080B98F /* XXAddAssetCell.m in Sources */,
 				EA04AD5024362964004403FF /* HttpManager.m in Sources */,
 				F31F7A4E20CF9693008B4403 /* BaseViewController.m in Sources */,
 				EABBC08A24232DCD00B7E412 /* AESCrypt.m in Sources */,
@@ -1684,53 +1759,55 @@
 				EA4425A82441C823008962E2 /* XXSqliteManager.m in Sources */,
 				EAB3566A243E402100D750D6 /* JSONKit.m in Sources */,
 				EA2F95312423A02B0070AC62 /* XXLoginVC.m in Sources */,
-				EA4425AE2442512E008962E2 /* XXWithdrawChainVC.m in Sources */,
 				EABD1B98241BB25900B1A03A /* Provider.m in Sources */,
 				EABD1BA2241BB25900B1A03A /* Transaction.m in Sources */,
 				EABD1B95241BB25900B1A03A /* crypto_scrypt-ref.c in Sources */,
 				7AC4D760234C808E00F5E5F8 /* XXFloadtTextField.m in Sources */,
 				EA4425A62441C823008962E2 /* XXUserData.m in Sources */,
+				EA3E591A24441D160080B98F /* XXAssetSearchView.m in Sources */,
+				EA3E593F24441D950080B98F /* XXWithdrawAmountView.m in Sources */,
 				EABD1BA0241BB25900B1A03A /* RoundRobinProvider.m in Sources */,
 				EA15E9702417BC6B00A3E14A /* XXCreateWalletSuccessVC.m in Sources */,
+				EA3E593C24441D950080B98F /* XXWithdrawChainView.m in Sources */,
 				EA4425A02441C823008962E2 /* XXUserHomeVC.m in Sources */,
 				EA15E95A2416702C00A3E14A /* XXMnemonicBtn.m in Sources */,
 				EABD1B88241BB25900B1A03A /* aes_modes.c in Sources */,
 				EABD1BA8241BB25900B1A03A /* Utilities.m in Sources */,
 				EABD1BAC241BB25900B1A03A /* Account.m in Sources */,
-				EAB356A3243F573A00D750D6 /* XXWithdrawView.m in Sources */,
 				EABBC08B24232DCD00B7E412 /* NSData+CommonCrypto.m in Sources */,
 				EA6FA69721258EC5006305B8 /* FCUUID.m in Sources */,
-				EAB356E7243F914000D750D6 /* XXTransferHeaderView.m in Sources */,
+				EA3E58F624441C7B0080B98F /* XXTransferDetailVC.m in Sources */,
+				EA3E593D24441D950080B98F /* XXWithdrawView.m in Sources */,
 				EABD1B94241BB25900B1A03A /* crypto_scrypt-nosse.c in Sources */,
 				7A3298152320EE9900196336 /* NSArray+Safe.m in Sources */,
 				7A3298752320EE9900196336 /* NSObject+Swizzling.m in Sources */,
 				EA309EB4236F21410098DE28 /* AFURLRequestSerialization.m in Sources */,
 				EA4F5E992179B5190025B350 /* AppDelegate+Category.m in Sources */,
-				EAB3569C243F573A00D750D6 /* XXAddAssetCell.m in Sources */,
 				EA309F2C236F21410098DE28 /* AFSecurityPolicy.m in Sources */,
+				EA3E594024441D950080B98F /* XXWithdrawSpeedView.m in Sources */,
 				EA35A5072421FC7D00ADF621 /* XXImportPrivateKeyVC.m in Sources */,
 				7AC4D85F234C808F00F5E5F8 /* XXImageView.m in Sources */,
 				7AC4D7C6234C808F00F5E5F8 /* XXLabel.m in Sources */,
 				F30EAF6220D26536005ADD5C /* NSDate+Common.m in Sources */,
 				EA44259E2441C823008962E2 /* XXAccountCell.m in Sources */,
-				EAB3569D243F573A00D750D6 /* XXTransactionCell.m in Sources */,
+				EA3E591B24441D160080B98F /* XXAssetSearchHeaderView.m in Sources */,
 				EA30A031236F221A0098DE28 /* UIImageView+AFNetworking.m in Sources */,
 				EA309E00236F21400098DE28 /* AFURLResponseSerialization.m in Sources */,
 				EABD1B91241BB25900B1A03A /* pbkdf2.c in Sources */,
 				EA309E78236F21410098DE28 /* AFURLSessionManager.m in Sources */,
 				EA04ABAF242D015B004403FF /* IQNSArray+Sort.m in Sources */,
-				EA04AD572436EE2F004403FF /* XXTokenModel.m in Sources */,
 				EABD1B9E241BB25900B1A03A /* LightClientProvider.m in Sources */,
 				EABD1BA7241BB25900B1A03A /* RLPSerialization.m in Sources */,
 				EABD1B80241BB25900B1A03A /* bip39.c in Sources */,
+				EA3E591D24441D160080B98F /* XXAssetModel.m in Sources */,
 				EA309FF5236F221A0098DE28 /* AFNetworkActivityIndicatorManager.m in Sources */,
 				EABD1B9C241BB25900B1A03A /* InfuraProvider.m in Sources */,
-				EAB356AC243F573A00D750D6 /* XXTransferVC.m in Sources */,
 				EABBC08C24232DCD00B7E412 /* NSData+Base64.m in Sources */,
-				EAB356AB243F573A00D750D6 /* XXAssetVC.m in Sources */,
 				F30EAF5D20D26536005ADD5C /* UIImage+helper.m in Sources */,
 				EA309E3C236F21410098DE28 /* AFHTTPSessionManager.m in Sources */,
 				EA15E97A2417E24100A3E14A /* XXScreenShotAlert.m in Sources */,
+				EA3E58F824441C7B0080B98F /* XXTransactionCell.m in Sources */,
+				EA3E592124441D160080B98F /* XXAssetVC.m in Sources */,
 				EA04ABB3242D015B004403FF /* IQUIViewController+Additions.m in Sources */,
 				EABD1BAD241BB25900B1A03A /* Address.m in Sources */,
 				EA35A5102422426900ADF621 /* Alert.m in Sources */,
@@ -1738,6 +1815,7 @@
 				EABD1BB1241DFC3E00B1A03A /* XXTextFieldView.m in Sources */,
 				EABD1B8C241BB25900B1A03A /* aestab.c in Sources */,
 				EA15E95724163FDC00A3E14A /* XXStartWalletVC.m in Sources */,
+				EA3E58D324441B980080B98F /* XXSymbolDetailHeaderView.m in Sources */,
 				EABD1B93241BB25900B1A03A /* scrypt_sha256.c in Sources */,
 				EA04ABAE242D015B004403FF /* IQKeyboardManager.m in Sources */,
 				EABD1BA9241BB25900B1A03A /* RegEx.m in Sources */,
@@ -1753,58 +1831,58 @@
 				EAE40482211C34A000FFD028 /* LocalizeHelper.m in Sources */,
 				EA4425AB244211D1008962E2 /* RatesManager.m in Sources */,
 				EABD1BB7241E2EAA00B1A03A /* XXRepeatPasswordVC.m in Sources */,
+				EA3E591E24441D160080B98F /* XXAccountModel.m in Sources */,
 				EA4425A22441C823008962E2 /* XXPasswordView.m in Sources */,
 				EAB35664243DFD0900D750D6 /* XXAssetRequest.m in Sources */,
 				EABD1B90241BB25900B1A03A /* ecdsa.c in Sources */,
-				EAB3569A243F573A00D750D6 /* XXTransactionModel.m in Sources */,
 				EABD1BA6241BB25900B1A03A /* SecureData.m in Sources */,
 				EABD1B8F241BB25900B1A03A /* base58.c in Sources */,
-				EAB356A0243F573A00D750D6 /* XXWithdrawAmountReceivedView.m in Sources */,
 				EA4425A12441C823008962E2 /* XXUserHeaderView.m in Sources */,
+				EA3E58F524441C7B0080B98F /* XXDepositCoinVC.m in Sources */,
 				7AC4D82C234C808F00F5E5F8 /* XXBlurView.m in Sources */,
+				EA3E58D024441B980080B98F /* XXSymbolDetailFooterView.m in Sources */,
 				EA4425A32441C823008962E2 /* XXAddressView.m in Sources */,
 				EABD1B9B241BB25900B1A03A /* ApiProvider.m in Sources */,
+				EA3E58F924441C7B0080B98F /* XXTransactionModel.m in Sources */,
 				F30AC1B320CCC642000652BB /* main.m in Sources */,
 				EABD1B9D241BB25900B1A03A /* EtherscanProvider.m in Sources */,
-				EAB35699243F573A00D750D6 /* XXAssetModel.m in Sources */,
 				EABD1B8D241BB25900B1A03A /* bip32.c in Sources */,
 				EA04AD4F24362964004403FF /* NetAPIClient.m in Sources */,
 				EA309FB9236F22190098DE28 /* UIRefreshControl+AFNetworking.m in Sources */,
-				EAB356AA243F573A00D750D6 /* XXDepositCoinVC.m in Sources */,
 				EABD1BAE241BB25900B1A03A /* Payment.m in Sources */,
 				EABD1BA4241BB25900B1A03A /* BigNumber.m in Sources */,
 				EA04ABB1242D015B004403FF /* IQUIScrollView+Additions.m in Sources */,
 				EABD1B9F241BB25900B1A03A /* FallbackProvider.m in Sources */,
-				EA3E586F244338C20080B98F /* XXMainSymbolHeaderView.m in Sources */,
 				EAB356312438369200D750D6 /* FMDatabaseAdditions.m in Sources */,
-				EAB356AD243F573A00D750D6 /* XXAddNewAssetVC.m in Sources */,
 				EAB356302438369200D750D6 /* FMDatabaseQueue.m in Sources */,
+				EA3E594224441D950080B98F /* XXWithdrawChainVC.m in Sources */,
 				EA20EAC524261661004EBD7F /* XXSecurityAlertView.m in Sources */,
+				EA3E593924441D950080B98F /* XXWithdrawFeeView.m in Sources */,
+				EA3E58D224441B980080B98F /* XXMainSymbolHeaderView.m in Sources */,
 				7A13E5222121B86D00B2B529 /* XCQrCodeTool.m in Sources */,
+				EA3E592224441D160080B98F /* XXAddNewAssetVC.m in Sources */,
 				EA15E9732417CD4B00A3E14A /* XXCreateWalletVC.m in Sources */,
 				7AC4D72D234C808E00F5E5F8 /* XXTextField.m in Sources */,
+				EA3E593A24441D950080B98F /* XXWithdrawAddressView.m in Sources */,
+				EA3E593B24441D950080B98F /* XXWithdrawAmountReceivedView.m in Sources */,
 				EABD1B92241BB25900B1A03A /* mpi.c in Sources */,
 				EA04ABAD242D015B004403FF /* IQPreviousNextView.m in Sources */,
 				EAB356332438369200D750D6 /* FMDatabasePool.m in Sources */,
 				EA04AD3E2434D6CB004403FF /* XXTransactionRequest.m in Sources */,
-				EAB356A8243F573A00D750D6 /* XXSymbolDetailHeaderView.m in Sources */,
-				EA44258324408596008962E2 /* XXAccountModel.m in Sources */,
-				EAB3569F243F573A00D750D6 /* XXWithdrawAddressView.m in Sources */,
 				EA309EF0236F21410098DE28 /* AFNetworkReachabilityManager.m in Sources */,
-				EAB356E4243F893500D750D6 /* XXTransferDetailVC.m in Sources */,
 				EA20EAC22425FBC8004EBD7F /* XXServiceAgreementVC.m in Sources */,
 				EABD1B8A241BB25900B1A03A /* ripemd160.c in Sources */,
 				EAC68719214F931200701874 /* NullSafe.m in Sources */,
 				F30EAF6320D26536005ADD5C /* NSDate+Helper.m in Sources */,
 				7A3298452320EE9900196336 /* NSMutableArray+Safe.m in Sources */,
 				F30EAF5720D26536005ADD5C /* colorModel.m in Sources */,
+				EA3E58D124441B980080B98F /* XXTokenModel.m in Sources */,
 				EA04ABAA242D015B004403FF /* IQTitleBarButtonItem.m in Sources */,
 				EA309F7D236F22190098DE28 /* UIProgressView+AFNetworking.m in Sources */,
 				EA30A06D236F221A0098DE28 /* UIButton+AFNetworking.m in Sources */,
 				F30EAF6120D26536005ADD5C /* UIView+VJQ.m in Sources */,
 				EA30A15D236F221B0098DE28 /* AFImageDownloader.m in Sources */,
 				F30EAF5B20D26536005ADD5C /* UITableViewCell+Extension.m in Sources */,
-				EAB356A9243F573A00D750D6 /* XXSymbolDetailVC.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -48,4 +48,6 @@
 #define kFont(value) [UIFont fontWithName:@"Roboto-Regular" size:value]
 #define kFontBold(value) [UIFont fontWithName:@"Roboto-Bold" size:value]
 
+#define kNumberFont(value) [UIFont fontWithName:@"Lato-Regular" size:value]
+#define kNumberFontBold(value) [UIFont fontWithName:@"Roboto-Bold" size:value]
 #endif /* XXFontHeader_h */

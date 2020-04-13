@@ -12,6 +12,7 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
+/// token 数据库
 @interface XXSqliteManager : NSObject
 
 @property (nonatomic, strong) FMDatabase *myFmdb;

@@ -79,7 +79,7 @@ static XXSqliteManager *_sqliteManager;
     if (IsEmpty(KUser.currentAccount.symbols)) {
         return @[];
     } else {
-        NSArray *symbols = [KUser.currentAccount.symbols componentsSeparatedByString:@" "];
+        NSArray *symbols = [KUser.currentAccount.symbols componentsSeparatedByString:@","];
         NSMutableArray *resultArr = [NSMutableArray array];
         while ([set next]) {
             XXTokenModel *model = [[XXTokenModel alloc] init];
@@ -178,7 +178,7 @@ static XXSqliteManager *_sqliteManager;
     if (IsEmpty(model.symbols)) {
         [self updateAccountColumn:@"symbols" value:symbol];
     } else {
-        NSString *symbols = [NSString stringWithFormat:@"%@ %@",model.symbols,symbol];
+        NSString *symbols = [NSString stringWithFormat:@"%@,%@",model.symbols,symbol];
         [self updateAccountColumn:@"symbols" value:symbols];
     }
 }
@@ -186,11 +186,11 @@ static XXSqliteManager *_sqliteManager;
 - (void)deleteSymbol:(NSString *)symbol {
     XXAccountModel *model = [self accountByAddress:KUser.address];
     if (!IsEmpty(model.symbols)) {
-        NSMutableArray *symbols = [NSMutableArray arrayWithArray:[model.symbols componentsSeparatedByString:@" "]];
+        NSMutableArray *symbols = [NSMutableArray arrayWithArray:[model.symbols componentsSeparatedByString:@","]];
         if ([symbols containsObject:symbol]) {
             [symbols removeObject:symbol];
         }
-        NSString *result = [symbols componentsJoinedByString:@" "];
+        NSString *result = [symbols componentsJoinedByString:@","];
         [self updateAccountColumn:@"symbols" value:result];
     }
 }

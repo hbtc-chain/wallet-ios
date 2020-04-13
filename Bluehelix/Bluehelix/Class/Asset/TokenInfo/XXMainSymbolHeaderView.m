@@ -112,14 +112,14 @@
 
 - (XXLabel *)amountLabel {
     if (!_amountLabel) {
-        _amountLabel = [XXLabel labelWithFrame:CGRectMake(K375(16), CGRectGetMaxY(self.tipLabel.frame), self.width - K375(32), 40) font:kFont(26) textColor:kDark100];
+        _amountLabel = [XXLabel labelWithFrame:CGRectMake(K375(16), CGRectGetMaxY(self.tipLabel.frame), self.width - K375(32), 40) font:kNumberFont(26) textColor:kDark100];
     }
     return _amountLabel;
 }
 
 - (XXLabel *)assetLabel {
     if (!_assetLabel) {
-        _assetLabel = [XXLabel labelWithFrame:CGRectMake(K375(16), CGRectGetMaxY(self.amountLabel.frame), self.width - K375(32), 16) font:kFont15 textColor:kDark50];
+        _assetLabel = [XXLabel labelWithFrame:CGRectMake(K375(16), CGRectGetMaxY(self.amountLabel.frame), self.width - K375(32), 16) font:kNumberFont(15) textColor:kDark50];
     }
     return _assetLabel;
 }
@@ -154,7 +154,7 @@
 
 - (XXLabel *)valueLabel1 {
     if (!_valueLabel1) {
-        _valueLabel1 = [XXLabel labelWithFrame:CGRectMake(CGRectGetMaxX(self.titleLabel1.frame), 128, self.backView.width - CGRectGetMaxX(self.titleLabel1.frame) - K375(16), 20) font:kFont13 textColor:kDark100];
+        _valueLabel1 = [XXLabel labelWithFrame:CGRectMake(CGRectGetMaxX(self.titleLabel1.frame), 128, self.backView.width - CGRectGetMaxX(self.titleLabel1.frame) - K375(16), 20) font:kNumberFont(13) textColor:kDark100];
         _valueLabel1.textAlignment = NSTextAlignmentRight;
     }
     return _valueLabel1;
@@ -162,7 +162,7 @@
 
 - (XXLabel *)valueLabel2 {
     if (!_valueLabel2) {
-        _valueLabel2 = [XXLabel labelWithFrame:CGRectMake(CGRectGetMaxX(self.titleLabel2.frame), CGRectGetMaxY(self.valueLabel1.frame) + 5, self.backView.width - CGRectGetMaxX(self.titleLabel2.frame) - K375(16), 20) font:kFont13 textColor:kDark100];
+        _valueLabel2 = [XXLabel labelWithFrame:CGRectMake(CGRectGetMaxX(self.titleLabel2.frame), CGRectGetMaxY(self.valueLabel1.frame) + 5, self.backView.width - CGRectGetMaxX(self.titleLabel2.frame) - K375(16), 20) font:kNumberFont(13) textColor:kDark100];
         _valueLabel2.textAlignment = NSTextAlignmentRight;
     }
     return _valueLabel2;
@@ -170,7 +170,7 @@
 
 - (XXLabel *)valueLabel3 {
     if (!_valueLabel3) {
-        _valueLabel3 = [XXLabel labelWithFrame:CGRectMake(CGRectGetMaxX(self.titleLabel3.frame), CGRectGetMaxY(self.valueLabel2.frame) + 5, self.backView.width - CGRectGetMaxX(self.titleLabel3.frame) - K375(16), 20) font:kFont13 textColor:kDark100];
+        _valueLabel3 = [XXLabel labelWithFrame:CGRectMake(CGRectGetMaxX(self.titleLabel3.frame), CGRectGetMaxY(self.valueLabel2.frame) + 5, self.backView.width - CGRectGetMaxX(self.titleLabel3.frame) - K375(16), 20) font:kNumberFont(13) textColor:kDark100];
         _valueLabel3.textAlignment = NSTextAlignmentRight;
     }
     return _valueLabel3;
@@ -178,7 +178,7 @@
 
 - (XXLabel *)valueLabel4 {
     if (!_valueLabel4) {
-        _valueLabel4 = [XXLabel labelWithFrame:CGRectMake(CGRectGetMaxX(self.titleLabel4.frame), CGRectGetMaxY(self.valueLabel3.frame) + 5, self.backView.width - CGRectGetMaxX(self.titleLabel4.frame) - K375(16), 20) font:kFont13 textColor:kDark100];
+        _valueLabel4 = [XXLabel labelWithFrame:CGRectMake(CGRectGetMaxX(self.titleLabel4.frame), CGRectGetMaxY(self.valueLabel3.frame) + 5, self.backView.width - CGRectGetMaxX(self.titleLabel4.frame) - K375(16), 20) font:kNumberFont(13) textColor:kDark100];
         _valueLabel4.textAlignment = NSTextAlignmentRight;
     }
     return _valueLabel4;

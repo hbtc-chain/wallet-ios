@@ -9,11 +9,14 @@
 #import "XXAddNewAssetVC.h"
 #import "XXTokenModel.h"
 #import "XXAddAssetCell.h"
+#import "XXAssetSearchHeaderView.h"
 
 @interface XXAddNewAssetVC () <UITableViewDelegate,UITableViewDataSource>
 
 @property (nonatomic, strong) UITableView *tableView;
 @property (nonatomic, strong) NSArray *tokenList; //资产币列表
+@property (nonatomic, strong) XXAssetSearchHeaderView *headerView;
+@property (nonatomic, strong) NSMutableArray *showArray; //展示的列表
 
 @end
 
@@ -27,10 +30,10 @@
 }
 
 - (void)setupUI {
-    self.titleLabel.text = @"添加新资产";
+    self.titleLabel.text = LocalizedString(@"AddNewAsset");
     [self.view addSubview:self.tableView];
     self.tableView.separatorColor = KLine_Color;
-//    self.tableView.tableHeaderView = self.headerView;
+    self.tableView.tableHeaderView = self.headerView;
 }
 
 /// 请求币列表
@@ -40,21 +43,42 @@
         if (code == 0) {
             NSLog(@"%@",data);
             weakSelf.tokenList = [XXTokenModel mj_objectArrayWithKeyValuesArray:data[@"tokens"]];
+            weakSelf.showArray = [NSMutableArray arrayWithArray:weakSelf.tokenList];
             [[XXSqliteManager sharedSqlite] insertTokens:weakSelf.tokenList];
             [weakSelf.tableView reloadData];
         } else {
             Alert *alert = [[Alert alloc] initWithTitle:msg duration:kAlertDuration completion:^{
-                       }];
+            }];
             [alert showAlert];
         }
     }];
+}
+
+- (void)reloadData {
+    NSString *searchStr = self.headerView.searchTextField.text;
+    
+    if (searchStr.length) {
+        [self.showArray removeAllObjects];
+        for (XXTokenModel *model in self.tokenList) {
+            if ([model.symbol containsString:searchStr]) {
+                [self.showArray addObject:model];
+            }
+        }
+    } else {
+        self.showArray = [NSMutableArray arrayWithArray:self.tokenList];
+    }
+    [self.tableView reloadData];
+}
+
+- (void)textFieldValueChange:(UITextField *)textField {
+    [self reloadData];
 }
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
     return 1;
 }
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return self.tokenList.count;
+    return self.showArray.count;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
@@ -73,7 +97,7 @@
     if (!cell) {
         cell = [[XXAddAssetCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"XXAddAssetCell"];
     }
-    XXTokenModel *model = self.tokenList[indexPath.row];
+    XXTokenModel *model = self.showArray[indexPath.row];
     [cell configData:model];
     cell.backgroundColor = kWhite100;
     return cell;
@@ -99,11 +123,12 @@
     return _tableView;
 }
 
-//- (UIView  *)headerView {
-//    if (!_headerView) {
-//        _headerView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, kScreen_Width, K375(312))];
-//    }
-//    return _headerView;
-//}
+- (XXAssetSearchHeaderView  *)headerView {
+    if (!_headerView) {
+        _headerView = [[XXAssetSearchHeaderView alloc] initWithFrame:CGRectMake(0, 0, kScreen_Width, K375(32))];
+        [_headerView.searchTextField addTarget:self action:@selector(textFieldValueChange:) forControlEvents:UIControlEventEditingChanged];
+    }
+    return _headerView;
+}
 
 @end

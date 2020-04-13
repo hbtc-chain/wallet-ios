@@ -133,7 +133,7 @@
 
 - (XXLabel *)totalAssetLabel {
     if (!_totalAssetLabel) {
-        _totalAssetLabel = [XXLabel labelWithFrame:CGRectMake(K375(20), CGRectGetMaxY(self.assetNameLabel.frame) + K375(10), kScreen_Width - 72, 32) font:kFontBold(30) textColor:kDark100];
+        _totalAssetLabel = [XXLabel labelWithFrame:CGRectMake(K375(20), CGRectGetMaxY(self.assetNameLabel.frame) + K375(10), kScreen_Width - 72, 32) font:kNumberFontBold(30) textColor:kDark100];
     }
     return _totalAssetLabel;
 }

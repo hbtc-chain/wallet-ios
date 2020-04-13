@@ -13,6 +13,7 @@
 /** 搜索图标 */
 @property (strong, nonatomic) UIImageView *searchIconImageView;
 
+
 /** 分割线 */
 @property (strong, nonatomic) UIView *lineView;
 
@@ -74,6 +75,7 @@
         _searchTextField.placeholder = LocalizedString(@"SearchPairs");
         _searchTextField.placeholderColor = kTipColor;
         _searchTextField.placeholderFont = kFont(15);
+//        _searchTextField.backgroundColor = kFieldBackColor;
     }
     return _searchTextField;
 }

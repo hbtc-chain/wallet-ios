@@ -55,7 +55,7 @@
     BOOL isOn = NO;
     
     if (!IsEmpty(KUser.currentAccount.symbols)) {
-        NSArray *symbols = [KUser.currentAccount.symbols componentsSeparatedByString:@" "];
+        NSArray *symbols = [KUser.currentAccount.symbols componentsSeparatedByString:@","];
        isOn = [symbols containsObject:model.symbol];
     }
     [self.mySwitch setOn:isOn];

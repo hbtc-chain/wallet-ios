@@ -15,8 +15,6 @@
     self = [super initWithFrame:frame];
     if (self) {
         
-        // 高度 92
-        
         self.backgroundColor = kWhite100;
         
         [self addSubview:self.nameLabel];
