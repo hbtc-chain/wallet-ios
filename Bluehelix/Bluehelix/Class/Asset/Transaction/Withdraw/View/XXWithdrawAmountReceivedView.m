@@ -14,9 +14,7 @@
 {
     self = [super initWithFrame:frame];
     if (self) {
-        
-        // 高度 92
-        
+                
         self.backgroundColor = kWhite100;
         
         [self addSubview:self.nameLabel];
@@ -42,7 +40,7 @@
 /** 名称标签 */
 - (XXLabel *)nameLabel {
     if (_nameLabel == nil) {
-        _nameLabel = [XXLabel labelWithFrame:CGRectMake(KSpacing, 10, kScreen_Width - KSpacing*2, 24) font:kFontBold14 textColor:kDark80];
+        _nameLabel = [XXLabel labelWithFrame:CGRectMake(KSpacing, 10, kScreen_Width - KSpacing*2, 24) font:kFontBold14 textColor:kGray];
         _nameLabel.text = LocalizedString(@"ReceiveAmount");
     }
     return _nameLabel;

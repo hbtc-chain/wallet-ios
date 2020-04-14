@@ -63,7 +63,7 @@
 - (void)setTokenModel:(XXTokenModel *)tokenModel {
     _tokenModel = tokenModel;
     self.amountLabel.text = tokenModel.amount;
-    self.assetLabel.text = [[RatesManager shareRatesManager] getTwoRatesWithToken:tokenModel.symbol priceValue:tokenModel.amount.doubleValue];
+    self.assetLabel.text = [[RatesManager shareRatesManager] getRatesWithToken:tokenModel.symbol priceValue:tokenModel.amount.doubleValue];
     self.valueLabel1.text = tokenModel.amount;
 }
 
@@ -104,7 +104,7 @@
 
 - (XXLabel *)tipLabel {
     if (!_tipLabel) {
-        _tipLabel = [XXLabel labelWithFrame:CGRectMake(K375(16), K375(16), self.width - K375(32), 16) font:kFont13 textColor:kDark50];
+        _tipLabel = [XXLabel labelWithFrame:CGRectMake(K375(16), K375(16), self.backView.width - K375(32), 16) font:kFont13 textColor:kDark50];
         _tipLabel.text = LocalizedString(@"HoldAsset");
     }
     return _tipLabel;
@@ -112,21 +112,21 @@
 
 - (XXLabel *)amountLabel {
     if (!_amountLabel) {
-        _amountLabel = [XXLabel labelWithFrame:CGRectMake(K375(16), CGRectGetMaxY(self.tipLabel.frame), self.width - K375(32), 40) font:kNumberFont(26) textColor:kDark100];
+        _amountLabel = [XXLabel labelWithFrame:CGRectMake(K375(16), CGRectGetMaxY(self.tipLabel.frame), self.backView.width - K375(32), 40) font:kNumberFont(26) textColor:kDark100];
     }
     return _amountLabel;
 }
 
 - (XXLabel *)assetLabel {
     if (!_assetLabel) {
-        _assetLabel = [XXLabel labelWithFrame:CGRectMake(K375(16), CGRectGetMaxY(self.amountLabel.frame), self.width - K375(32), 16) font:kNumberFont(15) textColor:kDark50];
+        _assetLabel = [XXLabel labelWithFrame:CGRectMake(K375(16), CGRectGetMaxY(self.amountLabel.frame), self.backView.width - K375(32), 16) font:kNumberFont(15) textColor:kDark50];
     }
     return _assetLabel;
 }
 
 - (XXLabel *)titleLabel1 {
     if (!_titleLabel1) {
-        _titleLabel1 = [XXLabel labelWithFrame:CGRectMake(K375(16), 128, 150, 20) text:LocalizedString(@"CurrentlyAvalible") font:kFont13 textColor:kTipColor];
+        _titleLabel1 = [XXLabel labelWithFrame:CGRectMake(K375(16), 128, 150, 20) text:LocalizedString(@"CurrentlyAvailable") font:kFont13 textColor:kTipColor];
     }
     return _titleLabel1;
 }

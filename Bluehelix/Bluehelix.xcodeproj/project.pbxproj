@@ -955,12 +955,12 @@
 				EA3E58B324441B980080B98F /* XXTokenModel.m */,
 				EA3E58B224441B980080B98F /* XXSymbolDetailVC.h */,
 				EA3E58AD24441B980080B98F /* XXSymbolDetailVC.m */,
-				EA3E58AF24441B980080B98F /* XXSymbolDetailFooterView.m */,
-				EA3E58B124441B980080B98F /* XXSymbolDetailHeaderView.h */,
 				EA3E58B024441B980080B98F /* XXMainSymbolHeaderView.h */,
 				EA3E58B424441B980080B98F /* XXMainSymbolHeaderView.m */,
-				EA3E58B524441B980080B98F /* XXSymbolDetailFooterView.h */,
+				EA3E58B124441B980080B98F /* XXSymbolDetailHeaderView.h */,
 				EA3E58B624441B980080B98F /* XXSymbolDetailHeaderView.m */,
+				EA3E58B524441B980080B98F /* XXSymbolDetailFooterView.h */,
+				EA3E58AF24441B980080B98F /* XXSymbolDetailFooterView.m */,
 			);
 			path = TokenInfo;
 			sourceTree = "<group>";
@@ -1015,8 +1015,8 @@
 			isa = PBXGroup;
 			children = (
 				EA3E590C24441D160080B98F /* XXAssetModel.h */,
-				EA3E590D24441D160080B98F /* XXAccountModel.h */,
 				EA3E590E24441D160080B98F /* XXAssetModel.m */,
+				EA3E590D24441D160080B98F /* XXAccountModel.h */,
 				EA3E590F24441D160080B98F /* XXAccountModel.m */,
 			);
 			path = Model;

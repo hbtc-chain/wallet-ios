@@ -46,6 +46,8 @@
 @property (nonatomic, strong) XXLabel *timeLabel;
 @property (nonatomic, strong) XXLabel *amountLabel;
 @property (nonatomic, strong) UIView *lineView;
+@property (nonatomic, strong) XXLabel *stateLabel;
+
 @end
 
 @implementation XXTransactionCell
@@ -68,6 +70,7 @@
 
 - (void)setupUI {
     [self.contentView addSubview:self.typeLabel];
+    [self.contentView addSubview:self.stateLabel];
     [self.contentView addSubview:self.timeLabel];
     [self.contentView addSubview:self.amountLabel];
     [self.contentView addSubview:self.lineView];
@@ -78,14 +81,36 @@
     NSDictionary *activity = [dic[@"activities"] firstObject];
     XXTransactionModel *model = [[XXTransactionModel alloc] initwithActivity:activity];
     self.typeLabel.text = model.type;
+    self.typeLabel.frame = CGRectMake(K375(24), 20, [NSString widthWithText:model.type font:kFontBold(17)], 24);
     self.amountLabel.text = model.amount;
+    
+    if ([dic[@"success"] intValue]) {
+        self.stateLabel.text = LocalizedString(@"Success");
+        self.stateLabel.textColor = KRGBA(70, 206, 95, 100);
+        self.stateLabel.backgroundColor = KRGBA(212, 245, 220, 100);
+        self.stateLabel.frame = CGRectMake(CGRectGetMaxX(self.typeLabel.frame) +5, 24, [NSString widthWithText:LocalizedString(@"Success") font:kFont10] + 4, 16);
+    } else {
+        self.stateLabel.text = LocalizedString(@"Failed");
+        self.stateLabel.textColor = KRGBA(91, 109, 132, 100);
+        self.stateLabel.backgroundColor = KRGBA(235, 239, 246, 100);
+        self.stateLabel.frame = CGRectMake(CGRectGetMaxX(self.typeLabel.frame) +5, 24, [NSString widthWithText:LocalizedString(@"Failed") font:kFont10] + 4, 16);
+    }
 }
 
 - (XXLabel *)typeLabel {
     if (_typeLabel == nil) {
-        _typeLabel = [XXLabel labelWithFrame:CGRectMake(K375(24), 20, 100, 24) text:@"" font:kFontBold(17) textColor:kDark100];
+        _typeLabel = [XXLabel labelWithFrame:CGRectMake(K375(24), 20, 0, 24) text:@"" font:kFontBold(17) textColor:kDark100];
     }
     return _typeLabel;
+}
+
+- (XXLabel *)stateLabel {
+    if (_stateLabel == nil) {
+        _stateLabel = [[XXLabel alloc] init];
+        _stateLabel.font = kFont(10);
+        _stateLabel.textAlignment = NSTextAlignmentCenter;
+    }
+    return _stateLabel;
 }
 
 - (XXLabel *)timeLabel {

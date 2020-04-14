@@ -51,6 +51,7 @@
 - (XXWithdrawFeeView *)feeView {
     if (_feeView == nil) {
         _feeView = [[XXWithdrawFeeView alloc] initWithFrame:CGRectMake(0, 20, kScreen_Width, 96)];
+        _feeView.textField.placeholder = LocalizedString(@"PleaseEnterFee");
     }
     return _feeView;
 }

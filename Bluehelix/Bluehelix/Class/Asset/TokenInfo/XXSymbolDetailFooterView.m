@@ -39,14 +39,14 @@
     NSArray *titleArr;
     if ([self.tokenModel.symbol isEqualToString:kMainToken]) {
         imageArr = @[@"receiveMoney",@"payMoney",@"withdrawMoney",@"inMoney"];
-        titleArr = @[LocalizedString(@"ReceiveMoney"),LocalizedString(@"PayMoney"),LocalizedString(@"WithdrawMoney"),LocalizedString(@"InMoney")];
+        titleArr = @[LocalizedString(@"ReceiveMoney"),LocalizedString(@"Transfer"),LocalizedString(@"WithdrawMoney"),LocalizedString(@"InMoney")];
     } else {
         if (self.tokenModel.is_native) {
             imageArr = @[@"receiveMoney",@"payMoney"];
-            titleArr = @[LocalizedString(@"ReceiveMoney"),LocalizedString(@"PayMoney")];
+            titleArr = @[LocalizedString(@"ReceiveMoney"),LocalizedString(@"Transfer")];
         } else {
             imageArr = @[@"receiveMoney",@"payMoney",@"chainReceiveMoney",@"chainPayMoney"];
-            titleArr = @[LocalizedString(@"ReceiveMoney"),LocalizedString(@"PayMoney"),LocalizedString(@"ChainReceiveMoney"),LocalizedString(@"ChainPayMoney")];
+            titleArr = @[LocalizedString(@"ReceiveMoney"),LocalizedString(@"Transfer"),LocalizedString(@"ChainReceiveMoney"),LocalizedString(@"ChainPayMoney")];
         }
     }
     CGFloat btnWidth = (kScreen_Width - K375(15))/titleArr.count;

@@ -79,7 +79,7 @@
 
 - (XXLabel *)tipLabel {
     if (!_tipLabel) {
-        _tipLabel = [XXLabel labelWithFrame:CGRectMake(K375(16), K375(16), self.width - K375(32), 16) font:kFont13 textColor:kDark50];
+        _tipLabel = [XXLabel labelWithFrame:CGRectMake(K375(16), K375(16), self.backView.width - K375(32), 16) font:kFont13 textColor:kDark50];
         _tipLabel.text = LocalizedString(@"HoldAsset");
     }
     return _tipLabel;
@@ -87,14 +87,14 @@
 
 - (XXLabel *)amountLabel {
     if (!_amountLabel) {
-        _amountLabel = [XXLabel labelWithFrame:CGRectMake(K375(16), CGRectGetMaxY(self.tipLabel.frame), self.width - K375(32), 40) font:kFont(26) textColor:kDark100];
+        _amountLabel = [XXLabel labelWithFrame:CGRectMake(K375(16), CGRectGetMaxY(self.tipLabel.frame), self.backView.width - K375(32), 40) font:kFont(26) textColor:kDark100];
     }
     return _amountLabel;
 }
 
 - (XXLabel *)assetLabel {
     if (!_assetLabel) {
-        _assetLabel = [XXLabel labelWithFrame:CGRectMake(K375(16), CGRectGetMaxY(self.amountLabel.frame), self.width - K375(32), 16) font:kFont15 textColor:kDark50];
+        _assetLabel = [XXLabel labelWithFrame:CGRectMake(K375(16), CGRectGetMaxY(self.amountLabel.frame), self.backView.width - K375(32), 16) font:kFont15 textColor:kDark50];
     }
     return _assetLabel;
 }

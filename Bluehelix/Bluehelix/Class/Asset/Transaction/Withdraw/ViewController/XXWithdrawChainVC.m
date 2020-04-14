@@ -11,11 +11,12 @@
 #import "XXTransactionModel.h"
 #import "XXKeyGenRequest.h"
 #import "XXTokenModel.h"
+#import "XXPasswordView.h"
 
 @interface XXWithdrawChainVC ()
 
-/** 提币视图 */
-@property (strong, nonatomic) XXWithdrawChainView *withdrawView;
+/** 跨链地址视图 */
+@property (strong, nonatomic) XXWithdrawChainView *chainView;
 
 /** 提币按钮 */
 @property (strong, nonatomic) XXButton *withdrawButton;
@@ -36,22 +37,22 @@
     
     self.titleLabel.text = LocalizedString(@"WithdrawChainAddress");
     
-    [self.view addSubview:self.withdrawView];
-    
+    [self.view addSubview:self.chainView];
+    self.chainView.feeView.unitLabel.text = [kMainToken uppercaseString];
     [self.view addSubview:self.withdrawButton];
 }
 
 #pragma mark - 2. 提币按钮点击事件
 - (void)withdrawButtonClick {
-    if (self.withdrawView.feeView.textField.text.length <= 0) {
+    if (self.chainView.feeView.textField.text.length <= 0) {
         Alert *alert = [[Alert alloc] initWithTitle:@"请输入手续费" duration:kAlertDuration completion:^{
                    }];
         [alert showAlert];
         return;
     }
     
-    NSDecimalNumber *feeAmountDecimal = [NSDecimalNumber decimalNumberWithString:self.withdrawView.feeView.textField.text];
-    NSDecimalNumber *gasPriceDecimal = [NSDecimalNumber decimalNumberWithString:[NSString stringWithFormat:@"%f",self.withdrawView.speedView.slider.value]];
+    NSDecimalNumber *feeAmountDecimal = [NSDecimalNumber decimalNumberWithString:self.chainView.feeView.textField.text];
+    NSDecimalNumber *gasPriceDecimal = [NSDecimalNumber decimalNumberWithString:[NSString stringWithFormat:@"%f",self.chainView.speedView.slider.value]];
     NSString *feeAmount = [[feeAmountDecimal decimalNumberByMultiplyingBy:kPrecisionDecimal] stringValue];
     NSString *gas = [[[feeAmountDecimal decimalNumberByDividingBy:gasPriceDecimal] decimalNumberByDividingBy:kPrecisionDecimal_U] stringValue];
 
@@ -62,11 +63,11 @@
 
 #pragma mark - || 懒加载
 /** 提币视图 */
-- (XXWithdrawChainView *)withdrawView {
-    if (_withdrawView == nil) {
-        _withdrawView = [[XXWithdrawChainView alloc] initWithFrame:CGRectMake(0, kNavHeight, kScreen_Width, kScreen_Height - kNavHeight - 90)];
+- (XXWithdrawChainView *)chainView {
+    if (_chainView == nil) {
+        _chainView = [[XXWithdrawChainView alloc] initWithFrame:CGRectMake(0, kNavHeight, kScreen_Width, kScreen_Height - kNavHeight - 90)];
     }
-    return _withdrawView;
+    return _chainView;
 }
 
 /** 提币按钮 */

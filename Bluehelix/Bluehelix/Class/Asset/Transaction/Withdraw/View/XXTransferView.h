@@ -8,8 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import "XXWithdrawAddressView.h"
-#import "XXWithdrawAmountView.h"
-#import "XXWithdrawAmountReceivedView.h"
+#import "XXTransferAmountView.h"
 #import "XXWithdrawFeeView.h"
 #import "XXWithdrawSpeedView.h"
 #import "XXWithdrawTipView.h"
@@ -25,10 +24,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (strong, nonatomic) XXWithdrawAddressView *addressView;
 
 /** 转账数量 */
-@property (strong, nonatomic) XXWithdrawAmountView *amountView;
-
-/** 到账数量 */
-@property (strong, nonatomic) XXWithdrawAmountReceivedView *receivedView;
+@property (strong, nonatomic) XXTransferAmountView *amountView;
 
 /** 手续费 */
 @property (strong, nonatomic) XXWithdrawFeeView *feeView;

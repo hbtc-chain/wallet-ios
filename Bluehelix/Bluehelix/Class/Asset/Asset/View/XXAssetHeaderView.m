@@ -48,7 +48,7 @@
     for (NSDictionary *dic in model.assets) {
         double rate = [self getRatesFromToken:dic[@"symbol"]];
         if (rate > 0) {
-            totalAsset += [dic[@"amount"] doubleValue] * rate/kPrecision;
+            totalAsset += [dic[@"amount"] doubleValue] * rate;
         }
     }
     self.totalAssetLabel.text = [NSString stringWithFormat:@"￥%.2f",totalAsset];

@@ -76,6 +76,8 @@
         _amountView = [[XXWithdrawAmountView alloc] initWithFrame:CGRectMake(0, CGRectGetMaxY(self.addressView.frame), kScreen_Width, 110)];
         _amountView.userInteractionEnabled = YES;
         _amountView.riskAssetLabel.userInteractionEnabled = YES;
+        _amountView.nameLabel.text = LocalizedString(@"WithdrawAmount");
+        _amountView.textField.placeholder = LocalizedString(@"PleaseEnterAmount");
         [_amountView.riskAssetLabel whenTapped:^{
             
         }];
@@ -95,6 +97,7 @@
 - (XXWithdrawFeeView *)feeView {
     if (_feeView == nil) {
         _feeView = [[XXWithdrawFeeView alloc] initWithFrame:CGRectMake(0, CGRectGetMaxY(self.receivedView.frame), kScreen_Width, 96)];
+        _feeView.textField.placeholder = LocalizedString(@"PleaseEnterFee");
     }
     return _feeView;
 }
@@ -103,6 +106,7 @@
 - (XXWithdrawSpeedView *)speedView {
     if (_speedView == nil) {
         _speedView = [[XXWithdrawSpeedView alloc] initWithFrame:CGRectMake(0, CGRectGetMaxY(self.feeView.frame), kScreen_Width, 72)];
+        _speedView.nameLabel.text = LocalizedString(@"CashWithdrawal");
 //        [_speedView.slider addTarget:self action:@selector(sliderValueChanged:) forControlEvents:UIControlEventValueChanged];
     }
     return _speedView;

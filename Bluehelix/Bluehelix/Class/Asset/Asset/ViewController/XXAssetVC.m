@@ -126,7 +126,7 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     XXSymbolDetailVC *detailVC = [[XXSymbolDetailVC alloc] init];
-    
+    detailVC.assetModel = self.assetModel;
     detailVC.tokenModel = self.showArray[indexPath.row];
     [self.navigationController pushViewController:detailVC animated:YES];
 }
@@ -153,9 +153,10 @@
     for (NSDictionary *dic in self.assetModel.assets) {
         for (XXTokenModel *token in self.showArray) {
             if ([dic[@"symbol"] isEqualToString:token.symbol]) {
-                double amount = [dic[@"amount"] doubleValue];
-               NSString *amountStr = [KDecimal decimalNumber:[NSString stringWithFormat:@"%f",(double)amount/kPrecision] RoundingMode:NSRoundDown scale:token.decimals];
-                token.amount = amountStr;
+//                double amount = [dic[@"amount"] doubleValue];
+//                NSString *amountStr = amount;
+//                [KDecimal decimalNumber:[NSString stringWithFormat:@"%f",(double)amount] RoundingMode:NSRoundDown scale:token.decimals];
+                token.amount = dic[@"amount"];
             }
         }
     }

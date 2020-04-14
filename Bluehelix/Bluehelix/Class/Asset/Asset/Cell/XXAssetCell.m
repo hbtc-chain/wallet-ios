@@ -78,7 +78,6 @@
             self.typeLabel.frame = CGRectMake(CGRectGetMaxX(self.coinNameLabel.frame) +5, 20, [NSString widthWithText:LocalizedString(@"NativeCoin") font:kFont10] + 4, 16);
         } else {
             self.typeLabel.text = LocalizedString(@"UnnativeCoin");
-            self.typeLabel.textColor = [UIColor colorWithHexString:@"#51D372"];
             self.typeLabel.textColor = KRGBA(91, 109, 132, 100);
             self.typeLabel.backgroundColor = KRGBA(235, 239, 246, 100);
             self.typeLabel.frame = CGRectMake(CGRectGetMaxX(self.coinNameLabel.frame) +5, 20, [NSString widthWithText:LocalizedString(@"UnnativeCoin") font:kFont10] + 4, 16);

@@ -34,9 +34,6 @@
     /** 提币数量 */
     [self.mainView addSubview:self.amountView];
 
-    /** 到账数量 */
-//    [self.mainView addSubview:self.receivedView];
-
     /** 手续费 */
     [self.mainView addSubview:self.feeView];
 
@@ -59,16 +56,19 @@
 - (XXWithdrawAddressView *)addressView {
     if (_addressView == nil) {
         _addressView = [[XXWithdrawAddressView alloc] initWithFrame:CGRectMake(0, 0, kScreen_Width, 96)];
+        _addressView.nameLabel.text = LocalizedString(@"TransferAddress");
     }
     return _addressView;
 }
 
-/** 提币数量 */
-- (XXWithdrawAmountView *)amountView {
+/** 转账数量 */
+- (XXTransferAmountView *)amountView {
     if (_amountView == nil) {
-        _amountView = [[XXWithdrawAmountView alloc] initWithFrame:CGRectMake(0, CGRectGetMaxY(self.addressView.frame), kScreen_Width, 110)];
+        _amountView = [[XXTransferAmountView alloc] initWithFrame:CGRectMake(0, CGRectGetMaxY(self.addressView.frame), kScreen_Width, 110)];
         _amountView.userInteractionEnabled = YES;
         _amountView.riskAssetLabel.userInteractionEnabled = YES;
+        _amountView.nameLabel.text = LocalizedString(@"TransferAmount");
+        _amountView.textField.placeholder = LocalizedString(@"PleaseEnterTransferAmount");
         [_amountView.riskAssetLabel whenTapped:^{
             
         }];
@@ -76,18 +76,12 @@
     return _amountView;
 }
 
-/** 到账数量 */
-- (XXWithdrawAmountReceivedView *)receivedView {
-    if (_receivedView == nil) {
-        _receivedView = [[XXWithdrawAmountReceivedView alloc] initWithFrame:CGRectMake(0, CGRectGetMaxY(self.amountView.frame), kScreen_Width, 96)];
-    }
-    return _receivedView;
-}
-
 /** 手续费 */
 - (XXWithdrawFeeView *)feeView {
     if (_feeView == nil) {
-        _feeView = [[XXWithdrawFeeView alloc] initWithFrame:CGRectMake(0, CGRectGetMaxY(self.receivedView.frame), kScreen_Width, 96)];
+        _feeView = [[XXWithdrawFeeView alloc] initWithFrame:CGRectMake(0, CGRectGetMaxY(self.amountView.frame), kScreen_Width, 96)];
+        _feeView.textField.placeholder = LocalizedString(@"PleaseEnterFee");
+        _feeView.unitLabel.text = [kMainToken uppercaseString];
     }
     return _feeView;
 }
@@ -96,6 +90,7 @@
 - (XXWithdrawSpeedView *)speedView {
     if (_speedView == nil) {
         _speedView = [[XXWithdrawSpeedView alloc] initWithFrame:CGRectMake(0, CGRectGetMaxY(self.feeView.frame), kScreen_Width, 72)];
+        _speedView.nameLabel.text = LocalizedString(@"TransferSpeed");
 //        [_speedView.slider addTarget:self action:@selector(sliderValueChanged:) forControlEvents:UIControlEventValueChanged];
     }
     return _speedView;

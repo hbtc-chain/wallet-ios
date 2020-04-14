@@ -104,6 +104,7 @@
 //提币
 "PleaseEnterAmountReceived" = "请输入到账数量";
 "PleaseEnterAmount" = "请输入提币数量";
+"PleaseEnterTransferAmount" = "请输入转账数量";
 "WithdrawAll" = "全部提币";
 "WithdrawAmount" = "提币数量";
 "ReceiveAmount"="到账数量";
@@ -115,6 +116,10 @@
 "CurrentlyAvailable" = "可用";
 "WithdrawChainAddress" = "生成跨链地址";
 "TransferAll" = "全部转账";
+"PleaseEnterFee" = "请输入手续费";
+"TransferAddress" = "转账地址";
+"TransferSpeed" = "交易加速";
+"TransferAmount" = "转账数量";
 
 //币种详情
 "ReceiveMoney" = "收款";
@@ -129,3 +134,5 @@
 "Bonded" = "委托中";
 "Unbonding" = "赎回中";
 "ClaimedReward" = "已收益";
+"Success" = "成功";
+"Failed" = "失败";

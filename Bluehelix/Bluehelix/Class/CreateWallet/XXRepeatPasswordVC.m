@@ -88,7 +88,7 @@
     }
 //    [dic setObject:@0 forKey:@"backupFlag"]; //是否备份助记词
     model.backupFlag = NO;
-    model.symbols = kMainToken;
+    model.symbols = [NSString stringWithFormat:@"btc,eth,tusdt,%@",kMainToken];
 //    [KUser addAccount:dic];
     [[XXSqliteManager sharedSqlite] insertAccount:model];
     

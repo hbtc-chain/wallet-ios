@@ -39,15 +39,6 @@ NS_ASSUME_NONNULL_BEGIN
 /** 提示语视图 */
 @property (strong, nonatomic) XXWithdrawTipView *tipView;
 
-/** 初始化资产模型 */
-//- (void)setupAssetModel:(XXAssetModel *)assetModel;
-
-///** 24小时可提现额度，已用额度，手续费*/
-//- (void)loadQuotaInfoData;
-//
-///** 验证是否参数是否可进行提币 */
-//- (BOOL)verificationParameters;
-
 @end
 
 NS_ASSUME_NONNULL_END
