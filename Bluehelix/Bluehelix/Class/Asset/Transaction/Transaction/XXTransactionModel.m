@@ -43,15 +43,32 @@
         model.type = LocalizedString(@"TransferDelegate");
     } else if ([type isEqualToString:kMsgKeyGen]) {
         model.type = LocalizedString(@"ChainAddress");
+    } else if ([type isEqualToString:kMsgDeposit]) {
+        model.type = LocalizedString(@"ChainDeposit");
+    } else if ([type isEqualToString:kMsgWithdrawal]) {
+        model.type = LocalizedString(@"ChainWithdrawal");
     } else {
         model.type = @"";
     }
     NSDictionary *value = dic[@"value"];
     model.fromAddress = value[@"from_address"];
     model.toAddress = value[@"to_address"];
-    NSArray *amounts = value[@"amount"];
-    NSDictionary *amount = [amounts firstObject];
-    NSString *amountString = amount[@"amount"];
+    NSString *amountString;
+    if ([value[@"amount"] isKindOfClass:[NSArray class]]) {
+        NSArray *amounts = value[@"amount"];
+        NSDictionary *amount = [amounts firstObject];
+        amountString = amount[@"amount"];
+    }
+    if ([value[@"amount"] isKindOfClass:[NSString class]]) {
+        amountString = value[@"amount"];
+    }
+    if ([value[@"amount"] isKindOfClass:[NSNumber class]]) {
+        amountString = [value[@"amount"] stringValue];
+    }
+    if (IsEmpty(amountString)) {
+        model.amount = @"";
+        return model;
+    }
     double num = amountString.doubleValue/kPrecision;
     if ([model.fromAddress isEqualToString:KUser.address]) {
         model.amount = [NSString stringWithFormat:@"-%f",num];

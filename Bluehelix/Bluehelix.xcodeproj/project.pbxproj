@@ -7,6 +7,15 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		6CC12CEE24445DF200917105 /* XXDecimalNumberHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = EA0AA16623ED8AFD00E9472E /* XXDecimalNumberHelper.m */; };
+		6CC12CF52444629B00917105 /* XXValidatorsHomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6CC12CF42444629B00917105 /* XXValidatorsHomeViewController.m */; };
+		6CC12CF82444630400917105 /* XXValidatorCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 6CC12CF72444630400917105 /* XXValidatorCell.m */; };
+		6CC12CFB2444749D00917105 /* XXValidatorHeader.m in Sources */ = {isa = PBXBuildFile; fileRef = 6CC12CFA2444749D00917105 /* XXValidatorHeader.m */; };
+		6CC12CFE24455BFA00917105 /* XXValidatorGripSectionHeader.m in Sources */ = {isa = PBXBuildFile; fileRef = 6CC12CFD24455BFA00917105 /* XXValidatorGripSectionHeader.m */; };
+		6CC12D0124455C4B00917105 /* XXValidatorToolBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 6CC12D0024455C4B00917105 /* XXValidatorToolBar.m */; };
+		6CC12D0424456A3800917105 /* XXSearchBarView.m in Sources */ = {isa = PBXBuildFile; fileRef = 6CC12D0324456A3800917105 /* XXSearchBarView.m */; };
+		6CC12D072445849700917105 /* XXValidatorListModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 6CC12D062445849700917105 /* XXValidatorListModel.m */; };
+		6CC12D0A24459D1000917105 /* XXValidatorDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6CC12D0924459D1000917105 /* XXValidatorDetailViewController.m */; };
 		7A13E5222121B86D00B2B529 /* XCQrCodeTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 7A13E5202121B86D00B2B529 /* XCQrCodeTool.m */; };
 		7A3298152320EE9900196336 /* NSArray+Safe.m in Sources */ = {isa = PBXBuildFile; fileRef = 7A3298102320EE9500196336 /* NSArray+Safe.m */; };
 		7A3298452320EE9900196336 /* NSMutableArray+Safe.m in Sources */ = {isa = PBXBuildFile; fileRef = 7A3298112320EE9600196336 /* NSMutableArray+Safe.m */; };
@@ -107,6 +116,7 @@
 		EA3E595324446A310080B98F /* Lato-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = EA3E594E24446A310080B98F /* Lato-Regular.ttf */; };
 		EA3E595424446A310080B98F /* Roboto-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = EA3E594F24446A310080B98F /* Roboto-Bold.ttf */; };
 		EA3E595524446A310080B98F /* Roboto-Black.ttf in Resources */ = {isa = PBXBuildFile; fileRef = EA3E595024446A310080B98F /* Roboto-Black.ttf */; };
+		EA3E59582445E3CD0080B98F /* XXWithdrawalRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = EA3E59572445E3CD0080B98F /* XXWithdrawalRequest.m */; };
 		EA44259E2441C823008962E2 /* XXAccountCell.m in Sources */ = {isa = PBXBuildFile; fileRef = EA4425862441C822008962E2 /* XXAccountCell.m */; };
 		EA44259F2441C823008962E2 /* XXUserHomeCell.m in Sources */ = {isa = PBXBuildFile; fileRef = EA4425872441C822008962E2 /* XXUserHomeCell.m */; };
 		EA4425A02441C823008962E2 /* XXUserHomeVC.m in Sources */ = {isa = PBXBuildFile; fileRef = EA44258A2441C822008962E2 /* XXUserHomeVC.m */; };
@@ -123,7 +133,6 @@
 		EA6FA69721258EC5006305B8 /* FCUUID.m in Sources */ = {isa = PBXBuildFile; fileRef = EA6FA69521258EC5006305B8 /* FCUUID.m */; };
 		EA6FA69A21258FD3006305B8 /* UICKeyChainStore.m in Sources */ = {isa = PBXBuildFile; fileRef = EA6FA69821258FD3006305B8 /* UICKeyChainStore.m */; };
 		EA8F8C88240FA9F200D26E10 /* Icon.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EA8F8C86240FA9F200D26E10 /* Icon.xcassets */; };
-		EA8F8C89240FA9F200D26E10 /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = EA8F8C87240FA9F200D26E10 /* Info.plist */; };
 		EA964BA62414D37F00A941E5 /* XXBackupMnemonicPhraseVC.m in Sources */ = {isa = PBXBuildFile; fileRef = EA964BA42414D37F00A941E5 /* XXBackupMnemonicPhraseVC.m */; };
 		EA964C442414E18500A941E5 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = EA964C432414E18500A941E5 /* AppDelegate.m */; };
 		EAB356302438369200D750D6 /* FMDatabaseQueue.m in Sources */ = {isa = PBXBuildFile; fileRef = EAB356262438369200D750D6 /* FMDatabaseQueue.m */; };
@@ -132,7 +141,6 @@
 		EAB356332438369200D750D6 /* FMDatabasePool.m in Sources */ = {isa = PBXBuildFile; fileRef = EAB3562E2438369200D750D6 /* FMDatabasePool.m */; };
 		EAB356342438369200D750D6 /* FMResultSet.m in Sources */ = {isa = PBXBuildFile; fileRef = EAB3562F2438369200D750D6 /* FMResultSet.m */; };
 		EAB35664243DFD0900D750D6 /* XXAssetRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = EAB35663243DFD0900D750D6 /* XXAssetRequest.m */; };
-		EAB35667243E19FA00D750D6 /* XXDecimalNumberHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = EAB35666243E19FA00D750D6 /* XXDecimalNumberHelper.m */; };
 		EAB3566A243E402100D750D6 /* JSONKit.m in Sources */ = {isa = PBXBuildFile; fileRef = EAB35668243E402100D750D6 /* JSONKit.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		EABBC08924232DCD00B7E412 /* NSString+Base64.m in Sources */ = {isa = PBXBuildFile; fileRef = EABBC08124232DCD00B7E412 /* NSString+Base64.m */; };
 		EABBC08A24232DCD00B7E412 /* AESCrypt.m in Sources */ = {isa = PBXBuildFile; fileRef = EABBC08224232DCD00B7E412 /* AESCrypt.m */; };
@@ -238,6 +246,22 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		6CC12CF32444629B00917105 /* XXValidatorsHomeViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = XXValidatorsHomeViewController.h; sourceTree = "<group>"; };
+		6CC12CF42444629B00917105 /* XXValidatorsHomeViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = XXValidatorsHomeViewController.m; sourceTree = "<group>"; };
+		6CC12CF62444630400917105 /* XXValidatorCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = XXValidatorCell.h; sourceTree = "<group>"; };
+		6CC12CF72444630400917105 /* XXValidatorCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = XXValidatorCell.m; sourceTree = "<group>"; };
+		6CC12CF92444749D00917105 /* XXValidatorHeader.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = XXValidatorHeader.h; sourceTree = "<group>"; };
+		6CC12CFA2444749D00917105 /* XXValidatorHeader.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = XXValidatorHeader.m; sourceTree = "<group>"; };
+		6CC12CFC24455BFA00917105 /* XXValidatorGripSectionHeader.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = XXValidatorGripSectionHeader.h; sourceTree = "<group>"; };
+		6CC12CFD24455BFA00917105 /* XXValidatorGripSectionHeader.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = XXValidatorGripSectionHeader.m; sourceTree = "<group>"; };
+		6CC12CFF24455C4B00917105 /* XXValidatorToolBar.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = XXValidatorToolBar.h; sourceTree = "<group>"; };
+		6CC12D0024455C4B00917105 /* XXValidatorToolBar.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = XXValidatorToolBar.m; sourceTree = "<group>"; };
+		6CC12D0224456A3800917105 /* XXSearchBarView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = XXSearchBarView.h; sourceTree = "<group>"; };
+		6CC12D0324456A3800917105 /* XXSearchBarView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = XXSearchBarView.m; sourceTree = "<group>"; };
+		6CC12D052445849700917105 /* XXValidatorListModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = XXValidatorListModel.h; sourceTree = "<group>"; };
+		6CC12D062445849700917105 /* XXValidatorListModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = XXValidatorListModel.m; sourceTree = "<group>"; };
+		6CC12D0824459D1000917105 /* XXValidatorDetailViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = XXValidatorDetailViewController.h; sourceTree = "<group>"; };
+		6CC12D0924459D1000917105 /* XXValidatorDetailViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = XXValidatorDetailViewController.m; sourceTree = "<group>"; };
 		73F0445C8F5DFE135ED2F986 /* libPods-Bluehelix.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Bluehelix.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		7A13E5202121B86D00B2B529 /* XCQrCodeTool.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XCQrCodeTool.m; sourceTree = "<group>"; };
 		7A13E5212121B86D00B2B529 /* XCQrCodeTool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XCQrCodeTool.h; sourceTree = "<group>"; };
@@ -440,6 +464,8 @@
 		EA3E594E24446A310080B98F /* Lato-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Lato-Regular.ttf"; sourceTree = "<group>"; };
 		EA3E594F24446A310080B98F /* Roboto-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Roboto-Bold.ttf"; sourceTree = "<group>"; };
 		EA3E595024446A310080B98F /* Roboto-Black.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Roboto-Black.ttf"; sourceTree = "<group>"; };
+		EA3E59562445E3CD0080B98F /* XXWithdrawalRequest.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = XXWithdrawalRequest.h; sourceTree = "<group>"; };
+		EA3E59572445E3CD0080B98F /* XXWithdrawalRequest.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = XXWithdrawalRequest.m; sourceTree = "<group>"; };
 		EA42F2082289B20C0091EF78 /* vi-VN */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "vi-VN"; path = "vi-VN.lproj/Localizable.strings"; sourceTree = "<group>"; };
 		EA42F2092289B20C0091EF78 /* vi-VN */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "vi-VN"; path = "vi-VN.lproj/InfoPlist.strings"; sourceTree = "<group>"; };
 		EA4425852441C822008962E2 /* XXUserHomeCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XXUserHomeCell.h; sourceTree = "<group>"; };
@@ -497,8 +523,6 @@
 		EAB3562F2438369200D750D6 /* FMResultSet.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FMResultSet.m; sourceTree = "<group>"; };
 		EAB35662243DFD0900D750D6 /* XXAssetRequest.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = XXAssetRequest.h; sourceTree = "<group>"; };
 		EAB35663243DFD0900D750D6 /* XXAssetRequest.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = XXAssetRequest.m; sourceTree = "<group>"; };
-		EAB35665243E19FA00D750D6 /* XXDecimalNumberHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = XXDecimalNumberHelper.h; path = ../../../../../iOS/Bhex/Bhex/Tools/Category/XXDecimalNumberHelper.h; sourceTree = "<group>"; };
-		EAB35666243E19FA00D750D6 /* XXDecimalNumberHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = XXDecimalNumberHelper.m; path = ../../../../../iOS/Bhex/Bhex/Tools/Category/XXDecimalNumberHelper.m; sourceTree = "<group>"; };
 		EAB35668243E402100D750D6 /* JSONKit.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JSONKit.m; sourceTree = "<group>"; };
 		EAB35669243E402100D750D6 /* JSONKit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JSONKit.h; sourceTree = "<group>"; };
 		EABBC08124232DCD00B7E412 /* NSString+Base64.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+Base64.m"; sourceTree = "<group>"; };
@@ -696,6 +720,53 @@
 			name = Pods;
 			sourceTree = "<group>";
 		};
+		6CC12CEF2444624200917105 /* Validators */ = {
+			isa = PBXGroup;
+			children = (
+				6CC12CF12444627400917105 /* Model */,
+				6CC12CF22444627400917105 /* View */,
+				6CC12CF02444627400917105 /* ViewController */,
+			);
+			path = Validators;
+			sourceTree = "<group>";
+		};
+		6CC12CF02444627400917105 /* ViewController */ = {
+			isa = PBXGroup;
+			children = (
+				6CC12CF32444629B00917105 /* XXValidatorsHomeViewController.h */,
+				6CC12CF42444629B00917105 /* XXValidatorsHomeViewController.m */,
+				6CC12D0824459D1000917105 /* XXValidatorDetailViewController.h */,
+				6CC12D0924459D1000917105 /* XXValidatorDetailViewController.m */,
+			);
+			path = ViewController;
+			sourceTree = "<group>";
+		};
+		6CC12CF12444627400917105 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				6CC12D052445849700917105 /* XXValidatorListModel.h */,
+				6CC12D062445849700917105 /* XXValidatorListModel.m */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		6CC12CF22444627400917105 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				6CC12CF62444630400917105 /* XXValidatorCell.h */,
+				6CC12CF72444630400917105 /* XXValidatorCell.m */,
+				6CC12CF92444749D00917105 /* XXValidatorHeader.h */,
+				6CC12CFA2444749D00917105 /* XXValidatorHeader.m */,
+				6CC12CFC24455BFA00917105 /* XXValidatorGripSectionHeader.h */,
+				6CC12CFD24455BFA00917105 /* XXValidatorGripSectionHeader.m */,
+				6CC12CFF24455C4B00917105 /* XXValidatorToolBar.h */,
+				6CC12D0024455C4B00917105 /* XXValidatorToolBar.m */,
+				6CC12D0224456A3800917105 /* XXSearchBarView.h */,
+				6CC12D0324456A3800917105 /* XXSearchBarView.m */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
 		7A1B470E22DF127E00E06282 /* Recovered References */ = {
 			isa = PBXGroup;
 			children = (
@@ -831,6 +902,8 @@
 				EA04AD3D2434D6CB004403FF /* XXTransactionRequest.m */,
 				EA3E5870244359570080B98F /* XXKeyGenRequest.h */,
 				EA3E5871244359580080B98F /* XXKeyGenRequest.m */,
+				EA3E59562445E3CD0080B98F /* XXWithdrawalRequest.h */,
+				EA3E59572445E3CD0080B98F /* XXWithdrawalRequest.m */,
 				EAB35662243DFD0900D750D6 /* XXAssetRequest.h */,
 				EAB35663243DFD0900D750D6 /* XXAssetRequest.m */,
 			);
@@ -1172,6 +1245,7 @@
 		EA964BA32414D34A00A941E5 /* Class */ = {
 			isa = PBXGroup;
 			children = (
+				6CC12CEF2444624200917105 /* Validators */,
 				EA04AD3B2434D642004403FF /* Request */,
 				EABD1BB8241E496F00B1A03A /* MnemonicPhrase */,
 				EA15E9742417DEC500A3E14A /* Asset */,
@@ -1525,8 +1599,6 @@
 			children = (
 				EAB35669243E402100D750D6 /* JSONKit.h */,
 				EAB35668243E402100D750D6 /* JSONKit.m */,
-				EAB35665243E19FA00D750D6 /* XXDecimalNumberHelper.h */,
-				EAB35666243E19FA00D750D6 /* XXDecimalNumberHelper.m */,
 				EA20EACA2429CB13004EBD7F /* XXSystem.h */,
 				EA20EAC92429CB13004EBD7F /* XXSystem.m */,
 				7A3298122320EE9700196336 /* NSArray+Safe.h */,
@@ -1603,7 +1675,7 @@
 				TargetAttributes = {
 					F30AC19F20CCC641000652BB = {
 						CreatedOnToolsVersion = 9.4;
-						DevelopmentTeam = 768MYA9JJQ;
+						DevelopmentTeam = L2J536XCKC;
 						LastSwiftMigration = 1130;
 						ProvisioningStyle = Automatic;
 						SystemCapabilities = {
@@ -1647,7 +1719,6 @@
 				EA3E595524446A310080B98F /* Roboto-Black.ttf in Resources */,
 				EAE4047E211C1DB300FFD028 /* Localizable.strings in Resources */,
 				EABD1B8B241BB25900B1A03A /* secp256k1.table in Resources */,
-				EA8F8C89240FA9F200D26E10 /* Info.plist in Resources */,
 				EAE4047F211C1DB300FFD028 /* InfoPlist.strings in Resources */,
 				EA3E595224446A310080B98F /* Roboto-Regular.ttf in Resources */,
 				EA2931B822CCB22B003B60E8 /* Assets.xcassets in Resources */,
@@ -1665,23 +1736,19 @@
 			buildActionMask = 2147483647;
 			files = (
 			);
-			inputFileListPaths = (
-			);
 			inputPaths = (
-				"${SRCROOT}/Pods/Target Support Files/Pods-Bluehelix/Pods-Bluehelix-resources.sh",
+				"${PODS_ROOT}/Target Support Files/Pods-Bluehelix/Pods-Bluehelix-resources.sh",
 				"${PODS_ROOT}/MBProgressHUD+JDragon/MBProgressHUD+JDragon/MBProgressHUD+JDragon.bundle",
 				"${PODS_ROOT}/MJRefresh/MJRefresh/MJRefresh.bundle",
 			);
 			name = "[CP] Copy Pods Resources";
-			outputFileListPaths = (
-			);
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/MBProgressHUD+JDragon.bundle",
 				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/MJRefresh.bundle",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Bluehelix/Pods-Bluehelix-resources.sh\"\n";
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Bluehelix/Pods-Bluehelix-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		A862161BA73B7D5FEA430435 /* [CP] Check Pods Manifest.lock */ = {
@@ -1710,6 +1777,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				EABD1B84241BB25900B1A03A /* rand.c in Sources */,
+				6CC12D072445849700917105 /* XXValidatorListModel.m in Sources */,
 				EABD1BA1241BB25900B1A03A /* Hash.m in Sources */,
 				EA04ABAB242D015B004403FF /* IQBarButtonItem.m in Sources */,
 				EAC6871D214FAD1C00701874 /* XXTabView.m in Sources */,
@@ -1723,7 +1791,6 @@
 				EABD1B87241BB25900B1A03A /* secp256k1.c in Sources */,
 				EABD1B85241BB25900B1A03A /* aescrypt.c in Sources */,
 				F30EAF5A20D26536005ADD5C /* NSString+TL.m in Sources */,
-				EAB35667243E19FA00D750D6 /* XXDecimalNumberHelper.m in Sources */,
 				EA44259F2441C823008962E2 /* XXUserHomeCell.m in Sources */,
 				EA3E593E24441D950080B98F /* XXWithdrawTipView.m in Sources */,
 				EA04ABB0242D015B004403FF /* IQUITextFieldView+Additions.m in Sources */,
@@ -1749,6 +1816,8 @@
 				EABD1B99241BB25900B1A03A /* EtherchainProvider.m in Sources */,
 				EABD1BA3241BB25900B1A03A /* BlockInfo.m in Sources */,
 				F30EAF5F20D26536005ADD5C /* UIColor+helper.m in Sources */,
+				6CC12D0A24459D1000917105 /* XXValidatorDetailViewController.m in Sources */,
+				EA3E59582445E3CD0080B98F /* XXWithdrawalRequest.m in Sources */,
 				EA3E58F724441C7B0080B98F /* XXTransferHeaderView.m in Sources */,
 				EA04AD3824323C73004403FF /* Bech32.swift in Sources */,
 				EA30A121236F221B0098DE28 /* AFAutoPurgingImageCache.m in Sources */,
@@ -1769,6 +1838,7 @@
 				EAB356342438369200D750D6 /* FMResultSet.m in Sources */,
 				EA4425A82441C823008962E2 /* XXSqliteManager.m in Sources */,
 				EAB3566A243E402100D750D6 /* JSONKit.m in Sources */,
+				6CC12CEE24445DF200917105 /* XXDecimalNumberHelper.m in Sources */,
 				EA2F95312423A02B0070AC62 /* XXLoginVC.m in Sources */,
 				EABD1B98241BB25900B1A03A /* Provider.m in Sources */,
 				EABD1BA2241BB25900B1A03A /* Transaction.m in Sources */,
@@ -1778,6 +1848,7 @@
 				EA3E591A24441D160080B98F /* XXAssetSearchView.m in Sources */,
 				EA3E593F24441D950080B98F /* XXWithdrawAmountView.m in Sources */,
 				EABD1BA0241BB25900B1A03A /* RoundRobinProvider.m in Sources */,
+				6CC12CF82444630400917105 /* XXValidatorCell.m in Sources */,
 				EA15E9702417BC6B00A3E14A /* XXCreateWalletSuccessVC.m in Sources */,
 				EA3E593C24441D950080B98F /* XXWithdrawChainView.m in Sources */,
 				EA4425A02441C823008962E2 /* XXUserHomeVC.m in Sources */,
@@ -1806,6 +1877,7 @@
 				EA309E00236F21400098DE28 /* AFURLResponseSerialization.m in Sources */,
 				EA3E594524445B510080B98F /* XXTransferView.m in Sources */,
 				EABD1B91241BB25900B1A03A /* pbkdf2.c in Sources */,
+				6CC12D0424456A3800917105 /* XXSearchBarView.m in Sources */,
 				EA309E78236F21410098DE28 /* AFURLSessionManager.m in Sources */,
 				EA04ABAF242D015B004403FF /* IQNSArray+Sort.m in Sources */,
 				EABD1B9E241BB25900B1A03A /* LightClientProvider.m in Sources */,
@@ -1832,10 +1904,13 @@
 				EA04ABAE242D015B004403FF /* IQKeyboardManager.m in Sources */,
 				EABD1BA9241BB25900B1A03A /* RegEx.m in Sources */,
 				EA04ABB4242D015B004403FF /* IQKeyboardReturnKeyHandler.m in Sources */,
+				6CC12D0124455C4B00917105 /* XXValidatorToolBar.m in Sources */,
 				EABD1B96241BB25900B1A03A /* crypto_scrypt-sse.c in Sources */,
 				EA4425A72441C823008962E2 /* XXAccountManageVC.m in Sources */,
 				EABBC08924232DCD00B7E412 /* NSString+Base64.m in Sources */,
+				6CC12CF52444629B00917105 /* XXValidatorsHomeViewController.m in Sources */,
 				EA20EACB2429CB13004EBD7F /* XXSystem.m in Sources */,
+				6CC12CFE24455BFA00917105 /* XXValidatorGripSectionHeader.m in Sources */,
 				EABD1BAB241BB25900B1A03A /* Signature.m in Sources */,
 				F30EAF5E20D26536005ADD5C /* NSDate+convenience.m in Sources */,
 				F38839362108B30600EAC95D /* XYHNumbersLabel.m in Sources */,
@@ -1852,6 +1927,7 @@
 				EA4425A12441C823008962E2 /* XXUserHeaderView.m in Sources */,
 				EA3E58F524441C7B0080B98F /* XXDepositCoinVC.m in Sources */,
 				7AC4D82C234C808F00F5E5F8 /* XXBlurView.m in Sources */,
+				6CC12CFB2444749D00917105 /* XXValidatorHeader.m in Sources */,
 				EA3E58D024441B980080B98F /* XXSymbolDetailFooterView.m in Sources */,
 				EA4425A32441C823008962E2 /* XXAddressView.m in Sources */,
 				EABD1B9B241BB25900B1A03A /* ApiProvider.m in Sources */,
@@ -2055,7 +2131,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEFINES_MODULE = NO;
-				DEVELOPMENT_TEAM = 768MYA9JJQ;
+				DEVELOPMENT_TEAM = L2J536XCKC;
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -2098,7 +2174,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEFINES_MODULE = NO;
-				DEVELOPMENT_TEAM = 768MYA9JJQ;
+				DEVELOPMENT_TEAM = L2J536XCKC;
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",

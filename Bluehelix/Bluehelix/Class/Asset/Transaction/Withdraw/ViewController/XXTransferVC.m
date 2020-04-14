@@ -13,7 +13,7 @@
 #import "XXTokenModel.h"
 #import "XXTransferView.h"
 #import "XXPasswordView.h"
-
+#import "XXWithdrawalRequest.h"
 @interface XXTransferVC ()
 
 /** 提币视图 */
@@ -27,6 +27,9 @@
 
 /// 交易请求
 @property (strong, nonatomic) XXTransactionRequest *transactionRequest;
+
+/// 提币请求
+@property (strong, nonatomic) XXWithdrawalRequest *withdrawalRequest;
 
 @end
 
@@ -46,8 +49,8 @@
         self.titleLabel.text = [NSString stringWithFormat:@"%@ %@",self.tokenModel.symbol,LocalizedString(@"Withdraw")];
         [self.view addSubview:self.withdrawView];
         self.withdrawView.amountView.currentlyAvailable = self.tokenModel.amount;
-        self.withdrawView.feeView.unitLabel.text = [self.tokenModel.symbol uppercaseString];
-        self.withdrawView.receivedView.unitLabel.text = [self.tokenModel.symbol uppercaseString];
+        self.withdrawView.feeView.unitLabel.text = [kMainToken uppercaseString];
+        self.withdrawView.chainFeeView.unitLabel.text = [self.tokenModel.symbol uppercaseString];
     }
     [self.view addSubview:self.withdrawButton];
 }
@@ -92,7 +95,7 @@
     if (self.withdrawView.addressView.textField.text.length && self.withdrawView.amountView.textField.text.length && self.withdrawView.feeView.textField.text.length) {
         MJWeakSelf
         [XXPasswordView showWithSureBtnBlock:^(NSString * _Nonnull text) {
-            [weakSelf requestTransfer];
+            [weakSelf requestWithdraw];
            }];
     } else {
         Alert *alert = [[Alert alloc] initWithTitle:@"请填写完整信息" duration:kAlertDuration completion:^{
@@ -111,9 +114,9 @@
     NSString *feeAmount = [[feeAmountDecimal decimalNumberByMultiplyingBy:kPrecisionDecimal] stringValue];
     NSString *gas = [[[feeAmountDecimal decimalNumberByDividingBy:gasPriceDecimal] decimalNumberByDividingBy:kPrecisionDecimal_U] stringValue];
     
-    XXTransactionModel *model = [[XXTransactionModel alloc] initWithfrom:KUser.address to:toAddress amount:amount denom:self.tokenModel.symbol feeAmount:feeAmount feeGas:gas feeDenom:self.tokenModel.symbol memo:@""];
-    _transactionRequest = [[XXTransactionRequest alloc] init];
-    [_transactionRequest sendMsg:model];
+    XXTransactionModel *model = [[XXTransactionModel alloc] initWithfrom:KUser.address to:toAddress amount:amount denom:self.tokenModel.symbol feeAmount:feeAmount feeGas:gas feeDenom:kMainToken memo:@""];
+    _withdrawalRequest = [[XXWithdrawalRequest alloc] init];
+    [_withdrawalRequest sendMsg:model];
 }
 
 #pragma mark - || 懒加载

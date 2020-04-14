@@ -68,7 +68,7 @@
         _textField = [[XXFloadtTextField alloc] initWithFrame:CGRectMake(K375(8), 0, self.banView.width - K375(16), self.banView.height)];
         _textField.textColor = kDark100;
         _textField.font = kFont14;
-        _textField.isPrecision = YES;
+        _textField.isPrecision = NO;
         [_textField addTarget:self action:@selector(textFieldChanged:) forControlEvents:UIControlEventEditingChanged];
         _textField.placeholderColor = kDark50;
     }

@@ -30,35 +30,6 @@ static RatesManager *_ratesManager;
 
 #pragma mark - 1. 加载汇率数据
 - (void)loadDataOfRates {
-    
-//    if (IsEmpty(KMarket.tokenString)) {
-//        [self performSelector:@selector(loadDataOfRates) withObject:nil afterDelay:1];
-//        return;
-//    }
-//
-//    if (IsEmpty(self.arrayString) || ![self.arrayString isEqualToString:KMarket.tokenString]) {
-//        NSArray *tokensArray = [KMarket.tokenString mj_JSONObject];
-//        self.tokenString = @"";
-//        if (tokensArray.count == 0) {
-//            [self performSelector:@selector(loadDataOfRates) withObject:nil afterDelay:1];
-//            return;
-//        } else {
-//            for (NSInteger i=0; i < tokensArray.count; i ++) {
-//                NSDictionary *tokenDict = tokensArray[i];
-//                if (self.tokenString.length == 0) {
-//                    self.tokenString = tokenDict[@"tokenId"];
-//                } else {
-//                    self.tokenString = [NSString stringWithFormat:@"%@,%@", self.tokenString, tokenDict[@"tokenId"]];
-//                }
-//            }
-//        }
-//    }
-//
-//    if (IsEmpty(self.tokenString)) {
-//        [self performSelector:@selector(loadDataOfRates) withObject:nil afterDelay:1];
-//        return;
-//    }
-    
     if (IsEmpty(self.tokenString)) {
         self.tokenString = [[XXSqliteManager sharedSqlite] tokensListString];
     }
