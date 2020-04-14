@@ -18,14 +18,19 @@ static NSString *KValidatorsListReuseCell = @"validatorsListReuseCell";
 static NSString *KValidatorGripSectionHeader = @"XXValidatorGripSectionHeader";
 @interface XXValidatorsHomeViewController ()<UITableViewDelegate,UITableViewDataSource>
 @property (nonatomic, strong) UITableView *validatorsListTableView;
-/***/
+/**汇总数据源*/
 @property (nonatomic, strong) NSMutableArray *validatorsDataArray;
+/**过滤数据源*/
+@property (nonatomic, strong) NSMutableArray *filtValidatorsDataArray;
+/**过滤数据源*/
 /**tableview header*/
 @property (nonatomic, strong) XXValidatorHeader *bigHeaderView;
 /**section header*/
 @property (nonatomic, strong) XXValidatorGripSectionHeader *sectionHeader;
 /**有效或者无效*/
 @property (nonatomic, copy) NSString *validOrInvalid;
+/**是否在搜索*/
+@property (nonatomic, assign) BOOL isFilting;
 @end
 
 @implementation XXValidatorsHomeViewController
@@ -49,11 +54,28 @@ static NSString *KValidatorGripSectionHeader = @"XXValidatorGripSectionHeader";
 - (void)loadData{
     if (self.validatorsDataArray.count>0) {
         [self.validatorsDataArray removeAllObjects];
+        [self.filtValidatorsDataArray removeAllObjects];
     }
     [self requestValidatorsList];
 }
 - (void)searchLoadData:(NSString*)inputSting{
-    
+    if (inputSting.length ==0) {
+        self.isFilting = NO;
+        [self.filtValidatorsDataArray removeAllObjects];
+        self.filtValidatorsDataArray = [self.validatorsDataArray mutableCopy];
+        [self.validatorsListTableView reloadData];
+        return;
+    }
+    NSMutableArray *tempArray = [NSMutableArray array];
+    for (XXValidatorListModel*model in self.filtValidatorsDataArray) {
+        if ([[model.validatorDescription.moniker lowercaseString] containsString:[inputSting lowercaseString]]) {
+            [tempArray addObject:model];
+        }
+    }
+    self.isFilting = YES;
+    [self.filtValidatorsDataArray removeAllObjects];
+    [self.filtValidatorsDataArray addObjectsFromArray:tempArray];
+    [self.validatorsListTableView reloadData];
 }
 
 #pragma mark 请求
@@ -69,7 +91,7 @@ static NSString *KValidatorGripSectionHeader = @"XXValidatorGripSectionHeader";
             NSLog(@"%@",data);
             NSArray *listArray = [XXValidatorListModel mj_objectArrayWithKeyValuesArray:data];
             [self.validatorsDataArray addObjectsFromArray:listArray];
-           
+            [self.filtValidatorsDataArray addObjectsFromArray:listArray];
             [self.validatorsListTableView reloadData];
         } else {
             Alert *alert = [[Alert alloc] initWithTitle:msg duration:kAlertDuration completion:^{
@@ -84,7 +106,7 @@ static NSString *KValidatorGripSectionHeader = @"XXValidatorGripSectionHeader";
     return 1;
 }
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return self.validatorsDataArray.count;
+    return self.isFilting ? self.filtValidatorsDataArray.count : self.validatorsDataArray.count;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
@@ -96,7 +118,7 @@ static NSString *KValidatorGripSectionHeader = @"XXValidatorGripSectionHeader";
     MJWeakSelf
     header.selectValidOrInvalidCallBack = ^(NSInteger index) {
         NSNumber *number = [NSNumber numberWithInteger:index];
-        self.validOrInvalid = number.stringValue;
+        self.validOrInvalid = number.integerValue == 1 ? @"0" : @"1";
         [self loadData];
     };
     header.textfieldValueChangeBlock = ^(NSString * _Nonnull textfiledText) {
@@ -118,7 +140,7 @@ static NSString *KValidatorGripSectionHeader = @"XXValidatorGripSectionHeader";
         cell = [[XXValidatorCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:KValidatorsListReuseCell];
     }
     cell.backgroundColor = kWhite100;
-    XXValidatorListModel *model = self.validatorsDataArray[indexPath.row];
+    XXValidatorListModel *model = self.isFilting ? self.filtValidatorsDataArray[indexPath.row] : self.validatorsDataArray[indexPath.row];
     cell.validOrInvalid = [self.validOrInvalid isEqualToString:@"1"] ? YES :NO;
     [cell loadData:model];
     return cell;
@@ -127,7 +149,7 @@ static NSString *KValidatorGripSectionHeader = @"XXValidatorGripSectionHeader";
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     XXValidatorDetailViewController *detailValidator = [[XXValidatorDetailViewController alloc]init];
-    detailValidator.validatorModel = self.validatorsDataArray[indexPath.row];
+    detailValidator.validatorModel = self.isFilting ? self.filtValidatorsDataArray[indexPath.row] : self.validatorsDataArray[indexPath.row];
     [self.navigationController pushViewController:detailValidator animated:YES];
 }
 #pragma mark layout
@@ -167,5 +189,11 @@ static NSString *KValidatorGripSectionHeader = @"XXValidatorGripSectionHeader";
         _validatorsDataArray = [NSMutableArray array];
     }
     return _validatorsDataArray;
+}
+- (NSMutableArray*)filtValidatorsDataArray{
+    if (!_filtValidatorsDataArray) {
+        _filtValidatorsDataArray = [NSMutableArray array];
+    }
+    return _filtValidatorsDataArray;
 }
 @end

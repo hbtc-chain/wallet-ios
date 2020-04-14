@@ -22,11 +22,12 @@
 }
 #pragma mark
 - (void)textFieldValueChange:(UITextField *)textField {
-       if ([textField.text trimmingCharacters].length > 0) {
-           if (self.textfieldValueChangeBlock) {
-               self.textfieldValueChangeBlock(textField.text);
-           }
-       }
+    //去空格
+    textField.text = [textField.text trimmingCharacters];
+    
+    if (self.textfieldValueChangeBlock) {
+        self.textfieldValueChangeBlock(textField.text);
+    }
 }
 #pragma mark layout
 - (void)layoutSubviews{
