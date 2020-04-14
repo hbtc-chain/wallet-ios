@@ -22,6 +22,7 @@
 @property (nonatomic, strong) XXLabel *addressLabel;
 @property (nonatomic, strong) UIView *symbolBackView;
 @property (nonatomic, strong) UIImageView *symbolImageView;
+@property (nonatomic, strong) NSString *showAddress;
 
 @end
 
@@ -30,6 +31,11 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    if (self.InnerChain) {
+        self.showAddress = KUser.address;
+    } else {
+        self.showAddress = self.tokenModel.external_address;
+    }
     [self buildUI];
 }
 
@@ -113,11 +119,7 @@
 - (UIImageView *)codeImageView {
     if (!_codeImageView) {
         _codeImageView = [[UIImageView alloc] initWithFrame:CGRectMake(K375(73), K375(81), self.topBackImageView.width - K375(146), self.topBackImageView.width - K375(146))];
-        if (self.InnerChain) {
-            _codeImageView.image = [XCQrCodeTool createQrCodeWithContent:self.tokenModel.address];
-        } else {
-            _codeImageView.image = [XCQrCodeTool createQrCodeWithContent:self.tokenModel.external_address];
-        }
+            _codeImageView.image = [XCQrCodeTool createQrCodeWithContent:self.showAddress];
     }
     return _codeImageView;
 }
@@ -132,8 +134,9 @@
 
 - (XXLabel *)addressLabel {
     if (!_addressLabel) {
-        _addressLabel = [XXLabel labelWithFrame:CGRectMake(0, CGRectGetMaxY(self.codeImageView.frame), self.topBackImageView.width, self.topBackImageView.height - CGRectGetMaxY(self.codeImageView.frame)) text:KUser.address font:kFont(13) textColor:kDark100];
+        _addressLabel = [XXLabel labelWithFrame:CGRectMake(0, CGRectGetMaxY(self.codeImageView.frame), self.topBackImageView.width, self.topBackImageView.height - CGRectGetMaxY(self.codeImageView.frame)) text:@"" font:kFont(13) textColor:kDark100];
         _addressLabel.textAlignment = NSTextAlignmentCenter;
+            _addressLabel.text = self.showAddress;
     }
     return _addressLabel;
 }
@@ -143,7 +146,7 @@
         _copyAddressBtn = [XXButton buttonWithFrame:CGRectMake(5, 2, self.bottomImageView.width - 10, self.bottomImageView.height - 4) title:LocalizedString(@"CopyAddress") font:kFont(17) titleColor:kBlue100 block:^(UIButton *button) {
             if (KUser.address  > 0) {
                 UIPasteboard *pab = [UIPasteboard generalPasteboard];
-                [pab setString:KUser.address];
+                [pab setString:self.showAddress];
                 Alert *alert = [[Alert alloc] initWithTitle:LocalizedString(@"CopySuccessfully") duration:kAlertDuration completion:^{
                 }];
                 [alert showAlert];

@@ -69,6 +69,32 @@ static XXSqliteManager *_sqliteManager;
     return resultArr;
 }
 
+- (NSString *)tokensListString {
+    BOOL existsTable = [self existsTokens];
+    if (!existsTable) {
+        return @[];
+    }
+    NSString *sql = @"select * from 'tokens'";
+    FMResultSet *set = [self.myFmdb executeQuery:sql];
+    NSMutableArray *resultArr = [NSMutableArray array];
+    while ([set next]) {
+        XXTokenModel *model = [[XXTokenModel alloc] init];
+        model.symbol = [set stringForColumn:@"symbol"];
+        model.decimals = [set intForColumn:@"decimals"];
+        model.is_native = [set boolForColumn:@"is_native"];
+        [resultArr addObject:model];
+    }
+    NSString *result = @"";
+    for (XXTokenModel *token in resultArr) {
+        if (result.length == 0) {
+            result = token.symbol;
+        } else {
+            result = [result stringByAppendingString:[NSString stringWithFormat:@",%@",token.symbol]];
+        }
+    }
+    return result;
+}
+
 - (NSArray *)showTokens {
     BOOL existsTable = [self existsTokens];
     if (!existsTable) {

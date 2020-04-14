@@ -41,6 +41,8 @@
         model.type = LocalizedString(@"Delegate");
     } else if ([type isEqualToString:kMsgUndelegate]) {
         model.type = LocalizedString(@"TransferDelegate");
+    } else if ([type isEqualToString:kMsgKeyGen]) {
+        model.type = LocalizedString(@"ChainAddress");
     } else {
         model.type = @"";
     }

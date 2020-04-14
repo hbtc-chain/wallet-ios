@@ -106,7 +106,7 @@ NSString *const _uuidsOfUserDevicesToggleKey = @"fc_uuidsOfUserDevicesToggle";
 
     NSString *uuidValue = (__bridge_transfer NSString *)uuidStringRef;
     uuidValue = [uuidValue lowercaseString];
-    uuidValue = [uuidValue stringByReplacingOccurrencesOfString:@"-" withString:@""];
+//    uuidValue = [uuidValue stringByReplacingOccurrencesOfString:@"-" withString:@""];
     return uuidValue;
 }
 

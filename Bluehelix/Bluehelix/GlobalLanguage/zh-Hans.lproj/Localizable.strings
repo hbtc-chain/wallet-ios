@@ -136,3 +136,4 @@
 "ClaimedReward" = "已收益";
 "Success" = "成功";
 "Failed" = "失败";
+"ChainAddress" = "生成跨链地址";

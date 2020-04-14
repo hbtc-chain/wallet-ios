@@ -74,6 +74,8 @@
 - (XXLabel *)addressLabel {
     if (!_addressLabel) {
         CGFloat width = [NSString widthWithText:KUser.address font:kFont12];
+        CGFloat maxWidth = kScreen_Width - self.textField.left - 16 - 40;
+        width = width > maxWidth ? maxWidth : width;
         _addressLabel = [XXLabel labelWithFrame:CGRectMake(self.textField.left, CGRectGetMaxY(self.textField.frame), width, 20) font:kFont12 textColor:kWhite80];
         _addressLabel.text = KUser.address;
     }

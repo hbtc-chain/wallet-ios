@@ -75,7 +75,7 @@
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
             uuid = "E6B480FD-E91B-4186-B51A-8E82A66388CE"
-            shouldBeEnabled = "Yes"
+            shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Bhex/Class/UserCenter/Security/Home/Controller/YZAuthID.m"
@@ -91,7 +91,7 @@
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
             uuid = "F8386DFD-D25B-4AF7-8067-009776CE82CA"
-            shouldBeEnabled = "Yes"
+            shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Bhex/Class/Contract/Home/View/Futures/View/XXContractTradeView.m"
@@ -107,7 +107,7 @@
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
             uuid = "707AF445-C1AC-44BA-A999-E7E665CED136"
-            shouldBeEnabled = "Yes"
+            shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Bhex/Class/Contract/FuturesOrder/Controller/XXContractProfitLossVC.m"
@@ -123,7 +123,7 @@
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
             uuid = "9821AA95-5533-4001-88DC-49240EAE4D57"
-            shouldBeEnabled = "Yes"
+            shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Bhex/Class/Contract/FuturesOrder/Controller/XXContractProfitLossVC.m"
@@ -139,7 +139,7 @@
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
             uuid = "FBFDD39B-03F4-473D-82BB-ABA7B2431C83"
-            shouldBeEnabled = "Yes"
+            shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Bhex/Class/Contract/FuturesOrder/Controller/XXContractProfitLossVC.m"
@@ -155,7 +155,7 @@
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
             uuid = "F01831ED-22F7-4D84-BCAE-2FBD84461DA7"
-            shouldBeEnabled = "Yes"
+            shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Bhex/Tools/WebSocket/XXUserSocket.m"
@@ -171,7 +171,7 @@
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
             uuid = "23606702-CA14-460F-9099-C63D5020E792"
-            shouldBeEnabled = "Yes"
+            shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Bhex/Class/Transaction/OTC/Controller/OTCAddPaymentController.m"
@@ -187,7 +187,7 @@
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
             uuid = "59C21BEA-449F-470D-A75D-6347BE7E6E98"
-            shouldBeEnabled = "Yes"
+            shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Bhex/Class/Transaction/OTC/Controller/OTCOrderDetailSell.m"
@@ -203,7 +203,7 @@
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
             uuid = "5451AF08-A5D0-434C-B902-AE5171DD61E3"
-            shouldBeEnabled = "Yes"
+            shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Bhex/Tools/Category/AppDelegate+Category.m"
@@ -219,7 +219,7 @@
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
             uuid = "C775C61A-C5B2-4A60-9934-8A36E8EA7B4C"
-            shouldBeEnabled = "Yes"
+            shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Bhex/Class/LoginRegister/Login/View/XXFieldView.m"
@@ -235,7 +235,7 @@
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
             uuid = "486A35C7-CAB9-4C41-B5BE-F73F63A05423"
-            shouldBeEnabled = "Yes"
+            shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Bhex/Class/LoginRegister/Login/View/XXFieldView.m"
@@ -251,7 +251,7 @@
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
             uuid = "29C95FC8-66EE-4115-B896-24AC2C95E552"
-            shouldBeEnabled = "Yes"
+            shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Bhex/Class/LoginRegister/Login/View/XXFieldView.m"
@@ -267,7 +267,7 @@
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
             uuid = "DB7CF05B-300E-42CD-A372-1C21FE030C81"
-            shouldBeEnabled = "Yes"
+            shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Bhex/Class/LoginRegister/Login/View/XXFieldView.m"
@@ -778,70 +778,6 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "123EC1E7-F4DE-4BA6-ADE0-9B5212E998EB"
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "Bluehelix/Class/Asset/Asset/ViewController/XXAssetVC.m"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "70"
-            endingLineNumber = "70"
-            landmarkName = "-requestAsset"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "3A14438F-14D8-4F23-A0BF-CA53E5E66703"
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "Bluehelix/Class/Asset/Asset/ViewController/XXAssetVC.m"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "68"
-            endingLineNumber = "68"
-            landmarkName = "-requestAsset"
-            landmarkType = "7">
-            <Locations>
-               <Location
-                  uuid = "3A14438F-14D8-4F23-A0BF-CA53E5E66703 - 548bda2a3123f62b"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "-[XXAssetVC requestAsset]"
-                  moduleName = "Bluehelix"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/yuanzhen/wallet-ios/Bluehelix/Bluehelix/Class/Asset/Asset/ViewController/XXAssetVC.m"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "68"
-                  endingLineNumber = "68"
-                  offsetFromSymbolStart = "220">
-               </Location>
-               <Location
-                  uuid = "3A14438F-14D8-4F23-A0BF-CA53E5E66703 - 6c747e9f40b629a0"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "__25-[XXAssetVC requestAsset]_block_invoke"
-                  moduleName = "Bluehelix"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/yuanzhen/wallet-ios/Bluehelix/Bluehelix/Class/Asset/Asset/ViewController/XXAssetVC.m"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "69"
-                  endingLineNumber = "69"
-                  offsetFromSymbolStart = "96">
-               </Location>
-            </Locations>
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
             uuid = "024CCC7F-C831-4F2A-A5E4-8EBEC81B8801"
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
@@ -874,16 +810,16 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "E6064A5E-768F-4F06-8D55-A1444871D1FC"
+            uuid = "0A609FB2-50E7-4A67-85F4-0164FCC031B5"
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "Bluehelix/Class/Asset/TokenInfo/XXSymbolDetailVC.m"
+            filePath = "Bluehelix/Class/Request/XXKeyGenRequest.m"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "52"
-            endingLineNumber = "52"
-            landmarkName = "-requestHistory"
+            startingLineNumber = "150"
+            endingLineNumber = "150"
+            landmarkName = "-sendTxRequest:"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

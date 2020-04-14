@@ -25,6 +25,7 @@ NS_ASSUME_NONNULL_BEGIN
 - (void)insertTokens:(NSArray *)tokens;
 - (NSArray *)tokens; //所有的币
 - (NSArray *)showTokens; //用户添加的币
+- (NSString *)tokensListString; //所有的币 字符串,隔开
 
 // 账户
 - (NSArray *)accounts;

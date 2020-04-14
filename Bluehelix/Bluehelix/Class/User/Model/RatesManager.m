@@ -8,7 +8,6 @@
 
 #import "RatesManager.h"
 
-
 @interface RatesManager ()
 
 /** tokenString */
@@ -61,13 +60,10 @@ static RatesManager *_ratesManager;
 //    }
     
     if (IsEmpty(self.tokenString)) {
-        NSArray *tokens = [[XXSqliteManager sharedSqlite] tokens];
-        
-        //        self.tokenString =
+        self.tokenString = [[XXSqliteManager sharedSqlite] tokensListString];
     }
-    
     NSMutableDictionary *params = [NSMutableDictionary dictionary];
-    params[@"symbols"] = @"hbc,eth,btc,usdt";
+    params[@"symbols"] = self.tokenString;
     MJWeakSelf
     [HttpManager getWithPath:@"/api/v1/tokenprices" params:params andBlock:^(id data, NSString *msg, NSInteger code) {
         if (code == 0) {

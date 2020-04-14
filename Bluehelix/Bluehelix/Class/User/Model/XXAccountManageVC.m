@@ -12,7 +12,6 @@
 #import "XXTabBarController.h"
 #import "AppDelegate.h"
 
-
 @interface XXAccountManageVC () <UITableViewDataSource, UITableViewDelegate, UIGestureRecognizerDelegate>
 
 @property (strong, nonatomic) NSMutableArray *itemsArray;
@@ -23,6 +22,7 @@
 
 @property (strong, nonatomic) XXAccountFooterView *footView;
 
+@property (strong, nonatomic) NSString *currentAddress; //记录进来的地址 和返回的地址是否一样 如果不一样 刷新整个app
 @end
 
 @implementation XXAccountManageVC
@@ -30,13 +30,17 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self setupUI];
+    self.currentAddress = KUser.address;
 }
 
-- (void)leftButtonClick:(UIButton *)sender {
-    XXTabBarController *tabVC = [[XXTabBarController alloc] init];
-    [tabVC setIndex:3];
-    AppDelegate *delegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
-    delegate.window.rootViewController = tabVC;
+- (void)viewDidDisappear:(BOOL)animated {
+    [super viewDidDisappear:animated];
+    if (![KUser.address isEqualToString:self.currentAddress]) {
+        XXTabBarController *tabVC = [[XXTabBarController alloc] init];
+        [tabVC setIndex:3];
+        AppDelegate *delegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
+        delegate.window.rootViewController = tabVC;
+    }
 }
 
 - (void)setupUI {

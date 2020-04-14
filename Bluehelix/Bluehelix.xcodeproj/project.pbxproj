@@ -1108,8 +1108,8 @@
 		EA4425892441C822008962E2 /* VC */ = {
 			isa = PBXGroup;
 			children = (
-				EA44258A2441C822008962E2 /* XXUserHomeVC.m */,
 				EA44258B2441C822008962E2 /* XXUserHomeVC.h */,
+				EA44258A2441C822008962E2 /* XXUserHomeVC.m */,
 			);
 			path = VC;
 			sourceTree = "<group>";
@@ -1117,16 +1117,16 @@
 		EA44258C2441C822008962E2 /* View */ = {
 			isa = PBXGroup;
 			children = (
-				EA44258D2441C822008962E2 /* XXUserHeaderView.m */,
+				EA4425932441C822008962E2 /* XXPasswordView.h */,
 				EA44258E2441C822008962E2 /* XXPasswordView.m */,
 				EA44258F2441C822008962E2 /* XXAddressView.h */,
-				EA4425902441C822008962E2 /* XXAccountFooterView.h */,
-				EA4425912441C822008962E2 /* XXAccountBtn.h */,
 				EA4425922441C822008962E2 /* XXAddressView.m */,
-				EA4425932441C822008962E2 /* XXPasswordView.h */,
-				EA4425942441C822008962E2 /* XXUserHeaderView.h */,
+				EA4425902441C822008962E2 /* XXAccountFooterView.h */,
 				EA4425952441C822008962E2 /* XXAccountFooterView.m */,
+				EA4425912441C822008962E2 /* XXAccountBtn.h */,
 				EA4425962441C822008962E2 /* XXAccountBtn.m */,
+				EA4425942441C822008962E2 /* XXUserHeaderView.h */,
+				EA44258D2441C822008962E2 /* XXUserHeaderView.m */,
 			);
 			path = View;
 			sourceTree = "<group>";

@@ -157,6 +157,7 @@
 //                NSString *amountStr = amount;
 //                [KDecimal decimalNumber:[NSString stringWithFormat:@"%f",(double)amount] RoundingMode:NSRoundDown scale:token.decimals];
                 token.amount = dic[@"amount"];
+                token.external_address = dic[@"external_address"];
             }
         }
     }
