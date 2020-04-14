@@ -43,6 +43,7 @@
     return self;
 }
 - (void)loadData:(XXValidatorListModel*)model{
+    self.validatorName.text = model.validatorDescription.moniker;
     self.validatorVoteValue.text = [NSString stringWithFormat:@"%@%@",model.voting_power_proportion,@"%"];
     self.validatorDelegateNumberValue.text = [NSString stringWithFormat:@"%@%@",model.self_delegate_proportion,@"%"];
     NSNumber *number = [NSNumber numberWithFloat:model.commission.rate.floatValue];
