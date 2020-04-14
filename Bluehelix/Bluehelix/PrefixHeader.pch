@@ -20,6 +20,7 @@
 #import <MBProgressHUD+JDragon.h>
 #import <MJExtension/MJExtension.h>
 #import <MJRefresh/MJRefresh.h>
+#import <Masonry/Masonry.h>
 #import "XXNavigationController.h"
 #import "XXCategory.h"
 #import "XXFontHeader.h"
@@ -58,6 +59,10 @@ typedef NS_ENUM(NSUInteger, NetworkMethod) {
 #define kAlertDuration 2
 #define kGreen kIsNight ? [UIColor whiteColor] : [UIColor colorWithHexString:@"#269A99"]
 #define kGray kIsNight ? [UIColor whiteColor] : [UIColor colorWithHexString:@"#475563"]
+
+#define kMainLabelColor kIsNight ? [UIColor whiteColor] : [UIColor colorWithHexString:@"#0A1825"]
+#define kSubLabelColor kIsNight ? [UIColor whiteColor] : [UIColor colorWithHexString:@"#6E8196"]
+#define kSeparateLineColor kIsNight ? [UIColor whiteColor] : [UIColor colorWithHexString:@"#F9F9FB"]
 
 
 #define kDomain @""

@@ -134,5 +134,17 @@
 "Bonded" = "委托中";
 "Unbonding" = "赎回中";
 "ClaimedReward" = "已收益";
+
 "Success" = "成功";
 "Failed" = "失败";
+
+//验证人
+"ValidatorVote" = "投票权";
+"ValidatorDelegateNumber" = "自我委托";
+"ValidatorCommissionRate" = "佣金率";
+"ValidatorNewCreate" = "创建";
+"ValidatorTitle" = "验证人";
+"valid" = "有效";
+"invalid" = "无效";
+"PleaseInputValidatorName" = "输入验证人名称";
+
