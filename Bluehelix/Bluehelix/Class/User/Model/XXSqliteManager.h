@@ -9,6 +9,7 @@
 #import <Foundation/Foundation.h>
 #import "FMDB.h"
 @class XXAccountModel;
+@class XXTokenModel;
 
 NS_ASSUME_NONNULL_BEGIN
 
@@ -35,6 +36,7 @@ NS_ASSUME_NONNULL_BEGIN
 - (void)deleteAccountByAddress:(NSString *)address;
 - (void)insertSymbol:(NSString *)symbol;
 - (void)deleteSymbol:(NSString *)symbol;
+- (XXTokenModel *)withdrawFeeToken:(XXTokenModel *)token; //查询跨链手续费对应的token
 @end
 
 NS_ASSUME_NONNULL_END

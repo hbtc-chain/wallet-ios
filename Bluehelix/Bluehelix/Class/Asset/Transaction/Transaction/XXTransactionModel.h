@@ -30,6 +30,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, strong) NSString *feeDenom; // 手续费币种
 @property (nonatomic, strong) NSString *memo; //备注 暂无
 @property (nonatomic, strong) NSString *type; //交易类型
+@property (nonatomic, strong) NSString *withdrawal_fee; //跨链手续费
 
 - (instancetype)initwithActivity:(NSDictionary *)dic;
 

@@ -141,6 +141,7 @@
     NSString *searchString = self.searchView.searchTextField.text;
     [self.showArray removeAllObjects];
     for (XXTokenModel *sModel in sqliteArray) {
+        sModel.amount = @"0";
         if (searchString.length > 0) {
             if ([sModel.symbol containsString:searchString]) {
                 [self.showArray addObject:sModel];
@@ -153,10 +154,7 @@
     for (NSDictionary *dic in self.assetModel.assets) {
         for (XXTokenModel *token in self.showArray) {
             if ([dic[@"symbol"] isEqualToString:token.symbol]) {
-//                double amount = [dic[@"amount"] doubleValue];
-//                NSString *amountStr = amount;
-//                [KDecimal decimalNumber:[NSString stringWithFormat:@"%f",(double)amount] RoundingMode:NSRoundDown scale:token.decimals];
-                token.amount = dic[@"amount"];
+                token.amount = kAmountTrim(dic[@"amount"]);
                 token.external_address = dic[@"external_address"];
             }
         }

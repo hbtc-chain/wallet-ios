@@ -5,39 +5,6 @@
 //  Created by Bhex on 2020/04/07.
 //  Copyright © 2020 Bhex. All rights reserved.
 //
-
-//page = 1;
-//"page_size" = 30;
-//total = 1;
-//txs =     (
-//            {
-//        activities =             (
-//                            {
-//                type = "cosmos-sdk/MsgSend";
-//                value =                     {
-//                    amount =                         (
-//                                                    {
-//                            amount = 10000000000000000000000;
-//                            denom = bht;
-//                        }
-//                    );
-//                    "from_address" = BHN3UUgKNBGrP4TvhFeWseH7ox4pgnbqWnZ;
-//                    "to_address" = BHgE934R84XUxETVFoVav46NKs6aakgoq8b;
-//                };
-//            }
-//        );
-//        "error_message" = "<null>";
-//        fee = "833333333333333333 bht";
-//        "gas_used" = 44601;
-//        "gas_wanted" = 200000;
-//        hash = 72901F2E5E9734CF866F551AD68475B2828924B6BB99CEF213EFEC020063350F;
-//        height = 351670;
-//        memo = "";
-//        success = 1;
-//        time = 1586409798;
-//    }
-//);
-
 #import "XXTransactionCell.h"
 #import "XXTransactionModel.h"
 @interface XXTransactionCell ()
@@ -82,7 +49,7 @@
     XXTransactionModel *model = [[XXTransactionModel alloc] initwithActivity:activity];
     self.typeLabel.text = model.type;
     self.typeLabel.frame = CGRectMake(K375(24), 20, [NSString widthWithText:model.type font:kFontBold(17)], 24);
-    self.amountLabel.text = model.amount;
+    self.amountLabel.text = [NSString amountTrim:model.amount];
     
     if ([dic[@"success"] intValue]) {
         self.stateLabel.text = LocalizedString(@"Success");

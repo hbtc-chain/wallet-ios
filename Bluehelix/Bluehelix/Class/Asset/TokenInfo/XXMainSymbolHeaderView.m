@@ -62,15 +62,15 @@
 
 - (void)setTokenModel:(XXTokenModel *)tokenModel {
     _tokenModel = tokenModel;
-    self.amountLabel.text = tokenModel.amount;
+    self.amountLabel.text = kAmountTrim(tokenModel.amount);
     self.assetLabel.text = [[RatesManager shareRatesManager] getRatesWithToken:tokenModel.symbol priceValue:tokenModel.amount.doubleValue];
-    self.valueLabel1.text = tokenModel.amount;
+    self.valueLabel1.text = kAmountTrim(tokenModel.amount);
 }
 
 - (void)setAssetModel:(XXAssetModel *)assetModel {
-    self.valueLabel2.text = assetModel.bonded;
-    self.valueLabel3.text = assetModel.unbonding;
-    self.valueLabel4.text = assetModel.claimed_reward;
+    self.valueLabel2.text = kAmountTrim(assetModel.bonded);
+    self.valueLabel3.text = kAmountTrim(assetModel.unbonding);
+    self.valueLabel4.text = kAmountTrim(assetModel.claimed_reward);
 }
 
 - (UIView *)backView {

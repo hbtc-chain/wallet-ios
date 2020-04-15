@@ -61,7 +61,8 @@
     [self.iconView sd_setImageWithURL:[NSURL URLWithString:model.logo] placeholderImage:[UIImage imageNamed:@"placeholderToken"]];
     self.coinNameLabel.text = model.symbol;
     self.coinNameLabel.width = [NSString widthWithText:model.symbol font:kFontBold(17)];
-    self.amountLabel.text = model.amount;
+    self.amountLabel.text = kAmountTrim(model.amount);
+    
     [self configTypeLabel:model];
     self.moneyLabel.text = [[RatesManager shareRatesManager] getTwoRatesWithToken:model.symbol priceValue:model.amount.doubleValue];
     self.priceLabel.text = [[RatesManager shareRatesManager] getPriceFromToken:model.symbol];

@@ -48,7 +48,7 @@
     } else if ([type isEqualToString:kMsgWithdrawal]) {
         model.type = LocalizedString(@"ChainWithdrawal");
     } else {
-        model.type = @"";
+        model.type = LocalizedString(@"ChainOtherType");
     }
     NSDictionary *value = dic[@"value"];
     model.fromAddress = value[@"from_address"];

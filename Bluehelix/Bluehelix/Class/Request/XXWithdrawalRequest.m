@@ -41,7 +41,7 @@
     value[@"order_id"] = self.uuid;
     value[@"symbol"] = self.transactionModel.denom;
     value[@"amount"] = self.transactionModel.amount;
-    value[@"gas_fee"] = @"10000000000000000";
+    value[@"gas_fee"] = self.transactionModel.withdrawal_fee;
 
     NSMutableDictionary *msg = [NSMutableDictionary dictionary];
     msg[@"type"] = kMsgWithdrawal;
@@ -115,7 +115,7 @@
     value[@"order_id"] = self.uuid;
     value[@"symbol"] = self.transactionModel.denom;
     value[@"amount"] = self.transactionModel.amount;
-    value[@"gas_fee"] = @"10000000000000000";
+    value[@"gas_fee"] = self.transactionModel.withdrawal_fee;
 
     NSMutableDictionary *msg = [NSMutableDictionary dictionary];
     msg[@"type"] = kMsgWithdrawal;

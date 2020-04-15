@@ -109,4 +109,9 @@
  *数字以逗号隔开 例：123，321.11
  */
 - (NSString *)ld_numberSplitWithComma;
+
+
+/// 数量展示
+/// @param amount 数量
++ (NSString *)amountTrim:(NSString *)amount;
 @end

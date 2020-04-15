@@ -31,6 +31,8 @@
 /// 提币请求
 @property (strong, nonatomic) XXWithdrawalRequest *withdrawalRequest;
 
+/// 跨链提币 对应的手续费token （假如提的币是tusdt，但是因为tusdt的链式eth，所以扣的手续费是eth，精度也是eth的精度，但是手续费数量还是tusdt的数量withdralal_fee字段）
+@property (strong, nonatomic) XXTokenModel *withdrawFeeModel;
 @end
 
 @implementation XXTransferVC
@@ -44,13 +46,15 @@
     if (self.InnerChain) {
         self.titleLabel.text = [NSString stringWithFormat:@"%@ %@",self.tokenModel.symbol,LocalizedString(@"Transfer")];
         [self.view addSubview:self.transferView];
-        self.transferView.amountView.currentlyAvailable = self.tokenModel.amount;
+        self.transferView.amountView.currentlyAvailable = kAmountTrim(self.tokenModel.amount);
     } else {
         self.titleLabel.text = [NSString stringWithFormat:@"%@ %@",self.tokenModel.symbol,LocalizedString(@"Withdraw")];
         [self.view addSubview:self.withdrawView];
-        self.withdrawView.amountView.currentlyAvailable = self.tokenModel.amount;
+        self.withdrawView.amountView.currentlyAvailable = kAmountTrim(self.tokenModel.amount);
         self.withdrawView.feeView.unitLabel.text = [kMainToken uppercaseString];
-        self.withdrawView.chainFeeView.unitLabel.text = [self.tokenModel.symbol uppercaseString];
+        self.withdrawFeeModel = [[XXSqliteManager sharedSqlite] withdrawFeeToken:self.tokenModel];
+        self.withdrawView.chainFeeView.unitLabel.text = [self.withdrawFeeModel.symbol uppercaseString];
+        self.withdrawView.chainFeeView.textField.text = self.tokenModel.withdrawal_fee;
     }
     [self.view addSubview:self.withdrawButton];
 }
@@ -106,15 +110,18 @@
 }
 
 - (void)requestWithdraw {
-    NSDecimalNumber *amountDecimal = [NSDecimalNumber decimalNumberWithString:self.withdrawView.amountView.textField.text];
-    NSDecimalNumber *feeAmountDecimal = [NSDecimalNumber decimalNumberWithString:self.withdrawView.feeView.textField.text];
-    NSDecimalNumber *gasPriceDecimal = [NSDecimalNumber decimalNumberWithString:[NSString stringWithFormat:@"%f",self.withdrawView.speedView.slider.value]];
+    NSDecimalNumber *amountDecimal = [NSDecimalNumber decimalNumberWithString:self.withdrawView.amountView.textField.text]; //数量
+    NSDecimalNumber *feeAmountDecimal = [NSDecimalNumber decimalNumberWithString:self.withdrawView.feeView.textField.text]; //交易手续费
+    NSDecimalNumber *gasPriceDecimal = [NSDecimalNumber decimalNumberWithString:[NSString stringWithFormat:@"%f",self.withdrawView.speedView.slider.value]]; //gas price
+    NSDecimalNumber *chainFeeDecimal = [NSDecimalNumber decimalNumberWithString:self.withdrawView.chainFeeView.textField.text]; //跨链手续费
     NSString *toAddress = self.withdrawView.addressView.textField.text;
-    NSString *amount = [[amountDecimal decimalNumberByMultiplyingBy:kPrecisionDecimal] stringValue];
+    NSString *amount = [[amountDecimal decimalNumberByMultiplyingBy:kPrecisionDecimalPower(self.tokenModel.decimals)] stringValue];
     NSString *feeAmount = [[feeAmountDecimal decimalNumberByMultiplyingBy:kPrecisionDecimal] stringValue];
+    NSString *chainFeeAmount = [[chainFeeDecimal decimalNumberByMultiplyingBy:kPrecisionDecimalPower(self.withdrawFeeModel.decimals)] stringValue];
     NSString *gas = [[[feeAmountDecimal decimalNumberByDividingBy:gasPriceDecimal] decimalNumberByDividingBy:kPrecisionDecimal_U] stringValue];
     
     XXTransactionModel *model = [[XXTransactionModel alloc] initWithfrom:KUser.address to:toAddress amount:amount denom:self.tokenModel.symbol feeAmount:feeAmount feeGas:gas feeDenom:kMainToken memo:@""];
+    model.withdrawal_fee = chainFeeAmount;
     _withdrawalRequest = [[XXWithdrawalRequest alloc] init];
     [_withdrawalRequest sendMsg:model];
 }

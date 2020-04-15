@@ -466,4 +466,31 @@
     }
     return NO;
 }
+
++ (NSString *)amountTrim:(NSString *)amount {
+    if (IsEmpty(amount)) {
+        return @"";
+    }
+    NSDecimalNumber *amountDecimal = [NSDecimalNumber decimalNumberWithString:amount];
+    NSArray *amountArr = [amount componentsSeparatedByString:@"."];
+    if (amountArr.count == 2) {
+        NSString *amount0 = [amountArr firstObject];
+        NSDecimalNumber *amountDecimal0 = [NSDecimalNumber decimalNumberWithString:amount0];
+        if (amount0.length > 12) {
+            return [amountDecimal0 stringValue];
+        } else if (amount.length > 12) {
+            if (amount0.length == 11) {
+                return amount0;
+            } else {
+                NSString *trimStr = [amount substringToIndex:12];
+                NSDecimalNumber *trimDecimal = [NSDecimalNumber decimalNumberWithString:trimStr];
+                return [trimDecimal stringValue];
+            }
+        } else {
+            return [amountDecimal stringValue];
+        }
+    } else {
+        return [amountDecimal stringValue];
+    }
+}
 @end

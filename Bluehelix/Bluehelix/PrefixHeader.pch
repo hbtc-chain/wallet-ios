@@ -84,7 +84,8 @@ typedef NS_ENUM(NSUInteger, NetworkMethod) {
 
 #define kPrecisionDecimal [NSDecimalNumber decimalNumberWithString:@"1000000000000000000"]
 #define kPrecisionDecimal_U [NSDecimalNumber decimalNumberWithString:@"0.000001"]
-
+#define kPrecisionDecimalPower(power) [[NSDecimalNumber decimalNumberWithString:@"10"] decimalNumberByRaisingToPower:(power)]
+#define kAmountTrim(amount) [NSString amountTrim:(amount)]
 
 #define kScreen_Height [UIScreen mainScreen].bounds.size.height
 #define kScreen_Width [UIScreen mainScreen].bounds.size.width

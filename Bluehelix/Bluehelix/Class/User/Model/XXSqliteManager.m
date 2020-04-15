@@ -36,19 +36,35 @@ static XXSqliteManager *_sqliteManager;
 #pragma mark 币
 - (BOOL)existsTokens {
     [self.myFmdb open];
-    BOOL result = [self.myFmdb executeUpdate:@"create table if not exists tokens(ID INTEGER PRIMARY KEY AUTOINCREMENT,symbol TEXT,chain TEXT,decimals INTEGER,is_native BOOLEAN)"];
+    BOOL result = [self.myFmdb executeUpdate:@"create table if not exists tokens(ID INTEGER PRIMARY KEY AUTOINCREMENT,symbol TEXT,chain TEXT,decimals INTEGER,is_native BOOLEAN,withdrawal_fee TEXT,logo TEXT,is_withdrawal_enabled BOOLEAN)"];
     return result;
 }
 
+
 - (void)insertTokens:(NSArray *)tokens {
+    if (![self.myFmdb columnExists:@"is_withdrawal_enabled" inTableWithName:@"tokens"]) {
+        [self.myFmdb executeUpdate:@"drop table if exists tokens"];
+    }
     BOOL existsTable = [self existsTokens];
     if (!existsTable) {
         return;
     }
     [self.myFmdb executeUpdate:@"delete from 'tokens'"];
     for (XXTokenModel *model  in tokens) {
-        [self.myFmdb executeUpdate:@"insert into 'tokens'(symbol,decimals,is_native) values(?,?,?)" withArgumentsInArray:@[model.symbol,[NSNumber numberWithInt:model.decimals],[NSNumber numberWithInt:model.is_native]]];
+        [self.myFmdb executeUpdate:@"insert into 'tokens'(symbol,decimals,is_native,withdrawal_fee,logo,chain,is_withdrawal_enabled) values(?,?,?,?,?,?,?)" withArgumentsInArray:@[model.symbol,[NSNumber numberWithInt:model.decimals],[NSNumber numberWithInt:model.is_native],model.withdrawal_fee,model.logo,model.chain,[NSNumber numberWithInt:model.is_withdrawal_enabled]]];
     }
+}
+
+- (XXTokenModel *)tokenModel:(FMResultSet *)set {
+    XXTokenModel *model = [[XXTokenModel alloc] init];
+    model.symbol = [set stringForColumn:@"symbol"];
+    model.decimals = [set intForColumn:@"decimals"];
+    model.is_native = [set boolForColumn:@"is_native"];
+    model.withdrawal_fee = [set stringForColumn:@"withdrawal_fee"];
+    model.logo = [set stringForColumn:@"logo"];
+    model.chain = [set stringForColumn:@"chain"];
+    model.is_withdrawal_enabled = [set boolForColumn:@"is_withdrawal_enabled"];
+    return model;
 }
 
 - (NSArray *)tokens {
@@ -60,13 +76,29 @@ static XXSqliteManager *_sqliteManager;
     FMResultSet *set = [self.myFmdb executeQuery:sql];
     NSMutableArray *resultArr = [NSMutableArray array];
     while ([set next]) {
-        XXTokenModel *model = [[XXTokenModel alloc] init];
-        model.symbol = [set stringForColumn:@"symbol"];
-        model.decimals = [set intForColumn:@"decimals"];
-        model.is_native = [set boolForColumn:@"is_native"];
+        XXTokenModel *model = [self tokenModel:set];
         [resultArr addObject:model];
     }
     return resultArr;
+}
+
+
+- (XXTokenModel *)withdrawFeeToken:(XXTokenModel *)token {
+    if ([token.symbol isEqualToString:token.chain]) {
+        return token;
+    } else {
+         BOOL existsTable = [self existsTokens];
+           if (!existsTable) {
+               return nil;
+           }
+           FMResultSet *set = [self.myFmdb executeQuery:@"select * from tokens where symbol = ?",token.chain];
+           NSMutableArray *resultArr = [NSMutableArray array];
+           while ([set next]) {
+               XXTokenModel *model = [self tokenModel:set];
+               [resultArr addObject:model];
+           }
+           return [resultArr firstObject]; //TODO 只查找一个
+    }
 }
 
 - (NSString *)tokensListString {
@@ -78,11 +110,8 @@ static XXSqliteManager *_sqliteManager;
     FMResultSet *set = [self.myFmdb executeQuery:sql];
     NSMutableArray *resultArr = [NSMutableArray array];
     while ([set next]) {
-        XXTokenModel *model = [[XXTokenModel alloc] init];
-        model.symbol = [set stringForColumn:@"symbol"];
-        model.decimals = [set intForColumn:@"decimals"];
-        model.is_native = [set boolForColumn:@"is_native"];
-        [resultArr addObject:model];
+       XXTokenModel *model = [self tokenModel:set];
+    [resultArr addObject:model];
     }
     NSString *result = @"";
     for (XXTokenModel *token in resultArr) {
@@ -108,10 +137,7 @@ static XXSqliteManager *_sqliteManager;
         NSArray *symbols = [KUser.currentAccount.symbols componentsSeparatedByString:@","];
         NSMutableArray *resultArr = [NSMutableArray array];
         while ([set next]) {
-            XXTokenModel *model = [[XXTokenModel alloc] init];
-            model.symbol = [set stringForColumn:@"symbol"];
-            model.decimals = [set intForColumn:@"decimals"];
-            model.is_native = [set boolForColumn:@"is_native"];
+            XXTokenModel *model = [self tokenModel:set];
             if ([symbols containsObject:model.symbol]) {
                 [resultArr addObject:model];
             }

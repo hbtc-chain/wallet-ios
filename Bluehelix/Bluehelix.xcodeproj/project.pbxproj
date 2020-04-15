@@ -1034,6 +1034,8 @@
 				EA3E58B624441B980080B98F /* XXSymbolDetailHeaderView.m */,
 				EA3E58B524441B980080B98F /* XXSymbolDetailFooterView.h */,
 				EA3E58AF24441B980080B98F /* XXSymbolDetailFooterView.m */,
+				EA3E58DA24441C7B0080B98F /* XXTransactionCell.h */,
+				EA3E58DE24441C7B0080B98F /* XXTransactionCell.m */,
 			);
 			path = TokenInfo;
 			sourceTree = "<group>";
@@ -1054,8 +1056,6 @@
 				EA3E58D824441C7B0080B98F /* XXTransferDetailVC.m */,
 				EA3E58D924441C7B0080B98F /* XXTransferHeaderView.h */,
 				EA3E58DC24441C7B0080B98F /* XXTransferHeaderView.m */,
-				EA3E58DA24441C7B0080B98F /* XXTransactionCell.h */,
-				EA3E58DE24441C7B0080B98F /* XXTransactionCell.m */,
 				EA3E58DB24441C7B0080B98F /* XXTransactionModel.h */,
 				EA3E58DF24441C7B0080B98F /* XXTransactionModel.m */,
 			);
