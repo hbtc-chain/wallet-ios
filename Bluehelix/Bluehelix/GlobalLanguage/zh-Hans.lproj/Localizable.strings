@@ -152,3 +152,9 @@
 "invalid" = "无效";
 "PleaseInputValidatorName" = "输入验证人名称";
 
+"TransferDelegate" = "转委托";
+"RelieveDelegate" = "解委托";
+"Delegate" = "委托";
+
+
+
