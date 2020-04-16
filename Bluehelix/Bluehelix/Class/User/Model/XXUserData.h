@@ -25,7 +25,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (assign, nonatomic) BOOL isNightType; //是否夜间模式
 @property (assign, nonatomic) BOOL isSettedNightType; //手动设置的夜间模式
 @property (assign, nonatomic) BOOL isHideSmallCoin; //是否隐藏小额币种
-
+@property (assign, nonatomic) BOOL isHideAsset; //是否隐藏资产
 @property (nonatomic, strong) NSArray *accounts;
 @property (nonatomic, strong) XXAccountModel *currentAccount; //当前用户
 @property (nonatomic, strong) NSString *rootID; //当前用户id

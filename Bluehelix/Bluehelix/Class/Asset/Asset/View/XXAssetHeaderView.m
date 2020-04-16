@@ -16,6 +16,7 @@
 @property (strong, nonatomic) UIImageView *backImageView;
 @property (strong, nonatomic) XXLabel *logoLabel;
 @property (strong, nonatomic) UIImageView *shadowImageView;
+@property (strong, nonatomic) XXButton *hidenAssetsButton;
 @property (strong, nonatomic) CALayer *shadowLayer;
 @property (strong, nonatomic) XXLabel *assetNameLabel;
 @property (strong, nonatomic) XXLabel *totalAssetLabel;
@@ -38,20 +39,28 @@
         [self.shadowImageView addSubview:self.totalAssetLabel];
         [self addSubview:self.logoLabel];
         [self addSubview:self.menuBtn];
-        [self addSubview:self.menuBtn];
+        [self.shadowImageView addSubview:self.hidenAssetsButton];
     }
     return self;
 }
 
 - (void)configData:(XXAssetModel *)model {
-    double totalAsset = 0;
-    for (NSDictionary *dic in model.assets) {
-        double rate = [self getRatesFromToken:dic[@"symbol"]];
-        if (rate > 0) {
-            totalAsset += [dic[@"amount"] doubleValue] * rate;
+    if (KUser.isHideAsset) {
+        self.totalAssetLabel.text = @"***";
+        self.totalAssetLabel.top = CGRectGetMaxY(self.assetNameLabel.frame) + 15;
+    } else {
+        double totalAsset = 0;
+        for (NSDictionary *dic in model.assets) {
+            double rate = [self getRatesFromToken:dic[@"symbol"]];
+            if (rate > 0) {
+                totalAsset += [dic[@"amount"] doubleValue] * rate;
+            }
         }
+        self.totalAssetLabel.text = [NSString stringWithFormat:@"￥%.2f",totalAsset];
+        self.totalAssetLabel.top = CGRectGetMaxY(self.assetNameLabel.frame) + 10;
     }
-    self.totalAssetLabel.text = [NSString stringWithFormat:@"￥%.2f",totalAsset];
+    self.totalAssetLabel.width = [NSString widthWithText:self.totalAssetLabel.text font:kNumberFontBold(30)];
+    self.hidenAssetsButton.left = CGRectGetMaxX(self.totalAssetLabel.frame);
 }
 
 - (double)getRatesFromToken:(NSString *)token {
@@ -89,6 +98,23 @@
     return _nameLabel;
 }
 
+- (XXButton *)hidenAssetsButton {
+    if (_hidenAssetsButton == nil) {
+        MJWeakSelf
+        _hidenAssetsButton = [XXButton buttonWithFrame:CGRectMake(CGRectGetMaxX(self.totalAssetLabel.frame), self.totalAssetLabel.top, self.totalAssetLabel.height, self.totalAssetLabel.height) block:^(UIButton *button) {
+            KUser.isHideAsset = !KUser.isHideAsset;
+            weakSelf.hidenAssetsButton.selected = KUser.isHideAsset;
+            if (weakSelf.actionBlock) {
+                weakSelf.actionBlock();
+            }
+        }];
+        [_hidenAssetsButton setImage:[UIImage imageNamed:@"unhidden"] forState:UIControlStateNormal];
+        [_hidenAssetsButton setImage:[UIImage imageNamed:@"unhidden"] forState:UIControlStateSelected];
+        _hidenAssetsButton.selected = KUser.isHideAsset;
+    }
+    return _hidenAssetsButton;
+}
+
 - (XXButton *)menuBtn {
     if (!_menuBtn) {
         MJWeakSelf
@@ -104,7 +130,9 @@
 - (UIImageView *)shadowImageView {
     if (!_shadowImageView) {
         _shadowImageView = [[UIImageView alloc] initWithFrame:CGRectMake(K375(16), K375(115), kScreen_Width - K375(32), K375(140))];
+//        _shadowImageView.backgroundColor = KRGBA(251, 251, 251, 100);
         _shadowImageView.image = [UIImage imageNamed:@"assetBack"];
+        _shadowImageView.userInteractionEnabled = YES;
     }
     return _shadowImageView;
 }
@@ -127,13 +155,13 @@
     if (!_assetNameLabel) {
         _assetNameLabel = [XXLabel labelWithFrame:CGRectMake(K375(20), K375(20), 100, 24) font:kFont(17) textColor:kDark80];
     }
-    _assetNameLabel.text = @"总资产";
+    _assetNameLabel.text = NSLocalizedFormatString(LocalizedString(@"TotalAsset"),[KUser.ratesKey uppercaseString]);
     return _assetNameLabel;
 }
 
 - (XXLabel *)totalAssetLabel {
     if (!_totalAssetLabel) {
-        _totalAssetLabel = [XXLabel labelWithFrame:CGRectMake(K375(20), CGRectGetMaxY(self.assetNameLabel.frame) + K375(10), kScreen_Width - 72, 32) font:kNumberFontBold(30) textColor:kDark100];
+        _totalAssetLabel = [XXLabel labelWithFrame:CGRectMake(K375(20), CGRectGetMaxY(self.assetNameLabel.frame) + 10, 100, 32) font:kNumberFontBold(30) textColor:kDark100];
     }
     return _totalAssetLabel;
 }

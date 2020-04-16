@@ -1,16 +1,19 @@
 //
-//  XXAssetRequest.h
+//  XXMsgRequest.h
 //  Bluehelix
 //
-//  Created by Bhex on 2020/04/08.
+//  Created by 袁振 on 2020/04/16.
 //  Copyright © 2020 Bhex. All rights reserved.
 //
 
 #import <Foundation/Foundation.h>
+#import "XXMsg.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface XXAssetRequest : NSObject
+@interface XXMsgRequest : NSObject
+
+- (void)sendMsg:(XXMsg *)msg;
 
 @end
 

@@ -682,31 +682,29 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "E3B12A52-793E-4833-9407-459497632CE6"
+            uuid = "1DDD7976-B9BB-4FE2-9EEA-9C765606F2EC"
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "Bluehelix/Class/Asset/Transaction/Withdraw/ViewController/XXTransferVC.m"
+            filePath = "Bluehelix/Class/Request/XXMsgRequest.m"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "85"
-            endingLineNumber = "85"
-            landmarkName = "-requestTransfer"
-            landmarkType = "7">
+            startingLineNumber = "164"
+            endingLineNumber = "164">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "FC94228C-CE53-4C3A-A22B-41A9C19060AF"
+            uuid = "BFDB5285-B6AA-4C64-B4A7-8D5DFBE32D9B"
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "Bluehelix/Class/Request/XXWithdrawalRequest.m"
+            filePath = "Bluehelix/Class/Request/XXMsgRequest.m"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "166"
-            endingLineNumber = "166"
+            startingLineNumber = "127"
+            endingLineNumber = "127"
             landmarkName = "-sendTxRequest:"
             landmarkType = "7">
          </BreakpointContent>
@@ -714,15 +712,15 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "74C4B3DB-903E-428F-BDE9-027489E472D3"
+            uuid = "409CE829-162F-4C61-95FF-3902CA599DE4"
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "Bluehelix/Class/Request/XXWithdrawalRequest.m"
+            filePath = "Bluehelix/Class/Request/XXMsgRequest.m"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "177"
-            endingLineNumber = "177"
+            startingLineNumber = "136"
+            endingLineNumber = "136"
             landmarkName = "-sendTxRequest:"
             landmarkType = "7">
          </BreakpointContent>
@@ -730,32 +728,64 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "8FB8572F-5DCC-48F0-998D-02E381F03A24"
+            uuid = "DD9CB210-8265-428F-A6DE-97A1E1D76E0F"
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "Bluehelix/Class/Asset/TokenInfo/XXTransactionCell.m"
+            filePath = "Bluehelix/Class/Request/XXMsgRequest.m"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "54"
-            endingLineNumber = "54"
-            landmarkName = "-configData:"
+            startingLineNumber = "157"
+            endingLineNumber = "157"
+            landmarkName = "-sendTxRequest:"
             landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "DD9CB210-8265-428F-A6DE-97A1E1D76E0F - c3af2c3c05042236"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "__30-[XXMsgRequest sendTxRequest:]_block_invoke_4"
+                  moduleName = "Bluehelix"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/yuanzhen/wallet-ios/Bluehelix/Bluehelix/Class/Request/XXMsgRequest.m"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "157"
+                  endingLineNumber = "157"
+                  offsetFromSymbolStart = "316">
+               </Location>
+               <Location
+                  uuid = "DD9CB210-8265-428F-A6DE-97A1E1D76E0F - c3af2c3c050a2237"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "__30-[XXMsgRequest sendTxRequest:]_block_invoke_5"
+                  moduleName = "Bluehelix"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/yuanzhen/wallet-ios/Bluehelix/Bluehelix/Class/Request/XXMsgRequest.m"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "158"
+                  endingLineNumber = "158"
+                  offsetFromSymbolStart = "12">
+               </Location>
+            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "55248D48-9AD2-4C1B-B483-3E5E7AA5A76D"
+            uuid = "02BC76DE-9530-4E42-9E5A-B0459C4204CC"
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "Bluehelix/Class/Asset/Asset/ViewController/XXAssetVC.m"
+            filePath = "Bluehelix/Class/Request/XXMsgRequest.m"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "72"
-            endingLineNumber = "72"
-            landmarkName = "-requestAsset"
+            startingLineNumber = "73"
+            endingLineNumber = "73"
+            landmarkName = "-createSignString"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

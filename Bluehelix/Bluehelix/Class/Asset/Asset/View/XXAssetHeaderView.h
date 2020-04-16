@@ -12,6 +12,9 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface XXAssetHeaderView : UIView
 
+/** 是否隐藏回调刷新 */
+@property (strong, nonatomic) void(^actionBlock)(void);
+
 - (void)configData:(XXAssetModel *)model;
 
 @end

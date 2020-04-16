@@ -21,9 +21,6 @@
 }
 
 - (void)buildUI:(NSDictionary *)dic {
-//    NSDictionary *activity = [dic[@"activities"] firstObject];
-//    XXTransactionModel *model = [[XXTransactionModel alloc] initwithActivity:activity];
-
     NSInteger state = 0;
     if (dic[@"success"] && ([dic[@"success"] intValue] == 1)) {
         state = 1;

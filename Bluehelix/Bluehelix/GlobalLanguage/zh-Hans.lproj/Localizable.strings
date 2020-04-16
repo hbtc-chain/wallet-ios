@@ -100,6 +100,7 @@
 "UnnativeCoin" = "跨链代币";
 "AddNewAsset" = "添加新资产";
 "EnterTokenNameSearch" = "输入币种名称";
+"TotalAsset" = "总资产(%@)";
 
 //提币
 "PleaseEnterAmountReceived" = "请输入到账数量";

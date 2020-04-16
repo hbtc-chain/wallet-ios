@@ -7,6 +7,11 @@
 //
 #import "XXTransactionCell.h"
 #import "XXTransactionModel.h"
+#import "XXMsgSendModel.h"
+#import "XXMsgDepositModel.h"
+#import "XXMsgWithdrawalModel.h"
+#import "XXMsgKeyGenModel.h"
+#import "XXTokenModel.h"
 @interface XXTransactionCell ()
 
 @property (nonatomic, strong) XXLabel *typeLabel;
@@ -46,11 +51,7 @@
 - (void)configData:(NSDictionary *)dic {
     self.timeLabel.text = [NSString dateStringFromTimestampWithTimeTamp:[dic[@"time"] longLongValue]];
     NSDictionary *activity = [dic[@"activities"] firstObject];
-    XXTransactionModel *model = [[XXTransactionModel alloc] initwithActivity:activity];
-    self.typeLabel.text = model.type;
-    self.typeLabel.frame = CGRectMake(K375(24), 20, [NSString widthWithText:model.type font:kFontBold(17)], 24);
-    self.amountLabel.text = [NSString amountTrim:model.amount];
-    
+    [self configActivity:activity];
     if ([dic[@"success"] intValue]) {
         self.stateLabel.text = LocalizedString(@"Success");
         self.stateLabel.textColor = KRGBA(70, 206, 95, 100);
@@ -62,6 +63,49 @@
         self.stateLabel.backgroundColor = KRGBA(252, 206, 209, 100);
         self.stateLabel.frame = CGRectMake(CGRectGetMaxX(self.typeLabel.frame) +5, 24, [NSString widthWithText:LocalizedString(@"Failed") font:kFont10] + 4, 16);
     }
+}
+
+- (void)configActivity:(NSDictionary *)dic {
+    NSString *type = dic[@"type"];
+    NSDictionary *value = dic[@"value"];
+    NSString *showTypeStr = LocalizedString(@"ChainOtherType");
+    if ([type isEqualToString:kMsgSend]) {
+        showTypeStr = LocalizedString(@"Transfer");
+        XXMsgSendModel *model = [XXMsgSendModel mj_objectWithKeyValues:value];
+        NSDictionary *amount = [model.amount firstObject];
+        XXTokenModel *token = [[XXSqliteManager sharedSqlite] tokenBySymbol:amount[@"denom"]];
+        NSDecimalNumber *amountDecimal = [NSDecimalNumber decimalNumberWithString:amount[@"amount"]]; //数量
+        NSString *amountStr = [[amountDecimal decimalNumberByDividingBy:kPrecisionDecimalPower(token.decimals)] stringValue];
+        if ([model.from_address isEqualToString:KUser.address]) {
+            self.amountLabel.text = [NSString stringWithFormat:@"-%@",amountStr];
+        } else {
+            self.amountLabel.text = [NSString stringWithFormat:@"+%@",amountStr];
+        }
+    } else if ([type isEqualToString:kMsgDelegate]) {
+        showTypeStr = LocalizedString(@"Delegate");
+    } else if ([type isEqualToString:kMsgUndelegate]) {
+        showTypeStr = LocalizedString(@"TransferDelegate");
+    } else if ([type isEqualToString:kMsgKeyGen]) {
+        showTypeStr = LocalizedString(@"ChainAddress");
+    } else if ([type isEqualToString:kMsgDeposit]) {
+        showTypeStr = LocalizedString(@"ChainDeposit");
+        XXMsgDepositModel *model = [XXMsgDepositModel mj_objectWithKeyValues:value];
+        XXTokenModel *token = [[XXSqliteManager sharedSqlite] tokenBySymbol:model.symbol];
+        NSDecimalNumber *amountDecimal = [NSDecimalNumber decimalNumberWithString:model.amount]; //数量
+        NSString *amountStr = [[amountDecimal decimalNumberByDividingBy:kPrecisionDecimalPower(token.decimals)] stringValue];
+        self.amountLabel.text = [NSString stringWithFormat:@"+%@",amountStr];
+    } else if ([type isEqualToString:kMsgWithdrawal]) {
+        showTypeStr = LocalizedString(@"ChainWithdrawal");
+        XXMsgWithdrawalModel *model = [XXMsgWithdrawalModel mj_objectWithKeyValues:value];
+        XXTokenModel *token = [[XXSqliteManager sharedSqlite] tokenBySymbol:model.symbol];
+        NSDecimalNumber *amountDecimal = [NSDecimalNumber decimalNumberWithString:model.amount]; //数量
+        NSString *amountStr = [[amountDecimal decimalNumberByDividingBy:kPrecisionDecimalPower(token.decimals)] stringValue];
+        self.amountLabel.text = [NSString stringWithFormat:@"-%@",amountStr];
+    } else {
+        
+    }
+    self.typeLabel.text = showTypeStr;
+    self.typeLabel.frame = CGRectMake(K375(24), 20, [NSString widthWithText:showTypeStr font:kFontBold(17)], 24);
 }
 
 - (XXLabel *)typeLabel {

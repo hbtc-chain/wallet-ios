@@ -36,7 +36,15 @@ NS_ASSUME_NONNULL_BEGIN
 - (void)deleteAccountByAddress:(NSString *)address;
 - (void)insertSymbol:(NSString *)symbol;
 - (void)deleteSymbol:(NSString *)symbol;
-- (XXTokenModel *)withdrawFeeToken:(XXTokenModel *)token; //查询跨链手续费对应的token
+
+
+/// 查询跨链手续费对应的token
+/// @param token 需要跨链的token
+- (XXTokenModel *)withdrawFeeToken:(XXTokenModel *)token;
+
+/// 查询symbol对应的tokenModel
+/// @param symbol 币名
+- (XXTokenModel *)tokenBySymbol:(NSString *)symbol;
 @end
 
 NS_ASSUME_NONNULL_END

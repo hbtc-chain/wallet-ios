@@ -1,8 +1,8 @@
 //
-//  XXTransactionModel.h
+//  XXMsg.h
 //  Bluehelix
 //
-//  Created by Bhex on 2020/04/08.
+//  Created by 袁振 on 2020/04/16.
 //  Copyright © 2020 Bhex. All rights reserved.
 //
 
@@ -10,9 +10,9 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface XXTransactionModel : NSObject
+@interface XXMsg : NSObject
 
-/// 生成转账交易model
+/// 生成交易model
 /// @param from 转出地址
 /// @param to 交易对方账户地址
 /// @param amount 交易数
@@ -45,6 +45,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, strong) NSString *type; //交易类型
 @property (nonatomic, strong) NSString *withdrawal_fee; //跨链手续费
 
+@property (nonatomic, strong) NSMutableArray *msgs; //交易msg
 @end
 
 NS_ASSUME_NONNULL_END

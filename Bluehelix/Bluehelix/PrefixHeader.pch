@@ -36,6 +36,7 @@
 #import "XXDecimalNumberHelper.h"
 #import "XXAccountModel.h"
 #import "RatesManager.h"
+#import "XXAssetManager.h"
 static inline BOOL IsEmpty(id thing) {
     return thing == nil || [thing isEqual:[NSNull null]]
     || ([thing respondsToSelector:@selector(length)]
@@ -79,6 +80,7 @@ typedef NS_ENUM(NSUInteger, NetworkMethod) {
 #define kMsgDeposit @"hbtcchain/transfer/MsgDeposit" //跨链充值
 #define kMsgWithdrawal @"hbtcchain/transfer/MsgWithdrawal" //跨链提币
 
+#define kHideAssetText @"***"
 #define kPrecision 1000000000000000000 //精度是10的18次方
 #define kPrecision_U 0.000001 //10的负6次方
 

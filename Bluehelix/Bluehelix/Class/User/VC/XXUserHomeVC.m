@@ -18,7 +18,6 @@
 #import <CommonCrypto/CommonDigest.h>
 #import "Account.h"
 #import "SecureData.h"
-#import "XXTransactionRequest.h"
 
 @interface XXUserHomeVC () <UITableViewDataSource, UITableViewDelegate, UIGestureRecognizerDelegate>
 

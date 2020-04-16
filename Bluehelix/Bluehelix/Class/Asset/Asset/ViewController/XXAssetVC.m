@@ -34,13 +34,21 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     [self setupUI];
-    [self requestAsset];
-//    [self requestTokenList];
+    [self configAsset];
+}
+
+- (void)configAsset {
+    MJWeakSelf
+    XXAssetManager *assetManager = [XXAssetManager sharedManager];
+    self.assetModel = [[XXAssetManager sharedManager] assetModel];
+    assetManager.assetChangeBlock = ^{
+        [weakSelf refreshAsset];
+    };
 }
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
-    [self reloadData];
+    [self refreshAsset];
 }
 
 - (void)setupUI {
@@ -59,40 +67,6 @@
             }];
         }];
     }
-}
-
-/// 请求资产信息
-- (void)requestAsset {
-    MJWeakSelf
-    NSString *path = [NSString stringWithFormat:@"/api/v1/cus/%@",KUser.address];
-    [HttpManager getWithPath:path params:nil andBlock:^(id data, NSString *msg, NSInteger code) {
-        [weakSelf.tableView.mj_header endRefreshing];
-        if (code == 0) {
-            NSLog(@"%@",data);
-            weakSelf.assetModel = [XXAssetModel mj_objectWithKeyValues:data];
-            [weakSelf reloadData];
-            [weakSelf.headerView configData:weakSelf.assetModel];
-        } else {
-            Alert *alert = [[Alert alloc] initWithTitle:msg duration:kAlertDuration completion:^{
-                       }];
-            [alert showAlert];
-        }
-    }];
-}
-
-/// 请求币列表
-- (void)requestTokenList {
-    MJWeakSelf
-    [HttpManager getWithPath:@"/api/v1/tokens" params:nil andBlock:^(id data, NSString *msg, NSInteger code) {
-        if (code == 0) {
-            NSLog(@"%@",data);
-            weakSelf.tokenList = [XXTokenModel mj_objectArrayWithKeyValuesArray:data[@"tokens"]];
-        } else {
-            Alert *alert = [[Alert alloc] initWithTitle:msg duration:kAlertDuration completion:^{
-                       }];
-            [alert showAlert];
-        }
-    }];
 }
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
@@ -126,16 +100,18 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     XXSymbolDetailVC *detailVC = [[XXSymbolDetailVC alloc] init];
-    detailVC.assetModel = self.assetModel;
     detailVC.tokenModel = self.showArray[indexPath.row];
     [self.navigationController pushViewController:detailVC animated:YES];
 }
 
+/// 搜索
+/// @param textField  输入框
 - (void)textFieldValueChange:(UITextField *)textField {
     textField.text = [textField.text trimmingCharacters];
     [self reloadData];
 }
 
+/// 资产列表 构造数据
 - (void)reloadData {
     NSArray *sqliteArray = [[XXSqliteManager sharedSqlite] showTokens];
     NSString *searchString = self.searchView.searchTextField.text;
@@ -168,8 +144,15 @@
         }
         self.showArray = resultArray;
     }
-    
     [self.tableView reloadData];
+}
+
+/// 刷新资产
+- (void)refreshAsset {
+    self.assetModel = [[XXAssetManager sharedManager] assetModel];
+    [self reloadData];
+    [self.headerView configData:self.assetModel];
+    [self.tableView.mj_header endRefreshing];
 }
 
 - (UITableView *)tableView {
@@ -186,7 +169,7 @@
         }
         MJWeakSelf
         _tableView.mj_header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
-            [weakSelf requestAsset];
+            [weakSelf refreshAsset];
         }];
     }
     return _tableView;
@@ -194,7 +177,12 @@
 
 - (XXAssetHeaderView  *)headerView {
     if (!_headerView) {
+        MJWeakSelf
         _headerView = [[XXAssetHeaderView alloc] initWithFrame:CGRectMake(0, 0, kScreen_Width, K375(312))];
+        _headerView.actionBlock = ^{
+            [weakSelf.headerView configData:weakSelf.assetModel];
+            [weakSelf.tableView reloadData];
+        };
     }
     return _headerView;
 }

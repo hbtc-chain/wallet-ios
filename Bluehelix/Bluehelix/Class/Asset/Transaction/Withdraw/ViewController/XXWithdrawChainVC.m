@@ -8,10 +8,10 @@
 
 #import "XXWithdrawChainVC.h"
 #import "XXWithdrawChainView.h"
-#import "XXTransactionModel.h"
-#import "XXKeyGenRequest.h"
+#import "XXMsg.h"
 #import "XXTokenModel.h"
 #import "XXPasswordView.h"
+#import "XXMsgRequest.h"
 
 @interface XXWithdrawChainVC ()
 
@@ -21,7 +21,8 @@
 /** 提币按钮 */
 @property (strong, nonatomic) XXButton *withdrawButton;
 
-@property (strong, nonatomic) XXKeyGenRequest *keyGenRequest;
+/// 跨链地址生成 请求
+@property (strong, nonatomic) XXMsgRequest *keyGenRequest;
 
 @end
 
@@ -45,7 +46,7 @@
 #pragma mark - 2. 提币按钮点击事件
 - (void)withdrawButtonClick {
     if (self.chainView.feeView.textField.text.length <= 0) {
-        Alert *alert = [[Alert alloc] initWithTitle:@"请输入手续费" duration:kAlertDuration completion:^{
+        Alert *alert = [[Alert alloc] initWithTitle:LocalizedString(@"PleaseEnterFee") duration:kAlertDuration completion:^{
                    }];
         [alert showAlert];
         return;
@@ -56,8 +57,8 @@
     NSString *feeAmount = [[feeAmountDecimal decimalNumberByMultiplyingBy:kPrecisionDecimal] stringValue];
     NSString *gas = [[[feeAmountDecimal decimalNumberByDividingBy:gasPriceDecimal] decimalNumberByDividingBy:kPrecisionDecimal_U] stringValue];
 
-    XXTransactionModel *model = [[XXTransactionModel alloc] initWithfrom:KUser.address to:KUser.address amount:@"" denom:self.tokenModel.symbol feeAmount:feeAmount feeGas:gas feeDenom:kMainToken memo:@""];
-    _keyGenRequest = [[XXKeyGenRequest alloc] init];
+    XXMsg *model = [[XXMsg alloc] initWithfrom:KUser.address to:KUser.address amount:@"" denom:self.tokenModel.symbol feeAmount:feeAmount feeGas:gas feeDenom:kMainToken memo:@"" type:kMsgKeyGen withdrawal_fee:@""];
+    _keyGenRequest = [[XXMsgRequest alloc] init];
     [_keyGenRequest sendMsg:model];
 }
 

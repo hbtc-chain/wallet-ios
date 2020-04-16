@@ -10,6 +10,7 @@
 @class XXTokenModel;
 NS_ASSUME_NONNULL_BEGIN
 
+/// 跨链地址生成
 @interface XXWithdrawChainVC : BaseViewController
 
 @property (nonatomic, strong) XXTokenModel *tokenModel;

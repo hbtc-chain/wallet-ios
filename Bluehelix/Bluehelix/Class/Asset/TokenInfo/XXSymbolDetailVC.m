@@ -22,6 +22,9 @@
 @property (nonatomic, strong) UITableView *tableView;
 @property (nonatomic, strong) XXSymbolDetailFooterView *footerView;
 @property (nonatomic, strong) NSMutableArray *txs;
+@property (nonatomic, strong) XXAssetModel *assetModel;
+@property (nonatomic, strong) XXMainSymbolHeaderView *mainSymbolHeaderView;
+@property (nonatomic, strong) XXSymbolDetailHeaderView *symbolDetailHeaderView;
 
 @end
 
@@ -31,14 +34,42 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     [self requestHistory];
+    [self configAsset];
     [self buildUI];
+}
+
+- (void)configAsset {
+    MJWeakSelf
+    XXAssetManager *assetManager = [XXAssetManager sharedManager];
+    self.assetModel = [[XXAssetManager sharedManager] assetModel];
+    assetManager.assetChangeBlock = ^{
+        [weakSelf refreshHeader];
+    };
+}
+
+- (void)refreshHeader {
+    for (NSDictionary *dic in self.assetModel.assets) {
+        if ([dic[@"symbol"] isEqualToString:self.tokenModel.symbol]) {
+            self.tokenModel.amount = kAmountTrim(dic[@"amount"]);
+        }
+    }
+    if ([self.tokenModel.symbol isEqualToString:kMainToken]) {
+        self.mainSymbolHeaderView.assetModel = [[XXAssetManager sharedManager] assetModel];
+        self.mainSymbolHeaderView.tokenModel = self.tokenModel;
+    } else {
+        self.symbolDetailHeaderView.tokenModel = self.tokenModel;
+    }
 }
 
 - (void)buildUI {
     self.titleLabel.text = self.tokenModel.symbol;
     [self.view addSubview:self.tableView];
     [self.view addSubview:self.footerView];
-    self.tableView.tableHeaderView = [self headerView];
+    if ([self.tokenModel.symbol isEqualToString:kMainToken]) {
+        self.tableView.tableHeaderView = self.mainSymbolHeaderView;
+    } else {
+        self.tableView.tableHeaderView = self.symbolDetailHeaderView;
+    }
 }
 
 /// 请求交易记录
@@ -197,18 +228,21 @@
     return _tableView;
 }
 
-- (UIView *)headerView {
-    if ([self.tokenModel.symbol isEqualToString:kMainToken]) {
-        XXMainSymbolHeaderView *headerView = [[XXMainSymbolHeaderView alloc] initWithFrame:CGRectMake(0, 0, kScreen_Width, 248)];
-        headerView.tokenModel = self.tokenModel;
-        headerView.assetModel = self.assetModel;
-        return headerView;
-        
-    } else {
-        XXSymbolDetailHeaderView * headerView = [[XXSymbolDetailHeaderView alloc] initWithFrame:CGRectMake(0, 0, kScreen_Width, 112)];
-        headerView.tokenModel = self.tokenModel;
-        return headerView;
+- (XXSymbolDetailHeaderView *)symbolDetailHeaderView {
+    if (!_symbolDetailHeaderView) {
+        _symbolDetailHeaderView = [[XXSymbolDetailHeaderView alloc] initWithFrame:CGRectMake(0, 0, kScreen_Width, 112)];
+        _symbolDetailHeaderView.tokenModel = self.tokenModel;
     }
+    return _symbolDetailHeaderView;
+}
+
+- (XXMainSymbolHeaderView *)mainSymbolHeaderView {
+    if (!_mainSymbolHeaderView) {
+        _mainSymbolHeaderView = [[XXMainSymbolHeaderView alloc] initWithFrame:CGRectMake(0, 0, kScreen_Width, 248)];
+        _mainSymbolHeaderView.tokenModel = self.tokenModel;
+        _mainSymbolHeaderView.assetModel = self.assetModel;
+    }
+    return _mainSymbolHeaderView;
 }
 
 - (XXSymbolDetailFooterView *)footerView {

@@ -20,6 +20,7 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     KUser.ratesKey = @"cny";
     [[RatesManager shareRatesManager] loadDataOfRates];
+    [[XXAssetManager sharedManager] requestAsset];
     if (!KUser.isSettedNightType) {
         KUser.isNightType = KSystem.isDarkStyle;
     }

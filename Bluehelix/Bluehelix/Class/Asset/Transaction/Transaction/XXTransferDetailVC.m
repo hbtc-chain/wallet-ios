@@ -24,7 +24,7 @@
 }
 
 - (void)buildUI {
-    self.titleLabel.text = LocalizedString(@"Transfer");
+    self.titleLabel.text = @"交易详情";
     [self.view addSubview:self.tableView];
     self.tableView.tableHeaderView = self.headerView;
 }

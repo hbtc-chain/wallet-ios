@@ -46,7 +46,7 @@ static RatesManager *_ratesManager;
                     weakSelf.ratesArray = [NSMutableArray arrayWithArray:dataArray];
                     [weakSelf updataDataDic];
                 }
-                [weakSelf performSelector:@selector(loadDataOfRates) withObject:nil afterDelay:5];
+                [weakSelf performSelector:@selector(loadDataOfRates) withObject:nil afterDelay:60];
             }
         } else {
             [weakSelf performSelector:@selector(loadDataOfRates) withObject:nil afterDelay:3];

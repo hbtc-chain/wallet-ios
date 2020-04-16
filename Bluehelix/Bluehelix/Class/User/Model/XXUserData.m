@@ -47,6 +47,15 @@ static XXUserData *_sharedUserData = nil;
     return [[self getValueForKey:@"isHideSmallCoin"] integerValue];
 }
 
+// 是否隐藏资产
+- (void)setIsHideAsset:(BOOL)isHideAsset {
+    [self saveValeu:@(isHideAsset) forKey:@"isHideAsset"];
+}
+
+- (BOOL)isHideAsset {
+    return [[self getValueForKey:@"isHideAsset"] integerValue];
+}
+
 // 临时用户名
 - (void)setLocalUserName:(NSString *)localUserName {
     [self saveValeu:localUserName forKey:@"localUserName"];

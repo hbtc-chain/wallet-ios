@@ -1,12 +1,12 @@
 //
-//  XXKeyGenRequest.m
+//  XXMsgRequest.m
 //  Bluehelix
 //
-//  Created by Bhex on 2020/04/12.
+//  Created by 袁振 on 2020/04/16.
 //  Copyright © 2020 Bhex. All rights reserved.
 //
 
-#import "XXKeyGenRequest.h"
+#import "XXMsgRequest.h"
 #import "Account.h"
 #import "SecureData.h"
 #import "NSData+Base64.h"
@@ -17,53 +17,39 @@
 #import "AppDelegate+Category.h"
 #import "FCUUID.h"
 
-@interface XXKeyGenRequest ()
+@interface XXMsgRequest ()
 
 @property (nonatomic, strong) XXAssetModel *assetModel; // 账户信息
-@property (nonatomic, strong) XXTransactionModel *transactionModel; //交易信息
+@property (nonatomic, strong) XXMsg *msgModel; //交易信息
 @property (nonatomic, strong) NSString *uuid;
 
 @end
 
-@implementation XXKeyGenRequest
+@implementation XXMsgRequest
 
-- (void)sendMsg:(XXTransactionModel *)model {
-    self.transactionModel = model;
-    self.uuid = [FCUUID uuid];
+- (void)sendMsg:(XXMsg *)msg {
+    self.msgModel = msg;
     [self requestAsset];
 }
 
 - (void)createSignString {
-    //msgs
-    NSMutableDictionary *value = [NSMutableDictionary dictionary];
-    value[@"From"] = KUser.address;
-    value[@"To"] = KUser.address;
-    value[@"OrderId"] = self.uuid;
-    value[@"Symbol"] = self.transactionModel.denom;
-
-    NSMutableDictionary *msg = [NSMutableDictionary dictionary];
-    msg[@"type"] = kMsgKeyGen;
-    msg[@"value"] = value;
-    NSMutableArray *msgs = [NSMutableArray array];
-    [msgs addObject:msg];
-
     //fee
     NSMutableDictionary *feeAmount = [NSMutableDictionary dictionary];
-    feeAmount[@"amount"] = self.transactionModel.feeAmount;
-    feeAmount[@"denom"] = kMainToken;
+    feeAmount[@"amount"] = self.msgModel.feeAmount;
+    feeAmount[@"denom"] = self.msgModel.feeDenom;
     NSMutableArray *feeAmounts = [NSMutableArray array];
     [feeAmounts addObject:feeAmount];
     NSMutableDictionary *fee = [NSMutableDictionary dictionary];
     fee[@"amount"] = feeAmounts;
-    fee[@"gas"] = self.transactionModel.feeGas;
+    fee[@"gas"] = self.msgModel.feeGas;
 
     //TX
     NSMutableDictionary *tx = [NSMutableDictionary dictionary];
     tx[@"chain_id"] = kChainId;
     tx[@"cu_number"] = kCu_number;
     tx[@"fee"] = fee;
-    tx[@"memo"] = self.transactionModel.memo;
-    tx[@"msgs"] = msgs;
+    tx[@"memo"] = self.msgModel.memo;
+    tx[@"msgs"] = self.msgModel.msgs;
     tx[@"sequence"] = self.assetModel.sequence; //交易笔数
 
     if (@available(iOS 11.0, *)) {
@@ -72,6 +58,10 @@
         NSString *jsonB = [jsonString stringByReplacingOccurrencesOfString:@"\\" withString:@""];
         NSData *jsonD = [jsonB dataUsingEncoding:NSUTF8StringEncoding];
         NSLog(@"========= jsonB%@",jsonB);
+        
+        //test jsonkit
+//        NSString *a = [tx JSONString];
+//        NSLog(@"========= a ====%@",a);
 
         NSData *sec256Data = [SecureData SHA256:jsonD];
         NSData *privateKey = KUser.currentAccount.privateKey;
@@ -102,28 +92,15 @@
 }
 
 - (void)sendTxRequest:(NSString *)signString {
-    //msgs
-    NSMutableDictionary *value = [NSMutableDictionary dictionary];
-    value[@"From"] = KUser.address;
-    value[@"To"] = KUser.address;
-    value[@"OrderId"] = self.uuid;
-    value[@"Symbol"] = self.transactionModel.denom;
-
-    NSMutableDictionary *msg = [NSMutableDictionary dictionary];
-    msg[@"type"] = kMsgKeyGen;
-    msg[@"value"] = value;
-    NSMutableArray *msgs = [NSMutableArray array];
-    [msgs addObject:msg];
-
     //fee
     NSMutableDictionary *feeAmount = [NSMutableDictionary dictionary];
-    feeAmount[@"amount"] = self.transactionModel.feeAmount;
-    feeAmount[@"denom"] = kMainToken;
+    feeAmount[@"amount"] = self.msgModel.feeAmount;
+    feeAmount[@"denom"] = self.msgModel.feeDenom;
     NSMutableArray *feeAmounts = [NSMutableArray array];
     [feeAmounts addObject:feeAmount];
     NSMutableDictionary *fee = [NSMutableDictionary dictionary];
     fee[@"amount"] = feeAmounts;
-    fee[@"gas"] = self.transactionModel.feeGas;
+    fee[@"gas"] = self.msgModel.feeGas;
 
     //signatures
     NSMutableDictionary *pubKey = [NSMutableDictionary dictionary];
@@ -138,10 +115,10 @@
 
     //sendTxRequest
     NSMutableDictionary *TxReq = [NSMutableDictionary dictionary];
-    TxReq[@"msg"] = msgs;
+    TxReq[@"msg"] = self.msgModel.msgs;
     TxReq[@"fee"] = fee;
     TxReq[@"signatures"] = signatures;
-    TxReq[@"memo"] = self.transactionModel.memo;
+    TxReq[@"memo"] = self.msgModel.memo;
 
     NSMutableDictionary *rpc = [NSMutableDictionary dictionary];
     rpc[@"mode"] = @"sync";
@@ -159,10 +136,19 @@
         if (!IsEmpty(responseObject[@"txhash"])) {
             [[AppDelegate appDelegate].TopVC.navigationController popViewControllerAnimated:YES];
         } else {
-            Alert *alert = [[Alert alloc] initWithTitle:@"跨链地址生成失败" duration:kAlertDuration completion:^{
+            Alert *alert = [[Alert alloc] initWithTitle:@"失败" duration:kAlertDuration completion:^{
                                  }];
             [alert showAlert];
         }
+//        NSString *raw_log = [responseObject objectForKey:@"raw_log"];
+//        if (!IsEmpty(raw_log)) {
+////            NSData* jsonData = [raw_log dataUsingEncoding:NSUTF8StringEncoding];
+////            NSDictionary *dic = [jsonData objectFromJSONData];
+//            Alert *alert = [[Alert alloc] initWithTitle:raw_log duration:kAlertDuration completion:^{
+//                                 }];
+//            [alert showAlert];
+////            NSLog(@"%@",dic);
+//        }
 
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
         NSLog(@"%@ %@",task,error);

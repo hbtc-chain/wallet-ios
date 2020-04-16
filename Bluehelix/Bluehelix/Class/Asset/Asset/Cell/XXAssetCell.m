@@ -61,11 +61,15 @@
     [self.iconView sd_setImageWithURL:[NSURL URLWithString:model.logo] placeholderImage:[UIImage imageNamed:@"placeholderToken"]];
     self.coinNameLabel.text = model.symbol;
     self.coinNameLabel.width = [NSString widthWithText:model.symbol font:kFontBold(17)];
-    self.amountLabel.text = kAmountTrim(model.amount);
-    
+    if (KUser.isHideAsset) {
+        self.moneyLabel.text = kHideAssetText;
+        self.amountLabel.text = kHideAssetText;
+    } else {
+        self.moneyLabel.text = [[RatesManager shareRatesManager] getTwoRatesWithToken:model.symbol priceValue:model.amount.doubleValue];
+        self.amountLabel.text = kAmountTrim(model.amount);
+    }
     [self configTypeLabel:model];
-    self.moneyLabel.text = [[RatesManager shareRatesManager] getTwoRatesWithToken:model.symbol priceValue:model.amount.doubleValue];
-    self.priceLabel.text = [[RatesManager shareRatesManager] getPriceFromToken:model.symbol];
+       self.priceLabel.text = [[RatesManager shareRatesManager] getPriceFromToken:model.symbol];
 }
 
 - (void)configTypeLabel:(XXTokenModel *)model {

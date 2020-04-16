@@ -82,6 +82,19 @@ static XXSqliteManager *_sqliteManager;
     return resultArr;
 }
 
+- (XXTokenModel *)tokenBySymbol:(NSString *)symbol {
+    BOOL existsTable = [self existsTokens];
+    if (!existsTable) {
+        return nil;
+    }
+    FMResultSet *set = [self.myFmdb executeQuery:@"select * from tokens where symbol = ?",symbol];
+    NSMutableArray *resultArr = [NSMutableArray array];
+    while ([set next]) {
+        XXTokenModel *model = [self tokenModel:set];
+        [resultArr addObject:model];
+    }
+    return [resultArr firstObject]; //TODO 只查找一个
+}
 
 - (XXTokenModel *)withdrawFeeToken:(XXTokenModel *)token {
     if ([token.symbol isEqualToString:token.chain]) {
@@ -104,7 +117,7 @@ static XXSqliteManager *_sqliteManager;
 - (NSString *)tokensListString {
     BOOL existsTable = [self existsTokens];
     if (!existsTable) {
-        return @[];
+        return @"";
     }
     NSString *sql = @"select * from 'tokens'";
     FMResultSet *set = [self.myFmdb executeQuery:sql];
