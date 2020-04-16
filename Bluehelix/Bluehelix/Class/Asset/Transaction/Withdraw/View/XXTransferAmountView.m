@@ -29,10 +29,6 @@
 
         [self.banView addSubview:self.textField];
         
-        [self addSubview:self.riskAssetLabel];
-        
-        [self addSubview:self.alertButton];
-        
     }
     return self;
 }
@@ -120,27 +116,6 @@
         _textField.placeholder = LocalizedString(@"PleaseEnterAmount");
     }
     return _textField;
-}
-
-/** 风险资产标签 */
-- (XXLabel *)riskAssetLabel {
-    if (_riskAssetLabel == nil) {
-        _riskAssetLabel = [XXLabel labelWithFrame:CGRectMake(KSpacing, CGRectGetMaxY(self.banView.frame), kScreen_Width - KSpacing*2 - 32, 32) font:kFont14 textColor:kBlue100];
-        _riskAssetLabel.textAlignment = NSTextAlignmentRight;
-    }
-    return _riskAssetLabel;
-}
-
-/** 提示按钮 */
-- (XXButton *)alertButton {
-    if (_alertButton == nil) {
-        MJWeakSelf
-        _alertButton = [XXButton buttonWithFrame:CGRectMake(CGRectGetMaxX(self.riskAssetLabel.frame), self.riskAssetLabel.top, 32, self.riskAssetLabel.height) block:^(UIButton *button) {
-            [weakSelf alertButtonClick:button];
-        }];
-        [_alertButton setImage:[UIImage textImageName:@"tips"] forState:UIControlStateNormal];
-    }
-    return _alertButton;
 }
 
 @end

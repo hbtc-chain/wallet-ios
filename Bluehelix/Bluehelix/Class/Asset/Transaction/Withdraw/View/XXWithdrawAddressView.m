@@ -22,6 +22,8 @@
         
         [self.banView addSubview:self.unitLabel];
         
+        [self.banView addSubview:self.codeButton];
+        
         [self.banView addSubview:self.textField];
         
     }
@@ -59,10 +61,24 @@
     return _unitLabel;
 }
 
+/** 扫描按钮 */
+- (XXButton *)codeButton {
+    if (_codeButton == nil) {
+        MJWeakSelf
+        _codeButton = [XXButton buttonWithFrame:CGRectMake(self.banView.width - K375(40), 0, K375(39.5), self.banView.height) block:^(UIButton *button) {
+            if (weakSelf.codeBlock) {
+                weakSelf.codeBlock();
+            }
+        }];
+        [_codeButton setImage:[UIImage textImageName:@"scan_0"] forState:UIControlStateNormal];
+    }
+    return _codeButton;
+}
+
 /** 输入框 */
 - (XXTextField *)textField {
     if (_textField == nil) {
-        _textField = [[XXTextField alloc] initWithFrame:CGRectMake(K375(8), 0, self.banView.width - K375(16), self.banView.height)];
+        _textField = [[XXTextField alloc] initWithFrame:CGRectMake(K375(8), 0, self.banView.width - K375(56), self.banView.height)];
         _textField.textColor = kDark100;
         _textField.font = kFont14;
         [_textField addTarget:self action:@selector(textFieldChanged:) forControlEvents:UIControlEventEditingChanged];

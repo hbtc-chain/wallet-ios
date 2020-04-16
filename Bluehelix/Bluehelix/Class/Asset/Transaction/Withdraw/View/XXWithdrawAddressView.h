@@ -24,6 +24,11 @@ NS_ASSUME_NONNULL_BEGIN
 /** 输入框 */
 @property (strong, nonatomic) XXTextField *textField;
 
+/// 扫码
+@property (strong, nonatomic) XXButton *codeButton;
+
+/// 扫码回调
+@property (copy, nonatomic) void(^codeBlock)(void);
 @end
 
 NS_ASSUME_NONNULL_END

@@ -17,14 +17,15 @@
 #import "XXWithdrawChainVC.h"
 #import "XXMainSymbolHeaderView.h"
 
+int pageSize = 30;
 @interface XXSymbolDetailVC ()<UITableViewDataSource, UITableViewDelegate>
-
 @property (nonatomic, strong) UITableView *tableView;
 @property (nonatomic, strong) XXSymbolDetailFooterView *footerView;
 @property (nonatomic, strong) NSMutableArray *txs;
 @property (nonatomic, strong) XXAssetModel *assetModel;
 @property (nonatomic, strong) XXMainSymbolHeaderView *mainSymbolHeaderView;
 @property (nonatomic, strong) XXSymbolDetailHeaderView *symbolDetailHeaderView;
+@property (nonatomic, assign) int page;
 
 @end
 
@@ -33,6 +34,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    self.page = 1;
     [self requestHistory];
     [self configAsset];
     [self buildUI];
@@ -78,11 +80,22 @@
     NSString *path = [NSString stringWithFormat:@"/api/v1/cus/%@/txs",KUser.address];
     NSMutableDictionary *param = [NSMutableDictionary dictionary];
     param[@"token"] = self.tokenModel.symbol;
+    param[@"page"] = [NSString stringWithFormat:@"%d",self.page];
+    param[@"size"] = [NSString stringWithFormat:@"%d",pageSize];
     [HttpManager getWithPath:path params:param andBlock:^(id data, NSString *msg, NSInteger code) {
         [weakSelf.tableView.mj_header endRefreshing];
+        [weakSelf.tableView.mj_footer endRefreshing];
         if (code == 0) {
             NSLog(@"%@",data);
-            weakSelf.txs = [data objectForKey:@"txs"];
+            NSArray *tempArr = [data objectForKey:@"txs"];
+            if (self.page == 1) {
+                weakSelf.txs = [NSMutableArray arrayWithArray:tempArr];;
+            } else {
+                [weakSelf.txs addObjectsFromArray:tempArr];
+            }
+            if (tempArr.count < pageSize) {
+                [weakSelf.tableView.mj_footer endRefreshingWithNoMoreData];
+            }
             [weakSelf.tableView reloadData];
         } else {
             Alert *alert = [[Alert alloc] initWithTitle:msg duration:kAlertDuration completion:^{
@@ -222,6 +235,11 @@
         }
         MJWeakSelf
         _tableView.mj_header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
+            weakSelf.page = 1;
+            [weakSelf requestHistory];
+        }];
+        _tableView.mj_footer = [MJRefreshBackNormalFooter footerWithRefreshingBlock:^{
+            weakSelf.page ++;
             [weakSelf requestHistory];
         }];
     }

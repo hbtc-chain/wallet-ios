@@ -44,6 +44,7 @@
         self.titleLabel.text = [NSString stringWithFormat:@"%@ %@",self.tokenModel.symbol,LocalizedString(@"Transfer")];
         [self.view addSubview:self.transferView];
         self.transferView.amountView.currentlyAvailable = kAmountTrim(self.tokenModel.amount);
+        self.transferView.feeView.textField.text = kMinFee;
     } else {
         self.titleLabel.text = [NSString stringWithFormat:@"%@ %@",self.tokenModel.symbol,LocalizedString(@"Withdraw")];
         [self.view addSubview:self.withdrawView];
@@ -52,6 +53,7 @@
         self.withdrawFeeModel = [[XXSqliteManager sharedSqlite] withdrawFeeToken:self.tokenModel];
         self.withdrawView.chainFeeView.unitLabel.text = [self.withdrawFeeModel.symbol uppercaseString];
         self.withdrawView.chainFeeView.textField.text = self.tokenModel.withdrawal_fee;
+        self.withdrawView.feeView.textField.text = kMinFee;
     }
     [self.view addSubview:self.withdrawButton];
 }
@@ -84,8 +86,8 @@
     NSDecimalNumber *feeAmountDecimal = [NSDecimalNumber decimalNumberWithString:self.transferView.feeView.textField.text];
     NSDecimalNumber *gasPriceDecimal = [NSDecimalNumber decimalNumberWithString:[NSString stringWithFormat:@"%f",self.transferView.speedView.slider.value]];
     NSString *toAddress = self.transferView.addressView.textField.text;
-    NSString *amount = [[amountDecimal decimalNumberByMultiplyingBy:kPrecisionDecimal] stringValue];
-    NSString *feeAmount = [[feeAmountDecimal decimalNumberByMultiplyingBy:kPrecisionDecimal] stringValue];
+    NSString *amount = [[amountDecimal decimalNumberByMultiplyingBy:kPrecisionDecimalPower(self.tokenModel.decimals)] stringValue];
+    NSString *feeAmount = [[feeAmountDecimal decimalNumberByMultiplyingBy:kPrecisionDecimalPower(self.tokenModel.decimals)] stringValue];
     NSString *gas = [[[feeAmountDecimal decimalNumberByDividingBy:gasPriceDecimal] decimalNumberByDividingBy:kPrecisionDecimal_U] stringValue];
 
     XXMsg *model = [[XXMsg alloc] initWithfrom:KUser.address to:toAddress amount:amount denom:self.tokenModel.symbol feeAmount:feeAmount feeGas:gas feeDenom:self.tokenModel.symbol memo:@"" type:kMsgSend withdrawal_fee:@""];
@@ -116,7 +118,7 @@
     NSDecimalNumber *chainFeeDecimal = [NSDecimalNumber decimalNumberWithString:self.withdrawView.chainFeeView.textField.text]; //跨链手续费
     NSString *toAddress = self.withdrawView.addressView.textField.text;
     NSString *amount = [[amountDecimal decimalNumberByMultiplyingBy:kPrecisionDecimalPower(self.tokenModel.decimals)] stringValue];
-    NSString *feeAmount = [[feeAmountDecimal decimalNumberByMultiplyingBy:kPrecisionDecimal] stringValue];
+    NSString *feeAmount = [[feeAmountDecimal decimalNumberByMultiplyingBy:kPrecisionDecimalPower(self.tokenModel.decimals)] stringValue];
     NSString *chainFeeAmount = [[chainFeeDecimal decimalNumberByMultiplyingBy:kPrecisionDecimalPower(self.withdrawFeeModel.decimals)] stringValue];
     NSString *gas = [[[feeAmountDecimal decimalNumberByDividingBy:gasPriceDecimal] decimalNumberByDividingBy:kPrecisionDecimal_U] stringValue];
     
