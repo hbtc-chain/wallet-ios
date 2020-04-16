@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		6C0D91B5244890570043AF74 /* XXValidarorDetailDelegateBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 6C0D91B4244890570043AF74 /* XXValidarorDetailDelegateBar.m */; };
 		6CC12CEE24445DF200917105 /* XXDecimalNumberHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = EA0AA16623ED8AFD00E9472E /* XXDecimalNumberHelper.m */; };
 		6CC12CF52444629B00917105 /* XXValidatorsHomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6CC12CF42444629B00917105 /* XXValidatorsHomeViewController.m */; };
 		6CC12CF82444630400917105 /* XXValidatorCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 6CC12CF72444630400917105 /* XXValidatorCell.m */; };
@@ -249,6 +250,8 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		6C0D91B3244890570043AF74 /* XXValidarorDetailDelegateBar.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = XXValidarorDetailDelegateBar.h; sourceTree = "<group>"; };
+		6C0D91B4244890570043AF74 /* XXValidarorDetailDelegateBar.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = XXValidarorDetailDelegateBar.m; sourceTree = "<group>"; };
 		6CC12CF32444629B00917105 /* XXValidatorsHomeViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = XXValidatorsHomeViewController.h; sourceTree = "<group>"; };
 		6CC12CF42444629B00917105 /* XXValidatorsHomeViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = XXValidatorsHomeViewController.m; sourceTree = "<group>"; };
 		6CC12CF62444630400917105 /* XXValidatorCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = XXValidatorCell.h; sourceTree = "<group>"; };
@@ -772,6 +775,8 @@
 				6CC12D0024455C4B00917105 /* XXValidatorToolBar.m */,
 				6CC12D0224456A3800917105 /* XXSearchBarView.h */,
 				6CC12D0324456A3800917105 /* XXSearchBarView.m */,
+				6C0D91B3244890570043AF74 /* XXValidarorDetailDelegateBar.h */,
+				6C0D91B4244890570043AF74 /* XXValidarorDetailDelegateBar.m */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -1806,6 +1811,7 @@
 				EAC6871D214FAD1C00701874 /* XXTabView.m in Sources */,
 				EABD1BA5241BB25900B1A03A /* Promise.m in Sources */,
 				EABD1BBE241E52ED00B1A03A /* XXImportMnemonicPhraseVC.m in Sources */,
+				6C0D91B5244890570043AF74 /* XXValidarorDetailDelegateBar.m in Sources */,
 				7AC4D793234C808F00F5E5F8 /* XXShadowView.m in Sources */,
 				EA30A0A9236F221A0098DE28 /* UIActivityIndicatorView+AFNetworking.m in Sources */,
 				EA04ABA8242D015B004403FF /* IQTextView.m in Sources */,
