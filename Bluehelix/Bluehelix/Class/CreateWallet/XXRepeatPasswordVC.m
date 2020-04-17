@@ -67,32 +67,19 @@
         account = [Account randomMnemonicAccount];
     }
     XXAccountModel *model = [[XXAccountModel alloc] init];
-    NSMutableDictionary *dic = [NSMutableDictionary dictionary];
-//    [dic setObject:KUser.increaseID forKey:@"ID"];
-    
-    
-//    [dic setObject:account.privateKey forKey:@"privateKey"];
-    model.privateKey = account.privateKey;
-//    [dic setObject:account.pubKey forKey:@"publicKey"];
+    model.privateKey = [AESCrypt encrypt:account.privateKeyString password:KUser.localPassword];
     model.publicKey = account.pubKey;
-//    [dic setObject:account.BHAddress forKey:@"BHAddress"];
     model.address = account.BHAddress;
-//    [dic setObject:KUser.localUserName forKey:@"userName"];
     model.userName = KUser.localUserName;
-//    [dic setObject:[NSString md5:KUser.localPassword] forKey:@"password"];
     model.password = [NSString md5:KUser.localPassword];
     if (account.mnemonicPhrase) {
         NSString *mnemonicPhrase = [AESCrypt encrypt:account.mnemonicPhrase password:KUser.localPassword];
-//        [dic setObject:mnemonicPhrase forKey:@"mnemonicPhrase"];
         model.mnemonicPhrase = mnemonicPhrase;
     }
-//    [dic setObject:@0 forKey:@"backupFlag"]; //是否备份助记词
     model.backupFlag = NO;
     model.symbols = [NSString stringWithFormat:@"btc,eth,tusdt,%@",kMainToken];
-//    [KUser addAccount:dic];
     [[XXSqliteManager sharedSqlite] insertAccount:model];
     
-//    KUser.rootAccount = dic;
     KUser.address = model.address;
     
     XXCreateWalletSuccessVC *successVC = [[XXCreateWalletSuccessVC alloc] init];

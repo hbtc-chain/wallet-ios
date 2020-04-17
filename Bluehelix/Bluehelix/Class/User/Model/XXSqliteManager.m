@@ -162,7 +162,7 @@ static XXSqliteManager *_sqliteManager;
 #pragma mark 账户
 - (BOOL)existsAccount {
     [self.myFmdb open];
-    NSString *sql = @"create table if not exists account(ID INTEGER PRIMARY KEY AUTOINCREMENT,address TEXT,userName TEXT,password TEXT,backupFlag INTEGER,mnemonicPhrase TEXT,publicKey,privateKey,symbols TEXT)";
+    NSString *sql = @"create table if not exists account(ID INTEGER PRIMARY KEY AUTOINCREMENT,address TEXT,userName TEXT,password TEXT,backupFlag INTEGER,mnemonicPhrase TEXT,publicKey,privateKey TEXT,symbols TEXT)";
     BOOL result = [self.myFmdb executeUpdate:sql];
     return result;
 }
@@ -200,18 +200,23 @@ static XXSqliteManager *_sqliteManager;
     }
     FMResultSet *set = [self.myFmdb executeQuery:@"select * from account where address = ?",address];
     while ([set next]) {
-        XXAccountModel *model = [[XXAccountModel alloc] init];
-        model.address = [set stringForColumn:@"address"];
-        model.userName = [set stringForColumn:@"userName"];
-        model.symbols = [set stringForColumn:@"symbols"];
-        model.backupFlag = [set boolForColumn:@"backupFlag"];
-        model.password = [set stringForColumn:@"password"];
-        model.publicKey = [set dataForColumn:@"publicKey"];
-        model.privateKey = [set dataForColumn:@"privateKey"];
-        model.mnemonicPhrase = [set stringForColumn:@"mnemonicPhrase"];
+        XXAccountModel *model = [self accountModel:set];
         return model;
     }
     return nil;
+}
+
+- (XXAccountModel *)accountModel:(FMResultSet *)set {
+    XXAccountModel *model = [[XXAccountModel alloc] init];
+    model.address = [set stringForColumn:@"address"];
+    model.userName = [set stringForColumn:@"userName"];
+    model.symbols = [set stringForColumn:@"symbols"];
+    model.backupFlag = [set boolForColumn:@"backupFlag"];
+    model.password = [set stringForColumn:@"password"];
+    model.publicKey = [set dataForColumn:@"publicKey"];
+    model.privateKey = [set stringForColumn:@"privateKey"];
+    model.mnemonicPhrase = [set stringForColumn:@"mnemonicPhrase"];
+    return model;
 }
 
 - (NSArray *)accounts {
@@ -224,15 +229,7 @@ static XXSqliteManager *_sqliteManager;
     FMResultSet *set = [self.myFmdb executeQuery:sql];
     NSMutableArray *resultArr = [NSMutableArray array];
     while ([set next]) {
-        XXAccountModel *model = [[XXAccountModel alloc] init];
-        model.address = [set stringForColumn:@"address"];
-        model.userName = [set stringForColumn:@"userName"];
-        model.symbols = [set stringForColumn:@"symbols"];
-        model.backupFlag = [set boolForColumn:@"backupFlag"];
-        model.publicKey = [set dataForColumn:@"publicKey"];
-        model.privateKey = [set dataForColumn:@"privateKey"];
-        model.mnemonicPhrase = [set stringForColumn:@"mnemonicPhrase"];
-        model.password = [set stringForColumn:@"password"];
+        XXAccountModel *model = [self accountModel:set];
         [resultArr addObject:model];
     }
     return resultArr;
