@@ -36,6 +36,9 @@ NS_ASSUME_NONNULL_BEGIN
 
 /** 输入框输入回调 */
 @property (strong, nonatomic) void(^textFieldBoock)(void);
+
+/** token */
+@property (strong, nonatomic) XXTokenModel *tokenModel;;
 @end
 
 NS_ASSUME_NONNULL_END

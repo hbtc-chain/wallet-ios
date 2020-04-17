@@ -7,6 +7,7 @@
 //
 
 #import "XXWithdrawAmountView.h"
+#import "XXTokenModel.h"
 
 @implementation XXWithdrawAmountView
 
@@ -40,7 +41,14 @@
 
 #pragma mark - 2. 全部按钮点击事件
 - (void)allButtonClick:(UIButton *)sender {
-    self.textField.text = self.currentlyAvailable;
+    NSDecimalNumber *availableDecimal = [NSDecimalNumber decimalNumberWithString:self.currentlyAvailable];
+    NSDecimalNumber *withdrawFeeDecimal = [NSDecimalNumber decimalNumberWithString:self.tokenModel.withdrawal_fee];
+    NSDecimalNumber *resultDecimal = [availableDecimal decimalNumberBySubtracting:withdrawFeeDecimal];
+    if (resultDecimal.doubleValue > 0) {
+        self.textField.text = kAmountTrim(resultDecimal.stringValue);
+    } else {
+        self.textField.text = self.currentlyAvailable;
+    }
     if (self.textFieldBoock) {
         self.textFieldBoock();
     }

@@ -8,11 +8,11 @@
 
 // Tabbar
 "Asset" = "资产";
-"Exchange" = "兑换";
-"Order" = "订单";
+"Validator" = "验证人";
+"Proposal" = "治理提案";
 "Me" = "我的";
-"Verify" = "验证";
 
+"Verify" = "验证";
 "logoName" = "Bluehelix Wallet";
 "CreateWallet" = "创建托管单元";
 "ImportWallet" = "导入托管单元";
@@ -100,6 +100,7 @@
 "UnnativeCoin" = "跨链代币";
 "AddNewAsset" = "添加新资产";
 "EnterTokenNameSearch" = "输入币种名称";
+"TotalAsset" = "总资产(%@)";
 
 //提币
 "PleaseEnterAmountReceived" = "请输入到账数量";
@@ -120,6 +121,9 @@
 "TransferAddress" = "转账地址";
 "TransferSpeed" = "交易加速";
 "TransferAmount" = "转账数量";
+"QRCode"="二维码";
+"Album"="相册";
+"QRCodeAlertKey"="将二维码放入框内，即可自动扫描";
 
 //币种详情
 "ReceiveMoney" = "收款";
@@ -145,9 +149,24 @@
 "ValidatorVote" = "投票权";
 "ValidatorDelegateNumber" = "自我委托";
 "ValidatorCommissionRate" = "佣金率";
+"ValidatorOnlineRatio" = "上线时间比重";
+"ValidatorCommissionRate" = "佣金率";
+"ValidatorUpdateTime" = "更新时间";
+"ValidatorCommissionMostLimit" = "最大佣金限制";
+"ValidatorCommissionMostLimitPerDay" = "每天最大佣金变化限制";
+"ValidatorAddress" = "地址";
+"ValidatorWebsite" = "网站";
+"ValidatorDetailInfo" = "详情";
 "ValidatorNewCreate" = "创建";
 "ValidatorTitle" = "验证人";
 "valid" = "有效";
 "invalid" = "无效";
 "PleaseInputValidatorName" = "输入验证人名称";
+
+"TransferDelegate" = "转委托";
+"RelieveDelegate" = "解委托";
+"Delegate" = "委托";
+'
+
+
 

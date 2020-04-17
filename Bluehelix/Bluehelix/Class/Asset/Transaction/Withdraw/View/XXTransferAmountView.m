@@ -42,7 +42,13 @@
 
 #pragma mark - 2. 全部按钮点击事件
 - (void)allButtonClick:(UIButton *)sender {
-    self.textField.text = self.currentlyAvailable;
+    double availableAmount = self.currentlyAvailable.doubleValue - kMinFee.doubleValue;
+    if (availableAmount > 0) {
+        NSString *amount = [NSString stringWithFormat:@"%f",availableAmount];
+        self.textField.text = kAmountTrim(amount);
+    } else {
+        self.textField.text = self.currentlyAvailable;
+    }
     if (self.textFieldBoock) {
         self.textFieldBoock();
     }

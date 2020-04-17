@@ -52,11 +52,13 @@
         self.titleLabel.text = [NSString stringWithFormat:@"%@ %@",self.tokenModel.symbol,LocalizedString(@"Withdraw")];
         [self.view addSubview:self.withdrawView];
         self.withdrawView.amountView.currentlyAvailable = kAmountTrim(self.tokenModel.amount);
+        self.withdrawView.amountView.tokenModel = self.tokenModel;
         self.withdrawView.feeView.unitLabel.text = [kMainToken uppercaseString];
         self.withdrawFeeModel = [[XXSqliteManager sharedSqlite] withdrawFeeToken:self.tokenModel];
         self.withdrawView.chainFeeView.unitLabel.text = [self.withdrawFeeModel.symbol uppercaseString];
         self.withdrawView.chainFeeView.textField.text = self.tokenModel.withdrawal_fee;
         self.withdrawView.feeView.textField.text = kMinFee;
+        
     }
     [self.view addSubview:self.withdrawButton];
 }

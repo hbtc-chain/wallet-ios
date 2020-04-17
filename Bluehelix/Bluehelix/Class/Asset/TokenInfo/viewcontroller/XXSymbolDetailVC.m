@@ -62,6 +62,7 @@ int pageSize = 30;
         if ([dic[@"symbol"] isEqualToString:self.tokenModel.symbol]) {
             self.assetModel.amount = kAmountTrim(dic[@"amount"]);
             self.assetModel.symbol = self.tokenModel.symbol;
+            self.tokenModel.external_address = dic[@"external_address"];
         }
     }
     if ([self.tokenModel.symbol isEqualToString:kMainToken]) {

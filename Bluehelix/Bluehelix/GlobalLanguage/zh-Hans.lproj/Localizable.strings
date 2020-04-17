@@ -8,11 +8,11 @@
 
 // Tabbar
 "Asset" = "资产";
-"Exchange" = "兑换";
-"Order" = "订单";
+"Validator" = "验证人";
+"Proposal" = "治理提案";
 "Me" = "我的";
-"Verify" = "验证";
 
+"Verify" = "验证";
 "logoName" = "Bluehelix Wallet";
 "CreateWallet" = "创建托管单元";
 "ImportWallet" = "导入托管单元";
@@ -121,6 +121,9 @@
 "TransferAddress" = "转账地址";
 "TransferSpeed" = "交易加速";
 "TransferAmount" = "转账数量";
+"QRCode"="二维码";
+"Album"="相册";
+"QRCodeAlertKey"="将二维码放入框内，即可自动扫描";
 
 //币种详情
 "ReceiveMoney" = "收款";

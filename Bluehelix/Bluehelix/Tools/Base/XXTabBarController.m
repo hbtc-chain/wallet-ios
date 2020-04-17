@@ -159,13 +159,13 @@
                                  }];
         
         [_namesArray addObject:@{
-                                 @"title":LocalizedString(@"Exchange"),
+                                 @"title":LocalizedString(@"Validator"),
                                  @"normalImage":[UIImage textImageName:@"tabbarNew_1"],
                                  @"selectedImage":[UIImage mainImageName:@"tabbarNew_1"]
                                  }];
         
         [_namesArray addObject:@{
-                                 @"title":LocalizedString(@"Order"),
+                                 @"title":LocalizedString(@"Proposal"),
                                  @"normalImage":[UIImage textImageName:@"tabbarNew_2"],
                                  @"selectedImage":[UIImage mainImageName:@"tabbarNew_2"]
                                  }];
