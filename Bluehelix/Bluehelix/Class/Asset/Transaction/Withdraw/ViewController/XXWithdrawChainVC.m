@@ -33,36 +33,38 @@
     [self setupUI];
 }
 
-#pragma mark - 1. 初始化UI
 - (void)setupUI {
-    
     self.titleLabel.text = LocalizedString(@"WithdrawChainAddress");
-    
     [self.view addSubview:self.chainView];
     self.chainView.feeView.unitLabel.text = [kMainToken uppercaseString];
     [self.view addSubview:self.withdrawButton];
 }
 
-#pragma mark - 2. 提币按钮点击事件
 - (void)withdrawButtonClick {
     if (self.chainView.feeView.textField.text.length <= 0) {
         Alert *alert = [[Alert alloc] initWithTitle:LocalizedString(@"PleaseEnterFee") duration:kAlertDuration completion:^{
-                   }];
+        }];
         [alert showAlert];
         return;
     }
-    
+    MJWeakSelf
+    [XXPasswordView showWithSureBtnBlock:^(NSString * _Nonnull text) {
+        [weakSelf requestWithdrawVerify:text];
+    }];
+}
+
+- (void)requestWithdrawVerify:(NSString *)text {
+    XXTokenModel *mainToken = [[XXSqliteManager sharedSqlite] tokenBySymbol:kMainToken];
     NSDecimalNumber *feeAmountDecimal = [NSDecimalNumber decimalNumberWithString:self.chainView.feeView.textField.text];
     NSDecimalNumber *gasPriceDecimal = [NSDecimalNumber decimalNumberWithString:[NSString stringWithFormat:@"%f",self.chainView.speedView.slider.value]];
-    NSString *feeAmount = [[feeAmountDecimal decimalNumberByMultiplyingBy:kPrecisionDecimal] stringValue];
+    NSString *feeAmount = [[feeAmountDecimal decimalNumberByMultiplyingBy:kPrecisionDecimalPower(mainToken.decimals)] stringValue];
     NSString *gas = [[[feeAmountDecimal decimalNumberByDividingBy:gasPriceDecimal] decimalNumberByDividingBy:kPrecisionDecimal_U] stringValue];
-
-    XXMsg *model = [[XXMsg alloc] initWithfrom:KUser.address to:KUser.address amount:@"" denom:self.tokenModel.symbol feeAmount:feeAmount feeGas:gas feeDenom:kMainToken memo:@"" type:kMsgKeyGen withdrawal_fee:@""];
+    
+    XXMsg *model = [[XXMsg alloc] initWithfrom:KUser.address to:KUser.address amount:@"" denom:self.tokenModel.symbol feeAmount:feeAmount feeGas:gas feeDenom:kMainToken memo:@"" type:kMsgKeyGen withdrawal_fee:@"" text:text];
     _keyGenRequest = [[XXMsgRequest alloc] init];
     [_keyGenRequest sendMsg:model];
 }
 
-#pragma mark - || 懒加载
 /** 提币视图 */
 - (XXWithdrawChainView *)chainView {
     if (_chainView == nil) {

@@ -30,12 +30,6 @@ NS_ASSUME_NONNULL_BEGIN
 /** 币种 */
 @property (strong, nonatomic) NSString *tokenName;
 
-/** 风险资产标签 */
-@property (strong, nonatomic, nullable) XXLabel *riskAssetLabel;
-
-/** 提示按钮 */
-@property (strong, nonatomic, nullable) XXButton *alertButton;
-
 /** 当前可提 */
 @property (strong, nonatomic) NSString *currentlyAvailable;
 

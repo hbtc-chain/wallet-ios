@@ -25,7 +25,8 @@
                     feeDenom:(NSString *)feeDenom
                         memo:(NSString *)memo
                         type:(NSString *)type
-              withdrawal_fee:(NSString *)withdrawal_fee {
+              withdrawal_fee:(NSString *)withdrawal_fee
+                        text:(NSString *)text {
     self = [super init];
     if (self) {
         _fromAddress = from;
@@ -38,6 +39,7 @@
         _memo = memo;
         _type = type;
         _withdrawal_fee = withdrawal_fee;
+        _text = text;
         [self buildMsgs];
     }
     return self;

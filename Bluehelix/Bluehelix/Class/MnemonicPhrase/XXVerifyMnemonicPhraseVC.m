@@ -38,8 +38,6 @@
 - (void)initPhraseData {
     XXAccountModel *model = [[XXSqliteManager sharedSqlite] accountByAddress:KUser.address];
         NSString *sectureStr = model.mnemonicPhrase;
-    //    KUser.rootAccount[@"mnemonicPhrase"];
-//    NSString *sectureStr = KUser.rootAccount[@"mnemonicPhrase"];
     NSString *phraseStr = [AESCrypt decrypt:sectureStr password:self.text];
     self.phraseArray = [phraseStr componentsSeparatedByString:@" "];
     self.drawArray = [self randomArray];

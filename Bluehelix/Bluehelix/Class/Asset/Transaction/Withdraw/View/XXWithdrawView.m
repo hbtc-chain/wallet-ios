@@ -7,7 +7,7 @@
 //
 
 #import "XXWithdrawView.h"
-
+#import "XCQrCodeTool.h"
 @interface XXWithdrawView () <UITextFieldDelegate>
 
 /** 备注标签 */
@@ -57,6 +57,15 @@
     [self.mainView addSubview:self.tipView];
 }
 
+- (void)scanCodeGetAddress {
+    MJWeakSelf
+    [XCQrCodeTool readQrCode:self.viewController callBack:^(id data) {
+        if ([data isKindOfClass:[NSString class]]) {
+            weakSelf.addressView.textField.text = data;
+        }
+    }];
+}
+
 /** 地址视图 */
 - (UIView *)mainView {
     if (_mainView == nil) {
@@ -78,23 +87,11 @@
     if (_amountView == nil) {
         _amountView = [[XXWithdrawAmountView alloc] initWithFrame:CGRectMake(0, CGRectGetMaxY(self.addressView.frame), kScreen_Width, 110)];
         _amountView.userInteractionEnabled = YES;
-        _amountView.riskAssetLabel.userInteractionEnabled = YES;
         _amountView.nameLabel.text = LocalizedString(@"WithdrawAmount");
         _amountView.textField.placeholder = LocalizedString(@"PleaseEnterAmount");
-        [_amountView.riskAssetLabel whenTapped:^{
-            
-        }];
     }
     return _amountView;
 }
-
-///** 到账数量 */
-//- (XXWithdrawAmountReceivedView *)receivedView {
-//    if (_receivedView == nil) {
-//        _receivedView = [[XXWithdrawAmountReceivedView alloc] initWithFrame:CGRectMake(0, CGRectGetMaxY(self.amountView.frame), kScreen_Width, 96)];
-//    }
-//    return _receivedView;
-//}
 
 /** 交易手续费 */
 - (XXWithdrawFeeView *)feeView {

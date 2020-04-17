@@ -96,6 +96,7 @@
 @property (nonatomic, readonly) NSString *BHAddress;
 
 @property (nonatomic, readonly) NSData *privateKey;
+@property (nonatomic, readonly) NSString *privateKeyString; //hexString
 @property (nonatomic, readonly) NSData *pubKey;
 
 @property (nonatomic, readonly) NSString *mnemonicPhrase; //助记符

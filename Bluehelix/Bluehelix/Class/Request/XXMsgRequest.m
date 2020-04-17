@@ -16,6 +16,9 @@
 #import "JSONKit.h"
 #import "AppDelegate+Category.h"
 #import "FCUUID.h"
+#include "ecdsa.h"
+#include "secp256k1.h"
+#import "AESCrypt.h"
 
 @interface XXMsgRequest ()
 
@@ -27,12 +30,23 @@
 
 @implementation XXMsgRequest
 
+/// 发送交易
+/// @param msg 交易对象
 - (void)sendMsg:(XXMsg *)msg {
     self.msgModel = msg;
     [self requestAsset];
 }
 
-- (void)createSignString {
+- (void)send {
+    NSMutableDictionary *tx = [self buildData];
+    NSData *serializeData = [self serializeData:tx];
+    NSString *signString = [self signData:serializeData];
+    NSMutableDictionary *rpc = [self buildRpc:signString];
+    [self sendTxRequest:rpc];
+}
+
+/// 构造数据
+- (NSMutableDictionary *)buildData {
     //fee
     NSMutableDictionary *feeAmount = [NSMutableDictionary dictionary];
     feeAmount[@"amount"] = self.msgModel.feeAmount;
@@ -42,7 +56,7 @@
     NSMutableDictionary *fee = [NSMutableDictionary dictionary];
     fee[@"amount"] = feeAmounts;
     fee[@"gas"] = self.msgModel.feeGas;
-
+    
     //TX
     NSMutableDictionary *tx = [NSMutableDictionary dictionary];
     tx[@"chain_id"] = kChainId;
@@ -51,26 +65,39 @@
     tx[@"memo"] = self.msgModel.memo;
     tx[@"msgs"] = self.msgModel.msgs;
     tx[@"sequence"] = self.assetModel.sequence; //交易笔数
+    return tx;
+}
 
+/// 序列化数据
+/// @param tx 需要序列化的数据
+- (NSData *)serializeData:(NSMutableDictionary *)tx {
     if (@available(iOS 11.0, *)) {
         NSData *jsonData = [NSJSONSerialization dataWithJSONObject:tx options:NSJSONWritingSortedKeys error:nil];
         NSString *jsonString = [[NSString alloc] initWithData:jsonData encoding:NSUTF8StringEncoding];
         NSString *jsonB = [jsonString stringByReplacingOccurrencesOfString:@"\\" withString:@""];
         NSData *jsonD = [jsonB dataUsingEncoding:NSUTF8StringEncoding];
         NSLog(@"========= jsonB%@",jsonB);
-        
-        //test jsonkit
-//        NSString *a = [tx JSONString];
-//        NSLog(@"========= a ====%@",a);
+        return jsonD;
+    } else {
+        return nil;
+    }
+}
 
-        NSData *sec256Data = [SecureData SHA256:jsonD];
-        NSData *privateKey = KUser.currentAccount.privateKey;
-        Account *account = [Account accountWithPrivateKey:privateKey];
-        SecureData *signData = [account signData:sec256Data];
-        NSString *signString = [NSString base64StringFromData:signData.data length:0];
-        NSLog(@"%@",signString);
-
-        [self sendTxRequest:signString];
+/// 签名数据
+/// @param data 交易数据
+- (NSString *)signData:(NSData *)data {
+    NSData *sec256Data = [SecureData SHA256:data];
+    
+    NSString *privateKeyString = [AESCrypt decrypt:KUser.currentAccount.privateKey password:self.msgModel.text];
+    NSData *privateKey = [[SecureData secureDataWithHexString:privateKeyString] data];
+    if (sec256Data.length == 32) {
+        SecureData *signatureData = [SecureData secureDataWithLength:64];;
+        uint8_t pby;
+        ecdsa_sign_digest(&secp256k1, [privateKey bytes], sec256Data.bytes, signatureData.mutableBytes, &pby, NULL);
+        NSString *signString = [NSString base64StringFromData:signatureData.data length:0];
+        return signString;
+    } else {
+        return nil;
     }
 }
 
@@ -82,16 +109,18 @@
         if (code == 0) {
             NSLog(@"%@",data);
             weakSelf.assetModel = [XXAssetModel mj_objectWithKeyValues:data];
-            [weakSelf createSignString];
+            [weakSelf send];
         } else {
             Alert *alert = [[Alert alloc] initWithTitle:msg duration:kAlertDuration completion:^{
-                       }];
+            }];
             [alert showAlert];
         }
     }];
 }
 
-- (void)sendTxRequest:(NSString *)signString {
+/// 构造交易对象
+/// @param signString 签名后Tx
+- (NSMutableDictionary *)buildRpc:(NSString *)signString {
     //fee
     NSMutableDictionary *feeAmount = [NSMutableDictionary dictionary];
     feeAmount[@"amount"] = self.msgModel.feeAmount;
@@ -101,7 +130,7 @@
     NSMutableDictionary *fee = [NSMutableDictionary dictionary];
     fee[@"amount"] = feeAmounts;
     fee[@"gas"] = self.msgModel.feeGas;
-
+    
     //signatures
     NSMutableDictionary *pubKey = [NSMutableDictionary dictionary];
     pubKey[@"type"] = kPubKeyType;
@@ -112,50 +141,55 @@
     signature[@"signature"] = signString;
     NSMutableArray *signatures = [NSMutableArray array];
     [signatures addObject:signature];
-
+    
     //sendTxRequest
     NSMutableDictionary *TxReq = [NSMutableDictionary dictionary];
     TxReq[@"msg"] = self.msgModel.msgs;
     TxReq[@"fee"] = fee;
     TxReq[@"signatures"] = signatures;
     TxReq[@"memo"] = self.msgModel.memo;
-
+    
     NSMutableDictionary *rpc = [NSMutableDictionary dictionary];
     rpc[@"mode"] = @"sync";
     rpc[@"tx"] = TxReq;
+    return  rpc;
+}
 
+/// 发送交易请求
+/// @param rpc 交易对象
+- (void)sendTxRequest:(NSMutableDictionary *)rpc {
     AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
     manager.operationQueue.maxConcurrentOperationCount = 5;
     manager.requestSerializer = [AFJSONRequestSerializer serializer];
     manager.responseSerializer.acceptableContentTypes = [NSSet setWithObjects:@"application/json", @"text/plain", @"text/javascript", @"text/json", @"text/html", nil];
-
+    
     [manager POST:[NSString stringWithFormat:@"%@%@",kServerUrl,@"/api/v1/txs"] parameters:rpc headers:nil progress:^(NSProgress * _Nonnull uploadProgress) {
-
+        
     } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
         NSLog(@"%@",responseObject);
         if (!IsEmpty(responseObject[@"txhash"])) {
             [[AppDelegate appDelegate].TopVC.navigationController popViewControllerAnimated:YES];
         } else {
             Alert *alert = [[Alert alloc] initWithTitle:@"失败" duration:kAlertDuration completion:^{
-                                 }];
+            }];
             [alert showAlert];
         }
-//        NSString *raw_log = [responseObject objectForKey:@"raw_log"];
-//        if (!IsEmpty(raw_log)) {
-////            NSData* jsonData = [raw_log dataUsingEncoding:NSUTF8StringEncoding];
-////            NSDictionary *dic = [jsonData objectFromJSONData];
-//            Alert *alert = [[Alert alloc] initWithTitle:raw_log duration:kAlertDuration completion:^{
-//                                 }];
-//            [alert showAlert];
-////            NSLog(@"%@",dic);
-//        }
-
+        //        NSString *raw_log = [responseObject objectForKey:@"raw_log"];
+        //        if (!IsEmpty(raw_log)) {
+        ////            NSData* jsonData = [raw_log dataUsingEncoding:NSUTF8StringEncoding];
+        ////            NSDictionary *dic = [jsonData objectFromJSONData];
+        //            Alert *alert = [[Alert alloc] initWithTitle:raw_log duration:kAlertDuration completion:^{
+        //                                 }];
+        //            [alert showAlert];
+        ////            NSLog(@"%@",dic);
+        //        }
+        
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
         NSLog(@"%@ %@",task,error);
         NSDictionary *dataDic = [error.userInfo[@"com.alamofire.serialization.response.error.data"] mj_JSONObject];
         NSLog(@"错误信息=%@", [dataDic mj_JSONString]);
         Alert *alert = [[Alert alloc] initWithTitle:dataDic[@"error"] duration:kAlertDuration completion:^{
-                             }];
+        }];
         [alert showAlert];
     }];
 }

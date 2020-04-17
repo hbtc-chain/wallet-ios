@@ -32,7 +32,7 @@ NS_ASSUME_NONNULL_BEGIN
                     feeDenom:(NSString *)feeDenom
                         memo:(NSString *)memo
                         type:(NSString *)type
-              withdrawal_fee:(NSString *)withdrawal_fee;
+              withdrawal_fee:(NSString *)withdrawal_fee text:(NSString *)text;
 
 @property (nonatomic, strong) NSString *fromAddress; // 转出地址
 @property (nonatomic, strong) NSString *toAddress; // 交易对方账户
@@ -44,6 +44,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, strong) NSString *memo; //备注 暂无
 @property (nonatomic, strong) NSString *type; //交易类型
 @property (nonatomic, strong) NSString *withdrawal_fee; //跨链手续费
+@property (nonatomic, strong) NSString *text;
 
 @property (nonatomic, strong) NSMutableArray *msgs; //交易msg
 @end

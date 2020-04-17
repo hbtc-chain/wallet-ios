@@ -183,10 +183,10 @@ static NSDateFormatter *TimeFormatter = nil;
         SecureData *ripemdData = [self ripemd160:publicKey];
         SecureData *sum = [self checkSum:ripemdData];
         NSString *address = [self base58:sum publicKey:ripemdData];
+        _privateKeyString = _privateKey.hexString;
         _BHAddress = address;
         _pubKey = publicKey.data;
         [self publicKeyStr:publicKey];
-
     }
     return self;
 }
@@ -279,7 +279,7 @@ static NSDateFormatter *TimeFormatter = nil;
     self = [self initWithPrivateKey:privateKey.data]; //通过私钥创建地址账户
     if (self) {
         _mnemonicPhrase = mnemonicPhrase;
-        
+        _privateKeyString = privateKey.hexString;
 //        SecureData *fullData = [SecureData secureDataWithLength:MAXIMUM_BIP39_DATA_LENGTH];
 //        int length = data_from_mnemonic([_mnemonicPhrase cStringUsingEncoding:NSUTF8StringEncoding], fullData.mutableBytes);
 //
