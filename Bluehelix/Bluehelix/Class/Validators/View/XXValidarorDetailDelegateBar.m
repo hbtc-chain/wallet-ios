@@ -23,6 +23,7 @@
 {
     self = [super initWithFrame:frame];
     if (self) {
+        self.backgroundColor = kViewBackgroundColor;
         [self addSubview:self.transferDelegateButton];
         [self addSubview:self.relieveDelegateButton];
         [self addSubview:self.delegateButton];

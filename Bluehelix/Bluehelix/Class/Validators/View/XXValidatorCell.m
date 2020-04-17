@@ -8,6 +8,7 @@
 
 #import "XXValidatorCell.h"
 @interface XXValidatorCell ()
+@property (nonatomic, strong) UIView *shadowView;
 /**验证人*/
 @property (nonatomic, strong) XXLabel *validatorName;
 
@@ -27,6 +28,7 @@
 
 - (instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier{
     if (self = [super initWithStyle:style reuseIdentifier:reuseIdentifier]) {
+        [self addSubview:self.shadowView];
         [self addSubview:self.validatorName];
         
         [self addSubview:self.validatorStatusImageview];
@@ -54,12 +56,12 @@
     [super layoutSubviews];
     [self.validatorName mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.mas_equalTo(32);
-        make.top.mas_equalTo(12);
+        make.top.mas_equalTo(18);
         make.height.mas_equalTo(32);
     }];
     [self.validatorStatusImageview mas_makeConstraints:^(MASConstraintMaker *make) {
         make.right.mas_equalTo(-32);
-        make.top.mas_equalTo(12);
+        make.top.mas_equalTo(18);
         make.height.width.mas_equalTo(16);
     }];
     //投票权
@@ -94,7 +96,6 @@
         make.right.equalTo(self.validatorCommissionRateInfo);
         make.top.mas_equalTo(self.validatorCommissionRateInfo.mas_bottom).offset(0);
         make.height.mas_equalTo(28);
-       
     }];
 }
 
@@ -102,12 +103,34 @@
 - (void)setValidOrInvalid:(BOOL)validOrInvalid{
     _validOrInvalid = validOrInvalid;
     self.validatorStatusImageview.image = _validOrInvalid ? [UIImage imageNamed:@"Validator_valid"] : [UIImage imageNamed:@"Validator_invalid"];
+    if (validOrInvalid) {
+        self.validatorVoteValue.textColor = kMainLabelColor;
+        self.validatorDelegateNumberValue.textColor = kMainLabelColor;
+        self.validatorCommissionRateValue.textColor = kMainLabelColor;
+    }else{
+        self.validatorVoteValue.textColor = kSubLabelColor;
+        self.validatorDelegateNumberValue.textColor = kSubLabelColor;
+        self.validatorCommissionRateValue.textColor = kSubLabelColor;
+    }
 }
 #pragma mark lazy load
-
+- (UIView *)shadowView{
+    if (!_shadowView) {
+        _shadowView = [[UIView alloc] initWithFrame:CGRectMake(16, 6, kScreen_Width -32, 108)];
+        //_shadowView.layer.shadowPath = [UIBezierPath bezierPathWithRect:self.bounds].CGPath;
+        _shadowView.clipsToBounds = NO;
+        _shadowView.backgroundColor = kViewBackgroundColor;
+        _shadowView.layer.cornerRadius = 10.0;
+        _shadowView.layer.shadowRadius = 12.0;
+        _shadowView.layer.shadowOffset = CGSizeMake(0.0, 3.0);
+        _shadowView.layer.shadowOpacity = 1;
+        _shadowView.layer.shadowColor = KRGBA(51, 117, 224, 12).CGColor;
+    }
+    return _shadowView;;
+}
 - (XXLabel*)validatorName{
     if (!_validatorName) {
-        _validatorName = [XXLabel labelWithFrame:CGRectZero text:@"" font:kFont17 textColor:kMainLabelColor alignment:NSTextAlignmentLeft];
+        _validatorName = [XXLabel labelWithFrame:CGRectZero text:@"" font:kFontBold17 textColor:kMainLabelColor alignment:NSTextAlignmentLeft];
     }
     return _validatorName;;
 }

@@ -1,19 +1,20 @@
 //
-//  XXValidatorDetailViewController.h
+//  XXValidatorDetailHeader.h
 //  Bluehelix
 //
-//  Created by xu Lance on 2020/4/14.
+//  Created by xu Lance on 2020/4/17.
 //  Copyright © 2020 Bhex. All rights reserved.
 //
 
-#import "BaseViewController.h"
+#import <UIKit/UIKit.h>
 #import "XXValidatorListModel.h"
 NS_ASSUME_NONNULL_BEGIN
 
-@interface XXValidatorDetailViewController : BaseViewController
+@interface XXValidatorDetailHeader : UIView
 @property (nonatomic, strong) XXValidatorListModel *validatorModel;
 /**有效或者无效*/
-@property (nonatomic, copy) NSString *validOrInvalid;
+@property (nonatomic, strong) NSString *validOrInvalid;
+
 @end
 
 NS_ASSUME_NONNULL_END

@@ -46,6 +46,7 @@
         make.left.mas_equalTo(K375(16));
         make.right.mas_equalTo(-K375(16));
         make.height.mas_equalTo(32);
+        make.bottom.mas_equalTo(-6);
     }];
 }
 #pragma mark lazy load
