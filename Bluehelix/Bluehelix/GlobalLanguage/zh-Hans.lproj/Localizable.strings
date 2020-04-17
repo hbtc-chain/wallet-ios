@@ -146,6 +146,14 @@
 "ValidatorVote" = "投票权";
 "ValidatorDelegateNumber" = "自我委托";
 "ValidatorCommissionRate" = "佣金率";
+"ValidatorOnlineRatio" = "上线时间比重";
+"ValidatorCommissionRate" = "佣金率";
+"ValidatorUpdateTime" = "更新时间";
+"ValidatorCommissionMostLimit" = "最大佣金限制";
+"ValidatorCommissionMostLimitPerDay" = "每天最大佣金变化限制";
+"ValidatorAddress" = "地址";
+"ValidatorWebsite" = "网站";
+"ValidatorDetailInfo" = "详情";
 "ValidatorNewCreate" = "创建";
 "ValidatorTitle" = "验证人";
 "valid" = "有效";
@@ -155,6 +163,7 @@
 "TransferDelegate" = "转委托";
 "RelieveDelegate" = "解委托";
 "Delegate" = "委托";
+'
 
 
 

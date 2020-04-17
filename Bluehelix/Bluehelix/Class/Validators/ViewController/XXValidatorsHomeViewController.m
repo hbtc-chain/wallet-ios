@@ -94,9 +94,9 @@ static NSString *KValidatorGripSectionHeader = @"XXValidatorGripSectionHeader";
             [self.filtValidatorsDataArray addObjectsFromArray:listArray];
             [self.validatorsListTableView reloadData];
         } else {
-            Alert *alert = [[Alert alloc] initWithTitle:msg duration:kAlertDuration completion:^{
-                       }];
-            [alert showAlert];
+//            Alert *alert = [[Alert alloc] initWithTitle:msg duration:kAlertDuration completion:^{
+//                       }];
+//            [alert showAlert];
         }
     }];
 }
@@ -110,21 +110,23 @@ static NSString *KValidatorGripSectionHeader = @"XXValidatorGripSectionHeader";
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
-    return 92;
+    return 98;
 }
 
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
-    XXValidatorGripSectionHeader *header = [tableView dequeueReusableHeaderFooterViewWithIdentifier:KValidatorGripSectionHeader];
-    MJWeakSelf
-    header.selectValidOrInvalidCallBack = ^(NSInteger index) {
+    self.sectionHeader = [tableView dequeueReusableHeaderFooterViewWithIdentifier:KValidatorGripSectionHeader];
+    @weakify(self)
+    self.sectionHeader.selectValidOrInvalidCallBack = ^(NSInteger index) {
+        @strongify(self)
         NSNumber *number = [NSNumber numberWithInteger:index];
         self.validOrInvalid = number.integerValue == 1 ? @"0" : @"1";
         [self loadData];
     };
-    header.textfieldValueChangeBlock = ^(NSString * _Nonnull textfiledText) {
-        [weakSelf searchLoadData:textfiledText];
+    self.sectionHeader.textfieldValueChangeBlock = ^(NSString * _Nonnull textfiledText) {
+        @strongify(self)
+        [self searchLoadData:textfiledText];
     };
-    return header;
+    return self.sectionHeader;
 }
 - (void)tableView:(UITableView *)tableView willDisplayHeaderView:(UIView *)view forSection:(NSInteger)section {
     if ([view isKindOfClass:[UITableViewHeaderFooterView class]]) {
@@ -132,7 +134,7 @@ static NSString *KValidatorGripSectionHeader = @"XXValidatorGripSectionHeader";
     }
 }
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
-    return 130;
+    return 120;
 }
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     XXValidatorCell *cell = [tableView dequeueReusableCellWithIdentifier:KValidatorsListReuseCell];
@@ -150,6 +152,7 @@ static NSString *KValidatorGripSectionHeader = @"XXValidatorGripSectionHeader";
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     XXValidatorDetailViewController *detailValidator = [[XXValidatorDetailViewController alloc]init];
     detailValidator.validatorModel = self.isFilting ? self.filtValidatorsDataArray[indexPath.row] : self.validatorsDataArray[indexPath.row];
+    detailValidator.validOrInvalid = self.validOrInvalid;
     [self.navigationController pushViewController:detailValidator animated:YES];
 }
 #pragma mark layout

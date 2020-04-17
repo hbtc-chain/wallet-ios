@@ -8,6 +8,9 @@
 
 /* Begin PBXBuildFile section */
 		6C0D91B5244890570043AF74 /* XXValidarorDetailDelegateBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 6C0D91B4244890570043AF74 /* XXValidarorDetailDelegateBar.m */; };
+		6C0D91B8244984080043AF74 /* XXValidatorDetailHeader.m in Sources */ = {isa = PBXBuildFile; fileRef = 6C0D91B7244984080043AF74 /* XXValidatorDetailHeader.m */; };
+		6C0D91BB24498E280043AF74 /* XXValidatorDetailCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 6C0D91BA24498E280043AF74 /* XXValidatorDetailCell.m */; };
+		6C0D91BE2449A32B0043AF74 /* XXValidatorDetailInfoCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 6C0D91BD2449A32B0043AF74 /* XXValidatorDetailInfoCell.m */; };
 		6CC12CEE24445DF200917105 /* XXDecimalNumberHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = EA0AA16623ED8AFD00E9472E /* XXDecimalNumberHelper.m */; };
 		6CC12CF52444629B00917105 /* XXValidatorsHomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6CC12CF42444629B00917105 /* XXValidatorsHomeViewController.m */; };
 		6CC12CF82444630400917105 /* XXValidatorCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 6CC12CF72444630400917105 /* XXValidatorCell.m */; };
@@ -252,6 +255,12 @@
 /* Begin PBXFileReference section */
 		6C0D91B3244890570043AF74 /* XXValidarorDetailDelegateBar.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = XXValidarorDetailDelegateBar.h; sourceTree = "<group>"; };
 		6C0D91B4244890570043AF74 /* XXValidarorDetailDelegateBar.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = XXValidarorDetailDelegateBar.m; sourceTree = "<group>"; };
+		6C0D91B6244984080043AF74 /* XXValidatorDetailHeader.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = XXValidatorDetailHeader.h; sourceTree = "<group>"; };
+		6C0D91B7244984080043AF74 /* XXValidatorDetailHeader.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = XXValidatorDetailHeader.m; sourceTree = "<group>"; };
+		6C0D91B924498E280043AF74 /* XXValidatorDetailCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = XXValidatorDetailCell.h; sourceTree = "<group>"; };
+		6C0D91BA24498E280043AF74 /* XXValidatorDetailCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = XXValidatorDetailCell.m; sourceTree = "<group>"; };
+		6C0D91BC2449A32B0043AF74 /* XXValidatorDetailInfoCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = XXValidatorDetailInfoCell.h; sourceTree = "<group>"; };
+		6C0D91BD2449A32B0043AF74 /* XXValidatorDetailInfoCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = XXValidatorDetailInfoCell.m; sourceTree = "<group>"; };
 		6CC12CF32444629B00917105 /* XXValidatorsHomeViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = XXValidatorsHomeViewController.h; sourceTree = "<group>"; };
 		6CC12CF42444629B00917105 /* XXValidatorsHomeViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = XXValidatorsHomeViewController.m; sourceTree = "<group>"; };
 		6CC12CF62444630400917105 /* XXValidatorCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = XXValidatorCell.h; sourceTree = "<group>"; };
@@ -777,6 +786,12 @@
 				6CC12D0324456A3800917105 /* XXSearchBarView.m */,
 				6C0D91B3244890570043AF74 /* XXValidarorDetailDelegateBar.h */,
 				6C0D91B4244890570043AF74 /* XXValidarorDetailDelegateBar.m */,
+				6C0D91B6244984080043AF74 /* XXValidatorDetailHeader.h */,
+				6C0D91B7244984080043AF74 /* XXValidatorDetailHeader.m */,
+				6C0D91B924498E280043AF74 /* XXValidatorDetailCell.h */,
+				6C0D91BA24498E280043AF74 /* XXValidatorDetailCell.m */,
+				6C0D91BC2449A32B0043AF74 /* XXValidatorDetailInfoCell.h */,
+				6C0D91BD2449A32B0043AF74 /* XXValidatorDetailInfoCell.m */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -1804,6 +1819,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6C0D91BB24498E280043AF74 /* XXValidatorDetailCell.m in Sources */,
 				EABD1B84241BB25900B1A03A /* rand.c in Sources */,
 				6CC12D072445849700917105 /* XXValidatorListModel.m in Sources */,
 				EABD1BA1241BB25900B1A03A /* Hash.m in Sources */,
@@ -1830,6 +1846,7 @@
 				EA04AD3A243305B6004403FF /* SegwitAddrCoder.swift in Sources */,
 				EABD1B89241BB25900B1A03A /* bignum.c in Sources */,
 				EA3E594824445DAE0080B98F /* XXTransferAmountView.m in Sources */,
+				6C0D91BE2449A32B0043AF74 /* XXValidatorDetailInfoCell.m in Sources */,
 				EABD1B8E241BB25900B1A03A /* sha3.c in Sources */,
 				EA964BA62414D37F00A941E5 /* XXBackupMnemonicPhraseVC.m in Sources */,
 				EA04ABAC242D015B004403FF /* IQUIView+IQKeyboardToolbar.m in Sources */,
@@ -1922,6 +1939,7 @@
 				EABD1B9C241BB25900B1A03A /* InfuraProvider.m in Sources */,
 				EABBC08C24232DCD00B7E412 /* NSData+Base64.m in Sources */,
 				F30EAF5D20D26536005ADD5C /* UIImage+helper.m in Sources */,
+				6C0D91B8244984080043AF74 /* XXValidatorDetailHeader.m in Sources */,
 				EA309E3C236F21410098DE28 /* AFHTTPSessionManager.m in Sources */,
 				EA15E97A2417E24100A3E14A /* XXScreenShotAlert.m in Sources */,
 				EA3E58F824441C7B0080B98F /* XXTransactionCell.m in Sources */,
