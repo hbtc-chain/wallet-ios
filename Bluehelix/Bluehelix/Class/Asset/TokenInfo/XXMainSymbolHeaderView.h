@@ -7,13 +7,11 @@
 //
 
 #import <UIKit/UIKit.h>
-@class XXTokenModel;
 @class XXAssetModel;
 NS_ASSUME_NONNULL_BEGIN
 
 @interface XXMainSymbolHeaderView : UIView
 
-@property (nonatomic, strong) XXTokenModel *tokenModel;
 @property (nonatomic, strong) XXAssetModel *assetModel;
 
 @end

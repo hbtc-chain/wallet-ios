@@ -36,9 +36,6 @@ static XXAssetManager *_sharedManager;
             if (weakSelf.assetChangeBlock) {
                 weakSelf.assetChangeBlock();
             }
-            [weakSelf performSelector:@selector(requestAsset) withObject:nil afterDelay:60];
-        } else {
-            [weakSelf performSelector:@selector(requestAsset) withObject:nil afterDelay:3];
         }
     }];
 }

@@ -26,6 +26,7 @@
 @property (nonatomic, strong) NSArray *tokenList; //资产币列表
 @property (nonatomic, strong) XXAssetSearchView *searchView; //搜索
 @property (nonatomic, strong) NSMutableArray *showArray; //展示的币
+@property (nonatomic, strong) XXAssetManager *assetManager;
 @end
 
 @implementation XXAssetVC
@@ -40,7 +41,6 @@
 - (void)configAsset {
     MJWeakSelf
     XXAssetManager *assetManager = [XXAssetManager sharedManager];
-    self.assetModel = [[XXAssetManager sharedManager] assetModel];
     assetManager.assetChangeBlock = ^{
         [weakSelf refreshAsset];
     };
@@ -48,7 +48,7 @@
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
-    [self refreshAsset];
+    [[XXAssetManager sharedManager] requestAsset];
 }
 
 - (void)setupUI {
@@ -149,10 +149,10 @@
 
 /// 刷新资产
 - (void)refreshAsset {
+    [self.tableView.mj_header endRefreshing];
     self.assetModel = [[XXAssetManager sharedManager] assetModel];
     [self reloadData];
     [self.headerView configData:self.assetModel];
-    [self.tableView.mj_header endRefreshing];
 }
 
 - (UITableView *)tableView {
@@ -166,9 +166,8 @@
         if (@available(iOS 11.0, *)) {
             _tableView.contentInsetAdjustmentBehavior = UIScrollViewContentInsetAdjustmentNever;
         }
-        MJWeakSelf
         _tableView.mj_header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
-            [weakSelf refreshAsset];
+            [[XXAssetManager sharedManager] requestAsset];
         }];
     }
     return _tableView;

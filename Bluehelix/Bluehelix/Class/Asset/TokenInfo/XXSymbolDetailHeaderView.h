@@ -14,7 +14,6 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface XXSymbolDetailHeaderView : UIView
 
-@property (nonatomic, strong) XXTokenModel *tokenModel;
 @property (nonatomic, strong) XXAssetModel *assetModel;
 
 @end

@@ -41,10 +41,10 @@
     [self.backView addSubview:self.assetLabel];
 }
 
-- (void)setTokenModel:(XXTokenModel *)tokenModel {
-    _tokenModel = tokenModel;
-    self.amountLabel.text = tokenModel.amount;
-    self.assetLabel.text = [[RatesManager shareRatesManager] getRatesWithToken:tokenModel.symbol priceValue:tokenModel.amount.doubleValue];
+- (void)setAssetModel:(XXAssetModel *)assetModel {
+    _assetModel = assetModel;
+    self.amountLabel.text = assetModel.amount;
+    self.assetLabel.text = [[RatesManager shareRatesManager] getRatesWithToken:assetModel.symbol priceValue:assetModel.amount.doubleValue];
 }
 
 - (UIView *)backView {

@@ -40,6 +40,12 @@ int pageSize = 30;
     [self buildUI];
 }
 
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+    [[XXAssetManager sharedManager] requestAsset];
+}
+
+/// 资产请求
 - (void)configAsset {
     MJWeakSelf
     XXAssetManager *assetManager = [XXAssetManager sharedManager];
@@ -49,17 +55,19 @@ int pageSize = 30;
     };
 }
 
+/// 资产请求回来 刷新header
 - (void)refreshHeader {
+    [self.tableView.mj_header endRefreshing];
     for (NSDictionary *dic in self.assetModel.assets) {
         if ([dic[@"symbol"] isEqualToString:self.tokenModel.symbol]) {
-            self.tokenModel.amount = kAmountTrim(dic[@"amount"]);
+            self.assetModel.amount = kAmountTrim(dic[@"amount"]);
+            self.assetModel.symbol = self.tokenModel.symbol;
         }
     }
     if ([self.tokenModel.symbol isEqualToString:kMainToken]) {
-        self.mainSymbolHeaderView.assetModel = [[XXAssetManager sharedManager] assetModel];
-        self.mainSymbolHeaderView.tokenModel = self.tokenModel;
+        self.mainSymbolHeaderView.assetModel = self.assetModel;
     } else {
-        self.symbolDetailHeaderView.tokenModel = self.tokenModel;
+        self.symbolDetailHeaderView.assetModel = self.assetModel;
     }
 }
 
@@ -236,6 +244,7 @@ int pageSize = 30;
         MJWeakSelf
         _tableView.mj_header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
             weakSelf.page = 1;
+            [[XXAssetManager sharedManager] requestAsset];
             [weakSelf requestHistory];
         }];
         _tableView.mj_footer = [MJRefreshBackNormalFooter footerWithRefreshingBlock:^{
@@ -249,7 +258,6 @@ int pageSize = 30;
 - (XXSymbolDetailHeaderView *)symbolDetailHeaderView {
     if (!_symbolDetailHeaderView) {
         _symbolDetailHeaderView = [[XXSymbolDetailHeaderView alloc] initWithFrame:CGRectMake(0, 0, kScreen_Width, 112)];
-        _symbolDetailHeaderView.tokenModel = self.tokenModel;
     }
     return _symbolDetailHeaderView;
 }
@@ -257,8 +265,6 @@ int pageSize = 30;
 - (XXMainSymbolHeaderView *)mainSymbolHeaderView {
     if (!_mainSymbolHeaderView) {
         _mainSymbolHeaderView = [[XXMainSymbolHeaderView alloc] initWithFrame:CGRectMake(0, 0, kScreen_Width, 248)];
-        _mainSymbolHeaderView.tokenModel = self.tokenModel;
-        _mainSymbolHeaderView.assetModel = self.assetModel;
     }
     return _mainSymbolHeaderView;
 }

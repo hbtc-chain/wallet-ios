@@ -60,14 +60,10 @@
     [self.backView addSubview:self.valueLabel4];
 }
 
-- (void)setTokenModel:(XXTokenModel *)tokenModel {
-    _tokenModel = tokenModel;
-    self.amountLabel.text = kAmountTrim(tokenModel.amount);
-    self.assetLabel.text = [[RatesManager shareRatesManager] getRatesWithToken:tokenModel.symbol priceValue:tokenModel.amount.doubleValue];
-    self.valueLabel1.text = kAmountTrim(tokenModel.amount);
-}
-
 - (void)setAssetModel:(XXAssetModel *)assetModel {
+    self.amountLabel.text = kAmountTrim(assetModel.amount);
+    self.assetLabel.text = [[RatesManager shareRatesManager] getRatesWithToken:assetModel.symbol priceValue:assetModel.amount.doubleValue];
+    self.valueLabel1.text = kAmountTrim(assetModel.amount);
     self.valueLabel2.text = kAmountTrim(assetModel.bonded);
     self.valueLabel3.text = kAmountTrim(assetModel.unbonding);
     self.valueLabel4.text = kAmountTrim(assetModel.claimed_reward);

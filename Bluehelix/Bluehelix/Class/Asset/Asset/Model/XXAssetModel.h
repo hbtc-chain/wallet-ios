@@ -19,6 +19,10 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, strong) NSString *unbonding; //赎回中
 @property (nonatomic, strong) NSString *claimed_reward; //已收益
 
+#pragma mark 自定义属性
+@property (nonatomic, strong) NSString *symbol; //币名
+@property (nonatomic, strong) NSString *amount; //数量
+
 @end
 
 NS_ASSUME_NONNULL_END
