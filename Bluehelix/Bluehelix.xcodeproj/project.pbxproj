@@ -204,6 +204,8 @@
 		EABD717F2449F651008AA188 /* XXMainSymbolHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = EABD717B2449F651008AA188 /* XXMainSymbolHeaderView.m */; };
 		EABD71802449F651008AA188 /* XXSymbolDetailFooterView.m in Sources */ = {isa = PBXBuildFile; fileRef = EABD717D2449F651008AA188 /* XXSymbolDetailFooterView.m */; };
 		EABD71812449F651008AA188 /* XXSymbolDetailHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = EABD717E2449F651008AA188 /* XXSymbolDetailHeaderView.m */; };
+		EABD7187244AFCD4008AA188 /* XXFailureView.m in Sources */ = {isa = PBXBuildFile; fileRef = EABD7185244AFCD4008AA188 /* XXFailureView.m */; };
+		EABD7188244AFCD4008AA188 /* XXEmptyView.m in Sources */ = {isa = PBXBuildFile; fileRef = EABD7186244AFCD4008AA188 /* XXEmptyView.m */; };
 		EAC68719214F931200701874 /* NullSafe.m in Sources */ = {isa = PBXBuildFile; fileRef = EAC68718214F931200701874 /* NullSafe.m */; };
 		EAC6871D214FAD1C00701874 /* XXTabView.m in Sources */ = {isa = PBXBuildFile; fileRef = EAC6871B214FAD1600701874 /* XXTabView.m */; };
 		EAE4047E211C1DB300FFD028 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = EAE40478211C1DB300FFD028 /* Localizable.strings */; };
@@ -661,6 +663,10 @@
 		EABD717C2449F651008AA188 /* XXMainSymbolHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XXMainSymbolHeaderView.h; sourceTree = "<group>"; };
 		EABD717D2449F651008AA188 /* XXSymbolDetailFooterView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XXSymbolDetailFooterView.m; sourceTree = "<group>"; };
 		EABD717E2449F651008AA188 /* XXSymbolDetailHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XXSymbolDetailHeaderView.m; sourceTree = "<group>"; };
+		EABD7183244AFCD4008AA188 /* XXFailureView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XXFailureView.h; sourceTree = "<group>"; };
+		EABD7184244AFCD4008AA188 /* XXEmptyView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XXEmptyView.h; sourceTree = "<group>"; };
+		EABD7185244AFCD4008AA188 /* XXFailureView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XXFailureView.m; sourceTree = "<group>"; };
+		EABD7186244AFCD4008AA188 /* XXEmptyView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XXEmptyView.m; sourceTree = "<group>"; };
 		EAC68718214F931200701874 /* NullSafe.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NullSafe.m; sourceTree = "<group>"; };
 		EAC6871B214FAD1600701874 /* XXTabView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XXTabView.m; sourceTree = "<group>"; };
 		EAC6871C214FAD1600701874 /* XXTabView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XXTabView.h; sourceTree = "<group>"; };
@@ -1554,6 +1560,17 @@
 			path = viewcontroller;
 			sourceTree = "<group>";
 		};
+		EABD7182244AFCD4008AA188 /* EmptyView */ = {
+			isa = PBXGroup;
+			children = (
+				EABD7183244AFCD4008AA188 /* XXFailureView.h */,
+				EABD7184244AFCD4008AA188 /* XXEmptyView.h */,
+				EABD7185244AFCD4008AA188 /* XXFailureView.m */,
+				EABD7186244AFCD4008AA188 /* XXEmptyView.m */,
+			);
+			path = EmptyView;
+			sourceTree = "<group>";
+		};
 		EAC6871A214FAD1600701874 /* XXTab */ = {
 			isa = PBXGroup;
 			children = (
@@ -1645,6 +1662,7 @@
 		F3D9397520CCCB560055070B /* Tools */ = {
 			isa = PBXGroup;
 			children = (
+				EABD7182244AFCD4008AA188 /* EmptyView */,
 				EAB356242438369200D750D6 /* fmdb */,
 				EA04ACBB242DED8E004403FF /* bech32 */,
 				EA04AB87242D015B004403FF /* IQKeyboardManager */,
@@ -1905,6 +1923,7 @@
 				EA3E592024441D160080B98F /* XXAddAssetCell.m in Sources */,
 				EA04AD5024362964004403FF /* HttpManager.m in Sources */,
 				F31F7A4E20CF9693008B4403 /* BaseViewController.m in Sources */,
+				EABD7188244AFCD4008AA188 /* XXEmptyView.m in Sources */,
 				EABBC08A24232DCD00B7E412 /* AESCrypt.m in Sources */,
 				EA4425A52441C823008962E2 /* XXAccountBtn.m in Sources */,
 				EA4425A42441C823008962E2 /* XXAccountFooterView.m in Sources */,
@@ -2037,6 +2056,7 @@
 				EABD1B8A241BB25900B1A03A /* ripemd160.c in Sources */,
 				EAC68719214F931200701874 /* NullSafe.m in Sources */,
 				F30EAF6320D26536005ADD5C /* NSDate+Helper.m in Sources */,
+				EABD7187244AFCD4008AA188 /* XXFailureView.m in Sources */,
 				7A3298452320EE9900196336 /* NSMutableArray+Safe.m in Sources */,
 				F30EAF5720D26536005ADD5C /* colorModel.m in Sources */,
 				EA04ABAA242D015B004403FF /* IQTitleBarButtonItem.m in Sources */,

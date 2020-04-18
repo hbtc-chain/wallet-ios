@@ -17,6 +17,7 @@
 #import "XXAssetSearchView.h"
 #import "XXSymbolDetailVC.h"
 #import "RatesManager.h"
+#import "XXEmptyView.h"
 
 @interface XXAssetVC ()<UITableViewDataSource, UITableViewDelegate>
 
@@ -27,6 +28,7 @@
 @property (nonatomic, strong) XXAssetSearchView *searchView; //搜索
 @property (nonatomic, strong) NSMutableArray *showArray; //展示的币
 @property (nonatomic, strong) XXAssetManager *assetManager;
+@property (nonatomic, strong) XXEmptyView *emptyView;
 @end
 
 @implementation XXAssetVC
@@ -40,8 +42,8 @@
 
 - (void)configAsset {
     MJWeakSelf
-    XXAssetManager *assetManager = [XXAssetManager sharedManager];
-    assetManager.assetChangeBlock = ^{
+    self.assetManager = [XXAssetManager sharedManager];
+    self.assetManager.assetChangeBlock = ^{
         [weakSelf refreshAsset];
     };
 }
@@ -77,11 +79,19 @@
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
-    return 8;
+    if (self.showArray.count == 0) {
+        return self.emptyView.height;
+    } else {
+        return 0;
+    }
 }
 
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
-    return [UIView new];
+    if (self.showArray.count == 0) {
+        return self.emptyView ;
+    } else {
+        return [UIView new];
+    }
 }
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
     return [XXAssetCell getCellHeight];
@@ -203,6 +213,13 @@
         _showArray = [[NSMutableArray alloc] init];
     }
     return _showArray;
+}
+
+- (XXEmptyView *)emptyView {
+    if (_emptyView == nil) {
+        _emptyView = [[XXEmptyView alloc] initWithFrame:CGRectMake(0, 0, kScreen_Width, K375(300)) iamgeName:@"noAsset" alert:LocalizedString(@"NoAsset")];
+    }
+    return _emptyView;
 }
 
 @end

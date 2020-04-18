@@ -16,6 +16,7 @@
 #import "XXTransferDetailVC.h"
 #import "XXWithdrawChainVC.h"
 #import "XXMainSymbolHeaderView.h"
+#import "XXEmptyView.h"
 
 int pageSize = 30;
 @interface XXSymbolDetailVC ()<UITableViewDataSource, UITableViewDelegate>
@@ -26,6 +27,7 @@ int pageSize = 30;
 @property (nonatomic, strong) XXMainSymbolHeaderView *mainSymbolHeaderView;
 @property (nonatomic, strong) XXSymbolDetailHeaderView *symbolDetailHeaderView;
 @property (nonatomic, assign) int page;
+@property (nonatomic, strong) XXEmptyView *emptyView;
 
 @end
 
@@ -202,11 +204,19 @@ int pageSize = 30;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
-    return 8;
+    if (self.txs.count == 0) {
+        return self.emptyView.height;
+    } else {
+        return 0;
+    }
 }
 
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
-    return [UIView new];
+    if (self.txs.count == 0) {
+        return self.emptyView ;
+    } else {
+        return [UIView new];
+    }
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -290,5 +300,12 @@ int pageSize = 30;
         };
     }
     return _footerView;
+}
+
+- (XXEmptyView *)emptyView {
+    if (_emptyView == nil) {
+        _emptyView = [[XXEmptyView alloc] initWithFrame:CGRectMake(0, 0, kScreen_Width, K375(300)) iamgeName:@"noData" alert:LocalizedString(@"NoData")];
+    }
+    return _emptyView;
 }
 @end
