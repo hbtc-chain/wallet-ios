@@ -9,6 +9,7 @@
 #import "XXAssetHeaderView.h"
 #import "XXAddNewAssetVC.h"
 #import "XXAssetModel.h"
+#import "XXTokenModel.h"
 
 @interface XXAssetHeaderView ()
 
@@ -50,10 +51,10 @@
         self.totalAssetLabel.top = CGRectGetMaxY(self.assetNameLabel.frame) + 15;
     } else {
         double totalAsset = 0;
-        for (NSDictionary *dic in model.assets) {
-            double rate = [self getRatesFromToken:dic[@"symbol"]];
+        for (XXTokenModel *tokenModel in model.assets) {
+            double rate = [self getRatesFromToken:tokenModel.symbol];
             if (rate > 0) {
-                totalAsset += [dic[@"amount"] doubleValue] * rate;
+                totalAsset += [tokenModel.amount doubleValue] * rate;
             }
         }
         self.totalAssetLabel.text = [NSString stringWithFormat:@"￥%.2f",totalAsset];

@@ -163,11 +163,21 @@
 "valid" = "有效";
 "invalid" = "无效";
 "PleaseInputValidatorName" = "输入验证人名称";
-
+"PleaseSelectValidator" = "请选择验证人";
+"ValidatorDetailTitle" = "验证节点";
 "TransferDelegate" = "转委托";
 "RelieveDelegate" = "解委托";
 "Delegate" = "委托";
-'
+"ValidatorDelegateAmount" = "数量";
+"DelegateTrueAmount" = "实际委托数量";
+"DelegateTo" = "委托至";
+"DelegateFrom" = "来源于";
+"DelegateRelieveTo" = "解委托至";
+"DelegateAll" = "全部";
+"ValidatorAvilable" = "可用";
+"ValidatorAvilableTransfer" = "可转";
+"ValidatorAvilableRelieve" = "可解";
+
 
 
 

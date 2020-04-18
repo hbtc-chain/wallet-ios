@@ -11,6 +11,9 @@
 		6C0D91B8244984080043AF74 /* XXValidatorDetailHeader.m in Sources */ = {isa = PBXBuildFile; fileRef = 6C0D91B7244984080043AF74 /* XXValidatorDetailHeader.m */; };
 		6C0D91BB24498E280043AF74 /* XXValidatorDetailCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 6C0D91BA24498E280043AF74 /* XXValidatorDetailCell.m */; };
 		6C0D91BE2449A32B0043AF74 /* XXValidatorDetailInfoCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 6C0D91BD2449A32B0043AF74 /* XXValidatorDetailInfoCell.m */; };
+		6C3E66F8244AB10E0057B514 /* XXDelegateTransferViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6C3E66F7244AB10E0057B514 /* XXDelegateTransferViewController.m */; };
+		6C3E66FC244AD0700057B514 /* XXDelegateTransferView.m in Sources */ = {isa = PBXBuildFile; fileRef = 6C3E66FB244AD0700057B514 /* XXDelegateTransferView.m */; };
+		6C3E66FF244ADF280057B514 /* XXDelegateAddressView.m in Sources */ = {isa = PBXBuildFile; fileRef = 6C3E66FE244ADF280057B514 /* XXDelegateAddressView.m */; };
 		6CC12CEE24445DF200917105 /* XXDecimalNumberHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = EA0AA16623ED8AFD00E9472E /* XXDecimalNumberHelper.m */; };
 		6CC12CF52444629B00917105 /* XXValidatorsHomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6CC12CF42444629B00917105 /* XXValidatorsHomeViewController.m */; };
 		6CC12CF82444630400917105 /* XXValidatorCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 6CC12CF72444630400917105 /* XXValidatorCell.m */; };
@@ -263,6 +266,13 @@
 		6C0D91BA24498E280043AF74 /* XXValidatorDetailCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = XXValidatorDetailCell.m; sourceTree = "<group>"; };
 		6C0D91BC2449A32B0043AF74 /* XXValidatorDetailInfoCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = XXValidatorDetailInfoCell.h; sourceTree = "<group>"; };
 		6C0D91BD2449A32B0043AF74 /* XXValidatorDetailInfoCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = XXValidatorDetailInfoCell.m; sourceTree = "<group>"; };
+		6C3E66F6244AB10E0057B514 /* XXDelegateTransferViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = XXDelegateTransferViewController.h; sourceTree = "<group>"; };
+		6C3E66F7244AB10E0057B514 /* XXDelegateTransferViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = XXDelegateTransferViewController.m; sourceTree = "<group>"; };
+		6C3E66FA244AD0700057B514 /* XXDelegateTransferView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = XXDelegateTransferView.h; sourceTree = "<group>"; };
+		6C3E66FB244AD0700057B514 /* XXDelegateTransferView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = XXDelegateTransferView.m; sourceTree = "<group>"; };
+		6C3E66FD244ADF280057B514 /* XXDelegateAddressView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = XXDelegateAddressView.h; sourceTree = "<group>"; };
+		6C3E66FE244ADF280057B514 /* XXDelegateAddressView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = XXDelegateAddressView.m; sourceTree = "<group>"; };
+		6C3E6701244AE1540057B514 /* XXValidatorPrefixHeader.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = XXValidatorPrefixHeader.h; sourceTree = "<group>"; };
 		6CC12CF32444629B00917105 /* XXValidatorsHomeViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = XXValidatorsHomeViewController.h; sourceTree = "<group>"; };
 		6CC12CF42444629B00917105 /* XXValidatorsHomeViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = XXValidatorsHomeViewController.m; sourceTree = "<group>"; };
 		6CC12CF62444630400917105 /* XXValidatorCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = XXValidatorCell.h; sourceTree = "<group>"; };
@@ -747,12 +757,24 @@
 			name = Pods;
 			sourceTree = "<group>";
 		};
+		6C3E66F9244AD04A0057B514 /* DelegatesView */ = {
+			isa = PBXGroup;
+			children = (
+				6C3E66FA244AD0700057B514 /* XXDelegateTransferView.h */,
+				6C3E66FB244AD0700057B514 /* XXDelegateTransferView.m */,
+				6C3E66FD244ADF280057B514 /* XXDelegateAddressView.h */,
+				6C3E66FE244ADF280057B514 /* XXDelegateAddressView.m */,
+			);
+			path = DelegatesView;
+			sourceTree = "<group>";
+		};
 		6CC12CEF2444624200917105 /* Validators */ = {
 			isa = PBXGroup;
 			children = (
 				6CC12CF12444627400917105 /* Model */,
 				6CC12CF22444627400917105 /* View */,
 				6CC12CF02444627400917105 /* ViewController */,
+				6C3E6701244AE1540057B514 /* XXValidatorPrefixHeader.h */,
 			);
 			path = Validators;
 			sourceTree = "<group>";
@@ -764,6 +786,8 @@
 				6CC12CF42444629B00917105 /* XXValidatorsHomeViewController.m */,
 				6CC12D0824459D1000917105 /* XXValidatorDetailViewController.h */,
 				6CC12D0924459D1000917105 /* XXValidatorDetailViewController.m */,
+				6C3E66F6244AB10E0057B514 /* XXDelegateTransferViewController.h */,
+				6C3E66F7244AB10E0057B514 /* XXDelegateTransferViewController.m */,
 			);
 			path = ViewController;
 			sourceTree = "<group>";
@@ -780,6 +804,7 @@
 		6CC12CF22444627400917105 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				6C3E66F9244AD04A0057B514 /* DelegatesView */,
 				6CC12CF62444630400917105 /* XXValidatorCell.h */,
 				6CC12CF72444630400917105 /* XXValidatorCell.m */,
 				6CC12CF92444749D00917105 /* XXValidatorHeader.h */,
@@ -1970,6 +1995,7 @@
 				EA44259E2441C823008962E2 /* XXAccountCell.m in Sources */,
 				EA3E591B24441D160080B98F /* XXAssetSearchHeaderView.m in Sources */,
 				EA30A031236F221A0098DE28 /* UIImageView+AFNetworking.m in Sources */,
+				6C3E66F8244AB10E0057B514 /* XXDelegateTransferViewController.m in Sources */,
 				EA309E00236F21400098DE28 /* AFURLResponseSerialization.m in Sources */,
 				EA3E594524445B510080B98F /* XXTransferView.m in Sources */,
 				EABD1B91241BB25900B1A03A /* pbkdf2.c in Sources */,
@@ -2034,6 +2060,7 @@
 				EA309FB9236F22190098DE28 /* UIRefreshControl+AFNetworking.m in Sources */,
 				EABD1BAE241BB25900B1A03A /* Payment.m in Sources */,
 				EABD1BA4241BB25900B1A03A /* BigNumber.m in Sources */,
+				6C3E66FF244ADF280057B514 /* XXDelegateAddressView.m in Sources */,
 				EA04ABB1242D015B004403FF /* IQUIScrollView+Additions.m in Sources */,
 				EABD1B9F241BB25900B1A03A /* FallbackProvider.m in Sources */,
 				EA3E59622447208F0080B98F /* XXMsgKeyGenModel.m in Sources */,
@@ -2055,6 +2082,7 @@
 				EA20EAC22425FBC8004EBD7F /* XXServiceAgreementVC.m in Sources */,
 				EABD1B8A241BB25900B1A03A /* ripemd160.c in Sources */,
 				EAC68719214F931200701874 /* NullSafe.m in Sources */,
+				6C3E66FC244AD0700057B514 /* XXDelegateTransferView.m in Sources */,
 				F30EAF6320D26536005ADD5C /* NSDate+Helper.m in Sources */,
 				EABD7187244AFCD4008AA188 /* XXFailureView.m in Sources */,
 				7A3298452320EE9900196336 /* NSMutableArray+Safe.m in Sources */,

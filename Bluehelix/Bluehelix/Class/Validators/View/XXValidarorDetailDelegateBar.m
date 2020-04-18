@@ -54,7 +54,7 @@
             }
         }];
         _transferDelegateButton.layer.cornerRadius = 6;
-        _transferDelegateButton.layer.borderColor = [UIColor blueColor].CGColor;;
+        _transferDelegateButton.layer.borderColor = _transferDelegateButton.titleLabel.textColor.CGColor;
         _transferDelegateButton.layer.borderWidth = 2.0f;
     }
     return _transferDelegateButton;;
@@ -70,7 +70,7 @@
             }
         }];
         _relieveDelegateButton.layer.cornerRadius = 6;
-        _relieveDelegateButton.layer.borderColor = [UIColor blueColor].CGColor;
+        _relieveDelegateButton.layer.borderColor = _relieveDelegateButton.titleLabel.textColor.CGColor;
         _relieveDelegateButton.layer.borderWidth = 2.0f;
     }
     return _relieveDelegateButton;;
@@ -78,15 +78,16 @@
 - (XXButton*)delegateButton{
     @weakify(self)
     if (!_delegateButton ) {
-        _delegateButton = [XXButton buttonWithFrame:CGRectZero title:LocalizedString(@"Delegate") font:kFont17 titleColor:kBlue100 block:^(UIButton *button) {
+        _delegateButton = [XXButton buttonWithFrame:CGRectZero title:LocalizedString(@"Delegate") font:kFont17 titleColor:kWhite100 block:^(UIButton *button) {
              @strongify(self)
             if (self.delegateBlock) {
                 self.delegateBlock();
             }
         }];
+        _delegateButton.backgroundColor = kBlue100;
         _delegateButton.layer.cornerRadius = 6;
-        _delegateButton.layer.borderColor = [UIColor blueColor].CGColor;
-        _delegateButton.layer.borderWidth = 2.0f;
+//        _delegateButton.layer.borderColor = _delegateButton.titleLabel.textColor.CGColor;
+//        _delegateButton.layer.borderWidth = 2.0f;
     }
     return _delegateButton;;
 }

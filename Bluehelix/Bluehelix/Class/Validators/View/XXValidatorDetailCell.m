@@ -90,7 +90,12 @@
     if (!_rightDetailButton) {
         _rightDetailButton = [XXButton buttonWithFrame:CGRectZero title:@"" font:kFont13 titleColor:kMainLabelColor block:^(UIButton *button) {
             @strongify(self)
-            [self.labelValue addClickCopyFunction];
+            
+            if (self.labelValue.text.length > 0) {
+                UIPasteboard *pab = [UIPasteboard generalPasteboard];
+                [pab setString:self.labelValue.text];
+                [MBProgressHUD showSuccessMessage:LocalizedString(@"CopySuccessfully")];
+            }
         }];
         [_rightDetailButton setImage:[UIImage imageNamed:@"ValidatorPaste"] forState:UIControlStateNormal] ;
     }

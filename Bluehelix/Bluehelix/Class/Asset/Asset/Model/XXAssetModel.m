@@ -7,7 +7,12 @@
 //
 
 #import "XXAssetModel.h"
+#import "XXTokenModel.h"
 
 @implementation XXAssetModel
-
++ (NSDictionary *)mj_objectClassInArray{
+    return @{@"assets" : [XXTokenModel class]};
+}
 @end
+
+
