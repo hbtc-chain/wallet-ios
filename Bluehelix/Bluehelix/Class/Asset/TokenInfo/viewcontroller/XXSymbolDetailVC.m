@@ -58,11 +58,11 @@ int pageSize = 30;
 /// 资产请求回来 刷新header
 - (void)refreshHeader {
     [self.tableView.mj_header endRefreshing];
-    for (NSDictionary *dic in self.assetModel.assets) {
-        if ([dic[@"symbol"] isEqualToString:self.tokenModel.symbol]) {
-            self.assetModel.amount = kAmountTrim(dic[@"amount"]);
+    for (XXTokenModel *tokenModel in self.assetModel.assets) {
+        if ([tokenModel.symbol isEqualToString:self.tokenModel.symbol]) {
+            self.assetModel.amount = kAmountTrim(tokenModel.amount);
             self.assetModel.symbol = self.tokenModel.symbol;
-            self.tokenModel.external_address = dic[@"external_address"];
+            self.tokenModel.external_address = tokenModel.external_address;
         }
     }
     if ([self.tokenModel.symbol isEqualToString:kMainToken]) {

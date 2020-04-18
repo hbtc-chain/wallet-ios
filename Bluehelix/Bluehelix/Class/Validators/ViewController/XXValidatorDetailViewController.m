@@ -7,6 +7,7 @@
 //
 
 #import "XXValidatorDetailViewController.h"
+#import "XXDelegateTransferViewController.h"
 
 #import "XXValidarorDetailDelegateBar.h"
 #import "XXValidatorDetailHeader.h"
@@ -33,13 +34,15 @@ static NSString *KValidatorDetailInfoCell = @"ValidatorDetailInfoCell";
     [self loadData];
 }
 - (void)createUI{
+    self.titleLabel.text = LocalizedString(@"ValidatorDetailTitle");
     [self.view addSubview:self.validatorsDetailTableView];
     [self.view addSubview:self.delegateBar];
-    self.validatorsDetailTableView.tableHeaderView = self.detailHeader;
+    //self.validatorsDetailTableView.tableHeaderView = self.detailHeader;
     [self layoutViews];
 }
 - (void)loadData{
     self.detailHeader.validOrInvalid = self.validOrInvalid;
+    self.detailHeader.validatorModel = self.validatorModel;
     self.sectionFirstInfoArray = @[LocalizedString(@"ValidatorVote"),LocalizedString(@"ValidatorDelegateNumber"),LocalizedString(@"ValidatorCommissionRate"),LocalizedString(@"ValidatorOnlineRatio"),LocalizedString(@"ValidatorUpdateTime"),LocalizedString(@"ValidatorCommissionMostLimit"),LocalizedString(@"ValidatorCommissionMostLimitPerDay")];
     self.sectionSecondInfoArray = @[LocalizedString(@"ValidatorAddress"),LocalizedString(@"ValidatorWebsite")];
     
@@ -83,7 +86,7 @@ static NSString *KValidatorDetailInfoCell = @"ValidatorDetailInfoCell";
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
     if (section == 0) {
         NSLog(@"头部高度%g",self.detailHeader.height);
-        return 48;
+        return 56;
     }else{
         return CGFLOAT_MIN;;
     }
@@ -175,16 +178,26 @@ static NSString *KValidatorDetailInfoCell = @"ValidatorDetailInfoCell";
     return _validatorsDetailTableView;
 }
 - (XXValidarorDetailDelegateBar*)delegateBar{
+    @weakify(self)
     if (!_delegateBar) {
         _delegateBar = [[XXValidarorDetailDelegateBar alloc]initWithFrame:CGRectZero];
         _delegateBar.transferDelegateBlock = ^{
-            
+            @strongify(self)
+            XXDelegateTransferViewController *delegateTransfer = [[XXDelegateTransferViewController alloc]init];
+            delegateTransfer.delegateNodeType = XXDelegateNodeTypeTransfer;
+            [self.navigationController pushViewController:delegateTransfer animated:YES];
         };
         _delegateBar.relieveDelegateBlock = ^{
-            
+            @strongify(self)
+            XXDelegateTransferViewController *delegateTransfer = [[XXDelegateTransferViewController alloc]init];
+            delegateTransfer.delegateNodeType = XXDelegateNodeTypeRelieve;
+            [self.navigationController pushViewController:delegateTransfer animated:YES];
         };
         _delegateBar.delegateBlock = ^{
-            
+            @strongify(self)
+            XXDelegateTransferViewController *delegateTransfer = [[XXDelegateTransferViewController alloc]init];
+            delegateTransfer.delegateNodeType = XXDelegateNodeTypeAdd;
+            [self.navigationController pushViewController:delegateTransfer animated:YES];
         };
     }
     return _delegateBar;;

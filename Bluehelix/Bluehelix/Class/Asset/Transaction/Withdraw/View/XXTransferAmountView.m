@@ -105,6 +105,9 @@
         CGFloat btnWidth = [NSString widthWithText:titleString font:kFont14] + 16;
         _allButton = [XXButton buttonWithFrame:CGRectMake(self.banView.width - btnWidth, 0, btnWidth, self.banView.height) title:titleString font:kFont14 titleColor:kBlue100 block:^(UIButton *button) {
             [weakSelf allButtonClick:button];
+            if (self.allButtonActionBlock) {
+                self.allButtonActionBlock();
+            }
         }];
     }
     return _allButton;

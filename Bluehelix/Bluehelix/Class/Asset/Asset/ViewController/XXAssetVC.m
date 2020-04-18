@@ -127,11 +127,11 @@
         }
     }
     
-    for (NSDictionary *dic in self.assetModel.assets) {
+    for (XXTokenModel *assetsToken in self.assetModel.assets) {
         for (XXTokenModel *token in self.showArray) {
-            if ([dic[@"symbol"] isEqualToString:token.symbol]) {
-                token.amount = kAmountTrim(dic[@"amount"]);
-                token.external_address = dic[@"external_address"];
+            if ([assetsToken.symbol isEqualToString:token.symbol]) {
+                token.amount = kAmountTrim(assetsToken.amount);
+                token.external_address = assetsToken.external_address;
             }
         }
     }

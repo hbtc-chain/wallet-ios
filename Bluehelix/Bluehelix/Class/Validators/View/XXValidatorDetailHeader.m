@@ -57,7 +57,7 @@
 #pragma mark lazy load
 - (XXLabel *)validatorTitleLabel{
     if (!_validatorTitleLabel) {
-        _validatorTitleLabel = [XXLabel labelWithFrame:CGRectZero text:@"Blueblue Governance Working Group Governance Working Group Governance Working Group" font:kFontBold20 textColor:kDark100 alignment:NSTextAlignmentLeft];
+        _validatorTitleLabel = [XXLabel labelWithFrame:CGRectZero text:@"" font:kFontBold20 textColor:kDark100 alignment:NSTextAlignmentLeft];
         _validatorTitleLabel.numberOfLines = 0;
     }
     return _validatorTitleLabel;
