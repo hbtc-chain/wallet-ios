@@ -16,9 +16,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 /// 资产model
 @property (nonatomic, strong) XXAssetModel *assetModel;
-@property (nonatomic, strong) void(^assetChangeBlock)(void);
-/// 单例
-+ (XXAssetManager *)sharedManager;
+@property (nonatomic, copy) void(^assetChangeBlock)(void);
 
 /// 请求资产信息
 - (void)requestAsset;

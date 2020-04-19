@@ -17,7 +17,6 @@
 @property (nonatomic, strong) XXLabel *tipLabel; //当前持有
 @property (nonatomic, strong) XXLabel *amountLabel; //数量
 @property (nonatomic, strong) XXLabel *assetLabel; //资产
-
 @end
 
 @implementation XXSymbolDetailHeaderView
@@ -35,7 +34,7 @@
 - (void)buildUI {
     [self addSubview:self.backView];
     [self.backView.layer insertSublayer:self.shadowLayer atIndex:0];
-    [self.backView addSubview:self.imageView];
+//    [self.backView addSubview:self.imageView];
     [self.backView addSubview:self.tipLabel];
     [self.backView addSubview:self.amountLabel];
     [self.backView addSubview:self.assetLabel];
@@ -57,7 +56,7 @@
 - (CALayer *)shadowLayer {
     if (!_shadowLayer) {
         _shadowLayer = [CALayer layer];
-        _shadowLayer.frame = CGRectMake(0, 0, self.backView.width, self.backView.height);
+        _shadowLayer.frame = CGRectMake(0, 0, self.backView.width, self.backView.height - 8);
         _shadowLayer.cornerRadius = 10;
         _shadowLayer.backgroundColor = [kWhite100 CGColor];
         _shadowLayer.shadowColor = [kBlue20 CGColor];
@@ -70,8 +69,9 @@
 
 - (UIImageView *)imageView {
     if (!_imageView) {
-        _imageView = [[UIImageView alloc] initWithFrame:CGRectMake(self.backView.width - 112 + 16, 16, 96, 96)];
+        _imageView = [[UIImageView alloc] initWithFrame:CGRectMake(self.backView.width - 112 + 16, 24, 112, 112)];
         _imageView.image = [UIImage imageNamed:@"symbolIcon"];
+        _imageView.layer.masksToBounds = YES;
     }
     return _imageView;
 }

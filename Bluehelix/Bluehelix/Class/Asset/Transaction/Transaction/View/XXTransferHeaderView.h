@@ -14,6 +14,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 - (instancetype)initWithFrame:(CGRect)frame data:(NSDictionary *)dic;
 
+@property (nonatomic, assign) CGFloat maxHeight;
 @end
 
 NS_ASSUME_NONNULL_END

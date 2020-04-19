@@ -125,6 +125,12 @@
 "Album"="相册";
 "QRCodeAlertKey"="将二维码放入框内，即可自动扫描";
 
+//收款地址
+"ShowAddress" = "我已知风险，显示地址";
+"Tip" = "提示";
+"ChainDepositTip" = "您正在进行托管单元跨链收款(充币)\n请提醒转出方，务必使用OMNI钱包提币";
+"DepositTip" = "您正在进行托管单元链内收款(充币)\n请提醒转出方，务必使用非跨链的提币通道";
+
 //币种详情
 "ReceiveMoney" = "收款";
 "PayMoney" = "转出";
@@ -145,6 +151,10 @@
 "ChainWithdrawal" = "跨链提币";
 "ChainOtherType" = "其他";
 "NoData" = "暂无记录";
+"Time" = "时间";
+"State" = "状态";
+"From" = "转出";
+"To" = "转入";
 
 //验证人
 "ValidatorVote" = "投票权";

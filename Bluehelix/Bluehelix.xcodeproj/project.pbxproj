@@ -86,9 +86,6 @@
 		EA35A5072421FC7D00ADF621 /* XXImportPrivateKeyVC.m in Sources */ = {isa = PBXBuildFile; fileRef = EA35A5062421FC7D00ADF621 /* XXImportPrivateKeyVC.m */; };
 		EA35A5102422426900ADF621 /* Alert.m in Sources */ = {isa = PBXBuildFile; fileRef = EA35A50F2422426900ADF621 /* Alert.m */; };
 		EA3E58F524441C7B0080B98F /* XXDepositCoinVC.m in Sources */ = {isa = PBXBuildFile; fileRef = EA3E58D524441C7B0080B98F /* XXDepositCoinVC.m */; };
-		EA3E58F624441C7B0080B98F /* XXTransferDetailVC.m in Sources */ = {isa = PBXBuildFile; fileRef = EA3E58D824441C7B0080B98F /* XXTransferDetailVC.m */; };
-		EA3E58F724441C7B0080B98F /* XXTransferHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = EA3E58DC24441C7B0080B98F /* XXTransferHeaderView.m */; };
-		EA3E58F924441C7B0080B98F /* XXTransactionModel.m in Sources */ = {isa = PBXBuildFile; fileRef = EA3E58DF24441C7B0080B98F /* XXTransactionModel.m */; };
 		EA3E591A24441D160080B98F /* XXAssetSearchView.m in Sources */ = {isa = PBXBuildFile; fileRef = EA3E590524441D160080B98F /* XXAssetSearchView.m */; };
 		EA3E591B24441D160080B98F /* XXAssetSearchHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = EA3E590624441D160080B98F /* XXAssetSearchHeaderView.m */; };
 		EA3E591C24441D160080B98F /* XXAssetHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = EA3E590724441D160080B98F /* XXAssetHeaderView.m */; };
@@ -209,11 +206,16 @@
 		EABD71812449F651008AA188 /* XXSymbolDetailHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = EABD717E2449F651008AA188 /* XXSymbolDetailHeaderView.m */; };
 		EABD7187244AFCD4008AA188 /* XXFailureView.m in Sources */ = {isa = PBXBuildFile; fileRef = EABD7185244AFCD4008AA188 /* XXFailureView.m */; };
 		EABD7188244AFCD4008AA188 /* XXEmptyView.m in Sources */ = {isa = PBXBuildFile; fileRef = EABD7186244AFCD4008AA188 /* XXEmptyView.m */; };
+		EABD7193244B1AEA008AA188 /* XXTransactionModel.m in Sources */ = {isa = PBXBuildFile; fileRef = EABD718B244B1AEA008AA188 /* XXTransactionModel.m */; };
+		EABD7194244B1AEA008AA188 /* XXTransferDetailVC.m in Sources */ = {isa = PBXBuildFile; fileRef = EABD718D244B1AEA008AA188 /* XXTransferDetailVC.m */; };
+		EABD7195244B1AEA008AA188 /* XXTransferHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = EABD7191244B1AEA008AA188 /* XXTransferHeaderView.m */; };
+		EABD719B244B3545008AA188 /* XXTransactionDetailCell.m in Sources */ = {isa = PBXBuildFile; fileRef = EABD719A244B3545008AA188 /* XXTransactionDetailCell.m */; };
 		EAC68719214F931200701874 /* NullSafe.m in Sources */ = {isa = PBXBuildFile; fileRef = EAC68718214F931200701874 /* NullSafe.m */; };
 		EAC6871D214FAD1C00701874 /* XXTabView.m in Sources */ = {isa = PBXBuildFile; fileRef = EAC6871B214FAD1600701874 /* XXTabView.m */; };
 		EAE4047E211C1DB300FFD028 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = EAE40478211C1DB300FFD028 /* Localizable.strings */; };
 		EAE4047F211C1DB300FFD028 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = EAE4047A211C1DB300FFD028 /* InfoPlist.strings */; };
 		EAE40482211C34A000FFD028 /* LocalizeHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = EAE40481211C34A000FFD028 /* LocalizeHelper.m */; };
+		EAE467EE244C7901006EACAF /* XXTransationSectionHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = EAE467ED244C7901006EACAF /* XXTransationSectionHeaderView.m */; };
 		F30AC1B320CCC642000652BB /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = F30AC1B220CCC642000652BB /* main.m */; };
 		F30EAF5720D26536005ADD5C /* colorModel.m in Sources */ = {isa = PBXBuildFile; fileRef = F30EAF3B20D26535005ADD5C /* colorModel.m */; };
 		F30EAF5A20D26536005ADD5C /* NSString+TL.m in Sources */ = {isa = PBXBuildFile; fileRef = F30EAF4320D26535005ADD5C /* NSString+TL.m */; };
@@ -422,12 +424,6 @@
 		EA35A50F2422426900ADF621 /* Alert.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Alert.m; sourceTree = "<group>"; };
 		EA3E58D524441C7B0080B98F /* XXDepositCoinVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XXDepositCoinVC.m; sourceTree = "<group>"; };
 		EA3E58D624441C7B0080B98F /* XXDepositCoinVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XXDepositCoinVC.h; sourceTree = "<group>"; };
-		EA3E58D824441C7B0080B98F /* XXTransferDetailVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XXTransferDetailVC.m; sourceTree = "<group>"; };
-		EA3E58D924441C7B0080B98F /* XXTransferHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XXTransferHeaderView.h; sourceTree = "<group>"; };
-		EA3E58DB24441C7B0080B98F /* XXTransactionModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XXTransactionModel.h; sourceTree = "<group>"; };
-		EA3E58DC24441C7B0080B98F /* XXTransferHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XXTransferHeaderView.m; sourceTree = "<group>"; };
-		EA3E58DD24441C7B0080B98F /* XXTransferDetailVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XXTransferDetailVC.h; sourceTree = "<group>"; };
-		EA3E58DF24441C7B0080B98F /* XXTransactionModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XXTransactionModel.m; sourceTree = "<group>"; };
 		EA3E590524441D160080B98F /* XXAssetSearchView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XXAssetSearchView.m; sourceTree = "<group>"; };
 		EA3E590624441D160080B98F /* XXAssetSearchHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XXAssetSearchHeaderView.m; sourceTree = "<group>"; };
 		EA3E590724441D160080B98F /* XXAssetHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XXAssetHeaderView.m; sourceTree = "<group>"; };
@@ -677,6 +673,14 @@
 		EABD7184244AFCD4008AA188 /* XXEmptyView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XXEmptyView.h; sourceTree = "<group>"; };
 		EABD7185244AFCD4008AA188 /* XXFailureView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XXFailureView.m; sourceTree = "<group>"; };
 		EABD7186244AFCD4008AA188 /* XXEmptyView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XXEmptyView.m; sourceTree = "<group>"; };
+		EABD718A244B1AEA008AA188 /* XXTransactionModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XXTransactionModel.h; sourceTree = "<group>"; };
+		EABD718B244B1AEA008AA188 /* XXTransactionModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XXTransactionModel.m; sourceTree = "<group>"; };
+		EABD718D244B1AEA008AA188 /* XXTransferDetailVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XXTransferDetailVC.m; sourceTree = "<group>"; };
+		EABD718E244B1AEA008AA188 /* XXTransferDetailVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XXTransferDetailVC.h; sourceTree = "<group>"; };
+		EABD7190244B1AEA008AA188 /* XXTransferHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XXTransferHeaderView.h; sourceTree = "<group>"; };
+		EABD7191244B1AEA008AA188 /* XXTransferHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XXTransferHeaderView.m; sourceTree = "<group>"; };
+		EABD7199244B3545008AA188 /* XXTransactionDetailCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = XXTransactionDetailCell.h; sourceTree = "<group>"; };
+		EABD719A244B3545008AA188 /* XXTransactionDetailCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = XXTransactionDetailCell.m; sourceTree = "<group>"; };
 		EAC68718214F931200701874 /* NullSafe.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NullSafe.m; sourceTree = "<group>"; };
 		EAC6871B214FAD1600701874 /* XXTabView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XXTabView.m; sourceTree = "<group>"; };
 		EAC6871C214FAD1600701874 /* XXTabView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XXTabView.h; sourceTree = "<group>"; };
@@ -688,6 +692,8 @@
 		EAE40481211C34A000FFD028 /* LocalizeHelper.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LocalizeHelper.m; sourceTree = "<group>"; };
 		EAE40483211C49F800FFD028 /* BHChooseLanguageVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BHChooseLanguageVC.h; sourceTree = "<group>"; };
 		EAE40484211C49F800FFD028 /* BHChooseLanguageVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BHChooseLanguageVC.m; sourceTree = "<group>"; };
+		EAE467EC244C7901006EACAF /* XXTransationSectionHeaderView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = XXTransationSectionHeaderView.h; sourceTree = "<group>"; };
+		EAE467ED244C7901006EACAF /* XXTransationSectionHeaderView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = XXTransationSectionHeaderView.m; sourceTree = "<group>"; };
 		F185C18C2284155A0090C50B /* ko */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ko; path = ko.lproj/Localizable.strings; sourceTree = "<group>"; };
 		F185C18D2284155A0090C50B /* ko */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ko; path = ko.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		F30AC1A020CCC641000652BB /* Bluehelix.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Bluehelix.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -1100,12 +1106,10 @@
 		EA3E58D724441C7B0080B98F /* Transaction */ = {
 			isa = PBXGroup;
 			children = (
-				EA3E58DD24441C7B0080B98F /* XXTransferDetailVC.h */,
-				EA3E58D824441C7B0080B98F /* XXTransferDetailVC.m */,
-				EA3E58D924441C7B0080B98F /* XXTransferHeaderView.h */,
-				EA3E58DC24441C7B0080B98F /* XXTransferHeaderView.m */,
-				EA3E58DB24441C7B0080B98F /* XXTransactionModel.h */,
-				EA3E58DF24441C7B0080B98F /* XXTransactionModel.m */,
+				EABD7192244B1AEA008AA188 /* Cell */,
+				EABD7189244B1AEA008AA188 /* Model */,
+				EABD718F244B1AEA008AA188 /* View */,
+				EABD718C244B1AEA008AA188 /* Viewcontroller */,
 			);
 			path = Transaction;
 			sourceTree = "<group>";
@@ -1596,6 +1600,44 @@
 			path = EmptyView;
 			sourceTree = "<group>";
 		};
+		EABD7189244B1AEA008AA188 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				EABD718A244B1AEA008AA188 /* XXTransactionModel.h */,
+				EABD718B244B1AEA008AA188 /* XXTransactionModel.m */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		EABD718C244B1AEA008AA188 /* Viewcontroller */ = {
+			isa = PBXGroup;
+			children = (
+				EABD718E244B1AEA008AA188 /* XXTransferDetailVC.h */,
+				EABD718D244B1AEA008AA188 /* XXTransferDetailVC.m */,
+			);
+			path = Viewcontroller;
+			sourceTree = "<group>";
+		};
+		EABD718F244B1AEA008AA188 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				EABD7190244B1AEA008AA188 /* XXTransferHeaderView.h */,
+				EABD7191244B1AEA008AA188 /* XXTransferHeaderView.m */,
+				EAE467EC244C7901006EACAF /* XXTransationSectionHeaderView.h */,
+				EAE467ED244C7901006EACAF /* XXTransationSectionHeaderView.m */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		EABD7192244B1AEA008AA188 /* Cell */ = {
+			isa = PBXGroup;
+			children = (
+				EABD7199244B3545008AA188 /* XXTransactionDetailCell.h */,
+				EABD719A244B3545008AA188 /* XXTransactionDetailCell.m */,
+			);
+			path = Cell;
+			sourceTree = "<group>";
+		};
 		EAC6871A214FAD1600701874 /* XXTab */ = {
 			isa = PBXGroup;
 			children = (
@@ -1785,7 +1827,7 @@
 				TargetAttributes = {
 					F30AC19F20CCC641000652BB = {
 						CreatedOnToolsVersion = 9.4;
-						DevelopmentTeam = L2J536XCKC;
+						DevelopmentTeam = 768MYA9JJQ;
 						LastSwiftMigration = 1130;
 						ProvisioningStyle = Automatic;
 						SystemCapabilities = {
@@ -1892,6 +1934,7 @@
 				6CC12D072445849700917105 /* XXValidatorListModel.m in Sources */,
 				EABD1BA1241BB25900B1A03A /* Hash.m in Sources */,
 				EA04ABAB242D015B004403FF /* IQBarButtonItem.m in Sources */,
+				EABD7193244B1AEA008AA188 /* XXTransactionModel.m in Sources */,
 				EAC6871D214FAD1C00701874 /* XXTabView.m in Sources */,
 				EABD1BA5241BB25900B1A03A /* Promise.m in Sources */,
 				EABD1BBE241E52ED00B1A03A /* XXImportMnemonicPhraseVC.m in Sources */,
@@ -1924,6 +1967,7 @@
 				EABD1BAA241BB25900B1A03A /* TransactionInfo.m in Sources */,
 				EABD1B81241BB25900B1A03A /* aeskey.c in Sources */,
 				F30EAF6020D26536005ADD5C /* UILabel+Extension.m in Sources */,
+				EABD7195244B1AEA008AA188 /* XXTransferHeaderView.m in Sources */,
 				EA3E591C24441D160080B98F /* XXAssetHeaderView.m in Sources */,
 				EA3E591F24441D160080B98F /* XXAssetCell.m in Sources */,
 				EA6FA69A21258FD3006305B8 /* UICKeyChainStore.m in Sources */,
@@ -1933,7 +1977,6 @@
 				EABD1BA3241BB25900B1A03A /* BlockInfo.m in Sources */,
 				F30EAF5F20D26536005ADD5C /* UIColor+helper.m in Sources */,
 				6CC12D0A24459D1000917105 /* XXValidatorDetailViewController.m in Sources */,
-				EA3E58F724441C7B0080B98F /* XXTransferHeaderView.m in Sources */,
 				EA04AD3824323C73004403FF /* Bech32.swift in Sources */,
 				EA30A121236F221B0098DE28 /* AFAutoPurgingImageCache.m in Sources */,
 				F31F7A4D20CF9693008B4403 /* XXNavigationController.m in Sources */,
@@ -1955,6 +1998,7 @@
 				EAB356342438369200D750D6 /* FMResultSet.m in Sources */,
 				EA4425A82441C823008962E2 /* XXSqliteManager.m in Sources */,
 				EAB3566A243E402100D750D6 /* JSONKit.m in Sources */,
+				EAE467EE244C7901006EACAF /* XXTransationSectionHeaderView.m in Sources */,
 				6CC12CEE24445DF200917105 /* XXDecimalNumberHelper.m in Sources */,
 				EA2F95312423A02B0070AC62 /* XXLoginVC.m in Sources */,
 				EABD1B98241BB25900B1A03A /* Provider.m in Sources */,
@@ -1978,7 +2022,6 @@
 				EABD1BAC241BB25900B1A03A /* Account.m in Sources */,
 				EABBC08B24232DCD00B7E412 /* NSData+CommonCrypto.m in Sources */,
 				EA6FA69721258EC5006305B8 /* FCUUID.m in Sources */,
-				EA3E58F624441C7B0080B98F /* XXTransferDetailVC.m in Sources */,
 				EA3E593D24441D950080B98F /* XXWithdrawView.m in Sources */,
 				EABD1B94241BB25900B1A03A /* crypto_scrypt-nosse.c in Sources */,
 				7A3298152320EE9900196336 /* NSArray+Safe.m in Sources */,
@@ -2011,6 +2054,7 @@
 				EA3E595C24471F190080B98F /* XXTokenModel.m in Sources */,
 				EABD1B9C241BB25900B1A03A /* InfuraProvider.m in Sources */,
 				EABBC08C24232DCD00B7E412 /* NSData+Base64.m in Sources */,
+				EABD719B244B3545008AA188 /* XXTransactionDetailCell.m in Sources */,
 				F30EAF5D20D26536005ADD5C /* UIImage+helper.m in Sources */,
 				6C0D91B8244984080043AF74 /* XXValidatorDetailHeader.m in Sources */,
 				EA309E3C236F21410098DE28 /* AFHTTPSessionManager.m in Sources */,
@@ -2052,7 +2096,6 @@
 				6CC12CFB2444749D00917105 /* XXValidatorHeader.m in Sources */,
 				EA4425A32441C823008962E2 /* XXAddressView.m in Sources */,
 				EABD1B9B241BB25900B1A03A /* ApiProvider.m in Sources */,
-				EA3E58F924441C7B0080B98F /* XXTransactionModel.m in Sources */,
 				F30AC1B320CCC642000652BB /* main.m in Sources */,
 				EABD1B9D241BB25900B1A03A /* EtherscanProvider.m in Sources */,
 				EABD1B8D241BB25900B1A03A /* bip32.c in Sources */,
@@ -2090,6 +2133,7 @@
 				EA04ABAA242D015B004403FF /* IQTitleBarButtonItem.m in Sources */,
 				EA309F7D236F22190098DE28 /* UIProgressView+AFNetworking.m in Sources */,
 				EA30A06D236F221A0098DE28 /* UIButton+AFNetworking.m in Sources */,
+				EABD7194244B1AEA008AA188 /* XXTransferDetailVC.m in Sources */,
 				F30EAF6120D26536005ADD5C /* UIView+VJQ.m in Sources */,
 				EA30A15D236F221B0098DE28 /* AFImageDownloader.m in Sources */,
 				F30EAF5B20D26536005ADD5C /* UITableViewCell+Extension.m in Sources */,
@@ -2253,7 +2297,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEFINES_MODULE = NO;
-				DEVELOPMENT_TEAM = L2J536XCKC;
+				DEVELOPMENT_TEAM = 768MYA9JJQ;
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -2296,7 +2340,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEFINES_MODULE = NO;
-				DEVELOPMENT_TEAM = L2J536XCKC;
+				DEVELOPMENT_TEAM = 768MYA9JJQ;
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",

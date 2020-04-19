@@ -17,6 +17,8 @@
 @property (nonatomic, strong) XXButton *transferButton;
 /**资产数据*/
 @property (nonatomic, strong) XXAssetModel *assetModel;
+/**资产请求*/
+@property (nonatomic, strong) XXAssetManager *assetManager;
 @end
 
 @implementation XXDelegateTransferViewController
@@ -24,8 +26,8 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self createUI];
-    [self configAsset];
 }
+
 - (void)createUI{
     switch (self.delegateNodeType) {
         case 0:
@@ -43,15 +45,7 @@
     [self.view addSubview:self.transferButton];
     
 }
-- (void)configAsset {
-    @weakify(self)
-    XXAssetManager *assetManager = [XXAssetManager sharedManager];
-    self.assetModel = [[XXAssetManager sharedManager] assetModel];
-    assetManager.assetChangeBlock = ^{
-        @strongify(self)
-        [self refreshDelegateAmount];
-    };
-}
+
 #pragma mark 刷新资产
 - (void)refreshDelegateAmount{
     
@@ -95,5 +89,17 @@
         _assetModel = [[XXAssetModel alloc]init];
     }
     return _assetModel;
+}
+
+- (XXAssetManager *)assetManager {
+    if (!_assetManager) {
+        @weakify(self)
+        _assetManager = [[XXAssetManager alloc] init];
+        _assetManager.assetChangeBlock = ^{
+            @strongify(self)
+            [self refreshDelegateAmount];
+        };
+    }
+    return _assetManager;
 }
 @end

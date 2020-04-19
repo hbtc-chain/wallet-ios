@@ -37,20 +37,11 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     [self setupUI];
-    [self configAsset];
-}
-
-- (void)configAsset {
-    MJWeakSelf
-    self.assetManager = [XXAssetManager sharedManager];
-    self.assetManager.assetChangeBlock = ^{
-        [weakSelf refreshAsset];
-    };
 }
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
-    [[XXAssetManager sharedManager] requestAsset];
+    [self.assetManager requestAsset];
 }
 
 - (void)setupUI {
@@ -160,13 +151,14 @@
 /// 刷新资产
 - (void)refreshAsset {
     [self.tableView.mj_header endRefreshing];
-    self.assetModel = [[XXAssetManager sharedManager] assetModel];
+    self.assetModel = self.assetManager.assetModel;
     [self reloadData];
     [self.headerView configData:self.assetModel];
 }
 
 - (UITableView *)tableView {
     if (_tableView == nil) {
+        MJWeakSelf
         _tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, kScreen_Width, kScreen_Height - kTabbarHeight) style:UITableViewStylePlain];
         _tableView.dataSource = self;
         _tableView.delegate = self;
@@ -177,7 +169,7 @@
             _tableView.contentInsetAdjustmentBehavior = UIScrollViewContentInsetAdjustmentNever;
         }
         _tableView.mj_header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
-            [[XXAssetManager sharedManager] requestAsset];
+            [weakSelf.assetManager  requestAsset];
         }];
     }
     return _tableView;
@@ -220,6 +212,17 @@
         _emptyView = [[XXEmptyView alloc] initWithFrame:CGRectMake(0, 0, kScreen_Width, K375(300)) iamgeName:@"noAsset" alert:LocalizedString(@"NoAsset")];
     }
     return _emptyView;
+}
+
+- (XXAssetManager *)assetManager {
+    if (!_assetManager) {
+        MJWeakSelf
+        _assetManager = [[XXAssetManager alloc] init];
+        _assetManager.assetChangeBlock = ^{
+            [weakSelf refreshAsset];
+        };
+    }
+    return _assetManager;
 }
 
 @end

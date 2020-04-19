@@ -31,12 +31,24 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    [self showAlert];
+    [self buildUI];
+}
+
+- (void)showAlert {
+    NSString *message;
     if (self.InnerChain) {
         self.showAddress = KUser.address;
+        message = LocalizedString(@"DepositTip");
     } else {
+        message = LocalizedString(@"ChainDepositTip");
         self.showAddress = self.tokenModel.external_address;
     }
-    [self buildUI];
+    UIAlertController *alert = [UIAlertController alertControllerWithTitle:LocalizedString(@"Tip") message:message preferredStyle:UIAlertControllerStyleAlert];
+    UIAlertAction *action = [UIAlertAction actionWithTitle:LocalizedString(@"ShowAddress") style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+    }];
+    [alert addAction:action];
+    [self presentViewController:alert animated:YES completion:nil];
 }
 
 - (void)buildUI {
@@ -83,7 +95,7 @@
 
 - (UIImageView *)topBackImageView {
     if (!_topBackImageView) {
-        _topBackImageView = [[UIImageView alloc] initWithFrame:CGRectMake(K375(24), K375(60), kScreen_Width-K375(48), kScreen_Width-K375(48))];
+        _topBackImageView = [[UIImageView alloc] initWithFrame:CGRectMake(K375(24), K375(40), kScreen_Width-K375(48), kScreen_Width-K375(48))];
         _topBackImageView.image = [UIImage imageNamed:@"depositTopBack"];
     }
     return _topBackImageView;
@@ -119,7 +131,7 @@
 - (UIImageView *)codeImageView {
     if (!_codeImageView) {
         _codeImageView = [[UIImageView alloc] initWithFrame:CGRectMake(K375(73), K375(81), self.topBackImageView.width - K375(146), self.topBackImageView.width - K375(146))];
-            _codeImageView.image = [XCQrCodeTool createQrCodeWithContent:self.showAddress];
+        _codeImageView.image = [XCQrCodeTool createQrCodeWithContent:self.showAddress];
     }
     return _codeImageView;
 }
@@ -136,7 +148,7 @@
     if (!_addressLabel) {
         _addressLabel = [XXLabel labelWithFrame:CGRectMake(0, CGRectGetMaxY(self.codeImageView.frame), self.topBackImageView.width, self.topBackImageView.height - CGRectGetMaxY(self.codeImageView.frame)) text:@"" font:kFont(13) textColor:kDark100];
         _addressLabel.textAlignment = NSTextAlignmentCenter;
-            _addressLabel.text = self.showAddress;
+        _addressLabel.text = self.showAddress;
     }
     return _addressLabel;
 }
