@@ -60,7 +60,7 @@
 "AccountNameRuleAlert" = "请输入1-20个字符";
 "IAgreeTo" = "我已阅读并同意";
 "ServiceAgreement" = "《Bluehelix服务协议》";
-"PleaseEnterPassword" = "请输入密码";
+"PleaseEnterPassword" = "请输入钱包密码";
 "Password" = "验证密码";
 "ForgetPassword" = "忘记密码";
 "Sure" = "确认";
@@ -68,7 +68,7 @@
 "PrivateKeyOutOfOrder" = "您输入的私钥不符合规则";
 "MnemonicPhraseOutOfOrder" = "您输入的助记词不符合规则";
 "PasswordWrong" = "密码错误";
-"SecurityTip" = "安全提醒";
+"SecurityTip" = "验证密码";
 "Delete" = "删除";
 "BackupSecurityTip" = "安全提醒";
 "BackupSecurityTip1" = "您的钱包助记词未备份，请务必备份助记词";
@@ -85,6 +85,10 @@
 "TermsOfUse" = "使用条款";
 "AboutUs" = "关于我们";
 "CopySuccessfully" = "复制成功";
+"Setting" = "设置";
+"ExchangeRate" = "计价货币";
+"Language" = "语言";
+"Version" = "版本";
 
 //资产
 "HideSmallCurrency" = "隐藏小额币种";

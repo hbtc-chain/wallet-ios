@@ -295,7 +295,11 @@ int pageSize = 30;
 
 - (XXEmptyView *)emptyView {
     if (_emptyView == nil) {
-        _emptyView = [[XXEmptyView alloc] initWithFrame:CGRectMake(0, 0, kScreen_Width, K375(300)) iamgeName:@"noData" alert:LocalizedString(@"NoData")];
+        if ([self.tokenModel.symbol isEqualToString:kMainToken]) {
+            _emptyView = [[XXEmptyView alloc] initWithFrame:CGRectMake(0, 0, kScreen_Width, K375(243)) iamgeName:@"noData" alert:LocalizedString(@"NoData")];
+        } else {
+            _emptyView = [[XXEmptyView alloc] initWithFrame:CGRectMake(0, 0, kScreen_Width, K375(379)) iamgeName:@"noData" alert:LocalizedString(@"NoData")];
+        }
     }
     return _emptyView;
 }

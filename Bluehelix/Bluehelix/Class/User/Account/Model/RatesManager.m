@@ -69,7 +69,19 @@ static RatesManager *_ratesManager;
        } else {
            return @"--";
        }
-    return [NSString stringWithFormat:@"≈¥%.2f",rates];
+    if ([KUser.ratesKey isEqualToString:@"cny"]) {
+           return [NSString stringWithFormat:@"≈¥%.3f", rates];
+       } else if ([KUser.ratesKey isEqualToString:@"usd"]) {
+           return [NSString stringWithFormat:@"≈$%.3f", rates];
+       } else if ([KUser.ratesKey isEqualToString:@"krw"]) {
+           return [NSString stringWithFormat:@"≈₩%.3f", rates];
+       } else if ([KUser.ratesKey isEqualToString:@"jpy"]) {
+           return [NSString stringWithFormat:@"≈¥%.3f", rates];
+       } else if ([KUser.ratesKey isEqualToString:@"vnd"]) {
+           return [NSString stringWithFormat:@"≈₫%.3f", rates];
+       } else {
+           return @"--";
+       }
 }
 
 #pragma mark - 2. 获取法币
@@ -91,15 +103,31 @@ static RatesManager *_ratesManager;
     }
     
     if ([KUser.ratesKey isEqualToString:@"cny"]) {
-        return [NSString stringWithFormat:@"≈¥%.2f", rates*priceValue];
-    } else if ([KUser.ratesKey isEqualToString:@"USD"]) {
-        return [NSString stringWithFormat:@"≈$%@", [NSString getLengthMoney:rates*priceValue]];
-    } else if ([KUser.ratesKey isEqualToString:@"KRW"]) {
-        return [NSString stringWithFormat:@"≈₩%@", [NSString getLengthMoney:rates*priceValue]];
-    } else if ([KUser.ratesKey isEqualToString:@"JPY"]) {
-        return [NSString stringWithFormat:@"≈¥%@", [NSString getLengthMoney:rates*priceValue]];
-    } else if ([KUser.ratesKey isEqualToString:@"VND"]) {
-        return [NSString stringWithFormat:@"≈₫%@", [NSString getLengthMoney:rates*priceValue]];
+        return [NSString stringWithFormat:@"≈¥%.3f",rates*priceValue];
+    } else if ([KUser.ratesKey isEqualToString:@"usd"]) {
+        return [NSString stringWithFormat:@"≈$%.3f",rates*priceValue];
+    } else if ([KUser.ratesKey isEqualToString:@"krw"]) {
+        return [NSString stringWithFormat:@"≈₩%.3f",rates*priceValue];
+    } else if ([KUser.ratesKey isEqualToString:@"jpy"]) {
+        return [NSString stringWithFormat:@"≈¥%.3f",rates*priceValue];
+    } else if ([KUser.ratesKey isEqualToString:@"vnd"]) {
+        return [NSString stringWithFormat:@"≈₫%.3f",rates*priceValue];
+    } else {
+        return @"--";
+    }
+}
+
+- (NSString *_Nullable)rateUnit {
+    if ([KUser.ratesKey isEqualToString:@"cny"]) {
+        return @"¥";
+    } else if ([KUser.ratesKey isEqualToString:@"usd"]) {
+        return @"$";
+    } else if ([KUser.ratesKey isEqualToString:@"krw"]) {
+        return @"₩";
+    } else if ([KUser.ratesKey isEqualToString:@"jpy"]) {
+        return @"¥";
+    } else if ([KUser.ratesKey isEqualToString:@"vnd"]) {
+        return @"₫";
     } else {
         return @"--";
     }

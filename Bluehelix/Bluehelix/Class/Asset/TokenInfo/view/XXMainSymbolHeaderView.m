@@ -79,7 +79,7 @@
 - (CALayer *)shadowLayer {
     if (!_shadowLayer) {
         _shadowLayer = [CALayer layer];
-        _shadowLayer.frame = CGRectMake(0, 0, self.backView.width, self.backView.height);
+        _shadowLayer.frame = CGRectMake(0, 0, self.backView.width, self.backView.height-8);
         _shadowLayer.cornerRadius = 10;
         _shadowLayer.backgroundColor = [kWhite100 CGColor];
         _shadowLayer.shadowColor = [kBlue20 CGColor];

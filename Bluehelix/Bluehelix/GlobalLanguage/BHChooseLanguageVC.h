@@ -7,8 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "XXListTableViewController.h"
 
-@interface BHChooseLanguageVC : XXListTableViewController
+@interface BHChooseLanguageVC : BaseViewController
 
 @end

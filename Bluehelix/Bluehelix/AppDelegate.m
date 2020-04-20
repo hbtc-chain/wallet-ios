@@ -18,7 +18,6 @@
 
 #pragma mark - 1. 程序开始
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
-    KUser.ratesKey = @"cny";
     [[RatesManager shareRatesManager] loadDataOfRates];
     if (!KUser.isSettedNightType) {
         KUser.isNightType = KSystem.isDarkStyle;

@@ -49,7 +49,7 @@
 - (UIImageView *)arrowImageView {
     if (!_arrowImageView) {
         _arrowImageView = [[UIImageView alloc] init];
-        _arrowImageView.image = [UIImage mainImageName:@"selcted"];
+        _arrowImageView.image = [UIImage mainImageName:@"selected"];
         _arrowImageView.contentMode = UIViewContentModeScaleAspectFill;
     }
     return _arrowImageView;

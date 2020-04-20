@@ -18,9 +18,9 @@
         if (code == 0) {
             NSLog(@"%@",data);
             weakSelf.assetModel = [XXAssetModel mj_objectWithKeyValues:data];
-            if (weakSelf.assetChangeBlock) {
-                weakSelf.assetChangeBlock();
-            }
+        }
+        if (weakSelf.assetChangeBlock) {
+            weakSelf.assetChangeBlock();
         }
     }];
 }

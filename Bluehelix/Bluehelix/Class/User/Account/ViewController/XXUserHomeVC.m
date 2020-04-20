@@ -18,6 +18,7 @@
 #import <CommonCrypto/CommonDigest.h>
 #import "Account.h"
 #import "SecureData.h"
+#import "XXSettingVC.h"
 
 @interface XXUserHomeVC () <UITableViewDataSource, UITableViewDelegate, UIGestureRecognizerDelegate>
 
@@ -54,6 +55,7 @@
     } else {
         self.itemsArray[0] = @[LocalizedString(@"ModifyPassword")];
     }
+    self.itemsArray[1] = @[LocalizedString(@"Setting")];
 }
 
 - (void)setupUI {
@@ -125,8 +127,12 @@
     if ([itemString isEqualToString:LocalizedString(@"ModifyPassword")]) {
         
     }
+    if ([itemString isEqualToString:LocalizedString(@"Setting")]) {
+        [self pushSetting];
+    }
 }
 
+/// 备份助记词
 - (void)pushBackupPhrase {
     MJWeakSelf
     [XXPasswordView showWithSureBtnBlock:^(NSString * _Nonnull text) {
@@ -134,6 +140,12 @@
         backup.text = text;
         [weakSelf.navigationController pushViewController:backup animated:YES];
     }];
+}
+
+/// 设置
+- (void)pushSetting {
+    XXSettingVC *settingVC = [[XXSettingVC alloc] init];
+    [self.navigationController pushViewController:settingVC animated:YES];
 }
 
 - (UITableView *)tableView {

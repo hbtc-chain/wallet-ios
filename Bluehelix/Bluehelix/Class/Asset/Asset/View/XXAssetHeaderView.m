@@ -57,7 +57,7 @@
                 totalAsset += [tokenModel.amount doubleValue] * rate;
             }
         }
-        self.totalAssetLabel.text = [NSString stringWithFormat:@"￥%.2f",totalAsset];
+        self.totalAssetLabel.text = [NSString stringWithFormat:@"%@%.3f",[RatesManager shareRatesManager].rateUnit,totalAsset];
         self.totalAssetLabel.top = CGRectGetMaxY(self.assetNameLabel.frame) + 10;
     }
     self.totalAssetLabel.width = [NSString widthWithText:self.totalAssetLabel.text font:kNumberFontBold(30)];
@@ -110,7 +110,7 @@
             }
         }];
         [_hidenAssetsButton setImage:[UIImage imageNamed:@"unhidden"] forState:UIControlStateNormal];
-        [_hidenAssetsButton setImage:[UIImage imageNamed:@"unhidden"] forState:UIControlStateSelected];
+        [_hidenAssetsButton setImage:[UIImage imageNamed:@"eyehidden"] forState:UIControlStateSelected];
         _hidenAssetsButton.selected = KUser.isHideAsset;
     }
     return _hidenAssetsButton;

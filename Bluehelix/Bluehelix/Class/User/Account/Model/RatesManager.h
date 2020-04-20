@@ -19,6 +19,7 @@
 + (RatesManager *_Nullable)shareRatesManager;
 - (void)loadDataOfRates;
 - (void)cancelTimer;
+- (NSString *_Nullable)rateUnit;
 
 /** 根据币对取汇率 4位 */
 - (NSString *_Nullable)getRatesWithToken:(NSString *_Nullable)tokenId priceValue:(double)priceValue;
