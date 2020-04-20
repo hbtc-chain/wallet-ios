@@ -7,9 +7,10 @@
 //
 
 #import "XXDelegateTransferView.h"
+#import "XXTokenModel.h"
 
 @interface XXDelegateTransferView ()
-@property (nonatomic, strong) XXAssetModel *assetModel;
+@property (nonatomic, strong) XXTokenModel *tokenModel;
 @end
 @implementation XXDelegateTransferView
 
@@ -39,7 +40,7 @@
     [self.mainView addSubview:self.amountView];
     
     /**实际委托数量*/
-    [self.mainView addSubview:self.trueAmountView];
+    //[self.mainView addSubview:self.trueAmountView];
 
     /** 手续费 */
     [self.mainView addSubview:self.feeView];
@@ -65,17 +66,19 @@
             break;
     }
 }
-- (void)refreshAssets:(XXAssetModel*)assetModel{
-    self.assetModel = assetModel;
+- (void)refreshAssets:(XXTokenModel*)tokenModel{
+    self.tokenModel = tokenModel;
     switch (self.delegateNodeType) {
         case XXDelegateNodeTypeAdd:
-            self.amountView.textField.text = [NSString stringWithFormat:@"%@%@%@",LocalizedString(@"ValidatorAvilable"),self.assetModel.amount,[kMainToken uppercaseString]];
+            self.amountView.subLabel.text = [NSString stringWithFormat:@"%@ %@ %@",LocalizedString(@"ValidatorAvilable"),self.tokenModel.amount,[kMainToken uppercaseString]];
+            self.feeView.textField.text = kMinFee;
             break;
         case XXDelegateNodeTypeTransfer:
-            self.amountView.textField.text = [NSString stringWithFormat:@"%@%@%@",LocalizedString(@"ValidatorAvilableTransfer"),self.assetModel.amount,[kMainToken uppercaseString]];
+            self.amountView.subLabel.text = [NSString stringWithFormat:@"%@ %@ %@",LocalizedString(@"ValidatorAvilableTransfer"),self.tokenModel.amount,[kMainToken uppercaseString]];
+            self.feeView.textField.text = kMinFee;
             break;
         case XXDelegateNodeTypeRelieve:
-             //self.amountView.textField.text = [NSString stringWithFormat:@"%@%@%@",LocalizedString(@"ValidatorAvilableRelieve"),self.assetModel.amount,[kMainToken uppercaseString]];
+             self.amountView.subLabel.text = [NSString stringWithFormat:@"%@ %@ %@",LocalizedString(@"ValidatorAvilableRelieve"),self.tokenModel.frozen_amount,[kMainToken uppercaseString]];
         break;
         default:
             
@@ -85,13 +88,14 @@
 - (void)reloadTransferData{
     switch (self.delegateNodeType) {
         case XXDelegateNodeTypeAdd:
-            self.amountView.textField.text = [NSString stringWithFormat:@"%@",self.assetModel.amount];
+            self.amountView.textField.text = [NSString stringWithFormat:@"%@",self.tokenModel.amount];
             break;
         case XXDelegateNodeTypeTransfer:
-             
+             self.amountView.textField.text = [NSString stringWithFormat:@"%@",self.tokenModel.amount];
             break;
         case XXDelegateNodeTypeRelieve:
-         
+            self.amountView.textField.text = [NSString stringWithFormat:@"%@",self.tokenModel.amount];
+                    break;
         break;
         default:
             
@@ -147,6 +151,7 @@
         _amountView = [[XXTransferAmountView alloc] initWithFrame:CGRectMake(0, CGRectGetMaxY(self.addressView.frame), kScreen_Width, 110)];
         _amountView.userInteractionEnabled = YES;
         [_amountView.allButton setTitle:LocalizedString(@"DelegateAll") forState:UIControlStateNormal];
+        _amountView.textField.placeholder = @"";
         _amountView.allButtonActionBlock = ^{
             @strongify(self)
             [self reloadTransferData];
@@ -154,20 +159,21 @@
     }
     return _amountView;
 }
-/** 实际委托数量 */
-- (XXWithdrawFeeView *)trueAmountView {
-    if (_trueAmountView == nil) {
-        _trueAmountView = [[XXWithdrawFeeView alloc] initWithFrame:CGRectMake(0, CGRectGetMaxY(self.amountView.frame), kScreen_Width, 96)];
-        _trueAmountView.nameLabel.text = LocalizedString(@"DelegateTrueAmount");
-        _trueAmountView.unitLabel.text = [kMainToken uppercaseString];
-    }
-    return _trueAmountView;
-}
+///** 实际委托数量 */
+//- (XXWithdrawFeeView *)trueAmountView {
+//    if (_trueAmountView == nil) {
+//        _trueAmountView = [[XXWithdrawFeeView alloc] initWithFrame:CGRectMake(0, CGRectGetMaxY(self.amountView.frame), kScreen_Width, 96)];
+//        _trueAmountView.nameLabel.text = LocalizedString(@"DelegateTrueAmount");
+//        _trueAmountView.textField.enabled = NO;
+//        _trueAmountView.unitLabel.text = [kMainToken uppercaseString];
+//    }
+//    return _trueAmountView;
+//}
 
 /** 手续费 */
 - (XXWithdrawFeeView *)feeView {
     if (_feeView == nil) {
-        _feeView = [[XXWithdrawFeeView alloc] initWithFrame:CGRectMake(0, CGRectGetMaxY(self.trueAmountView.frame), kScreen_Width, 96)];
+        _feeView = [[XXWithdrawFeeView alloc] initWithFrame:CGRectMake(0, CGRectGetMaxY(self.amountView.frame), kScreen_Width, 96)];
         //_feeView.textField.placeholder = LocalizedString(@"PleaseEnterFee");
         _feeView.textField.enabled = NO;
         _feeView.unitLabel.text = [kMainToken uppercaseString];

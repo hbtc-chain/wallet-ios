@@ -36,7 +36,7 @@ NS_ASSUME_NONNULL_BEGIN
 /** 输入框输入回调 */
 @property (strong, nonatomic) void(^textFieldBoock)(void);
 
-/** 输入框输入回调 */
+/** 所有按钮回调 */
 @property (copy, nonatomic) void(^allButtonActionBlock)(void);
 @end
 

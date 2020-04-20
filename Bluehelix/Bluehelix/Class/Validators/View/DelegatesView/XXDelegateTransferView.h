@@ -39,7 +39,7 @@ NS_ASSUME_NONNULL_BEGIN
 /** 提示语视图 */
 @property (strong, nonatomic) XXWithdrawTipView *tipView;
 
-- (void)refreshAssets:(XXAssetModel*)assetModel;
+- (void)refreshAssets:(XXTokenModel*)tokenModel;
 @end
 
 NS_ASSUME_NONNULL_END

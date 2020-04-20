@@ -26,6 +26,10 @@
     [self createUI];
     [self configAsset];
 }
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+    [[XXAssetManager sharedManager] requestAsset];
+}
 - (void)createUI{
     switch (self.delegateNodeType) {
         case 0:
@@ -46,7 +50,6 @@
 - (void)configAsset {
     @weakify(self)
     XXAssetManager *assetManager = [XXAssetManager sharedManager];
-    self.assetModel = [[XXAssetManager sharedManager] assetModel];
     assetManager.assetChangeBlock = ^{
         @strongify(self)
         [self refreshDelegateAmount];
@@ -54,8 +57,14 @@
 }
 #pragma mark 刷新资产
 - (void)refreshDelegateAmount{
+    self.assetModel = [[XXAssetManager sharedManager] assetModel];
+    for (XXTokenModel *tokenModel in self.assetModel.assets) {
+        if ([[tokenModel.symbol uppercaseString] isEqualToString:[kMainToken uppercaseString]]) {
+            [self.delegateTransferView refreshAssets:tokenModel];
+            break;
+        }
+    }
     
-    [self.delegateTransferView refreshAssets:self.assetModel];
 }
 #pragma mark lazy load
 - (XXDelegateTransferView *)delegateTransferView {

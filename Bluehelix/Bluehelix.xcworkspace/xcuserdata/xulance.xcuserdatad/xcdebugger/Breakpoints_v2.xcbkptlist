@@ -7,16 +7,80 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "38D6786B-42C3-47A2-A502-87370BF7A25F"
-            shouldBeEnabled = "Yes"
+            uuid = "0E7AA4A7-5FBC-408D-BB52-17DEB368B29A"
+            shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "Bluehelix/Class/Validators/ViewController/XXValidatorsHomeViewController.m"
+            filePath = "Bluehelix/Tools/XXKit/XXLabel.m"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "70"
-            endingLineNumber = "70"
-            landmarkName = "-searchLoadData:"
+            startingLineNumber = "148"
+            endingLineNumber = "148"
+            landmarkName = "-addClickCopyFunction"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "0E7AA4A7-5FBC-408D-BB52-17DEB368B29A - f363c4e21157293b"
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "-[XXLabel addClickCopyFunction]"
+                  moduleName = "Bluehelix"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/xulance/Documents/Bhex/Wallet/wallet-ios/Bluehelix/Bluehelix/Tools/XXKit/XXLabel.m"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "148"
+                  endingLineNumber = "148"
+                  offsetFromSymbolStart = "44">
+               </Location>
+               <Location
+                  uuid = "0E7AA4A7-5FBC-408D-BB52-17DEB368B29A - 1bf04d08451f82b3"
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "__31-[XXLabel addClickCopyFunction]_block_invoke"
+                  moduleName = "Bluehelix"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/xulance/Documents/Bhex/Wallet/wallet-ios/Bluehelix/Bluehelix/Tools/XXKit/XXLabel.m"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "149"
+                  endingLineNumber = "149"
+                  offsetFromSymbolStart = "20">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "6D76BC5D-E773-4C38-B2E4-A5E4F140B679"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Bluehelix/Tools/XXKit/XXLabel.m"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "149"
+            endingLineNumber = "149"
+            landmarkName = "-addClickCopyFunction"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "0122FD85-8C7E-4E4C-85AB-CA7D2313313C"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Bluehelix/Class/Validators/View/XXValidatorDetailHeader.m"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "54"
+            endingLineNumber = "54"
+            landmarkName = "-setValidatorModel:"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
