@@ -77,7 +77,6 @@
 "BackupLaterRemind" = "稍后提醒";
 "CharCount" = "%@位字符";
 
-
 //我的
 "BackupMnemonicPhrase" = "备份助记词";
 "ModifyPassword" = "修改安全密码";
@@ -101,6 +100,7 @@
 "AddNewAsset" = "添加新资产";
 "EnterTokenNameSearch" = "输入币种名称";
 "TotalAsset" = "总资产(%@)";
+"NoAsset" = "暂无资产";
 
 //提币
 "PleaseEnterAmountReceived" = "请输入到账数量";
@@ -125,6 +125,12 @@
 "Album"="相册";
 "QRCodeAlertKey"="将二维码放入框内，即可自动扫描";
 
+//收款地址
+"ShowAddress" = "我已知风险，显示地址";
+"Tip" = "提示";
+"ChainDepositTip" = "您正在进行托管单元跨链收款(充币)\n请提醒转出方，务必使用OMNI钱包提币";
+"DepositTip" = "您正在进行托管单元链内收款(充币)\n请提醒转出方，务必使用非跨链的提币通道";
+
 //币种详情
 "ReceiveMoney" = "收款";
 "PayMoney" = "转出";
@@ -144,6 +150,11 @@
 "ChainDeposit" = "跨链充值";
 "ChainWithdrawal" = "跨链提币";
 "ChainOtherType" = "其他";
+"NoData" = "暂无记录";
+"Time" = "时间";
+"State" = "状态";
+"From" = "转出";
+"To" = "转入";
 
 //验证人
 "ValidatorVote" = "投票权";

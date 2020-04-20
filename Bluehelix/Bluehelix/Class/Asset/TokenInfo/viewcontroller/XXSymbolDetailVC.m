@@ -16,6 +16,7 @@
 #import "XXTransferDetailVC.h"
 #import "XXWithdrawChainVC.h"
 #import "XXMainSymbolHeaderView.h"
+#import "XXEmptyView.h"
 
 int pageSize = 30;
 @interface XXSymbolDetailVC ()<UITableViewDataSource, UITableViewDelegate>
@@ -26,6 +27,8 @@ int pageSize = 30;
 @property (nonatomic, strong) XXMainSymbolHeaderView *mainSymbolHeaderView;
 @property (nonatomic, strong) XXSymbolDetailHeaderView *symbolDetailHeaderView;
 @property (nonatomic, assign) int page;
+@property (nonatomic, strong) XXEmptyView *emptyView;
+@property (nonatomic, strong) XXAssetManager *assetManager;
 
 @end
 
@@ -36,27 +39,17 @@ int pageSize = 30;
     // Do any additional setup after loading the view.
     self.page = 1;
     [self requestHistory];
-    [self configAsset];
     [self buildUI];
 }
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
-    [[XXAssetManager sharedManager] requestAsset];
-}
-
-/// 资产请求
-- (void)configAsset {
-    MJWeakSelf
-    XXAssetManager *assetManager = [XXAssetManager sharedManager];
-    self.assetModel = [[XXAssetManager sharedManager] assetModel];
-    assetManager.assetChangeBlock = ^{
-        [weakSelf refreshHeader];
-    };
+    [self.assetManager requestAsset];
 }
 
 /// 资产请求回来 刷新header
 - (void)refreshHeader {
+    self.assetModel = self.assetManager.assetModel;
     [self.tableView.mj_header endRefreshing];
     for (XXTokenModel *tokenModel in self.assetModel.assets) {
         if ([tokenModel.symbol isEqualToString:self.tokenModel.symbol]) {
@@ -202,11 +195,19 @@ int pageSize = 30;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
-    return 8;
+    if (self.txs.count == 0) {
+        return self.emptyView.height;
+    } else {
+        return 0;
+    }
 }
 
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
-    return [UIView new];
+    if (self.txs.count == 0) {
+        return self.emptyView ;
+    } else {
+        return [UIView new];
+    }
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -245,7 +246,7 @@ int pageSize = 30;
         MJWeakSelf
         _tableView.mj_header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
             weakSelf.page = 1;
-            [[XXAssetManager sharedManager] requestAsset];
+            [weakSelf.assetManager requestAsset];
             [weakSelf requestHistory];
         }];
         _tableView.mj_footer = [MJRefreshBackNormalFooter footerWithRefreshingBlock:^{
@@ -258,7 +259,7 @@ int pageSize = 30;
 
 - (XXSymbolDetailHeaderView *)symbolDetailHeaderView {
     if (!_symbolDetailHeaderView) {
-        _symbolDetailHeaderView = [[XXSymbolDetailHeaderView alloc] initWithFrame:CGRectMake(0, 0, kScreen_Width, 112)];
+        _symbolDetailHeaderView = [[XXSymbolDetailHeaderView alloc] initWithFrame:CGRectMake(0, 0, kScreen_Width, 120)];
     }
     return _symbolDetailHeaderView;
 }
@@ -290,5 +291,23 @@ int pageSize = 30;
         };
     }
     return _footerView;
+}
+
+- (XXEmptyView *)emptyView {
+    if (_emptyView == nil) {
+        _emptyView = [[XXEmptyView alloc] initWithFrame:CGRectMake(0, 0, kScreen_Width, K375(300)) iamgeName:@"noData" alert:LocalizedString(@"NoData")];
+    }
+    return _emptyView;
+}
+
+- (XXAssetManager *)assetManager {
+    if (!_assetManager) {
+        MJWeakSelf
+        _assetManager = [[XXAssetManager alloc] init];
+        _assetManager.assetChangeBlock = ^{
+            [weakSelf refreshHeader];
+        };
+    }
+    return _assetManager;
 }
 @end

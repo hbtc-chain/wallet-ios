@@ -57,6 +57,7 @@ typedef NS_ENUM(NSUInteger, NetworkMethod) {
 #define kBtnHeight 48
 #define kTipColor kIsNight ? [UIColor whiteColor] : [UIColor colorWithHexString:@"#6E8196"]
 #define kFieldBackColor kIsNight ? [UIColor whiteColor] : [UIColor colorWithHexString:@"#F9F9FB"]
+#define kF4F7FF [UIColor colorWithHexString:@"#F4F7FF"]
 #define kAlertDuration 2
 #define kGreen kIsNight ? [UIColor whiteColor] : [UIColor colorWithHexString:@"#269A99"]
 #define kGray kIsNight ? [UIColor whiteColor] : [UIColor colorWithHexString:@"#475563"]

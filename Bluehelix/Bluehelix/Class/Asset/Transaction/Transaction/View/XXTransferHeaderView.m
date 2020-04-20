@@ -28,30 +28,32 @@
         state = 0;
     }
     int Y = 20;
-    NSArray *bottomNamesArray = @[LocalizedString(@"TXID"),LocalizedString(@"状态"),LocalizedString(@"时间")];
+    NSArray *bottomNamesArray = @[LocalizedString(@"TXID"),LocalizedString(@"State"),LocalizedString(@"Time")];
     for (NSInteger i=0; i < bottomNamesArray.count; i ++) {
         
-        XXLabel *leftLabel = [XXLabel labelWithFrame:CGRectMake(K375(24), Y, K375(120), 20) text:bottomNamesArray[i] font:kFont14 textColor:kDark50];
+        XXLabel *leftLabel = [XXLabel labelWithFrame:CGRectMake(K375(24), Y, K375(120), 20) text:bottomNamesArray[i] font:kFont13 textColor:kDark50];
         leftLabel.numberOfLines = 0;
         [self addSubview:leftLabel];
         
-        XXLabel *rightLabel = [XXLabel labelWithFrame:CGRectMake(K375(151), Y, K375(200), 20) text:@"" font:kFont14 textColor:kDark100];
+        XXLabel *rightLabel = [XXLabel labelWithFrame:CGRectMake(K375(151), Y, K375(200), 20) text:@"" font:kFont13 textColor:kDark100];
         rightLabel.numberOfLines = 0;
         [self addSubview:rightLabel];
         if (i == 0) {
             rightLabel.text = dic[@"hash"];
             rightLabel.userInteractionEnabled = YES;
             [rightLabel addClickCopyFunction];
-            rightLabel.height = [NSString heightWithText:KString(rightLabel.text) font:kFont14 width:K375(200)];
+            rightLabel.height = [NSString heightWithText:KString(rightLabel.text) font:kFont13 width:K375(200)];
             Y += rightLabel.height;
             Y += 20;
         } else if (i == 1) {
-            rightLabel.text = state == 1 ? LocalizedString(@"成功"):LocalizedString(@"失败");
+            rightLabel.text = state == 1 ? LocalizedString(@"Success"):LocalizedString(@"Failed");
             Y += 40;
         } else if (i == 2) {
             rightLabel.text = [NSString dateStringFromTimestampWithTimeTamp:[dic[@"time"] longLongValue]];
         }
     }
+    self.height = Y + 40;
+    self.maxHeight = self.height;
 }
 
 @end

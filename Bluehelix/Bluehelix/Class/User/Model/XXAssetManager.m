@@ -8,22 +8,7 @@
 
 #import "XXAssetManager.h"
 
-@interface XXAssetManager ()
-
-
-@end
-
 @implementation XXAssetManager
-
-static XXAssetManager *_sharedManager;
-
-+ (XXAssetManager *)sharedManager {
-    static dispatch_once_t onceToken;
-    dispatch_once(&onceToken, ^{
-        _sharedManager = [[XXAssetManager alloc] init];
-    });
-    return _sharedManager;
-}
 
 /// 请求资产信息
 - (void)requestAsset {

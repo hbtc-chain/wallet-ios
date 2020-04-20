@@ -17,6 +17,7 @@
 #import "XXAssetSearchView.h"
 #import "XXSymbolDetailVC.h"
 #import "RatesManager.h"
+#import "XXEmptyView.h"
 
 @interface XXAssetVC ()<UITableViewDataSource, UITableViewDelegate>
 
@@ -27,6 +28,7 @@
 @property (nonatomic, strong) XXAssetSearchView *searchView; //搜索
 @property (nonatomic, strong) NSMutableArray *showArray; //展示的币
 @property (nonatomic, strong) XXAssetManager *assetManager;
+@property (nonatomic, strong) XXEmptyView *emptyView;
 @end
 
 @implementation XXAssetVC
@@ -35,20 +37,11 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     [self setupUI];
-    [self configAsset];
-}
-
-- (void)configAsset {
-    MJWeakSelf
-    XXAssetManager *assetManager = [XXAssetManager sharedManager];
-    assetManager.assetChangeBlock = ^{
-        [weakSelf refreshAsset];
-    };
 }
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
-    [[XXAssetManager sharedManager] requestAsset];
+    [self.assetManager requestAsset];
 }
 
 - (void)setupUI {
@@ -77,11 +70,19 @@
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
-    return 8;
+    if (self.showArray.count == 0) {
+        return self.emptyView.height;
+    } else {
+        return 0;
+    }
 }
 
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
-    return [UIView new];
+    if (self.showArray.count == 0) {
+        return self.emptyView ;
+    } else {
+        return [UIView new];
+    }
 }
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
     return [XXAssetCell getCellHeight];
@@ -150,13 +151,14 @@
 /// 刷新资产
 - (void)refreshAsset {
     [self.tableView.mj_header endRefreshing];
-    self.assetModel = [[XXAssetManager sharedManager] assetModel];
+    self.assetModel = self.assetManager.assetModel;
     [self reloadData];
     [self.headerView configData:self.assetModel];
 }
 
 - (UITableView *)tableView {
     if (_tableView == nil) {
+        MJWeakSelf
         _tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, kScreen_Width, kScreen_Height - kTabbarHeight) style:UITableViewStylePlain];
         _tableView.dataSource = self;
         _tableView.delegate = self;
@@ -167,7 +169,7 @@
             _tableView.contentInsetAdjustmentBehavior = UIScrollViewContentInsetAdjustmentNever;
         }
         _tableView.mj_header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
-            [[XXAssetManager sharedManager] requestAsset];
+            [weakSelf.assetManager  requestAsset];
         }];
     }
     return _tableView;
@@ -203,6 +205,24 @@
         _showArray = [[NSMutableArray alloc] init];
     }
     return _showArray;
+}
+
+- (XXEmptyView *)emptyView {
+    if (_emptyView == nil) {
+        _emptyView = [[XXEmptyView alloc] initWithFrame:CGRectMake(0, 0, kScreen_Width, K375(300)) iamgeName:@"noAsset" alert:LocalizedString(@"NoAsset")];
+    }
+    return _emptyView;
+}
+
+- (XXAssetManager *)assetManager {
+    if (!_assetManager) {
+        MJWeakSelf
+        _assetManager = [[XXAssetManager alloc] init];
+        _assetManager.assetChangeBlock = ^{
+            [weakSelf refreshAsset];
+        };
+    }
+    return _assetManager;
 }
 
 @end

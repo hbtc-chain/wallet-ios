@@ -46,7 +46,7 @@
 - (void)buildUI {
     [self addSubview:self.backView];
     [self.backView.layer insertSublayer:self.shadowLayer atIndex:0];
-    [self.backView addSubview:self.imageView];
+//    [self.backView addSubview:self.imageView];
     [self.backView addSubview:self.tipLabel];
     [self.backView addSubview:self.amountLabel];
     [self.backView addSubview:self.assetLabel];
