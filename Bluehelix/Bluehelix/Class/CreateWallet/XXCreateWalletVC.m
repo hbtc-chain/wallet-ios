@@ -52,7 +52,7 @@
 - (void)textFiledValueChange:(UITextField *)textField {
     if (textField.text.length) {
         self.createBtn.enabled = YES;
-        self.createBtn.backgroundColor = kBlue100;
+        self.createBtn.backgroundColor = kPrimaryMain;
     } else {
         self.createBtn.enabled = NO;
         self.createBtn.backgroundColor = kBtnNotEnableColor;
@@ -62,14 +62,14 @@
 - (XXLabel *)tipLabel {
     if (!_tipLabel) {
         CGFloat width = [NSString widthWithText:LocalizedString(@"SetName") font:kFontBold(26)];
-        _tipLabel = [XXLabel labelWithFrame:CGRectMake(K375(16), kNavHeight, width, 40) text:LocalizedString(@"SetName") font:kFontBold(26) textColor:kDark100 alignment:NSTextAlignmentLeft];
+        _tipLabel = [XXLabel labelWithFrame:CGRectMake(K375(16), kNavHeight, width, 40) text:LocalizedString(@"SetName") font:kFontBold(26) textColor:kGray900 alignment:NSTextAlignmentLeft];
     }
     return _tipLabel;
 }
 
 - (XXLabel *)stepTipLabel {
     if (!_stepTipLabel) {
-        _stepTipLabel = [XXLabel labelWithFrame:CGRectMake(CGRectGetMaxX(self.tipLabel.frame) + 5, kNavHeight + 15, kScreen_Width - K375(32) - self.tipLabel.width, 20) text:LocalizedString(@"Step1") font:kFont12 textColor:kTipColor alignment:NSTextAlignmentLeft];
+        _stepTipLabel = [XXLabel labelWithFrame:CGRectMake(CGRectGetMaxX(self.tipLabel.frame) + 5, kNavHeight + 15, kScreen_Width - K375(32) - self.tipLabel.width, 20) text:LocalizedString(@"Step1") font:kFont12 textColor:kGray500 alignment:NSTextAlignmentLeft];
     }
     return _stepTipLabel;
 }
@@ -77,7 +77,7 @@
 - (XXLabel *)contentLabel {
     if (!_contentLabel) {
         CGFloat height = [NSString heightWithText:LocalizedString(@"SetNameTip") font:kFont(15) width:kScreen_Width - K375(32)];
-        _contentLabel = [XXLabel labelWithFrame:CGRectMake(K375(16), CGRectGetMaxY(self.tipLabel.frame) + 10, kScreen_Width - K375(32), height) text:LocalizedString(@"SetNameTip") font:kFont(15) textColor:kTipColor alignment:NSTextAlignmentLeft];
+        _contentLabel = [XXLabel labelWithFrame:CGRectMake(K375(16), CGRectGetMaxY(self.tipLabel.frame) + 10, kScreen_Width - K375(32), height) text:LocalizedString(@"SetNameTip") font:kFont(15) textColor:kGray500 alignment:NSTextAlignmentLeft];
         _contentLabel.numberOfLines = 0;
     }
     return _contentLabel;
@@ -85,7 +85,7 @@
 
 - (XXLabel *)nameLabel {
     if (!_nameLabel) {
-        _nameLabel = [XXLabel labelWithFrame:CGRectMake(K375(16), CGRectGetMaxY(self.contentLabel.frame) + 6, kScreen_Width - K375(32), 40) text:LocalizedString(@"WalletName") font:kFont15 textColor:kDark100 alignment:NSTextAlignmentLeft];
+        _nameLabel = [XXLabel labelWithFrame:CGRectMake(K375(16), CGRectGetMaxY(self.contentLabel.frame) + 6, kScreen_Width - K375(32), 40) text:LocalizedString(@"WalletName") font:kFont15 textColor:kGray900 alignment:NSTextAlignmentLeft];
     }
     return _nameLabel;
 }
@@ -103,7 +103,7 @@
 - (XXButton *)createBtn {
     if (!_createBtn) {
         MJWeakSelf
-        _createBtn = [XXButton buttonWithFrame:CGRectMake(K375(16), CGRectGetMaxY(self.textFieldView.frame) + 24, kScreen_Width - K375(32), kBtnHeight) title:LocalizedString(@"NextStep") font:kFontBold18 titleColor:kWhite100 block:^(UIButton *button) {
+        _createBtn = [XXButton buttonWithFrame:CGRectMake(K375(16), CGRectGetMaxY(self.textFieldView.frame) + 24, kScreen_Width - K375(32), kBtnHeight) title:LocalizedString(@"NextStep") font:kFontBold18 titleColor:kWhiteColor block:^(UIButton *button) {
             [weakSelf nextStepAction];
         }];
         _createBtn.backgroundColor = kBtnNotEnableColor;

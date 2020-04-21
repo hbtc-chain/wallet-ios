@@ -13,7 +13,7 @@
 @implementation XXValidatorGripSectionHeader
 - (instancetype)initWithReuseIdentifier:(NSString *)reuseIdentifier{
     if (self = [super initWithReuseIdentifier:reuseIdentifier]) {
-        self.backgroundColor = kWhite100;
+        self.backgroundColor = kWhiteColor;
         [self addSubview:self.validatorToolBar];
         [self addSubview:self.lineView];
         [self addSubview:self.searchView];

@@ -24,7 +24,7 @@
 {
     self = [super initWithFrame:frame];
     if (self) {
-        self.backgroundColor = kWhite100;
+        self.backgroundColor = kWhiteColor;
         [self addSubview:self.backImageView];
         [self addSubview:self.manageBtn];
         [self addSubview:self.icon];
@@ -57,7 +57,7 @@
 
 - (XXLabel *)icon {
     if (!_icon) {
-        _icon = [XXLabel labelWithFrame:CGRectMake(K375(21), K375(66), 56, 56) text:@"" font:kFont14 textColor:kWhite100 alignment:NSTextAlignmentCenter cornerRadius:28];
+        _icon = [XXLabel labelWithFrame:CGRectMake(K375(21), K375(66), 56, 56) text:@"" font:kFont14 textColor:[UIColor whiteColor] alignment:NSTextAlignmentCenter cornerRadius:28];
     }
     return _icon;
 }
@@ -66,7 +66,7 @@
     if (!_textField) {
         _textField = [[UITextField alloc] initWithFrame:CGRectMake(CGRectGetMaxX(self.icon.frame) + 8, K375(70), 100, 25)];
         _textField.text = KUser.currentAccount.userName;
-        _textField.textColor = kWhite100;
+        _textField.textColor = [UIColor whiteColor];
     }
     return _textField;
 }
@@ -76,7 +76,7 @@
         CGFloat width = [NSString widthWithText:KUser.address font:kFont12];
         CGFloat maxWidth = kScreen_Width - self.textField.left - 16 - 40;
         width = width > maxWidth ? maxWidth : width;
-        _addressLabel = [XXLabel labelWithFrame:CGRectMake(self.textField.left, CGRectGetMaxY(self.textField.frame), width, 20) font:kFont12 textColor:kWhite80];
+        _addressLabel = [XXLabel labelWithFrame:CGRectMake(self.textField.left, CGRectGetMaxY(self.textField.frame), width, 20) font:kFont12 textColor:[UIColor whiteColor]];
         _addressLabel.text = KUser.address;
     }
     return _addressLabel;

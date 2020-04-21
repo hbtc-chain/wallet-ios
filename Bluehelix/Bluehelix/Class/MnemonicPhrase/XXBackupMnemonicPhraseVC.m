@@ -30,7 +30,7 @@
 }
 
 - (void)buildUI {
-    self.view.backgroundColor = kWhite100;
+    self.view.backgroundColor = kWhiteColor;
     [self.view addSubview:self.tipLabel];
     [self.view addSubview:self.contentLabel];
     [self drawPhraseBtn];
@@ -62,7 +62,7 @@
 
 - (XXLabel *)tipLabel {
     if (!_tipLabel) {
-        _tipLabel = [XXLabel labelWithFrame:CGRectMake(K375(16), kNavHeight, kScreen_Width - K375(32), 40) text:LocalizedString(@"BackupTip") font:kFontBold(26) textColor:kDark100 alignment:NSTextAlignmentLeft];
+        _tipLabel = [XXLabel labelWithFrame:CGRectMake(K375(16), kNavHeight, kScreen_Width - K375(32), 40) text:LocalizedString(@"BackupTip") font:kFontBold(26) textColor:kGray900 alignment:NSTextAlignmentLeft];
     }
     return _tipLabel;
 }
@@ -70,7 +70,7 @@
 - (XXLabel *)contentLabel {
     if (!_contentLabel) {
         CGFloat height = [NSString heightWithText:LocalizedString(@"BackupTipContent") font:kFont(15) width:kScreen_Width - K375(32)];
-        _contentLabel = [XXLabel labelWithFrame:CGRectMake(K375(16), CGRectGetMaxY(self.tipLabel.frame), kScreen_Width - K375(32), height) text:LocalizedString(@"BackupTipContent") font:kFont(15) textColor:kDark50 alignment:NSTextAlignmentLeft];
+        _contentLabel = [XXLabel labelWithFrame:CGRectMake(K375(16), CGRectGetMaxY(self.tipLabel.frame), kScreen_Width - K375(32), height) text:LocalizedString(@"BackupTipContent") font:kFont(15) textColor:kGray500 alignment:NSTextAlignmentLeft];
         _contentLabel.numberOfLines = 0;
     }
     return _contentLabel;
@@ -79,12 +79,12 @@
 - (XXButton *)backupBtn {
     if (!_backupBtn) {
         MJWeakSelf
-        _backupBtn = [XXButton buttonWithFrame:CGRectMake(K375(16), kScreen_Height - kBtnHeight - K375(16), kScreen_Width - K375(32), 44) title:LocalizedString(@"StartBackup") font:kFontBold18 titleColor:kWhite100 block:^(UIButton *button) {
+        _backupBtn = [XXButton buttonWithFrame:CGRectMake(K375(16), kScreen_Height - kBtnHeight - K375(16), kScreen_Width - K375(32), 44) title:LocalizedString(@"StartBackup") font:kFontBold18 titleColor:kWhiteColor block:^(UIButton *button) {
             XXVerifyMnemonicPhraseVC *verifyVC = [[XXVerifyMnemonicPhraseVC alloc] init];
             verifyVC.text = weakSelf.text;
             [weakSelf.navigationController pushViewController:verifyVC animated:YES];
         }];
-        _backupBtn.backgroundColor = kBlue100;
+        _backupBtn.backgroundColor = kPrimaryMain;
         _backupBtn.layer.cornerRadius = kBtnBorderRadius;
         _backupBtn.layer.masksToBounds = YES;
     }

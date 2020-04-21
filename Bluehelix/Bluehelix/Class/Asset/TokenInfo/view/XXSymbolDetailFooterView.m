@@ -63,7 +63,7 @@
         shadowView.layer.cornerRadius = 24.0;
         shadowView.layer.shadowOffset = CGSizeMake(0.0, 1.0);
         shadowView.layer.shadowOpacity = 1;
-        shadowView.layer.shadowColor = (KUser.isNightType ? KRGBA(4,11.5,18,100) : kDark20).CGColor;
+        shadowView.layer.shadowColor = (KUser.isNightType ? KRGBA(4,11.5,18,100) : kGray100).CGColor;
         shadowView.userInteractionEnabled = NO;
         [itemButton addSubview:shadowView];
 
@@ -71,7 +71,7 @@
         iconImageView.image = [UIImage imageNamed:imageArr[i]];
         [shadowView addSubview:iconImageView];
 
-        XXLabel *nameLabel = [XXLabel labelWithFrame:CGRectMake(0, CGRectGetMaxY(shadowView.frame), itemButton.width, 32) text:titleArr[i] font:kFont12 textColor:kDark100 alignment:NSTextAlignmentCenter];
+        XXLabel *nameLabel = [XXLabel labelWithFrame:CGRectMake(0, CGRectGetMaxY(shadowView.frame), itemButton.width, 32) text:titleArr[i] font:kFont12 textColor:kGray900 alignment:NSTextAlignmentCenter];
         [itemButton addSubview:nameLabel];
     }
 }

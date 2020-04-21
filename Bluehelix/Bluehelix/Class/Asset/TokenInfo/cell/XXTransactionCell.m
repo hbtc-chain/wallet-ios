@@ -110,7 +110,7 @@
 
 - (XXLabel *)typeLabel {
     if (_typeLabel == nil) {
-        _typeLabel = [XXLabel labelWithFrame:CGRectMake(K375(24), 20, 0, 24) text:@"" font:kFontBold(17) textColor:kDark100];
+        _typeLabel = [XXLabel labelWithFrame:CGRectMake(K375(24), 20, 0, 24) text:@"" font:kFontBold(17) textColor:kGray900];
     }
     return _typeLabel;
 }
@@ -126,14 +126,14 @@
 
 - (XXLabel *)timeLabel {
     if (_timeLabel == nil) {
-        _timeLabel = [XXLabel labelWithFrame:CGRectMake(K375(24), CGRectGetMaxY(self.typeLabel.frame), kScreen_Width - K375(48), 16) font:kFont(13) textColor:kDark50];
+        _timeLabel = [XXLabel labelWithFrame:CGRectMake(K375(24), CGRectGetMaxY(self.typeLabel.frame), kScreen_Width - K375(48), 16) font:kFont(13) textColor:kGray500];
     }
     return _timeLabel;
 }
 
 - (XXLabel *)amountLabel {
     if (_amountLabel == nil) {
-        _amountLabel = [XXLabel labelWithFrame:CGRectMake(CGRectGetMaxX(self.typeLabel.frame), 16, kScreen_Width - 16 - CGRectGetMaxX(self.typeLabel.frame), 24) font:kNumberFontBold(17) textColor:kDark100];
+        _amountLabel = [XXLabel labelWithFrame:CGRectMake(CGRectGetMaxX(self.typeLabel.frame), 16, kScreen_Width - 16 - CGRectGetMaxX(self.typeLabel.frame), 24) font:kNumberFontBold(17) textColor:kGray900];
         _amountLabel.textAlignment = NSTextAlignmentRight;
     }
     return _amountLabel;

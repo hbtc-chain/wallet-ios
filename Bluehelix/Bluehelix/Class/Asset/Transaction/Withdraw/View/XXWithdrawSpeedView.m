@@ -15,7 +15,7 @@
     self = [super initWithFrame:frame];
     if (self) {
         
-        self.backgroundColor = kWhite100;
+        self.backgroundColor = kWhiteColor;
         
         [self addSubview:self.nameLabel];
         
@@ -37,9 +37,9 @@
 - (UISlider *)slider {
     if (_slider == nil) {
         _slider = [[UISlider alloc]initWithFrame:CGRectMake(KSpacing , CGRectGetMaxY(self.nameLabel.frame) + 22, kScreen_Width - KSpacing * 2, 16)];
-        _slider.minimumTrackTintColor = kBlue100;
-        _slider.maximumTrackTintColor = kDark20;
-        _slider.thumbTintColor = kBlue100;
+        _slider.minimumTrackTintColor = kPrimaryMain;
+        _slider.maximumTrackTintColor = kGray100;
+        _slider.thumbTintColor = kPrimaryMain;
         _slider.minimumValue = 1;
         _slider.maximumValue = 100;
 //        [_slider setThumbImage:[UIImage imageNamed:@"slider"] forState:UIControlStateNormal];

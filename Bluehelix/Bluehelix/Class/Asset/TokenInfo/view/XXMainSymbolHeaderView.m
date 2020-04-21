@@ -37,7 +37,7 @@
 {
     self = [super initWithFrame:frame];
     if (self) {
-        self.backgroundColor = kWhite100;
+        self.backgroundColor = kWhiteColor;
         [self buildUI];
     }
     return self;
@@ -81,8 +81,8 @@
         _shadowLayer = [CALayer layer];
         _shadowLayer.frame = CGRectMake(0, 0, self.backView.width, self.backView.height-8);
         _shadowLayer.cornerRadius = 10;
-        _shadowLayer.backgroundColor = [kWhite100 CGColor];
-        _shadowLayer.shadowColor = [kBlue20 CGColor];
+        _shadowLayer.backgroundColor = [kWhiteColor CGColor];
+        _shadowLayer.shadowColor = [kGray200 CGColor];
         _shadowLayer.shadowOffset = CGSizeMake(0, 4);
         _shadowLayer.shadowOpacity = 0.8;
         _shadowLayer.shadowRadius = 4;
@@ -100,7 +100,7 @@
 
 - (XXLabel *)tipLabel {
     if (!_tipLabel) {
-        _tipLabel = [XXLabel labelWithFrame:CGRectMake(K375(16), K375(16), self.backView.width - K375(32), 16) font:kFont13 textColor:kDark50];
+        _tipLabel = [XXLabel labelWithFrame:CGRectMake(K375(16), K375(16), self.backView.width - K375(32), 16) font:kFont13 textColor:kGray500];
         _tipLabel.text = LocalizedString(@"HoldAsset");
     }
     return _tipLabel;
@@ -108,49 +108,49 @@
 
 - (XXLabel *)amountLabel {
     if (!_amountLabel) {
-        _amountLabel = [XXLabel labelWithFrame:CGRectMake(K375(16), CGRectGetMaxY(self.tipLabel.frame), self.backView.width - K375(32), 40) font:kNumberFont(26) textColor:kDark100];
+        _amountLabel = [XXLabel labelWithFrame:CGRectMake(K375(16), CGRectGetMaxY(self.tipLabel.frame), self.backView.width - K375(32), 40) font:kNumberFont(26) textColor:kGray900];
     }
     return _amountLabel;
 }
 
 - (XXLabel *)assetLabel {
     if (!_assetLabel) {
-        _assetLabel = [XXLabel labelWithFrame:CGRectMake(K375(16), CGRectGetMaxY(self.amountLabel.frame), self.backView.width - K375(32), 16) font:kNumberFont(15) textColor:kDark50];
+        _assetLabel = [XXLabel labelWithFrame:CGRectMake(K375(16), CGRectGetMaxY(self.amountLabel.frame), self.backView.width - K375(32), 16) font:kNumberFont(15) textColor:kGray500];
     }
     return _assetLabel;
 }
 
 - (XXLabel *)titleLabel1 {
     if (!_titleLabel1) {
-        _titleLabel1 = [XXLabel labelWithFrame:CGRectMake(K375(16), 128, 150, 20) text:LocalizedString(@"CurrentlyAvailable") font:kFont13 textColor:kTipColor];
+        _titleLabel1 = [XXLabel labelWithFrame:CGRectMake(K375(16), 128, 150, 20) text:LocalizedString(@"CurrentlyAvailable") font:kFont13 textColor:kGray500];
     }
     return _titleLabel1;
 }
 
 - (XXLabel *)titleLabel2 {
     if (!_titleLabel2) {
-        _titleLabel2 = [XXLabel labelWithFrame:CGRectMake(K375(16), CGRectGetMaxY(self.titleLabel1.frame) + 5, 150, 20) text:LocalizedString(@"Bonded") font:kFont13 textColor:kTipColor];
+        _titleLabel2 = [XXLabel labelWithFrame:CGRectMake(K375(16), CGRectGetMaxY(self.titleLabel1.frame) + 5, 150, 20) text:LocalizedString(@"Bonded") font:kFont13 textColor:kGray500];
     }
     return _titleLabel2;
 }
 
 - (XXLabel *)titleLabel3 {
     if (!_titleLabel3) {
-        _titleLabel3 = [XXLabel labelWithFrame:CGRectMake(K375(16), CGRectGetMaxY(self.titleLabel2.frame) + 5, 150, 20) text:LocalizedString(@"Unbonding") font:kFont13 textColor:kTipColor];
+        _titleLabel3 = [XXLabel labelWithFrame:CGRectMake(K375(16), CGRectGetMaxY(self.titleLabel2.frame) + 5, 150, 20) text:LocalizedString(@"Unbonding") font:kFont13 textColor:kGray500];
     }
     return _titleLabel3;
 }
 
 - (XXLabel *)titleLabel4 {
     if (!_titleLabel4) {
-        _titleLabel4 = [XXLabel labelWithFrame:CGRectMake(K375(16), CGRectGetMaxY(self.titleLabel3.frame) + 5, 150, 20) text:LocalizedString(@"ClaimedReward") font:kFont13 textColor:kTipColor];
+        _titleLabel4 = [XXLabel labelWithFrame:CGRectMake(K375(16), CGRectGetMaxY(self.titleLabel3.frame) + 5, 150, 20) text:LocalizedString(@"ClaimedReward") font:kFont13 textColor:kGray500];
     }
     return _titleLabel4;
 }
 
 - (XXLabel *)valueLabel1 {
     if (!_valueLabel1) {
-        _valueLabel1 = [XXLabel labelWithFrame:CGRectMake(CGRectGetMaxX(self.titleLabel1.frame), 128, self.backView.width - CGRectGetMaxX(self.titleLabel1.frame) - K375(16), 20) font:kNumberFont(13) textColor:kDark100];
+        _valueLabel1 = [XXLabel labelWithFrame:CGRectMake(CGRectGetMaxX(self.titleLabel1.frame), 128, self.backView.width - CGRectGetMaxX(self.titleLabel1.frame) - K375(16), 20) font:kNumberFont(13) textColor:kGray900];
         _valueLabel1.textAlignment = NSTextAlignmentRight;
     }
     return _valueLabel1;
@@ -158,7 +158,7 @@
 
 - (XXLabel *)valueLabel2 {
     if (!_valueLabel2) {
-        _valueLabel2 = [XXLabel labelWithFrame:CGRectMake(CGRectGetMaxX(self.titleLabel2.frame), CGRectGetMaxY(self.valueLabel1.frame) + 5, self.backView.width - CGRectGetMaxX(self.titleLabel2.frame) - K375(16), 20) font:kNumberFont(13) textColor:kDark100];
+        _valueLabel2 = [XXLabel labelWithFrame:CGRectMake(CGRectGetMaxX(self.titleLabel2.frame), CGRectGetMaxY(self.valueLabel1.frame) + 5, self.backView.width - CGRectGetMaxX(self.titleLabel2.frame) - K375(16), 20) font:kNumberFont(13) textColor:kGray900];
         _valueLabel2.textAlignment = NSTextAlignmentRight;
     }
     return _valueLabel2;
@@ -166,7 +166,7 @@
 
 - (XXLabel *)valueLabel3 {
     if (!_valueLabel3) {
-        _valueLabel3 = [XXLabel labelWithFrame:CGRectMake(CGRectGetMaxX(self.titleLabel3.frame), CGRectGetMaxY(self.valueLabel2.frame) + 5, self.backView.width - CGRectGetMaxX(self.titleLabel3.frame) - K375(16), 20) font:kNumberFont(13) textColor:kDark100];
+        _valueLabel3 = [XXLabel labelWithFrame:CGRectMake(CGRectGetMaxX(self.titleLabel3.frame), CGRectGetMaxY(self.valueLabel2.frame) + 5, self.backView.width - CGRectGetMaxX(self.titleLabel3.frame) - K375(16), 20) font:kNumberFont(13) textColor:kGray900];
         _valueLabel3.textAlignment = NSTextAlignmentRight;
     }
     return _valueLabel3;
@@ -174,7 +174,7 @@
 
 - (XXLabel *)valueLabel4 {
     if (!_valueLabel4) {
-        _valueLabel4 = [XXLabel labelWithFrame:CGRectMake(CGRectGetMaxX(self.titleLabel4.frame), CGRectGetMaxY(self.valueLabel3.frame) + 5, self.backView.width - CGRectGetMaxX(self.titleLabel4.frame) - K375(16), 20) font:kNumberFont(13) textColor:kDark100];
+        _valueLabel4 = [XXLabel labelWithFrame:CGRectMake(CGRectGetMaxX(self.titleLabel4.frame), CGRectGetMaxY(self.valueLabel3.frame) + 5, self.backView.width - CGRectGetMaxX(self.titleLabel4.frame) - K375(16), 20) font:kNumberFont(13) textColor:kGray900];
         _valueLabel4.textAlignment = NSTextAlignmentRight;
     }
     return _valueLabel4;

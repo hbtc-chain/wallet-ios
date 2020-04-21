@@ -47,7 +47,7 @@
 - (XXButton*)transferDelegateButton{
     @weakify(self)
     if (!_transferDelegateButton ) {
-        _transferDelegateButton = [XXButton buttonWithFrame:CGRectZero title:LocalizedString(@"TransferDelegate") font:kFont17 titleColor:kBlue100 block:^(UIButton *button) {
+        _transferDelegateButton = [XXButton buttonWithFrame:CGRectZero title:LocalizedString(@"TransferDelegate") font:kFont17 titleColor:kPrimaryMain block:^(UIButton *button) {
             @strongify(self)
             if (self.transferDelegateBlock) {
                 self.transferDelegateBlock();
@@ -63,7 +63,7 @@
 - (XXButton*)relieveDelegateButton{
     @weakify(self)
     if (!_relieveDelegateButton ) {
-        _relieveDelegateButton = [XXButton buttonWithFrame:CGRectZero title:LocalizedString(@"RelieveDelegate") font:kFont17 titleColor:kBlue100 block:^(UIButton *button) {
+        _relieveDelegateButton = [XXButton buttonWithFrame:CGRectZero title:LocalizedString(@"RelieveDelegate") font:kFont17 titleColor:kPrimaryMain block:^(UIButton *button) {
              @strongify(self)
             if (self.relieveDelegateBlock) {
                 self.relieveDelegateBlock();
@@ -78,13 +78,13 @@
 - (XXButton*)delegateButton{
     @weakify(self)
     if (!_delegateButton ) {
-        _delegateButton = [XXButton buttonWithFrame:CGRectZero title:LocalizedString(@"Delegate") font:kFont17 titleColor:kWhite100 block:^(UIButton *button) {
+        _delegateButton = [XXButton buttonWithFrame:CGRectZero title:LocalizedString(@"Delegate") font:kFont17 titleColor:kWhiteColor block:^(UIButton *button) {
              @strongify(self)
             if (self.delegateBlock) {
                 self.delegateBlock();
             }
         }];
-        _delegateButton.backgroundColor = kBlue100;
+        _delegateButton.backgroundColor = kPrimaryMain;
         _delegateButton.layer.cornerRadius = 6;
 //        _delegateButton.layer.borderColor = _delegateButton.titleLabel.textColor.CGColor;
 //        _delegateButton.layer.borderWidth = 2.0f;

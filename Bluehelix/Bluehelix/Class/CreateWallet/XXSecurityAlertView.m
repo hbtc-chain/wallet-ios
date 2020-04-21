@@ -109,7 +109,7 @@
 - (UIView *)backView {
     if (_backView == nil) {
         _backView = [[UIView alloc] initWithFrame:self.bounds];
-        _backView.backgroundColor = [[UIColor blackColor] colorWithAlphaComponent:0.6];
+        _backView.backgroundColor = [kGray900 colorWithAlphaComponent:0.6];
     }
     return _backView;
 }
@@ -117,7 +117,7 @@
 - (UIView *)contentView {
     if (_contentView == nil) {
         _contentView = [[UIView alloc] initWithFrame:CGRectMake(0, kScreen_Height - 330, kScreen_Width, 330)];
-        _contentView.backgroundColor = [UIColor whiteColor];
+        _contentView.backgroundColor = kWhiteColor;
     }
     return _contentView;
 }
@@ -136,7 +136,7 @@
         _titleLabel = [[UILabel alloc] initWithFrame:CGRectMake(100, 24, kScreen_Width - 200, 24)];
         _titleLabel.text = LocalizedString(@"BackupSecurityTip");
         _titleLabel.font = kFontBold20;
-        _titleLabel.textColor = kDark100;
+        _titleLabel.textColor = kGray900;
         _titleLabel.textAlignment = NSTextAlignmentCenter;
     }
     return _titleLabel;
@@ -147,7 +147,7 @@
         _contentLabel = [[UILabel alloc] initWithFrame:CGRectMake(K375(16), 64, kScreen_Width - K375(32), 18)];
         _contentLabel.text = LocalizedString(@"BackupSecurityTip1");
         _contentLabel.font = kFont14;
-        _contentLabel.textColor = kDark100;
+        _contentLabel.textColor = kGray900;
         _contentLabel.textAlignment = NSTextAlignmentLeft;
         _contentLabel.numberOfLines = 0;
     }
@@ -167,7 +167,7 @@
 
 - (XXLabel *)tipNamelabel {
     if (!_tipNamelabel) {
-        _tipNamelabel = [XXLabel labelWithFrame:CGRectMake(K375(16), K375(16), kScreen_Width - K375(64), 24) text:LocalizedString(@"BackupSecurityTip2") font:kFont(15) textColor:kDark100 alignment:NSTextAlignmentLeft];
+        _tipNamelabel = [XXLabel labelWithFrame:CGRectMake(K375(16), K375(16), kScreen_Width - K375(64), 24) text:LocalizedString(@"BackupSecurityTip2") font:kFont(15) textColor:kGray900 alignment:NSTextAlignmentLeft];
     }
     return _tipNamelabel;
 }
@@ -175,7 +175,7 @@
 - (XYHNumbersLabel *)tipContentlabel {
     if (!_tipContentlabel) {
         _tipContentlabel = [[XYHNumbersLabel alloc] initWithFrame:CGRectMake(K375(16), CGRectGetMaxY(self.tipNamelabel.frame) + 10, kScreen_Width - K375(64), 0) font:kFont(15)];
-        _tipContentlabel.textColor = kTipColor;
+        _tipContentlabel.textColor = kGray500;
         [_tipContentlabel setText:LocalizedString(@"BackupSecurityContent") alignment:NSTextAlignmentLeft];
     }
     return _tipContentlabel;
@@ -184,10 +184,10 @@
 - (XXButton *)laterBtn {
     if (!_laterBtn) {
         MJWeakSelf
-        _laterBtn = [XXButton buttonWithFrame:CGRectMake(K375(16), self.contentView.height - kBtnHeight - 24, kScreen_Width/2 - K375(40)/2, kBtnHeight) title:LocalizedString(@"BackupLaterRemind") font:kFont(17) titleColor:kBlue100 block:^(UIButton *button) {
+        _laterBtn = [XXButton buttonWithFrame:CGRectMake(K375(16), self.contentView.height - kBtnHeight - 24, kScreen_Width/2 - K375(40)/2, kBtnHeight) title:LocalizedString(@"BackupLaterRemind") font:kFont(17) titleColor:kWhiteColor block:^(UIButton *button) {
             [[weakSelf class] dismiss];
         }];
-        _laterBtn.backgroundColor = kBlue20;
+        _laterBtn.backgroundColor = kGray200;
         _laterBtn.layer.cornerRadius = kBtnBorderRadius;
         _laterBtn.layer.masksToBounds = YES;
     }
@@ -197,13 +197,13 @@
 - (XXButton *)immediatelyBtn {
     if (!_immediatelyBtn) {
         MJWeakSelf
-        _immediatelyBtn = [XXButton buttonWithFrame:CGRectMake(kScreen_Width/2 + 4, self.contentView.height - kBtnHeight - 24, kScreen_Width/2 - K375(40)/2, kBtnHeight) title:LocalizedString(@"BackupImmediately") font:kFont(17) titleColor:kWhite100 block:^(UIButton *button) {
+        _immediatelyBtn = [XXButton buttonWithFrame:CGRectMake(kScreen_Width/2 + 4, self.contentView.height - kBtnHeight - 24, kScreen_Width/2 - K375(40)/2, kBtnHeight) title:LocalizedString(@"BackupImmediately") font:kFont(17) titleColor:kWhiteColor block:^(UIButton *button) {
             if (weakSelf.sureBlock) {
                 [[weakSelf class] dismiss];
                 weakSelf.sureBlock();
             }
         }];
-        _immediatelyBtn.backgroundColor = kBlue100;
+        _immediatelyBtn.backgroundColor = kPrimaryMain;
         _immediatelyBtn.layer.cornerRadius = kBtnBorderRadius;
         _immediatelyBtn.layer.masksToBounds = YES;
     }

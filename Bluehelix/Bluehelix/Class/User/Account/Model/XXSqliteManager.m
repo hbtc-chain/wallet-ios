@@ -20,6 +20,15 @@ static XXSqliteManager *_sqliteManager;
     return _sqliteManager;
 }
 
+- (void)requestTokens {
+    [HttpManager getWithPath:@"/api/v1/tokens" params:nil andBlock:^(id data, NSString *msg, NSInteger code) {
+        if (code == 0) {
+            NSArray *tokens = [XXTokenModel mj_objectArrayWithKeyValuesArray:data[@"tokens"]];
+            [self insertTokens:tokens];
+        }
+    }];
+}
+
 - (NSString *)sqlitePath {
     NSString *path = [NSString stringWithFormat:@"%@/Documents/wallet.db", NSHomeDirectory()];
     NSLog(@"path = %@",path);

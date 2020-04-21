@@ -14,7 +14,7 @@
 {
     self = [super initWithFrame:frame];
     if (self) {
-        self.backgroundColor = kDark5;
+        self.backgroundColor = kGray50;
         [self addSubview:self.textField];
         [self addSubview:self.lookButton];
         self.layer.cornerRadius = kBtnBorderRadius;
@@ -39,7 +39,7 @@
         _textField.clearButtonMode = UITextFieldViewModeWhileEditing;
         _textField.autocorrectionType = UITextAutocorrectionTypeNo;
         _textField.autocapitalizationType = UITextAutocapitalizationTypeNone;
-        _textField.textColor = kDark100;
+        _textField.textColor = kGray900;
         _textField.font = kFont14;
     }
     return _textField;
@@ -47,7 +47,7 @@
 
 - (void)setPlaceholder:(NSString *)placeholder {
     NSString *text = placeholder ? placeholder : @"";
-    NSAttributedString *attrString = [[NSAttributedString alloc] initWithString:text attributes:@{NSForegroundColorAttributeName:kTipColor, NSFontAttributeName:kFont14}];
+    NSAttributedString *attrString = [[NSAttributedString alloc] initWithString:text attributes:@{NSForegroundColorAttributeName:kGray500, NSFontAttributeName:kFont14}];
     self.textField.attributedPlaceholder = attrString;
 }
 

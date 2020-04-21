@@ -25,7 +25,7 @@
         if (KUser.isNightType) {
             self.layer.shadowColor = (KBigLine_Color).CGColor;
         } else {
-            self.layer.shadowColor = (kDark5).CGColor;
+            self.layer.shadowColor = (kGray50).CGColor;
         }
 
         self.shadowView = [[UIView alloc] initWithFrame:self.bounds];
@@ -40,7 +40,7 @@
         if (KUser.isNightType) {
             self.shadowView.layer.shadowColor = (KRGBA(4,11.5,18,100)).CGColor;
         } else {
-            self.shadowView.layer.shadowColor = (kDark10).CGColor;
+            self.shadowView.layer.shadowColor = (kGray100).CGColor;
         }
     }
     return self;

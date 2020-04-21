@@ -43,7 +43,7 @@
 
 - (XXLabel *)nameLabel {
     if (_nameLabel == nil) {
-        _nameLabel = [XXLabel labelWithFrame:CGRectMake(K375(10), CGRectGetMaxY(self.iconImageView.frame) + 16, self.width - K375(20), 22) text:LocalizedString(@"NoData") font:kFont15 textColor:kDark50 alignment:NSTextAlignmentCenter];
+        _nameLabel = [XXLabel labelWithFrame:CGRectMake(K375(10), CGRectGetMaxY(self.iconImageView.frame) + 16, self.width - K375(20), 22) text:LocalizedString(@"NoData") font:kFont15 textColor:kGray500 alignment:NSTextAlignmentCenter];
     }
     return _nameLabel;
 }

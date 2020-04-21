@@ -130,7 +130,7 @@ static NSString *KValidatorDetailInfoCell = @"ValidatorDetailInfoCell";
         if (!cell) {
             cell = [[XXValidatorDetailCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:KValidatorDetailViewCell];
         }
-        cell.backgroundColor = kWhite100;
+        cell.backgroundColor = kWhiteColor;
         if (indexPath.section ==1 && indexPath.row ==0) {
             cell.hideDetailButton = NO;
         }else{
@@ -150,7 +150,7 @@ static NSString *KValidatorDetailInfoCell = @"ValidatorDetailInfoCell";
         if (!cell) {
             cell = [[XXValidatorDetailInfoCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:KValidatorDetailInfoCell];
         }
-        cell.backgroundColor = kWhite100;
+        cell.backgroundColor = kWhiteColor;
         cell.detailLabelValue.text = self.validatorModel.validatorDescription.details;
         return cell;
     }
@@ -166,7 +166,7 @@ static NSString *KValidatorDetailInfoCell = @"ValidatorDetailInfoCell";
         _validatorsDetailTableView = [[UITableView alloc] initWithFrame:CGRectMake(0, kNavHeight, kScreen_Width, kScreen_Height - kNavHeight) style:UITableViewStylePlain];
         _validatorsDetailTableView.dataSource = self;
         _validatorsDetailTableView.delegate = self;
-        _validatorsDetailTableView.backgroundColor = kWhite100;
+        _validatorsDetailTableView.backgroundColor = kWhiteColor;
         _validatorsDetailTableView.separatorStyle = UITableViewCellSeparatorStyleNone;
         _validatorsDetailTableView.showsVerticalScrollIndicator = NO;
         [_validatorsDetailTableView registerClass:[XXValidatorDetailCell class] forCellReuseIdentifier:KValidatorDetailViewCell];

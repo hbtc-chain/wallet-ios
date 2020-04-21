@@ -94,7 +94,7 @@
     }
     XXTokenModel *model = [XXTokenModel mj_objectWithKeyValues:self.showArray[indexPath.row]];
     [cell configData:model];
-    cell.backgroundColor = kWhite100;
+    cell.backgroundColor = kWhiteColor;
     return cell;
 }
 
@@ -162,7 +162,7 @@
         _tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, kScreen_Width, kScreen_Height - kTabbarHeight) style:UITableViewStylePlain];
         _tableView.dataSource = self;
         _tableView.delegate = self;
-        _tableView.backgroundColor = kWhite100;
+        _tableView.backgroundColor = kWhiteColor;
         _tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
         _tableView.showsVerticalScrollIndicator = NO;
         if (@available(iOS 11.0, *)) {
@@ -190,7 +190,7 @@
 - (XXAssetSearchView *)searchView {
     if (!_searchView) {
          _searchView = [[XXAssetSearchView alloc] initWithFrame:CGRectMake(0, K375(260), kScreen_Width, K375(52))];
-               _searchView.backgroundColor = kWhite100;
+               _searchView.backgroundColor = kWhiteColor;
                [_searchView.searchTextField addTarget:self action:@selector(textFieldValueChange:) forControlEvents:UIControlEventEditingChanged];
                MJWeakSelf
                _searchView.actionBlock = ^{

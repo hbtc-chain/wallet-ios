@@ -174,7 +174,7 @@
     XXTransactionCellModel *model = arr[indexPath.row];
     cell.nameLabel.text = model.name;
     cell.valueLabel.text = model.value;
-    cell.backgroundColor = kWhite100;
+    cell.backgroundColor = kWhiteColor;
     return cell;
 }
 
@@ -183,7 +183,7 @@
         _tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, kNavHeight, kScreen_Width, kScreen_Height - kNavHeight) style:UITableViewStylePlain];
         _tableView.dataSource = self;
         _tableView.delegate = self;
-        _tableView.backgroundColor = kWhite100;
+        _tableView.backgroundColor = kWhiteColor;
         _tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
         _tableView.showsVerticalScrollIndicator = NO;
         if (@available(iOS 11.0, *)) {

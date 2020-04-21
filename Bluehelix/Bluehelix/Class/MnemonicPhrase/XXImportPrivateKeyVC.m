@@ -53,7 +53,7 @@
 - (void)textViewDidChange:(UITextView *)textView {
         if (textView.text.length) {
             self.createBtn.enabled = YES;
-            self.createBtn.backgroundColor = kBlue100;
+            self.createBtn.backgroundColor = kPrimaryMain;
         } else {
             self.createBtn.enabled = NO;
             self.createBtn.backgroundColor = kBtnNotEnableColor;
@@ -63,7 +63,7 @@
 - (XXLabel *)tipLabel {
     if (!_tipLabel) {
         CGFloat height = [NSString heightWithText:LocalizedString(@"ImportSecurityTip") font:kFont(15) width:kScreen_Width - K375(32)];
-        _tipLabel = [XXLabel labelWithFrame:CGRectMake(K375(16), kNavHeight, kScreen_Width - K375(32), height) text:LocalizedString(@"ImportSecurityTip") font:kFont(15) textColor:kTipColor alignment:NSTextAlignmentLeft];
+        _tipLabel = [XXLabel labelWithFrame:CGRectMake(K375(16), kNavHeight, kScreen_Width - K375(32), height) text:LocalizedString(@"ImportSecurityTip") font:kFont(15) textColor:kGray500 alignment:NSTextAlignmentLeft];
         _tipLabel.numberOfLines = 0;
     }
     return _tipLabel;
@@ -92,7 +92,7 @@
 - (XXButton *)createBtn {
     if (!_createBtn) {
         MJWeakSelf
-        _createBtn = [XXButton buttonWithFrame:CGRectMake(K375(16), CGRectGetMaxY(self.textBackView.frame) + 24, kScreen_Width - K375(32), kBtnHeight) title:LocalizedString(@"NextStep") font:kFontBold18 titleColor:kWhite100 block:^(UIButton *button) {
+        _createBtn = [XXButton buttonWithFrame:CGRectMake(K375(16), CGRectGetMaxY(self.textBackView.frame) + 24, kScreen_Width - K375(32), kBtnHeight) title:LocalizedString(@"NextStep") font:kFontBold18 titleColor:kWhiteColor block:^(UIButton *button) {
             [weakSelf nextStepAction];
         }];
         _createBtn.backgroundColor = kBtnNotEnableColor;

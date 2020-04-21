@@ -141,7 +141,7 @@ static NSString *KValidatorGripSectionHeader = @"XXValidatorGripSectionHeader";
     if (!cell) {
         cell = [[XXValidatorCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:KValidatorsListReuseCell];
     }
-    cell.backgroundColor = kWhite100;
+    cell.backgroundColor = kWhiteColor;
     XXValidatorListModel *model = self.isFilting ? self.filtValidatorsDataArray[indexPath.row] : self.validatorsDataArray[indexPath.row];
     cell.validOrInvalid = [self.validOrInvalid isEqualToString:@"1"] ? YES :NO;
     [cell loadData:model];
@@ -166,7 +166,7 @@ static NSString *KValidatorGripSectionHeader = @"XXValidatorGripSectionHeader";
         _validatorsListTableView = [[UITableView alloc] initWithFrame:CGRectMake(0, kNavHeight, kScreen_Width, kScreen_Height - kNavHeight) style:UITableViewStylePlain];
         _validatorsListTableView.dataSource = self;
         _validatorsListTableView.delegate = self;
-        _validatorsListTableView.backgroundColor = kWhite100;
+        _validatorsListTableView.backgroundColor = kWhiteColor;
         _validatorsListTableView.separatorStyle = UITableViewCellSeparatorStyleNone;
         _validatorsListTableView.showsVerticalScrollIndicator = NO;
         [_validatorsListTableView registerClass:[XXValidatorCell class] forCellReuseIdentifier:KValidatorsListReuseCell];

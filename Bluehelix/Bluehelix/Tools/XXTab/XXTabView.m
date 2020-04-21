@@ -64,8 +64,8 @@
         buttonWidth = [NSString widthWithText:buttonTitle font:kFontBold16] + self.buttonPadding;
         UIButton *itemButton = [[UIButton alloc] initWithFrame:CGRectMake(leftX, 0, buttonWidth, self.height)];
         itemButton.titleLabel.font = kFontBold16;
-        [itemButton setTitleColor:kDark100 forState:UIControlStateNormal];
-        [itemButton setTitleColor:kBlue100 forState:UIControlStateSelected];
+        [itemButton setTitleColor:kGray900 forState:UIControlStateNormal];
+        [itemButton setTitleColor:kPrimaryMain forState:UIControlStateSelected];
         [itemButton setTitle:buttonTitle forState:UIControlStateNormal];
         itemButton.tag = i;
         [itemButton addTarget:self action:@selector(itemButtonClick:) forControlEvents:UIControlEventTouchUpInside];
@@ -151,7 +151,7 @@
 - (UIView *)indexLineView {
     if (_indexLineView == nil) {
         _indexLineView = [[UIView alloc] initWithFrame:CGRectMake(0, self.scrollView.height - 1, 0, 1)];
-        _indexLineView.backgroundColor = kBlue100;
+        _indexLineView.backgroundColor = kPrimaryMain;
     }
     return _indexLineView;
 }

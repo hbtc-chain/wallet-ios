@@ -25,7 +25,7 @@
 {
     self = [super initWithFrame:frame];
     if (self) {
-        self.backgroundColor = kWhite100;
+        self.backgroundColor = kWhiteColor;
         [self addSubview:self.hidenSmallButton];
         [self addSubview:self.searchIconImageView];
         [self addSubview:self.searchTextField];
@@ -38,7 +38,7 @@
     if (_hidenSmallButton == nil) {
         CGFloat width = [NSString widthWithText:LocalizedString(@"HideSmallCurrency") font:kFontBold(13)] + 24;
         MJWeakSelf
-        _hidenSmallButton = [XXButton buttonWithFrame:CGRectMake(K375(14), 0, width, self.height) title:LocalizedString(@"HideSmallCurrency") font:kFontBold(13) titleColor:kBlue100 block:^(UIButton *button) {
+        _hidenSmallButton = [XXButton buttonWithFrame:CGRectMake(K375(14), 0, width, self.height) title:LocalizedString(@"HideSmallCurrency") font:kFontBold(13) titleColor:kPrimaryMain block:^(UIButton *button) {
             
             KUser.isHideSmallCoin = !KUser.isHideSmallCoin;
             button.selected = KUser.isHideSmallCoin;
@@ -49,8 +49,8 @@
         [_hidenSmallButton setImage:[UIImage subTextImageName:@"unSelected"] forState:UIControlStateNormal];
         [_hidenSmallButton setImage:[UIImage mainImageName:@"selected"] forState:UIControlStateSelected];
         
-        [_hidenSmallButton setTitleColor:kTipColor forState:UIControlStateNormal];
-        [_hidenSmallButton setTitleColor:kBlue100 forState:UIControlStateSelected];
+        [_hidenSmallButton setTitleColor:kGray500 forState:UIControlStateNormal];
+        [_hidenSmallButton setTitleColor:kPrimaryMain forState:UIControlStateSelected];
         _hidenSmallButton.selected = KUser.isHideSmallCoin;
     }
     return _hidenSmallButton;
@@ -70,10 +70,10 @@
         _searchTextField.returnKeyType = UIReturnKeySearch;
         _searchTextField.autocorrectionType = UITextAutocorrectionTypeNo;
         _searchTextField.autocapitalizationType = UITextAutocapitalizationTypeNone;
-        _searchTextField.textColor = kDark100;
+        _searchTextField.textColor = kGray900;
         _searchTextField.font = kFontBold18;
         _searchTextField.placeholder = LocalizedString(@"SearchPairs");
-        _searchTextField.placeholderColor = kTipColor;
+        _searchTextField.placeholderColor = kGray500;
         _searchTextField.placeholderFont = kFont(15);
 //        _searchTextField.backgroundColor = kFieldBackColor;
     }

@@ -45,10 +45,10 @@
         //button 实例
         UIButton *itemButton = [UIButton buttonWithType:UIButtonTypeCustom];
         [itemButton setTitle:_itemsArray[i] forState:UIControlStateNormal];
-        [itemButton setTitleColor:kDark50 forState:UIControlStateNormal];
-        [itemButton setTitleColor:kDark100 forState:UIControlStateSelected];
+        [itemButton setTitleColor:kGray500 forState:UIControlStateNormal];
+        [itemButton setTitleColor:kGray900 forState:UIControlStateSelected];
         [itemButton.layer setCornerRadius:2];
-        //[itemButton setBackgroundImage:[UIImage createImageWithColor:kDark50] forState:UIControlStateNormal];
+        //[itemButton setBackgroundImage:[UIImage createImageWithColor:kGray500] forState:UIControlStateNormal];
         //[itemButton setBackgroundImage:[UIImage createImageWithColor:KRGBA(44, 69, 241, 12)] forState:UIControlStateSelected];
         itemButton.tag = i;
         [itemButton addTarget:self action:@selector(buttonAction:) forControlEvents:UIControlEventTouchUpInside];

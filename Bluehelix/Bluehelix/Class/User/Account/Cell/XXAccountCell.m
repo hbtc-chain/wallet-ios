@@ -25,7 +25,7 @@
 {
     self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
     if (self) {
-        self.backgroundColor = kWhite100;
+        self.backgroundColor = kWhiteColor;
         [self buildUI];
     }
     return self;
@@ -42,8 +42,6 @@
 }
 
 - (void)configData:(XXAccountModel *)model {
-//    self.nameLabel.text = dic[@"userName"];
-//    self.addressLabel.text = dic[@"BHAddress"];
     self.nameLabel.text = model.userName;
     self.addressLabel.text = model.address;
     if ([model.address isEqualToString:KUser.address]) {
@@ -56,21 +54,21 @@
 
 - (XXLabel *)icon {
     if (!_icon) {
-        _icon = [XXLabel labelWithFrame:CGRectMake(16, 16, 40, 40) text:@"" font:kFont14 textColor:kWhite100 alignment:NSTextAlignmentCenter cornerRadius:20];
+        _icon = [XXLabel labelWithFrame:CGRectMake(16, 16, 40, 40) text:@"" font:kFont14 textColor:kWhiteColor alignment:NSTextAlignmentCenter cornerRadius:20];
     }
     return _icon;
 }
 
 - (XXLabel *)nameLabel {
     if (!_nameLabel) {
-        _nameLabel = [XXLabel labelWithFrame:CGRectMake(CGRectGetMaxX(self.icon.frame) + 12, 16, kScreen_Width - 72 - 34, 24) font:kFontBold(17) textColor:kDark100];
+        _nameLabel = [XXLabel labelWithFrame:CGRectMake(CGRectGetMaxX(self.icon.frame) + 12, 16, kScreen_Width - 72 - 34, 24) font:kFontBold(17) textColor:kGray900];
     }
     return _nameLabel;
 }
 
 - (XXLabel *)addressLabel {
     if (!_addressLabel) {
-        _addressLabel = [XXLabel labelWithFrame:CGRectMake(self.nameLabel.left, self.nameLabel.bottom, self.nameLabel.width, 16) font:kFont12 textColor:kTipColor];
+        _addressLabel = [XXLabel labelWithFrame:CGRectMake(self.nameLabel.left, self.nameLabel.bottom, self.nameLabel.width, 16) font:kFont12 textColor:kGray500];
     }
     return _addressLabel;
 }

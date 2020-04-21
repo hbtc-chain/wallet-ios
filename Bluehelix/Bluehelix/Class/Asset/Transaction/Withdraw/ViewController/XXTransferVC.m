@@ -158,7 +158,7 @@
         _withdrawButton = [XXButton buttonWithFrame:CGRectMake(KSpacing, kScreen_Height - 80, kScreen_Width - KSpacing*2, 42) title:@"" font:kFontBold14 titleColor:kMainTextColor block:^(UIButton *button) {
             [weakSelf withdrawButtonClick];
         }];
-        _withdrawButton.backgroundColor = kBlue100;
+        _withdrawButton.backgroundColor = kPrimaryMain;
         _withdrawButton.layer.cornerRadius = 3;
         _withdrawButton.layer.masksToBounds = YES;
         if (self.InnerChain) {

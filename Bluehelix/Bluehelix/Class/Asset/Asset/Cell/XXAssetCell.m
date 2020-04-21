@@ -78,7 +78,7 @@
     } else {
         if (model.is_native && ![model.symbol isEqualToString:kMainToken]) {
             self.typeLabel.text = LocalizedString(@"NativeCoin");
-            self.typeLabel.textColor = KRGBA(70, 206, 95, 100);
+            self.typeLabel.textColor = kGreen100;
             self.typeLabel.backgroundColor = KRGBA(212, 245, 220, 100);
             self.typeLabel.frame = CGRectMake(CGRectGetMaxX(self.coinNameLabel.frame) +5, 20, [NSString widthWithText:LocalizedString(@"NativeCoin") font:kFont10] + 4, 16);
         } else {
@@ -101,21 +101,21 @@
 
 - (XXLabel *)coinNameLabel {
     if (_coinNameLabel == nil) {
-        _coinNameLabel = [XXLabel labelWithFrame:CGRectMake(CGRectGetMaxX(self.iconView.frame) + 12, 16, 0, 24) text:@"" font:kFontBold(17) textColor:kDark100];
+        _coinNameLabel = [XXLabel labelWithFrame:CGRectMake(CGRectGetMaxX(self.iconView.frame) + 12, 16, 0, 24) text:@"" font:kFontBold(17) textColor:kGray900];
     }
     return _coinNameLabel;
 }
 
 - (XXLabel *)priceLabel {
     if (_priceLabel == nil) {
-        _priceLabel = [XXLabel labelWithFrame:CGRectMake(self.coinNameLabel.left, CGRectGetMaxY(self.coinNameLabel.frame), 100, 24) text:@"" font:kNumberFont(13) textColor:kTipColor];
+        _priceLabel = [XXLabel labelWithFrame:CGRectMake(self.coinNameLabel.left, CGRectGetMaxY(self.coinNameLabel.frame), 100, 24) text:@"" font:kNumberFont(13) textColor:kGray500];
     }
     return _priceLabel;
 }
 
 - (XXLabel *)moneyLabel {
     if (_moneyLabel == nil) {
-        _moneyLabel = [XXLabel labelWithFrame:CGRectMake(CGRectGetMaxX(self.priceLabel.frame), self.priceLabel.top, kScreen_Width - 16 - CGRectGetMaxX(self.priceLabel.frame), 24) text:@"" font:kNumberFont(13) textColor:kTipColor];
+        _moneyLabel = [XXLabel labelWithFrame:CGRectMake(CGRectGetMaxX(self.priceLabel.frame), self.priceLabel.top, kScreen_Width - 16 - CGRectGetMaxX(self.priceLabel.frame), 24) text:@"" font:kNumberFont(13) textColor:kGray500];
         _moneyLabel.textAlignment = NSTextAlignmentRight;
     }
     return _moneyLabel;
@@ -123,7 +123,7 @@
 
 - (XXLabel *)typeLabel {
     if (_typeLabel == nil) {
-        _typeLabel = [XXLabel labelWithFrame:CGRectMake(CGRectGetMaxX(self.coinNameLabel.frame) +2, 20, 60, 16) text:@"" font:kFont10 textColor:kDark100];
+        _typeLabel = [XXLabel labelWithFrame:CGRectMake(CGRectGetMaxX(self.coinNameLabel.frame) +2, 20, 60, 16) text:@"" font:kFont10 textColor:kGray900];
         _typeLabel.textAlignment = NSTextAlignmentCenter;
     }
     return _typeLabel;
@@ -131,7 +131,7 @@
 
 - (XXLabel *)amountLabel {
     if (_amountLabel == nil) {
-        _amountLabel = [XXLabel labelWithFrame:CGRectMake(CGRectGetMaxX(self.coinNameLabel.frame), 16, kScreen_Width - 16 - CGRectGetMaxX(self.coinNameLabel.frame), 24) font:kNumberFontBold(17) textColor:kDark100];
+        _amountLabel = [XXLabel labelWithFrame:CGRectMake(CGRectGetMaxX(self.coinNameLabel.frame), 16, kScreen_Width - 16 - CGRectGetMaxX(self.coinNameLabel.frame), 24) font:kNumberFontBold(17) textColor:kGray900];
         _amountLabel.textAlignment = NSTextAlignmentRight;
     }
     return _amountLabel;

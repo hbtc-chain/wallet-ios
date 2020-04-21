@@ -301,12 +301,12 @@
     shapeLayer.lineWidth = 2;
     shapeLayer.path = leftTop.CGPath;
     shapeLayer.fillColor = [UIColor clearColor].CGColor;
-    shapeLayer.strokeColor = (kBlue100).CGColor;
+    shapeLayer.strokeColor = (kPrimaryMain).CGColor;
     
     [self.view.layer addSublayer:shapeLayer];
     
     UILabel *label = [[UILabel alloc]initWithFrame:CGRectMake(Width*0.15, CGRectGetMaxY(circlePath.bounds)+Width*0.03, Width*0.7, 0.04*Width)];
-    label.textColor = kDark100;
+    label.textColor = kGray900;
     label.text = LocalizedString(@"QRCodeAlertKey");
     label.textAlignment = NSTextAlignmentCenter;
     label.font = [UIFont systemFontOfSize:Width*0.04];
@@ -332,7 +332,7 @@
     CGPathCloseSubpath(path1);
     
     //绘制渐变
-    [self drawLinearGradient:gc path:path1 startColor:(kBlue100).CGColor centerColor:(kBlue100).CGColor endColor:(kBlue100).CGColor];
+    [self drawLinearGradient:gc path:path1 startColor:(kPrimaryMain).CGColor centerColor:(kPrimaryMain).CGColor endColor:(kPrimaryMain).CGColor];
     
     //注意释放CGMutablePathRef
     CGPathRelease(path1);

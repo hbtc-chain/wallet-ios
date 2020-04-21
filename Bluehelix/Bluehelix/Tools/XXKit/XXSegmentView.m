@@ -48,14 +48,14 @@
     self.lineWidth = 1.2;
     self.itemWidth = (self.width - self.lineWidth * (self.namesArray.count - 1)) / self.namesArray.count;
     
-    self.backgroundColor = kWhite100;
+    self.backgroundColor = kWhiteColor;
     self.layer.cornerRadius = 5;
-    self.layer.borderColor = (kBlue100).CGColor;
+    self.layer.borderColor = (kPrimaryMain).CGColor;
     self.layer.borderWidth = self.lineWidth;
     self.layer.masksToBounds = YES;
     
     self.indexView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, self.itemWidth, self.height)];
-    self.indexView.backgroundColor = kBlue100;
+    self.indexView.backgroundColor = kPrimaryMain;
     [self addSubview:self.indexView];
     
     self.buttonsArray = [NSMutableArray array];
@@ -64,7 +64,7 @@
         itemButton.backgroundColor = [UIColor clearColor];
         itemButton.titleLabel.font = kFontBold14;
         itemButton.tag = i;
-        [itemButton setTitleColor:kBlue100 forState:UIControlStateNormal];
+        [itemButton setTitleColor:kPrimaryMain forState:UIControlStateNormal];
         [itemButton setTitleColor:kMainTextColor forState:UIControlStateSelected];
         [itemButton addTarget:self action:@selector(itemButtonClick:) forControlEvents:UIControlEventTouchUpInside];
         [itemButton setTitle:self.namesArray[i] forState:UIControlStateNormal];
@@ -73,7 +73,7 @@
         
         if (i < self.namesArray.count - 1) {
             UIView *lineView = [[UIView alloc] initWithFrame:CGRectMake(CGRectGetMaxX(itemButton.frame), 0, self.lineWidth, self.height)];
-            lineView.backgroundColor = kBlue100;
+            lineView.backgroundColor = kPrimaryMain;
             [self addSubview:lineView];
         }
         

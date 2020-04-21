@@ -56,7 +56,7 @@ BOOL doesBounce = NO;
 - (void)setUpAlertView {
     alertView = [[UIView alloc] init];
     [alertView setFrame:[self alertRect]];
-    [alertView setBackgroundColor:kBlue100];
+    [alertView setBackgroundColor:kPrimaryMain];
 //    [alertView setBackgroundColor:[UIColor colorWithRed:0.91 green:0.302 blue:0.235 alpha:1] /*#e84d3c*/];
 }
 
@@ -69,7 +69,7 @@ BOOL doesBounce = NO;
         titleLabel = [[UILabel alloc] initWithFrame:CGRectMake(30, Y, rect.size.width - 60, 24)];
         [titleLabel setText:titleString];
         [titleLabel setTextAlignment:NSTextAlignmentCenter];
-        [titleLabel setTextColor:kWhite100];
+        [titleLabel setTextColor:kWhiteColor];
 //        [titleLabel setTextColor:[UIColor whiteColor]];
         [titleLabel setFont:[UIFont fontWithName:@"HelveticaNeue" size:15]];
         [titleLabel setMinimumScaleFactor:14.0/16.0];

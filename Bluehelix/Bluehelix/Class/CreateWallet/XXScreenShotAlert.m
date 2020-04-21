@@ -136,7 +136,7 @@
         _titleLabel = [[UILabel alloc] initWithFrame:CGRectMake(16, 104, kScreen_Width - 32, 24)];
         _titleLabel.text = LocalizedString(@"NoScreenShot");
         _titleLabel.font = kFontBold18;
-        _titleLabel.textColor = kDark100;
+        _titleLabel.textColor = kGray900;
         _titleLabel.textAlignment = NSTextAlignmentCenter;
     }
     return _titleLabel;
@@ -147,7 +147,7 @@
         _contentLabel = [[UILabel alloc] initWithFrame:CGRectMake(16, 132, kScreen_Width - 32, 18)];
         _contentLabel.text = LocalizedString(@"ScreenShotTip");
         _contentLabel.font = kFont14;
-        _contentLabel.textColor = kDark50;
+        _contentLabel.textColor = kGray500;
         _contentLabel.textAlignment = NSTextAlignmentCenter;
         _contentLabel.numberOfLines = 0;
     }
@@ -167,7 +167,7 @@
     if (_okBtn == nil) {
         _okBtn = [[UIButton alloc] initWithFrame:CGRectMake(K375(16), self.contentView.height - 64, kScreen_Width - K375(32), kBtnHeight)];
         [_okBtn setTitle:LocalizedString(@"IKnow") forState:UIControlStateNormal];
-        [_okBtn setBackgroundColor:kBlue100];
+        [_okBtn setBackgroundColor:kPrimaryMain];
         [_okBtn.titleLabel setFont:kFontBold18];
         _okBtn.layer.cornerRadius = kBtnBorderRadius;
         _okBtn.layer.masksToBounds = YES;

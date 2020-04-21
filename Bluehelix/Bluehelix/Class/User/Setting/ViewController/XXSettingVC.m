@@ -40,7 +40,7 @@ static NSString *identifir = @"XXSettingCell";
 #pragma mark - 1. 初始化UI
 - (void)setupUI {
     [self.view addSubview:self.tableView];
-    self.itemsArray = @[LocalizedString(@"Language"), LocalizedString(@"ExchangeRate")];
+    self.itemsArray = @[LocalizedString(@"Language"), LocalizedString(@"ExchangeRate"),LocalizedString(@"NightMode")];
         [self.view addSubview:self.loginOutButton];
     [self.tableView registerClass:[XXSettingCell class] forCellReuseIdentifier:identifir];
 }
@@ -76,11 +76,11 @@ static NSString *identifir = @"XXSettingCell";
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
     cell.contentView.backgroundColor = kViewBackgroundColor;
     cell.lineView.backgroundColor = KLine_Color;
-    cell.nameLabel.textColor = kDark100;
-    cell.valueLabel.textColor = kDark50;
+    cell.nameLabel.textColor = kGray900;
+    cell.valueLabel.textColor = kGray500;
     cell.nameLabel.text = self.itemsArray[indexPath.row];
     cell.valueLabel.hidden = NO;
-    
+    cell.typeSwitch.hidden = YES;
     if (indexPath.row == 0) {
         cell.rightIconImageView.hidden = NO;
         cell.valueLabel.text = [[LocalizeHelper sharedLocalSystem] getLanguageName];
@@ -88,11 +88,9 @@ static NSString *identifir = @"XXSettingCell";
         cell.rightIconImageView.hidden = NO;
         cell.valueLabel.text = LocalizedString(KUser.ratesKey);
     } else if (indexPath.row == 2) {
-        cell.rightIconImageView.hidden = NO;
-    } else if (indexPath.row == 3) {
         cell.rightIconImageView.hidden = YES;
-        NSDictionary *infoDic = [[NSBundle mainBundle] infoDictionary];
-        cell.valueLabel.text = [infoDic objectForKey:@"CFBundleShortVersionString"];
+        cell.typeSwitch.hidden = NO;
+        cell.typeSwitch.on = KUser.isNightType;
     }
     cell.lineView.hidden = indexPath.row == self.itemsArray.count - 1 ? YES : NO;
     return cell;
@@ -121,7 +119,7 @@ static NSString *identifir = @"XXSettingCell";
         _loginOutButton = [XXButton buttonWithFrame:CGRectMake(K375(24), kScreen_Height - 70 - (self.tabBarController.tabBar.height - 49), kScreen_Width - K375(48), 40) title:LocalizedString(@"LogOut") font:kFont16 titleColor:kMainTextColor block:^(UIButton *button) {
             [weakSelf loginOutButtonClick:button];
         }];
-        _loginOutButton.backgroundColor = kBlue100;
+        _loginOutButton.backgroundColor = kPrimaryMain;
         _loginOutButton.layer.cornerRadius = 2;
         _loginOutButton.layer.masksToBounds = YES;
     }
@@ -133,7 +131,7 @@ static NSString *identifir = @"XXSettingCell";
         _tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, kNavHeight, kScreen_Width, kScreen_Height - kNavHeight) style:UITableViewStylePlain];
         _tableView.dataSource = self;
         _tableView.delegate = self;
-        _tableView.backgroundColor = kWhite100;
+        _tableView.backgroundColor = kWhiteColor;
         _tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
         _tableView.showsVerticalScrollIndicator = NO;
         if (@available(iOS 11.0, *)) {

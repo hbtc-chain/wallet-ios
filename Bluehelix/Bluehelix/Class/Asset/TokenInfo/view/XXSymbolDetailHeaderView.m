@@ -25,7 +25,7 @@
 {
     self = [super initWithFrame:frame];
     if (self) {
-        self.backgroundColor = kWhite100;
+        self.backgroundColor = kWhiteColor;
         [self buildUI];
     }
     return self;
@@ -58,8 +58,8 @@
         _shadowLayer = [CALayer layer];
         _shadowLayer.frame = CGRectMake(0, 0, self.backView.width, self.backView.height - 8);
         _shadowLayer.cornerRadius = 10;
-        _shadowLayer.backgroundColor = [kWhite100 CGColor];
-        _shadowLayer.shadowColor = [kBlue20 CGColor];
+        _shadowLayer.backgroundColor = [kWhiteColor CGColor];
+        _shadowLayer.shadowColor = [kGray200 CGColor];
         _shadowLayer.shadowOffset = CGSizeMake(0, 4);
         _shadowLayer.shadowOpacity = 0.8;
         _shadowLayer.shadowRadius = 4;
@@ -78,7 +78,7 @@
 
 - (XXLabel *)tipLabel {
     if (!_tipLabel) {
-        _tipLabel = [XXLabel labelWithFrame:CGRectMake(K375(16), K375(16), self.backView.width - K375(32), 16) font:kFont13 textColor:kDark50];
+        _tipLabel = [XXLabel labelWithFrame:CGRectMake(K375(16), K375(16), self.backView.width - K375(32), 16) font:kFont13 textColor:kGray500];
         _tipLabel.text = LocalizedString(@"HoldAsset");
     }
     return _tipLabel;
@@ -86,14 +86,14 @@
 
 - (XXLabel *)amountLabel {
     if (!_amountLabel) {
-        _amountLabel = [XXLabel labelWithFrame:CGRectMake(K375(16), CGRectGetMaxY(self.tipLabel.frame), self.backView.width - K375(32), 40) font:kFont(26) textColor:kDark100];
+        _amountLabel = [XXLabel labelWithFrame:CGRectMake(K375(16), CGRectGetMaxY(self.tipLabel.frame), self.backView.width - K375(32), 40) font:kFont(26) textColor:kGray900];
     }
     return _amountLabel;
 }
 
 - (XXLabel *)assetLabel {
     if (!_assetLabel) {
-        _assetLabel = [XXLabel labelWithFrame:CGRectMake(K375(16), CGRectGetMaxY(self.amountLabel.frame), self.backView.width - K375(32), 16) font:kFont15 textColor:kDark50];
+        _assetLabel = [XXLabel labelWithFrame:CGRectMake(K375(16), CGRectGetMaxY(self.amountLabel.frame), self.backView.width - K375(32), 16) font:kFont15 textColor:kGray500];
     }
     return _assetLabel;
 }

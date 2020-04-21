@@ -47,7 +47,7 @@
  */
 
 + (UIImage *)mainImageName:(NSString *)name {
-    UIImage *image = [[UIImage imageNamed:name] imageWithColor:kBlue100];
+    UIImage *image = [[UIImage imageNamed:name] imageWithColor:kPrimaryMain];
     return image;
 }
 
@@ -60,7 +60,7 @@
  */
 
 + (UIImage *)textImageName:(NSString *)name {
-    UIImage *image = [[UIImage imageNamed:name] imageWithColor:kDark100];
+    UIImage *image = [[UIImage imageNamed:name] imageWithColor:kGray900];
     return image;
 }
 
@@ -73,7 +73,7 @@
  */
 
 + (UIImage *)subTextImageName:(NSString *)name {
-    UIImage *image = [[UIImage imageNamed:name] imageWithColor:kDark50];
+    UIImage *image = [[UIImage imageNamed:name] imageWithColor:kGray500];
     return image;
 }
 

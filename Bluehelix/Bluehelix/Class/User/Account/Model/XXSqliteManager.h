@@ -21,7 +21,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, copy)  NSString *sqlitePath;
 
 + (XXSqliteManager *)sharedSqlite;
-
+- (void)requestTokens;
 // 币
 - (void)insertTokens:(NSArray *)tokens;
 - (NSArray *)tokens; //所有的币

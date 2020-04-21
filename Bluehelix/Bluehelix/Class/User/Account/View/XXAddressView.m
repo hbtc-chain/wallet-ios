@@ -22,7 +22,7 @@
 {
     self = [super initWithFrame:frame];
     if (self) {
-        self.backgroundColor = kWhite100;
+        self.backgroundColor = kWhiteColor;
         [self addSubview:self.addressLabel];
         [self addSubview:self.downImageView];
         UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tapAction)];
@@ -70,7 +70,7 @@
 - (XXLabel *)addressLabel {
     if (!_addressLabel) {
         CGFloat width = [NSString widthWithText:KUser.address font:kFont(13)];
-        _addressLabel = [XXLabel labelWithFrame:CGRectMake(kScreen_Width/2 - width/2, 0, width, self.height) text:KUser.address font:kFont(13) textColor:kDark100 alignment:NSTextAlignmentCenter];
+        _addressLabel = [XXLabel labelWithFrame:CGRectMake(kScreen_Width/2 - width/2, 0, width, self.height) text:KUser.address font:kFont(13) textColor:kGray900 alignment:NSTextAlignmentCenter];
     }
     return _addressLabel;
 }

@@ -53,7 +53,7 @@
 
 - (void)buildUI {
     self.titleLabel.text = LocalizedString(@"ReceiveMoney");
-    self.titleLabel.textColor = kWhite100;
+    self.titleLabel.textColor = kWhiteColor;
     self.leftButton.imageView.image = [UIImage imageNamed:@"white_back"];
     [self.view addSubview:self.scrollView];
     [self.scrollView addSubview:self.topBackImageView];
@@ -70,7 +70,7 @@
 - (void)configChainColor {
     UIColor *chainColor;
     if ([self.tokenModel.symbol isEqualToString:kMainToken]) {
-        chainColor = kBlue100;
+        chainColor = kPrimaryMain;
     } else {
         if (!self.tokenModel.is_native && !self.InnerChain) {
             chainColor = kGray;
@@ -104,7 +104,7 @@
 - (UIView *)symbolBackView {
     if (!_symbolBackView) {
         _symbolBackView = [[UIView alloc] initWithFrame:CGRectMake(self.topBackImageView.width/2 - K375(56)/2, -K375(28), K375(60), K375(60))];
-        _symbolBackView.backgroundColor = kWhite100;
+        _symbolBackView.backgroundColor = kWhiteColor;
         _symbolBackView.layer.cornerRadius = _symbolBackView.width/2;
         _symbolBackView.layer.masksToBounds = YES;
     }
@@ -138,7 +138,7 @@
 
 - (XXLabel *)symbolLabel {
     if (!_symbolLabel) {
-        _symbolLabel = [XXLabel labelWithFrame:CGRectMake(0, K375(32), self.topBackImageView.width, 24) text:[NSString stringWithFormat:@"%@%@",self.tokenModel.symbol,LocalizedString(@"WalletAddress")] font:kFontBold18 textColor:kDark100];
+        _symbolLabel = [XXLabel labelWithFrame:CGRectMake(0, K375(32), self.topBackImageView.width, 24) text:[NSString stringWithFormat:@"%@%@",self.tokenModel.symbol,LocalizedString(@"WalletAddress")] font:kFontBold18 textColor:kGray900];
     }
     _symbolLabel.textAlignment = NSTextAlignmentCenter;
     return _symbolLabel;
@@ -146,7 +146,7 @@
 
 - (XXLabel *)addressLabel {
     if (!_addressLabel) {
-        _addressLabel = [XXLabel labelWithFrame:CGRectMake(0, CGRectGetMaxY(self.codeImageView.frame), self.topBackImageView.width, self.topBackImageView.height - CGRectGetMaxY(self.codeImageView.frame)) text:@"" font:kFont(13) textColor:kDark100];
+        _addressLabel = [XXLabel labelWithFrame:CGRectMake(0, CGRectGetMaxY(self.codeImageView.frame), self.topBackImageView.width, self.topBackImageView.height - CGRectGetMaxY(self.codeImageView.frame)) text:@"" font:kFont(13) textColor:kGray900];
         _addressLabel.textAlignment = NSTextAlignmentCenter;
         _addressLabel.text = self.showAddress;
     }
@@ -155,7 +155,7 @@
 
 - (XXButton *)copyAddressBtn {
     if (!_copyAddressBtn) {
-        _copyAddressBtn = [XXButton buttonWithFrame:CGRectMake(5, 2, self.bottomImageView.width - 10, self.bottomImageView.height - 4) title:LocalizedString(@"CopyAddress") font:kFont(17) titleColor:kBlue100 block:^(UIButton *button) {
+        _copyAddressBtn = [XXButton buttonWithFrame:CGRectMake(5, 2, self.bottomImageView.width - 10, self.bottomImageView.height - 4) title:LocalizedString(@"CopyAddress") font:kFont(17) titleColor:kPrimaryMain block:^(UIButton *button) {
             if (KUser.address  > 0) {
                 UIPasteboard *pab = [UIPasteboard generalPasteboard];
                 [pab setString:self.showAddress];

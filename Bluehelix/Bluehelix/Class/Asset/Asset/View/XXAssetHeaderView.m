@@ -31,7 +31,7 @@
 {
     self = [super initWithFrame:frame];
     if (self) {
-        self.backgroundColor = kWhite100;
+        self.backgroundColor = kWhiteColor;
         [self addSubview:self.backImageView];
         [self addSubview:self.nameLabel];
         [self addSubview:self.shadowImageView];
@@ -48,7 +48,7 @@
 - (void)configData:(XXAssetModel *)model {
     if (KUser.isHideAsset) {
         self.totalAssetLabel.text = @"***";
-        self.totalAssetLabel.top = CGRectGetMaxY(self.assetNameLabel.frame) + 15;
+//        self.totalAssetLabel.top = CGRectGetMaxY(self.assetNameLabel.frame) + 15;
     } else {
         double totalAsset = 0;
         for (XXTokenModel *tokenModel in model.assets) {
@@ -58,10 +58,10 @@
             }
         }
         self.totalAssetLabel.text = [NSString stringWithFormat:@"%@%.3f",[RatesManager shareRatesManager].rateUnit,totalAsset];
-        self.totalAssetLabel.top = CGRectGetMaxY(self.assetNameLabel.frame) + 10;
+//        self.totalAssetLabel.top = CGRectGetMaxY(self.assetNameLabel.frame) + 10;
     }
-    self.totalAssetLabel.width = [NSString widthWithText:self.totalAssetLabel.text font:kNumberFontBold(30)];
-    self.hidenAssetsButton.left = CGRectGetMaxX(self.totalAssetLabel.frame);
+//    self.totalAssetLabel.width = [NSString widthWithText:self.totalAssetLabel.text font:kNumberFontBold(30)];
+//    self.hidenAssetsButton.left = CGRectGetMaxX(self.totalAssetLabel.frame);
 }
 
 - (double)getRatesFromToken:(NSString *)token {
@@ -76,7 +76,7 @@
 - (XXLabel *)logoLabel {
     if (!_logoLabel) {
         CGFloat top = BH_IS_IPHONE_X ? 40 : 30;
-        _logoLabel = [XXLabel labelWithFrame:CGRectMake(0, top, kScreen_Width, 25) font:kFontBold(13) textColor:kWhite100];
+        _logoLabel = [XXLabel labelWithFrame:CGRectMake(0, top, kScreen_Width, 25) font:kFontBold(13) textColor:[UIColor whiteColor]];
         _logoLabel.text = LocalizedString(@"logoName");
         _logoLabel.textAlignment = NSTextAlignmentCenter;
     }
@@ -93,7 +93,7 @@
 
 - (XXLabel *)nameLabel {
     if (!_nameLabel) {
-        _nameLabel = [XXLabel labelWithFrame:CGRectMake(K375(24), K375(64), kScreen_Width - K375(90), 40) font:kFontBold(30) textColor:kWhite100];
+        _nameLabel = [XXLabel labelWithFrame:CGRectMake(K375(24), K375(64), kScreen_Width - K375(90), 40) font:kFontBold(30) textColor:[UIColor whiteColor]];
         _nameLabel.text = LocalizedString(@"Asset");
     }
     return _nameLabel;
@@ -102,7 +102,7 @@
 - (XXButton *)hidenAssetsButton {
     if (_hidenAssetsButton == nil) {
         MJWeakSelf
-        _hidenAssetsButton = [XXButton buttonWithFrame:CGRectMake(CGRectGetMaxX(self.totalAssetLabel.frame), self.totalAssetLabel.top, self.totalAssetLabel.height, self.totalAssetLabel.height) block:^(UIButton *button) {
+        _hidenAssetsButton = [XXButton buttonWithFrame:CGRectMake(CGRectGetMaxX(self.assetNameLabel.frame), self.assetNameLabel.top, self.assetNameLabel.height, self.assetNameLabel.height) block:^(UIButton *button) {
             KUser.isHideAsset = !KUser.isHideAsset;
             weakSelf.hidenAssetsButton.selected = KUser.isHideAsset;
             if (weakSelf.actionBlock) {
@@ -143,8 +143,8 @@
         _shadowLayer = [CALayer layer];
         _shadowLayer.frame = CGRectMake(0, 0, self.shadowImageView.width, self.shadowImageView.height);
         _shadowLayer.cornerRadius = 10;
-        _shadowLayer.backgroundColor = [kWhite100 CGColor];
-        _shadowLayer.shadowColor = [kBlue20 CGColor];
+        _shadowLayer.backgroundColor = [kWhiteColor CGColor];
+        _shadowLayer.shadowColor = [kGray200 CGColor];
         _shadowLayer.shadowOffset = CGSizeMake(0, 4);
         _shadowLayer.shadowOpacity = 0.8;
         _shadowLayer.shadowRadius = 4;
@@ -154,7 +154,7 @@
 
 - (XXLabel *)assetNameLabel {
     if (!_assetNameLabel) {
-        _assetNameLabel = [XXLabel labelWithFrame:CGRectMake(K375(20), K375(20), 100, 24) font:kFont(17) textColor:kDark80];
+        _assetNameLabel = [XXLabel labelWithFrame:CGRectMake(K375(20), K375(20), 100, 24) font:kFont(17) textColor:kGray700];
     }
     _assetNameLabel.text = NSLocalizedFormatString(LocalizedString(@"TotalAsset"),[KUser.ratesKey uppercaseString]);
     return _assetNameLabel;
@@ -162,7 +162,7 @@
 
 - (XXLabel *)totalAssetLabel {
     if (!_totalAssetLabel) {
-        _totalAssetLabel = [XXLabel labelWithFrame:CGRectMake(K375(20), CGRectGetMaxY(self.assetNameLabel.frame) + 10, 100, 32) font:kNumberFontBold(30) textColor:kDark100];
+        _totalAssetLabel = [XXLabel labelWithFrame:CGRectMake(K375(20), CGRectGetMaxY(self.assetNameLabel.frame) + 10, 100, 32) font:kNumberFontBold(30) textColor:kGray900];
     }
     return _totalAssetLabel;
 }

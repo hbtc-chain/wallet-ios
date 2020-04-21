@@ -62,7 +62,7 @@
 //上边选中的
 - (void)drawFormView {
     self.formView = [[UIView alloc] initWithFrame:CGRectMake(K375(16), self.tipLabel.bottom + K375(24), kScreen_Width - K375(32), K375(192))];
-    self.formView.backgroundColor = kWhite100;
+    self.formView.backgroundColor = kWhiteColor;
     self.formView.layer.borderColor = [KLine_Color CGColor];
     self.formView.layer.borderWidth = KLine_Height;
     self.formView.layer.cornerRadius = 2;
@@ -94,7 +94,7 @@
         } else {
             btn.state = MnemonicBtnType_Wrong;
         }
-        btn.backgroundColor = kWhite100;
+        btn.backgroundColor = kWhiteColor;
         [self.formView addSubview:btn];
     }
     
@@ -111,7 +111,7 @@
     }
     if (rightCount == self.phraseArray.count) {
         self.backupBtn.enabled = YES;
-        self.backupBtn.backgroundColor = kBlue100;
+        self.backupBtn.backgroundColor = kPrimaryMain;
     } else {
         self.backupBtn.enabled = NO;
         self.backupBtn.backgroundColor = kBtnNotEnableColor;
@@ -180,7 +180,7 @@
 - (XXLabel *)tipLabel {
     if (_tipLabel == nil) {
         CGFloat height = [NSString heightWithText:LocalizedString(@"VerifyMnemonicPhraseTip") font:kFont(15) width:kScreen_Width - K375(32)];
-        _tipLabel = [XXLabel labelWithFrame:CGRectMake(K375(16), kNavHeight, kScreen_Width - K375(32), height) text:LocalizedString(@"VerifyMnemonicPhraseTip") font:kFont(15) textColor:kDark50 alignment:NSTextAlignmentLeft];
+        _tipLabel = [XXLabel labelWithFrame:CGRectMake(K375(16), kNavHeight, kScreen_Width - K375(32), height) text:LocalizedString(@"VerifyMnemonicPhraseTip") font:kFont(15) textColor:kGray500 alignment:NSTextAlignmentLeft];
         _tipLabel.numberOfLines = 0;
     }
     return _tipLabel;
@@ -188,7 +188,7 @@
 
 - (XXButton *)backupBtn {
     if (!_backupBtn) {
-        _backupBtn = [XXButton buttonWithFrame:CGRectMake(K375(16), _contentHeight > kScreen_Height - kBtnHeight - K375(16) ? _contentHeight + 20 : kScreen_Height - kBtnHeight - K375(16), kScreen_Width - K375(32), kBtnHeight) title:LocalizedString(@"StartBackup") font:kFontBold18 titleColor:kWhite100 block:^(UIButton *button) {
+        _backupBtn = [XXButton buttonWithFrame:CGRectMake(K375(16), _contentHeight > kScreen_Height - kBtnHeight - K375(16) ? _contentHeight + 20 : kScreen_Height - kBtnHeight - K375(16), kScreen_Width - K375(32), kBtnHeight) title:LocalizedString(@"StartBackup") font:kFontBold18 titleColor:kWhiteColor block:^(UIButton *button) {
 //            NSMutableDictionary *dic = [NSMutableDictionary dictionaryWithDictionary:KUser.rootAccount];
 //            [dic setObject:@1 forKey:@"backupFlag"];
             [[XXSqliteManager sharedSqlite] updateAccountColumn:@"backupFlag" value:@1];

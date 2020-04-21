@@ -78,7 +78,7 @@
 
 - (XXLabel *)coinNameLabel {
     if (_coinNameLabel == nil) {
-        _coinNameLabel = [XXLabel labelWithFrame:CGRectMake(CGRectGetMaxX(self.iconView.frame) + 12, 24, 100, 24) text:@"" font:kFontBold(17) textColor:kDark100];
+        _coinNameLabel = [XXLabel labelWithFrame:CGRectMake(CGRectGetMaxX(self.iconView.frame) + 12, 24, 100, 24) text:@"" font:kFontBold(17) textColor:kGray900];
     }
     return _coinNameLabel;
 }
@@ -88,11 +88,11 @@
         _mySwitch = [[UISwitch alloc] initWithFrame:CGRectMake(kScreen_Width - K375(16) - 51, ([[self class] getCellHeight] - 31)/2, _mySwitch.width, _mySwitch.height)];
         [_mySwitch addTarget:self action:@selector(switchAction:) forControlEvents:UIControlEventValueChanged];
         _mySwitch.on = NO;
-        _mySwitch.backgroundColor = kDark10;
+        _mySwitch.backgroundColor = kGray300;
         _mySwitch.layer.cornerRadius = _mySwitch.height/2;
         _mySwitch.layer.masksToBounds = YES;
         _mySwitch.tintColor = [UIColor clearColor];
-        _mySwitch.onTintColor = kBlue100;
+        _mySwitch.onTintColor = kPrimaryMain;
         _mySwitch.thumbTintColor = [UIColor whiteColor];
     }
     return _mySwitch;

@@ -70,6 +70,25 @@ static XXUserData *_sharedUserData = nil;
 }
 
 - (NSString *)ratesKey {
+    
+    if ([self getValueForKey:@"ratesKey"] == nil) {
+        if ([[[LocalizeHelper sharedLocalSystem] getLanguageCode] hasPrefix:@"zh-"]) {
+            [self setRatesKey:@"cny"];
+            return @"cny";
+        } else if ([[[LocalizeHelper sharedLocalSystem] getLanguageCode] hasPrefix:@"ko"]) {
+            [self setRatesKey:@"krw"];
+            return @"krw";
+        } else if ([[[LocalizeHelper sharedLocalSystem] getLanguageCode] hasPrefix:@"ja"]) {
+            [self setRatesKey:@"jpy"];
+            return @"jpy";
+        } else if ([[[LocalizeHelper sharedLocalSystem] getLanguageCode] hasPrefix:@"vi"]) {
+            [self setRatesKey:@"vnd"];
+            return @"vnd";
+        } else {
+            [self setRatesKey:@"usd"];
+            return @"usd";
+        }
+    }
     return [self getValueForKey:@"ratesKey"];
 }
 //// pubkey

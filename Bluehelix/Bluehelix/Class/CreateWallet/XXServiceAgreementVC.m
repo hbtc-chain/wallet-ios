@@ -7,6 +7,7 @@
 //
 
 #import "XXServiceAgreementVC.h"
+#import "XXServiceContentView.h"
 
 @interface XXServiceAgreementVC ()
 
@@ -17,7 +18,14 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-    self.titleLabel.text = LocalizedString(@"服务协议");
+    [self buildUI];
+}
+
+- (void)buildUI {
+    self.titleLabel.text = LocalizedString(@"ServiceAgreement");
+    self.navView.hidden = YES;
+    XXServiceContentView *contentView = [[XXServiceContentView alloc] initWithFrame:self.view.bounds];
+    [self.view addSubview:contentView];
 }
 
 /*

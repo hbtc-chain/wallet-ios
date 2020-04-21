@@ -35,21 +35,21 @@
 - (UIView *)lineView {
     if (!_lineView) {
         _lineView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 4, 40)];
-        _lineView.backgroundColor = kBlue100;
+        _lineView.backgroundColor = kPrimaryMain;
     }
     return _lineView;
 }
 
 - (XXLabel *)nameLabel {
     if (!_nameLabel) {
-        _nameLabel = [XXLabel labelWithFrame:CGRectMake(K375(24), 0, kScreen_Width/2 - K375(24), 40) font:kFont17 textColor:kDark100];
+        _nameLabel = [XXLabel labelWithFrame:CGRectMake(K375(24), 0, kScreen_Width/2 - K375(24), 40) font:kFont17 textColor:kGray900];
     }
     return _nameLabel;
 }
 
 - (XXLabel *)valueLabel {
     if (!_valueLabel) {
-        _valueLabel = [XXLabel labelWithFrame:CGRectMake(kScreen_Width/2, 0, kScreen_Width/2 - 20, 40) font:kNumberFont(17) textColor:kDark100];
+        _valueLabel = [XXLabel labelWithFrame:CGRectMake(kScreen_Width/2, 0, kScreen_Width/2 - 20, 40) font:kNumberFont(17) textColor:kGray900];
         _valueLabel.textAlignment = NSTextAlignmentRight;
     }
     return _valueLabel;

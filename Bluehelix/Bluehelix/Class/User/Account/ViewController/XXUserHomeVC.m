@@ -19,6 +19,7 @@
 #import "Account.h"
 #import "SecureData.h"
 #import "XXSettingVC.h"
+#import "XXServiceAgreementVC.h"
 
 @interface XXUserHomeVC () <UITableViewDataSource, UITableViewDelegate, UIGestureRecognizerDelegate>
 
@@ -98,7 +99,7 @@
     NSArray *namesArray = self.itemsArray[indexPath.section];
     cell.nameLabel.text = namesArray[indexPath.row];
     cell.contentView.backgroundColor = kViewBackgroundColor;
-    cell.nameLabel.textColor = kDark100;
+    cell.nameLabel.textColor = kGray900;
     cell.lineView.backgroundColor = KLine_Color;
     return cell;
 }
@@ -125,7 +126,8 @@
         [self pushBackupPhrase];
     }
     if ([itemString isEqualToString:LocalizedString(@"ModifyPassword")]) {
-        
+        XXServiceAgreementVC *vc = [[XXServiceAgreementVC alloc] init];
+        [self presentViewController:vc animated:YES completion:nil];
     }
     if ([itemString isEqualToString:LocalizedString(@"Setting")]) {
         [self pushSetting];
@@ -153,7 +155,7 @@
         _tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, kScreen_Width, kScreen_Height - kTabbarHeight) style:UITableViewStylePlain];
         _tableView.dataSource = self;
         _tableView.delegate = self;
-        _tableView.backgroundColor = kWhite100;
+        _tableView.backgroundColor = kWhiteColor;
         _tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
         _tableView.showsVerticalScrollIndicator = NO;
         if (@available(iOS 11.0, *)) {

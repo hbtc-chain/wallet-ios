@@ -84,7 +84,7 @@
         _transferButton = [XXButton buttonWithFrame:CGRectMake(KSpacing, kScreen_Height - 80, kScreen_Width - KSpacing*2, 42) title:@"" font:kFontBold14 titleColor:kMainTextColor block:^(UIButton *button) {
             
         }];
-        _transferButton.backgroundColor = kBlue100;
+        _transferButton.backgroundColor = kPrimaryMain;
         _transferButton.layer.cornerRadius = 3;
         _transferButton.layer.masksToBounds = YES;
         switch (self.delegateNodeType) {

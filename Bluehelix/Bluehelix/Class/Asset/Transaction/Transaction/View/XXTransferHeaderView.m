@@ -14,7 +14,7 @@
 - (instancetype)initWithFrame:(CGRect)frame data:(NSDictionary *)dic {
     self = [super initWithFrame:frame];
     if (self) {
-        self.backgroundColor = kWhite100;
+        self.backgroundColor = kWhiteColor;
         [self buildUI:dic];
     }
     return self;
@@ -31,11 +31,11 @@
     NSArray *bottomNamesArray = @[LocalizedString(@"TXID"),LocalizedString(@"State"),LocalizedString(@"Time")];
     for (NSInteger i=0; i < bottomNamesArray.count; i ++) {
         
-        XXLabel *leftLabel = [XXLabel labelWithFrame:CGRectMake(K375(24), Y, K375(120), 20) text:bottomNamesArray[i] font:kFont13 textColor:kDark50];
+        XXLabel *leftLabel = [XXLabel labelWithFrame:CGRectMake(K375(24), Y, K375(120), 20) text:bottomNamesArray[i] font:kFont13 textColor:kGray500];
         leftLabel.numberOfLines = 0;
         [self addSubview:leftLabel];
         
-        XXLabel *rightLabel = [XXLabel labelWithFrame:CGRectMake(K375(151), Y, K375(200), 20) text:@"" font:kFont13 textColor:kDark100];
+        XXLabel *rightLabel = [XXLabel labelWithFrame:CGRectMake(K375(151), Y, K375(200), 20) text:@"" font:kFont13 textColor:kGray900];
         rightLabel.numberOfLines = 0;
         [self addSubview:rightLabel];
         if (i == 0) {

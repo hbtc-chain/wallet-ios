@@ -221,7 +221,7 @@ int pageSize = 30;
     }
     NSDictionary *dic = self.txs[indexPath.row];
     [cell configData:dic];
-    cell.backgroundColor = kWhite100;
+    cell.backgroundColor = kWhiteColor;
     return cell;
 }
 
@@ -237,7 +237,7 @@ int pageSize = 30;
         _tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, kNavHeight, kScreen_Width, kScreen_Height - kNavHeight - 104) style:UITableViewStylePlain];
         _tableView.dataSource = self;
         _tableView.delegate = self;
-        _tableView.backgroundColor = kWhite100;
+        _tableView.backgroundColor = kWhiteColor;
         _tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
         _tableView.showsVerticalScrollIndicator = NO;
         if (@available(iOS 11.0, *)) {

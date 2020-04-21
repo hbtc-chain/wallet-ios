@@ -29,7 +29,7 @@
 }
 
 - (void)buildUI {
-    self.backgroundColor = kWhite5;
+    self.backgroundColor = kPrimaryLight;
     self.layer.cornerRadius = 12;
     [self addSubview:self.customImageView];
     [self addSubview:self.customLabel];
@@ -57,7 +57,7 @@
         _customLabel.textAlignment = NSTextAlignmentCenter;
         _customLabel.text = LocalizedString(@"AccountManage");
         _customLabel.font = kFont10;
-        _customLabel.textColor = kWhite100;
+        _customLabel.textColor = [UIColor whiteColor];
     }
     return _customLabel;
 }

@@ -65,7 +65,7 @@
 - (void)textFieldValueChange:(UITextField *)textField {
     if (self.textFieldView.textField.text.length) {
         self.okBtn.enabled = YES;
-        self.okBtn.backgroundColor = kBlue100;
+        self.okBtn.backgroundColor = kPrimaryMain;
     } else {
         self.okBtn.enabled = NO;
         self.okBtn.backgroundColor = kBtnNotEnableColor;
@@ -82,7 +82,7 @@
 
 - (XXLabel *)userNameLabel {
     if (!_userNameLabel) {
-        _userNameLabel = [XXLabel labelWithFrame:CGRectMake(K375(16), CGRectGetMaxY(self.icon.frame), kScreen_Width - K375(32), 16) text:KUser.currentAccount.userName font:kFont15 textColor:kTipColor alignment:NSTextAlignmentCenter];
+        _userNameLabel = [XXLabel labelWithFrame:CGRectMake(K375(16), CGRectGetMaxY(self.icon.frame), kScreen_Width - K375(32), 16) text:KUser.currentAccount.userName font:kFont15 textColor:kGray500 alignment:NSTextAlignmentCenter];
     }
     return _userNameLabel;
 }
@@ -100,7 +100,7 @@
 
 - (XXLabel *)walletNameLabel {
     if (!_walletNameLabel) {
-        _walletNameLabel = [XXLabel labelWithFrame:CGRectMake(K375(16), CGRectGetMaxY(self.addressView.frame) + 40, kScreen_Width - K375(32), 40) text:LocalizedString(@"WalletPassword") font:kFont15 textColor:kTipColor alignment:NSTextAlignmentLeft];
+        _walletNameLabel = [XXLabel labelWithFrame:CGRectMake(K375(16), CGRectGetMaxY(self.addressView.frame) + 40, kScreen_Width - K375(32), 40) text:LocalizedString(@"WalletPassword") font:kFont15 textColor:kGray500 alignment:NSTextAlignmentLeft];
     }
     return _walletNameLabel;
 }
@@ -118,7 +118,7 @@
 - (XXButton *)okBtn {
     if (!_okBtn) {
         MJWeakSelf
-        _okBtn = [XXButton buttonWithFrame:CGRectMake(K375(16), CGRectGetMaxY(self.textFieldView.frame) + 24, kScreen_Width - K375(32), kBtnHeight) title:LocalizedString(@"Sure") font:kFontBold18 titleColor:kWhite100 block:^(UIButton *button) {
+        _okBtn = [XXButton buttonWithFrame:CGRectMake(K375(16), CGRectGetMaxY(self.textFieldView.frame) + 24, kScreen_Width - K375(32), kBtnHeight) title:LocalizedString(@"Sure") font:kFontBold18 titleColor:kWhiteColor block:^(UIButton *button) {
             [weakSelf okAction];
         }];
         _okBtn.backgroundColor = kBtnNotEnableColor;
@@ -132,7 +132,7 @@
 - (XXButton *)forgetPasswordBtn {
     if (!_forgetPasswordBtn) {
         MJWeakSelf
-        _forgetPasswordBtn = [XXButton buttonWithFrame:CGRectMake(K375(16), CGRectGetMaxY(self.okBtn.frame) + 24, 100, 24) title:LocalizedString(@"ForgetPassword") font:kFont15 titleColor:kBlue100 block:^(UIButton *button) {
+        _forgetPasswordBtn = [XXButton buttonWithFrame:CGRectMake(K375(16), CGRectGetMaxY(self.okBtn.frame) + 24, 100, 24) title:LocalizedString(@"ForgetPassword") font:kFont15 titleColor:kPrimaryMain block:^(UIButton *button) {
             XXImportWalletVC *importVC = [[XXImportWalletVC alloc] init];
             [weakSelf.navigationController pushViewController:importVC animated:YES];
         }];

@@ -53,12 +53,29 @@ typedef NS_ENUM(NSUInteger, NetworkMethod) {
 
 //wallet
 #define kBtnBorderRadius 6
-#define kBtnNotEnableColor kIsNight ? [UIColor grayColor] : [UIColor colorWithHexString:@"#E7ECF4"]
 #define kBtnHeight 48
-#define kTipColor kIsNight ? [UIColor whiteColor] : [UIColor colorWithHexString:@"#6E8196"]
+#define kAlertDuration 2
+
+#define kPrimaryMain kIsNight ? [UIColor colorWithHexString:@"#3375E0"] : [UIColor colorWithHexString:@"#3375E0"]
+#define kPrimaryLight kIsNight ? [UIColor colorWithHexString:@"#4299FF"] : [UIColor colorWithHexString:@"#4299FF"]
+#define kWhiteColor kIsNight ? [UIColor colorWithHexString:@"#141A27"] : [UIColor colorWithHexString:@"#FFFFFF"]
+#define kGray900 kIsNight ? [UIColor colorWithHexString:@"#B0BFDB"] : [UIColor colorWithHexString:@"#0A1825"]
+#define kGray700 kIsNight ? [UIColor colorWithHexString:@"#6E8196"] : [UIColor colorWithHexString:@"#475563"]
+#define kGray500 kIsNight ? [UIColor colorWithHexString:@"#6E8196"] : [UIColor colorWithHexString:@"#6E8196"]
+#define kGray300 kIsNight ? [UIColor colorWithHexString:@"#6E8196"] : [UIColor colorWithHexString:@"#ACB5C3"]
+#define kGray200 kIsNight ? [UIColor colorWithHexString:@"#B0BFDB"] : [UIColor colorWithHexString:@"#B0BFDB"]
+#define kGray100 kIsNight ? [UIColor colorWithHexString:@"#202F44"] : [UIColor colorWithHexString:@"#E7ECF4"]
+#define kGray50 kIsNight ? [UIColor colorWithHexString:@"#1A2233"] : [UIColor colorWithHexString:@"#F9F9FB"]
+#define kPriceFall kIsNight ? [UIColor colorWithHexString:@"#ED3756"] : [UIColor colorWithHexString:@"#ED3756"]
+#define kGreen100  kIsNight ? [UIColor colorWithHexString:@"#51D372"] : [UIColor colorWithHexString:@"#51D372"]
+
+
+
+
+#define kBtnNotEnableColor kIsNight ? [UIColor grayColor] : [UIColor colorWithHexString:@"#E7ECF4"]
+//#define kGray500 kIsNight ? [UIColor whiteColor] : [UIColor colorWithHexString:@"#6E8196"]
 #define kFieldBackColor kIsNight ? [UIColor whiteColor] : [UIColor colorWithHexString:@"#F9F9FB"]
 #define kF4F7FF [UIColor colorWithHexString:@"#F4F7FF"]
-#define kAlertDuration 2
 #define kGreen kIsNight ? [UIColor whiteColor] : [UIColor colorWithHexString:@"#269A99"]
 #define kGray kIsNight ? [UIColor whiteColor] : [UIColor colorWithHexString:@"#475563"]
 
@@ -109,7 +126,7 @@ typedef NS_ENUM(NSUInteger, NetworkMethod) {
 #define KSpacing ((kScreen_Width/375)*(15))
 
 /** 是否夜间模式 */
-#define kIsNight NO
+#define kIsNight [XXUserData sharedUserData].isNightType
 
 #define KWindow [UIApplication sharedApplication].keyWindow
 #define BH_IS_IPHONE_5 ([UIScreen mainScreen].nativeBounds.size.height == 1136)

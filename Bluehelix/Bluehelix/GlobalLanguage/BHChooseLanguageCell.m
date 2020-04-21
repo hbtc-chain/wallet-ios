@@ -66,7 +66,7 @@
 - (UILabel *)leftLabel {
     if (!_leftLabel) {
         _leftLabel = [[UILabel alloc] init];
-        _leftLabel.textColor = kDark100;
+        _leftLabel.textColor = kGray900;
         _leftLabel.font = kFont16;
     }
     return _leftLabel;

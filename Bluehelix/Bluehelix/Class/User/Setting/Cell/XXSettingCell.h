@@ -21,4 +21,6 @@
 
 @property (strong, nonatomic) UIImageView *rightIconImageView;
 
+/** 开关控件 */
+@property (strong, nonatomic) UISwitch *typeSwitch;
 @end

@@ -57,7 +57,7 @@
 
 - (XXLabel *)successLabel {
     if (!_successLabel) {
-        _successLabel = [XXLabel labelWithFrame:CGRectMake(0, self.successImageView.bottom + K375(16), kScreen_Width, 24) text:LocalizedString(@"CreateWalletSuccess") font:kFont(17) textColor:kDark100 alignment:NSTextAlignmentCenter];
+        _successLabel = [XXLabel labelWithFrame:CGRectMake(0, self.successImageView.bottom + K375(16), kScreen_Width, 24) text:LocalizedString(@"CreateWalletSuccess") font:kFont(17) textColor:kGray900 alignment:NSTextAlignmentCenter];
     }
     return _successLabel;
 }
@@ -75,7 +75,7 @@
 
 - (XXLabel *)tipNamelabel1 {
     if (!_tipNamelabel1) {
-        _tipNamelabel1 = [XXLabel labelWithFrame:CGRectMake(K375(16), K375(16), kScreen_Width - K375(64), 24) text:LocalizedString(@"CreateWalletBackupTip") font:kFont(17) textColor:kDark100 alignment:NSTextAlignmentLeft];
+        _tipNamelabel1 = [XXLabel labelWithFrame:CGRectMake(K375(16), K375(16), kScreen_Width - K375(64), 24) text:LocalizedString(@"CreateWalletBackupTip") font:kFont(17) textColor:kGray900 alignment:NSTextAlignmentLeft];
     }
     return _tipNamelabel1;
 }
@@ -83,7 +83,7 @@
 - (XYHNumbersLabel *)tipContentlabel1 {
     if (!_tipContentlabel1) {
         _tipContentlabel1 = [[XYHNumbersLabel alloc] initWithFrame:CGRectMake(K375(16), CGRectGetMaxY(self.tipNamelabel1.frame) + 10, kScreen_Width - K375(64), 0) font:kFont(15)];
-        _tipContentlabel1.textColor = kTipColor;
+        _tipContentlabel1.textColor = kGray500;
         [_tipContentlabel1 setText:LocalizedString(@"CreateWalletBackupTipContent") alignment:NSTextAlignmentLeft];
     }
     return _tipContentlabel1;
@@ -91,7 +91,7 @@
 
 - (XXLabel *)tipNamelabel2 {
     if (!_tipNamelabel2) {
-        _tipNamelabel2 = [XXLabel labelWithFrame:CGRectMake(K375(16), CGRectGetMaxY(self.tipContentlabel1.frame) + K375(16), kScreen_Width - K375(64), 24) text:LocalizedString(@"WeSuggest") font:kFont(17) textColor:kDark100 alignment:NSTextAlignmentLeft];
+        _tipNamelabel2 = [XXLabel labelWithFrame:CGRectMake(K375(16), CGRectGetMaxY(self.tipContentlabel1.frame) + K375(16), kScreen_Width - K375(64), 24) text:LocalizedString(@"WeSuggest") font:kFont(17) textColor:kGray900 alignment:NSTextAlignmentLeft];
     }
     return _tipNamelabel2;
 }
@@ -99,7 +99,7 @@
 - (XYHNumbersLabel *)tipContentlabel2 {
     if (!_tipContentlabel2) {
         _tipContentlabel2 = [[XYHNumbersLabel alloc] initWithFrame:CGRectMake(K375(16), CGRectGetMaxY(self.tipNamelabel2.frame) + 10, kScreen_Width - K375(64), 0) font:kFont(15)];
-        _tipContentlabel2.textColor = kTipColor;
+        _tipContentlabel2.textColor = kGray500;
         [_tipContentlabel2 setText:LocalizedString(@"WeSuggestContent") alignment:NSTextAlignmentLeft];
     }
     return _tipContentlabel2;
@@ -107,10 +107,10 @@
 
 - (XXButton *)laterBtn {
     if (!_laterBtn) {
-        _laterBtn = [XXButton buttonWithFrame:CGRectMake(K375(16), kScreen_Height - kBtnHeight - 24, kScreen_Width/2 - K375(40)/2, kBtnHeight) title:LocalizedString(@"BackupLater") font:kFont(17) titleColor:kBlue100 block:^(UIButton *button) {
+        _laterBtn = [XXButton buttonWithFrame:CGRectMake(K375(16), kScreen_Height - kBtnHeight - 24, kScreen_Width/2 - K375(40)/2, kBtnHeight) title:LocalizedString(@"BackupLater") font:kFont(17) titleColor:kPrimaryMain block:^(UIButton *button) {
             KWindow.rootViewController = [[XXTabBarController alloc] init];
         }];
-        _laterBtn.backgroundColor = kBlue20;
+        _laterBtn.backgroundColor = kGray200;
         _laterBtn.layer.cornerRadius = kBtnBorderRadius;
         _laterBtn.layer.masksToBounds = YES;
     }
@@ -120,14 +120,14 @@
 - (XXButton *)immediatelyBtn {
     if (!_immediatelyBtn) {
         MJWeakSelf
-        _immediatelyBtn = [XXButton buttonWithFrame:CGRectMake(kScreen_Width/2 + 4, kScreen_Height - kBtnHeight - 24, kScreen_Width/2 - K375(40)/2, kBtnHeight) title:LocalizedString(@"BackupImmediately") font:kFont(17) titleColor:kWhite100 block:^(UIButton *button) {
+        _immediatelyBtn = [XXButton buttonWithFrame:CGRectMake(kScreen_Width/2 + 4, kScreen_Height - kBtnHeight - 24, kScreen_Width/2 - K375(40)/2, kBtnHeight) title:LocalizedString(@"BackupImmediately") font:kFont(17) titleColor:kWhiteColor block:^(UIButton *button) {
             [XXScreenShotAlert showWithSureBlock:^{
                 XXBackupMnemonicPhraseVC *backupVC = [[XXBackupMnemonicPhraseVC alloc] init];
                 backupVC.text = weakSelf.text;
                 [weakSelf.navigationController pushViewController:backupVC animated:YES];
             }];
         }];
-        _immediatelyBtn.backgroundColor = kBlue100;
+        _immediatelyBtn.backgroundColor = kPrimaryMain;
         _immediatelyBtn.layer.cornerRadius = kBtnBorderRadius;
         _immediatelyBtn.layer.masksToBounds = YES;
     }

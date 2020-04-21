@@ -144,6 +144,8 @@
 		EAA8DED5244D9B8F00161698 /* BHChooseLanguageVC.m in Sources */ = {isa = PBXBuildFile; fileRef = EAE40484211C49F800FFD028 /* BHChooseLanguageVC.m */; };
 		EAA8DED6244D9B8F00161698 /* BHChooseLanguageCell.m in Sources */ = {isa = PBXBuildFile; fileRef = EA51B5ED2123DE5F0041FA72 /* BHChooseLanguageCell.m */; };
 		EAA8DED7244D9B8F00161698 /* BHChooseLanguageModel.m in Sources */ = {isa = PBXBuildFile; fileRef = EA51B5F02123FA270041FA72 /* BHChooseLanguageModel.m */; };
+		EAA8DEDA244DE1DE00161698 /* XXImportWayView.m in Sources */ = {isa = PBXBuildFile; fileRef = EAA8DED9244DE1DE00161698 /* XXImportWayView.m */; };
+		EAA8DEDD244EC62900161698 /* XXServiceContentView.m in Sources */ = {isa = PBXBuildFile; fileRef = EAA8DEDC244EC62900161698 /* XXServiceContentView.m */; };
 		EAB356302438369200D750D6 /* FMDatabaseQueue.m in Sources */ = {isa = PBXBuildFile; fileRef = EAB356262438369200D750D6 /* FMDatabaseQueue.m */; };
 		EAB356312438369200D750D6 /* FMDatabaseAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = EAB356292438369200D750D6 /* FMDatabaseAdditions.m */; };
 		EAB356322438369200D750D6 /* FMDatabase.m in Sources */ = {isa = PBXBuildFile; fileRef = EAB3562A2438369200D750D6 /* FMDatabase.m */; };
@@ -543,6 +545,10 @@
 		EAA8DECF244D81CE00161698 /* XXAccountCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XXAccountCell.h; sourceTree = "<group>"; };
 		EAA8DED2244D99C900161698 /* XXRatesListVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XXRatesListVC.h; sourceTree = "<group>"; };
 		EAA8DED3244D99C900161698 /* XXRatesListVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XXRatesListVC.m; sourceTree = "<group>"; };
+		EAA8DED8244DE1DE00161698 /* XXImportWayView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = XXImportWayView.h; sourceTree = "<group>"; };
+		EAA8DED9244DE1DE00161698 /* XXImportWayView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = XXImportWayView.m; sourceTree = "<group>"; };
+		EAA8DEDB244EC62900161698 /* XXServiceContentView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = XXServiceContentView.h; sourceTree = "<group>"; };
+		EAA8DEDC244EC62900161698 /* XXServiceContentView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = XXServiceContentView.m; sourceTree = "<group>"; };
 		EAB356252438369200D750D6 /* FMDatabase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FMDatabase.h; sourceTree = "<group>"; };
 		EAB356262438369200D750D6 /* FMDatabaseQueue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FMDatabaseQueue.m; sourceTree = "<group>"; };
 		EAB356272438369200D750D6 /* FMResultSet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FMResultSet.h; sourceTree = "<group>"; };
@@ -1010,6 +1016,8 @@
 				EA20EAC424261661004EBD7F /* XXSecurityAlertView.m */,
 				EA20EAC02425FBC8004EBD7F /* XXServiceAgreementVC.h */,
 				EA20EAC12425FBC8004EBD7F /* XXServiceAgreementVC.m */,
+				EAA8DEDB244EC62900161698 /* XXServiceContentView.h */,
+				EAA8DEDC244EC62900161698 /* XXServiceContentView.m */,
 			);
 			path = CreateWallet;
 			sourceTree = "<group>";
@@ -1620,6 +1628,8 @@
 				EA35A5062421FC7D00ADF621 /* XXImportPrivateKeyVC.m */,
 				EA15E9582416702C00A3E14A /* XXMnemonicBtn.h */,
 				EA15E9592416702C00A3E14A /* XXMnemonicBtn.m */,
+				EAA8DED8244DE1DE00161698 /* XXImportWayView.h */,
+				EAA8DED9244DE1DE00161698 /* XXImportWayView.m */,
 			);
 			path = MnemonicPhrase;
 			sourceTree = "<group>";
@@ -2053,6 +2063,7 @@
 				7AC4D7F9234C808F00F5E5F8 /* XXButton.m in Sources */,
 				EABD1B82241BB25900B1A03A /* hmac.c in Sources */,
 				F31F7A4F20CF9693008B4403 /* MainTabBtn.m in Sources */,
+				EAA8DEDA244DE1DE00161698 /* XXImportWayView.m in Sources */,
 				EA15E95D24168F5600A3E14A /* XXVerifyMnemonicPhraseVC.m in Sources */,
 				EA04ABA9242D015B004403FF /* IQToolbar.m in Sources */,
 				EA04ABB2242D015B004403FF /* IQUIView+Hierarchy.m in Sources */,
@@ -2181,6 +2192,7 @@
 				EA20EAC524261661004EBD7F /* XXSecurityAlertView.m in Sources */,
 				EA3E593924441D950080B98F /* XXWithdrawFeeView.m in Sources */,
 				7A13E5222121B86D00B2B529 /* XCQrCodeTool.m in Sources */,
+				EAA8DEDD244EC62900161698 /* XXServiceContentView.m in Sources */,
 				EA3E592224441D160080B98F /* XXAddNewAssetVC.m in Sources */,
 				EA15E9732417CD4B00A3E14A /* XXCreateWalletVC.m in Sources */,
 				7AC4D72D234C808E00F5E5F8 /* XXTextField.m in Sources */,

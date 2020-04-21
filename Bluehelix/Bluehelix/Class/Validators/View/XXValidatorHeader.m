@@ -35,7 +35,7 @@
 
 - (XXLabel*)titleLabel{
     if (!_titleLabel) {
-        _titleLabel = [XXLabel labelWithFrame:CGRectZero text:LocalizedString(@"ValidatorTitle") font:kFontBold(30) textColor:kDark100 alignment:NSTextAlignmentLeft];
+        _titleLabel = [XXLabel labelWithFrame:CGRectZero text:LocalizedString(@"ValidatorTitle") font:kFontBold(30) textColor:kGray900 alignment:NSTextAlignmentLeft];
     }
     return _titleLabel;;
 }

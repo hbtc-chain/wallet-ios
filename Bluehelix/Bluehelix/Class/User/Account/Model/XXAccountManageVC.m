@@ -91,7 +91,7 @@
         [[XXSqliteManager sharedSqlite] deleteAccountByAddress:selectedAccount.address];
         [self.tableView reloadData];
     }];
-    deleteAction.backgroundColor = kBlue100;
+    deleteAction.backgroundColor = kPrimaryMain;
     return @[deleteAction];
 }
 
@@ -101,7 +101,7 @@
         _tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, kNavHeight, kScreen_Width, kScreen_Height - kNavHeight - 80) style:UITableViewStylePlain];
         _tableView.dataSource = self;
         _tableView.delegate = self;
-        _tableView.backgroundColor = kWhite100;
+        _tableView.backgroundColor = kWhiteColor;
         _tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
         if (@available(iOS 11.0, *)) {
             _tableView.contentInsetAdjustmentBehavior = UIScrollViewContentInsetAdjustmentNever;

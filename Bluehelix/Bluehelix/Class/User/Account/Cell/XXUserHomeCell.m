@@ -19,7 +19,7 @@
     self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
     if (self) {
         
-        self.backgroundColor = kWhite100;
+        self.backgroundColor = kWhiteColor;
       
         [self setupUI];
     }
@@ -37,7 +37,7 @@
 #pragma mark - || 懒加载
 - (XXLabel *)nameLabel {
     if (_nameLabel == nil) {
-        _nameLabel = [XXLabel labelWithFrame:CGRectMake(K375(16), 16, kScreen_Width - K375(50), 24) font:kFont16 textColor:kDark100];
+        _nameLabel = [XXLabel labelWithFrame:CGRectMake(K375(16), 16, kScreen_Width - K375(50), 24) font:kFont16 textColor:kGray900];
     }
     return _nameLabel;
 }

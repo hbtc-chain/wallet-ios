@@ -27,7 +27,7 @@
 }
 
 - (void)buildUI {
-    self.backgroundColor = kDark5;
+    self.backgroundColor = kGray50;
     [self addSubview:self.orderLabel];
     [self addSubview:self.titleLabel];
     [self addSubview:self.icon];
@@ -40,13 +40,13 @@
     self.icon.hidden = YES;
     self.userInteractionEnabled = YES;
     if (self.state == MnemonicBtnType_Normal) {
-        self.titleLabel.textColor = kDark100;
+        self.titleLabel.textColor = kGray900;
     } else if (self.state == MnemonicBtnType_Selected) {
-        self.titleLabel.textColor = kDark20;
+        self.titleLabel.textColor = kGray300;
         self.orderLabel.hidden = YES;
         self.userInteractionEnabled = NO;
     } else if (self.state == MnemonicBtnType_Wrong) {
-        self.titleLabel.textColor = kRed100;
+        self.titleLabel.textColor = kPriceFall;
         self.icon.hidden = NO;
     } else {
         
@@ -61,14 +61,14 @@
 
 - (XXLabel *)orderLabel {
     if (!_orderLabel) {
-        _orderLabel  = [XXLabel labelWithFrame:CGRectMake(5, 3, 100, 20) text:self.order font:kFont10 textColor:kDark80 alignment:NSTextAlignmentLeft];
+        _orderLabel  = [XXLabel labelWithFrame:CGRectMake(5, 3, 100, 20) text:self.order font:kFont10 textColor:kGray500 alignment:NSTextAlignmentLeft];
     }
     return _orderLabel;
 }
 
 - (XXLabel *)titleLabel {
     if (!_titleLabel) {
-        _titleLabel  = [XXLabel labelWithFrame:CGRectMake(0, self.height/7, self.width, self.height*5/7) text:self.dic[@"word"] font:kFont18 textColor:kDark100 alignment:NSTextAlignmentCenter];
+        _titleLabel  = [XXLabel labelWithFrame:CGRectMake(0, self.height/7, self.width, self.height*5/7) text:self.dic[@"word"] font:kFont18 textColor:kGray900 alignment:NSTextAlignmentCenter];
     }
     return _titleLabel;
 }

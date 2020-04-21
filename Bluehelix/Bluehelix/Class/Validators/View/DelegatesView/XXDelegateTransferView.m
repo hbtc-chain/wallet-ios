@@ -19,7 +19,7 @@
     self = [super initWithFrame:frame];
     if (self) {
         
-        self.backgroundColor = kWhite100;
+        self.backgroundColor = kWhiteColor;
         
         [self setupUI];
         [self loadData];
@@ -131,7 +131,7 @@
 - (UIView *)mainView {
     if (_mainView == nil) {
         _mainView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, kScreen_Width, 500)];
-        _mainView.backgroundColor = kWhite100;
+        _mainView.backgroundColor = kWhiteColor;
     }
     return _mainView;
 }

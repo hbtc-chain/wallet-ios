@@ -35,14 +35,14 @@
 
 - (XXLabel *)nameLabel {
     if (!_nameLabel) {
-        _nameLabel = [XXLabel labelWithFrame:CGRectMake(24, 12, kScreen_Width - 48, 24) text:@"" font:kFont13 textColor:kTipColor];
+        _nameLabel = [XXLabel labelWithFrame:CGRectMake(24, 12, kScreen_Width - 48, 24) text:@"" font:kFont13 textColor:kGray500];
     }
     return _nameLabel;
 }
 
 - (XXLabel *)valueLabel {
     if (!_valueLabel) {
-        _valueLabel = [XXLabel labelWithFrame:CGRectMake(24, CGRectGetMaxY(self.nameLabel.frame), kScreen_Width - 48, 24) text:@"" font:kFont13 textColor:kDark100];
+        _valueLabel = [XXLabel labelWithFrame:CGRectMake(24, CGRectGetMaxY(self.nameLabel.frame), kScreen_Width - 48, 24) text:@"" font:kFont13 textColor:kGray900];
     }
     return _valueLabel;
 }

@@ -61,12 +61,12 @@
 }
 
 - (void)textFiledValueChange:(UITextField *)textField {
-    self.rule1.textColor = [self isValidPasswordString:1] ? kTipColor : kRed100;
-    self.rule2.textColor = [self isValidPasswordString:2] ? kTipColor : kRed100;
-    self.rule3.textColor = [self isValidPasswordString:3] ? kTipColor : kRed100;
-    self.rule4.textColor = [self isValidPasswordString:4] ? kTipColor : kRed100;
-    self.ruleTip.textColor = textField.text.length ? kTipColor : kRed100;
-    self.createBtn.backgroundColor =  [self isValidPasswordString:0] ? kBlue100 : kBtnNotEnableColor;
+    self.rule1.textColor = [self isValidPasswordString:1] ? kGray500 : kPriceFall;
+    self.rule2.textColor = [self isValidPasswordString:2] ? kGray500 : kPriceFall;
+    self.rule3.textColor = [self isValidPasswordString:3] ? kGray500 : kPriceFall;
+    self.rule4.textColor = [self isValidPasswordString:4] ? kGray500 : kPriceFall;
+    self.ruleTip.textColor = textField.text.length ? kGray500 : kPriceFall;
+    self.createBtn.backgroundColor =  [self isValidPasswordString:0] ? kPrimaryMain : kBtnNotEnableColor;
     self.createBtn.enabled = [self isValidPasswordString:0];
     if (textField.text.length) {
         self.charCountLabel.text = NSLocalizedFormatString(LocalizedString(@"CharCount"),[NSString stringWithFormat:@"%lu",(unsigned long)textField.text.length]);
@@ -131,14 +131,14 @@
 - (XXLabel *)tipLabel {
     if (!_tipLabel) {
         CGFloat width = [NSString widthWithText:LocalizedString(@"SetPassword") font:kFontBold(26)];
-        _tipLabel = [XXLabel labelWithFrame:CGRectMake(K375(16), kNavHeight, width, 40) text:LocalizedString(@"SetPassword") font:kFontBold(26) textColor:kDark100 alignment:NSTextAlignmentLeft];
+        _tipLabel = [XXLabel labelWithFrame:CGRectMake(K375(16), kNavHeight, width, 40) text:LocalizedString(@"SetPassword") font:kFontBold(26) textColor:kGray900 alignment:NSTextAlignmentLeft];
     }
     return _tipLabel;
 }
 
 - (XXLabel *)stepTipLabel {
     if (!_stepTipLabel) {
-        _stepTipLabel = [XXLabel labelWithFrame:CGRectMake(CGRectGetMaxX(self.tipLabel.frame) + 5, kNavHeight + 15, kScreen_Width - K375(32) - self.tipLabel.width, 20) text:LocalizedString(@"Step2") font:kFont12 textColor:kDark50 alignment:NSTextAlignmentLeft];
+        _stepTipLabel = [XXLabel labelWithFrame:CGRectMake(CGRectGetMaxX(self.tipLabel.frame) + 5, kNavHeight + 15, kScreen_Width - K375(32) - self.tipLabel.width, 20) text:LocalizedString(@"Step2") font:kFont12 textColor:kGray500 alignment:NSTextAlignmentLeft];
     }
     return _stepTipLabel;
 }
@@ -146,7 +146,7 @@
 - (XYHNumbersLabel *)contentLabel {
     if (!_contentLabel) {
         _contentLabel = [[XYHNumbersLabel alloc] initWithFrame:CGRectMake(K375(16), CGRectGetMaxY(self.tipLabel.frame) + 10, kScreen_Width - K375(32), 0) font:kFont(15)];
-        _contentLabel.textColor = kTipColor;
+        _contentLabel.textColor = kGray500;
         [_contentLabel setText:LocalizedString(@"SetPasswordTip") alignment:NSTextAlignmentLeft];
     }
     return _contentLabel;
@@ -154,7 +154,7 @@
 
 - (XXLabel *)nameLabel {
     if (!_nameLabel) {
-        _nameLabel = [XXLabel labelWithFrame:CGRectMake(K375(16), CGRectGetMaxY(self.contentLabel.frame) + 6, kScreen_Width - K375(32), 40) text:LocalizedString(@"WalletPassword") font:kFont15 textColor:kTipColor alignment:NSTextAlignmentLeft];
+        _nameLabel = [XXLabel labelWithFrame:CGRectMake(K375(16), CGRectGetMaxY(self.contentLabel.frame) + 6, kScreen_Width - K375(32), 40) text:LocalizedString(@"WalletPassword") font:kFont15 textColor:kGray500 alignment:NSTextAlignmentLeft];
     }
     return _nameLabel;
 }
@@ -172,7 +172,7 @@
 
 - (XXLabel *)charCountLabel {
     if (!_charCountLabel) {
-        _charCountLabel = [XXLabel labelWithFrame:CGRectMake(K375(16), CGRectGetMaxY(self.textFieldView.frame)+3, kScreen_Width - K375(32), 20) text:@"" font:kFont(15) textColor:kTipColor alignment:NSTextAlignmentRight];
+        _charCountLabel = [XXLabel labelWithFrame:CGRectMake(K375(16), CGRectGetMaxY(self.textFieldView.frame)+3, kScreen_Width - K375(32), 20) text:@"" font:kFont(15) textColor:kGray500 alignment:NSTextAlignmentRight];
     }
     return _charCountLabel;
 }
@@ -180,7 +180,7 @@
 - (XXLabel *)ruleTip {
     if (!_ruleTip) {
         CGFloat height = [NSString heightWithText:LocalizedString(@"RuleTip") font:kFont(15) width:kScreen_Width - K375(32)];
-        _ruleTip = [XXLabel labelWithFrame:CGRectMake(K375(16), CGRectGetMaxY(self.charCountLabel.frame), kScreen_Width - K375(32), height) text:LocalizedString(@"RuleTip") font:kFont(15) textColor:kRed100 alignment:NSTextAlignmentLeft];
+        _ruleTip = [XXLabel labelWithFrame:CGRectMake(K375(16), CGRectGetMaxY(self.charCountLabel.frame), kScreen_Width - K375(32), height) text:LocalizedString(@"RuleTip") font:kFont(15) textColor:kPriceFall alignment:NSTextAlignmentLeft];
         _ruleTip.numberOfLines = 0;
     }
     return _ruleTip;
@@ -189,7 +189,7 @@
 - (XXLabel *)rule1 {
     if (!_rule1) {
         CGFloat height = [NSString heightWithText:LocalizedString(@"RuleTip1") font:kFont(15) width:kScreen_Width - K375(32)];
-        _rule1 = [XXLabel labelWithFrame:CGRectMake(K375(16), CGRectGetMaxY(self.ruleTip.frame) + 10, kScreen_Width - K375(32), height) text:LocalizedString(@"RuleTip1") font:kFont(15) textColor:kRed100 alignment:NSTextAlignmentLeft];
+        _rule1 = [XXLabel labelWithFrame:CGRectMake(K375(16), CGRectGetMaxY(self.ruleTip.frame) + 10, kScreen_Width - K375(32), height) text:LocalizedString(@"RuleTip1") font:kFont(15) textColor:kPriceFall alignment:NSTextAlignmentLeft];
         _rule1.numberOfLines = 0;
     }
     return _rule1;
@@ -198,7 +198,7 @@
 - (XXLabel *)rule2 {
     if (!_rule2) {
         CGFloat height = [NSString heightWithText:LocalizedString(@"RuleTip2") font:kFont(15) width:kScreen_Width - K375(32)];
-        _rule2 = [XXLabel labelWithFrame:CGRectMake(K375(16), CGRectGetMaxY(self.rule1.frame) + 10, kScreen_Width - K375(32), height) text:LocalizedString(@"RuleTip2") font:kFont(15) textColor:kRed100 alignment:NSTextAlignmentLeft];
+        _rule2 = [XXLabel labelWithFrame:CGRectMake(K375(16), CGRectGetMaxY(self.rule1.frame) + 10, kScreen_Width - K375(32), height) text:LocalizedString(@"RuleTip2") font:kFont(15) textColor:kPriceFall alignment:NSTextAlignmentLeft];
         _rule2.numberOfLines = 0;
     }
     return _rule2;
@@ -207,7 +207,7 @@
 - (XXLabel *)rule3 {
     if (!_rule3) {
         CGFloat height = [NSString heightWithText:LocalizedString(@"RuleTip3") font:kFont(15) width:kScreen_Width - K375(32)];
-        _rule3 = [XXLabel labelWithFrame:CGRectMake(K375(16), CGRectGetMaxY(self.rule2.frame) + 10, kScreen_Width - K375(32), height) text:LocalizedString(@"RuleTip3") font:kFont(15) textColor:kRed100 alignment:NSTextAlignmentLeft];
+        _rule3 = [XXLabel labelWithFrame:CGRectMake(K375(16), CGRectGetMaxY(self.rule2.frame) + 10, kScreen_Width - K375(32), height) text:LocalizedString(@"RuleTip3") font:kFont(15) textColor:kPriceFall alignment:NSTextAlignmentLeft];
         _rule3.numberOfLines = 0;
     }
     return _rule3;
@@ -216,7 +216,7 @@
 - (XXLabel *)rule4 {
     if (!_rule4) {
         CGFloat height = [NSString heightWithText:LocalizedString(@"RuleTip4") font:kFont(15) width:kScreen_Width - K375(32)];
-        _rule4 = [XXLabel labelWithFrame:CGRectMake(K375(16), CGRectGetMaxY(self.rule3.frame) + 10, kScreen_Width - K375(32), height) text:LocalizedString(@"RuleTip4") font:kFont(15) textColor:kRed100 alignment:NSTextAlignmentLeft];
+        _rule4 = [XXLabel labelWithFrame:CGRectMake(K375(16), CGRectGetMaxY(self.rule3.frame) + 10, kScreen_Width - K375(32), height) text:LocalizedString(@"RuleTip4") font:kFont(15) textColor:kPriceFall alignment:NSTextAlignmentLeft];
         _rule4.numberOfLines = 0;
     }
     return _rule4;
@@ -225,7 +225,7 @@
 - (XXButton *)createBtn {
     if (!_createBtn) {
         MJWeakSelf
-        _createBtn = [XXButton buttonWithFrame:CGRectMake(K375(16), CGRectGetMaxY(self.rule4.frame) + 24, kScreen_Width - K375(32), kBtnHeight) title:LocalizedString(@"NextStep") font:kFontBold18 titleColor:kWhite100 block:^(UIButton *button) {
+        _createBtn = [XXButton buttonWithFrame:CGRectMake(K375(16), CGRectGetMaxY(self.rule4.frame) + 24, kScreen_Width - K375(32), kBtnHeight) title:LocalizedString(@"NextStep") font:kFontBold18 titleColor:kWhiteColor block:^(UIButton *button) {
             [weakSelf nextStepAction];
         }];
         _createBtn.backgroundColor = kBtnNotEnableColor;

@@ -54,7 +54,7 @@
     [super viewDidLoad];
     
 //    [KSystem statusBarSetUpDefault];
-    self.view.backgroundColor = kWhite100;
+    self.view.backgroundColor = kWhiteColor;
     
     
     // 2. 初始化子试图控制器
@@ -88,7 +88,7 @@
 - (void)addItems {
     
     // 1. 创建版视图
-    self.tabBar.backgroundImage = [UIImage createImageWithColor:kWhite100];
+    self.tabBar.backgroundImage = [UIImage createImageWithColor:kWhiteColor];
     [self.tabBar addSubview:self.mainView];
     
     // 2. 创建分类按钮
@@ -105,8 +105,8 @@
         [mainBtn setTitle:dict[@"title"] forState:UIControlStateNormal];
         [mainBtn setImage:dict[@"normalImage"] forState:UIControlStateNormal];
         [mainBtn setImage:dict[@"selectedImage"] forState:UIControlStateSelected];
-        [mainBtn setTitleColor:kDark100 forState:UIControlStateNormal];
-        [mainBtn setTitleColor:kBlue100 forState:UIControlStateSelected];
+        [mainBtn setTitleColor:kGray900 forState:UIControlStateNormal];
+        [mainBtn setTitleColor:kPrimaryMain forState:UIControlStateSelected];
         mainBtn.tag = i;
         [mainBtn addTarget:self action:@selector(clickMainBtn:) forControlEvents:UIControlEventTouchUpInside];
         [self.mainView addSubview:mainBtn];
@@ -138,10 +138,10 @@
     if (_mainView == nil) {
         NSInteger mainViewHeight = BH_IS_IPHONE_X ? 83 : 59;
         _mainView = [[UIView alloc] initWithFrame:CGRectMake(0, -1, kScreen_Width, mainViewHeight)];
-        _mainView.backgroundColor = kWhite100;
+        _mainView.backgroundColor = kWhiteColor;
         
         UIView *lineView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, kScreen_Width, 1)];
-        lineView.backgroundColor = kDark10;
+        lineView.backgroundColor = kGray100;
         [_mainView addSubview:lineView];
 
     }

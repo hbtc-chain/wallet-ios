@@ -26,7 +26,7 @@
     self = [super initWithFrame:frame];
     if (self) {
         
-        self.backgroundColor = kWhite100;
+        self.backgroundColor = kWhiteColor;
         [self addSubview:self.iconImageView];
         [self addSubview:self.msgLabel];
         [self addSubview:self.reloadLabel];
@@ -44,7 +44,7 @@
 
 - (XXLabel *)msgLabel {
     if (_msgLabel == nil) {
-        _msgLabel = [XXLabel labelWithFrame:CGRectMake(K375(24), CGRectGetMaxY(self.iconImageView.frame) + 10, kScreen_Width - K375(48),24) font:kFont14 textColor:kDark50];
+        _msgLabel = [XXLabel labelWithFrame:CGRectMake(K375(24), CGRectGetMaxY(self.iconImageView.frame) + 10, kScreen_Width - K375(48),24) font:kFont14 textColor:kGray500];
         _msgLabel.textAlignment = NSTextAlignmentCenter;
     }
     return _msgLabel;
@@ -54,7 +54,7 @@
     if (_reloadLabel == nil) {
         MJWeakSelf
         _reloadLabel =  [[XYHNumbersLabel alloc] initWithFrame:CGRectMake(32, CGRectGetMaxY(self.msgLabel.frame), self.width -  64, 40) font:kFontBold14];
-        _reloadLabel.textColor = kBlue100;
+        _reloadLabel.textColor = kPrimaryMain;
         [_reloadLabel setText:LocalizedString(@"ReloadData") alignment:NSTextAlignmentCenter];
         _reloadLabel.height = _reloadLabel.height + 30;
         _reloadLabel.userInteractionEnabled = YES;

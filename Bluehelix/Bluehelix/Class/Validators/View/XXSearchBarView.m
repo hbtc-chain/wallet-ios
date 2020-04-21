@@ -51,10 +51,10 @@
         _searchTextField.returnKeyType = UIReturnKeySearch;
         _searchTextField.autocorrectionType = UITextAutocorrectionTypeNo;
         _searchTextField.autocapitalizationType = UITextAutocapitalizationTypeNone;
-        _searchTextField.textColor = kDark100;
+        _searchTextField.textColor = kGray900;
         _searchTextField.font = kFontBold18;
         _searchTextField.placeholder = LocalizedString(@"EnterTokenNameSearch");
-        _searchTextField.placeholderColor = kTipColor;
+        _searchTextField.placeholderColor = kGray500;
         _searchTextField.placeholderFont = kFont(15);
 //        _searchTextField.backgroundColor = kFieldBackColor;
     }

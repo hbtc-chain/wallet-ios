@@ -93,7 +93,7 @@
 - (void)textFiledValueChange:(UITextField *)textField {
     if (textField.text.length && self.isAgreeButton.isSelected) {
         self.createBtn.enabled = YES;
-        self.createBtn.backgroundColor = kBlue100;
+        self.createBtn.backgroundColor = kPrimaryMain;
     } else {
         self.createBtn.enabled = NO;
         self.createBtn.backgroundColor = kBtnNotEnableColor;
@@ -108,14 +108,14 @@
 - (XXLabel *)tipLabel {
     if (!_tipLabel) {
         CGFloat width = [NSString widthWithText:LocalizedString(@"RepeatPassword") font:kFontBold(26)];
-        _tipLabel = [XXLabel labelWithFrame:CGRectMake(K375(16), kNavHeight, width, 40) text:LocalizedString(@"RepeatPassword") font:kFontBold(26) textColor:kDark100 alignment:NSTextAlignmentLeft];
+        _tipLabel = [XXLabel labelWithFrame:CGRectMake(K375(16), kNavHeight, width, 40) text:LocalizedString(@"RepeatPassword") font:kFontBold(26) textColor:kGray900 alignment:NSTextAlignmentLeft];
     }
     return _tipLabel;
 }
 
 - (XXLabel *)stepTipLabel {
     if (!_stepTipLabel) {
-        _stepTipLabel = [XXLabel labelWithFrame:CGRectMake(CGRectGetMaxX(self.tipLabel.frame) + 5, kNavHeight + 15, kScreen_Width - K375(32) - self.tipLabel.width, 20) text:LocalizedString(@"Step3") font:kFont12 textColor:kDark50 alignment:NSTextAlignmentLeft];
+        _stepTipLabel = [XXLabel labelWithFrame:CGRectMake(CGRectGetMaxX(self.tipLabel.frame) + 5, kNavHeight + 15, kScreen_Width - K375(32) - self.tipLabel.width, 20) text:LocalizedString(@"Step3") font:kFont12 textColor:kGray500 alignment:NSTextAlignmentLeft];
     }
     return _stepTipLabel;
 }
@@ -123,7 +123,7 @@
 - (XYHNumbersLabel *)contentLabel {
     if (!_contentLabel) {
         _contentLabel = [[XYHNumbersLabel alloc] initWithFrame:CGRectMake(K375(16), CGRectGetMaxY(self.tipLabel.frame) + 10, kScreen_Width - K375(32), 0) font:kFont(15)];
-        _contentLabel.textColor = kTipColor;
+        _contentLabel.textColor = kGray500;
         [_contentLabel setText:LocalizedString(@"SetPasswordTip") alignment:NSTextAlignmentLeft];
     }
     return _contentLabel;
@@ -131,7 +131,7 @@
 
 - (XXLabel *)nameLabel {
     if (!_nameLabel) {
-        _nameLabel = [XXLabel labelWithFrame:CGRectMake(K375(16), CGRectGetMaxY(self.contentLabel.frame) + 6, kScreen_Width - K375(32), 40) text:LocalizedString(@"RepeatPassword") font:kFont15 textColor:kTipColor alignment:NSTextAlignmentLeft];
+        _nameLabel = [XXLabel labelWithFrame:CGRectMake(K375(16), CGRectGetMaxY(self.contentLabel.frame) + 6, kScreen_Width - K375(32), 40) text:LocalizedString(@"RepeatPassword") font:kFont15 textColor:kGray500 alignment:NSTextAlignmentLeft];
     }
     return _nameLabel;
 }
@@ -148,7 +148,7 @@
 
 - (XXLabel *)charCountLabel {
     if (!_charCountLabel) {
-        _charCountLabel = [XXLabel labelWithFrame:CGRectMake(K375(16), CGRectGetMaxY(self.textFieldView.frame)+3, kScreen_Width - K375(32), 20) text:@"" font:kFont(15) textColor:kTipColor alignment:NSTextAlignmentRight];
+        _charCountLabel = [XXLabel labelWithFrame:CGRectMake(K375(16), CGRectGetMaxY(self.textFieldView.frame)+3, kScreen_Width - K375(32), 20) text:@"" font:kFont(15) textColor:kGray500 alignment:NSTextAlignmentRight];
     }
     return _charCountLabel;
 }
@@ -160,7 +160,7 @@
             weakSelf.isAgreeButton.selected = !weakSelf.isAgreeButton.selected;
             if (weakSelf.isAgreeButton.selected && weakSelf.textFieldView.textField.text.length) {
                 weakSelf.createBtn.enabled = YES;
-                weakSelf.createBtn.backgroundColor = kBlue100;
+                weakSelf.createBtn.backgroundColor = kPrimaryMain;
             } else {
                 weakSelf.createBtn.enabled = NO;
                 weakSelf.createBtn.backgroundColor = kBtnNotEnableColor;
@@ -188,9 +188,9 @@
 - (UITextView *)textView {
     if (_textView == nil) {
         _textView = [[UITextView alloc] initWithFrame:CGRectMake(CGRectGetMaxX(self.isAgreeButton.frame) - 5, self.isAgreeButton.top, K375(280), self.isAgreeButton.height)];
-        _textView.backgroundColor = kWhite100;
+        _textView.backgroundColor = kWhiteColor;
         _textView.font = kFont12;
-        _textView.textColor = kDark80;
+        _textView.textColor = kGray700;
         _textView.delegate  = self;
         _textView.editable  = NO;
         _textView.scrollEnabled = NO;
@@ -201,9 +201,9 @@
                                  value:@"fwxy://"
                                  range:[[attributedString string] rangeOfString:fwxy]];
         [attributedString addAttribute:NSFontAttributeName value:kFont14 range:NSMakeRange(0, attributedString.length)];
-        [attributedString addAttribute:NSForegroundColorAttributeName value:kDark100 range:NSMakeRange(0, attributedString.length)];
+        [attributedString addAttribute:NSForegroundColorAttributeName value:kGray900 range:NSMakeRange(0, attributedString.length)];
         _textView.attributedText = attributedString;
-        _textView.linkTextAttributes = @{NSForegroundColorAttributeName:kBlue100};
+        _textView.linkTextAttributes = @{NSForegroundColorAttributeName:kPrimaryMain};
     }
     return _textView;
 }
@@ -211,7 +211,7 @@
 - (XXButton *)createBtn {
     if (!_createBtn) {
         MJWeakSelf
-        _createBtn = [XXButton buttonWithFrame:CGRectMake(K375(16), CGRectGetMaxY(self.textView.frame) + 24, kScreen_Width - K375(32), kBtnHeight) title:LocalizedString(@"StartCreate") font:kFontBold18 titleColor:kWhite100 block:^(UIButton *button) {
+        _createBtn = [XXButton buttonWithFrame:CGRectMake(K375(16), CGRectGetMaxY(self.textView.frame) + 24, kScreen_Width - K375(32), kBtnHeight) title:LocalizedString(@"StartCreate") font:kFontBold18 titleColor:kWhiteColor block:^(UIButton *button) {
             [weakSelf createAction];
         }];
         _createBtn.backgroundColor = kBtnNotEnableColor;

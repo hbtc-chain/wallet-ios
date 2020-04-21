@@ -17,7 +17,7 @@
     self = [super initWithFrame:frame];
     if (self) {
         
-        self.backgroundColor = kWhite100;
+        self.backgroundColor = kWhiteColor;
         
         [self addSubview:self.nameLabel];
         
@@ -59,8 +59,8 @@
     _currentlyAvailable = currentlyAvailable;
     
     NSMutableArray *itemsArray = [NSMutableArray array]; // 可用
-    itemsArray[0] = @{@"string":[NSString stringWithFormat:@"%@ : ", LocalizedString(@"CurrentlyAvailable")], @"color":kDark50, @"font":kFont12};
-    itemsArray[1] = @{@"string":[NSString stringWithFormat:@"%@ %@", currentlyAvailable, KString(self.tokenName)], @"color":kDark80, @"font":kFontBold12};
+    itemsArray[0] = @{@"string":[NSString stringWithFormat:@"%@ : ", LocalizedString(@"CurrentlyAvailable")], @"color":kGray500, @"font":kFont12};
+    itemsArray[1] = @{@"string":[NSString stringWithFormat:@"%@ %@", currentlyAvailable, KString(self.tokenName)], @"color":kGray500, @"font":kFontBold12};
     self.subLabel.attributedText = [NSString mergeStrings:itemsArray];
 }
 
@@ -82,7 +82,7 @@
 /** 字标签 */
 - (XXLabel *)subLabel {
     if (_subLabel == nil) {
-        _subLabel = [XXLabel labelWithFrame:self.nameLabel.frame font:kFont14 textColor:kDark50];
+        _subLabel = [XXLabel labelWithFrame:self.nameLabel.frame font:kFont14 textColor:kGray500];
         _subLabel.textAlignment = NSTextAlignmentRight;
     }
     return _subLabel;
@@ -103,7 +103,7 @@
         MJWeakSelf
         NSString *titleString = LocalizedString(@"TransferAll");
         CGFloat btnWidth = [NSString widthWithText:titleString font:kFont14] + 16;
-        _allButton = [XXButton buttonWithFrame:CGRectMake(self.banView.width - btnWidth, 0, btnWidth, self.banView.height) title:titleString font:kFont14 titleColor:kBlue100 block:^(UIButton *button) {
+        _allButton = [XXButton buttonWithFrame:CGRectMake(self.banView.width - btnWidth, 0, btnWidth, self.banView.height) title:titleString font:kFont14 titleColor:kPrimaryMain block:^(UIButton *button) {
             [weakSelf allButtonClick:button];
             if (self.allButtonActionBlock) {
                 self.allButtonActionBlock();
@@ -117,11 +117,11 @@
 - (XXFloadtTextField *)textField {
     if (_textField == nil) {
         _textField = [[XXFloadtTextField alloc] initWithFrame:CGRectMake(K375(8), 0, self.banView.width - K375(8) - self.allButton.width, self.banView.height)];
-        _textField.textColor = kDark100;
+        _textField.textColor = kGray900;
         _textField.font = kFont14;
         _textField.isPrecision = NO;
         [_textField addTarget:self action:@selector(textFieldChanged:) forControlEvents:UIControlEventEditingChanged];
-        _textField.placeholderColor = kTipColor;
+        _textField.placeholderColor = kGray500;
         _textField.placeholder = LocalizedString(@"PleaseEnterAmount");
     }
     return _textField;

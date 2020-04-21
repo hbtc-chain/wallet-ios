@@ -120,7 +120,7 @@
 - (UIView *)contentView {
     if (_contentView == nil) {
         _contentView = [[UIView alloc] initWithFrame:CGRectMake((kScreen_Width - K375(280))/2, (self.height - K375(184))/2, K375(280), K375(184))];
-        _contentView.backgroundColor = kWhite100;
+        _contentView.backgroundColor = kWhiteColor;
         _contentView.layer.cornerRadius = 6;
         _contentView.layer.masksToBounds = YES;
     }
@@ -129,7 +129,7 @@
 
 - (XXLabel *)titleLabel {
     if (_titleLabel == nil) {
-        _titleLabel = [XXLabel labelWithFrame:CGRectMake(0, K375(16), self.contentView.width, K375(24)) text:LocalizedString(@"SecurityTip") font:kFontBold20 textColor:kDark100 alignment:NSTextAlignmentCenter];
+        _titleLabel = [XXLabel labelWithFrame:CGRectMake(0, K375(16), self.contentView.width, K375(24)) text:LocalizedString(@"SecurityTip") font:kFontBold20 textColor:kGray900 alignment:NSTextAlignmentCenter];
     }
     return _titleLabel;
 }
@@ -153,7 +153,7 @@
         }];
         _okButton.layer.cornerRadius = kBtnBorderRadius;
         _okButton.layer.masksToBounds = YES;
-        _okButton.backgroundColor = kBlue100;
+        _okButton.backgroundColor = kPrimaryMain;
 //        _okButton.enabled = NO;
     }
     return _okButton;
@@ -167,7 +167,7 @@
         }];
         _cancelButton.layer.cornerRadius = kBtnBorderRadius;
         _cancelButton.layer.masksToBounds = YES;
-        _cancelButton.backgroundColor = kBlue20;
+        _cancelButton.backgroundColor = kGray200;
     }
     return _cancelButton;
 }

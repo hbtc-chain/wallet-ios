@@ -49,7 +49,7 @@
 - (XYHNumbersLabel *)alertLabel {
     if (_alertLabel == nil) {
         _alertLabel = [[XYHNumbersLabel alloc] initWithFrame:CGRectMake(KSpacing, 10, kScreen_Width - KSpacing*2, 20) font:kFont14];
-        _alertLabel.textColor = kDark50;
+        _alertLabel.textColor = kGray500;
     }
     return _alertLabel;
 }
