@@ -89,6 +89,22 @@
            msg[@"type"] = kMsgWithdrawal;
            msg[@"value"] = value;
            [msgs addObject:msg];
+    } else if ([_type isEqualToString:kMsgDelegate] || [_type isEqualToString:kMsgUndelegate]){
+        NSMutableDictionary *amount = [NSMutableDictionary dictionary];
+        amount[@"amount"] = _amount;
+        amount[@"denom"] = _denom;
+//        NSMutableArray *amounts = [NSMutableArray array];
+//        [amounts addObject:amount];
+        
+        NSMutableDictionary *value = [NSMutableDictionary dictionary];
+        value[@"amount"] = amount;
+        value[@"delegator_address"] = _fromAddress;
+        value[@"validator_address"] = _toAddress;
+        
+        NSMutableDictionary *msg = [NSMutableDictionary dictionary];
+        msg[@"type"] = _type;
+        msg[@"value"] = value;
+        [msgs addObject:msg];
     }
     _msgs = msgs;
 }

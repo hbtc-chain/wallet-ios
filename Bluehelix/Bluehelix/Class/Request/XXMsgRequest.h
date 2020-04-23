@@ -10,9 +10,11 @@
 #import "XXMsg.h"
 
 NS_ASSUME_NONNULL_BEGIN
-
+typedef void(^XXMsgSendSuccessCallBlock)(void);
+typedef void(^XXMsgSendFailedCallBlock)(void);
 @interface XXMsgRequest : NSObject
-
+@property (nonatomic, copy) XXMsgSendSuccessCallBlock msgSendSuccessBlock;
+@property (nonatomic, copy) XXMsgSendFailedCallBlock msgSendFaildBlock;
 - (void)sendMsg:(XXMsg *)msg;
 
 @end

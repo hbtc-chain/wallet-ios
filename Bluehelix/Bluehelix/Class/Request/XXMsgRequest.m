@@ -168,11 +168,17 @@
     } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
         NSLog(@"%@",responseObject);
         if (!IsEmpty(responseObject[@"txhash"])) {
+            if (self.msgSendSuccessBlock) {
+                self.msgSendSuccessBlock();
+            }
             [[AppDelegate appDelegate].TopVC.navigationController popViewControllerAnimated:YES];
         } else {
             Alert *alert = [[Alert alloc] initWithTitle:@"失败" duration:kAlertDuration completion:^{
             }];
             [alert showAlert];
+            if (self.msgSendFaildBlock) {
+                self.msgSendFaildBlock();
+            }
         }
         //        NSString *raw_log = [responseObject objectForKey:@"raw_log"];
         //        if (!IsEmpty(raw_log)) {
@@ -186,6 +192,9 @@
         
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
         NSLog(@"%@ %@",task,error);
+        if (self.msgSendFaildBlock) {
+            self.msgSendFaildBlock();
+        }
         NSDictionary *dataDic = [error.userInfo[@"com.alamofire.serialization.response.error.data"] mj_JSONObject];
         NSLog(@"错误信息=%@", [dataDic mj_JSONString]);
         Alert *alert = [[Alert alloc] initWithTitle:dataDic[@"error"] duration:kAlertDuration completion:^{

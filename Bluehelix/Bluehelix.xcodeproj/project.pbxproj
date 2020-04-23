@@ -23,6 +23,7 @@
 		6CC12D0424456A3800917105 /* XXSearchBarView.m in Sources */ = {isa = PBXBuildFile; fileRef = 6CC12D0324456A3800917105 /* XXSearchBarView.m */; };
 		6CC12D072445849700917105 /* XXValidatorListModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 6CC12D062445849700917105 /* XXValidatorListModel.m */; };
 		6CC12D0A24459D1000917105 /* XXValidatorDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6CC12D0924459D1000917105 /* XXValidatorDetailViewController.m */; };
+		6CF3F0C82451809B00CC5780 /* XXHadDelegateModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 6CF3F0C72451809B00CC5780 /* XXHadDelegateModel.m */; };
 		7A13E5222121B86D00B2B529 /* XCQrCodeTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 7A13E5202121B86D00B2B529 /* XCQrCodeTool.m */; };
 		7A3298152320EE9900196336 /* NSArray+Safe.m in Sources */ = {isa = PBXBuildFile; fileRef = 7A3298102320EE9500196336 /* NSArray+Safe.m */; };
 		7A3298452320EE9900196336 /* NSMutableArray+Safe.m in Sources */ = {isa = PBXBuildFile; fileRef = 7A3298112320EE9600196336 /* NSMutableArray+Safe.m */; };
@@ -299,6 +300,8 @@
 		6CC12D062445849700917105 /* XXValidatorListModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = XXValidatorListModel.m; sourceTree = "<group>"; };
 		6CC12D0824459D1000917105 /* XXValidatorDetailViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = XXValidatorDetailViewController.h; sourceTree = "<group>"; };
 		6CC12D0924459D1000917105 /* XXValidatorDetailViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = XXValidatorDetailViewController.m; sourceTree = "<group>"; };
+		6CF3F0C62451809B00CC5780 /* XXHadDelegateModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = XXHadDelegateModel.h; sourceTree = "<group>"; };
+		6CF3F0C72451809B00CC5780 /* XXHadDelegateModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = XXHadDelegateModel.m; sourceTree = "<group>"; };
 		73F0445C8F5DFE135ED2F986 /* libPods-Bluehelix.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Bluehelix.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		7A13E5202121B86D00B2B529 /* XCQrCodeTool.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XCQrCodeTool.m; sourceTree = "<group>"; };
 		7A13E5212121B86D00B2B529 /* XCQrCodeTool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XCQrCodeTool.h; sourceTree = "<group>"; };
@@ -821,6 +824,8 @@
 			children = (
 				6CC12D052445849700917105 /* XXValidatorListModel.h */,
 				6CC12D062445849700917105 /* XXValidatorListModel.m */,
+				6CF3F0C62451809B00CC5780 /* XXHadDelegateModel.h */,
+				6CF3F0C72451809B00CC5780 /* XXHadDelegateModel.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -2024,6 +2029,7 @@
 				EA04ABA8242D015B004403FF /* IQTextView.m in Sources */,
 				EA3E5965244721DD0080B98F /* XXMsgWithdrawalModel.m in Sources */,
 				EABD1B87241BB25900B1A03A /* secp256k1.c in Sources */,
+				6CF3F0C82451809B00CC5780 /* XXHadDelegateModel.m in Sources */,
 				EABD1B85241BB25900B1A03A /* aescrypt.c in Sources */,
 				F30EAF5A20D26536005ADD5C /* NSString+TL.m in Sources */,
 				EA92EDBB2448086F00B194DA /* XXMsgRequest.m in Sources */,

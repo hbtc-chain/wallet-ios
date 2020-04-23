@@ -9,7 +9,12 @@
 #import "XXDelegateTransferViewController.h"
 
 #import "XXDelegateTransferView.h"
+#import "XXPasswordView.h"
 #import "XXTokenModel.h"
+#import "XXHadDelegateModel.h"
+#import "XXMsg.h"
+#import "XXMsgRequest.h"
+
 @interface XXDelegateTransferViewController ()
 /**委托view*/
 @property (nonatomic, strong) XXDelegateTransferView *delegateTransferView;
@@ -19,6 +24,11 @@
 @property (nonatomic, strong) XXAssetModel *assetModel;
 /**资产请求*/
 @property (nonatomic, strong) XXAssetManager *assetManager;
+
+@property (strong, nonatomic) NSString *text;
+
+/// 交易请求
+@property (strong, nonatomic) XXMsgRequest *msgRequest;
 @end
 
 @implementation XXDelegateTransferViewController
@@ -26,16 +36,17 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self createUI];
+    [self loadDefaultData];
 }
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
-    [self.assetManager requestAsset];
 }
 
 - (void)createUI{
     switch (self.delegateNodeType) {
         case 0:
             self.titleLabel.text =  LocalizedString(@"Delegate");
+            [self.assetManager requestAsset];
             break;
         case 1:
             self.titleLabel.text =  LocalizedString(@"TransferDelegate");
@@ -43,13 +54,31 @@
             
         default:
             self.titleLabel.text = LocalizedString(@"RelieveDelegate");
+            [self requestHadDelegatesList];
             break;
     }
     [self.view addSubview:self.delegateTransferView];
     [self.view addSubview:self.transferButton];
     
 }
-
+- (void)loadDefaultData{
+        
+    switch (self.delegateNodeType) {
+        case 0:
+            self.delegateTransferView.addressView.textField.text = _validatorModel.operator_address;
+            [self.assetManager requestAsset];
+            break;
+        case 1:
+            
+            break;
+            
+        default:
+            self.delegateTransferView.addressView.textField.text = [NSString stringWithFormat:@"%@: %@",LocalizedString(@"ValidatorRelieveToAddress"),KUser.address];
+            [self requestHadDelegatesList];
+            break;
+    }
+}
+#pragma mark load data
 - (void)configAsset {
     @weakify(self)
     
@@ -58,6 +87,92 @@
         [self refreshDelegateAmount];
     };
 }
+- (void)requestHadDelegatesList {
+    MJWeakSelf
+    NSString *path = [NSString stringWithFormat:@"/api/v1/cus/%@/delegations",KUser.address];
+    [HttpManager getWithPath:path params:nil andBlock:^(id data, NSString *msg, NSInteger code) {
+        if (code == 0) {
+            NSLog(@"%@",data);
+            NSArray *listArray = [XXHadDelegateModel mj_objectArrayWithKeyValuesArray:data];
+            [weakSelf refreshRelieveDelegate:listArray];
+        } else {
+
+        }
+    }];
+}
+#pragma mark privity
+- (void)transferVerify {
+    if (self.delegateTransferView.addressView.textField.text.length && self.delegateTransferView.amountView.textField.text.length && self.delegateTransferView.feeView.textField.text.length) {
+        MJWeakSelf
+        [XXPasswordView showWithSureBtnBlock:^(NSString * _Nonnull text) {
+            weakSelf.text = text;
+            switch (self.delegateNodeType) {
+                case XXDelegateNodeTypeAdd:
+                    [weakSelf requestDelegate];
+                    break;
+                case XXDelegateNodeTypeTransfer:
+                     
+                    break;
+                case XXDelegateNodeTypeRelieve:
+                    [weakSelf requestRelieveDelegate];
+                    break;
+                default:
+                     
+                    break;
+            }
+           }];
+    } else {
+        Alert *alert = [[Alert alloc] initWithTitle:LocalizedString(@"PleaseFillAll") duration:kAlertDuration completion:^{
+        }];
+        [alert showAlert];
+        return;
+    }
+}
+/// 发起委托请求
+- (void)requestDelegate {
+    XXTokenModel *tokenModel = [[XXSqliteManager sharedSqlite] tokenBySymbol:kMainToken];
+    NSDecimalNumber *amountDecimal = [NSDecimalNumber decimalNumberWithString:self.delegateTransferView.amountView.textField.text];
+    NSDecimalNumber *feeAmountDecimal = [NSDecimalNumber decimalNumberWithString:self.delegateTransferView.feeView.textField.text];
+    NSDecimalNumber *gasPriceDecimal = [NSDecimalNumber decimalNumberWithString:[NSString stringWithFormat:@"%f",self.delegateTransferView.speedView.slider.value]];
+    NSString *toAddress = self.delegateTransferView.addressView.textField.text;
+    NSString *amount = [[amountDecimal decimalNumberByMultiplyingBy:kPrecisionDecimalPower(tokenModel.decimals)] stringValue];
+    NSString *feeAmount = [[feeAmountDecimal decimalNumberByMultiplyingBy:kPrecisionDecimalPower(tokenModel.decimals)] stringValue];
+    NSString *gas = [[[feeAmountDecimal decimalNumberByDividingBy:gasPriceDecimal] decimalNumberByDividingBy:kPrecisionDecimal_U] stringValue];
+    
+    [MBProgressHUD showActivityMessageInView:@""];
+    XXMsg *model = [[XXMsg alloc] initWithfrom:KUser.address to:toAddress amount:amount denom:tokenModel.symbol feeAmount:feeAmount feeGas:gas feeDenom:tokenModel.symbol memo:@"" type:kMsgDelegate withdrawal_fee:@"" text:self.text];
+    _msgRequest = [[XXMsgRequest alloc] init];
+    [_msgRequest sendMsg:model];
+    _msgRequest.msgSendSuccessBlock = ^{
+        [MBProgressHUD hideHUD];
+    };
+    _msgRequest.msgSendFaildBlock = ^{
+        [MBProgressHUD hideHUD];
+    };
+}
+/// 发起取消委托请求
+- (void)requestRelieveDelegate {
+    XXTokenModel *tokenModel = [[XXSqliteManager sharedSqlite] tokenBySymbol:kMainToken];
+    NSDecimalNumber *amountDecimal = [NSDecimalNumber decimalNumberWithString:self.delegateTransferView.amountView.textField.text];
+    NSDecimalNumber *feeAmountDecimal = [NSDecimalNumber decimalNumberWithString:self.delegateTransferView.feeView.textField.text];
+    NSDecimalNumber *gasPriceDecimal = [NSDecimalNumber decimalNumberWithString:[NSString stringWithFormat:@"%f",self.delegateTransferView.speedView.slider.value]];
+    NSString *toAddress = self.validatorModel.operator_address;
+    NSString *amount = [[amountDecimal decimalNumberByMultiplyingBy:kPrecisionDecimalPower(tokenModel.decimals)] stringValue];
+    NSString *feeAmount = [[feeAmountDecimal decimalNumberByMultiplyingBy:kPrecisionDecimalPower(tokenModel.decimals)] stringValue];
+    NSString *gas = [[[feeAmountDecimal decimalNumberByDividingBy:gasPriceDecimal] decimalNumberByDividingBy:kPrecisionDecimal_U] stringValue];
+
+    [MBProgressHUD showActivityMessageInView:@""];
+    XXMsg *model = [[XXMsg alloc] initWithfrom:KUser.address to:toAddress amount:amount denom:tokenModel.symbol feeAmount:feeAmount feeGas:gas feeDenom:tokenModel.symbol memo:@"" type:kMsgUndelegate withdrawal_fee:@"" text:self.text];
+    _msgRequest = [[XXMsgRequest alloc] init];
+    [_msgRequest sendMsg:model];
+    _msgRequest.msgSendSuccessBlock = ^{
+        [MBProgressHUD hideHUD];
+    };
+    _msgRequest.msgSendFaildBlock = ^{
+        [MBProgressHUD hideHUD];
+    };
+}
+
 
 #pragma mark 刷新资产
 - (void)refreshDelegateAmount{
@@ -68,7 +183,19 @@
             break;
         }
     }
-    
+}
+//解委托
+- (void)refreshRelieveDelegate:(NSArray *)array{
+    for (XXHadDelegateModel *hadDelegateModel in array) {
+        if ([hadDelegateModel.validator isEqualToString:self.validatorModel.operator_address]) {
+            [self.delegateTransferView refreshRelieveAssets:hadDelegateModel];
+            break;
+        }
+    }
+}
+#pragma mark set/get
+- (void)setValidatorModel:(XXValidatorListModel *)validatorModel{
+    _validatorModel = validatorModel;
 }
 #pragma mark lazy load
 - (XXDelegateTransferView *)delegateTransferView {
@@ -81,8 +208,9 @@
 /** 按钮 */
 - (XXButton *)transferButton {
     if (!_transferButton) {
+        MJWeakSelf
         _transferButton = [XXButton buttonWithFrame:CGRectMake(KSpacing, kScreen_Height - 80, kScreen_Width - KSpacing*2, 42) title:@"" font:kFontBold14 titleColor:kMainTextColor block:^(UIButton *button) {
-            
+            [weakSelf transferVerify];
         }];
         _transferButton.backgroundColor = kPrimaryMain;
         _transferButton.layer.cornerRadius = 3;

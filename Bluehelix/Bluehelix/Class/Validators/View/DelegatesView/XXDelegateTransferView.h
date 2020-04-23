@@ -13,6 +13,7 @@
 #import "XXWithdrawFeeView.h"
 #import "XXWithdrawSpeedView.h"
 #import "XXWithdrawTipView.h"
+#import "XXHadDelegateModel.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
@@ -21,10 +22,10 @@ NS_ASSUME_NONNULL_BEGIN
 /** 主视图 */
 @property (strong, nonatomic) UIView *mainView;
 
-/** 委托数量 */
+/** 委托地址 */
 @property (strong, nonatomic) XXDelegateAddressView *addressView;
 
-/** 转账数量 */
+/** 委托数量 */
 @property (strong, nonatomic) XXTransferAmountView *amountView;
 
 /**实际委托数量*/
@@ -39,7 +40,10 @@ NS_ASSUME_NONNULL_BEGIN
 /** 提示语视图 */
 @property (strong, nonatomic) XXWithdrawTipView *tipView;
 
+/**刷新资产可用*/
 - (void)refreshAssets:(XXTokenModel*)tokenModel;
+/**刷新解委托可解*/
+- (void)refreshRelieveAssets:(XXHadDelegateModel*)hadDelegateModel;
 @end
 
 NS_ASSUME_NONNULL_END
