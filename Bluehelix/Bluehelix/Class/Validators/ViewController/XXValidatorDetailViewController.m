@@ -130,6 +130,7 @@ static NSString *KValidatorDetailInfoCell = @"ValidatorDetailInfoCell";
         if (!cell) {
             cell = [[XXValidatorDetailCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:KValidatorDetailViewCell];
         }
+        cell.selectionStyle = UITableViewCellSelectionStyleNone;
         cell.backgroundColor = kWhiteColor;
         if (indexPath.section ==1 && indexPath.row ==0) {
             cell.hideDetailButton = NO;
@@ -185,18 +186,21 @@ static NSString *KValidatorDetailInfoCell = @"ValidatorDetailInfoCell";
             @strongify(self)
             XXDelegateTransferViewController *delegateTransfer = [[XXDelegateTransferViewController alloc]init];
             delegateTransfer.delegateNodeType = XXDelegateNodeTypeTransfer;
+            delegateTransfer.validatorModel = self.validatorModel;
             [self.navigationController pushViewController:delegateTransfer animated:YES];
         };
         _delegateBar.relieveDelegateBlock = ^{
             @strongify(self)
             XXDelegateTransferViewController *delegateTransfer = [[XXDelegateTransferViewController alloc]init];
             delegateTransfer.delegateNodeType = XXDelegateNodeTypeRelieve;
+            delegateTransfer.validatorModel = self.validatorModel;
             [self.navigationController pushViewController:delegateTransfer animated:YES];
         };
         _delegateBar.delegateBlock = ^{
             @strongify(self)
             XXDelegateTransferViewController *delegateTransfer = [[XXDelegateTransferViewController alloc]init];
             delegateTransfer.delegateNodeType = XXDelegateNodeTypeAdd;
+            delegateTransfer.validatorModel = self.validatorModel;
             [self.navigationController pushViewController:delegateTransfer animated:YES];
         };
     }

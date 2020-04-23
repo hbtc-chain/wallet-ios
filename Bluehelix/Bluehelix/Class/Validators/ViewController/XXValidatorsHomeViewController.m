@@ -40,12 +40,15 @@ static NSString *KValidatorGripSectionHeader = @"XXValidatorGripSectionHeader";
     [self setupUI];
     [self layoutViews];
     self.validOrInvalid = @"1";
+}
+- (void)viewWillAppear:(BOOL)animated{
+    [super viewWillAppear:animated];
     [self loadData];
 }
 #pragma mark UI
 - (void)setupUI{
     self.leftButton.hidden = YES;
-    [self.rightButton setTitle:LocalizedString(@"ValidatorNewCreate") forState:UIControlStateNormal];
+   // [self.rightButton setTitle:LocalizedString(@"ValidatorNewCreate") forState:UIControlStateNormal];
     [self.view addSubview:self.validatorsListTableView];
     self.validatorsListTableView.tableHeaderView = self.bigHeaderView;
     
@@ -82,11 +85,13 @@ static NSString *KValidatorGripSectionHeader = @"XXValidatorGripSectionHeader";
 /// 请求资产信息
 - (void)requestValidatorsList {
     MJWeakSelf
+    [MBProgressHUD showActivityMessageInView:@""];
     NSMutableDictionary *dic = [NSMutableDictionary dictionary];
     [dic setObject:self.validOrInvalid forKey:@"valid"];
     NSString *path = [NSString stringWithFormat:@"/api/v1/validators"];
     [HttpManager getWithPath:path params:dic andBlock:^(id data, NSString *msg, NSInteger code) {
         [weakSelf.validatorsListTableView.mj_header endRefreshing];
+        [MBProgressHUD hideHUD];
         if (code == 0) {
             NSLog(@"%@",data);
             NSArray *listArray = [XXValidatorListModel mj_objectArrayWithKeyValuesArray:data];
@@ -94,9 +99,7 @@ static NSString *KValidatorGripSectionHeader = @"XXValidatorGripSectionHeader";
             [self.filtValidatorsDataArray addObjectsFromArray:listArray];
             [self.validatorsListTableView reloadData];
         } else {
-//            Alert *alert = [[Alert alloc] initWithTitle:msg duration:kAlertDuration completion:^{
-//                       }];
-//            [alert showAlert];
+            [MBProgressHUD showErrorMessage:msg];
         }
     }];
 }
@@ -141,6 +144,7 @@ static NSString *KValidatorGripSectionHeader = @"XXValidatorGripSectionHeader";
     if (!cell) {
         cell = [[XXValidatorCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:KValidatorsListReuseCell];
     }
+    cell.selectionStyle = UITableViewCellSelectionStyleNone;
     cell.backgroundColor = kWhiteColor;
     XXValidatorListModel *model = self.isFilting ? self.filtValidatorsDataArray[indexPath.row] : self.validatorsDataArray[indexPath.row];
     cell.validOrInvalid = [self.validOrInvalid isEqualToString:@"1"] ? YES :NO;
@@ -163,7 +167,7 @@ static NSString *KValidatorGripSectionHeader = @"XXValidatorGripSectionHeader";
 - (UITableView *)validatorsListTableView {
     MJWeakSelf
     if (_validatorsListTableView == nil) {
-        _validatorsListTableView = [[UITableView alloc] initWithFrame:CGRectMake(0, kNavHeight, kScreen_Width, kScreen_Height - kNavHeight) style:UITableViewStylePlain];
+        _validatorsListTableView = [[UITableView alloc] initWithFrame:CGRectMake(0, kNavHeight, kScreen_Width, kScreen_Height - kNavHeight -kTabbarHeight) style:UITableViewStylePlain];
         _validatorsListTableView.dataSource = self;
         _validatorsListTableView.delegate = self;
         _validatorsListTableView.backgroundColor = kWhiteColor;

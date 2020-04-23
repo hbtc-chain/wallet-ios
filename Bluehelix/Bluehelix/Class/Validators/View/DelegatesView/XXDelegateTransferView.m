@@ -10,7 +10,10 @@
 #import "XXTokenModel.h"
 
 @interface XXDelegateTransferView ()
+/**委托数据模型*/
 @property (nonatomic, strong) XXTokenModel *tokenModel;
+/**撤销委托数据模型*/
+@property (nonatomic, strong) XXHadDelegateModel *hadDelegateModel;
 @end
 @implementation XXDelegateTransferView
 
@@ -78,12 +81,17 @@
             self.feeView.textField.text = kMinFee;
             break;
         case XXDelegateNodeTypeRelieve:
-             self.amountView.subLabel.text = [NSString stringWithFormat:@"%@ %@ %@",LocalizedString(@"ValidatorAvilableRelieve"),self.tokenModel.frozen_amount,[kMainToken uppercaseString]];
+
         break;
         default:
             
             break;
     }
+}
+- (void)refreshRelieveAssets:(XXHadDelegateModel*)hadDelegateModel {
+    self.hadDelegateModel = hadDelegateModel;
+    self.amountView.subLabel.text = [NSString stringWithFormat:@"%@ %@ %@",LocalizedString(@"ValidatorAvilableRelieve"),hadDelegateModel.bonded,[kMainToken uppercaseString]];
+    self.feeView.textField.text = kMinFee;
 }
 - (void)reloadTransferData{
     switch (self.delegateNodeType) {
@@ -94,8 +102,9 @@
              self.amountView.textField.text = [NSString stringWithFormat:@"%@",self.tokenModel.amount];
             break;
         case XXDelegateNodeTypeRelieve:
-            self.amountView.textField.text = [NSString stringWithFormat:@"%@",self.tokenModel.amount];
-                    break;
+            self.amountView.textField.text = [NSString stringWithFormat:@"%@",self.hadDelegateModel.bonded];
+                   
+            break;
         break;
         default:
             

@@ -92,7 +92,7 @@ typedef NS_ENUM(NSUInteger, NetworkMethod) {
 #define kPubKeyType @"tendermint/PubKeySecp256k1" //公钥加密方式
 #define kMsgSend @"hbtcchain/transfer/MsgSend" //转账
 #define kMsgDelegate @"hbtcchain/MsgDelegate" //委托
-#define kMsgUndelegate @"hbtcchain/MsgUndelegate" //转委托
+#define kMsgUndelegate @"hbtcchain/MsgUndelegate" //取消委托
 #define kMsgKeyGen @"hbtcchain/keygen/MsgKeyGen" //生成跨链地址
 #define kMsgDeposit @"hbtcchain/transfer/MsgDeposit" //跨链充值
 #define kMsgWithdrawal @"hbtcchain/transfer/MsgWithdrawal" //跨链提币
