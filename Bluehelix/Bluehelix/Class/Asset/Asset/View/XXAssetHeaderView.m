@@ -22,6 +22,7 @@
 @property (strong, nonatomic) XXLabel *assetNameLabel;
 @property (strong, nonatomic) XXLabel *totalAssetLabel;
 @property (strong, nonatomic) XXButton *menuBtn;
+@property (strong, nonatomic) UIImageView *logoImageView;
 
 @end
 
@@ -38,7 +39,8 @@
         [self.shadowImageView.layer insertSublayer:self.shadowLayer atIndex:0];
         [self.shadowImageView addSubview:self.assetNameLabel];
         [self.shadowImageView addSubview:self.totalAssetLabel];
-        [self addSubview:self.logoLabel];
+//        [self addSubview:self.logoLabel];
+        [self addSubview:self.logoImageView];
         [self addSubview:self.menuBtn];
         [self.shadowImageView addSubview:self.hidenAssetsButton];
     }
@@ -48,7 +50,6 @@
 - (void)configData:(XXAssetModel *)model {
     if (KUser.isHideAsset) {
         self.totalAssetLabel.text = @"***";
-//        self.totalAssetLabel.top = CGRectGetMaxY(self.assetNameLabel.frame) + 15;
     } else {
         double totalAsset = 0;
         for (XXTokenModel *tokenModel in model.assets) {
@@ -58,10 +59,7 @@
             }
         }
         self.totalAssetLabel.text = [NSString stringWithFormat:@"%@%.3f",[RatesManager shareRatesManager].rateUnit,totalAsset];
-//        self.totalAssetLabel.top = CGRectGetMaxY(self.assetNameLabel.frame) + 10;
     }
-//    self.totalAssetLabel.width = [NSString widthWithText:self.totalAssetLabel.text font:kNumberFontBold(30)];
-//    self.hidenAssetsButton.left = CGRectGetMaxX(self.totalAssetLabel.frame);
 }
 
 - (double)getRatesFromToken:(NSString *)token {
@@ -81,6 +79,16 @@
         _logoLabel.textAlignment = NSTextAlignmentCenter;
     }
     return _logoLabel;
+}
+
+- (UIImageView *)logoImageView {
+    if (_logoImageView == nil) {
+        CGFloat height = 16;
+        _logoImageView = [[UIImageView alloc] initWithFrame:CGRectMake((kScreen_Width - 123)/2, kStatusBarHeight, 123, height)];
+        _logoImageView.contentMode = UIViewContentModeScaleAspectFit;
+        _logoImageView.image = [UIImage imageNamed:@"logoHeader"];
+    }
+    return _logoImageView;
 }
 
 - (UIImageView *)backImageView {
@@ -110,7 +118,7 @@
             }
         }];
         [_hidenAssetsButton setImage:[UIImage imageNamed:@"unhidden"] forState:UIControlStateNormal];
-        [_hidenAssetsButton setImage:[UIImage imageNamed:@"eyehidden"] forState:UIControlStateSelected];
+        [_hidenAssetsButton setImage:[UIImage subTextImageName:@"eyehidden"] forState:UIControlStateSelected];
         _hidenAssetsButton.selected = KUser.isHideAsset;
     }
     return _hidenAssetsButton;

@@ -184,7 +184,7 @@
 - (XXButton *)laterBtn {
     if (!_laterBtn) {
         MJWeakSelf
-        _laterBtn = [XXButton buttonWithFrame:CGRectMake(K375(16), self.contentView.height - kBtnHeight - 24, kScreen_Width/2 - K375(40)/2, kBtnHeight) title:LocalizedString(@"BackupLaterRemind") font:kFont(17) titleColor:kWhiteColor block:^(UIButton *button) {
+        _laterBtn = [XXButton buttonWithFrame:CGRectMake(K375(16), self.contentView.height - kBtnHeight - 24, kScreen_Width/2 - K375(40)/2, kBtnHeight) title:LocalizedString(@"BackupLaterRemind") font:kFont(17) titleColor:[UIColor whiteColor] block:^(UIButton *button) {
             [[weakSelf class] dismiss];
         }];
         _laterBtn.backgroundColor = kGray200;
@@ -197,7 +197,7 @@
 - (XXButton *)immediatelyBtn {
     if (!_immediatelyBtn) {
         MJWeakSelf
-        _immediatelyBtn = [XXButton buttonWithFrame:CGRectMake(kScreen_Width/2 + 4, self.contentView.height - kBtnHeight - 24, kScreen_Width/2 - K375(40)/2, kBtnHeight) title:LocalizedString(@"BackupImmediately") font:kFont(17) titleColor:kWhiteColor block:^(UIButton *button) {
+        _immediatelyBtn = [XXButton buttonWithFrame:CGRectMake(kScreen_Width/2 + 4, self.contentView.height - kBtnHeight - 24, kScreen_Width/2 - K375(40)/2, kBtnHeight) title:LocalizedString(@"BackupImmediately") font:kFont(17) titleColor:[UIColor whiteColor] block:^(UIButton *button) {
             if (weakSelf.sureBlock) {
                 [[weakSelf class] dismiss];
                 weakSelf.sureBlock();

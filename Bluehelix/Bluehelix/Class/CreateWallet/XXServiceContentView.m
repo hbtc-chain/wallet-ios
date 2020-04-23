@@ -69,6 +69,7 @@
 - (XYHNumbersLabel *)contentLabel {
     if (!_contentLabel) {
         _contentLabel = [[XYHNumbersLabel alloc] initWithFrame:CGRectMake(K375(24), CGRectGetMaxY(self.tipLabel.frame) + K375(16), self.width - K375(48),0) font:kFont13];
+        _contentLabel.textColor = kGray900;
         [_contentLabel setText:LocalizedString(@"ServiceContent") alignment:NSTextAlignmentLeft];
     }
     return _contentLabel;
@@ -99,7 +100,7 @@
         _isAgreeButton.contentVerticalAlignment = UIControlContentVerticalAlignmentCenter;
         [_isAgreeButton setImage:[UIImage subTextImageName:@"unSelected"] forState:UIControlStateNormal];
         [_isAgreeButton setImage:[UIImage mainImageName:@"selected"] forState:UIControlStateSelected];
-        _isAgreeButton.selected = NO;
+        _isAgreeButton.selected = KUser.agreeService;
         [_isAgreeButton setTitle:LocalizedString(@"ReadAndAgree") forState:UIControlStateNormal];
         _isAgreeButton.contentHorizontalAlignment = UIControlContentHorizontalAlignmentCenter;
         [_isAgreeButton setTitleColor:kGray500 forState:UIControlStateNormal];
@@ -109,12 +110,15 @@
 
 - (XXButton *)sureBtn {
     if (!_sureBtn) {
-        _sureBtn = [XXButton buttonWithFrame:CGRectMake(K375(16), CGRectGetMaxY(self.isAgreeButton.frame) + 10, kScreen_Width - K375(32), kBtnHeight) title:LocalizedString(@"Sure") font:kFontBold18 titleColor:kWhiteColor block:^(UIButton *button) {
+        MJWeakSelf
+        _sureBtn = [XXButton buttonWithFrame:CGRectMake(K375(16), CGRectGetMaxY(self.isAgreeButton.frame) + 10, kScreen_Width - K375(32), kBtnHeight) title:LocalizedString(@"Sure") font:kFontBold18 titleColor:[UIColor whiteColor] block:^(UIButton *button) {
+                KUser.agreeService = YES;
+                [weakSelf.viewController dismissViewControllerAnimated:YES completion:nil];
         }];
-        _sureBtn.backgroundColor = kBtnNotEnableColor;
+        _sureBtn.backgroundColor = KUser.agreeService ? kPrimaryMain : kBtnNotEnableColor;
         _sureBtn.layer.cornerRadius = kBtnBorderRadius;
         _sureBtn.layer.masksToBounds = YES;
-        _sureBtn.enabled = NO;
+        _sureBtn.enabled = KUser.agreeService;
     }
     return _sureBtn;
 }

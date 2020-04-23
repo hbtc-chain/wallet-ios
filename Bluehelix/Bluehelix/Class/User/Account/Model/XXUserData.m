@@ -56,6 +56,15 @@ static XXUserData *_sharedUserData = nil;
     return [[self getValueForKey:@"isHideAsset"] integerValue];
 }
 
+// 是否阅读协议
+- (void)setAgreeService:(BOOL)agreeService {
+    [self saveValeu:@(agreeService) forKey:@"agreeService"];
+}
+
+- (BOOL)agreeService {
+    return [[self getValueForKey:@"agreeService"] integerValue];
+}
+
 // 临时用户名
 - (void)setLocalUserName:(NSString *)localUserName {
     [self saveValeu:localUserName forKey:@"localUserName"];

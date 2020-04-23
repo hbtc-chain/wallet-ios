@@ -154,15 +154,6 @@
     return _contentLabel;
 }
 
-//- (XYHNumbersLabel *)contentLabel {
-//    if (_contentLabel ==nil) {
-//        _contentLabel = [[XYHNumbersLabel alloc] initWithFrame:CGRectMake(K375(24), CGRectGetMaxY(self.titleLabel.frame) + 6, self.versionView.width - K375(48), 10) font:kFont14];
-//        _contentLabel.textAlignment = NSTextAlignmentLeft;
-//        _contentLabel.textColor = [UIColor blackColor];
-//    }
-//    return _contentLabel;
-//}
-
 - (UIButton *)okBtn {
     if (_okBtn == nil) {
         _okBtn = [[UIButton alloc] initWithFrame:CGRectMake(K375(16), self.contentView.height - 64, kScreen_Width - K375(32), kBtnHeight)];

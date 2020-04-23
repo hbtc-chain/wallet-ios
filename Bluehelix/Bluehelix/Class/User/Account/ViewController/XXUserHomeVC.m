@@ -19,7 +19,6 @@
 #import "Account.h"
 #import "SecureData.h"
 #import "XXSettingVC.h"
-#import "XXServiceAgreementVC.h"
 
 @interface XXUserHomeVC () <UITableViewDataSource, UITableViewDelegate, UIGestureRecognizerDelegate>
 
@@ -126,8 +125,7 @@
         [self pushBackupPhrase];
     }
     if ([itemString isEqualToString:LocalizedString(@"ModifyPassword")]) {
-        XXServiceAgreementVC *vc = [[XXServiceAgreementVC alloc] init];
-        [self presentViewController:vc animated:YES completion:nil];
+        
     }
     if ([itemString isEqualToString:LocalizedString(@"Setting")]) {
         [self pushSetting];

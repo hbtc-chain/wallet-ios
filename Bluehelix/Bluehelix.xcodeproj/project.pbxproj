@@ -1374,8 +1374,6 @@
 				EAA8DEA0244D7E7C00161698 /* XXUserData.m */,
 				EAA8DEA1244D7E7C00161698 /* XXAssetManager.h */,
 				EAA8DEA5244D7E7C00161698 /* XXAssetManager.m */,
-				EAA8DE9E244D7E7C00161698 /* XXAccountManageVC.h */,
-				EAA8DEA3244D7E7C00161698 /* XXAccountManageVC.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -1383,15 +1381,15 @@
 		EAA8DEA7244D7E7C00161698 /* View */ = {
 			isa = PBXGroup;
 			children = (
-				EAA8DEA8244D7E7C00161698 /* XXUserHeaderView.m */,
+				EAA8DEAE244D7E7C00161698 /* XXPasswordView.h */,
 				EAA8DEA9244D7E7C00161698 /* XXPasswordView.m */,
 				EAA8DEAA244D7E7C00161698 /* XXAddressView.h */,
-				EAA8DEAB244D7E7C00161698 /* XXAccountFooterView.h */,
-				EAA8DEAC244D7E7C00161698 /* XXAccountBtn.h */,
 				EAA8DEAD244D7E7C00161698 /* XXAddressView.m */,
-				EAA8DEAE244D7E7C00161698 /* XXPasswordView.h */,
 				EAA8DEAF244D7E7C00161698 /* XXUserHeaderView.h */,
+				EAA8DEA8244D7E7C00161698 /* XXUserHeaderView.m */,
+				EAA8DEAB244D7E7C00161698 /* XXAccountFooterView.h */,
 				EAA8DEB0244D7E7C00161698 /* XXAccountFooterView.m */,
+				EAA8DEAC244D7E7C00161698 /* XXAccountBtn.h */,
 				EAA8DEB1244D7E7C00161698 /* XXAccountBtn.m */,
 			);
 			path = View;
@@ -1400,6 +1398,8 @@
 		EAA8DEB3244D7E7C00161698 /* ViewController */ = {
 			isa = PBXGroup;
 			children = (
+				EAA8DE9E244D7E7C00161698 /* XXAccountManageVC.h */,
+				EAA8DEA3244D7E7C00161698 /* XXAccountManageVC.m */,
 				EAA8DEB5244D7E7C00161698 /* XXUserHomeVC.h */,
 				EAA8DEB4244D7E7C00161698 /* XXUserHomeVC.m */,
 			);

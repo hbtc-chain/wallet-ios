@@ -33,7 +33,14 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    KUser.agreeService = NO;
     [self buildUI];
+}
+
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+    self.isAgreeButton.selected = KUser.agreeService;
+    [self reloadCreateBtn];
 }
 
 - (void)buildUI {
@@ -91,17 +98,21 @@
 }
 
 - (void)textFiledValueChange:(UITextField *)textField {
-    if (textField.text.length && self.isAgreeButton.isSelected) {
+    [self reloadCreateBtn];
+    if (textField.text.length) {
+        self.charCountLabel.text = NSLocalizedFormatString(LocalizedString(@"CharCount"),[NSString stringWithFormat:@"%lu",(unsigned long)textField.text.length]);
+    } else {
+        self.charCountLabel.text = @"";
+    }
+}
+
+- (void)reloadCreateBtn {
+    if (self.textFieldView.textField.text.length && KUser.agreeService) {
         self.createBtn.enabled = YES;
         self.createBtn.backgroundColor = kPrimaryMain;
     } else {
         self.createBtn.enabled = NO;
         self.createBtn.backgroundColor = kBtnNotEnableColor;
-    }
-    if (textField.text.length) {
-        self.charCountLabel.text = NSLocalizedFormatString(LocalizedString(@"CharCount"),[NSString stringWithFormat:@"%lu",(unsigned long)textField.text.length]);
-    } else {
-        self.charCountLabel.text = @"";
     }
 }
 
@@ -158,7 +169,8 @@
         MJWeakSelf
         _isAgreeButton = [XXButton buttonWithFrame:CGRectMake(K375(24), CGRectGetMaxY(self.charCountLabel.frame), 30, 30) block:^(UIButton *button) {
             weakSelf.isAgreeButton.selected = !weakSelf.isAgreeButton.selected;
-            if (weakSelf.isAgreeButton.selected && weakSelf.textFieldView.textField.text.length) {
+            KUser.agreeService = weakSelf.isAgreeButton.selected;
+            if (KUser.agreeService && weakSelf.textFieldView.textField.text.length) {
                 weakSelf.createBtn.enabled = YES;
                 weakSelf.createBtn.backgroundColor = kPrimaryMain;
             } else {
@@ -170,17 +182,17 @@
         _isAgreeButton.contentVerticalAlignment = UIControlContentVerticalAlignmentCenter;
         [_isAgreeButton setImage:[UIImage subTextImageName:@"unSelected"] forState:UIControlStateNormal];
         [_isAgreeButton setImage:[UIImage mainImageName:@"selected"] forState:UIControlStateSelected];
-        _isAgreeButton.selected = NO;
+        _isAgreeButton.selected = KUser.agreeService;
     }
     return _isAgreeButton;
 }
 
 - (BOOL)textView:(UITextView *)textView shouldInteractWithURL:(NSURL *)URL inRange:(NSRange)characterRange {
     if ([[URL scheme] isEqualToString:@"fwxy"]) {
-//        XXServiceAgreementVC *serviceVC = [[XXServiceAgreementVC alloc] init];
+        XXServiceAgreementVC *serviceVC = [[XXServiceAgreementVC alloc] init];
 //        XXNavigationController *nav = [[XXNavigationController alloc] initWithRootViewController:serviceVC];
-//        serviceVC.modalPresentationStyle = UIModalPresentationOverCurrentContext;
-//        [self presentViewController:nav animated:YES completion:nil];
+        serviceVC.modalPresentationStyle = UIModalPresentationFullScreen;
+        [self presentViewController:serviceVC animated:YES completion:nil];
     }
     return NO;
 }
@@ -211,7 +223,7 @@
 - (XXButton *)createBtn {
     if (!_createBtn) {
         MJWeakSelf
-        _createBtn = [XXButton buttonWithFrame:CGRectMake(K375(16), CGRectGetMaxY(self.textView.frame) + 24, kScreen_Width - K375(32), kBtnHeight) title:LocalizedString(@"StartCreate") font:kFontBold18 titleColor:kWhiteColor block:^(UIButton *button) {
+        _createBtn = [XXButton buttonWithFrame:CGRectMake(K375(16), CGRectGetMaxY(self.textView.frame) + 24, kScreen_Width - K375(32), kBtnHeight) title:LocalizedString(@"StartCreate") font:kFontBold18 titleColor:[UIColor whiteColor] block:^(UIButton *button) {
             [weakSelf createAction];
         }];
         _createBtn.backgroundColor = kBtnNotEnableColor;

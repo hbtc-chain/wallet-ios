@@ -79,7 +79,7 @@
 - (XXButton *)backupBtn {
     if (!_backupBtn) {
         MJWeakSelf
-        _backupBtn = [XXButton buttonWithFrame:CGRectMake(K375(16), kScreen_Height - kBtnHeight - K375(16), kScreen_Width - K375(32), 44) title:LocalizedString(@"StartBackup") font:kFontBold18 titleColor:kWhiteColor block:^(UIButton *button) {
+        _backupBtn = [XXButton buttonWithFrame:CGRectMake(K375(16), kScreen_Height - kBtnHeight - K375(16), kScreen_Width - K375(32), 44) title:LocalizedString(@"StartBackup") font:kFontBold18 titleColor:[UIColor whiteColor] block:^(UIButton *button) {
             XXVerifyMnemonicPhraseVC *verifyVC = [[XXVerifyMnemonicPhraseVC alloc] init];
             verifyVC.text = weakSelf.text;
             [weakSelf.navigationController pushViewController:verifyVC animated:YES];

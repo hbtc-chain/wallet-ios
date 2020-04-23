@@ -49,7 +49,7 @@
 - (XXButton *)rightBtn {
     if (!_rightBtn) {
         MJWeakSelf
-        _rightBtn = [XXButton buttonWithFrame:CGRectMake(kScreen_Width/2 + K375(4), self.height/2 - kBtnHeight/2, self.width/2 - K375(40)/2, kBtnHeight) title:LocalizedString(@"CreateWallet") font:kFont(17) titleColor:kWhiteColor block:^(UIButton *button) {
+        _rightBtn = [XXButton buttonWithFrame:CGRectMake(kScreen_Width/2 + K375(4), self.height/2 - kBtnHeight/2, self.width/2 - K375(40)/2, kBtnHeight) title:LocalizedString(@"CreateWallet") font:kFont(17) titleColor:[UIColor whiteColor] block:^(UIButton *button) {
             XXCreateWalletVC *createVC = [[XXCreateWalletVC alloc] init];
             [weakSelf.viewController.navigationController pushViewController:createVC animated:YES];
         }];

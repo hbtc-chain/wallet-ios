@@ -12,6 +12,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface XXServiceAgreementVC : BaseViewController
 
+@property (nonatomic, copy) void(^readBlock)(BOOL agreeFlag);
+
 @end
 
 NS_ASSUME_NONNULL_END
