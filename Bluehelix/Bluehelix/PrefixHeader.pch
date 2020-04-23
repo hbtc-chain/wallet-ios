@@ -56,6 +56,7 @@ typedef NS_ENUM(NSUInteger, NetworkMethod) {
 #define kBtnHeight 48
 #define kAlertDuration 2
 
+//夜间模式 颜色
 #define kPrimaryMain kIsNight ? [UIColor colorWithHexString:@"#3375E0"] : [UIColor colorWithHexString:@"#3375E0"]
 #define kPrimaryLight kIsNight ? [UIColor colorWithHexString:@"#4299FF"] : [UIColor colorWithHexString:@"#4299FF"]
 #define kWhiteColor kIsNight ? [UIColor colorWithHexString:@"#141A27"] : [UIColor colorWithHexString:@"#FFFFFF"]
@@ -69,16 +70,12 @@ typedef NS_ENUM(NSUInteger, NetworkMethod) {
 #define kGray50 kIsNight ? [UIColor colorWithHexString:@"#1A2233"] : [UIColor colorWithHexString:@"#F9F9FB"]
 #define kPriceFall kIsNight ? [UIColor colorWithHexString:@"#ED3756"] : [UIColor colorWithHexString:@"#ED3756"]
 #define kGreen100  kIsNight ? [UIColor colorWithHexString:@"#51D372"] : [UIColor colorWithHexString:@"#51D372"]
-
-
-
-
-#define kBtnNotEnableColor kIsNight ? [UIColor grayColor] : [UIColor colorWithHexString:@"#E7ECF4"]
-//#define kGray500 kIsNight ? [UIColor whiteColor] : [UIColor colorWithHexString:@"#6E8196"]
-#define kFieldBackColor kIsNight ? [UIColor whiteColor] : [UIColor colorWithHexString:@"#F9F9FB"]
+#define kGreen kIsNight ? [UIColor colorWithHexString:@"#269A99"] : [UIColor colorWithHexString:@"#269A99"]
+#define kGray kIsNight ? [UIColor colorWithHexString:@"#475563"] : [UIColor colorWithHexString:@"#475563"]
 #define kF4F7FF [UIColor colorWithHexString:@"#F4F7FF"]
-#define kGreen kIsNight ? [UIColor whiteColor] : [UIColor colorWithHexString:@"#269A99"]
-#define kGray kIsNight ? [UIColor whiteColor] : [UIColor colorWithHexString:@"#475563"]
+
+
+
 
 #define kMainLabelColor kIsNight ? [UIColor whiteColor] : [UIColor colorWithHexString:@"#0A1825"]
 #define kSubLabelColor kIsNight ? [UIColor whiteColor] : [UIColor colorWithHexString:@"#6E8196"]

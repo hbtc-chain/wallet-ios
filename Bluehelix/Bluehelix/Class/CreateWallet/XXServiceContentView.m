@@ -92,7 +92,7 @@
                 weakSelf.sureBtn.backgroundColor = kPrimaryMain;
             } else {
                 weakSelf.sureBtn.enabled = NO;
-                weakSelf.sureBtn.backgroundColor = kBtnNotEnableColor;
+                weakSelf.sureBtn.backgroundColor = kGray100;
             }
         }];
         [_isAgreeButton.titleLabel setFont:kFont13];
@@ -115,7 +115,7 @@
                 KUser.agreeService = YES;
                 [weakSelf.viewController dismissViewControllerAnimated:YES completion:nil];
         }];
-        _sureBtn.backgroundColor = KUser.agreeService ? kPrimaryMain : kBtnNotEnableColor;
+        _sureBtn.backgroundColor = KUser.agreeService ? kPrimaryMain : kGray100;
         _sureBtn.layer.cornerRadius = kBtnBorderRadius;
         _sureBtn.layer.masksToBounds = YES;
         _sureBtn.enabled = KUser.agreeService;

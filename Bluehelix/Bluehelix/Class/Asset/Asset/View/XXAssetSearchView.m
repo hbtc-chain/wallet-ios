@@ -75,7 +75,7 @@
         _searchTextField.placeholder = LocalizedString(@"SearchPairs");
         _searchTextField.placeholderColor = kGray500;
         _searchTextField.placeholderFont = kFont(15);
-//        _searchTextField.backgroundColor = kFieldBackColor;
+//        _searchTextField.backgroundColor = kGray50;
     }
     return _searchTextField;
 }

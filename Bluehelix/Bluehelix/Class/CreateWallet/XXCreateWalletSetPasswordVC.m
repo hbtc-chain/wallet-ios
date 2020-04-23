@@ -66,7 +66,7 @@
     self.rule3.textColor = [self isValidPasswordString:3] ? kGray500 : kPriceFall;
     self.rule4.textColor = [self isValidPasswordString:4] ? kGray500 : kPriceFall;
     self.ruleTip.textColor = textField.text.length ? kGray500 : kPriceFall;
-    self.createBtn.backgroundColor =  [self isValidPasswordString:0] ? kPrimaryMain : kBtnNotEnableColor;
+    self.createBtn.backgroundColor =  [self isValidPasswordString:0] ? kPrimaryMain : kGray100;
     self.createBtn.enabled = [self isValidPasswordString:0];
     if (textField.text.length) {
         self.charCountLabel.text = NSLocalizedFormatString(LocalizedString(@"CharCount"),[NSString stringWithFormat:@"%lu",(unsigned long)textField.text.length]);
@@ -228,7 +228,7 @@
         _createBtn = [XXButton buttonWithFrame:CGRectMake(K375(16), CGRectGetMaxY(self.rule4.frame) + 24, kScreen_Width - K375(32), kBtnHeight) title:LocalizedString(@"NextStep") font:kFontBold18 titleColor:[UIColor whiteColor] block:^(UIButton *button) {
             [weakSelf nextStepAction];
         }];
-        _createBtn.backgroundColor = kBtnNotEnableColor;
+        _createBtn.backgroundColor = kGray100;
         _createBtn.layer.cornerRadius = kBtnBorderRadius;
         _createBtn.layer.masksToBounds = YES;
         _createBtn.enabled = NO;

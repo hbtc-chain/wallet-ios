@@ -29,6 +29,7 @@
 @property (nonatomic, strong) NSMutableArray *showArray; //展示的币
 @property (nonatomic, strong) XXAssetManager *assetManager;
 @property (nonatomic, strong) XXEmptyView *emptyView;
+@property (nonatomic, strong) NSTimer *timer; //定时刷新交易记录
 @end
 
 @implementation XXAssetVC
@@ -36,11 +37,25 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    
     [self setupUI];
 }
 
-- (void)viewWillAppear:(BOOL)animated {
-    [super viewWillAppear:animated];
+- (void)viewDidAppear:(BOOL)animated {
+    [super viewDidAppear:animated];
+    self.timer = [NSTimer scheduledTimerWithTimeInterval:5 target:self selector:@selector(timerAction) userInfo:nil repeats:YES];
+    [self.timer fire];
+}
+
+- (void)viewDidDisappear:(BOOL)animated {
+    [super viewDidDisappear:animated];
+    if (_timer) {
+        [_timer invalidate];
+        _timer = nil;
+    }
+}
+
+- (void)timerAction {
     [self.assetManager requestAsset];
 }
 

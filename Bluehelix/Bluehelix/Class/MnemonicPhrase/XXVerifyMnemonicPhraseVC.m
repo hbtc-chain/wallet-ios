@@ -114,7 +114,7 @@
         self.backupBtn.backgroundColor = kPrimaryMain;
     } else {
         self.backupBtn.enabled = NO;
-        self.backupBtn.backgroundColor = kBtnNotEnableColor;
+        self.backupBtn.backgroundColor = kGray100;
     }
 }
 
@@ -195,7 +195,7 @@
         _backupBtn.layer.cornerRadius = kBtnBorderRadius;
         _backupBtn.layer.masksToBounds = YES;
         _contentHeight = _contentHeight + kBtnHeight + 20 + K375(16);
-        _backupBtn.backgroundColor = kBtnNotEnableColor;
+        _backupBtn.backgroundColor = kGray100;
         _backupBtn.enabled = NO;
     }
     return _backupBtn;

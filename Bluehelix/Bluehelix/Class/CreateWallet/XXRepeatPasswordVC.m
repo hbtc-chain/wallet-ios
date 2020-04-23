@@ -112,7 +112,7 @@
         self.createBtn.backgroundColor = kPrimaryMain;
     } else {
         self.createBtn.enabled = NO;
-        self.createBtn.backgroundColor = kBtnNotEnableColor;
+        self.createBtn.backgroundColor = kGray100;
     }
 }
 
@@ -175,7 +175,7 @@
                 weakSelf.createBtn.backgroundColor = kPrimaryMain;
             } else {
                 weakSelf.createBtn.enabled = NO;
-                weakSelf.createBtn.backgroundColor = kBtnNotEnableColor;
+                weakSelf.createBtn.backgroundColor = kGray100;
             }
         }];
         _isAgreeButton.contentHorizontalAlignment =UIControlContentHorizontalAlignmentLeft;
@@ -226,7 +226,7 @@
         _createBtn = [XXButton buttonWithFrame:CGRectMake(K375(16), CGRectGetMaxY(self.textView.frame) + 24, kScreen_Width - K375(32), kBtnHeight) title:LocalizedString(@"StartCreate") font:kFontBold18 titleColor:[UIColor whiteColor] block:^(UIButton *button) {
             [weakSelf createAction];
         }];
-        _createBtn.backgroundColor = kBtnNotEnableColor;
+        _createBtn.backgroundColor = kGray100;
         _createBtn.layer.cornerRadius = kBtnBorderRadius;
         _createBtn.layer.masksToBounds = YES;
         _createBtn.enabled = NO;

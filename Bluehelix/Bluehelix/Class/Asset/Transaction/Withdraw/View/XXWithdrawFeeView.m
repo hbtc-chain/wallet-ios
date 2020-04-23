@@ -48,7 +48,7 @@
 - (UIView *)banView {
     if (_banView == nil) {
         _banView = [[UIView alloc] initWithFrame:CGRectMake(KSpacing, CGRectGetMaxY(self.nameLabel.frame) + 12, kScreen_Width - KSpacing*2, 40)];
-        _banView.backgroundColor = kFieldBackColor;
+        _banView.backgroundColor = kGray50;
     }
     return _banView;
 }

@@ -55,7 +55,7 @@
         self.createBtn.backgroundColor = kPrimaryMain;
     } else {
         self.createBtn.enabled = NO;
-        self.createBtn.backgroundColor = kBtnNotEnableColor;
+        self.createBtn.backgroundColor = kGray100;
     }
 }
 
@@ -106,7 +106,7 @@
         _createBtn = [XXButton buttonWithFrame:CGRectMake(K375(16), CGRectGetMaxY(self.textFieldView.frame) + 24, kScreen_Width - K375(32), kBtnHeight) title:LocalizedString(@"NextStep") font:kFontBold18 titleColor:[UIColor whiteColor] block:^(UIButton *button) {
             [weakSelf nextStepAction];
         }];
-        _createBtn.backgroundColor = kBtnNotEnableColor;
+        _createBtn.backgroundColor = kGray100;
         _createBtn.layer.cornerRadius = kBtnBorderRadius;
         _createBtn.layer.masksToBounds = YES;
         _createBtn.enabled = NO;

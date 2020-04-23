@@ -68,7 +68,7 @@
         self.okBtn.backgroundColor = kPrimaryMain;
     } else {
         self.okBtn.enabled = NO;
-        self.okBtn.backgroundColor = kBtnNotEnableColor;
+        self.okBtn.backgroundColor = kGray100;
     }
 }
 
@@ -121,7 +121,7 @@
         _okBtn = [XXButton buttonWithFrame:CGRectMake(K375(16), CGRectGetMaxY(self.textFieldView.frame) + 24, kScreen_Width - K375(32), kBtnHeight) title:LocalizedString(@"Sure") font:kFontBold18 titleColor:kWhiteColor block:^(UIButton *button) {
             [weakSelf okAction];
         }];
-        _okBtn.backgroundColor = kBtnNotEnableColor;
+        _okBtn.backgroundColor = kGray100;
         _okBtn.layer.cornerRadius = kBtnBorderRadius;
         _okBtn.layer.masksToBounds = YES;
         _okBtn.enabled = NO;

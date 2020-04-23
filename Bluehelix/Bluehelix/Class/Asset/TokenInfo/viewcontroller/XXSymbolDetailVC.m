@@ -20,15 +20,17 @@
 
 int pageSize = 30;
 @interface XXSymbolDetailVC ()<UITableViewDataSource, UITableViewDelegate>
+
 @property (nonatomic, strong) UITableView *tableView;
 @property (nonatomic, strong) XXSymbolDetailFooterView *footerView;
 @property (nonatomic, strong) NSMutableArray *txs;
 @property (nonatomic, strong) XXAssetModel *assetModel;
-@property (nonatomic, strong) XXMainSymbolHeaderView *mainSymbolHeaderView;
-@property (nonatomic, strong) XXSymbolDetailHeaderView *symbolDetailHeaderView;
+@property (nonatomic, strong) XXMainSymbolHeaderView *mainSymbolHeaderView; //主代币 有分红等信息
+@property (nonatomic, strong) XXSymbolDetailHeaderView *symbolDetailHeaderView; //其它币没有分红等信息
 @property (nonatomic, assign) int page;
 @property (nonatomic, strong) XXEmptyView *emptyView;
-@property (nonatomic, strong) XXAssetManager *assetManager;
+@property (nonatomic, strong) XXAssetManager *assetManager; // 资产请求
+@property (nonatomic, strong) NSTimer *timer; //定时刷新交易记录
 
 @end
 
@@ -38,12 +40,25 @@ int pageSize = 30;
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     self.page = 1;
-    [self requestHistory];
     [self buildUI];
 }
 
-- (void)viewWillAppear:(BOOL)animated {
-    [super viewWillAppear:animated];
+- (void)viewDidAppear:(BOOL)animated {
+    [super viewDidAppear:animated];
+    self.timer = [NSTimer scheduledTimerWithTimeInterval:5 target:self selector:@selector(timerAction) userInfo:nil repeats:YES];
+    [self.timer fire];
+}
+
+- (void)viewDidDisappear:(BOOL)animated {
+    [super viewDidDisappear:animated];
+    if (_timer) {
+        [_timer invalidate];
+        _timer = nil;
+    }
+}
+
+- (void)timerAction {
+    [self requestHistory];
     [self.assetManager requestAsset];
 }
 
