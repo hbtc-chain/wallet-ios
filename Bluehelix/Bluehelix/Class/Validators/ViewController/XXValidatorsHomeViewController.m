@@ -167,7 +167,7 @@ static NSString *KValidatorGripSectionHeader = @"XXValidatorGripSectionHeader";
 - (UITableView *)validatorsListTableView {
     MJWeakSelf
     if (_validatorsListTableView == nil) {
-        _validatorsListTableView = [[UITableView alloc] initWithFrame:CGRectMake(0, kNavHeight, kScreen_Width, kScreen_Height - kNavHeight) style:UITableViewStylePlain];
+        _validatorsListTableView = [[UITableView alloc] initWithFrame:CGRectMake(0, kNavHeight, kScreen_Width, kScreen_Height - kNavHeight -kTabbarHeight) style:UITableViewStylePlain];
         _validatorsListTableView.dataSource = self;
         _validatorsListTableView.delegate = self;
         _validatorsListTableView.backgroundColor = kWhiteColor;
