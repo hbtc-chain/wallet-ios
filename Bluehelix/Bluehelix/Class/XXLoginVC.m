@@ -118,7 +118,7 @@
 - (XXButton *)okBtn {
     if (!_okBtn) {
         MJWeakSelf
-        _okBtn = [XXButton buttonWithFrame:CGRectMake(K375(16), CGRectGetMaxY(self.textFieldView.frame) + 24, kScreen_Width - K375(32), kBtnHeight) title:LocalizedString(@"Sure") font:kFontBold18 titleColor:kWhiteColor block:^(UIButton *button) {
+        _okBtn = [XXButton buttonWithFrame:CGRectMake(K375(16), CGRectGetMaxY(self.textFieldView.frame) + 24, kScreen_Width - K375(32), kBtnHeight) title:LocalizedString(@"Sure") font:kFontBold18 titleColor:[UIColor whiteColor] block:^(UIButton *button) {
             [weakSelf okAction];
         }];
         _okBtn.backgroundColor = kGray100;

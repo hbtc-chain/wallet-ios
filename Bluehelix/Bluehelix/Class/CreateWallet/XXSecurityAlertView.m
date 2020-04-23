@@ -125,7 +125,7 @@
 - (UIButton *)dismissBtn {
     if (_dismissBtn == nil ) {
         _dismissBtn = [[UIButton alloc] initWithFrame:CGRectMake(kScreen_Width - K375(50), 0, K375(50), K375(50))];
-        [_dismissBtn setImage:[UIImage imageNamed:@"dismiss"] forState:UIControlStateNormal];
+        [_dismissBtn setImage:[UIImage textImageName:@"dismiss"] forState:UIControlStateNormal];
         [_dismissBtn addTarget:self action:@selector(cancelAction) forControlEvents:UIControlEventTouchUpInside];
     }
     return _dismissBtn;

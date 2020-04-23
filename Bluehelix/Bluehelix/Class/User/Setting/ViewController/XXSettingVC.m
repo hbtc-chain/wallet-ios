@@ -10,8 +10,8 @@
 #import "XXSettingCell.h"
 #import "BHChooseLanguageVC.h"
 #import "XXRatesListVC.h"
+#import "XXLoginVC.h"
 
-/** 项目数组 */
 @interface XXSettingVC()<UITableViewDelegate,UITableViewDataSource>
 @property (strong, nonatomic) NSArray *itemsArray;
 @property (strong, nonatomic) UITableView *tableView;
@@ -21,9 +21,6 @@
 @property (strong, nonatomic) NSString *selectedLanguage;
 @property (strong, nonatomic) NSString *selectedRate;
 
-/** <#mark#> */
-@property (assign, nonatomic) NSInteger clickCount;
-
 @end
 
 @implementation XXSettingVC
@@ -32,38 +29,23 @@ static NSString *identifir = @"XXSettingCell";
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.titleLabel.text = LocalizedString(@"Setting");
-    
-    // 1. 初始化UI
     [self setupUI];
 }
 
-#pragma mark - 1. 初始化UI
 - (void)setupUI {
     [self.view addSubview:self.tableView];
     self.itemsArray = @[LocalizedString(@"Language"), LocalizedString(@"ExchangeRate"),LocalizedString(@"NightMode")];
-        [self.view addSubview:self.loginOutButton];
+    [self.view addSubview:self.loginOutButton];
     [self.tableView registerClass:[XXSettingCell class] forCellReuseIdentifier:identifir];
 }
 
-#pragma mark - 2. 退出登录按钮点击事件
+#pragma mark 退出登录按钮点击事件
 - (void)loginOutButtonClick:(UIButton *)sender {
-    
-//    MJWeakSelf
-//    [XYHAlertView showAlertViewWithTitle:LocalizedString(@"ConfirmToLogout") message:nil titlesArray:@[LocalizedString(@"QueDing")] andBlock:^(NSInteger index) {
-//        [HttpManager user_PostWithPath:@"user/authorize_cancel" params:nil andBlock:^(id data, NSString *msg, NSInteger code) {
-//            if (code == 0) {
-//                KUser.isLogin = NO;
-//                [NotificationManager postLoginOutSuccessNotification];
-//                [MBProgressHUD showSuccessMessage:LocalizedString(@"LogoutSuccess")];
-//                [weakSelf.navigationController popViewControllerAnimated:YES];
-//            } else {
-//                [MBProgressHUD showErrorMessage:msg];
-//            }
-//        }];
-//    }];
+    XXLoginVC *loginVC = [[XXLoginVC alloc] init];
+    XXNavigationController *loginNav = [[XXNavigationController alloc] initWithRootViewController:loginVC];
+    KWindow.rootViewController = loginNav;
 }
 
-#pragma mark - 3. 标示图
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     return self.itemsArray.count;
 }
@@ -86,7 +68,7 @@ static NSString *identifir = @"XXSettingCell";
         cell.valueLabel.text = [[LocalizeHelper sharedLocalSystem] getLanguageName];
     } else if (indexPath.row == 1) {
         cell.rightIconImageView.hidden = NO;
-        cell.valueLabel.text = LocalizedString(KUser.ratesKey);
+        cell.valueLabel.text = LocalizedString([KUser.ratesKey uppercaseString]);
     } else if (indexPath.row == 2) {
         cell.rightIconImageView.hidden = YES;
         cell.typeSwitch.hidden = NO;
@@ -106,10 +88,9 @@ static NSString *identifir = @"XXSettingCell";
         XXRatesListVC *vc = [[XXRatesListVC alloc] init];
         [self.navigationController pushViewController:vc animated:YES];
     } else {
-
+        
     }
 }
-
 
 #pragma mark - || 懒加载
 /** 登录退出按钮 */

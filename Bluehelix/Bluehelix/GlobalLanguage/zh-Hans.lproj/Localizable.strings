@@ -95,6 +95,7 @@
 "Language" = "语言";
 "Version" = "版本";
 "NightMode" = "夜间模式";
+"LogOut" = "退出登录";
 
 //资产
 "HideSmallCurrency" = "隐藏小额币种";
