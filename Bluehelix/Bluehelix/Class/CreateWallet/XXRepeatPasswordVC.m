@@ -79,12 +79,12 @@
     model.address = account.BHAddress;
     model.userName = KUser.localUserName;
     model.password = [NSString md5:KUser.localPassword];
-    if (account.mnemonicPhrase) {
+    if (account.mnemonicPhrase && IsEmpty(KUser.localPhraseString)) { //如果是通过助记词导入的 不需要备份和保留助记词
         NSString *mnemonicPhrase = [AESCrypt encrypt:account.mnemonicPhrase password:KUser.localPassword];
         model.mnemonicPhrase = mnemonicPhrase;
     }
-    model.backupFlag = NO;
-    model.symbols = [NSString stringWithFormat:@"btc,eth,tusdt,%@",kMainToken];
+    model.backupFlag = IsEmpty(KUser.localPhraseString) ? NO : YES; //如果是通过助记词导入的 不需要备份和保留助记词
+    model.symbols = [NSString stringWithFormat:@"btc,eth,usdt,%@",kMainToken];
     [[XXSqliteManager sharedSqlite] insertAccount:model];
     
     KUser.address = model.address;

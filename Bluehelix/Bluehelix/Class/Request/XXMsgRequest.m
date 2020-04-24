@@ -167,29 +167,24 @@
         
     } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
         NSLog(@"%@",responseObject);
-        if (!IsEmpty(responseObject[@"txhash"])) {
+        if (!IsEmpty(responseObject[@"txhash"]) && IsEmpty(responseObject[@"code"])) {
             if (self.msgSendSuccessBlock) {
                 self.msgSendSuccessBlock();
             }
             [[AppDelegate appDelegate].TopVC.navigationController popViewControllerAnimated:YES];
         } else {
-            Alert *alert = [[Alert alloc] initWithTitle:@"失败" duration:kAlertDuration completion:^{
-            }];
-            [alert showAlert];
+            NSString *raw_log = [responseObject objectForKey:@"raw_log"];
+            if (!IsEmpty(raw_log)) {
+                NSData* jsonData = [raw_log dataUsingEncoding:NSUTF8StringEncoding];
+                NSDictionary *dic = [jsonData objectFromJSONData];
+                Alert *alert = [[Alert alloc] initWithTitle:dic[@"message"] duration:kAlertDuration completion:^{
+                }];
+                [alert showAlert];
+            }
             if (self.msgSendFaildBlock) {
                 self.msgSendFaildBlock();
             }
         }
-        //        NSString *raw_log = [responseObject objectForKey:@"raw_log"];
-        //        if (!IsEmpty(raw_log)) {
-        ////            NSData* jsonData = [raw_log dataUsingEncoding:NSUTF8StringEncoding];
-        ////            NSDictionary *dic = [jsonData objectFromJSONData];
-        //            Alert *alert = [[Alert alloc] initWithTitle:raw_log duration:kAlertDuration completion:^{
-        //                                 }];
-        //            [alert showAlert];
-        ////            NSLog(@"%@",dic);
-        //        }
-        
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
         NSLog(@"%@ %@",task,error);
         if (self.msgSendFaildBlock) {

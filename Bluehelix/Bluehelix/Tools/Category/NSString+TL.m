@@ -333,18 +333,13 @@
 -(BOOL)isValidPasswordString {
     BOOL result = NO;
     BOOL isHaveNumber = NO;
-    BOOL isHaveChinese = NO;
     BOOL isHaveUppercase = NO;
     BOOL isHaveLowercase = NO;
     if ([self length] >= 8 && [self length] <= 20){
         
         for (int i = 0; i < self.length; i++) {
             char commitChar = [self characterAtIndex:i];
-            NSString *temp = [self substringWithRange:NSMakeRange(i,1)];
-            const char *u8Temp = [temp UTF8String];
-            if (3==strlen(u8Temp)){ // 字符串中含有中文
-                isHaveChinese = YES;
-            }else if((commitChar>64)&&(commitChar<91)){ // 字符串中含有大写英文字母
+            if((commitChar>64)&&(commitChar<91)){ // 字符串中含有大写英文字母
                 isHaveUppercase = YES;
             }else if((commitChar>96)&&(commitChar<123)){ // 字符串中含有小写英文字母
                 isHaveLowercase = YES;
@@ -354,7 +349,7 @@
                 
             }
         }
-        if (isHaveNumber == YES && isHaveChinese == NO && isHaveUppercase == YES && isHaveLowercase == YES) {
+        if (isHaveNumber == YES && isHaveUppercase == YES && isHaveLowercase == YES) {
             result = YES;
         }
     }

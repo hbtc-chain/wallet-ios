@@ -19,4 +19,6 @@
 /** 分割线 */
 @property (strong, nonatomic) UIView *lineView;
 
+@property (strong, nonatomic) XXLabel *valueLabel;
+
 @end

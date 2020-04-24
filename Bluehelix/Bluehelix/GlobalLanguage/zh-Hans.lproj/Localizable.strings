@@ -93,9 +93,14 @@
 "Setting" = "设置";
 "ExchangeRate" = "计价货币";
 "Language" = "语言";
-"Version" = "版本";
+"Version" = "版本号";
 "NightMode" = "夜间模式";
 "LogOut" = "退出登录";
+"OldPassword" = "请输入原密码";
+"ChangePassword"="修改密码";
+"NewPassword"="请输入新密码";
+"ConfirmNewPassword"="确认新密码";
+"ChangePasswordSuccess" = "密码修改成功";
 
 //资产
 "HideSmallCurrency" = "隐藏小额币种";

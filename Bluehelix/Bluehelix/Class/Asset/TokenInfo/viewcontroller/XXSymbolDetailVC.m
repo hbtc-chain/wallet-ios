@@ -81,7 +81,7 @@ int pageSize = 30;
 }
 
 - (void)buildUI {
-    self.titleLabel.text = self.tokenModel.symbol;
+    self.titleLabel.text = [self.tokenModel.symbol uppercaseString];
     [self.view addSubview:self.tableView];
     [self.view addSubview:self.footerView];
     if ([self.tokenModel.symbol isEqualToString:kMainToken]) {

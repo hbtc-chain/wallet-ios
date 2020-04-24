@@ -190,6 +190,7 @@
     if (!_backupBtn) {
         _backupBtn = [XXButton buttonWithFrame:CGRectMake(K375(16), _contentHeight > kScreen_Height - kBtnHeight - K375(16) ? _contentHeight + 20 : kScreen_Height - kBtnHeight - K375(16), kScreen_Width - K375(32), kBtnHeight) title:LocalizedString(@"StartBackup") font:kFontBold18 titleColor:[UIColor whiteColor] block:^(UIButton *button) {
             [[XXSqliteManager sharedSqlite] updateAccountColumn:@"backupFlag" value:@1];
+            [[XXSqliteManager sharedSqlite] updateAccountColumn:@"mnemonicPhrase" value:@""];
             KWindow.rootViewController = [[XXTabBarController alloc] init];
         }];
         _backupBtn.layer.cornerRadius = kBtnBorderRadius;
