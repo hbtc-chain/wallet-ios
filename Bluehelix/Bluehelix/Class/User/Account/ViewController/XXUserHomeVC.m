@@ -55,7 +55,7 @@
     } else {
         self.itemsArray[0] = @[LocalizedString(@"ModifyPassword")];
     }
-    self.itemsArray[1] = @[LocalizedString(@"Setting")];
+    self.itemsArray[1] = @[LocalizedString(@"Setting"),LocalizedString(@"Setting")];
 }
 
 - (void)setupUI {

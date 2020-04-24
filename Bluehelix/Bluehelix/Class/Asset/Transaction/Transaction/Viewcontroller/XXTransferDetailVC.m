@@ -60,9 +60,9 @@
     NSDecimalNumber *amountDecimal = [NSDecimalNumber decimalNumberWithString:amount[@"amount"]]; //数量
     NSString *amountStr = [[amountDecimal decimalNumberByDividingBy:kPrecisionDecimalPower(token.decimals)] stringValue];
     if ([model.from_address isEqualToString:KUser.address]) {
-        [self.sectionArray addObject:[NSString stringWithFormat:@"-%@",amountStr]];
+        [self.sectionArray addObject:[NSString stringWithFormat:@"-%@ %@",amountStr,[amount[@"denom"] uppercaseString]]];
     } else {
-        [self.sectionArray addObject:[NSString stringWithFormat:@"+%@",amountStr]];
+        [self.sectionArray addObject:[NSString stringWithFormat:@"+%@ %@",amountStr,[amount[@"denom"] uppercaseString]]];
     }
     NSMutableArray *cellData = [NSMutableArray array];
     XXTransactionCellModel *cellModel = [[XXTransactionCellModel alloc] init];

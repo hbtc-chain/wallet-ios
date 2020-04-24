@@ -53,7 +53,7 @@
 
 - (void)buildUI {
     self.titleLabel.text = LocalizedString(@"ReceiveMoney");
-    self.titleLabel.textColor = kWhiteColor;
+    self.titleLabel.textColor = [UIColor whiteColor];
     self.leftButton.imageView.image = [UIImage imageNamed:@"white_back"];
     [self.view addSubview:self.scrollView];
     [self.scrollView addSubview:self.topBackImageView];
@@ -104,7 +104,7 @@
 - (UIView *)symbolBackView {
     if (!_symbolBackView) {
         _symbolBackView = [[UIView alloc] initWithFrame:CGRectMake(self.topBackImageView.width/2 - K375(56)/2, -K375(28), K375(60), K375(60))];
-        _symbolBackView.backgroundColor = kWhiteColor;
+        _symbolBackView.backgroundColor = [UIColor whiteColor];
         _symbolBackView.layer.cornerRadius = _symbolBackView.width/2;
         _symbolBackView.layer.masksToBounds = YES;
     }
@@ -146,7 +146,7 @@
 
 - (XXLabel *)addressLabel {
     if (!_addressLabel) {
-        _addressLabel = [XXLabel labelWithFrame:CGRectMake(0, CGRectGetMaxY(self.codeImageView.frame), self.topBackImageView.width, self.topBackImageView.height - CGRectGetMaxY(self.codeImageView.frame)) text:@"" font:kFont(13) textColor:kGray900];
+        _addressLabel = [XXLabel labelWithFrame:CGRectMake(0, CGRectGetMaxY(self.codeImageView.frame), self.topBackImageView.width, self.topBackImageView.height - CGRectGetMaxY(self.codeImageView.frame)) text:@"" font:kFont(13) textColor:[UIColor colorWithHexString:@"#0A1825"]];
         _addressLabel.textAlignment = NSTextAlignmentCenter;
         _addressLabel.text = self.showAddress;
     }

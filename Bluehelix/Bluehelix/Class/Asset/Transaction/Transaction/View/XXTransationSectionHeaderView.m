@@ -20,7 +20,7 @@
 - (instancetype)initWithReuseIdentifier:(nullable NSString *)reuseIdentifier {
     self = [super initWithReuseIdentifier:reuseIdentifier];
        if (self) {
-           self.contentView.backgroundColor = kF4F7FF;
+           self.contentView.backgroundColor = kGray50;
            [self setupUI];
        }
        return self;
