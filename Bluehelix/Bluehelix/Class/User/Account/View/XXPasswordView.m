@@ -26,6 +26,7 @@
 {
     self = [super initWithFrame:frame];
     if (self) {
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardFrameChange:) name:UIKeyboardWillChangeFrameNotification object:nil];
         self.backgroundColor = [UIColor clearColor];
     }
     return self;
@@ -68,6 +69,34 @@
         Alert *alert = [[Alert alloc] initWithTitle:LocalizedString(@"PasswordWrong") duration:kAlertDuration completion:^{
                    }];
         [alert showAlert];
+    }
+}
+
+- (void)keyboardFrameChange:(NSNotification *)notifi{
+    
+    NSDictionary *userInfo = notifi.userInfo;
+    CGRect endFrame = [userInfo[UIKeyboardFrameEndUserInfoKey] CGRectValue];
+    CGRect beginFrame = [userInfo[UIKeyboardFrameBeginUserInfoKey] CGRectValue];
+    CGFloat duration = [userInfo[UIKeyboardAnimationDurationUserInfoKey] doubleValue];
+    UIViewAnimationCurve curve = [userInfo[UIKeyboardAnimationCurveUserInfoKey] integerValue];
+    
+    void(^animations)(void) = ^{
+        [self willShowKeyboardFromFrame:beginFrame toFrame:endFrame];
+    };
+    
+    void(^completion)(BOOL) = ^(BOOL finished){
+        
+    };
+    
+    [UIView animateWithDuration:duration delay:0.0f options:(curve << 16 | UIViewAnimationOptionBeginFromCurrentState) animations:animations completion:completion];
+}
+
+- (void)willShowKeyboardFromFrame:(CGRect)beginFrame toFrame:(CGRect)toFrame {
+    if (toFrame.origin.y  == [[UIScreen mainScreen] bounds].size.height){//键盘收起
+        self.contentView.top = (self.height - K375(184))/2;
+    } else { //键盘升起
+        CGFloat keyboardHeight = toFrame.size.height;
+        self.contentView.top = kScreen_Height - self.contentView.height - keyboardHeight;
     }
 }
 

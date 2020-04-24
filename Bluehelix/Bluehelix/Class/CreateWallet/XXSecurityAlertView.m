@@ -7,7 +7,6 @@
 //
 
 #import "XXSecurityAlertView.h"
-#import "XXPasswordView.h"
 #import "XYHNumbersLabel.h"
 
 @interface XXSecurityAlertView ()

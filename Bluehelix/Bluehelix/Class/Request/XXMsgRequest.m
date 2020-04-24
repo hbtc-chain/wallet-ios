@@ -158,6 +158,7 @@
 /// 发送交易请求
 /// @param rpc 交易对象
 - (void)sendTxRequest:(NSMutableDictionary *)rpc {
+    [MBProgressHUD showActivityMessageInView:@""];
     AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
     manager.operationQueue.maxConcurrentOperationCount = 5;
     manager.requestSerializer = [AFJSONRequestSerializer serializer];
@@ -166,6 +167,7 @@
     [manager POST:[NSString stringWithFormat:@"%@%@",kServerUrl,@"/api/v1/txs"] parameters:rpc headers:nil progress:^(NSProgress * _Nonnull uploadProgress) {
         
     } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+        [MBProgressHUD showSuccessMessage:LocalizedString(@"MsgSuccess")];
         NSLog(@"%@",responseObject);
         if (!IsEmpty(responseObject[@"txhash"]) && IsEmpty(responseObject[@"code"])) {
             if (self.msgSendSuccessBlock) {
@@ -186,6 +188,7 @@
             }
         }
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+        [MBProgressHUD hideHUD];
         NSLog(@"%@ %@",task,error);
         if (self.msgSendFaildBlock) {
             self.msgSendFaildBlock();

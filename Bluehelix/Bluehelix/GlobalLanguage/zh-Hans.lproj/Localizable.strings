@@ -117,6 +117,7 @@
 "EnterTokenNameSearch" = "输入币种名称";
 "TotalAsset" = "总资产(%@)";
 "NoAsset" = "暂无资产";
+"MsgSuccess" = "交易请求发送成功";
 
 //提币
 "PleaseEnterAmountReceived" = "请输入到账数量";
