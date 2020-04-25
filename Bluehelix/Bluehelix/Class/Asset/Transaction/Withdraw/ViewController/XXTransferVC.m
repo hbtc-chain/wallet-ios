@@ -44,12 +44,12 @@
 
 - (void)setupUI {
     if (self.InnerChain) {
-        self.titleLabel.text = [NSString stringWithFormat:@"%@ %@",self.tokenModel.symbol,LocalizedString(@"Transfer")];
+        self.titleLabel.text = [NSString stringWithFormat:@"%@ %@",[self.tokenModel.symbol uppercaseString],LocalizedString(@"Transfer")];
         [self.view addSubview:self.transferView];
         self.transferView.amountView.currentlyAvailable = kAmountTrim(self.tokenModel.amount);
         self.transferView.feeView.textField.text = kMinFee;
     } else {
-        self.titleLabel.text = [NSString stringWithFormat:@"%@ %@",self.tokenModel.symbol,LocalizedString(@"Withdraw")];
+        self.titleLabel.text = [NSString stringWithFormat:@"%@ %@",[self.tokenModel.symbol uppercaseString],LocalizedString(@"Withdraw")];
         [self.view addSubview:self.withdrawView];
         self.withdrawView.amountView.currentlyAvailable = kAmountTrim(self.tokenModel.amount);
         self.withdrawView.amountView.tokenModel = self.tokenModel;
@@ -72,14 +72,22 @@
 }
 
 - (void)transferVerify {
+    NSString *address = self.transferView.addressView.textField.text;
     if (self.transferView.addressView.textField.text.length && self.transferView.amountView.textField.text.length && self.transferView.feeView.textField.text.length) {
+        NSString *pre = [address substringToIndex:3];
+        if (![pre isEqualToString:@"HBC"]) {
+            Alert *alert = [[Alert alloc] initWithTitle:LocalizedString(@"AddressWrong") duration:kAlertDuration completion:^{
+            }];
+            [alert showAlert];
+            return;
+        }
         MJWeakSelf
         [XXPasswordView showWithSureBtnBlock:^(NSString * _Nonnull text) {
             weakSelf.text = text;
             [weakSelf requestTransfer];
            }];
     } else {
-        Alert *alert = [[Alert alloc] initWithTitle:@"请填写完整信息" duration:kAlertDuration completion:^{
+        Alert *alert = [[Alert alloc] initWithTitle:LocalizedString(@"CompleteInfomation") duration:kAlertDuration completion:^{
         }];
         [alert showAlert];
         return;
@@ -110,7 +118,7 @@
             [weakSelf requestWithdraw];
            }];
     } else {
-        Alert *alert = [[Alert alloc] initWithTitle:@"请填写完整信息" duration:kAlertDuration completion:^{
+        Alert *alert = [[Alert alloc] initWithTitle:LocalizedString(@"CompleteInfomation") duration:kAlertDuration completion:^{
         }];
         [alert showAlert];
         return;

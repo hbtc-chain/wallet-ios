@@ -118,6 +118,8 @@
 "TotalAsset" = "总资产(%@)";
 "NoAsset" = "暂无资产";
 "MsgSuccess" = "交易请求发送成功";
+"CompleteInfomation" = "请填写完整信息";
+"AddressWrong" = "转账地址不正确";
 
 //提币
 "PleaseEnterAmountReceived" = "请输入到账数量";

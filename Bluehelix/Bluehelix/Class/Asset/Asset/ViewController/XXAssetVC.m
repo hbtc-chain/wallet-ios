@@ -18,6 +18,7 @@
 #import "XXSymbolDetailVC.h"
 #import "RatesManager.h"
 #import "XXEmptyView.h"
+#import "SWTableViewCell.h"
 
 @interface XXAssetVC ()<UITableViewDataSource, UITableViewDelegate>
 

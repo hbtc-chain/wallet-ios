@@ -42,14 +42,14 @@
 
 - (XXLabel *)nameLabel {
     if (!_nameLabel) {
-        _nameLabel = [XXLabel labelWithFrame:CGRectMake(K375(24), 0, kScreen_Width/2 - K375(24), 40) font:kFont17 textColor:kGray900];
+        _nameLabel = [XXLabel labelWithFrame:CGRectMake(K375(24), 0, 100, 40) font:kFont17 textColor:kGray900];
     }
     return _nameLabel;
 }
 
 - (XXLabel *)valueLabel {
     if (!_valueLabel) {
-        _valueLabel = [XXLabel labelWithFrame:CGRectMake(kScreen_Width/2, 0, kScreen_Width/2 - 20, 40) font:kNumberFont(17) textColor:kGray900];
+        _valueLabel = [XXLabel labelWithFrame:CGRectMake(K375(24) + 100, 0, kScreen_Width - K375(48) + 100, 40) font:kNumberFont(17) textColor:kGray900];
         _valueLabel.textAlignment = NSTextAlignmentRight;
     }
     return _valueLabel;
