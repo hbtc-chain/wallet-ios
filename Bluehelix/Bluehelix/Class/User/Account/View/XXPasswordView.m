@@ -183,7 +183,6 @@
         _okButton.layer.cornerRadius = kBtnBorderRadius;
         _okButton.layer.masksToBounds = YES;
         _okButton.backgroundColor = kPrimaryMain;
-//        _okButton.enabled = NO;
     }
     return _okButton;
 }

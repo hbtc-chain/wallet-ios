@@ -15,6 +15,8 @@
 #import "XXMsgKeyGenModel.h"
 #import "XXTokenModel.h"
 #import "XXTransationSectionHeaderView.h"
+#import "XXMsgDelegateModel.h"
+#import "XXCoinModel.h"
 
 @interface XXTransactionCellModel : NSObject
 
@@ -114,6 +116,27 @@
     [self.cellArray addObject:cellData];
 }
 
+#pragma mark 委托
+- (void)msgDelegate:(NSDictionary *)value {
+    XXMsgDelegateModel *model = [XXMsgDelegateModel mj_objectWithKeyValues:value];
+    XXCoinModel *coin = model.amount;
+    XXTokenModel *token = [[XXSqliteManager sharedSqlite] tokenBySymbol:coin.denom];
+    NSDecimalNumber *amountDecimal = [NSDecimalNumber decimalNumberWithString:coin.amount]; //数量
+    NSString *amountStr = [[amountDecimal decimalNumberByDividingBy:kPrecisionDecimalPower(token.decimals)] stringValue];
+    [self.sectionArray addObject:[NSString stringWithFormat:@"-%@ %@",amountStr,[coin.denom uppercaseString]]];
+   
+    NSMutableArray *cellData = [NSMutableArray array];
+    XXTransactionCellModel *cellModel = [[XXTransactionCellModel alloc] init];
+    cellModel.name = LocalizedString(@"From");
+    cellModel.value = model.delegator_address;
+    [cellData addObject:cellModel];
+    XXTransactionCellModel *cellModel1 = [[XXTransactionCellModel alloc] init];
+    cellModel1.name = LocalizedString(@"To");
+    cellModel1.value = model.validator_address;
+    [cellData addObject:cellModel1];
+    [self.cellArray addObject:cellData];
+}
+
 - (void)configDic {
     NSArray *activities = self.dic[@"activities"];
     NSDictionary *dic = [activities firstObject];
@@ -125,6 +148,7 @@
         [self msgSendModel:value];
     } else if ([type isEqualToString:kMsgDelegate]) {
         showTypeStr = LocalizedString(@"Delegate");
+        [self msgDelegate:value];
     } else if ([type isEqualToString:kMsgUndelegate]) {
         showTypeStr = LocalizedString(@"TransferDelegate");
     } else if ([type isEqualToString:kMsgKeyGen]) {

@@ -124,6 +124,9 @@
 		EA8F8C88240FA9F200D26E10 /* Icon.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EA8F8C86240FA9F200D26E10 /* Icon.xcassets */; };
 		EA92EDBB2448086F00B194DA /* XXMsgRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = EA92EDBA2448086F00B194DA /* XXMsgRequest.m */; };
 		EA92EDBE244809E800B194DA /* XXMsg.m in Sources */ = {isa = PBXBuildFile; fileRef = EA92EDBD244809E800B194DA /* XXMsg.m */; };
+		EA9537002455623B0060D1FC /* XXRewardView.m in Sources */ = {isa = PBXBuildFile; fileRef = EA9536FF2455623B0060D1FC /* XXRewardView.m */; };
+		EA95370324558CC40060D1FC /* XXMsgDelegateModel.m in Sources */ = {isa = PBXBuildFile; fileRef = EA95370224558CC40060D1FC /* XXMsgDelegateModel.m */; };
+		EA953706245590B90060D1FC /* XXCoinModel.m in Sources */ = {isa = PBXBuildFile; fileRef = EA953705245590B90060D1FC /* XXCoinModel.m */; };
 		EA964BA62414D37F00A941E5 /* XXBackupMnemonicPhraseVC.m in Sources */ = {isa = PBXBuildFile; fileRef = EA964BA42414D37F00A941E5 /* XXBackupMnemonicPhraseVC.m */; };
 		EA964C442414E18500A941E5 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = EA964C432414E18500A941E5 /* AppDelegate.m */; };
 		EA9D3E2A2452BBD00060778C /* XXChangePasswordVC.m in Sources */ = {isa = PBXBuildFile; fileRef = EA9D3E282452BBD00060778C /* XXChangePasswordVC.m */; };
@@ -520,6 +523,12 @@
 		EA92EDBA2448086F00B194DA /* XXMsgRequest.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = XXMsgRequest.m; sourceTree = "<group>"; };
 		EA92EDBC244809E800B194DA /* XXMsg.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = XXMsg.h; sourceTree = "<group>"; };
 		EA92EDBD244809E800B194DA /* XXMsg.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = XXMsg.m; sourceTree = "<group>"; };
+		EA9536FE2455623B0060D1FC /* XXRewardView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = XXRewardView.h; sourceTree = "<group>"; };
+		EA9536FF2455623B0060D1FC /* XXRewardView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = XXRewardView.m; sourceTree = "<group>"; };
+		EA95370124558CC40060D1FC /* XXMsgDelegateModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = XXMsgDelegateModel.h; sourceTree = "<group>"; };
+		EA95370224558CC40060D1FC /* XXMsgDelegateModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = XXMsgDelegateModel.m; sourceTree = "<group>"; };
+		EA953704245590B90060D1FC /* XXCoinModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = XXCoinModel.h; sourceTree = "<group>"; };
+		EA953705245590B90060D1FC /* XXCoinModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = XXCoinModel.m; sourceTree = "<group>"; };
 		EA964BA42414D37F00A941E5 /* XXBackupMnemonicPhraseVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XXBackupMnemonicPhraseVC.m; sourceTree = "<group>"; };
 		EA964BA52414D37F00A941E5 /* XXBackupMnemonicPhraseVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XXBackupMnemonicPhraseVC.h; sourceTree = "<group>"; };
 		EA964C422414E18500A941E5 /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -1281,6 +1290,10 @@
 				EA3E5964244721DD0080B98F /* XXMsgWithdrawalModel.m */,
 				EA3E5966244723200080B98F /* XXMsgSendModel.h */,
 				EA3E5967244723200080B98F /* XXMsgSendModel.m */,
+				EA95370124558CC40060D1FC /* XXMsgDelegateModel.h */,
+				EA95370224558CC40060D1FC /* XXMsgDelegateModel.m */,
+				EA953704245590B90060D1FC /* XXCoinModel.h */,
+				EA953705245590B90060D1FC /* XXCoinModel.m */,
 			);
 			path = model;
 			sourceTree = "<group>";
@@ -1753,6 +1766,8 @@
 				EABD7191244B1AEA008AA188 /* XXTransferHeaderView.m */,
 				EAE467EC244C7901006EACAF /* XXTransationSectionHeaderView.h */,
 				EAE467ED244C7901006EACAF /* XXTransationSectionHeaderView.m */,
+				EA9536FE2455623B0060D1FC /* XXRewardView.h */,
+				EA9536FF2455623B0060D1FC /* XXRewardView.m */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -2127,6 +2142,7 @@
 				EA04AD5024362964004403FF /* HttpManager.m in Sources */,
 				F31F7A4E20CF9693008B4403 /* BaseViewController.m in Sources */,
 				EABD7188244AFCD4008AA188 /* XXEmptyView.m in Sources */,
+				EA9537002455623B0060D1FC /* XXRewardView.m in Sources */,
 				EABBC08A24232DCD00B7E412 /* AESCrypt.m in Sources */,
 				EAB356342438369200D750D6 /* FMResultSet.m in Sources */,
 				EAB3566A243E402100D750D6 /* JSONKit.m in Sources */,
@@ -2142,6 +2158,7 @@
 				EA3E591A24441D160080B98F /* XXAssetSearchView.m in Sources */,
 				EA3E593F24441D950080B98F /* XXWithdrawAmountView.m in Sources */,
 				EA92EDBE244809E800B194DA /* XXMsg.m in Sources */,
+				EA95370324558CC40060D1FC /* XXMsgDelegateModel.m in Sources */,
 				EA3E5968244723200080B98F /* XXMsgSendModel.m in Sources */,
 				EABD1BA0241BB25900B1A03A /* RoundRobinProvider.m in Sources */,
 				EAA8DEC2244D7E7C00161698 /* XXAccountFooterView.m in Sources */,
@@ -2244,6 +2261,7 @@
 				EABD1BA4241BB25900B1A03A /* BigNumber.m in Sources */,
 				6C3E66FF244ADF280057B514 /* XXDelegateAddressView.m in Sources */,
 				EA04ABB1242D015B004403FF /* IQUIScrollView+Additions.m in Sources */,
+				EA953706245590B90060D1FC /* XXCoinModel.m in Sources */,
 				EABD1B9F241BB25900B1A03A /* FallbackProvider.m in Sources */,
 				EA3E59622447208F0080B98F /* XXMsgKeyGenModel.m in Sources */,
 				EAB356312438369200D750D6 /* FMDatabaseAdditions.m in Sources */,

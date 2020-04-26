@@ -17,6 +17,7 @@
 #import "XXWithdrawChainVC.h"
 #import "XXMainSymbolHeaderView.h"
 #import "XXEmptyView.h"
+#import "XXRewardView.h"
 
 int pageSize = 30;
 @interface XXSymbolDetailVC ()<UITableViewDataSource, UITableViewDelegate>
@@ -192,13 +193,17 @@ int pageSize = 30;
 
 /// 提取分红
 - (void)withdrawBonus {
-    
+    [XXRewardView showWithTitle:LocalizedString(@"WithdrawMoney") icon:@"withdrawMoneyAlert" content:@"" sureBlock:^{
+        
+    }];
 }
 
 
 /// 复投分红
 - (void)depositBonus {
-    
+    [XXRewardView showWithTitle:LocalizedString(@"InMoney") icon:@"InMoneyAlert" content:@"" sureBlock:^{
+        
+    }];
 }
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
