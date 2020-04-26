@@ -133,6 +133,7 @@
 		EA9D3E3B24545A1D0060778C /* SWLongPressGestureRecognizer.m in Sources */ = {isa = PBXBuildFile; fileRef = EA9D3E3324545A1D0060778C /* SWLongPressGestureRecognizer.m */; };
 		EA9D3E3C24545A1D0060778C /* NSMutableArray+SWUtilityButtons.m in Sources */ = {isa = PBXBuildFile; fileRef = EA9D3E3424545A1D0060778C /* NSMutableArray+SWUtilityButtons.m */; };
 		EA9D3E3D24545A1D0060778C /* SWTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = EA9D3E3724545A1D0060778C /* SWTableViewCell.m */; };
+		EA9D3E4024546D820060778C /* XXDepositAlert.m in Sources */ = {isa = PBXBuildFile; fileRef = EA9D3E3F24546D820060778C /* XXDepositAlert.m */; };
 		EAA8DEBA244D7E7C00161698 /* RatesManager.m in Sources */ = {isa = PBXBuildFile; fileRef = EAA8DE9F244D7E7C00161698 /* RatesManager.m */; };
 		EAA8DEBB244D7E7C00161698 /* XXUserData.m in Sources */ = {isa = PBXBuildFile; fileRef = EAA8DEA0244D7E7C00161698 /* XXUserData.m */; };
 		EAA8DEBC244D7E7C00161698 /* XXAccountManageVC.m in Sources */ = {isa = PBXBuildFile; fileRef = EAA8DEA3244D7E7C00161698 /* XXAccountManageVC.m */; };
@@ -537,6 +538,8 @@
 		EA9D3E3524545A1D0060778C /* SWCellScrollView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SWCellScrollView.h; sourceTree = "<group>"; };
 		EA9D3E3624545A1D0060778C /* SWUtilityButtonView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SWUtilityButtonView.h; sourceTree = "<group>"; };
 		EA9D3E3724545A1D0060778C /* SWTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SWTableViewCell.m; sourceTree = "<group>"; };
+		EA9D3E3E24546D820060778C /* XXDepositAlert.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = XXDepositAlert.h; sourceTree = "<group>"; };
+		EA9D3E3F24546D820060778C /* XXDepositAlert.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = XXDepositAlert.m; sourceTree = "<group>"; };
 		EAA8DE9D244D7E7C00161698 /* XXSqliteManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XXSqliteManager.h; sourceTree = "<group>"; };
 		EAA8DE9E244D7E7C00161698 /* XXAccountManageVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XXAccountManageVC.h; sourceTree = "<group>"; };
 		EAA8DE9F244D7E7C00161698 /* RatesManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RatesManager.m; sourceTree = "<group>"; };
@@ -1143,6 +1146,8 @@
 			children = (
 				EA3E58D624441C7B0080B98F /* XXDepositCoinVC.h */,
 				EA3E58D524441C7B0080B98F /* XXDepositCoinVC.m */,
+				EA9D3E3E24546D820060778C /* XXDepositAlert.h */,
+				EA9D3E3F24546D820060778C /* XXDepositAlert.m */,
 			);
 			path = Deposit;
 			sourceTree = "<group>";
@@ -2267,6 +2272,7 @@
 				7A3298452320EE9900196336 /* NSMutableArray+Safe.m in Sources */,
 				F30EAF5720D26536005ADD5C /* colorModel.m in Sources */,
 				EA04ABAA242D015B004403FF /* IQTitleBarButtonItem.m in Sources */,
+				EA9D3E4024546D820060778C /* XXDepositAlert.m in Sources */,
 				EA309F7D236F22190098DE28 /* UIProgressView+AFNetworking.m in Sources */,
 				EAA8DEC0244D7E7C00161698 /* XXPasswordView.m in Sources */,
 				EA30A06D236F221A0098DE28 /* UIButton+AFNetworking.m in Sources */,

@@ -148,8 +148,16 @@
 //收款地址
 "ShowAddress" = "我已知风险，显示地址";
 "Tip" = "提示";
-"ChainDepositTip" = "您正在进行托管单元跨链收款(充币)\n请提醒转出方，务必使用OMNI钱包提币";
-"DepositTip" = "您正在进行托管单元链内收款(充币)\n请提醒转出方，务必使用非跨链的提币通道";
+"ChainDepositTip1" = "·您正在进行托管单元";
+"ChainDepositTip2" = "跨链";
+"ChainDepositTip3" = "收款(充币)\n·请提醒转出方，务必使用";
+"ChainDepositTip4" = "OMNI钱包";
+"ChainDepositTip5" = "提币";
+"DepositTip1" = "·您正在进行托管单元";
+"DepositTip2" = "链内";
+"DepositTip3" = "收款(充币)\n·请提醒转出方，务必使用";
+"DepositTip4" = "非跨链";
+"DepositTip5" = "的提币通道";
 
 //币种详情
 "ReceiveMoney" = "收款";

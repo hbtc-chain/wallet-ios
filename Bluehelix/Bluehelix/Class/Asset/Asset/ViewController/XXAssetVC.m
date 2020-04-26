@@ -65,7 +65,7 @@
     self.tableView.separatorColor = KLine_Color;
     [self.headerView addSubview:self.searchView];
     self.tableView.tableHeaderView = self.headerView;
-    if (!KUser.currentAccount.backupFlag && IsEmpty(KUser.currentAccount.mnemonicPhrase)) {
+    if (!KUser.currentAccount.backupFlag && !IsEmpty(KUser.currentAccount.mnemonicPhrase)) {
         MJWeakSelf
         [XXSecurityAlertView showWithSureBlock:^{
             [XXPasswordView showWithSureBtnBlock:^(NSString * _Nonnull text) {
