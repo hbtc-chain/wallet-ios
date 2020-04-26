@@ -105,7 +105,16 @@
         msg[@"type"] = _type;
         msg[@"value"] = value;
         [msgs addObject:msg];
-    }
+    } else if ([_type isEqualToString:kMsgWithdrawalDelegationReward]) {
+              NSMutableDictionary *value = [NSMutableDictionary dictionary];
+              value[@"delegator_address"] = _fromAddress;
+              value[@"validator_address"] = _toAddress;
+
+              NSMutableDictionary *msg = [NSMutableDictionary dictionary];
+              msg[@"type"] = kMsgWithdrawalDelegationReward;
+              msg[@"value"] = value;
+              [msgs addObject:msg];
+       }
     _msgs = msgs;
 }
 

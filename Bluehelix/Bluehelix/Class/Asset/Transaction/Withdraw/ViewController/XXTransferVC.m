@@ -106,6 +106,10 @@
 
     XXMsg *model = [[XXMsg alloc] initWithfrom:KUser.address to:toAddress amount:amount denom:self.tokenModel.symbol feeAmount:feeAmount feeGas:gas feeDenom:self.tokenModel.symbol memo:@"" type:kMsgSend withdrawal_fee:@"" text:self.text];
     _msgRequest = [[XXMsgRequest alloc] init];
+    MJWeakSelf
+    _msgRequest.msgSendSuccessBlock = ^{
+        [weakSelf.navigationController popViewControllerAnimated:YES];
+    };
     [_msgRequest sendMsg:model];
 }
 
@@ -140,6 +144,10 @@
     
     XXMsg *model = [[XXMsg alloc] initWithfrom:KUser.address to:toAddress amount:amount denom:self.tokenModel.symbol feeAmount:feeAmount feeGas:gas feeDenom:kMainToken memo:@"" type:kMsgWithdrawal withdrawal_fee:chainFeeAmount text:self.text];
     _msgRequest = [[XXMsgRequest alloc] init];
+    MJWeakSelf
+    _msgRequest.msgSendSuccessBlock = ^{
+        [weakSelf.navigationController popViewControllerAnimated:YES];
+    };
     [_msgRequest sendMsg:model];
 }
 

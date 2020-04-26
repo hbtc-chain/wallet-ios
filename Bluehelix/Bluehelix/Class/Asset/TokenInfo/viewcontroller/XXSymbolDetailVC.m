@@ -18,6 +18,9 @@
 #import "XXMainSymbolHeaderView.h"
 #import "XXEmptyView.h"
 #import "XXRewardView.h"
+#import "XXMsg.h"
+#import "XXMsgRequest.h"
+#import "XXPasswordView.h"
 
 int pageSize = 30;
 @interface XXSymbolDetailVC ()<UITableViewDataSource, UITableViewDelegate>
@@ -32,6 +35,8 @@ int pageSize = 30;
 @property (nonatomic, strong) XXEmptyView *emptyView;
 @property (nonatomic, strong) XXAssetManager *assetManager; // 资产请求
 @property (nonatomic, strong) NSTimer *timer; //定时刷新交易记录
+@property (nonatomic, strong) NSArray *delegations; //委托列表
+@property (nonatomic, strong) XXMsgRequest *msgRequest; //提取分红
 
 @end
 
@@ -123,6 +128,19 @@ int pageSize = 30;
     }];
 }
 
+/// 请求委托地址列表
+- (void)requestDelegations {
+    MJWeakSelf
+    NSString *path = [NSString stringWithFormat:@"/api/v1/cus/%@/delegations",KUser.address];
+    [HttpManager getWithPath:path params:nil andBlock:^(id data, NSString *msg, NSInteger code) {
+        if (code == 0) {
+            NSLog(@"%@",data);
+            weakSelf.delegations = data;
+            [weakSelf withdrawBonus];
+        }
+    }];
+}
+
 - (void)pushDepositVC {
     XXDepositCoinVC *depositVC = [[XXDepositCoinVC alloc] init];
     depositVC.tokenModel = self.tokenModel;
@@ -140,11 +158,9 @@ int pageSize = 30;
 /// 底部第三个按钮点击事件
 - (void)thirdBtnAction {
     if ([self.tokenModel.symbol isEqualToString:kMainToken]) {
-        [self withdrawBonus];
+        [self requestDelegations];
     } else {
-        if (self.tokenModel.is_native) {
-            [self withdrawBonus];
-        } else {
+        if (!self.tokenModel.is_native) {
             [self chainInAction];
         }
     }
@@ -155,9 +171,7 @@ int pageSize = 30;
     if ([self.tokenModel.symbol isEqualToString:kMainToken]) {
         [self depositBonus];
     } else {
-        if (self.tokenModel.is_native) {
-            [self depositBonus];
-        } else {
+        if (!self.tokenModel.is_native) {
             [self chainOutAction];
         }
     }
@@ -193,11 +207,32 @@ int pageSize = 30;
 
 /// 提取分红
 - (void)withdrawBonus {
+    MJWeakSelf
     [XXRewardView showWithTitle:LocalizedString(@"WithdrawMoney") icon:@"withdrawMoneyAlert" content:@"" sureBlock:^{
-        
+        [XXPasswordView showWithSureBtnBlock:^(NSString * _Nonnull text) {
+            [weakSelf requestWithdrawBonus:text];
+        }];
     }];
 }
 
+/// 发送提取分红请求
+- (void)requestWithdrawBonus:(NSString *)text {
+    XXMsg *model = [[XXMsg alloc] initWithfrom:@"" to:@"" amount:@"" denom:kMainToken feeAmount:@"2000000000000000000" feeGas:@"2000000" feeDenom:kMainToken memo:@"" type:kMsgWithdrawalDelegationReward withdrawal_fee:@"" text:text];
+    NSMutableArray *msgs = [NSMutableArray array];
+    for (NSDictionary *dic in self.delegations) {
+        NSMutableDictionary *value = [NSMutableDictionary dictionary];
+        value[@"delegator_address"] = KUser.address;
+        value[@"validator_address"] = dic[@"validator"];
+
+        NSMutableDictionary *msg = [NSMutableDictionary dictionary];
+        msg[@"type"] = kMsgWithdrawalDelegationReward;
+        msg[@"value"] = value;
+        [msgs addObject:msg];
+    }
+    model.msgs = msgs;
+    _msgRequest = [[XXMsgRequest alloc] init];
+    [_msgRequest sendMsg:model];
+}
 
 /// 复投分红
 - (void)depositBonus {
@@ -269,10 +304,10 @@ int pageSize = 30;
             [weakSelf.assetManager requestAsset];
             [weakSelf requestHistory];
         }];
-        _tableView.mj_footer = [MJRefreshBackNormalFooter footerWithRefreshingBlock:^{
-            weakSelf.page ++;
-            [weakSelf requestHistory];
-        }];
+//        _tableView.mj_footer = [MJRefreshBackNormalFooter footerWithRefreshingBlock:^{
+//            weakSelf.page ++;
+//            [weakSelf requestHistory];
+//        }];
     }
     return _tableView;
 }

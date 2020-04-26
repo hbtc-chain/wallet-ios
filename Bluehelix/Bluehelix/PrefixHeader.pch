@@ -96,6 +96,8 @@ typedef NS_ENUM(NSUInteger, NetworkMethod) {
 #define kMsgKeyGen @"hbtcchain/keygen/MsgKeyGen" //生成跨链地址
 #define kMsgDeposit @"hbtcchain/transfer/MsgDeposit" //跨链充值
 #define kMsgWithdrawal @"hbtcchain/transfer/MsgWithdrawal" //跨链提币
+#define kMsgWithdrawalDelegationReward @"hbtcchain/MsgWithdrawDelegationReward" //提取收益
+#define kMsgWithdrawalDelegationReward @"hbtcchain/MsgWithdrawDelegationReward" //提取收益
 
 #define kHideAssetText @"***"
 #define kPrecision 1000000000000000000 //精度是10的18次方

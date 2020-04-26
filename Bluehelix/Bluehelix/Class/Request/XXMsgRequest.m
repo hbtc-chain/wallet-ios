@@ -173,7 +173,6 @@
             if (self.msgSendSuccessBlock) {
                 self.msgSendSuccessBlock();
             }
-            [[AppDelegate appDelegate].TopVC.navigationController popViewControllerAnimated:YES];
         } else {
             NSString *raw_log = [responseObject objectForKey:@"raw_log"];
             if (!IsEmpty(raw_log)) {
