@@ -70,6 +70,8 @@ typedef NS_ENUM(NSUInteger, NetworkMethod) {
 #define kGray50 kIsNight ? [UIColor colorWithHexString:@"#1A2233"] : [UIColor colorWithHexString:@"#F9F9FB"]
 #define kPriceFall kIsNight ? [UIColor colorWithHexString:@"#ED3756"] : [UIColor colorWithHexString:@"#ED3756"]
 #define kGreen100  kIsNight ? [UIColor colorWithHexString:@"#51D372"] : [UIColor colorWithHexString:@"#51D372"]
+#define kRed100 kIsNight ? [UIColor colorWithHexString:@"#F73A46"] : [UIColor colorWithHexString:@"#F73A46"]
+#define kOrange100 kIsNight ? [UIColor colorWithHexString:@"#FF922E"] : [UIColor colorWithHexString:@"#FF922E"]
 #define kGreen kIsNight ? [UIColor colorWithHexString:@"#269A99"] : [UIColor colorWithHexString:@"#269A99"]
 #define kGray kIsNight ? [UIColor colorWithHexString:@"#475563"] : [UIColor colorWithHexString:@"#475563"]
 #define kF4F7FF [UIColor colorWithHexString:@"#F4F7FF"]
@@ -80,7 +82,7 @@ typedef NS_ENUM(NSUInteger, NetworkMethod) {
 #define kMainLabelColor kIsNight ? [UIColor whiteColor] : [UIColor colorWithHexString:@"#0A1825"]
 #define kSubLabelColor kIsNight ? [UIColor whiteColor] : [UIColor colorWithHexString:@"#6E8196"]
 #define kSeparateLineColor kIsNight ? [UIColor whiteColor] : [UIColor colorWithHexString:@"#F9F9FB"]
-
+#define kShadowColor [UIColor colorWithHexString:@"#1F3375" withAlpha:0.12]
 
 #define kDomain @""
 //#define kServerChainUrl @"http://bhchain-testnet-node1-751700059.ap-northeast-1.elb.amazonaws.com:1317"
@@ -96,6 +98,9 @@ typedef NS_ENUM(NSUInteger, NetworkMethod) {
 #define kMsgKeyGen @"hbtcchain/keygen/MsgKeyGen" //生成跨链地址
 #define kMsgDeposit @"hbtcchain/transfer/MsgDeposit" //跨链充值
 #define kMsgWithdrawal @"hbtcchain/transfer/MsgWithdrawal" //跨链提币
+#define kMsgCreateProposal @"hbtcchain/gov/MsgSubmitProposal" //发起提案
+#define kMsgPledge @"hbtcchain/gov/MsgDeposit" //质押
+#define kMsgVote @"hbtcchain/gov/MsgVote" //投票
 #define kMsgWithdrawalDelegationReward @"hbtcchain/MsgWithdrawDelegationReward" //提取收益
 
 #define kHideAssetText @"***"

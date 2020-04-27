@@ -14,6 +14,26 @@
 		6C3E66F8244AB10E0057B514 /* XXDelegateTransferViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6C3E66F7244AB10E0057B514 /* XXDelegateTransferViewController.m */; };
 		6C3E66FC244AD0700057B514 /* XXDelegateTransferView.m in Sources */ = {isa = PBXBuildFile; fileRef = 6C3E66FB244AD0700057B514 /* XXDelegateTransferView.m */; };
 		6C3E66FF244ADF280057B514 /* XXDelegateAddressView.m in Sources */ = {isa = PBXBuildFile; fileRef = 6C3E66FE244ADF280057B514 /* XXDelegateAddressView.m */; };
+		6C791DFB2451A1D800F22CD0 /* XXProposalsListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6C791DFA2451A1D800F22CD0 /* XXProposalsListViewController.m */; };
+		6C791DFE2451A2B800F22CD0 /* XXProposalTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 6C791DFD2451A2B800F22CD0 /* XXProposalTableViewCell.m */; };
+		6C791E012451A33700F22CD0 /* XXProposalDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6C791E002451A33700F22CD0 /* XXProposalDetailViewController.m */; };
+		6C791E042451A37E00F22CD0 /* XXVoteProposalViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6C791E032451A37E00F22CD0 /* XXVoteProposalViewController.m */; };
+		6C791E072451A71600F22CD0 /* XXProposalListHeader.m in Sources */ = {isa = PBXBuildFile; fileRef = 6C791E062451A71600F22CD0 /* XXProposalListHeader.m */; };
+		6C791E0A2451AF6400F22CD0 /* XXProposalGripSectionHeader.m in Sources */ = {isa = PBXBuildFile; fileRef = 6C791E092451AF6400F22CD0 /* XXProposalGripSectionHeader.m */; };
+		6C791E0D2451B33B00F22CD0 /* XXProposalListModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 6C791E0C2451B33B00F22CD0 /* XXProposalListModel.m */; };
+		6C791E122452D72F00F22CD0 /* XXAddProposalView.m in Sources */ = {isa = PBXBuildFile; fileRef = 6C791E112452D72F00F22CD0 /* XXAddProposalView.m */; };
+		6C791E152452D94300F22CD0 /* XXProposalNormalView.m in Sources */ = {isa = PBXBuildFile; fileRef = 6C791E142452D94300F22CD0 /* XXProposalNormalView.m */; };
+		6C791E182452DD7B00F22CD0 /* XXProposalDescriptionView.m in Sources */ = {isa = PBXBuildFile; fileRef = 6C791E172452DD7B00F22CD0 /* XXProposalDescriptionView.m */; };
+		6C791E1B245586B600F22CD0 /* XXPledgeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6C791E1A245586B600F22CD0 /* XXPledgeViewController.m */; };
+		6C791E1F24558BAD00F22CD0 /* XXPledgeView.m in Sources */ = {isa = PBXBuildFile; fileRef = 6C791E1E24558BAD00F22CD0 /* XXPledgeView.m */; };
+		6C791E222455A53400F22CD0 /* XXProposalDetailHeader.m in Sources */ = {isa = PBXBuildFile; fileRef = 6C791E212455A53400F22CD0 /* XXProposalDetailHeader.m */; };
+		6C791E282455A5F400F22CD0 /* XXProposalDetailTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 6C791E272455A5F400F22CD0 /* XXProposalDetailTableViewCell.m */; };
+		6C791E2B245684DE00F22CD0 /* XXProposalDetailInfomationCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 6C791E2A245684DE00F22CD0 /* XXProposalDetailInfomationCell.m */; };
+		6C791E3124568A1200F22CD0 /* XXProposalDetailVoteInfoCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 6C791E3024568A1200F22CD0 /* XXProposalDetailVoteInfoCell.m */; };
+		6C791E342456BE3900F22CD0 /* XXVotingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6C791E332456BE3900F22CD0 /* XXVotingViewController.m */; };
+		6C791E3A2456CA4200F22CD0 /* XXTransferTipView.m in Sources */ = {isa = PBXBuildFile; fileRef = 6C791E382456CA4100F22CD0 /* XXTransferTipView.m */; };
+		6C791E3E2456D02100F22CD0 /* XXVotingView.m in Sources */ = {isa = PBXBuildFile; fileRef = 6C791E3D2456D02100F22CD0 /* XXVotingView.m */; };
+		6C791E412456D12000F22CD0 /* XXVoteActionView.m in Sources */ = {isa = PBXBuildFile; fileRef = 6C791E402456D12000F22CD0 /* XXVoteActionView.m */; };
 		6CC12CEE24445DF200917105 /* XXDecimalNumberHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = EA0AA16623ED8AFD00E9472E /* XXDecimalNumberHelper.m */; };
 		6CC12CF52444629B00917105 /* XXValidatorsHomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6CC12CF42444629B00917105 /* XXValidatorsHomeViewController.m */; };
 		6CC12CF82444630400917105 /* XXValidatorCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 6CC12CF72444630400917105 /* XXValidatorCell.m */; };
@@ -295,6 +315,47 @@
 		6C3E66FD244ADF280057B514 /* XXDelegateAddressView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = XXDelegateAddressView.h; sourceTree = "<group>"; };
 		6C3E66FE244ADF280057B514 /* XXDelegateAddressView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = XXDelegateAddressView.m; sourceTree = "<group>"; };
 		6C3E6701244AE1540057B514 /* XXValidatorPrefixHeader.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = XXValidatorPrefixHeader.h; sourceTree = "<group>"; };
+		6C791DF92451A1D800F22CD0 /* XXProposalsListViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = XXProposalsListViewController.h; sourceTree = "<group>"; };
+		6C791DFA2451A1D800F22CD0 /* XXProposalsListViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = XXProposalsListViewController.m; sourceTree = "<group>"; };
+		6C791DFC2451A2B800F22CD0 /* XXProposalTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = XXProposalTableViewCell.h; sourceTree = "<group>"; };
+		6C791DFD2451A2B800F22CD0 /* XXProposalTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = XXProposalTableViewCell.m; sourceTree = "<group>"; };
+		6C791DFF2451A33700F22CD0 /* XXProposalDetailViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = XXProposalDetailViewController.h; sourceTree = "<group>"; };
+		6C791E002451A33700F22CD0 /* XXProposalDetailViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = XXProposalDetailViewController.m; sourceTree = "<group>"; };
+		6C791E022451A37E00F22CD0 /* XXVoteProposalViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = XXVoteProposalViewController.h; sourceTree = "<group>"; };
+		6C791E032451A37E00F22CD0 /* XXVoteProposalViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = XXVoteProposalViewController.m; sourceTree = "<group>"; };
+		6C791E052451A71600F22CD0 /* XXProposalListHeader.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = XXProposalListHeader.h; sourceTree = "<group>"; };
+		6C791E062451A71600F22CD0 /* XXProposalListHeader.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = XXProposalListHeader.m; sourceTree = "<group>"; };
+		6C791E082451AF6400F22CD0 /* XXProposalGripSectionHeader.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = XXProposalGripSectionHeader.h; sourceTree = "<group>"; };
+		6C791E092451AF6400F22CD0 /* XXProposalGripSectionHeader.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = XXProposalGripSectionHeader.m; sourceTree = "<group>"; };
+		6C791E0B2451B33B00F22CD0 /* XXProposalListModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = XXProposalListModel.h; sourceTree = "<group>"; };
+		6C791E0C2451B33B00F22CD0 /* XXProposalListModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = XXProposalListModel.m; sourceTree = "<group>"; };
+		6C791E0E2452C31D00F22CD0 /* XXProposalPrefixHeader.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = XXProposalPrefixHeader.h; sourceTree = "<group>"; };
+		6C791E102452D72F00F22CD0 /* XXAddProposalView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = XXAddProposalView.h; sourceTree = "<group>"; };
+		6C791E112452D72F00F22CD0 /* XXAddProposalView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = XXAddProposalView.m; sourceTree = "<group>"; };
+		6C791E132452D94300F22CD0 /* XXProposalNormalView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = XXProposalNormalView.h; sourceTree = "<group>"; };
+		6C791E142452D94300F22CD0 /* XXProposalNormalView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = XXProposalNormalView.m; sourceTree = "<group>"; };
+		6C791E162452DD7B00F22CD0 /* XXProposalDescriptionView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = XXProposalDescriptionView.h; sourceTree = "<group>"; };
+		6C791E172452DD7B00F22CD0 /* XXProposalDescriptionView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = XXProposalDescriptionView.m; sourceTree = "<group>"; };
+		6C791E19245586B600F22CD0 /* XXPledgeViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = XXPledgeViewController.h; sourceTree = "<group>"; };
+		6C791E1A245586B600F22CD0 /* XXPledgeViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = XXPledgeViewController.m; sourceTree = "<group>"; };
+		6C791E1D24558BAD00F22CD0 /* XXPledgeView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = XXPledgeView.h; sourceTree = "<group>"; };
+		6C791E1E24558BAD00F22CD0 /* XXPledgeView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = XXPledgeView.m; sourceTree = "<group>"; };
+		6C791E202455A53400F22CD0 /* XXProposalDetailHeader.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = XXProposalDetailHeader.h; sourceTree = "<group>"; };
+		6C791E212455A53400F22CD0 /* XXProposalDetailHeader.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = XXProposalDetailHeader.m; sourceTree = "<group>"; };
+		6C791E262455A5F400F22CD0 /* XXProposalDetailTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = XXProposalDetailTableViewCell.h; sourceTree = "<group>"; };
+		6C791E272455A5F400F22CD0 /* XXProposalDetailTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = XXProposalDetailTableViewCell.m; sourceTree = "<group>"; };
+		6C791E29245684DE00F22CD0 /* XXProposalDetailInfomationCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = XXProposalDetailInfomationCell.h; sourceTree = "<group>"; };
+		6C791E2A245684DE00F22CD0 /* XXProposalDetailInfomationCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = XXProposalDetailInfomationCell.m; sourceTree = "<group>"; };
+		6C791E2F24568A1200F22CD0 /* XXProposalDetailVoteInfoCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = XXProposalDetailVoteInfoCell.h; sourceTree = "<group>"; };
+		6C791E3024568A1200F22CD0 /* XXProposalDetailVoteInfoCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = XXProposalDetailVoteInfoCell.m; sourceTree = "<group>"; };
+		6C791E322456BE3900F22CD0 /* XXVotingViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = XXVotingViewController.h; sourceTree = "<group>"; };
+		6C791E332456BE3900F22CD0 /* XXVotingViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = XXVotingViewController.m; sourceTree = "<group>"; };
+		6C791E382456CA4100F22CD0 /* XXTransferTipView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XXTransferTipView.m; sourceTree = "<group>"; };
+		6C791E392456CA4200F22CD0 /* XXTransferTipView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XXTransferTipView.h; sourceTree = "<group>"; };
+		6C791E3C2456D02100F22CD0 /* XXVotingView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = XXVotingView.h; sourceTree = "<group>"; };
+		6C791E3D2456D02100F22CD0 /* XXVotingView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = XXVotingView.m; sourceTree = "<group>"; };
+		6C791E3F2456D12000F22CD0 /* XXVoteActionView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = XXVoteActionView.h; sourceTree = "<group>"; };
+		6C791E402456D12000F22CD0 /* XXVoteActionView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = XXVoteActionView.m; sourceTree = "<group>"; };
 		6CC12CF32444629B00917105 /* XXValidatorsHomeViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = XXValidatorsHomeViewController.h; sourceTree = "<group>"; };
 		6CC12CF42444629B00917105 /* XXValidatorsHomeViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = XXValidatorsHomeViewController.m; sourceTree = "<group>"; };
 		6CC12CF62444630400917105 /* XXValidatorCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = XXValidatorCell.h; sourceTree = "<group>"; };
@@ -828,6 +889,102 @@
 			path = DelegatesView;
 			sourceTree = "<group>";
 		};
+		6C791DF52451A14F00F22CD0 /* Proposals */ = {
+			isa = PBXGroup;
+			children = (
+				6C791E0E2452C31D00F22CD0 /* XXProposalPrefixHeader.h */,
+				6C791DF62451A16F00F22CD0 /* Model */,
+				6C791DF82451A16F00F22CD0 /* View */,
+				6C791DF72451A16F00F22CD0 /* Viewcontroller */,
+			);
+			path = Proposals;
+			sourceTree = "<group>";
+		};
+		6C791DF62451A16F00F22CD0 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				6C791E0B2451B33B00F22CD0 /* XXProposalListModel.h */,
+				6C791E0C2451B33B00F22CD0 /* XXProposalListModel.m */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		6C791DF72451A16F00F22CD0 /* Viewcontroller */ = {
+			isa = PBXGroup;
+			children = (
+				6C791DF92451A1D800F22CD0 /* XXProposalsListViewController.h */,
+				6C791DFA2451A1D800F22CD0 /* XXProposalsListViewController.m */,
+				6C791DFF2451A33700F22CD0 /* XXProposalDetailViewController.h */,
+				6C791E002451A33700F22CD0 /* XXProposalDetailViewController.m */,
+				6C791E022451A37E00F22CD0 /* XXVoteProposalViewController.h */,
+				6C791E032451A37E00F22CD0 /* XXVoteProposalViewController.m */,
+				6C791E19245586B600F22CD0 /* XXPledgeViewController.h */,
+				6C791E1A245586B600F22CD0 /* XXPledgeViewController.m */,
+				6C791E322456BE3900F22CD0 /* XXVotingViewController.h */,
+				6C791E332456BE3900F22CD0 /* XXVotingViewController.m */,
+			);
+			path = Viewcontroller;
+			sourceTree = "<group>";
+		};
+		6C791DF82451A16F00F22CD0 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				6C791E392456CA4200F22CD0 /* XXTransferTipView.h */,
+				6C791E382456CA4100F22CD0 /* XXTransferTipView.m */,
+				6C791E3B2456D00E00F22CD0 /* VotingView */,
+				6C791E1C24558B9600F22CD0 /* PledgeView */,
+				6C791E0F2452D70400F22CD0 /* AddProposalView */,
+				6C791DFC2451A2B800F22CD0 /* XXProposalTableViewCell.h */,
+				6C791DFD2451A2B800F22CD0 /* XXProposalTableViewCell.m */,
+				6C791E052451A71600F22CD0 /* XXProposalListHeader.h */,
+				6C791E062451A71600F22CD0 /* XXProposalListHeader.m */,
+				6C791E082451AF6400F22CD0 /* XXProposalGripSectionHeader.h */,
+				6C791E092451AF6400F22CD0 /* XXProposalGripSectionHeader.m */,
+				6C791E202455A53400F22CD0 /* XXProposalDetailHeader.h */,
+				6C791E212455A53400F22CD0 /* XXProposalDetailHeader.m */,
+				6C791E262455A5F400F22CD0 /* XXProposalDetailTableViewCell.h */,
+				6C791E272455A5F400F22CD0 /* XXProposalDetailTableViewCell.m */,
+				6C791E29245684DE00F22CD0 /* XXProposalDetailInfomationCell.h */,
+				6C791E2A245684DE00F22CD0 /* XXProposalDetailInfomationCell.m */,
+				6C791E2F24568A1200F22CD0 /* XXProposalDetailVoteInfoCell.h */,
+				6C791E3024568A1200F22CD0 /* XXProposalDetailVoteInfoCell.m */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		6C791E0F2452D70400F22CD0 /* AddProposalView */ = {
+			isa = PBXGroup;
+			children = (
+				6C791E102452D72F00F22CD0 /* XXAddProposalView.h */,
+				6C791E112452D72F00F22CD0 /* XXAddProposalView.m */,
+				6C791E132452D94300F22CD0 /* XXProposalNormalView.h */,
+				6C791E142452D94300F22CD0 /* XXProposalNormalView.m */,
+				6C791E162452DD7B00F22CD0 /* XXProposalDescriptionView.h */,
+				6C791E172452DD7B00F22CD0 /* XXProposalDescriptionView.m */,
+			);
+			path = AddProposalView;
+			sourceTree = "<group>";
+		};
+		6C791E1C24558B9600F22CD0 /* PledgeView */ = {
+			isa = PBXGroup;
+			children = (
+				6C791E1D24558BAD00F22CD0 /* XXPledgeView.h */,
+				6C791E1E24558BAD00F22CD0 /* XXPledgeView.m */,
+			);
+			path = PledgeView;
+			sourceTree = "<group>";
+		};
+		6C791E3B2456D00E00F22CD0 /* VotingView */ = {
+			isa = PBXGroup;
+			children = (
+				6C791E3C2456D02100F22CD0 /* XXVotingView.h */,
+				6C791E3D2456D02100F22CD0 /* XXVotingView.m */,
+				6C791E3F2456D12000F22CD0 /* XXVoteActionView.h */,
+				6C791E402456D12000F22CD0 /* XXVoteActionView.m */,
+			);
+			path = VotingView;
+			sourceTree = "<group>";
+		};
 		6CC12CEF2444624200917105 /* Validators */ = {
 			isa = PBXGroup;
 			children = (
@@ -1324,6 +1481,7 @@
 		EA964BA32414D34A00A941E5 /* Class */ = {
 			isa = PBXGroup;
 			children = (
+				6C791DF52451A14F00F22CD0 /* Proposals */,
 				6CC12CEF2444624200917105 /* Validators */,
 				EA04AD3B2434D642004403FF /* Request */,
 				EABD1BB8241E496F00B1A03A /* MnemonicPhrase */,
@@ -2080,6 +2238,7 @@
 				EABD717F2449F651008AA188 /* XXMainSymbolHeaderView.m in Sources */,
 				6CC12D072445849700917105 /* XXValidatorListModel.m in Sources */,
 				EABD1BA1241BB25900B1A03A /* Hash.m in Sources */,
+				6C791E0A2451AF6400F22CD0 /* XXProposalGripSectionHeader.m in Sources */,
 				EA04ABAB242D015B004403FF /* IQBarButtonItem.m in Sources */,
 				EABD7193244B1AEA008AA188 /* XXTransactionModel.m in Sources */,
 				EAC6871D214FAD1C00701874 /* XXTabView.m in Sources */,
@@ -2088,12 +2247,14 @@
 				EABD71802449F651008AA188 /* XXSymbolDetailFooterView.m in Sources */,
 				6C0D91B5244890570043AF74 /* XXValidarorDetailDelegateBar.m in Sources */,
 				7AC4D793234C808F00F5E5F8 /* XXShadowView.m in Sources */,
+				6C791E342456BE3900F22CD0 /* XXVotingViewController.m in Sources */,
 				EA30A0A9236F221A0098DE28 /* UIActivityIndicatorView+AFNetworking.m in Sources */,
 				EA04ABA8242D015B004403FF /* IQTextView.m in Sources */,
 				EA3E5965244721DD0080B98F /* XXMsgWithdrawalModel.m in Sources */,
 				EABD1B87241BB25900B1A03A /* secp256k1.c in Sources */,
 				6CF3F0C82451809B00CC5780 /* XXHadDelegateModel.m in Sources */,
 				EABD1B85241BB25900B1A03A /* aescrypt.c in Sources */,
+				6C791E042451A37E00F22CD0 /* XXVoteProposalViewController.m in Sources */,
 				F30EAF5A20D26536005ADD5C /* NSString+TL.m in Sources */,
 				EA92EDBB2448086F00B194DA /* XXMsgRequest.m in Sources */,
 				EA3E593E24441D950080B98F /* XXWithdrawTipView.m in Sources */,
@@ -2144,6 +2305,7 @@
 				EABD7188244AFCD4008AA188 /* XXEmptyView.m in Sources */,
 				EA9537002455623B0060D1FC /* XXRewardView.m in Sources */,
 				EABBC08A24232DCD00B7E412 /* AESCrypt.m in Sources */,
+				6C791DFB2451A1D800F22CD0 /* XXProposalsListViewController.m in Sources */,
 				EAB356342438369200D750D6 /* FMResultSet.m in Sources */,
 				EAB3566A243E402100D750D6 /* JSONKit.m in Sources */,
 				EAE467EE244C7901006EACAF /* XXTransationSectionHeaderView.m in Sources */,
@@ -2153,6 +2315,7 @@
 				EA9D3E3824545A1D0060778C /* SWCellScrollView.m in Sources */,
 				EABD1BA2241BB25900B1A03A /* Transaction.m in Sources */,
 				EABD71812449F651008AA188 /* XXSymbolDetailHeaderView.m in Sources */,
+				6C791E152452D94300F22CD0 /* XXProposalNormalView.m in Sources */,
 				EABD1B95241BB25900B1A03A /* crypto_scrypt-ref.c in Sources */,
 				7AC4D760234C808E00F5E5F8 /* XXFloadtTextField.m in Sources */,
 				EA3E591A24441D160080B98F /* XXAssetSearchView.m in Sources */,
@@ -2195,6 +2358,7 @@
 				EABD71772449F481008AA188 /* XXTransactionCell.m in Sources */,
 				6CC12D0424456A3800917105 /* XXSearchBarView.m in Sources */,
 				EA309E78236F21410098DE28 /* AFURLSessionManager.m in Sources */,
+				6C791E3A2456CA4200F22CD0 /* XXTransferTipView.m in Sources */,
 				EA04ABAF242D015B004403FF /* IQNSArray+Sort.m in Sources */,
 				EA9D3E3C24545A1D0060778C /* NSMutableArray+SWUtilityButtons.m in Sources */,
 				EABD1B9E241BB25900B1A03A /* LightClientProvider.m in Sources */,
@@ -2205,18 +2369,25 @@
 				EA3E595C24471F190080B98F /* XXTokenModel.m in Sources */,
 				EABD1B9C241BB25900B1A03A /* InfuraProvider.m in Sources */,
 				EABBC08C24232DCD00B7E412 /* NSData+Base64.m in Sources */,
+				6C791E2B245684DE00F22CD0 /* XXProposalDetailInfomationCell.m in Sources */,
+				6C791E012451A33700F22CD0 /* XXProposalDetailViewController.m in Sources */,
 				EABD719B244B3545008AA188 /* XXTransactionDetailCell.m in Sources */,
+				6C791E412456D12000F22CD0 /* XXVoteActionView.m in Sources */,
 				F30EAF5D20D26536005ADD5C /* UIImage+helper.m in Sources */,
 				6C0D91B8244984080043AF74 /* XXValidatorDetailHeader.m in Sources */,
 				EAA8DEC5244D7E7C00161698 /* XXUserHomeVC.m in Sources */,
 				EA309E3C236F21410098DE28 /* AFHTTPSessionManager.m in Sources */,
+				6C791E182452DD7B00F22CD0 /* XXProposalDescriptionView.m in Sources */,
 				EA15E97A2417E24100A3E14A /* XXScreenShotAlert.m in Sources */,
 				EA3E592124441D160080B98F /* XXAssetVC.m in Sources */,
 				EAA8DEC3244D7E7C00161698 /* XXAccountBtn.m in Sources */,
 				EA04ABB3242D015B004403FF /* IQUIViewController+Additions.m in Sources */,
+				6C791E1B245586B600F22CD0 /* XXPledgeViewController.m in Sources */,
 				EABD1BAD241BB25900B1A03A /* Address.m in Sources */,
+				6C791E282455A5F400F22CD0 /* XXProposalDetailTableViewCell.m in Sources */,
 				EA35A5102422426900ADF621 /* Alert.m in Sources */,
 				EABD1B9A241BB25900B1A03A /* JsonRpcProvider.m in Sources */,
+				6C791E3E2456D02100F22CD0 /* XXVotingView.m in Sources */,
 				EABD1BB1241DFC3E00B1A03A /* XXTextFieldView.m in Sources */,
 				EABD1B8C241BB25900B1A03A /* aestab.c in Sources */,
 				EA15E95724163FDC00A3E14A /* XXStartWalletVC.m in Sources */,
@@ -2233,8 +2404,10 @@
 				6CC12CF52444629B00917105 /* XXValidatorsHomeViewController.m in Sources */,
 				EA20EACB2429CB13004EBD7F /* XXSystem.m in Sources */,
 				6CC12CFE24455BFA00917105 /* XXValidatorGripSectionHeader.m in Sources */,
+				6C791E1F24558BAD00F22CD0 /* XXPledgeView.m in Sources */,
 				EABD1BAB241BB25900B1A03A /* Signature.m in Sources */,
 				F30EAF5E20D26536005ADD5C /* NSDate+convenience.m in Sources */,
+				6C791E122452D72F00F22CD0 /* XXAddProposalView.m in Sources */,
 				F38839362108B30600EAC95D /* XYHNumbersLabel.m in Sources */,
 				EABD1BB4241E21B300B1A03A /* XXCreateWalletSetPasswordVC.m in Sources */,
 				EAE40482211C34A000FFD028 /* LocalizeHelper.m in Sources */,
@@ -2263,6 +2436,8 @@
 				EA04ABB1242D015B004403FF /* IQUIScrollView+Additions.m in Sources */,
 				EA953706245590B90060D1FC /* XXCoinModel.m in Sources */,
 				EABD1B9F241BB25900B1A03A /* FallbackProvider.m in Sources */,
+				6C791E3124568A1200F22CD0 /* XXProposalDetailVoteInfoCell.m in Sources */,
+				6C791DFE2451A2B800F22CD0 /* XXProposalTableViewCell.m in Sources */,
 				EA3E59622447208F0080B98F /* XXMsgKeyGenModel.m in Sources */,
 				EAB356312438369200D750D6 /* FMDatabaseAdditions.m in Sources */,
 				EAB356302438369200D750D6 /* FMDatabaseQueue.m in Sources */,
@@ -2277,8 +2452,10 @@
 				7AC4D72D234C808E00F5E5F8 /* XXTextField.m in Sources */,
 				EA3E593A24441D950080B98F /* XXWithdrawAddressView.m in Sources */,
 				EA3E593B24441D950080B98F /* XXWithdrawAmountReceivedView.m in Sources */,
+				6C791E072451A71600F22CD0 /* XXProposalListHeader.m in Sources */,
 				EABD1B92241BB25900B1A03A /* mpi.c in Sources */,
 				EA04ABAD242D015B004403FF /* IQPreviousNextView.m in Sources */,
+				6C791E222455A53400F22CD0 /* XXProposalDetailHeader.m in Sources */,
 				EAB356332438369200D750D6 /* FMDatabasePool.m in Sources */,
 				EA309EF0236F21410098DE28 /* AFNetworkReachabilityManager.m in Sources */,
 				EA20EAC22425FBC8004EBD7F /* XXServiceAgreementVC.m in Sources */,
@@ -2298,6 +2475,7 @@
 				EABD7194244B1AEA008AA188 /* XXTransferDetailVC.m in Sources */,
 				F30EAF6120D26536005ADD5C /* UIView+VJQ.m in Sources */,
 				EAA8DEBD244D7E7C00161698 /* XXSqliteManager.m in Sources */,
+				6C791E0D2451B33B00F22CD0 /* XXProposalListModel.m in Sources */,
 				EAA8DED1244D81CE00161698 /* XXAccountCell.m in Sources */,
 				EA30A15D236F221B0098DE28 /* AFImageDownloader.m in Sources */,
 				F30EAF5B20D26536005ADD5C /* UITableViewCell+Extension.m in Sources */,

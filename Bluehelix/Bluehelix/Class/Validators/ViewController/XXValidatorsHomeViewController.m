@@ -85,7 +85,7 @@ static NSString *KValidatorGripSectionHeader = @"XXValidatorGripSectionHeader";
 /// 请求资产信息
 - (void)requestValidatorsList {
     MJWeakSelf
-    [MBProgressHUD showActivityMessageInView:@""];
+//    [MBProgressHUD showActivityMessageInView:@""];
     NSMutableDictionary *dic = [NSMutableDictionary dictionary];
     [dic setObject:self.validOrInvalid forKey:@"valid"];
     NSString *path = [NSString stringWithFormat:@"/api/v1/validators"];
@@ -99,7 +99,9 @@ static NSString *KValidatorGripSectionHeader = @"XXValidatorGripSectionHeader";
             [self.filtValidatorsDataArray addObjectsFromArray:listArray];
             [self.validatorsListTableView reloadData];
         } else {
-            [MBProgressHUD showErrorMessage:msg];
+            Alert *alert = [[Alert alloc] initWithTitle:msg duration:kAlertDuration completion:^{
+            }];
+            [alert showAlert];
         }
     }];
 }
