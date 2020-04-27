@@ -18,6 +18,7 @@
 {
     self = [super initWithFrame:frame];
     if (self) {
+        self.backgroundColor = [UIColor clearColor];
         [self addSubview:self.validatorTitleLabel];
         [self addSubview:self.validatorStatuesButton];
     }

@@ -202,3 +202,51 @@
 
 "PleaseFillAll" = "请填写完整信息";
 
+//治理提案
+//nav 标题
+"ProposalVoteTitle"= "治理提案";
+"VotingProposal" = "发起提案";
+"ProposalNavgationTitlePledge" = "质押";
+"ProposalNavgationTitleDetail" = "提案详情";
+"ProposalNavgationTitleVote" = "投票";
+"Voting" = "发起";
+"ProposalTitle" = "标题";
+"ProposalType" = "类型";
+"ProposalDescripition" = "描述";
+"ProposalPledgeAmount" = "质押数量";
+"PleaseInputVoteName" = "请输入提案名称";
+"PleaseInputProposalTitle" = "请输入提案标题";
+"PleaseSelectProposalType" = "请选择提案类型";
+"PleaseInputProposalDescription" = "请输入提案描述";
+"PleaseInputPledgeAmout" = "请输入质押数量";
+"PleaseInputFee" = "请输入手续费";
+
+"ProposalDetailButton" = "查看详情";
+//治理提案状态
+"ProposalRaising" = "质押募集中";
+"ProposalVoting" = "投票中";
+"ProposalVotePass" = "已通过";
+"ProposalVoteReject" = "已拒绝";
+"ProposalRaiseFailed" = "募集失败";
+
+"ProposalDescriptionMaxCountUnit" = "字";
+//按钮上文案
+"ProposalButtonTitleSubmit" = "提交";
+"ProposalButtonTitlePledge" = "质押";
+"ProposalButtonTitleVote" = "投票";
+//详情
+"ProposalDetailStatus" = "状态";
+"ProposalDetailIdentify" = "提案ID";
+"ProposalDetailType" = "提案类型";
+"ProposalDetailUser" = "提案人";
+"ProposalDetailDate" = "提案时间";
+"ProposalDetailHadPledge" = "已质押";
+"ProposalDetailVoteEndDate" = "投票结束时间";
+"ProposalDetailVoteRatio" = "投票比例";
+
+"ProposalDetailVoteYes" = "Yes";
+"ProposalDetailVoteNo" = "No";
+"ProposalDetailVoteAbstain" = "Abstain";
+"ProposalDetailVoteNoWithVeto" = "No With Veto";
+//提案类型
+"ProposalTypeWord" = "文字提案" ;

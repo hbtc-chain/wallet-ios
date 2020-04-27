@@ -184,7 +184,7 @@
     if (_feeView == nil) {
         _feeView = [[XXWithdrawFeeView alloc] initWithFrame:CGRectMake(0, CGRectGetMaxY(self.amountView.frame), kScreen_Width, 96)];
         //_feeView.textField.placeholder = LocalizedString(@"PleaseEnterFee");
-        _feeView.textField.enabled = NO;
+        _feeView.textField.enabled = YES;
         _feeView.unitLabel.text = [kMainToken uppercaseString];
     }
     return _feeView;

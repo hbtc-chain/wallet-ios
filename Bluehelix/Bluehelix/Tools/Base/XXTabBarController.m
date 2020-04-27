@@ -18,6 +18,7 @@
 #import "XXUserHomeVC.h"
 #import "XXAssetVC.h"
 #import "XXValidatorsHomeViewController.h"
+#import "XXProposalsListViewController.h"
 
 @interface XXTabBarController ()
 
@@ -75,7 +76,7 @@
     XXNavigationController *nav1 = [[XXNavigationController alloc] initWithRootViewController:[[XXValidatorsHomeViewController alloc] init]];
     [controllers addObject:nav1];
     
-    XXNavigationController *nav2 = [[XXNavigationController alloc] initWithRootViewController:[[UIViewController alloc] init]];
+    XXNavigationController *nav2 = [[XXNavigationController alloc] initWithRootViewController:[[XXProposalsListViewController alloc] init]];
     [controllers addObject:nav2];
     
     XXNavigationController *nav3 = [[XXNavigationController alloc] initWithRootViewController:[[XXUserHomeVC alloc] init]];
