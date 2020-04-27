@@ -47,6 +47,7 @@
             Y += 20;
         } else if (i == 1) {
             rightLabel.text = state == 1 ? LocalizedString(@"Success"):LocalizedString(@"Failed");
+            rightLabel.textColor = state == 1 ? KRGBA(70, 206, 95, 100) : kPriceFall;
             Y += 40;
         } else if (i == 2) {
             rightLabel.text = [NSString dateStringFromTimestampWithTimeTamp:[dic[@"time"] longLongValue]];

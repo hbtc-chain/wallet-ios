@@ -49,7 +49,7 @@
 
 - (XXLabel *)valueLabel {
     if (!_valueLabel) {
-        _valueLabel = [XXLabel labelWithFrame:CGRectMake(K375(24) + 100, 0, kScreen_Width - K375(48) + 100, 40) font:kNumberFont(17) textColor:kGray900];
+        _valueLabel = [XXLabel labelWithFrame:CGRectMake(K375(24) + 100, 0, kScreen_Width - K375(48) - 100, 40) font:kNumberFont(17) textColor:kGray900];
         _valueLabel.textAlignment = NSTextAlignmentRight;
     }
     return _valueLabel;
