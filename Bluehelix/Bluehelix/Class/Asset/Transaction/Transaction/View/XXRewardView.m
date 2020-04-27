@@ -137,6 +137,8 @@
     if (_contentLabel == nil) {
         _contentLabel = [[XYHNumbersLabel alloc] initWithFrame:CGRectMake(24, CGRectGetMaxY(self.titleLabel.frame) + 24, self.contentView.width - 48, 0) font:kFont15];
         _contentLabel.text = self.content;
+        _contentLabel.textAlignment = NSTextAlignmentCenter;
+        _contentLabel.textColor = kGray700;
     }
     return _contentLabel;
 }

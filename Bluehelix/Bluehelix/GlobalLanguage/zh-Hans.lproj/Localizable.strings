@@ -183,6 +183,8 @@
 "State" = "状态";
 "From" = "转出";
 "To" = "转入";
+"WithdrawMoneyContent" = "提取所有分红%@HBC，并支付交易手续费%@HBC";
+"InMoneyContent" = "提取并委托所有分红%@HBC至验证节点，并支付交易手续费%@HBC";
 
 //验证人
 "ValidatorVote" = "投票权";

@@ -167,6 +167,7 @@
     [manager POST:[NSString stringWithFormat:@"%@%@",kServerUrl,@"/api/v1/txs"] parameters:rpc headers:nil progress:^(NSProgress * _Nonnull uploadProgress) {
         
     } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+        [MBProgressHUD hideHUD];
         [MBProgressHUD showSuccessMessage:LocalizedString(@"MsgSuccess")];
         NSLog(@"%@",responseObject);
         if (!IsEmpty(responseObject[@"txhash"]) && IsEmpty(responseObject[@"code"])) {

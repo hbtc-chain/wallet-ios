@@ -129,14 +129,19 @@ int pageSize = 30;
 }
 
 /// 请求委托地址列表
-- (void)requestDelegations {
+- (void)requestDelegations:(BOOL)withdrawBonusFlag {
     MJWeakSelf
     NSString *path = [NSString stringWithFormat:@"/api/v1/cus/%@/delegations",KUser.address];
     [HttpManager getWithPath:path params:nil andBlock:^(id data, NSString *msg, NSInteger code) {
         if (code == 0) {
             NSLog(@"%@",data);
             weakSelf.delegations = data;
-            [weakSelf withdrawBonus];
+            if (withdrawBonusFlag) {
+                [weakSelf withdrawBonus];
+            } else {
+                [weakSelf depositBonus];
+            }
+            
         }
     }];
 }
@@ -158,7 +163,7 @@ int pageSize = 30;
 /// 底部第三个按钮点击事件
 - (void)thirdBtnAction {
     if ([self.tokenModel.symbol isEqualToString:kMainToken]) {
-        [self requestDelegations];
+        [self requestDelegations:YES];
     } else {
         if (!self.tokenModel.is_native) {
             [self chainInAction];
@@ -169,7 +174,7 @@ int pageSize = 30;
 /// 底部第四个按钮点击事件
 - (void)forthBtnAction {
     if ([self.tokenModel.symbol isEqualToString:kMainToken]) {
-        [self depositBonus];
+        [self requestDelegations:NO];
     } else {
         if (!self.tokenModel.is_native) {
             [self chainOutAction];
@@ -207,8 +212,15 @@ int pageSize = 30;
 
 /// 提取分红
 - (void)withdrawBonus {
+    NSDecimalNumber *sum = [NSDecimalNumber decimalNumberWithString:@"0"];
+    for (NSDictionary *dic in self.delegations) {
+        NSString *unclaimedReward = dic[@"unclaimed_reward"];
+        NSDecimalNumber *unclaimedRewardDecimal = [NSDecimalNumber decimalNumberWithString:unclaimedReward];
+        sum = [sum decimalNumberByAdding:unclaimedRewardDecimal];
+    }
+    NSString *content = NSLocalizedFormatString(LocalizedString(@"WithdrawMoneyContent"),sum.stringValue,kMinFee);
     MJWeakSelf
-    [XXRewardView showWithTitle:LocalizedString(@"WithdrawMoney") icon:@"withdrawMoneyAlert" content:@"" sureBlock:^{
+    [XXRewardView showWithTitle:LocalizedString(@"WithdrawMoney") icon:@"withdrawMoneyAlert" content:content sureBlock:^{
         [XXPasswordView showWithSureBtnBlock:^(NSString * _Nonnull text) {
             [weakSelf requestWithdrawBonus:text];
         }];
@@ -223,7 +235,7 @@ int pageSize = 30;
         NSMutableDictionary *value = [NSMutableDictionary dictionary];
         value[@"delegator_address"] = KUser.address;
         value[@"validator_address"] = dic[@"validator"];
-
+        
         NSMutableDictionary *msg = [NSMutableDictionary dictionary];
         msg[@"type"] = kMsgWithdrawalDelegationReward;
         msg[@"value"] = value;
@@ -236,9 +248,56 @@ int pageSize = 30;
 
 /// 复投分红
 - (void)depositBonus {
-    [XXRewardView showWithTitle:LocalizedString(@"InMoney") icon:@"InMoneyAlert" content:@"" sureBlock:^{
-        
+    NSDecimalNumber *sum = [NSDecimalNumber decimalNumberWithString:@"0"];
+    for (NSDictionary *dic in self.delegations) {
+        NSString *unclaimedReward = dic[@"unclaimed_reward"];
+        NSDecimalNumber *unclaimedRewardDecimal = [NSDecimalNumber decimalNumberWithString:unclaimedReward];
+        sum = [sum decimalNumberByAdding:unclaimedRewardDecimal];
+    }
+    NSString *content = NSLocalizedFormatString(LocalizedString(@"InMoneyContent"),sum.stringValue,kMinFee);
+    MJWeakSelf
+    [XXRewardView showWithTitle:LocalizedString(@"InMoney") icon:@"InMoneyAlert" content:content sureBlock:^{
+        [XXPasswordView showWithSureBtnBlock:^(NSString * _Nonnull text) {
+            [weakSelf requestDepositBonus:text];
+        }];
     }];
+}
+
+/// 发送复投分红请求
+- (void)requestDepositBonus:(NSString *)text {
+    XXMsg *model = [[XXMsg alloc] initWithfrom:@"" to:@"" amount:@"" denom:kMainToken feeAmount:@"2000000000000000000" feeGas:@"2000000" feeDenom:kMainToken memo:@"" type:kMsgWithdrawalDelegationReward withdrawal_fee:@"" text:text];
+    NSMutableArray *msgs = [NSMutableArray array];
+    for (NSDictionary *dic in self.delegations) {
+        //提取
+        NSMutableDictionary *value = [NSMutableDictionary dictionary];
+        value[@"delegator_address"] = KUser.address;
+        value[@"validator_address"] = dic[@"validator"];
+        NSMutableDictionary *msg = [NSMutableDictionary dictionary];
+        msg[@"type"] = kMsgWithdrawalDelegationReward;
+        msg[@"value"] = value;
+        [msgs addObject:msg];
+        
+        //代理
+        NSDecimalNumber *unclaimedRewardDecimal = [NSDecimalNumber decimalNumberWithString:dic[@"unclaimed_reward"]];
+        XXTokenModel *tokenModel = [[XXSqliteManager sharedSqlite] tokenBySymbol:kMainToken];
+        NSString *amountStr = [[unclaimedRewardDecimal decimalNumberByMultiplyingBy:kPrecisionDecimalPower(tokenModel.decimals)] stringValue];
+        NSMutableDictionary *amount1 = [NSMutableDictionary dictionary];
+        amount1[@"amount"] = amountStr;
+        amount1[@"denom"] = kMainToken;
+        
+        NSMutableDictionary *value1 = [NSMutableDictionary dictionary];
+        value1[@"amount"] = amount1;
+        value1[@"delegator_address"] = KUser.address;
+        value1[@"validator_address"] = dic[@"validator"];
+        
+        NSMutableDictionary *msg1 = [NSMutableDictionary dictionary];
+        msg1[@"type"] = kMsgDelegate;
+        msg1[@"value"] = value1;
+        [msgs addObject:msg1];
+    }
+    model.msgs = msgs;
+    _msgRequest = [[XXMsgRequest alloc] init];
+    [_msgRequest sendMsg:model];
 }
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
@@ -304,10 +363,10 @@ int pageSize = 30;
             [weakSelf.assetManager requestAsset];
             [weakSelf requestHistory];
         }];
-//        _tableView.mj_footer = [MJRefreshBackNormalFooter footerWithRefreshingBlock:^{
-//            weakSelf.page ++;
-//            [weakSelf requestHistory];
-//        }];
+        //        _tableView.mj_footer = [MJRefreshBackNormalFooter footerWithRefreshingBlock:^{
+        //            weakSelf.page ++;
+        //            [weakSelf requestHistory];
+        //        }];
     }
     return _tableView;
 }
