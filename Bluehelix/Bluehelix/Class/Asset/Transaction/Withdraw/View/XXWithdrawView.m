@@ -10,9 +10,6 @@
 #import "XCQrCodeTool.h"
 @interface XXWithdrawView () <UITextFieldDelegate>
 
-/** 备注标签 */
-@property (strong, nonatomic) XXLabel *markLabel;
-
 @end
 
 @implementation XXWithdrawView
@@ -34,6 +31,8 @@
     self.contentSize = CGSizeMake(0, 500);
     // 提币主视图
     [self addSubview:self.mainView];
+    
+    [self.mainView addSubview:self.tipLabel];
     
     /** 地址  */
     [self.mainView addSubview:self.addressView];
@@ -75,9 +74,18 @@
     return _mainView;
 }
 
+- (XYHNumbersLabel *)tipLabel {
+    if (!_tipLabel) {
+        _tipLabel = [[XYHNumbersLabel alloc] initWithFrame:CGRectMake(KSpacing, 10, kScreen_Width - KSpacing*2, 0) font:kFont14];
+        _tipLabel.textColor = kGray700;
+        _tipLabel.text = LocalizedString(@"WithdrawTip");
+    }
+    return _tipLabel;
+}
+
 - (XXWithdrawAddressView *)addressView {
     if (_addressView == nil) {
-        _addressView = [[XXWithdrawAddressView alloc] initWithFrame:CGRectMake(0, 0, kScreen_Width, 96)];
+        _addressView = [[XXWithdrawAddressView alloc] initWithFrame:CGRectMake(0, CGRectGetMaxY(self.tipLabel.frame), kScreen_Width, 96)];
     }
     return _addressView;
 }

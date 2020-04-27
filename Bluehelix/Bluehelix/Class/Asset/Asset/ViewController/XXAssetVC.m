@@ -18,6 +18,7 @@
 #import "XXSymbolDetailVC.h"
 #import "RatesManager.h"
 #import "XXEmptyView.h"
+#import "SWTableViewCell.h"
 
 @interface XXAssetVC ()<UITableViewDataSource, UITableViewDelegate>
 
@@ -37,7 +38,6 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-    
     [self setupUI];
 }
 
@@ -65,7 +65,7 @@
     self.tableView.separatorColor = KLine_Color;
     [self.headerView addSubview:self.searchView];
     self.tableView.tableHeaderView = self.headerView;
-    if (!KUser.currentAccount.backupFlag) {
+    if (!KUser.currentAccount.backupFlag && !IsEmpty(KUser.currentAccount.mnemonicPhrase)) {
         MJWeakSelf
         [XXSecurityAlertView showWithSureBlock:^{
             [XXPasswordView showWithSureBtnBlock:^(NSString * _Nonnull text) {

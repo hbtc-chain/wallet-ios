@@ -30,9 +30,9 @@ static RatesManager *_ratesManager;
 
 #pragma mark - 1. 加载汇率数据
 - (void)loadDataOfRates {
-    if (IsEmpty(self.tokenString)) {
+//    if (IsEmpty(self.tokenString)) {
         self.tokenString = [[XXSqliteManager sharedSqlite] tokensListString];
-    }
+//    }
     NSMutableDictionary *params = [NSMutableDictionary dictionary];
     params[@"symbols"] = self.tokenString;
     MJWeakSelf

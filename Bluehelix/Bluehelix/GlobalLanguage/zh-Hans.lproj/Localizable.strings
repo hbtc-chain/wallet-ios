@@ -93,8 +93,14 @@
 "Setting" = "设置";
 "ExchangeRate" = "计价货币";
 "Language" = "语言";
-"Version" = "版本";
+"Version" = "版本号";
 "NightMode" = "夜间模式";
+"LogOut" = "退出登录";
+"OldPassword" = "请输入原密码";
+"ChangePassword"="修改密码";
+"NewPassword"="请输入新密码";
+"ConfirmNewPassword"="确认新密码";
+"ChangePasswordSuccess" = "密码修改成功";
 
 //资产
 "HideSmallCurrency" = "隐藏小额币种";
@@ -111,6 +117,9 @@
 "EnterTokenNameSearch" = "输入币种名称";
 "TotalAsset" = "总资产(%@)";
 "NoAsset" = "暂无资产";
+"MsgSuccess" = "交易请求发送成功";
+"CompleteInfomation" = "请填写完整信息";
+"AddressWrong" = "转账地址不正确";
 
 //提币
 "PleaseEnterAmountReceived" = "请输入到账数量";
@@ -134,12 +143,21 @@
 "QRCode"="二维码";
 "Album"="相册";
 "QRCodeAlertKey"="将二维码放入框内，即可自动扫描";
+"WithdrawTip" = "·您正在进行托管单元跨链提币\n·请务必使用跨链提币的提币通道\n·请务必确认提币地址是该币的原生公链地址";
 
 //收款地址
 "ShowAddress" = "我已知风险，显示地址";
 "Tip" = "提示";
-"ChainDepositTip" = "您正在进行托管单元跨链收款(充币)\n请提醒转出方，务必使用OMNI钱包提币";
-"DepositTip" = "您正在进行托管单元链内收款(充币)\n请提醒转出方，务必使用非跨链的提币通道";
+"ChainDepositTip1" = "·您正在进行托管单元";
+"ChainDepositTip2" = "跨链";
+"ChainDepositTip3" = "收款(充币)\n·请提醒转出方，务必使用";
+"ChainDepositTip4" = "OMNI钱包";
+"ChainDepositTip5" = "提币";
+"DepositTip1" = "·您正在进行托管单元";
+"DepositTip2" = "链内";
+"DepositTip3" = "收款(充币)\n·请提醒转出方，务必使用";
+"DepositTip4" = "非跨链";
+"DepositTip5" = "的提币通道";
 
 //币种详情
 "ReceiveMoney" = "收款";
@@ -165,6 +183,8 @@
 "State" = "状态";
 "From" = "转出";
 "To" = "转入";
+"WithdrawMoneyContent" = "提取所有分红%@HBC，并支付交易手续费%@HBC";
+"InMoneyContent" = "提取并委托所有分红%@HBC至验证节点，并支付交易手续费%@HBC";
 
 //验证人
 "ValidatorVote" = "投票权";

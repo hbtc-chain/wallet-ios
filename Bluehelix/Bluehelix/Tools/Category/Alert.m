@@ -26,6 +26,8 @@ BOOL doesBounce = NO;
     UIScrollView *scrollView; //Needed for truncation of the title
 }
 
+@property (nonatomic, copy) void(^completionBlock)(void);
+
 @end
 
 @implementation Alert
@@ -39,7 +41,7 @@ BOOL doesBounce = NO;
     if ([super init]) {
         timeDuration = duration;
         titleString = title;
-        
+        _completionBlock = completion;
         [self configure];
     }
     
@@ -69,8 +71,7 @@ BOOL doesBounce = NO;
         titleLabel = [[UILabel alloc] initWithFrame:CGRectMake(30, Y, rect.size.width - 60, 24)];
         [titleLabel setText:titleString];
         [titleLabel setTextAlignment:NSTextAlignmentCenter];
-        [titleLabel setTextColor:kWhiteColor];
-//        [titleLabel setTextColor:[UIColor whiteColor]];
+        [titleLabel setTextColor:[UIColor whiteColor]];
         [titleLabel setFont:[UIFont fontWithName:@"HelveticaNeue" size:15]];
         [titleLabel setMinimumScaleFactor:14.0/16.0];
         
@@ -475,6 +476,9 @@ BOOL doesBounce = NO;
 }
 
 - (void)finishDisappearing {
+    if (self.completionBlock) {
+        self.completionBlock();
+    }
     [self removeFromSuperview];
     if (self.delegate && [self.delegate respondsToSelector:@selector(alertDidDisappear:)]) {
         [self.delegate alertDidDisappear:self];

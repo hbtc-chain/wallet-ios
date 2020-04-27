@@ -12,6 +12,8 @@
 #import "XXMsgWithdrawalModel.h"
 #import "XXMsgKeyGenModel.h"
 #import "XXTokenModel.h"
+#import "XXMsgDelegateModel.h"
+#import "XXCoinModel.h"
 @interface XXTransactionCell ()
 
 @property (nonatomic, strong) XXLabel *typeLabel;
@@ -83,6 +85,12 @@
         }
     } else if ([type isEqualToString:kMsgDelegate]) {
         showTypeStr = LocalizedString(@"Delegate");
+        XXMsgDelegateModel *model = [XXMsgDelegateModel mj_objectWithKeyValues:value];
+        XXCoinModel *coin  = model.amount;
+        XXTokenModel *token = [[XXSqliteManager sharedSqlite] tokenBySymbol:coin.denom];
+        NSDecimalNumber *amountDecimal = [NSDecimalNumber decimalNumberWithString:coin.amount]; //数量
+        NSString *amountStr = [[amountDecimal decimalNumberByDividingBy:kPrecisionDecimalPower(token.decimals)] stringValue];
+        self.amountLabel.text = [NSString stringWithFormat:@"-%@",amountStr];
     } else if ([type isEqualToString:kMsgUndelegate]) {
         showTypeStr = LocalizedString(@"TransferDelegate");
     } else if ([type isEqualToString:kMsgKeyGen]) {

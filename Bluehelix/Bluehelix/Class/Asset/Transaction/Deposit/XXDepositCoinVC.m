@@ -10,6 +10,7 @@
 #import "XCQrCodeTool.h"
 #import "XXTokenModel.h"
 #import <UIImageView+WebCache.h>
+#import "XXDepositAlert.h"
 
 @interface XXDepositCoinVC ()
 
@@ -36,24 +37,39 @@
 }
 
 - (void)showAlert {
-    NSString *message;
+    NSMutableAttributedString *message;
+    NSMutableParagraphStyle *paraStyle = [[NSMutableParagraphStyle alloc] init];
+    paraStyle.lineBreakMode =NSLineBreakByCharWrapping;
+    paraStyle.alignment = NSTextAlignmentLeft;
+    paraStyle.lineSpacing = UILabel_Line_Space;
+    NSString *tip1 = LocalizedString(@"DepositTip1");
+    NSString *tip2 = LocalizedString(@"DepositTip2");
+    NSString *tip3 = LocalizedString(@"DepositTip3");
+    NSString *tip4 = LocalizedString(@"DepositTip4");
+    NSString *tip5 = LocalizedString(@"DepositTip5");
     if (self.InnerChain) {
         self.showAddress = KUser.address;
-        message = LocalizedString(@"DepositTip");
     } else {
-        message = LocalizedString(@"ChainDepositTip");
         self.showAddress = self.tokenModel.external_address;
+        tip1 = LocalizedString(@"ChainDepositTip1");
+        tip2 = LocalizedString(@"ChainDepositTip2");
+        tip3 = LocalizedString(@"ChainDepositTip3");
+        tip4 = LocalizedString(@"ChainDepositTip4");
+        tip5 = LocalizedString(@"ChainDepositTip5");
     }
-    UIAlertController *alert = [UIAlertController alertControllerWithTitle:LocalizedString(@"Tip") message:message preferredStyle:UIAlertControllerStyleAlert];
-    UIAlertAction *action = [UIAlertAction actionWithTitle:LocalizedString(@"ShowAddress") style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
-    }];
-    [alert addAction:action];
-    [self presentViewController:alert animated:YES completion:nil];
+    NSMutableAttributedString *attributedString = [[NSMutableAttributedString alloc] initWithString:[NSString stringWithFormat:@"%@%@%@%@%@",tip1,tip2,tip3,tip4,tip5]];
+    [attributedString addAttribute:NSFontAttributeName value:kFont14 range:NSMakeRange(0, attributedString.length)];
+    [attributedString addAttribute:NSParagraphStyleAttributeName value:paraStyle range:NSMakeRange(0, attributedString.length)];
+    [attributedString addAttribute:NSForegroundColorAttributeName value:kGray700 range:NSMakeRange(0, attributedString.length)];
+    [attributedString addAttribute:NSForegroundColorAttributeName value:kPriceFall range:NSMakeRange(tip1.length, tip2.length)];
+    [attributedString addAttribute:NSForegroundColorAttributeName value:kPriceFall range:NSMakeRange(tip1.length + tip2.length + tip3.length, tip4.length)];
+    message = attributedString;
+    [XXDepositAlert showWithMessage:message];
 }
 
 - (void)buildUI {
     self.titleLabel.text = LocalizedString(@"ReceiveMoney");
-    self.titleLabel.textColor = kWhiteColor;
+    self.titleLabel.textColor = [UIColor whiteColor];
     self.leftButton.imageView.image = [UIImage imageNamed:@"white_back"];
     [self.view addSubview:self.scrollView];
     [self.scrollView addSubview:self.topBackImageView];
@@ -104,7 +120,7 @@
 - (UIView *)symbolBackView {
     if (!_symbolBackView) {
         _symbolBackView = [[UIView alloc] initWithFrame:CGRectMake(self.topBackImageView.width/2 - K375(56)/2, -K375(28), K375(60), K375(60))];
-        _symbolBackView.backgroundColor = kWhiteColor;
+        _symbolBackView.backgroundColor = [UIColor whiteColor];
         _symbolBackView.layer.cornerRadius = _symbolBackView.width/2;
         _symbolBackView.layer.masksToBounds = YES;
     }
@@ -146,7 +162,7 @@
 
 - (XXLabel *)addressLabel {
     if (!_addressLabel) {
-        _addressLabel = [XXLabel labelWithFrame:CGRectMake(0, CGRectGetMaxY(self.codeImageView.frame), self.topBackImageView.width, self.topBackImageView.height - CGRectGetMaxY(self.codeImageView.frame)) text:@"" font:kFont(13) textColor:kGray900];
+        _addressLabel = [XXLabel labelWithFrame:CGRectMake(0, CGRectGetMaxY(self.codeImageView.frame), self.topBackImageView.width, self.topBackImageView.height - CGRectGetMaxY(self.codeImageView.frame)) text:@"" font:kFont(13) textColor:[UIColor colorWithHexString:@"#0A1825"]];
         _addressLabel.textAlignment = NSTextAlignmentCenter;
         _addressLabel.text = self.showAddress;
     }

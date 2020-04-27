@@ -158,6 +158,7 @@
 /// 发送交易请求
 /// @param rpc 交易对象
 - (void)sendTxRequest:(NSMutableDictionary *)rpc {
+    [MBProgressHUD showActivityMessageInView:@""];
     AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
     manager.operationQueue.maxConcurrentOperationCount = 5;
     manager.requestSerializer = [AFJSONRequestSerializer serializer];
@@ -166,31 +167,28 @@
     [manager POST:[NSString stringWithFormat:@"%@%@",kServerUrl,@"/api/v1/txs"] parameters:rpc headers:nil progress:^(NSProgress * _Nonnull uploadProgress) {
         
     } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+        [MBProgressHUD hideHUD];
+        [MBProgressHUD showSuccessMessage:LocalizedString(@"MsgSuccess")];
         NSLog(@"%@",responseObject);
-        if (!IsEmpty(responseObject[@"txhash"])) {
+        if (!IsEmpty(responseObject[@"txhash"]) && IsEmpty(responseObject[@"code"])) {
             if (self.msgSendSuccessBlock) {
                 self.msgSendSuccessBlock();
             }
-            [[AppDelegate appDelegate].TopVC.navigationController popViewControllerAnimated:YES];
         } else {
-            Alert *alert = [[Alert alloc] initWithTitle:@"失败" duration:kAlertDuration completion:^{
-            }];
-            [alert showAlert];
+            NSString *raw_log = [responseObject objectForKey:@"raw_log"];
+            if (!IsEmpty(raw_log)) {
+                NSData* jsonData = [raw_log dataUsingEncoding:NSUTF8StringEncoding];
+                NSDictionary *dic = [jsonData objectFromJSONData];
+                Alert *alert = [[Alert alloc] initWithTitle:dic[@"message"] duration:kAlertDuration completion:^{
+                }];
+                [alert showAlert];
+            }
             if (self.msgSendFaildBlock) {
                 self.msgSendFaildBlock();
             }
         }
-        //        NSString *raw_log = [responseObject objectForKey:@"raw_log"];
-        //        if (!IsEmpty(raw_log)) {
-        ////            NSData* jsonData = [raw_log dataUsingEncoding:NSUTF8StringEncoding];
-        ////            NSDictionary *dic = [jsonData objectFromJSONData];
-        //            Alert *alert = [[Alert alloc] initWithTitle:raw_log duration:kAlertDuration completion:^{
-        //                                 }];
-        //            [alert showAlert];
-        ////            NSLog(@"%@",dic);
-        //        }
-        
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+        [MBProgressHUD hideHUD];
         NSLog(@"%@ %@",task,error);
         if (self.msgSendFaildBlock) {
             self.msgSendFaildBlock();

@@ -21,6 +21,8 @@ NS_ASSUME_NONNULL_BEGIN
 /** 提币主视图 */
 @property (strong, nonatomic) UIView *mainView;
 
+@property (strong, nonatomic) XYHNumbersLabel *tipLabel;
+
 /** 提币地址视图 */
 @property (strong, nonatomic) XXWithdrawAddressView *addressView;
 

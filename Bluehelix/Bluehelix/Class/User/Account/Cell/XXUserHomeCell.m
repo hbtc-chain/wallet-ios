@@ -18,28 +18,34 @@
 {
     self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
     if (self) {
-        
-        self.backgroundColor = kWhiteColor;
-      
+      self.contentView.backgroundColor = kWhiteColor;
+        self.selectionStyle = UITableViewCellSelectionStyleNone;
+
         [self setupUI];
     }
     return self;
 }
 
-#pragma mark - 1. 创建主界面
 - (void)setupUI {
     [self.contentView addSubview:self.nameLabel];
+    [self.contentView addSubview:self.valueLabel];
     [self.contentView addSubview:self.rightIconImageView];
     [self.contentView addSubview:self.lineView];
 }
 
-
-#pragma mark - || 懒加载
 - (XXLabel *)nameLabel {
     if (_nameLabel == nil) {
-        _nameLabel = [XXLabel labelWithFrame:CGRectMake(K375(16), 16, kScreen_Width - K375(50), 24) font:kFont16 textColor:kGray900];
+        _nameLabel = [XXLabel labelWithFrame:CGRectMake(K375(16), 16, kScreen_Width - K375(50), 24) font:kFont15 textColor:kGray900];
     }
     return _nameLabel;
+}
+
+- (XXLabel *)valueLabel {
+    if (_valueLabel == nil) {
+        _valueLabel = [XXLabel labelWithFrame:CGRectMake(kScreen_Width - K375(16) - 100, 16, 100, 24) font:kFont15 textColor:kGray500];
+        _valueLabel.textAlignment = NSTextAlignmentRight;
+    }
+    return _valueLabel;
 }
 
 - (UIImageView *)rightIconImageView {

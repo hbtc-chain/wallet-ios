@@ -85,6 +85,7 @@
         _textView.backgroundColor = [UIColor clearColor];
         _textView.font = kFont(15);
         _textView.delegate = self;
+        _textView.textColor = kGray700;
     }
     return _textView;
 }

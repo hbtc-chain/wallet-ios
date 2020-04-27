@@ -144,8 +144,19 @@
 		EA8F8C88240FA9F200D26E10 /* Icon.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EA8F8C86240FA9F200D26E10 /* Icon.xcassets */; };
 		EA92EDBB2448086F00B194DA /* XXMsgRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = EA92EDBA2448086F00B194DA /* XXMsgRequest.m */; };
 		EA92EDBE244809E800B194DA /* XXMsg.m in Sources */ = {isa = PBXBuildFile; fileRef = EA92EDBD244809E800B194DA /* XXMsg.m */; };
+		EA9537002455623B0060D1FC /* XXRewardView.m in Sources */ = {isa = PBXBuildFile; fileRef = EA9536FF2455623B0060D1FC /* XXRewardView.m */; };
+		EA95370324558CC40060D1FC /* XXMsgDelegateModel.m in Sources */ = {isa = PBXBuildFile; fileRef = EA95370224558CC40060D1FC /* XXMsgDelegateModel.m */; };
+		EA953706245590B90060D1FC /* XXCoinModel.m in Sources */ = {isa = PBXBuildFile; fileRef = EA953705245590B90060D1FC /* XXCoinModel.m */; };
 		EA964BA62414D37F00A941E5 /* XXBackupMnemonicPhraseVC.m in Sources */ = {isa = PBXBuildFile; fileRef = EA964BA42414D37F00A941E5 /* XXBackupMnemonicPhraseVC.m */; };
 		EA964C442414E18500A941E5 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = EA964C432414E18500A941E5 /* AppDelegate.m */; };
+		EA9D3E2A2452BBD00060778C /* XXChangePasswordVC.m in Sources */ = {isa = PBXBuildFile; fileRef = EA9D3E282452BBD00060778C /* XXChangePasswordVC.m */; };
+		EA9D3E3824545A1D0060778C /* SWCellScrollView.m in Sources */ = {isa = PBXBuildFile; fileRef = EA9D3E2D24545A1D0060778C /* SWCellScrollView.m */; };
+		EA9D3E3924545A1D0060778C /* SWUtilityButtonView.m in Sources */ = {isa = PBXBuildFile; fileRef = EA9D3E3024545A1D0060778C /* SWUtilityButtonView.m */; };
+		EA9D3E3A24545A1D0060778C /* SWUtilityButtonTapGestureRecognizer.m in Sources */ = {isa = PBXBuildFile; fileRef = EA9D3E3224545A1D0060778C /* SWUtilityButtonTapGestureRecognizer.m */; };
+		EA9D3E3B24545A1D0060778C /* SWLongPressGestureRecognizer.m in Sources */ = {isa = PBXBuildFile; fileRef = EA9D3E3324545A1D0060778C /* SWLongPressGestureRecognizer.m */; };
+		EA9D3E3C24545A1D0060778C /* NSMutableArray+SWUtilityButtons.m in Sources */ = {isa = PBXBuildFile; fileRef = EA9D3E3424545A1D0060778C /* NSMutableArray+SWUtilityButtons.m */; };
+		EA9D3E3D24545A1D0060778C /* SWTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = EA9D3E3724545A1D0060778C /* SWTableViewCell.m */; };
+		EA9D3E4024546D820060778C /* XXDepositAlert.m in Sources */ = {isa = PBXBuildFile; fileRef = EA9D3E3F24546D820060778C /* XXDepositAlert.m */; };
 		EAA8DEBA244D7E7C00161698 /* RatesManager.m in Sources */ = {isa = PBXBuildFile; fileRef = EAA8DE9F244D7E7C00161698 /* RatesManager.m */; };
 		EAA8DEBB244D7E7C00161698 /* XXUserData.m in Sources */ = {isa = PBXBuildFile; fileRef = EAA8DEA0244D7E7C00161698 /* XXUserData.m */; };
 		EAA8DEBC244D7E7C00161698 /* XXAccountManageVC.m in Sources */ = {isa = PBXBuildFile; fileRef = EAA8DEA3244D7E7C00161698 /* XXAccountManageVC.m */; };
@@ -573,10 +584,32 @@
 		EA92EDBA2448086F00B194DA /* XXMsgRequest.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = XXMsgRequest.m; sourceTree = "<group>"; };
 		EA92EDBC244809E800B194DA /* XXMsg.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = XXMsg.h; sourceTree = "<group>"; };
 		EA92EDBD244809E800B194DA /* XXMsg.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = XXMsg.m; sourceTree = "<group>"; };
+		EA9536FE2455623B0060D1FC /* XXRewardView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = XXRewardView.h; sourceTree = "<group>"; };
+		EA9536FF2455623B0060D1FC /* XXRewardView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = XXRewardView.m; sourceTree = "<group>"; };
+		EA95370124558CC40060D1FC /* XXMsgDelegateModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = XXMsgDelegateModel.h; sourceTree = "<group>"; };
+		EA95370224558CC40060D1FC /* XXMsgDelegateModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = XXMsgDelegateModel.m; sourceTree = "<group>"; };
+		EA953704245590B90060D1FC /* XXCoinModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = XXCoinModel.h; sourceTree = "<group>"; };
+		EA953705245590B90060D1FC /* XXCoinModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = XXCoinModel.m; sourceTree = "<group>"; };
 		EA964BA42414D37F00A941E5 /* XXBackupMnemonicPhraseVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XXBackupMnemonicPhraseVC.m; sourceTree = "<group>"; };
 		EA964BA52414D37F00A941E5 /* XXBackupMnemonicPhraseVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XXBackupMnemonicPhraseVC.h; sourceTree = "<group>"; };
 		EA964C422414E18500A941E5 /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		EA964C432414E18500A941E5 /* AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		EA9D3E282452BBD00060778C /* XXChangePasswordVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XXChangePasswordVC.m; sourceTree = "<group>"; };
+		EA9D3E292452BBD00060778C /* XXChangePasswordVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XXChangePasswordVC.h; sourceTree = "<group>"; };
+		EA9D3E2C24545A1D0060778C /* SWUtilityButtonTapGestureRecognizer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SWUtilityButtonTapGestureRecognizer.h; sourceTree = "<group>"; };
+		EA9D3E2D24545A1D0060778C /* SWCellScrollView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SWCellScrollView.m; sourceTree = "<group>"; };
+		EA9D3E2E24545A1D0060778C /* NSMutableArray+SWUtilityButtons.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSMutableArray+SWUtilityButtons.h"; sourceTree = "<group>"; };
+		EA9D3E2F24545A1D0060778C /* SWLongPressGestureRecognizer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SWLongPressGestureRecognizer.h; sourceTree = "<group>"; };
+		EA9D3E3024545A1D0060778C /* SWUtilityButtonView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SWUtilityButtonView.m; sourceTree = "<group>"; };
+		EA9D3E3124545A1D0060778C /* SWTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SWTableViewCell.h; sourceTree = "<group>"; };
+		EA9D3E3224545A1D0060778C /* SWUtilityButtonTapGestureRecognizer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SWUtilityButtonTapGestureRecognizer.m; sourceTree = "<group>"; };
+		EA9D3E3324545A1D0060778C /* SWLongPressGestureRecognizer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SWLongPressGestureRecognizer.m; sourceTree = "<group>"; };
+		EA9D3E3424545A1D0060778C /* NSMutableArray+SWUtilityButtons.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSMutableArray+SWUtilityButtons.m"; sourceTree = "<group>"; };
+		EA9D3E3524545A1D0060778C /* SWCellScrollView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SWCellScrollView.h; sourceTree = "<group>"; };
+		EA9D3E3624545A1D0060778C /* SWUtilityButtonView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SWUtilityButtonView.h; sourceTree = "<group>"; };
+		EA9D3E3724545A1D0060778C /* SWTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SWTableViewCell.m; sourceTree = "<group>"; };
+		EA9D3E3E24546D820060778C /* XXDepositAlert.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = XXDepositAlert.h; sourceTree = "<group>"; };
+		EA9D3E3F24546D820060778C /* XXDepositAlert.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = XXDepositAlert.m; sourceTree = "<group>"; };
 		EAA8DE9D244D7E7C00161698 /* XXSqliteManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XXSqliteManager.h; sourceTree = "<group>"; };
 		EAA8DE9E244D7E7C00161698 /* XXAccountManageVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XXAccountManageVC.h; sourceTree = "<group>"; };
 		EAA8DE9F244D7E7C00161698 /* RatesManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RatesManager.m; sourceTree = "<group>"; };
@@ -1279,6 +1312,8 @@
 			children = (
 				EA3E58D624441C7B0080B98F /* XXDepositCoinVC.h */,
 				EA3E58D524441C7B0080B98F /* XXDepositCoinVC.m */,
+				EA9D3E3E24546D820060778C /* XXDepositAlert.h */,
+				EA9D3E3F24546D820060778C /* XXDepositAlert.m */,
 			);
 			path = Deposit;
 			sourceTree = "<group>";
@@ -1412,6 +1447,10 @@
 				EA3E5964244721DD0080B98F /* XXMsgWithdrawalModel.m */,
 				EA3E5966244723200080B98F /* XXMsgSendModel.h */,
 				EA3E5967244723200080B98F /* XXMsgSendModel.m */,
+				EA95370124558CC40060D1FC /* XXMsgDelegateModel.h */,
+				EA95370224558CC40060D1FC /* XXMsgDelegateModel.m */,
+				EA953704245590B90060D1FC /* XXCoinModel.h */,
+				EA953705245590B90060D1FC /* XXCoinModel.m */,
 			);
 			path = model;
 			sourceTree = "<group>";
@@ -1457,6 +1496,25 @@
 				EA2F95302423A02B0070AC62 /* XXLoginVC.m */,
 			);
 			path = Class;
+			sourceTree = "<group>";
+		};
+		EA9D3E2B24545A1D0060778C /* SWCell */ = {
+			isa = PBXGroup;
+			children = (
+				EA9D3E2C24545A1D0060778C /* SWUtilityButtonTapGestureRecognizer.h */,
+				EA9D3E2D24545A1D0060778C /* SWCellScrollView.m */,
+				EA9D3E2E24545A1D0060778C /* NSMutableArray+SWUtilityButtons.h */,
+				EA9D3E2F24545A1D0060778C /* SWLongPressGestureRecognizer.h */,
+				EA9D3E3024545A1D0060778C /* SWUtilityButtonView.m */,
+				EA9D3E3124545A1D0060778C /* SWTableViewCell.h */,
+				EA9D3E3224545A1D0060778C /* SWUtilityButtonTapGestureRecognizer.m */,
+				EA9D3E3324545A1D0060778C /* SWLongPressGestureRecognizer.m */,
+				EA9D3E3424545A1D0060778C /* NSMutableArray+SWUtilityButtons.m */,
+				EA9D3E3524545A1D0060778C /* SWCellScrollView.h */,
+				EA9D3E3624545A1D0060778C /* SWUtilityButtonView.h */,
+				EA9D3E3724545A1D0060778C /* SWTableViewCell.m */,
+			);
+			path = SWCell;
 			sourceTree = "<group>";
 		};
 		EAA8DE8F244D7E7C00161698 /* Setting */ = {
@@ -1565,6 +1623,8 @@
 				EAA8DEA3244D7E7C00161698 /* XXAccountManageVC.m */,
 				EAA8DEB5244D7E7C00161698 /* XXUserHomeVC.h */,
 				EAA8DEB4244D7E7C00161698 /* XXUserHomeVC.m */,
+				EA9D3E292452BBD00060778C /* XXChangePasswordVC.h */,
+				EA9D3E282452BBD00060778C /* XXChangePasswordVC.m */,
 			);
 			path = ViewController;
 			sourceTree = "<group>";
@@ -1864,6 +1924,8 @@
 				EABD7191244B1AEA008AA188 /* XXTransferHeaderView.m */,
 				EAE467EC244C7901006EACAF /* XXTransationSectionHeaderView.h */,
 				EAE467ED244C7901006EACAF /* XXTransationSectionHeaderView.m */,
+				EA9536FE2455623B0060D1FC /* XXRewardView.h */,
+				EA9536FF2455623B0060D1FC /* XXRewardView.m */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -1968,6 +2030,7 @@
 		F3D9397520CCCB560055070B /* Tools */ = {
 			isa = PBXGroup;
 			children = (
+				EA9D3E2B24545A1D0060778C /* SWCell */,
 				EABD7182244AFCD4008AA188 /* EmptyView */,
 				EAB356242438369200D750D6 /* fmdb */,
 				EA04ACBB242DED8E004403FF /* bech32 */,
@@ -2233,12 +2296,14 @@
 				EAA8DEDA244DE1DE00161698 /* XXImportWayView.m in Sources */,
 				EA15E95D24168F5600A3E14A /* XXVerifyMnemonicPhraseVC.m in Sources */,
 				EA04ABA9242D015B004403FF /* IQToolbar.m in Sources */,
+				EA9D3E2A2452BBD00060778C /* XXChangePasswordVC.m in Sources */,
 				EA04ABB2242D015B004403FF /* IQUIView+Hierarchy.m in Sources */,
 				EA964C442414E18500A941E5 /* AppDelegate.m in Sources */,
 				EA3E592024441D160080B98F /* XXAddAssetCell.m in Sources */,
 				EA04AD5024362964004403FF /* HttpManager.m in Sources */,
 				F31F7A4E20CF9693008B4403 /* BaseViewController.m in Sources */,
 				EABD7188244AFCD4008AA188 /* XXEmptyView.m in Sources */,
+				EA9537002455623B0060D1FC /* XXRewardView.m in Sources */,
 				EABBC08A24232DCD00B7E412 /* AESCrypt.m in Sources */,
 				6C791DFB2451A1D800F22CD0 /* XXProposalsListViewController.m in Sources */,
 				EAB356342438369200D750D6 /* FMResultSet.m in Sources */,
@@ -2247,6 +2312,7 @@
 				6CC12CEE24445DF200917105 /* XXDecimalNumberHelper.m in Sources */,
 				EA2F95312423A02B0070AC62 /* XXLoginVC.m in Sources */,
 				EABD1B98241BB25900B1A03A /* Provider.m in Sources */,
+				EA9D3E3824545A1D0060778C /* SWCellScrollView.m in Sources */,
 				EABD1BA2241BB25900B1A03A /* Transaction.m in Sources */,
 				EABD71812449F651008AA188 /* XXSymbolDetailHeaderView.m in Sources */,
 				6C791E152452D94300F22CD0 /* XXProposalNormalView.m in Sources */,
@@ -2255,6 +2321,7 @@
 				EA3E591A24441D160080B98F /* XXAssetSearchView.m in Sources */,
 				EA3E593F24441D950080B98F /* XXWithdrawAmountView.m in Sources */,
 				EA92EDBE244809E800B194DA /* XXMsg.m in Sources */,
+				EA95370324558CC40060D1FC /* XXMsgDelegateModel.m in Sources */,
 				EA3E5968244723200080B98F /* XXMsgSendModel.m in Sources */,
 				EABD1BA0241BB25900B1A03A /* RoundRobinProvider.m in Sources */,
 				EAA8DEC2244D7E7C00161698 /* XXAccountFooterView.m in Sources */,
@@ -2285,6 +2352,7 @@
 				EA30A031236F221A0098DE28 /* UIImageView+AFNetworking.m in Sources */,
 				6C3E66F8244AB10E0057B514 /* XXDelegateTransferViewController.m in Sources */,
 				EA309E00236F21400098DE28 /* AFURLResponseSerialization.m in Sources */,
+				EA9D3E3B24545A1D0060778C /* SWLongPressGestureRecognizer.m in Sources */,
 				EA3E594524445B510080B98F /* XXTransferView.m in Sources */,
 				EABD1B91241BB25900B1A03A /* pbkdf2.c in Sources */,
 				EABD71772449F481008AA188 /* XXTransactionCell.m in Sources */,
@@ -2292,6 +2360,7 @@
 				EA309E78236F21410098DE28 /* AFURLSessionManager.m in Sources */,
 				6C791E3A2456CA4200F22CD0 /* XXTransferTipView.m in Sources */,
 				EA04ABAF242D015B004403FF /* IQNSArray+Sort.m in Sources */,
+				EA9D3E3C24545A1D0060778C /* NSMutableArray+SWUtilityButtons.m in Sources */,
 				EABD1B9E241BB25900B1A03A /* LightClientProvider.m in Sources */,
 				EABD1BA7241BB25900B1A03A /* RLPSerialization.m in Sources */,
 				EABD1B80241BB25900B1A03A /* bip39.c in Sources */,
@@ -2322,6 +2391,7 @@
 				EABD1BB1241DFC3E00B1A03A /* XXTextFieldView.m in Sources */,
 				EABD1B8C241BB25900B1A03A /* aestab.c in Sources */,
 				EA15E95724163FDC00A3E14A /* XXStartWalletVC.m in Sources */,
+				EA9D3E3D24545A1D0060778C /* SWTableViewCell.m in Sources */,
 				EAA8DEC8244D81BB00161698 /* XXSettingCell.m in Sources */,
 				EABD1B93241BB25900B1A03A /* scrypt_sha256.c in Sources */,
 				EA04ABAE242D015B004403FF /* IQKeyboardManager.m in Sources */,
@@ -2358,11 +2428,13 @@
 				EABD1B9D241BB25900B1A03A /* EtherscanProvider.m in Sources */,
 				EABD1B8D241BB25900B1A03A /* bip32.c in Sources */,
 				EA04AD4F24362964004403FF /* NetAPIClient.m in Sources */,
+				EA9D3E3A24545A1D0060778C /* SWUtilityButtonTapGestureRecognizer.m in Sources */,
 				EA309FB9236F22190098DE28 /* UIRefreshControl+AFNetworking.m in Sources */,
 				EABD1BAE241BB25900B1A03A /* Payment.m in Sources */,
 				EABD1BA4241BB25900B1A03A /* BigNumber.m in Sources */,
 				6C3E66FF244ADF280057B514 /* XXDelegateAddressView.m in Sources */,
 				EA04ABB1242D015B004403FF /* IQUIScrollView+Additions.m in Sources */,
+				EA953706245590B90060D1FC /* XXCoinModel.m in Sources */,
 				EABD1B9F241BB25900B1A03A /* FallbackProvider.m in Sources */,
 				6C791E3124568A1200F22CD0 /* XXProposalDetailVoteInfoCell.m in Sources */,
 				6C791DFE2451A2B800F22CD0 /* XXProposalTableViewCell.m in Sources */,
@@ -2372,6 +2444,7 @@
 				EA3E594224441D950080B98F /* XXWithdrawChainVC.m in Sources */,
 				EA20EAC524261661004EBD7F /* XXSecurityAlertView.m in Sources */,
 				EA3E593924441D950080B98F /* XXWithdrawFeeView.m in Sources */,
+				EA9D3E3924545A1D0060778C /* SWUtilityButtonView.m in Sources */,
 				7A13E5222121B86D00B2B529 /* XCQrCodeTool.m in Sources */,
 				EAA8DEDD244EC62900161698 /* XXServiceContentView.m in Sources */,
 				EA3E592224441D160080B98F /* XXAddNewAssetVC.m in Sources */,
@@ -2394,6 +2467,7 @@
 				7A3298452320EE9900196336 /* NSMutableArray+Safe.m in Sources */,
 				F30EAF5720D26536005ADD5C /* colorModel.m in Sources */,
 				EA04ABAA242D015B004403FF /* IQTitleBarButtonItem.m in Sources */,
+				EA9D3E4024546D820060778C /* XXDepositAlert.m in Sources */,
 				EA309F7D236F22190098DE28 /* UIProgressView+AFNetworking.m in Sources */,
 				EAA8DEC0244D7E7C00161698 /* XXPasswordView.m in Sources */,
 				EA30A06D236F221A0098DE28 /* UIButton+AFNetworking.m in Sources */,

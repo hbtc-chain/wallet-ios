@@ -106,10 +106,10 @@ proposalDescription:(NSString *)proposalDescription
         [msgs addObject:msg];
     } else if([_type isEqualToString:kMsgKeyGen]) {
         NSMutableDictionary *value = [NSMutableDictionary dictionary];
-        value[@"From"] = KUser.address;
-        value[@"To"] = KUser.address;
-        value[@"OrderId"] = _uuid;
-        value[@"Symbol"] = _denom;
+        value[@"from"] = KUser.address;
+        value[@"to"] = KUser.address;
+        value[@"order_id"] = _uuid;
+        value[@"symbol"] = _denom;
         
         NSMutableDictionary *msg = [NSMutableDictionary dictionary];
         msg[@"type"] = kMsgKeyGen;

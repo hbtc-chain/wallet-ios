@@ -14,11 +14,8 @@
 #import "XXUserHeaderView.h"
 #import "XXBackupMnemonicPhraseVC.h"
 #import "XXPasswordView.h"
-#import "Signature.h"
-#import <CommonCrypto/CommonDigest.h>
-#import "Account.h"
-#import "SecureData.h"
 #import "XXSettingVC.h"
+#import "XXChangePasswordVC.h"
 
 @interface XXUserHomeVC () <UITableViewDataSource, UITableViewDelegate, UIGestureRecognizerDelegate>
 
@@ -50,12 +47,12 @@
 - (void)initData {
     self.itemsArray = [NSMutableArray array];
     self.iconArray = [NSMutableArray array];
-    if (KUser.currentAccount.mnemonicPhrase) {
+    if (KUser.currentAccount.mnemonicPhrase && !KUser.currentAccount.backupFlag) {
         self.itemsArray[0] = @[LocalizedString(@"BackupMnemonicPhrase"), LocalizedString(@"ModifyPassword")];
     } else {
         self.itemsArray[0] = @[LocalizedString(@"ModifyPassword")];
     }
-    self.itemsArray[1] = @[LocalizedString(@"Setting")];
+    self.itemsArray[1] = @[LocalizedString(@"Setting"),LocalizedString(@"Version")];
 }
 
 - (void)setupUI {
@@ -93,13 +90,19 @@
     if (!cell) {
         cell = [[XXUserHomeCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"XXUserHomeCell"];
     }
-    cell.selectionStyle = UITableViewCellSelectionStyleNone;
-    
     NSArray *namesArray = self.itemsArray[indexPath.section];
-    cell.nameLabel.text = namesArray[indexPath.row];
-    cell.contentView.backgroundColor = kViewBackgroundColor;
-    cell.nameLabel.textColor = kGray900;
-    cell.lineView.backgroundColor = KLine_Color;
+    NSString *name = namesArray[indexPath.row];
+    cell.nameLabel.text = name;
+    if ([name isEqualToString:LocalizedString(@"Version")]) {
+        cell.rightIconImageView.hidden = YES;
+        cell.valueLabel.hidden = NO;
+        NSDictionary *info = [[NSBundle mainBundle] infoDictionary];
+        NSString *version = [info objectForKey:@"CFBundleShortVersionString"];
+        cell.valueLabel.text = [NSString stringWithFormat:@"v%@",version];
+    } else {
+        cell.rightIconImageView.hidden = NO;
+        cell.valueLabel.hidden = YES;
+    }
     return cell;
 }
 
@@ -125,7 +128,8 @@
         [self pushBackupPhrase];
     }
     if ([itemString isEqualToString:LocalizedString(@"ModifyPassword")]) {
-        
+        XXChangePasswordVC *vc = [[XXChangePasswordVC alloc] init];
+        [self.navigationController pushViewController:vc animated:YES];
     }
     if ([itemString isEqualToString:LocalizedString(@"Setting")]) {
         [self pushSetting];
