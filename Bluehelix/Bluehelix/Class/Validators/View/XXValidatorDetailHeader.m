@@ -14,23 +14,22 @@
 @end
 @implementation XXValidatorDetailHeader
 
-- (instancetype)initWithFrame:(CGRect)frame
-{
-    self = [super initWithFrame:frame];
-    if (self) {
+- (instancetype)initWithReuseIdentifier:(NSString *)reuseIdentifier{
+    if (self = [super initWithReuseIdentifier:reuseIdentifier]) {
         self.backgroundColor = [UIColor clearColor];
         [self addSubview:self.validatorTitleLabel];
         [self addSubview:self.validatorStatuesButton];
     }
     return self;
 }
+#pragma mark layout
 - (void)layoutSubviews{
     [super layoutSubviews];
     [self.validatorTitleLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.mas_equalTo(4);
         make.left.mas_equalTo(24);
         make.right.mas_equalTo(self.validatorStatuesButton.mas_left);
-        make.height.mas_greaterThanOrEqualTo(48);
+        //make.height.mas_greaterThanOrEqualTo(48);
         make.bottom.mas_equalTo(-16);
     }];
     [self.validatorStatuesButton mas_makeConstraints:^(MASConstraintMaker *make) {

@@ -35,7 +35,8 @@
     self.contentSize = CGSizeMake(0, 500);
     // 提币主视图
     [self addSubview:self.mainView];
-    
+    /**提示文案*/
+    [self.mainView addSubview:self.transferTipView];
     /** 地址  */
     [self.mainView addSubview:self.addressView];
     
@@ -144,10 +145,15 @@
     }
     return _mainView;
 }
-
+- (XXTransferTipView *)transferTipView {
+    if (_transferTipView == nil) {
+        _transferTipView = [[XXTransferTipView alloc] initWithFrame:CGRectMake(0, 0, kScreen_Width, 136)];
+    }
+    return _transferTipView;
+}
 - (XXDelegateAddressView *)addressView {
     if (_addressView == nil) {
-        _addressView = [[XXDelegateAddressView alloc] initWithFrame:CGRectMake(0, 0, kScreen_Width, 96)];
+        _addressView = [[XXDelegateAddressView alloc] initWithFrame:CGRectMake(0, CGRectGetMaxY(self.transferTipView.frame), kScreen_Width, 96)];
         _addressView.textField.placeholder = LocalizedString(@"PleaseSelectValidator");
     }
     return _addressView;

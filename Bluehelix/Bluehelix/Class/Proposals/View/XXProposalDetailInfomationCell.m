@@ -44,6 +44,7 @@
         _detailLabelValue.textAlignment = NSTextAlignmentLeft;
         _detailLabelValue.font = kFont15;
         _detailLabelValue.editable = NO;
+        _detailLabelValue.scrollEnabled = NO;
     }
     return _detailLabelValue;;
 }

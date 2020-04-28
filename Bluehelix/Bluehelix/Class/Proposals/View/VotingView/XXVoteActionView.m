@@ -45,13 +45,31 @@
         [itemButton addTarget:self action:@selector(buttonAction:) forControlEvents:UIControlEventTouchUpInside];
         itemButton.contentHorizontalAlignment = UIControlContentHorizontalAlignmentCenter;
         itemButton.titleLabel.font = kFontBold17;
+        itemButton.layer.masksToBounds = YES;
         itemButton.layer.cornerRadius = 4.0f;
         itemButton.adjustsImageWhenHighlighted = NO;
-        if (self.indexBtn == i) {
-            self.selectedButton = itemButton;
-            itemButton.selected = YES;
-            [itemButton setBackgroundImage:[UIImage createImageWithColor:kGreen100] forState:UIControlStateSelected];
+        switch (i) {
+            case 0:
+                [itemButton setImage:[UIImage imageNamed:@"vote_yes"] forState:UIControlStateNormal];
+                [itemButton setImage:[UIImage imageNamed:@""] forState:UIControlStateSelected];
+                break;
+            case 1:
+                [itemButton setImage:[UIImage imageNamed:@"vote_no"] forState:UIControlStateNormal];
+                [itemButton setImage:[UIImage imageNamed:@""] forState:UIControlStateSelected];
+                break;
+            case 2:
+                [itemButton setImage:[UIImage imageNamed:@"vote_abstain"] forState:UIControlStateNormal];
+                [itemButton setImage:[UIImage imageNamed:@""] forState:UIControlStateSelected];
+                break;
+            case 3:
+                [itemButton setImage:[UIImage imageNamed:@"vote_noWithVeto"] forState:UIControlStateNormal];
+                [itemButton setImage:[UIImage imageNamed:@""] forState:UIControlStateSelected];
+                break;
+            default:
+                break;
         }
+        //imageview 偏移量
+        itemButton.imageEdgeInsets =  UIEdgeInsetsMake(0, -(itemButton.imageView.frame.origin.x ) +16 , 0, itemButton.imageView.frame.origin.x - 16);
         [self.buttonArray addObject:itemButton];
         [self addSubview:itemButton];
     }

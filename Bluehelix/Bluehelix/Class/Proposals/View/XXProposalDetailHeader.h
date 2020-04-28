@@ -11,7 +11,7 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface XXProposalDetailHeader : UIView
+@interface XXProposalDetailHeader : UITableViewHeaderFooterView
 
 @property (nonatomic, strong) XXProposalModel *proposalModel;
 @end

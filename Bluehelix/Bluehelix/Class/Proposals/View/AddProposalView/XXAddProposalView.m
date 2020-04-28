@@ -109,7 +109,6 @@
 }
 /** 质押数量 */
 - (XXTransferAmountView *)amountView {
-    @weakify(self)
     if (_amountView == nil) {
         _amountView = [[XXTransferAmountView alloc] initWithFrame:CGRectMake(0, CGRectGetMaxY(self.proposalDescriptionView.frame), kScreen_Width, 110)];
         _amountView.userInteractionEnabled = YES;
@@ -119,8 +118,7 @@
         _amountView.allButton.userInteractionEnabled = NO;
         _amountView.textField.placeholder = @"";
         _amountView.allButtonActionBlock = ^{
-            @strongify(self)
-            //[self reloadTransferData];
+            
         };
     }
     return _amountView;

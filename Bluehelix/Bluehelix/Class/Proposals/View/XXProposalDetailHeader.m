@@ -13,15 +13,14 @@
 
 @implementation XXProposalDetailHeader
 
-- (instancetype)initWithFrame:(CGRect)frame
-{
-    self = [super initWithFrame:frame];
-    if (self) {
+- (instancetype)initWithReuseIdentifier:(NSString *)reuseIdentifier{
+    if (self = [super initWithReuseIdentifier:reuseIdentifier]) {
         self.backgroundColor = [UIColor clearColor];
         [self addSubview:self.TitleLabel];
     }
     return self;
 }
+
 #pragma mark layout
 - (void)layoutSubviews{
     [super layoutSubviews];
@@ -29,7 +28,6 @@
         make.top.mas_equalTo(4);
         make.left.mas_equalTo(24);
         make.right.mas_equalTo(-24);
-        make.height.mas_greaterThanOrEqualTo(48);
         make.bottom.mas_equalTo(-16);
     }];
 }

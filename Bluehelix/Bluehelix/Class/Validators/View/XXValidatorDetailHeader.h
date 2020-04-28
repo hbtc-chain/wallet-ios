@@ -10,7 +10,7 @@
 #import "XXValidatorListModel.h"
 NS_ASSUME_NONNULL_BEGIN
 
-@interface XXValidatorDetailHeader : UIView
+@interface XXValidatorDetailHeader : UITableViewHeaderFooterView
 @property (nonatomic, strong) XXValidatorListModel *validatorModel;
 /**有效或者无效*/
 @property (nonatomic, strong) NSString *validOrInvalid;
