@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import "XXValidatorPrefixHeader.h"
+#import "XXTransferTipView.h"
 #import "XXDelegateAddressView.h"
 #import "XXTransferAmountView.h"
 #import "XXWithdrawFeeView.h"
@@ -22,6 +23,7 @@ NS_ASSUME_NONNULL_BEGIN
 /** 主视图 */
 @property (strong, nonatomic) UIView *mainView;
 
+@property (nonatomic, strong) XXTransferTipView *transferTipView;
 /** 委托地址 */
 @property (strong, nonatomic) XXDelegateAddressView *addressView;
 

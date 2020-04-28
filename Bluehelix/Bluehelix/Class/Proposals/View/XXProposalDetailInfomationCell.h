@@ -11,7 +11,9 @@
 NS_ASSUME_NONNULL_BEGIN
 
 @interface XXProposalDetailInfomationCell : UITableViewCell
+//title
 @property (nonatomic, strong) XXLabel *detailLabelInfo;
+//detail
 @property (nonatomic, strong) UITextView *detailLabelValue;
 @end
 

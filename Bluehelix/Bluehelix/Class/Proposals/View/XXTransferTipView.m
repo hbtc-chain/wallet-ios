@@ -40,7 +40,7 @@
         _tipTextView = [[UITextView alloc]initWithFrame:CGRectMake(10, 16, CGRectGetWidth(self.tipBackgroundView.frame) -20, CGRectGetHeight(self.tipBackgroundView.frame)- 32)];
         _tipTextView.font = kFont15;
         _tipTextView.textColor = kGray700;
-        _tipTextView.text = @"It will take 21 days to unlock your tokens after they are staked. There is a risk that some tokens will be lost depending on the behaviour of the validator you choose.";
+        _tipTextView.text = LocalizedString(@"TransferTopTipMessage");
     }
     return _tipTextView;
 }

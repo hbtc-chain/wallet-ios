@@ -13,7 +13,7 @@
 #import "XXProposalDetailTableViewCell.h"
 #import "XXProposalDetailVoteInfoCell.h"
 #import "XXProposalDetailInfomationCell.h"
-
+static NSString *kSectionHeader = @"XXProposalDetailHeader";
 static NSString *kProposalDetailCell = @"ProposalDetailTableViewCell";
 static NSString *kProposalDetailVoteInfoCell = @"ProposalDetailVoteInfoCell";
 static NSString *kProposalDetailInfoCell = @"ProposalDetailInfomationCell";
@@ -54,14 +54,12 @@ static NSString *kProposalDetailInfoCell = @"ProposalDetailInfomationCell";
     if (self.sectionFirstValueArray) {
         [self.sectionFirstValueArray removeAllObjects];
     }
-    //header
-    self.detailHeader.proposalModel = self.proposalModel;
     //section info
     NSArray *firstInfoArray= @[LocalizedString(@"ProposalDetailStatus"),LocalizedString(@"ProposalDetailIdentify"),LocalizedString(@"ProposalDetailType"),LocalizedString(@"ProposalDetailUser"),LocalizedString(@"ProposalDetailDate")];
     //section value
-    NSArray *firstValueArray = @[KString(self.proposalModel.proposalId),KString(self.proposalModel.type),KString(self.proposalModel.proposer),[NSString dateStringFromTimestampWithTimeTamp:[self.proposalModel.submit_time longLongValue]]];
+    NSArray *firstValueArray = @[KString(self.proposalModel.proposalId),KString(self.proposalModel.type),KString(self.proposalModel.proposer),[NSString dateStringFromTimestampWithTimeTamp:[KString(self.proposalModel.submit_time) longLongValue]]];
     //已质押
-    NSString *pledgedString = [NSString stringWithFormat:@"%@/%@%@",self.proposalModel.total_deposit,self.proposalModel.deposit_threshold,[kMainToken uppercaseString]];
+    NSString *pledgedString = [NSString stringWithFormat:@"%@/%@%@",KString(self.proposalModel.total_deposit),KString(self.proposalModel.deposit_threshold),[kMainToken uppercaseString]];
     //投票结束时间
     NSString *voteEndtimeString = [NSString stringWithFormat:@"%@",[NSString dateStringFromTimestampWithTimeTamp:[self.proposalModel.deposit_end_time longLongValue]]];
     switch (self.proposalModel.proposalStatusType) {
@@ -203,10 +201,10 @@ static NSString *kProposalDetailInfoCell = @"ProposalDetailInfomationCell";
 }
 #pragma mark layout
 - (void)layoutViews{
-    [self.detailHeader mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.width.mas_equalTo(kScreen_Width);
-        make.height.mas_greaterThanOrEqualTo(56);
-    }];
+//    [self.detailHeader mas_makeConstraints:^(MASConstraintMaker *make) {
+//        make.width.mas_equalTo(kScreen_Width);
+//        make.height.mas_greaterThanOrEqualTo(56);
+//    }];
 }
 #pragma mark UITableViewDelegate UITableViewDataSource
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
@@ -230,36 +228,41 @@ static NSString *kProposalDetailInfoCell = @"ProposalDetailInfomationCell";
 }
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
     if (section == 0) {
-        NSLog(@"头部高度%g",self.detailHeader.height);
-        return 56;
+        return self.proposalDetailTableView.sectionHeaderHeight;
     }else{
         return CGFLOAT_MIN;;
     }
 }
 - (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section{
+    if (section == self.sectionCount -1) {
+        return self.proposalDetailTableView.rowHeight;
+    }
     return 28;
 }
 
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
     if (section == 0) {
+         self.detailHeader = [tableView dequeueReusableHeaderFooterViewWithIdentifier:kSectionHeader];
+         self.detailHeader.proposalModel = self.proposalModel;
          return self.detailHeader;
     }else{
         return [UIView new];;
     }
 }
 - (UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section{
-    if (section == 2) {
+    if (section == self.sectionCount -1 || self.sectionCount == 3) {
+        //最后一行 和 投票相关状态没有分割线
         return [UIView new];
     }
     UIView * view = [[UIView alloc]initWithFrame:CGRectMake(0, 0, kScreen_Width, 28)];
     UIView *lineView = [[UIView alloc]initWithFrame:CGRectMake(24, 16, kScreen_Width-24, 1)];
     lineView.backgroundColor = KLine_Color;
     [view addSubview:lineView];
-    return view;;
+    return view;
 }
 - (void)tableView:(UITableView *)tableView willDisplayHeaderView:(UIView *)view forSection:(NSInteger)section {
     if ([view isKindOfClass:[UITableViewHeaderFooterView class]]) {
-        ((UITableViewHeaderFooterView *)view).backgroundView.backgroundColor = [UIColor clearColor];
+        ((UITableViewHeaderFooterView *)view).backgroundView.backgroundColor = kWhiteColor;
     }
 }
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -293,7 +296,7 @@ static NSString *kProposalDetailInfoCell = @"ProposalDetailInfomationCell";
             cell = [[XXProposalDetailVoteInfoCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:kProposalDetailVoteInfoCell];
         }
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
-        cell.backgroundColor = kWhiteColor;
+        cell.backgroundColor = kF4F7FF;
         cell.proposalModel = self.proposalModel;
         return cell;
     } else{
@@ -318,8 +321,13 @@ static NSString *kProposalDetailInfoCell = @"ProposalDetailInfomationCell";
         _proposalDetailTableView.dataSource = self;
         _proposalDetailTableView.delegate = self;
         _proposalDetailTableView.backgroundColor = kWhiteColor;
+        _proposalDetailTableView.estimatedSectionHeaderHeight = 56;
+        _proposalDetailTableView.sectionHeaderHeight = UITableViewAutomaticDimension;
+        _proposalDetailTableView.rowHeight = 28;
+        _proposalDetailTableView.estimatedRowHeight = UITableViewAutomaticDimension;
         _proposalDetailTableView.separatorStyle = UITableViewCellSeparatorStyleNone;
         _proposalDetailTableView.showsVerticalScrollIndicator = NO;
+        [_proposalDetailTableView registerClass:[XXProposalDetailHeader class] forHeaderFooterViewReuseIdentifier:kSectionHeader];
         [_proposalDetailTableView registerClass:[XXProposalDetailTableViewCell class] forCellReuseIdentifier:kProposalDetailCell];
         [_proposalDetailTableView registerClass:[XXProposalDetailVoteInfoCell class] forCellReuseIdentifier:kProposalDetailVoteInfoCell];
         [_proposalDetailTableView registerClass:[XXProposalDetailInfomationCell class] forCellReuseIdentifier:kProposalDetailInfoCell];
@@ -346,16 +354,11 @@ static NSString *kProposalDetailInfoCell = @"ProposalDetailInfomationCell";
         _transferButton.layer.cornerRadius = 3;
         _transferButton.layer.masksToBounds = YES;
         [_transferButton setBackgroundImage:[UIImage createImageWithColor:kPrimaryMain] forState:UIControlStateNormal ];
-        [_transferButton setBackgroundImage:[UIImage createImageWithColor:[UIColor colorWithHexString:@"#E7ECF4"]] forState:UIControlStateSelected];
+        [_transferButton setBackgroundImage:[UIImage createImageWithColor:kGray100] forState:UIControlStateSelected];
         [_transferButton setTitleColor:kMainTextColor forState:UIControlStateNormal];
         [_transferButton setTitleColor:kMainTextColor forState: UIControlStateSelected];
     }
     return _transferButton;
 }
-- (XXProposalDetailHeader*)detailHeader{
-    if (!_detailHeader) {
-        _detailHeader = [[XXProposalDetailHeader alloc]initWithFrame:CGRectZero];
-    }
-    return _detailHeader;
-}
+
 @end

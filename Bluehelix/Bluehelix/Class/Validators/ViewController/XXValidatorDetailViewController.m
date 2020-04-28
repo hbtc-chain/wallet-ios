@@ -13,7 +13,7 @@
 #import "XXValidatorDetailHeader.h"
 #import "XXValidatorDetailCell.h"
 #import "XXValidatorDetailInfoCell.h"
-
+static NSString *kSectionDetailHeader = @"XXValidatorDetailHeader";
 static NSString *KValidatorDetailViewCell = @"ValidatorDetailView";
 static NSString *KValidatorDetailInfoCell = @"ValidatorDetailInfoCell";
 @interface XXValidatorDetailViewController ()<UITableViewDelegate,UITableViewDataSource>
@@ -41,22 +41,17 @@ static NSString *KValidatorDetailInfoCell = @"ValidatorDetailInfoCell";
     [self layoutViews];
 }
 - (void)loadData{
-    self.detailHeader.validOrInvalid = self.validOrInvalid;
-    self.detailHeader.validatorModel = self.validatorModel;
-    self.sectionFirstInfoArray = @[LocalizedString(@"ValidatorVote"),LocalizedString(@"ValidatorDelegateNumber"),LocalizedString(@"ValidatorCommissionRate"),LocalizedString(@"ValidatorOnlineRatio"),LocalizedString(@"ValidatorUpdateTime"),LocalizedString(@"ValidatorCommissionMostLimit"),LocalizedString(@"ValidatorCommissionMostLimitPerDay")];
+
+    self.sectionFirstInfoArray = @[LocalizedString(@"ValidatorVote"),LocalizedString(@"ValidatorDelegateNumber"),LocalizedString(@"ValidatorCommissionRate"),LocalizedString(@"ValidatorUpdateTime"),LocalizedString(@"ValidatorOnlineRatio"),LocalizedString(@"ValidatorCommissionMostLimit"),LocalizedString(@"ValidatorCommissionMostLimitPerDay")];
     self.sectionSecondInfoArray = @[LocalizedString(@"ValidatorAddress"),LocalizedString(@"ValidatorWebsite")];
     
-    self.sectionFirstValueArray = @[[NSString stringWithFormat:@"%@(%@%@)",KString(self.validatorModel.voting_power),KString(self.validatorModel.voting_power_proportion),@"%"],[NSString stringWithFormat:@"%@(%@%@)",KString(self.validatorModel.self_delegate_amount),KString(self.validatorModel.self_delegate_proportion),@"%"],self.validatorModel.up_time,[NSString stringWithFormat:@"%@%@",KString(self.validatorModel.commission.rate),@"%"],[NSString dateStringFromTimestampWithTimeTamp:self.validatorModel.last_voted_time.longLongValue],[NSString stringWithFormat:@"%@%@",KString(self.validatorModel.commission.max_rate),@"%"],[NSString stringWithFormat:@"%@%@",KString(self.validatorModel.commission.max_change_rate),@"%"]];;
-    self.sectionSectionValueArray = @[self.validatorModel.operator_address,self.validatorModel.validatorDescription.website];
+    self.sectionFirstValueArray = @[[NSString stringWithFormat:@"%@(%@%@)",KString(self.validatorModel.voting_power),KString(self.validatorModel.voting_power_proportion),@"%"],[NSString stringWithFormat:@"%@(%@%@)",KString(self.validatorModel.self_delegate_amount),KString(self.validatorModel.self_delegate_proportion),@"%"],KString(self.validatorModel.up_time),[NSString stringWithFormat:@"%@%@",KString(self.validatorModel.commission.rate),@"%"],[NSString dateStringFromTimestampWithTimeTamp:[KString(self.validatorModel.last_voted_time) longLongValue]],[NSString stringWithFormat:@"%@%@",KString(self.validatorModel.commission.max_rate),@"%"],[NSString stringWithFormat:@"%@%@",KString(self.validatorModel.commission.max_change_rate),@"%"]];;
+    self.sectionSectionValueArray = @[KString(self.validatorModel.operator_address),KString(self.validatorModel.validatorDescription.website)];
     
     [self.validatorsDetailTableView reloadData];
 }
 #pragma mark layout
 - (void)layoutViews{
-    [self.detailHeader mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.width.mas_equalTo(kScreen_Width);
-        make.height.mas_greaterThanOrEqualTo(56);
-    }];
     [self.delegateBar mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.right.bottom.mas_equalTo(0);
         make.height.mas_equalTo(72);
@@ -85,8 +80,7 @@ static NSString *KValidatorDetailInfoCell = @"ValidatorDetailInfoCell";
 }
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
     if (section == 0) {
-        NSLog(@"头部高度%g",self.detailHeader.height);
-        return 56;
+        return self.validatorsDetailTableView.sectionHeaderHeight;
     }else{
         return CGFLOAT_MIN;;
     }
@@ -97,10 +91,13 @@ static NSString *KValidatorDetailInfoCell = @"ValidatorDetailInfoCell";
 
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
     if (section == 0) {
-         return self.detailHeader;
-    }else{
-        return [UIView new];;
-    }
+          self.detailHeader = [tableView dequeueReusableHeaderFooterViewWithIdentifier:kSectionDetailHeader];
+            self.detailHeader.validOrInvalid = self.validOrInvalid;
+          self.detailHeader.validatorModel = self.validatorModel;
+          return self.detailHeader;
+     }else{
+         return [UIView new];;
+     }
 }
 - (UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section{
     if (section == 2) {
@@ -169,7 +166,10 @@ static NSString *KValidatorDetailInfoCell = @"ValidatorDetailInfoCell";
         _validatorsDetailTableView.delegate = self;
         _validatorsDetailTableView.backgroundColor = kWhiteColor;
         _validatorsDetailTableView.separatorStyle = UITableViewCellSeparatorStyleNone;
+        _validatorsDetailTableView.estimatedSectionHeaderHeight = 48;
+        _validatorsDetailTableView.sectionHeaderHeight =  UITableViewAutomaticDimension;
         _validatorsDetailTableView.showsVerticalScrollIndicator = NO;
+        [_validatorsDetailTableView registerClass:[XXValidatorDetailHeader class] forHeaderFooterViewReuseIdentifier:kSectionDetailHeader];
         [_validatorsDetailTableView registerClass:[XXValidatorDetailCell class] forCellReuseIdentifier:KValidatorDetailViewCell];
         [_validatorsDetailTableView registerClass:[XXValidatorDetailInfoCell class] forCellReuseIdentifier:KValidatorDetailInfoCell];
         if (@available(iOS 11.0, *)) {
@@ -205,12 +205,6 @@ static NSString *KValidatorDetailInfoCell = @"ValidatorDetailInfoCell";
         };
     }
     return _delegateBar;;
-}
-- (XXValidatorDetailHeader*)detailHeader{
-    if (!_detailHeader) {
-        _detailHeader = [[XXValidatorDetailHeader alloc]initWithFrame:CGRectZero];
-    }
-    return _detailHeader;
 }
 
 @end

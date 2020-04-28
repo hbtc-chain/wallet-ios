@@ -58,6 +58,10 @@
 }
 #pragma mark 发起提案
 - (void)transferVerify {
+    if ([self.addProposalView.amountView.textField.text trimmingCharacters].doubleValue < 100000) {
+        [MBProgressHUD showErrorMessage:LocalizedString(@"CreateProposalAmoutMustMoreTip")];
+        return;
+    }
     @weakify(self)
     if (self.addProposalView.propotalTitleView.textField.text.length && self.addProposalView.proposalDescriptionView.textView.text.length&& self.addProposalView.amountView.textField.text.length && self.addProposalView.feeView.textField.text.length) {
         MJWeakSelf

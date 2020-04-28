@@ -81,13 +81,13 @@
 #pragma mark layout
 - (void)layoutSubviews{
     [self.backShadowView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.mas_equalTo(0);
+        make.top.mas_equalTo(12);
         make.left.mas_equalTo(16);
         make.right.mas_equalTo(-16);
         make.bottom.mas_equalTo(-12);
     }];
     [self.proposalStatusImageview mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.mas_equalTo(12);
+        make.top.mas_equalTo(24);
         make.left.mas_equalTo(32);
         make.width.height.mas_equalTo(20);
     }];
@@ -131,13 +131,17 @@
 - (UIView *)backShadowView{
     if (!_backShadowView) {
         _backShadowView = [[UIView alloc]initWithFrame:CGRectZero];
-        _backShadowView.clipsToBounds = YES;
+        _backShadowView.clipsToBounds = NO;
+        _backShadowView.backgroundColor = kViewBackgroundColor;
+        _backShadowView.layer.cornerRadius = 10.0;
         _backShadowView.layer.shadowColor = kShadowColor.CGColor;
-        _backShadowView.layer.shadowRadius = 12.0;
+        _backShadowView.layer.shadowRadius = 6.0;
+        _backShadowView.layer.shadowOpacity = 1;
         _backShadowView.layer.shadowOffset = CGSizeMake(0, 3);
     }
     return _backShadowView;
 }
+
 - (UIImageView *)proposalStatusImageview{
     if (!_proposalStatusImageview) {
         _proposalStatusImageview = [[UIImageView alloc]initWithFrame:CGRectZero];

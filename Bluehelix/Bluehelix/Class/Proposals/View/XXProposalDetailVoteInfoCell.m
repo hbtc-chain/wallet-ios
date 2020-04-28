@@ -7,6 +7,7 @@
 //
 
 #import "XXProposalDetailVoteInfoCell.h"
+#import "XXDecimalNumberHelper.h"
 
 @interface XXProposalDetailVoteInfoCell ()
 @property (nonatomic, strong) XXLabel *titleLabel;
@@ -35,6 +36,8 @@
 
 - (instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier{
     if (self = [super initWithStyle:style reuseIdentifier:reuseIdentifier]) {
+        self.backgroundColor = kF4F7FF;
+        
         [self addSubview:self.titleLabel];
         
         [self addSubview:self.iconimageView];
@@ -62,10 +65,31 @@
 #pragma mark set/get
 - (void)setProposalModel:(XXProposalModel *)proposalModel{
     _proposalModel = proposalModel;
-    self.voteValue.text = KString(_proposalModel.result.yes);
-    self.voteValue2.text = KString(_proposalModel.result.no);
-    self.voteValue3.text = KString(_proposalModel.result.abstain);
-    self.voteValue4.text = KString(_proposalModel.result.no_with_veto);
+    NSDecimalNumber *totalStingDecimal = [[[[NSDecimalNumber decimalNumberWithString:_proposalModel.result.yes]decimalNumberByAdding:[NSDecimalNumber decimalNumberWithString:_proposalModel.result.no]]decimalNumberByAdding:[NSDecimalNumber decimalNumberWithString:_proposalModel.result.abstain]]decimalNumberByAdding:[NSDecimalNumber decimalNumberWithString:_proposalModel.result.no_with_veto]];
+    if ([totalStingDecimal.stringValue isEqualToString:@"0"]) {
+        //保护除数不能为零
+        self.voteValue.text = [NSString stringWithFormat:@"%@(%@%@)",KString(_proposalModel.result.yes),@"0.00",@"%"];
+        self.voteValue2.text = [NSString stringWithFormat:@"%@(%@%@)",KString(_proposalModel.result.no),@"0.00",@"%"];
+        self.voteValue3.text = [NSString stringWithFormat:@"%@(%@%@)",KString(_proposalModel.result.abstain),@"0.00",@"%"];
+        self.voteValue4.text = [NSString stringWithFormat:@"%@(%@%@)",KString(_proposalModel.result.no_with_veto),@"0.00",@"%"];
+        return;
+    }
+    
+    NSDecimalNumber *voteYesRatioDecimal = [[[NSDecimalNumber decimalNumberWithString:_proposalModel.result.yes] decimalNumberByDividingBy:totalStingDecimal]decimalNumberByMultiplyingBy:[NSDecimalNumber decimalNumberWithString:@"100"]];
+    NSString *voteYesRatio = [KDecimal decimalNumber:voteYesRatioDecimal.stringValue RoundingMode:NSRoundDown scale:2];
+    
+    NSDecimalNumber *voteNoRatioDecimal = [[[NSDecimalNumber decimalNumberWithString:_proposalModel.result.no] decimalNumberByDividingBy:totalStingDecimal] decimalNumberByMultiplyingBy:[NSDecimalNumber decimalNumberWithString:@"100"]];
+    NSString *voteNoRatio = [KDecimal decimalNumber:voteNoRatioDecimal.stringValue RoundingMode:NSRoundDown scale:2];
+    
+    NSDecimalNumber *voteAbstainRatioDecimal = [[[NSDecimalNumber decimalNumberWithString:_proposalModel.result.abstain] decimalNumberByDividingBy:totalStingDecimal]decimalNumberByMultiplyingBy:[NSDecimalNumber decimalNumberWithString:@"100"]];
+    NSString *voteAbstainRatio = [KDecimal decimalNumber:voteAbstainRatioDecimal.stringValue RoundingMode:NSRoundDown scale:2];
+    
+    NSDecimalNumber *voteNoWithVetoRatioDecimal = [[[NSDecimalNumber decimalNumberWithString:_proposalModel.result.no_with_veto] decimalNumberByDividingBy:totalStingDecimal]decimalNumberByMultiplyingBy:[NSDecimalNumber decimalNumberWithString:@"100"]];
+    NSString *voteNoWithVetoRatio = [KDecimal decimalNumber:voteNoWithVetoRatioDecimal.stringValue RoundingMode:NSRoundDown scale:2];
+    self.voteValue.text = [NSString stringWithFormat:@"%@(%@%@)",KString(_proposalModel.result.yes),voteYesRatio,@"%"];
+    self.voteValue2.text = [NSString stringWithFormat:@"%@(%@%@)",KString(_proposalModel.result.no),voteNoRatio,@"%"];
+    self.voteValue3.text = [NSString stringWithFormat:@"%@(%@)%@",KString(_proposalModel.result.abstain),voteAbstainRatio,@"%"];
+    self.voteValue4.text = [NSString stringWithFormat:@"%@(%@)%@",KString(_proposalModel.result.no_with_veto),voteNoWithVetoRatio,@"%"];
     
 }
 #pragma mark layout
