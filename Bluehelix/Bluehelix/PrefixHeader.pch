@@ -52,6 +52,8 @@ typedef NS_ENUM(NSUInteger, NetworkMethod) {
 #endif
 
 //wallet
+#define kNotificationNetCome @"NotificationNetCome"
+
 #define kBtnBorderRadius 6
 #define kBtnHeight 48
 #define kAlertDuration 2

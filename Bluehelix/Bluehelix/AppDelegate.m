@@ -13,11 +13,12 @@
 #import "SecureData.h"
 #import "XXLoginVC.h"
 #import "XXRepeatPasswordVC.h"
-#import "Bluehelix-Swift.h"
+#import "AFNetworkReachabilityManager.h"
 @implementation AppDelegate
 
 #pragma mark - 1. 程序开始
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
+    [self AFNReachability];
     [[XXSqliteManager sharedSqlite] requestTokens];
     [[RatesManager shareRatesManager] loadDataOfRates];
     if (!KUser.isSettedNightType) {
@@ -38,6 +39,31 @@
     }
     [self.window makeKeyAndVisible];
     return YES;
+}
+
+-(void)AFNReachability {
+    AFNetworkReachabilityManager *manager = [AFNetworkReachabilityManager sharedManager];
+    [manager setReachabilityStatusChangeBlock:^(AFNetworkReachabilityStatus status) {
+        switch (status) {
+            case AFNetworkReachabilityStatusUnknown:
+                KUser.netWorkStatus = @"unKnown";
+                break;
+            case AFNetworkReachabilityStatusNotReachable:
+                KUser.netWorkStatus = @"notReachable";
+                break;
+            case AFNetworkReachabilityStatusReachableViaWWAN:
+                KUser.netWorkStatus = @"WWAN";
+                [[NSNotificationCenter defaultCenter] postNotificationName:kNotificationNetCome object:nil];
+                break;
+            case AFNetworkReachabilityStatusReachableViaWiFi:
+                KUser.netWorkStatus = @"WiFi";
+                [[NSNotificationCenter defaultCenter] postNotificationName:kNotificationNetCome object:nil];
+                break;
+            default:
+                break;
+        }
+    }];
+    [manager startMonitoring];
 }
 
 #pragma mark - 2. app从后台进入前台都会调用这个方法

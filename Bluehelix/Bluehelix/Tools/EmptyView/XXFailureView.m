@@ -36,8 +36,8 @@
 
 - (UIImageView *)iconImageView {
     if (_iconImageView == nil) {
-        _iconImageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:kIsNight ? @"noDataFailedDark" : @"noDataFailed"]];
-        _iconImageView.frame = CGRectMake((self.width - 120)/2.0, ((self.height - 196.0)/2.0)*0.7, 120, 120);
+        _iconImageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"noDataFailed"]];
+        _iconImageView.frame = CGRectMake((self.width - 48)/2.0, ((self.height - 48 - 64)/2.0), 48, 48);
     }
     return _iconImageView;
 }

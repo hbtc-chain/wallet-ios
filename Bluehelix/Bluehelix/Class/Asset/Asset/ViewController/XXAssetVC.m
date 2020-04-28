@@ -19,6 +19,7 @@
 #import "RatesManager.h"
 #import "XXEmptyView.h"
 #import "SWTableViewCell.h"
+#import "XXFailureView.h"
 
 @interface XXAssetVC ()<UITableViewDataSource, UITableViewDelegate>
 
@@ -31,6 +32,7 @@
 @property (nonatomic, strong) XXAssetManager *assetManager;
 @property (nonatomic, strong) XXEmptyView *emptyView;
 @property (nonatomic, strong) NSTimer *timer; //定时刷新交易记录
+@property (nonatomic, strong) XXFailureView *failureView; //无网络
 @end
 
 @implementation XXAssetVC
@@ -86,7 +88,11 @@
 
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
     if (self.showArray.count == 0) {
-        return self.emptyView.height;
+        if ([KUser.netWorkStatus isEqualToString:@"notReachable"]) {
+            return self.failureView.height;
+        } else {
+            return self.emptyView.height;
+        }
     } else {
         return 0;
     }
@@ -94,11 +100,17 @@
 
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
     if (self.showArray.count == 0) {
+        if ([KUser.netWorkStatus isEqualToString:@"notReachable"]) {
+            return self.failureView;
+        } else {
+            return self.emptyView ;
+        }
         return self.emptyView ;
     } else {
         return [UIView new];
     }
 }
+
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
     return [XXAssetCell getCellHeight];
 }
@@ -227,6 +239,17 @@
         _emptyView = [[XXEmptyView alloc] initWithFrame:CGRectMake(0, 0, kScreen_Width, K375(300)) iamgeName:@"noAsset" alert:LocalizedString(@"NoAsset")];
     }
     return _emptyView;
+}
+
+- (XXFailureView *)failureView {
+    if (_failureView == nil) {
+        _failureView = [[XXFailureView alloc] initWithFrame:CGRectMake(0, 0, kScreen_Width, K375(300))];
+        MJWeakSelf
+        _failureView.reloadBlock = ^{
+            [weakSelf.assetManager requestAsset];
+        };
+    }
+    return _failureView;
 }
 
 - (XXAssetManager *)assetManager {

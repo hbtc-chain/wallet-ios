@@ -42,7 +42,6 @@
 #import <CommonCrypto/CommonDigest.h>
 #include "ripemd160.h"
 #import <BTCBase58.h>
-#import "Bluehelix-Swift.h"
 #import "NSData+Base64.h"
 #import "NSString+Base64.h"
 static NSErrorDomain ErrorDomain = @"io.ethers.AccountError";
@@ -186,25 +185,25 @@ static NSDateFormatter *TimeFormatter = nil;
         _privateKeyString = _privateKey.hexString;
         _BHAddress = address;
         _pubKey = publicKey.data;
-        [self publicKeyStr:publicKey];
+//        [self publicKeyStr:publicKey];
     }
     return self;
 }
 
-- (NSString *)publicKeyStr:(SecureData*)publicKey {
-    SegwitAddrCoder *seg = [[SegwitAddrCoder alloc] init];
-    Byte preByte[] ={235,90,233,135,33};
-    NSData *preData = [NSData dataWithBytes:preByte length:5];
-//    SecureData *secData = [SecureData secureDataWithHexString:@"EB5AE98721"]; //pubkeysecp256k1 前缀 0xEB5AE987
-    SecureData *secData = [SecureData secureDataWithData:preData];
-    [secData appendData:publicKey.data];
-    NSData *convertedData = [seg convertBitsFrom:8 to:5 pad:YES idata:secData.data error:nil];
-    NSLog(@"%@",convertedData);
-    Bech32 *bech32 = [[Bech32 alloc] init];
-    NSString *result = [bech32 encode:@"bhpub" values:convertedData];
-//    KUser.pubKey = result;
-    return result;
-}
+//- (NSString *)publicKeyStr:(SecureData*)publicKey {
+//    SegwitAddrCoder *seg = [[SegwitAddrCoder alloc] init];
+//    Byte preByte[] ={235,90,233,135,33};
+//    NSData *preData = [NSData dataWithBytes:preByte length:5];
+////    SecureData *secData = [SecureData secureDataWithHexString:@"EB5AE98721"]; //pubkeysecp256k1 前缀 0xEB5AE987
+//    SecureData *secData = [SecureData secureDataWithData:preData];
+//    [secData appendData:publicKey.data];
+//    NSData *convertedData = [seg convertBitsFrom:8 to:5 pad:YES idata:secData.data error:nil];
+//    NSLog(@"%@",convertedData);
+//    Bech32 *bech32 = [[Bech32 alloc] init];
+//    NSString *result = [bech32 encode:@"bhpub" values:convertedData];
+////    KUser.pubKey = result;
+//    return result;
+//}
 
 - (SecureData *)ripemd160:(SecureData*)publicKey {
     NSData *Bytedata = [publicKey data];
