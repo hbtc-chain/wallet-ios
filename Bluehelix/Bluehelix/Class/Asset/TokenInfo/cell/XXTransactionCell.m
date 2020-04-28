@@ -53,8 +53,14 @@
 - (void)configData:(NSDictionary *)dic {
     self.amountLabel.text = @"";
     self.timeLabel.text = [NSString dateStringFromTimestampWithTimeTamp:[dic[@"time"] longLongValue]];
-    NSDictionary *activity = [dic[@"activities"] firstObject];
-    [self configActivity:activity];
+    NSArray *activities = dic[@"activities"];
+    NSDictionary *activity = [activities firstObject];
+    if (activities.count > 1) {
+        [self configActivity:activity count:[NSString stringWithFormat:@"+%lu",activities.count -1]];
+    } else {
+        [self configActivity:activity count:@""];
+    }
+    
     if ([dic[@"success"] intValue]) {
         self.stateLabel.text = LocalizedString(@"Success");
         self.stateLabel.textColor = KRGBA(70, 206, 95, 100);
@@ -68,53 +74,84 @@
     }
 }
 
-- (void)configActivity:(NSDictionary *)dic {
+- (void)configActivity:(NSDictionary *)dic count:(NSString *)countString{
     NSString *type = dic[@"type"];
     NSDictionary *value = dic[@"value"];
     NSString *showTypeStr = LocalizedString(@"ChainOtherType");
-    if ([type isEqualToString:kMsgSend]) {
+    
+    if ([type isEqualToString:kMsgSend]) { //转账
         showTypeStr = LocalizedString(@"Transfer");
         XXMsgSendModel *model = [XXMsgSendModel mj_objectWithKeyValues:value];
         NSDictionary *amount = [model.amount firstObject];
         XXTokenModel *token = [[XXSqliteManager sharedSqlite] tokenBySymbol:amount[@"denom"]];
-        NSDecimalNumber *amountDecimal = [NSDecimalNumber decimalNumberWithString:amount[@"amount"]]; //数量
+        NSDecimalNumber *amountDecimal = [NSDecimalNumber decimalNumberWithString:amount[@"amount"]];
         NSString *amountStr = [[amountDecimal decimalNumberByDividingBy:kPrecisionDecimalPower(token.decimals)] stringValue];
         if ([model.from_address isEqualToString:KUser.address]) {
             self.amountLabel.text = [NSString stringWithFormat:@"-%@",amountStr];
         } else {
             self.amountLabel.text = [NSString stringWithFormat:@"+%@",amountStr];
         }
-    } else if ([type isEqualToString:kMsgDelegate]) {
+    } else if ([type isEqualToString:kMsgDelegate]) { //委托
         showTypeStr = LocalizedString(@"Delegate");
         XXMsgDelegateModel *model = [XXMsgDelegateModel mj_objectWithKeyValues:value];
         XXCoinModel *coin  = model.amount;
         XXTokenModel *token = [[XXSqliteManager sharedSqlite] tokenBySymbol:coin.denom];
-        NSDecimalNumber *amountDecimal = [NSDecimalNumber decimalNumberWithString:coin.amount]; //数量
+        NSDecimalNumber *amountDecimal = [NSDecimalNumber decimalNumberWithString:coin.amount];
         NSString *amountStr = [[amountDecimal decimalNumberByDividingBy:kPrecisionDecimalPower(token.decimals)] stringValue];
         self.amountLabel.text = [NSString stringWithFormat:@"-%@",amountStr];
-    } else if ([type isEqualToString:kMsgUndelegate]) {
-        showTypeStr = LocalizedString(@"TransferDelegate");
-    } else if ([type isEqualToString:kMsgKeyGen]) {
+    } else if ([type isEqualToString:kMsgUndelegate]) { //解委托
+        showTypeStr = LocalizedString(@"CancelDelegate");
+        XXMsgDelegateModel *model = [XXMsgDelegateModel mj_objectWithKeyValues:value];
+        XXCoinModel *coin  = model.amount;
+        XXTokenModel *token = [[XXSqliteManager sharedSqlite] tokenBySymbol:coin.denom];
+        NSDecimalNumber *amountDecimal = [NSDecimalNumber decimalNumberWithString:coin.amount];
+        NSString *amountStr = [[amountDecimal decimalNumberByDividingBy:kPrecisionDecimalPower(token.decimals)] stringValue];
+        self.amountLabel.text = [NSString stringWithFormat:@"+%@",amountStr];
+    } else if ([type isEqualToString:kMsgKeyGen]) { // 跨链地址生成
         showTypeStr = LocalizedString(@"ChainAddress");
-    } else if ([type isEqualToString:kMsgDeposit]) {
+    } else if ([type isEqualToString:kMsgDeposit]) { // 跨链充值
         showTypeStr = LocalizedString(@"ChainDeposit");
         XXMsgDepositModel *model = [XXMsgDepositModel mj_objectWithKeyValues:value];
         XXTokenModel *token = [[XXSqliteManager sharedSqlite] tokenBySymbol:model.symbol];
-        NSDecimalNumber *amountDecimal = [NSDecimalNumber decimalNumberWithString:model.amount]; //数量
+        NSDecimalNumber *amountDecimal = [NSDecimalNumber decimalNumberWithString:model.amount];
         NSString *amountStr = [[amountDecimal decimalNumberByDividingBy:kPrecisionDecimalPower(token.decimals)] stringValue];
         self.amountLabel.text = [NSString stringWithFormat:@"+%@",amountStr];
-    } else if ([type isEqualToString:kMsgWithdrawal]) {
+    } else if ([type isEqualToString:kMsgWithdrawal]) { // 跨链提币
         showTypeStr = LocalizedString(@"ChainWithdrawal");
         XXMsgWithdrawalModel *model = [XXMsgWithdrawalModel mj_objectWithKeyValues:value];
         XXTokenModel *token = [[XXSqliteManager sharedSqlite] tokenBySymbol:model.symbol];
         NSDecimalNumber *amountDecimal = [NSDecimalNumber decimalNumberWithString:model.amount]; //数量
         NSString *amountStr = [[amountDecimal decimalNumberByDividingBy:kPrecisionDecimalPower(token.decimals)] stringValue];
         self.amountLabel.text = [NSString stringWithFormat:@"-%@",amountStr];
-    } else if ([type isEqualToString:kMsgWithdrawalDelegationReward]) {
-           showTypeStr = LocalizedString(@"WithdrawMoney");
+    } else if ([type isEqualToString:kMsgWithdrawalDelegationReward]) { //提取收益
+        showTypeStr = LocalizedString(@"WithdrawMoney");
+        XXMsgDelegateModel *model = [XXMsgDelegateModel mj_objectWithKeyValues:value];
+        XXCoinModel *coin = model.amount;
+        XXTokenModel *token = [[XXSqliteManager sharedSqlite] tokenBySymbol:coin.denom];
+        NSDecimalNumber *amountDecimal = [NSDecimalNumber decimalNumberWithString:coin.amount];
+        NSString *amountStr = [[amountDecimal decimalNumberByDividingBy:kPrecisionDecimalPower(token.decimals)] stringValue];
+        self.amountLabel.text = [NSString stringWithFormat:@"+%@",amountStr];
+    } else if ([type isEqualToString:kMsgPledge]) { //质押
+        showTypeStr = LocalizedString(@"ProposalNavgationTitlePledge");
+        NSArray *amounts = value[@"amount"];
+        XXCoinModel *coin = [XXCoinModel mj_objectWithKeyValues:[amounts firstObject]];
+        XXTokenModel *token = [[XXSqliteManager sharedSqlite] tokenBySymbol:kMainToken];
+        NSDecimalNumber *amountDecimal = [NSDecimalNumber decimalNumberWithString:coin.amount];
+        NSString *amountStr = [[amountDecimal decimalNumberByDividingBy:kPrecisionDecimalPower(token.decimals)] stringValue];
+        self.amountLabel.text = [NSString stringWithFormat:@"%@",amountStr];
+    }  else if ([type isEqualToString:kMsgVote]) { // 投票
+        showTypeStr = LocalizedString(@"ProposalNavgationTitleVote");
+    }  else if ([type isEqualToString:kMsgCreateProposal]) { //发起提案
+        showTypeStr = LocalizedString(@"VotingProposal");
+        NSArray *amounts = value[@"initial_deposit"];
+        XXCoinModel *coin = [XXCoinModel mj_objectWithKeyValues:[amounts firstObject]];
+        XXTokenModel *token = [[XXSqliteManager sharedSqlite] tokenBySymbol:kMainToken];
+        NSDecimalNumber *amountDecimal = [NSDecimalNumber decimalNumberWithString:coin.amount];
+        NSString *amountStr = [[amountDecimal decimalNumberByDividingBy:kPrecisionDecimalPower(token.decimals)] stringValue];
+        self.amountLabel.text = [NSString stringWithFormat:@"-%@",amountStr];
     } else {}
-    self.typeLabel.text = showTypeStr;
-    self.typeLabel.frame = CGRectMake(K375(24), 20, [NSString widthWithText:showTypeStr font:kFontBold(17)], 24);
+    self.typeLabel.text = [NSString stringWithFormat:@"%@%@",showTypeStr,countString];
+    self.typeLabel.frame = CGRectMake(K375(24), 20, [NSString widthWithText:self.typeLabel.text font:kFontBold(17)], 24);
 }
 
 - (XXLabel *)typeLabel {

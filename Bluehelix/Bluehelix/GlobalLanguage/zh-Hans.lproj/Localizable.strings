@@ -170,6 +170,7 @@
 "Transfer" = "转账";
 "Delegate" = "委托";
 "TransferDelegate" = "转委托";
+"CancelDelegate" = "取消委托";
 "Bonded" = "委托中";
 "Unbonding" = "赎回中";
 "ClaimedReward" = "已收益";
@@ -187,6 +188,9 @@
 "WithdrawMoneyContent" = "提取所有分红%@HBC，并支付交易手续费%@HBC";
 "InMoneyContent" = "提取并委托所有分红%@HBC至验证节点，并支付交易手续费%@HBC";
 "Delegator" = "委托人";
+"TransactionDetail" = "交易详情";
+"Depositor" = "质押人";
+"ProposalID" = "提案编号";
 
 //验证人
 "ValidatorVote" = "投票权";

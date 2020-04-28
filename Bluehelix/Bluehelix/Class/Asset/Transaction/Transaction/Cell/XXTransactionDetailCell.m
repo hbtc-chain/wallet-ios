@@ -11,6 +11,7 @@
 @interface XXTransactionDetailCell ()
 
 @property (nonatomic, strong) UIView *lineView;
+@property (nonatomic, strong) UIImageView *icon;
 
 @end
 
@@ -29,6 +30,7 @@
 
 - (void)setupUI {
     [self.contentView addSubview:self.nameLabel];
+    [self.contentView addSubview:self.icon];
     [self.contentView addSubview:self.valueLabel];
     [self.contentView addSubview:self.lineView];
 }
@@ -40,9 +42,18 @@
     return _nameLabel;
 }
 
+- (UIImageView *)icon {
+    if (!_icon) {
+        _icon = [[UIImageView alloc] initWithFrame:CGRectMake(kScreen_Width - 48, 32, 24, 24)];
+        _icon.image = [UIImage imageNamed:@"ValidatorPaste"];
+    }
+    return _icon;
+}
+
 - (XXLabel *)valueLabel {
     if (!_valueLabel) {
-        _valueLabel = [XXLabel labelWithFrame:CGRectMake(24, CGRectGetMaxY(self.nameLabel.frame), kScreen_Width - 48, 24) text:@"" font:kFont13 textColor:kGray900];
+        _valueLabel = [XXLabel labelWithFrame:CGRectMake(24, CGRectGetMaxY(self.nameLabel.frame), kScreen_Width - 48 - 24, 24) text:@"" font:kFont13 textColor:kGray900];
+        [_valueLabel addClickCopyFunction];
     }
     return _valueLabel;
 }

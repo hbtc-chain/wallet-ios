@@ -71,7 +71,7 @@
     if ([model.from_address isEqualToString:KUser.address]) {
         sectionModel.value = [NSString stringWithFormat:@"-%@ %@",amountStr,[amount[@"denom"] uppercaseString]];
     } else {
-        sectionModel.value = [NSString stringWithFormat:@"+%@ %@",amountStr,[amount[@"denom"] uppercaseString]];
+        sectionModel.value = [NSString stringWithFormat:@"%@ %@",amountStr,[amount[@"denom"] uppercaseString]];
     }
     [self.sectionArray addObject:sectionModel];
     NSMutableArray *cellData = [NSMutableArray array];
@@ -84,7 +84,7 @@
     cellModel1.value = model.to_address;
     [cellData addObject:cellModel1];
     [self.cellArray addObject:cellData];
-    self.titleLabel.text = LocalizedString(@"Transfer");
+//    self.titleLabel.text = LocalizedString(@"Transfer");
 }
 
 #pragma mark 提币
@@ -95,7 +95,7 @@
     NSString *amountStr = [[amountDecimal decimalNumberByDividingBy:kPrecisionDecimalPower(token.decimals)] stringValue];
     XXTransactionSectionModel *sectionModel = [[XXTransactionSectionModel alloc] init];
     sectionModel.name = LocalizedString(@"ChainWithdrawal");
-    sectionModel.value = [NSString stringWithFormat:@"-%@",amountStr];
+    sectionModel.value = [NSString stringWithFormat:@"-%@",kAmountTrim(amountStr)];
     [self.sectionArray addObject:sectionModel];
     NSMutableArray *cellData = [NSMutableArray array];
     XXTransactionCellModel *cellModel = [[XXTransactionCellModel alloc] init];
@@ -107,7 +107,7 @@
     cellModel1.value = model.to_multi_sign_address;
     [cellData addObject:cellModel1];
     [self.cellArray addObject:cellData];
-    self.titleLabel.text = LocalizedString(@"ChainWithdrawal");
+//    self.titleLabel.text = LocalizedString(@"ChainWithdrawal");
 }
 
 #pragma mark 跨链充值
@@ -118,7 +118,7 @@
     NSString *amountStr = [[amountDecimal decimalNumberByDividingBy:kPrecisionDecimalPower(token.decimals)] stringValue];
     XXTransactionSectionModel *sectionModel = [[XXTransactionSectionModel alloc] init];
     sectionModel.name = LocalizedString(@"ChainDeposit");
-    sectionModel.value = [NSString stringWithFormat:@"+%@",amountStr];
+    sectionModel.value = [NSString stringWithFormat:@"%@",kAmountTrim(amountStr)];
     [self.sectionArray addObject:sectionModel];
     NSMutableArray *cellData = [NSMutableArray array];
     XXTransactionCellModel *cellModel = [[XXTransactionCellModel alloc] init];
@@ -130,7 +130,7 @@
     cellModel1.value = model.to_cu;
     [cellData addObject:cellModel1];
     [self.cellArray addObject:cellData];
-    self.titleLabel.text = LocalizedString(@"ChainDeposit");
+//    self.titleLabel.text = LocalizedString(@"ChainDeposit");
 }
 
 #pragma mark 委托
@@ -142,7 +142,7 @@
     NSString *amountStr = [[amountDecimal decimalNumberByDividingBy:kPrecisionDecimalPower(token.decimals)] stringValue];
     XXTransactionSectionModel *sectionModel = [[XXTransactionSectionModel alloc] init];
     sectionModel.name = LocalizedString(@"Delegate");
-    sectionModel.value = [NSString stringWithFormat:@"-%@ %@",amountStr,[coin.denom uppercaseString]];
+    sectionModel.value = [NSString stringWithFormat:@"-%@ %@",kAmountTrim(amountStr),[coin.denom uppercaseString]];
     [self.sectionArray addObject:sectionModel];
     NSMutableArray *cellData = [NSMutableArray array];
     XXTransactionCellModel *cellModel = [[XXTransactionCellModel alloc] init];
@@ -154,16 +154,44 @@
     cellModel1.value = model.validator_address;
     [cellData addObject:cellModel1];
     [self.cellArray addObject:cellData];
-    self.titleLabel.text = LocalizedString(@"Delegate");
+//    self.titleLabel.text = LocalizedString(@"Delegate");
+}
+
+#pragma mark 取消委托
+- (void)msgCancelDelegate:(NSDictionary *)value {
+    XXMsgDelegateModel *model = [XXMsgDelegateModel mj_objectWithKeyValues:value];
+    XXCoinModel *coin = model.amount;
+    XXTokenModel *token = [[XXSqliteManager sharedSqlite] tokenBySymbol:coin.denom];
+    NSDecimalNumber *amountDecimal = [NSDecimalNumber decimalNumberWithString:coin.amount]; //数量
+    NSString *amountStr = [[amountDecimal decimalNumberByDividingBy:kPrecisionDecimalPower(token.decimals)] stringValue];
+    XXTransactionSectionModel *sectionModel = [[XXTransactionSectionModel alloc] init];
+    sectionModel.name = LocalizedString(@"CancelDelegate");
+    sectionModel.value = [NSString stringWithFormat:@"%@ %@",kAmountTrim(amountStr),[coin.denom uppercaseString]];
+    [self.sectionArray addObject:sectionModel];
+    NSMutableArray *cellData = [NSMutableArray array];
+    XXTransactionCellModel *cellModel = [[XXTransactionCellModel alloc] init];
+    cellModel.name = LocalizedString(@"Delegator");
+    cellModel.value = model.delegator_address;
+    [cellData addObject:cellModel];
+    XXTransactionCellModel *cellModel1 = [[XXTransactionCellModel alloc] init];
+    cellModel1.name = LocalizedString(@"Validator");
+    cellModel1.value = model.validator_address;
+    [cellData addObject:cellModel1];
+    [self.cellArray addObject:cellData];
+//    self.titleLabel.text = LocalizedString(@"Delegate");
 }
 
 #pragma mark 提取收益
 - (void)msgWithdrawReward:(NSDictionary *)value {
+    XXMsgDelegateModel *model = [XXMsgDelegateModel mj_objectWithKeyValues:value];
+    XXCoinModel *coin = model.amount;
+    XXTokenModel *token = [[XXSqliteManager sharedSqlite] tokenBySymbol:coin.denom];
+    NSDecimalNumber *amountDecimal = [NSDecimalNumber decimalNumberWithString:coin.amount]; //数量
+    NSString *amountStr = [[amountDecimal decimalNumberByDividingBy:kPrecisionDecimalPower(token.decimals)] stringValue];
     XXTransactionSectionModel *sectionModel = [[XXTransactionSectionModel alloc] init];
     sectionModel.name = LocalizedString(@"WithdrawMoney");
-    sectionModel.value = @"";
+    sectionModel.value = [NSString stringWithFormat:@"%@ %@",kAmountTrim(amountStr),[coin.denom uppercaseString]];
     [self.sectionArray addObject:sectionModel];
-    XXMsgDelegateModel *model = [XXMsgDelegateModel mj_objectWithKeyValues:value];
     NSMutableArray *cellData = [NSMutableArray array];
     XXTransactionCellModel *cellModel = [[XXTransactionCellModel alloc] init];
     cellModel.name = LocalizedString(@"Delegator");
@@ -174,7 +202,55 @@
     cellModel1.value = model.validator_address;
     [cellData addObject:cellModel1];
     [self.cellArray addObject:cellData];
-    self.titleLabel.text = LocalizedString(@"WithdrawMoney");
+//    self.titleLabel.text = LocalizedString(@"WithdrawMoney");
+}
+
+#pragma mark 质押
+- (void)msgGovDeposit:(NSDictionary *)value {
+    
+    NSArray *amounts = value[@"amount"];
+    XXCoinModel *coin = [XXCoinModel mj_objectWithKeyValues:[amounts firstObject]];
+    XXTokenModel *token = [[XXSqliteManager sharedSqlite] tokenBySymbol:kMainToken];
+    NSDecimalNumber *amountDecimal = [NSDecimalNumber decimalNumberWithString:coin.amount]; //数量
+    NSString *amountStr = [[amountDecimal decimalNumberByDividingBy:kPrecisionDecimalPower(token.decimals)] stringValue];
+    XXTransactionSectionModel *sectionModel = [[XXTransactionSectionModel alloc] init];
+    sectionModel.name = LocalizedString(@"ProposalNavgationTitlePledge");
+    sectionModel.value = [NSString stringWithFormat:@"-%@ %@",kAmountTrim(amountStr),[coin.denom uppercaseString]];
+    [self.sectionArray addObject:sectionModel];
+    NSMutableArray *cellData = [NSMutableArray array];
+    XXTransactionCellModel *cellModel = [[XXTransactionCellModel alloc] init];
+    cellModel.name = LocalizedString(@"ProposalID");
+    cellModel.value = value[@"proposal_id"];
+    [cellData addObject:cellModel];
+    XXTransactionCellModel *cellModel1 = [[XXTransactionCellModel alloc] init];
+    cellModel1.name = LocalizedString(@"Depositor");
+    cellModel1.value = value[@"depositor"];
+    [cellData addObject:cellModel1];
+    [self.cellArray addObject:cellData];
+}
+
+#pragma mark 发起提案
+- (void)msgCreateProposal:(NSDictionary *)value {
+    
+    NSArray *amounts = value[@"initial_deposit"];
+    XXCoinModel *coin = [XXCoinModel mj_objectWithKeyValues:[amounts firstObject]];
+    XXTokenModel *token = [[XXSqliteManager sharedSqlite] tokenBySymbol:kMainToken];
+    NSDecimalNumber *amountDecimal = [NSDecimalNumber decimalNumberWithString:coin.amount]; //数量
+    NSString *amountStr = [[amountDecimal decimalNumberByDividingBy:kPrecisionDecimalPower(token.decimals)] stringValue];
+    XXTransactionSectionModel *sectionModel = [[XXTransactionSectionModel alloc] init];
+    sectionModel.name = LocalizedString(@"VotingProposal");
+    sectionModel.value = [NSString stringWithFormat:@"-%@ %@",kAmountTrim(amountStr),[coin.denom uppercaseString]];
+    [self.sectionArray addObject:sectionModel];
+    NSMutableArray *cellData = [NSMutableArray array];
+    XXTransactionCellModel *cellModel = [[XXTransactionCellModel alloc] init];
+    cellModel.name = LocalizedString(@"PayMoney");
+    cellModel.value = value[@"proposer"];
+    [cellData addObject:cellModel];
+//    XXTransactionCellModel *cellModel1 = [[XXTransactionCellModel alloc] init];
+//    cellModel1.name = LocalizedString(@"Depositor");
+//    cellModel1.value = value[@"proposer"];
+//    [cellData addObject:cellModel1];
+    [self.cellArray addObject:cellData];
 }
 
 - (void)configDic {
@@ -187,19 +263,31 @@
         } else if ([type isEqualToString:kMsgDelegate]) {
             [self msgDelegate:value];
         } else if ([type isEqualToString:kMsgUndelegate]) {
-            self.titleLabel.text = LocalizedString(@"TransferDelegate");
+//            self.titleLabel.text = LocalizedString(@"CancelDelegate");
+            [self msgCancelDelegate:value];
         } else if ([type isEqualToString:kMsgKeyGen]) {
-            self.titleLabel.text = LocalizedString(@"ChainAddress");
+//            self.titleLabel.text = LocalizedString(@"ChainAddress");
         } else if ([type isEqualToString:kMsgDeposit]) {
             [self msgDeposit:value];
         } else if ([type isEqualToString:kMsgWithdrawal]) {
             [self msgWithdrawModel:value];
         } else if([type isEqualToString:kMsgWithdrawalDelegationReward]) {
             [self msgWithdrawReward:value];
+        } else if([type isEqualToString:kMsgCreateProposal]) {
+            [self msgCreateProposal:value];
+        } else if([type isEqualToString:kMsgPledge]) {
+            [self msgGovDeposit:value];
+        } else if([type isEqualToString:kMsgVote]) {
+            
         } else {}
     }
+    self.titleLabel.text = LocalizedString(@"TransactionDetail");
     [self.tableView reloadData];
 }
+
+//#define kMsgCreateProposal @"hbtcchain/gov/MsgSubmitProposal" //发起提案
+//#define kMsgPledge @"hbtcchain/gov/MsgDeposit" //质押
+//#define kMsgVote @"hbtcchain/gov/MsgVote" //投票
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
     return self.sectionArray.count;
