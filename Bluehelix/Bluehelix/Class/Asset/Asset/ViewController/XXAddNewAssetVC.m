@@ -10,6 +10,8 @@
 #import "XXTokenModel.h"
 #import "XXAddAssetCell.h"
 #import "XXAssetSearchHeaderView.h"
+#import "XXFailureView.h"
+#import "XXEmptyView.h"
 
 @interface XXAddNewAssetVC () <UITableViewDelegate,UITableViewDataSource>
 
@@ -17,6 +19,8 @@
 @property (nonatomic, strong) NSArray *tokenList; //资产币列表
 @property (nonatomic, strong) XXAssetSearchHeaderView *headerView;
 @property (nonatomic, strong) NSMutableArray *showArray; //展示的列表
+@property (nonatomic, strong) XXFailureView *failureView; //无网络
+@property (nonatomic, strong) XXEmptyView *emptyView;
 
 @end
 
@@ -39,7 +43,9 @@
 /// 请求币列表
 - (void)requestTokenList {
     MJWeakSelf
+    [MBProgressHUD showActivityMessageInView:@""];
     [HttpManager getWithPath:@"/api/v1/tokens" params:nil andBlock:^(id data, NSString *msg, NSInteger code) {
+        [MBProgressHUD hideHUD];
         if (code == 0) {
             NSLog(@"%@",data);
             weakSelf.tokenList = [XXTokenModel mj_objectArrayWithKeyValuesArray:data[@"tokens"]];
@@ -82,13 +88,30 @@
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
-    
-    return 8;
+    if (self.showArray.count == 0) {
+        if ([KUser.netWorkStatus isEqualToString:@"notReachable"]) {
+            return self.failureView.height;
+        } else {
+            return self.emptyView.height;
+        }
+    } else {
+        return 0;
+    }
 }
 
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
-    return [UIView new];
+    if (self.showArray.count == 0) {
+        if ([KUser.netWorkStatus isEqualToString:@"notReachable"]) {
+            return self.failureView;
+        } else {
+            return self.emptyView ;
+        }
+        return self.emptyView ;
+    } else {
+        return [UIView new];
+    }
 }
+
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
     return [XXAddAssetCell getCellHeight];
 }
@@ -129,6 +152,24 @@
         [_headerView.searchTextField addTarget:self action:@selector(textFieldValueChange:) forControlEvents:UIControlEventEditingChanged];
     }
     return _headerView;
+}
+
+- (XXEmptyView *)emptyView {
+    if (_emptyView == nil) {
+        _emptyView = [[XXEmptyView alloc] initWithFrame:CGRectMake(0, 0, kScreen_Width, self.tableView.height - K375(32)) iamgeName:@"noData" alert:LocalizedString(@"NoData")];
+    }
+    return _emptyView;
+}
+
+- (XXFailureView *)failureView {
+    if (_failureView == nil) {
+        _failureView = [[XXFailureView alloc] initWithFrame:CGRectMake(0, 0, kScreen_Width, self.tableView.height - K375(32))];
+        MJWeakSelf
+        _failureView.reloadBlock = ^{
+            [weakSelf requestTokenList];
+        };
+    }
+    return _failureView;
 }
 
 @end

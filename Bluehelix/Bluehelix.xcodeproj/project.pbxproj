@@ -70,8 +70,6 @@
 		EA04ABB2242D015B004403FF /* IQUIView+Hierarchy.m in Sources */ = {isa = PBXBuildFile; fileRef = EA04ABA1242D015B004403FF /* IQUIView+Hierarchy.m */; };
 		EA04ABB3242D015B004403FF /* IQUIViewController+Additions.m in Sources */ = {isa = PBXBuildFile; fileRef = EA04ABA5242D015B004403FF /* IQUIViewController+Additions.m */; };
 		EA04ABB4242D015B004403FF /* IQKeyboardReturnKeyHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = EA04ABA7242D015B004403FF /* IQKeyboardReturnKeyHandler.m */; };
-		EA04AD3824323C73004403FF /* Bech32.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA04AD3724323C72004403FF /* Bech32.swift */; };
-		EA04AD3A243305B6004403FF /* SegwitAddrCoder.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA04AD39243305B6004403FF /* SegwitAddrCoder.swift */; };
 		EA04AD4F24362964004403FF /* NetAPIClient.m in Sources */ = {isa = PBXBuildFile; fileRef = EA04AD4D24362963004403FF /* NetAPIClient.m */; };
 		EA04AD5024362964004403FF /* HttpManager.m in Sources */ = {isa = PBXBuildFile; fileRef = EA04AD4E24362963004403FF /* HttpManager.m */; };
 		EA15E95724163FDC00A3E14A /* XXStartWalletVC.m in Sources */ = {isa = PBXBuildFile; fileRef = EA15E95624163FDC00A3E14A /* XXStartWalletVC.m */; };
@@ -432,9 +430,6 @@
 		EA04ABA5242D015B004403FF /* IQUIViewController+Additions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "IQUIViewController+Additions.m"; sourceTree = "<group>"; };
 		EA04ABA6242D015B004403FF /* IQUIView+Hierarchy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "IQUIView+Hierarchy.h"; sourceTree = "<group>"; };
 		EA04ABA7242D015B004403FF /* IQKeyboardReturnKeyHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IQKeyboardReturnKeyHandler.m; sourceTree = "<group>"; };
-		EA04ACC1242E0CCD004403FF /* Bluehelix-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Bluehelix-Bridging-Header.h"; sourceTree = "<group>"; };
-		EA04AD3724323C72004403FF /* Bech32.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Bech32.swift; sourceTree = "<group>"; };
-		EA04AD39243305B6004403FF /* SegwitAddrCoder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SegwitAddrCoder.swift; sourceTree = "<group>"; };
 		EA04AD4B24362963004403FF /* NetAPIClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NetAPIClient.h; sourceTree = "<group>"; };
 		EA04AD4C24362963004403FF /* HttpManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HttpManager.h; sourceTree = "<group>"; };
 		EA04AD4D24362963004403FF /* NetAPIClient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NetAPIClient.m; sourceTree = "<group>"; };
@@ -1158,16 +1153,6 @@
 				EA04ABA6242D015B004403FF /* IQUIView+Hierarchy.h */,
 			);
 			path = Categories;
-			sourceTree = "<group>";
-		};
-		EA04ACBB242DED8E004403FF /* bech32 */ = {
-			isa = PBXGroup;
-			children = (
-				EA04AD3724323C72004403FF /* Bech32.swift */,
-				EA04AD39243305B6004403FF /* SegwitAddrCoder.swift */,
-				EA04ACC1242E0CCD004403FF /* Bluehelix-Bridging-Header.h */,
-			);
-			path = bech32;
 			sourceTree = "<group>";
 		};
 		EA04AD3B2434D642004403FF /* Request */ = {
@@ -2033,7 +2018,6 @@
 				EA9D3E2B24545A1D0060778C /* SWCell */,
 				EABD7182244AFCD4008AA188 /* EmptyView */,
 				EAB356242438369200D750D6 /* fmdb */,
-				EA04ACBB242DED8E004403FF /* bech32 */,
 				EA04AB87242D015B004403FF /* IQKeyboardManager */,
 				EABBC08024232DCD00B7E412 /* AES */,
 				EA309F68236F22180098DE28 /* UIKit+AFNetworking */,
@@ -2262,7 +2246,6 @@
 				EA30A0E5236F221A0098DE28 /* UIWebView+AFNetworking.m in Sources */,
 				EAB356322438369200D750D6 /* FMDatabase.m in Sources */,
 				EABD1B83241BB25900B1A03A /* sha2.c in Sources */,
-				EA04AD3A243305B6004403FF /* SegwitAddrCoder.swift in Sources */,
 				EABD1B89241BB25900B1A03A /* bignum.c in Sources */,
 				EA3E594824445DAE0080B98F /* XXTransferAmountView.m in Sources */,
 				6C0D91BE2449A32B0043AF74 /* XXValidatorDetailInfoCell.m in Sources */,
@@ -2285,7 +2268,6 @@
 				F30EAF5F20D26536005ADD5C /* UIColor+helper.m in Sources */,
 				EAA8DEBE244D7E7C00161698 /* XXAssetManager.m in Sources */,
 				6CC12D0A24459D1000917105 /* XXValidatorDetailViewController.m in Sources */,
-				EA04AD3824323C73004403FF /* Bech32.swift in Sources */,
 				EA30A121236F221B0098DE28 /* AFAutoPurgingImageCache.m in Sources */,
 				F31F7A4D20CF9693008B4403 /* XXNavigationController.m in Sources */,
 				EAA8DECB244D81C300161698 /* XXSettingVC.m in Sources */,

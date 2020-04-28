@@ -51,6 +51,7 @@
 }
 
 - (void)configData:(NSDictionary *)dic {
+    self.amountLabel.text = @"";
     self.timeLabel.text = [NSString dateStringFromTimestampWithTimeTamp:[dic[@"time"] longLongValue]];
     NSDictionary *activity = [dic[@"activities"] firstObject];
     [self configActivity:activity];
@@ -109,9 +110,9 @@
         NSDecimalNumber *amountDecimal = [NSDecimalNumber decimalNumberWithString:model.amount]; //数量
         NSString *amountStr = [[amountDecimal decimalNumberByDividingBy:kPrecisionDecimalPower(token.decimals)] stringValue];
         self.amountLabel.text = [NSString stringWithFormat:@"-%@",amountStr];
-    } else {
-        
-    }
+    } else if ([type isEqualToString:kMsgWithdrawalDelegationReward]) {
+           showTypeStr = LocalizedString(@"WithdrawMoney");
+    } else {}
     self.typeLabel.text = showTypeStr;
     self.typeLabel.frame = CGRectMake(K375(24), 20, [NSString widthWithText:showTypeStr font:kFontBold(17)], 24);
 }

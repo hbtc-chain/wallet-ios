@@ -150,6 +150,15 @@ static XXUserData *_sharedUserData = nil;
     return [self getValueForKey:@"address"];
 }
 
+// 网络状态
+- (void)setNetWorkStatus:(NSString *)netWorkStatus {
+    [self saveValeu:netWorkStatus forKey:@"netWorkStatus"];
+}
+
+- (NSString *)netWorkStatus {
+    return [self getValueForKey:@"netWorkStatus"];
+}
+
 //// 账户数组
 - (NSArray *)accounts {
     return [[XXSqliteManager sharedSqlite] accounts];

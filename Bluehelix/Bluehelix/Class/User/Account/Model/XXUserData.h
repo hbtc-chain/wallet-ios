@@ -27,6 +27,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, strong) NSString *address; //当前用户地址
 
 @property (nonatomic, strong) NSString *ratesKey; //汇率
+@property (nonatomic, strong) NSString *netWorkStatus; //网络状态
 @end
 
 NS_ASSUME_NONNULL_END
