@@ -464,7 +464,7 @@
 
 + (NSString *)amountTrim:(NSString *)amount {
     if (IsEmpty(amount)) {
-        return @"";
+        return @"--";
     }
     NSDecimalNumber *amountDecimal = [NSDecimalNumber decimalNumberWithString:amount];
     NSArray *amountArr = [amount componentsSeparatedByString:@"."];

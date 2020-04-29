@@ -21,6 +21,7 @@
 @property (strong, nonatomic) CALayer *shadowLayer;
 @property (strong, nonatomic) XXLabel *assetNameLabel;
 @property (strong, nonatomic) XXLabel *totalAssetLabel;
+@property (strong, nonatomic) XXLabel *assetSymbolLabel;
 @property (strong, nonatomic) XXButton *menuBtn;
 @property (strong, nonatomic) UIImageView *logoImageView;
 
@@ -38,6 +39,7 @@
         [self addSubview:self.shadowImageView];
         [self.shadowImageView.layer insertSublayer:self.shadowLayer atIndex:0];
         [self.shadowImageView addSubview:self.assetNameLabel];
+        [self.shadowImageView addSubview:self.assetSymbolLabel];
         [self.shadowImageView addSubview:self.totalAssetLabel];
 //        [self addSubview:self.logoLabel];
         [self addSubview:self.logoImageView];
@@ -58,7 +60,8 @@
                 totalAsset += [tokenModel.amount doubleValue] * rate;
             }
         }
-        self.totalAssetLabel.text = [NSString stringWithFormat:@"%@%.3f",[RatesManager shareRatesManager].rateUnit,totalAsset];
+        self.assetSymbolLabel.text = [RatesManager shareRatesManager].rateUnit;
+        self.totalAssetLabel.text = [NSString stringWithFormat:@"%.3f",totalAsset];
     }
 }
 
@@ -110,7 +113,7 @@
 - (XXButton *)hidenAssetsButton {
     if (_hidenAssetsButton == nil) {
         MJWeakSelf
-        _hidenAssetsButton = [XXButton buttonWithFrame:CGRectMake(CGRectGetMaxX(self.assetNameLabel.frame), self.assetNameLabel.top, self.assetNameLabel.height, self.assetNameLabel.height) block:^(UIButton *button) {
+        _hidenAssetsButton = [XXButton buttonWithFrame:CGRectMake(CGRectGetMaxX(self.assetNameLabel.frame), self.assetNameLabel.top + 2, self.assetNameLabel.height, self.assetNameLabel.height) block:^(UIButton *button) {
             KUser.isHideAsset = !KUser.isHideAsset;
             weakSelf.hidenAssetsButton.selected = KUser.isHideAsset;
             if (weakSelf.actionBlock) {
@@ -149,13 +152,13 @@
 - (CALayer *)shadowLayer {
     if (!_shadowLayer) {
         _shadowLayer = [CALayer layer];
-        _shadowLayer.frame = CGRectMake(0, 0, self.shadowImageView.width, self.shadowImageView.height);
+        _shadowLayer.frame = CGRectMake(0, 0, self.shadowImageView.width, self.shadowImageView.height -4);
         _shadowLayer.cornerRadius = 10;
         _shadowLayer.backgroundColor = [kWhiteColor CGColor];
         _shadowLayer.shadowColor = [kGray200 CGColor];
-        _shadowLayer.shadowOffset = CGSizeMake(0, 4);
+        _shadowLayer.shadowOffset = CGSizeMake(0, 2);
         _shadowLayer.shadowOpacity = 0.8;
-        _shadowLayer.shadowRadius = 4;
+        _shadowLayer.shadowRadius = 2;
     }
     return _shadowLayer;
 }
@@ -168,9 +171,16 @@
     return _assetNameLabel;
 }
 
+- (XXLabel *)assetSymbolLabel {
+    if (!_assetSymbolLabel) {
+        _assetSymbolLabel = [XXLabel labelWithFrame:CGRectMake(K375(20), CGRectGetMaxY(self.assetNameLabel.frame) + 14, 12, 32) text:@"" font:kFontBold16 textColor:kGray700];
+    }
+    return _assetSymbolLabel;
+}
+
 - (XXLabel *)totalAssetLabel {
     if (!_totalAssetLabel) {
-        _totalAssetLabel = [XXLabel labelWithFrame:CGRectMake(K375(20), CGRectGetMaxY(self.assetNameLabel.frame) + 10, self.shadowImageView.width - K375(40), 32) font:kNumberFontBold(30) textColor:kGray900];
+        _totalAssetLabel = [XXLabel labelWithFrame:CGRectMake(CGRectGetMaxX(self.assetSymbolLabel.frame), CGRectGetMaxY(self.assetNameLabel.frame) + 10, self.shadowImageView.width - K375(40), 32) font:kNumberFontBold(30) textColor:kGray700];
     }
     return _totalAssetLabel;
 }

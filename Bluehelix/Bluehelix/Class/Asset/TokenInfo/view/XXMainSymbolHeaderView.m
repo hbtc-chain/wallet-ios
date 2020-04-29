@@ -9,12 +9,15 @@
 #import "XXMainSymbolHeaderView.h"
 #import "XXTokenModel.h"
 #import "XXAssetModel.h"
+#import <UIImageView+WebCache.h>
 
 @interface XXMainSymbolHeaderView ()
 
 @property (nonatomic, strong) UIView *backView;
 @property (nonatomic, strong) CALayer *shadowLayer;
 @property (nonatomic, strong) UIImageView *imageView;
+@property (nonatomic, strong) UIView *imageBackView;
+@property (nonatomic, strong) UIView *lineView;
 @property (nonatomic, strong) XXLabel *tipLabel; //当前持有
 @property (nonatomic, strong) XXLabel *amountLabel; //数量
 @property (nonatomic, strong) XXLabel *assetLabel; //资产
@@ -46,7 +49,9 @@
 - (void)buildUI {
     [self addSubview:self.backView];
     [self.backView.layer insertSublayer:self.shadowLayer atIndex:0];
-//    [self.backView addSubview:self.imageView];
+    [self.backView addSubview:self.imageBackView];
+    [self.imageBackView addSubview:self.imageView];
+    [self.backView addSubview:self.lineView];
     [self.backView addSubview:self.tipLabel];
     [self.backView addSubview:self.amountLabel];
     [self.backView addSubview:self.assetLabel];
@@ -67,11 +72,13 @@
     self.valueLabel2.text = kAmountTrim(assetModel.bonded);
     self.valueLabel3.text = kAmountTrim(assetModel.unbonding);
     self.valueLabel4.text = kAmountTrim(assetModel.claimed_reward);
+    XXTokenModel *tokenModel = [[XXSqliteManager sharedSqlite] tokenBySymbol:assetModel.symbol];
+    [self.imageView sd_setImageWithURL:[NSURL URLWithString:tokenModel.logo] placeholderImage:[UIImage imageNamed:@"placeholderToken"]];
 }
 
 - (UIView *)backView {
     if (!_backView) {
-        _backView = [[UIView alloc] initWithFrame:CGRectMake(K375(16), 0, self.width - K375(32), self.height)];
+        _backView = [[UIView alloc] initWithFrame:CGRectMake(K375(16), 5, self.width - K375(32), self.height - 5)];
     }
     return _backView;
 }
@@ -83,17 +90,33 @@
         _shadowLayer.cornerRadius = 10;
         _shadowLayer.backgroundColor = [kWhiteColor CGColor];
         _shadowLayer.shadowColor = [kGray200 CGColor];
-        _shadowLayer.shadowOffset = CGSizeMake(0, 4);
+        _shadowLayer.shadowOffset = CGSizeMake(0, 2);
         _shadowLayer.shadowOpacity = 0.8;
-        _shadowLayer.shadowRadius = 4;
+        _shadowLayer.shadowRadius = 2;
     }
     return _shadowLayer;
 }
 
+- (UIView *)lineView {
+    if (!_lineView) {
+        _lineView = [[UIView alloc] initWithFrame:CGRectMake(16, 112, self.backView.width - 16, KLine_Height)];
+        _lineView.backgroundColor = KLine_Color;
+    }
+    return _lineView;
+}
+
+- (UIView *)imageBackView {
+    if (!_imageBackView) {
+        _imageBackView = [[UIView alloc] initWithFrame:CGRectMake(self.backView.width - 96, 16, 96, 96)];
+        _imageBackView.layer.masksToBounds = YES;
+    }
+    return _imageBackView;
+}
+
 - (UIImageView *)imageView {
     if (!_imageView) {
-        _imageView = [[UIImageView alloc] initWithFrame:CGRectMake(self.backView.width - 112 + 16, 16, 96, 96)];
-        _imageView.image = [UIImage imageNamed:@"symbolIcon"];
+        _imageView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 112, 112)];
+        _imageView.image = [UIImage imageNamed:@"placeholderToken"];
     }
     return _imageView;
 }

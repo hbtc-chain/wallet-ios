@@ -92,7 +92,7 @@
 
 - (UIImageView *)editImageView {
     if (!_editImageView) {
-        _editImageView = [[UIImageView alloc] initWithFrame:CGRectMake(CGRectGetMaxX(self.textField.frame) + 8,self.textField.top - 3, self.textField.height, self.textField.height)];
+        _editImageView = [[UIImageView alloc] initWithFrame:CGRectMake(CGRectGetMaxX(self.textField.frame) + 8,self.textField.top -2, self.textField.height, self.textField.height)];
         _editImageView.image = [UIImage imageNamed:@"editUserName"];
     }
     return _editImageView;

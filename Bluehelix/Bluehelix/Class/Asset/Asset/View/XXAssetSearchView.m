@@ -13,6 +13,7 @@
 /** 搜索图标 */
 @property (strong, nonatomic) UIImageView *searchIconImageView;
 
+@property (strong, nonatomic) UIView *searchBackView;
 
 /** 分割线 */
 @property (strong, nonatomic) UIView *lineView;
@@ -27,8 +28,9 @@
     if (self) {
         self.backgroundColor = kWhiteColor;
         [self addSubview:self.hidenSmallButton];
-        [self addSubview:self.searchIconImageView];
-        [self addSubview:self.searchTextField];
+        [self addSubview:self.searchBackView];
+        [self.searchBackView addSubview:self.searchIconImageView];
+        [self.searchBackView addSubview:self.searchTextField];
         [self addSubview:self.lineView];
     }
     return self;
@@ -56,9 +58,17 @@
     return _hidenSmallButton;
 }
 
+- (UIView *)searchBackView {
+    if (_searchBackView == nil) {
+        _searchBackView = [[UIView alloc] initWithFrame:CGRectMake(kScreen_Width - 16 - 120, self.height/2 - 16, 120, 32)];
+        _searchBackView.backgroundColor = kGray50;
+    }
+    return _searchBackView;
+}
+
 - (UIImageView *)searchIconImageView {
     if (_searchIconImageView == nil) {
-        _searchIconImageView = [[UIImageView alloc] initWithFrame:CGRectMake(K375(240), (self.height - 24) / 2, 24, 24)];
+        _searchIconImageView = [[UIImageView alloc] initWithFrame:CGRectMake(10, (self.searchBackView.height - 24) / 2, 24, 24)];
         _searchIconImageView.image = [UIImage subTextImageName:@"icon_search_0"];
     }
     return _searchIconImageView;
@@ -66,7 +76,7 @@
 
 - (XXTextField *)searchTextField {
     if (_searchTextField == nil) {
-        _searchTextField = [[XXTextField alloc] initWithFrame:CGRectMake(CGRectGetMaxX(self.searchIconImageView.frame) + 8, 8, kScreen_Width - (CGRectGetMaxX(self.searchIconImageView.frame) + 10) - K375(15), self.height - 16)];
+        _searchTextField = [[XXTextField alloc] initWithFrame:CGRectMake(CGRectGetMaxX(self.searchIconImageView.frame) + 8, 8, self.searchBackView.width - (CGRectGetMaxX(self.searchIconImageView.frame) + 10) - K375(15), self.searchBackView.height - 16)];
         _searchTextField.returnKeyType = UIReturnKeySearch;
         _searchTextField.autocorrectionType = UITextAutocorrectionTypeNo;
         _searchTextField.autocapitalizationType = UITextAutocapitalizationTypeNone;
@@ -75,7 +85,6 @@
         _searchTextField.placeholder = LocalizedString(@"SearchPairs");
         _searchTextField.placeholderColor = kGray500;
         _searchTextField.placeholderFont = kFont(15);
-//        _searchTextField.backgroundColor = kGray50;
     }
     return _searchTextField;
 }
