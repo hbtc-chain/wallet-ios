@@ -116,7 +116,7 @@
                     [button setBackgroundImage:[UIImage createImageWithColor:kRed100] forState:UIControlStateSelected];
                     break;
                 case 2:
-                    [button setBackgroundImage:[UIImage createImageWithColor:kGray] forState:UIControlStateSelected];
+                    [button setBackgroundImage:[UIImage createImageWithColor:kGray500] forState:UIControlStateSelected];
                     break;
                 case 3:
                     [button setBackgroundImage:[UIImage createImageWithColor:kPrimaryMain] forState:UIControlStateSelected];

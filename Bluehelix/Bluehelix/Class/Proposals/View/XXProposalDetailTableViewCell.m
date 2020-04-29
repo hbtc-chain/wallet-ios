@@ -37,13 +37,13 @@
 #pragma mark lazy load
 - (XXLabel *)labelInfo{
     if (!_labelInfo) {
-        _labelInfo = [XXLabel labelWithFrame:CGRectZero text:@"" font:kFont13 textColor:kSubLabelColor alignment:NSTextAlignmentLeft];
+        _labelInfo = [XXLabel labelWithFrame:CGRectZero text:@"" font:kFont13 textColor:kGray500 alignment:NSTextAlignmentLeft];
     }
     return _labelInfo;;
 }
 - (XXLabel *)labelValue{
     if (!_labelValue) {
-        _labelValue = [XXLabel labelWithFrame:CGRectZero text:@"" font:kFont13 textColor:kMainLabelColor alignment:NSTextAlignmentRight];;
+        _labelValue = [XXLabel labelWithFrame:CGRectZero text:@"" font:kFont13 textColor:kGray900 alignment:NSTextAlignmentRight];;
         _labelValue.adjustsFontSizeToFitWidth = YES;
     }
     return _labelValue;;

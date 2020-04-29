@@ -14,7 +14,7 @@
 {
     self = [super initWithFrame:frame];
     if (self) {
-        self.backgroundColor = kSeparateLineColor;
+        self.backgroundColor = kGray50;
         [self addSubview:self.searchIconImageView];
         [self addSubview:self.searchTextField];
     }

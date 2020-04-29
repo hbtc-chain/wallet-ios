@@ -296,7 +296,7 @@ static NSString *kProposalDetailInfoCell = @"ProposalDetailInfomationCell";
             cell = [[XXProposalDetailVoteInfoCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:kProposalDetailVoteInfoCell];
         }
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
-        cell.backgroundColor = kF4F7FF;
+        cell.backgroundColor = kGray50;
         cell.proposalModel = self.proposalModel;
         return cell;
     } else{
@@ -317,7 +317,7 @@ static NSString *kProposalDetailInfoCell = @"ProposalDetailInfomationCell";
 #pragma mark lazy load
 - (UITableView *)proposalDetailTableView {
     if (_proposalDetailTableView == nil) {
-        _proposalDetailTableView = [[UITableView alloc] initWithFrame:CGRectMake(0, kNavHeight, kScreen_Width, kScreen_Height - kNavHeight - 64) style:UITableViewStylePlain];
+        _proposalDetailTableView = [[UITableView alloc] initWithFrame:CGRectMake(0, kNavHeight, kScreen_Width, kScreen_Height - kNavHeight - 64 - 8) style:UITableViewStylePlain];
         _proposalDetailTableView.dataSource = self;
         _proposalDetailTableView.delegate = self;
         _proposalDetailTableView.backgroundColor = kWhiteColor;
@@ -347,7 +347,7 @@ static NSString *kProposalDetailInfoCell = @"ProposalDetailInfomationCell";
 - (XXButton *)transferButton {
     if (!_transferButton) {
         @weakify(self)
-        _transferButton = [XXButton buttonWithFrame:CGRectMake(KSpacing, kScreen_Height - 64, kScreen_Width - KSpacing*2, 48) title:@"" font:kFontBold14 titleColor:kMainTextColor block:^(UIButton *button) {
+        _transferButton = [XXButton buttonWithFrame:CGRectMake(KSpacing, kScreen_Height - 64 -8 , kScreen_Width - KSpacing*2, 48) title:@"" font:kFontBold14 titleColor:kMainTextColor block:^(UIButton *button) {
             @strongify(self)
             [self transferButtonAction:self.transferButton];
         }];

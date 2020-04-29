@@ -41,6 +41,7 @@
     if (!_detailLabelValue) {
         _detailLabelValue = [XXLabel labelWithFrame:CGRectZero text:@"" font:kFont13 textColor:kMainLabelColor alignment:NSTextAlignmentLeft];
         _detailLabelValue.numberOfLines = 0;
+        _detailLabelValue.backgroundColor = kWhiteColor;
     }
     return _detailLabelValue;;
 }

@@ -31,6 +31,9 @@ static NSString *KValidatorDetailInfoCell = @"ValidatorDetailInfoCell";
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self createUI];
+}
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
     [self loadData];
 }
 - (void)createUI{
@@ -149,6 +152,7 @@ static NSString *KValidatorDetailInfoCell = @"ValidatorDetailInfoCell";
             cell = [[XXValidatorDetailInfoCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:KValidatorDetailInfoCell];
         }
         cell.backgroundColor = kWhiteColor;
+        cell.selectionStyle = UITableViewCellSelectionStyleNone;
         cell.detailLabelValue.text = self.validatorModel.validatorDescription.details;
         return cell;
     }

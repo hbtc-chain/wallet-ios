@@ -36,7 +36,7 @@
 
 - (instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier{
     if (self = [super initWithStyle:style reuseIdentifier:reuseIdentifier]) {
-        self.backgroundColor = kF4F7FF;
+        self.backgroundColor = kGray50;
         
         [self addSubview:self.titleLabel];
         
