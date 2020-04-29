@@ -127,10 +127,7 @@
 		EA3E594524445B510080B98F /* XXTransferView.m in Sources */ = {isa = PBXBuildFile; fileRef = EA3E594424445B510080B98F /* XXTransferView.m */; };
 		EA3E594824445DAE0080B98F /* XXTransferAmountView.m in Sources */ = {isa = PBXBuildFile; fileRef = EA3E594724445DAE0080B98F /* XXTransferAmountView.m */; };
 		EA3E595124446A310080B98F /* Lato-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = EA3E594C24446A310080B98F /* Lato-Bold.ttf */; };
-		EA3E595224446A310080B98F /* Roboto-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = EA3E594D24446A310080B98F /* Roboto-Regular.ttf */; };
 		EA3E595324446A310080B98F /* Lato-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = EA3E594E24446A310080B98F /* Lato-Regular.ttf */; };
-		EA3E595424446A310080B98F /* Roboto-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = EA3E594F24446A310080B98F /* Roboto-Bold.ttf */; };
-		EA3E595524446A310080B98F /* Roboto-Black.ttf in Resources */ = {isa = PBXBuildFile; fileRef = EA3E595024446A310080B98F /* Roboto-Black.ttf */; };
 		EA3E595C24471F190080B98F /* XXTokenModel.m in Sources */ = {isa = PBXBuildFile; fileRef = EA3E595B24471F190080B98F /* XXTokenModel.m */; };
 		EA3E595F24471F410080B98F /* XXMsgDepositModel.m in Sources */ = {isa = PBXBuildFile; fileRef = EA3E595E24471F410080B98F /* XXMsgDepositModel.m */; };
 		EA3E59622447208F0080B98F /* XXMsgKeyGenModel.m in Sources */ = {isa = PBXBuildFile; fileRef = EA3E59612447208F0080B98F /* XXMsgKeyGenModel.m */; };
@@ -182,6 +179,8 @@
 		EAB356332438369200D750D6 /* FMDatabasePool.m in Sources */ = {isa = PBXBuildFile; fileRef = EAB3562E2438369200D750D6 /* FMDatabasePool.m */; };
 		EAB356342438369200D750D6 /* FMResultSet.m in Sources */ = {isa = PBXBuildFile; fileRef = EAB3562F2438369200D750D6 /* FMResultSet.m */; };
 		EAB3566A243E402100D750D6 /* JSONKit.m in Sources */ = {isa = PBXBuildFile; fileRef = EAB35668243E402100D750D6 /* JSONKit.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		EAB8DF27245979A0004B3445 /* NotoSansSC-Medium.otf in Resources */ = {isa = PBXBuildFile; fileRef = EAB8DF25245979A0004B3445 /* NotoSansSC-Medium.otf */; };
+		EAB8DF28245979A0004B3445 /* NotoSansSC-Regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = EAB8DF26245979A0004B3445 /* NotoSansSC-Regular.otf */; };
 		EABBC08924232DCD00B7E412 /* NSString+Base64.m in Sources */ = {isa = PBXBuildFile; fileRef = EABBC08124232DCD00B7E412 /* NSString+Base64.m */; };
 		EABBC08A24232DCD00B7E412 /* AESCrypt.m in Sources */ = {isa = PBXBuildFile; fileRef = EABBC08224232DCD00B7E412 /* AESCrypt.m */; };
 		EABBC08B24232DCD00B7E412 /* NSData+CommonCrypto.m in Sources */ = {isa = PBXBuildFile; fileRef = EABBC08724232DCD00B7E412 /* NSData+CommonCrypto.m */; };
@@ -545,10 +544,7 @@
 		EA3E594624445DAE0080B98F /* XXTransferAmountView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = XXTransferAmountView.h; sourceTree = "<group>"; };
 		EA3E594724445DAE0080B98F /* XXTransferAmountView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = XXTransferAmountView.m; sourceTree = "<group>"; };
 		EA3E594C24446A310080B98F /* Lato-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Lato-Bold.ttf"; sourceTree = "<group>"; };
-		EA3E594D24446A310080B98F /* Roboto-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Roboto-Regular.ttf"; sourceTree = "<group>"; };
 		EA3E594E24446A310080B98F /* Lato-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Lato-Regular.ttf"; sourceTree = "<group>"; };
-		EA3E594F24446A310080B98F /* Roboto-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Roboto-Bold.ttf"; sourceTree = "<group>"; };
-		EA3E595024446A310080B98F /* Roboto-Black.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Roboto-Black.ttf"; sourceTree = "<group>"; };
 		EA3E595A24471F190080B98F /* XXTokenModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XXTokenModel.h; sourceTree = "<group>"; };
 		EA3E595B24471F190080B98F /* XXTokenModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XXTokenModel.m; sourceTree = "<group>"; };
 		EA3E595D24471F410080B98F /* XXMsgDepositModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = XXMsgDepositModel.h; sourceTree = "<group>"; };
@@ -654,6 +650,8 @@
 		EAB3562F2438369200D750D6 /* FMResultSet.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FMResultSet.m; sourceTree = "<group>"; };
 		EAB35668243E402100D750D6 /* JSONKit.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JSONKit.m; sourceTree = "<group>"; };
 		EAB35669243E402100D750D6 /* JSONKit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JSONKit.h; sourceTree = "<group>"; };
+		EAB8DF25245979A0004B3445 /* NotoSansSC-Medium.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "NotoSansSC-Medium.otf"; sourceTree = "<group>"; };
+		EAB8DF26245979A0004B3445 /* NotoSansSC-Regular.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "NotoSansSC-Regular.otf"; sourceTree = "<group>"; };
 		EABBC08124232DCD00B7E412 /* NSString+Base64.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+Base64.m"; sourceTree = "<group>"; };
 		EABBC08224232DCD00B7E412 /* AESCrypt.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AESCrypt.m; sourceTree = "<group>"; };
 		EABBC08324232DCD00B7E412 /* NSData+Base64.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSData+Base64.h"; sourceTree = "<group>"; };
@@ -1410,11 +1408,10 @@
 		EA3E594B24446A310080B98F /* Font */ = {
 			isa = PBXGroup;
 			children = (
+				EAB8DF25245979A0004B3445 /* NotoSansSC-Medium.otf */,
+				EAB8DF26245979A0004B3445 /* NotoSansSC-Regular.otf */,
 				EA3E594C24446A310080B98F /* Lato-Bold.ttf */,
-				EA3E594D24446A310080B98F /* Roboto-Regular.ttf */,
 				EA3E594E24446A310080B98F /* Lato-Regular.ttf */,
-				EA3E594F24446A310080B98F /* Roboto-Bold.ttf */,
-				EA3E595024446A310080B98F /* Roboto-Black.ttf */,
 			);
 			path = Font;
 			sourceTree = "<group>";
@@ -2152,13 +2149,12 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				EA3E595424446A310080B98F /* Roboto-Bold.ttf in Resources */,
+				EAB8DF27245979A0004B3445 /* NotoSansSC-Medium.otf in Resources */,
 				EA3E595124446A310080B98F /* Lato-Bold.ttf in Resources */,
-				EA3E595524446A310080B98F /* Roboto-Black.ttf in Resources */,
 				EAE4047E211C1DB300FFD028 /* Localizable.strings in Resources */,
 				EABD1B8B241BB25900B1A03A /* secp256k1.table in Resources */,
 				EAE4047F211C1DB300FFD028 /* InfoPlist.strings in Resources */,
-				EA3E595224446A310080B98F /* Roboto-Regular.ttf in Resources */,
+				EAB8DF28245979A0004B3445 /* NotoSansSC-Regular.otf in Resources */,
 				EA2931B822CCB22B003B60E8 /* Assets.xcassets in Resources */,
 				EA3E595324446A310080B98F /* Lato-Regular.ttf in Resources */,
 				F30EAF5C20D26536005ADD5C /* README.textile in Resources */,

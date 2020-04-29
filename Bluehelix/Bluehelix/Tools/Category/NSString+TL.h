@@ -114,4 +114,8 @@
 /// 数量展示
 /// @param amount 数量
 + (NSString *)amountTrim:(NSString *)amount;
+
+/// 地址隐藏中间部分
+/// @param address 地址
++ (NSString *)addressReplace:(NSString *)address;
 @end

@@ -44,7 +44,10 @@
 - (void)requestTokenList {
     MJWeakSelf
     [MBProgressHUD showActivityMessageInView:@""];
-    [HttpManager getWithPath:@"/api/v1/tokens" params:nil andBlock:^(id data, NSString *msg, NSInteger code) {
+    NSMutableDictionary *param = [NSMutableDictionary dictionary];
+    param[@"page"] = @"1";
+    param[@"size"] = @"2000";
+    [HttpManager getWithPath:@"/api/v1/tokens" params:param andBlock:^(id data, NSString *msg, NSInteger code) {
         [MBProgressHUD hideHUD];
         if (code == 0) {
             NSLog(@"%@",data);

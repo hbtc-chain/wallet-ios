@@ -53,12 +53,14 @@
 - (XXButton *)importWalletBtn {
     if (!_importWalletBtn) {
         MJWeakSelf
-        _importWalletBtn = [XXButton buttonWithFrame:CGRectMake(K375(15), kScreen_Height - 84, kScreen_Width - K375(30), kBtnHeight) title:LocalizedString(@"ImportWallet") font:kFontBold18 titleColor:kWhiteColor block:^(UIButton *button) {
+        _importWalletBtn = [XXButton buttonWithFrame:CGRectMake(K375(15), kScreen_Height - 84, kScreen_Width - K375(30), kBtnHeight) title:LocalizedString(@"ImportWallet") font:kFontBold18 titleColor:kPrimaryMain block:^(UIButton *button) {
             XXImportWalletVC *importVC = [[XXImportWalletVC alloc] init];
             [weakSelf.navigationController pushViewController:importVC animated:YES];
         }];
         _importWalletBtn.backgroundColor = kWhiteColor;
         _importWalletBtn.layer.cornerRadius = kBtnBorderRadius;
+        _importWalletBtn.layer.borderColor = [kPrimaryMain CGColor];
+        _importWalletBtn.layer.borderWidth = 2;
         _importWalletBtn.layer.masksToBounds = YES;
     }
     return _importWalletBtn;

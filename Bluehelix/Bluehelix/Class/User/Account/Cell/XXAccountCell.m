@@ -43,7 +43,7 @@
 
 - (void)configData:(XXAccountModel *)model {
     self.nameLabel.text = model.userName;
-    self.addressLabel.text = model.address;
+    self.addressLabel.text = kAddressReplace(model.address);
     if ([model.address isEqualToString:KUser.address]) {
         self.checkView.image = [UIImage imageNamed:@"checked"];
     } else {
