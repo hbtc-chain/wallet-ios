@@ -7,8 +7,10 @@
 //
 
 #import "XXVotingView.h"
+#import "XXTokenModel.h"
 
 @interface XXVotingView ()
+@property (nonatomic, strong) XXTokenModel *tokenModel;
 @end
 
 @implementation XXVotingView
@@ -55,8 +57,8 @@
 
 }
 - (void)refreshAssets:(XXTokenModel*)tokenModel{
-//    self.tokenModel = tokenModel;
-//    self.amountView.subLabel.text = [NSString stringWithFormat:@"%@ %@ %@",LocalizedString(@"ValidatorAvilable"),self.tokenModel.amount,[kMainToken uppercaseString]];
+    self.tokenModel = tokenModel;
+    self.feeView.subLabel.text = [NSString stringWithFormat:@"%@ %@ %@",LocalizedString(@"ValidatorAvilable"),self.tokenModel.amount,[kMainToken uppercaseString]];
     self.feeView.textField.text = kMinFee;
 }
 

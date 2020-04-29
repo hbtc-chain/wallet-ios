@@ -18,7 +18,9 @@
         self.backgroundColor = kWhiteColor;
         
         [self addSubview:self.nameLabel];
-    
+        
+        [self addSubview:self.subLabel];
+        
         [self addSubview:self.banView];
         
         [self.banView addSubview:self.unitLabel];
@@ -42,6 +44,14 @@
         _nameLabel.text = LocalizedString(@"Fee");
     }
     return _nameLabel;
+}
+/** 字标签 */
+- (XXLabel *)subLabel {
+    if (_subLabel == nil) {
+        _subLabel = [XXLabel labelWithFrame:self.nameLabel.frame font:kFont14 textColor:kGray500];
+        _subLabel.textAlignment = NSTextAlignmentRight;
+    }
+    return _subLabel;
 }
 
 /** 背景图 */

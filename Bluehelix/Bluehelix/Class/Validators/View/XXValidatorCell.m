@@ -124,7 +124,7 @@
         _shadowView.layer.shadowRadius = 12.0;
         _shadowView.layer.shadowOffset = CGSizeMake(0.0, 3.0);
         _shadowView.layer.shadowOpacity = 1;
-        _shadowView.layer.shadowColor = KRGBA(51, 117, 224, 12).CGColor;
+        _shadowView.layer.shadowColor = [kShadowColor CGColor];
     }
     return _shadowView;;
 }

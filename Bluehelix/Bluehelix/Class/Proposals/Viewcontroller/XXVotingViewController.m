@@ -59,7 +59,7 @@
     self.assetModel = [self.assetManager assetModel];
     for (XXTokenModel *tokenModel in self.assetModel.assets) {
         if ([[tokenModel.symbol uppercaseString] isEqualToString:[kMainToken uppercaseString]]) {
-            //[self.votingView refreshAssets:tokenModel];
+            [self.votingView refreshAssets:tokenModel];
             break;
         }
     }

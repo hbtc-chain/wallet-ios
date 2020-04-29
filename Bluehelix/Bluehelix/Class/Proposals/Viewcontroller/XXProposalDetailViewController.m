@@ -354,8 +354,8 @@ static NSString *kProposalDetailInfoCell = @"ProposalDetailInfomationCell";
         _transferButton.layer.cornerRadius = 3;
         _transferButton.layer.masksToBounds = YES;
         [_transferButton setBackgroundImage:[UIImage createImageWithColor:kPrimaryMain] forState:UIControlStateNormal ];
-        [_transferButton setBackgroundImage:[UIImage createImageWithColor:kGray100] forState:UIControlStateSelected];
-        [_transferButton setTitleColor:kMainTextColor forState:UIControlStateNormal];
+        [_transferButton setBackgroundImage:[UIImage createImageWithColor:kButtonDisableColor] forState:UIControlStateSelected];
+        [_transferButton setTitleColor:kWhiteNoChange forState:UIControlStateNormal];
         [_transferButton setTitleColor:kMainTextColor forState: UIControlStateSelected];
     }
     return _transferButton;
