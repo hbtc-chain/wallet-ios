@@ -488,4 +488,15 @@
         return [amountDecimal stringValue];
     }
 }
+
++ (NSString *)addressReplace:(NSString *)address {
+    if (IsEmpty(address)) {
+        return @"";
+    }
+    if (address.length > 20) {
+       return [address stringByReplacingCharactersInRange:NSMakeRange(10, address.length - 20) withString:@"***"];
+    } else {
+        return address;
+    }
+}
 @end
