@@ -33,7 +33,7 @@
 #pragma mark lazy load
 - (XXLabel*)detailLabelInfo{
     if (!_detailLabelInfo) {
-        _detailLabelInfo = [XXLabel labelWithFrame:CGRectZero text:LocalizedString(@"ProposalDescripition") font:kFont13 textColor:kSubLabelColor alignment:NSTextAlignmentLeft];
+        _detailLabelInfo = [XXLabel labelWithFrame:CGRectZero text:LocalizedString(@"ProposalDescripition") font:kFont13 textColor:kGray500 alignment:NSTextAlignmentLeft];
     }
     return _detailLabelInfo;
 }
@@ -44,6 +44,7 @@
         _detailLabelValue.textAlignment = NSTextAlignmentLeft;
         _detailLabelValue.font = kFont15;
         _detailLabelValue.editable = NO;
+        _detailLabelValue.textColor = kGray900;
         _detailLabelValue.scrollEnabled = NO;
     }
     return _detailLabelValue;;

@@ -134,7 +134,7 @@
         _backShadowView.clipsToBounds = NO;
         _backShadowView.backgroundColor = kViewBackgroundColor;
         _backShadowView.layer.cornerRadius = 10.0;
-        _backShadowView.layer.shadowColor = kShadowColor.CGColor;
+        _backShadowView.layer.shadowColor = [kShadowColor CGColor];
         _backShadowView.layer.shadowRadius = 6.0;
         _backShadowView.layer.shadowOpacity = 1;
         _backShadowView.layer.shadowOffset = CGSizeMake(0, 3);

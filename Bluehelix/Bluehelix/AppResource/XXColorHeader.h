@@ -33,7 +33,7 @@
 #define KBigLine_Color (kIsNight ? KRGBA(8,23,36,100) : KRGBA(36,43,50,5))
 
 // 主色调【蓝色】背景下的字体颜色
-#define kMainTextColor [UIColor whiteColor]
+#define kMainTextColor kIsNight ? [UIColor colorWithHexString:@"#141A27"] : [UIColor colorWithHexString:@"#FFFFFF"]
 
 // 字体颜色
 

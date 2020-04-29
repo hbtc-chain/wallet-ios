@@ -47,6 +47,7 @@
 }
 #pragma mark load data
 - (void)configAsset {
+    [self.assetManager requestAsset];
     @weakify(self)
     self.assetManager.assetChangeBlock = ^{
         @strongify(self)
@@ -58,7 +59,7 @@
     self.assetModel = [self.assetManager assetModel];
     for (XXTokenModel *tokenModel in self.assetModel.assets) {
         if ([[tokenModel.symbol uppercaseString] isEqualToString:[kMainToken uppercaseString]]) {
-            //[self.votingView refreshAssets:tokenModel];
+            [self.votingView refreshAssets:tokenModel];
             break;
         }
     }

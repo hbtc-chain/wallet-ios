@@ -16,6 +16,9 @@ NS_ASSUME_NONNULL_BEGIN
 /** 名称标签 */
 @property (strong, nonatomic) XXLabel *nameLabel;
 
+/** 字标签 */
+@property (strong, nonatomic) XXLabel *subLabel;
+
 /** 背景图 */
 @property (strong, nonatomic) UIView *banView;
 

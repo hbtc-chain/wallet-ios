@@ -124,13 +124,13 @@
         _shadowView.layer.shadowRadius = 12.0;
         _shadowView.layer.shadowOffset = CGSizeMake(0.0, 3.0);
         _shadowView.layer.shadowOpacity = 1;
-        _shadowView.layer.shadowColor = KRGBA(51, 117, 224, 12).CGColor;
+        _shadowView.layer.shadowColor = [kShadowColor CGColor];
     }
     return _shadowView;;
 }
 - (XXLabel*)validatorName{
     if (!_validatorName) {
-        _validatorName = [XXLabel labelWithFrame:CGRectZero text:@"" font:kFontBold17 textColor:kMainLabelColor alignment:NSTextAlignmentLeft];
+        _validatorName = [XXLabel labelWithFrame:CGRectZero text:@"" font:kFontBold17 textColor:kGray900 alignment:NSTextAlignmentLeft];
     }
     return _validatorName;;
 }
@@ -144,39 +144,39 @@
 //
 - (XXLabel *)validatorVoteInfo{
     if (!_validatorVoteInfo) {
-        _validatorVoteInfo = [XXLabel labelWithFrame:CGRectZero text:LocalizedString(@"ValidatorVote") font:kFont13 textColor:kSubLabelColor alignment:NSTextAlignmentLeft];
+        _validatorVoteInfo = [XXLabel labelWithFrame:CGRectZero text:LocalizedString(@"ValidatorVote") font:kFont13 textColor:kGray500 alignment:NSTextAlignmentLeft];
     }
     return _validatorVoteInfo;
 }
 - (XXLabel *)validatorVoteValue{
     if (!_validatorVoteValue) {
-        _validatorVoteValue = [XXLabel labelWithFrame:CGRectZero text:@"" font:kNumberFont(15) textColor:kMainLabelColor alignment:NSTextAlignmentLeft];
+        _validatorVoteValue = [XXLabel labelWithFrame:CGRectZero text:@"" font:kNumberFont(15) textColor:kGray900 alignment:NSTextAlignmentLeft];
     }
     return _validatorVoteValue;
 }
 //
 - (XXLabel *)validatorDelegateNumberInfo{
     if (!_validatorDelegateNumberInfo) {
-        _validatorDelegateNumberInfo = [XXLabel labelWithFrame:CGRectZero text:LocalizedString(@"ValidatorDelegateNumber") font:kFont13 textColor:kSubLabelColor alignment:NSTextAlignmentLeft];
+        _validatorDelegateNumberInfo = [XXLabel labelWithFrame:CGRectZero text:LocalizedString(@"ValidatorDelegateNumber") font:kFont13 textColor:kGray500 alignment:NSTextAlignmentLeft];
     }
     return _validatorDelegateNumberInfo;
 }
 - (XXLabel *)validatorDelegateNumberValue{
     if (!_validatorDelegateNumberValue) {
-        _validatorDelegateNumberValue = [XXLabel labelWithFrame:CGRectZero text:@"" font:kNumberFont(15) textColor:kMainLabelColor alignment:NSTextAlignmentLeft];
+        _validatorDelegateNumberValue = [XXLabel labelWithFrame:CGRectZero text:@"" font:kNumberFont(15) textColor:kGray900 alignment:NSTextAlignmentLeft];
     }
     return _validatorDelegateNumberValue;
 }
 //
 - (XXLabel *)validatorCommissionRateInfo{
     if (!_validatorCommissionRateInfo) {
-        _validatorCommissionRateInfo = [XXLabel labelWithFrame:CGRectZero text:LocalizedString(@"ValidatorCommissionRate") font:kFont13 textColor:kSubLabelColor alignment:NSTextAlignmentRight];
+        _validatorCommissionRateInfo = [XXLabel labelWithFrame:CGRectZero text:LocalizedString(@"ValidatorCommissionRate") font:kFont13 textColor:kGray500 alignment:NSTextAlignmentRight];
     }
     return _validatorCommissionRateInfo;
 }
 - (XXLabel *)validatorCommissionRateValue{
     if (!_validatorCommissionRateValue) {
-        _validatorCommissionRateValue = [XXLabel labelWithFrame:CGRectZero text:@"" font:kNumberFont(15) textColor:kMainLabelColor alignment:NSTextAlignmentRight];
+        _validatorCommissionRateValue = [XXLabel labelWithFrame:CGRectZero text:@"" font:kNumberFont(15) textColor:kGray900 alignment:NSTextAlignmentRight];
     }
     return _validatorCommissionRateValue;
 }
