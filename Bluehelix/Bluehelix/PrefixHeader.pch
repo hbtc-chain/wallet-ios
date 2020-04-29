@@ -83,7 +83,7 @@ typedef NS_ENUM(NSUInteger, NetworkMethod) {
 
 #define kMainLabelColor kIsNight ? [UIColor colorWithHexString:@"#B0BFDB"] : [UIColor colorWithHexString:@"#0A1825"]
 #define kSubLabelColor kIsNight ? [UIColor colorWithHexString:@"#6E8196"] : [UIColor colorWithHexString:@"#6E8196"]
-#define kSeparateLineColor kIsNight ? [UIColor whiteColor] : [UIColor colorWithHexString:@"#F9F9FB"]
+#define kSeparateLineColor kIsNight ? [[UIColor colorWithHexString:@"#222D42"] colorWithAlphaComponent:0.5] : [UIColor colorWithHexString:@"#F9F9FB"]
 #define kShadowColor [UIColor colorWithHexString:@"#1F3375" withAlpha:0.12]
 
 #define kDomain @""

@@ -47,6 +47,7 @@
 }
 #pragma mark load data
 - (void)configAsset {
+    [self.assetManager requestAsset];
     @weakify(self)
     self.assetManager.assetChangeBlock = ^{
         @strongify(self)
