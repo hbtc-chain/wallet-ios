@@ -70,7 +70,7 @@
 - (XXLabel *)contentLabel {
     if (!_contentLabel) {
         CGFloat height = [NSString heightWithText:LocalizedString(@"BackupTipContent") font:kFont(15) width:kScreen_Width - K375(32)];
-        _contentLabel = [XXLabel labelWithFrame:CGRectMake(K375(16), CGRectGetMaxY(self.tipLabel.frame), kScreen_Width - K375(32), height) text:LocalizedString(@"BackupTipContent") font:kFont(15) textColor:kGray500 alignment:NSTextAlignmentLeft];
+        _contentLabel = [XXLabel labelWithFrame:CGRectMake(K375(16), CGRectGetMaxY(self.tipLabel.frame) + 8, kScreen_Width - K375(32), height) text:LocalizedString(@"BackupTipContent") font:kFont(15) textColor:kGray500 alignment:NSTextAlignmentLeft];
         _contentLabel.numberOfLines = 0;
     }
     return _contentLabel;

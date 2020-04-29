@@ -154,7 +154,7 @@
 
 - (XXLabel *)nameLabel {
     if (!_nameLabel) {
-        _nameLabel = [XXLabel labelWithFrame:CGRectMake(K375(16), CGRectGetMaxY(self.contentLabel.frame) + 6, kScreen_Width - K375(32), 40) text:LocalizedString(@"WalletPassword") font:kFont15 textColor:kGray500 alignment:NSTextAlignmentLeft];
+        _nameLabel = [XXLabel labelWithFrame:CGRectMake(K375(16), CGRectGetMaxY(self.contentLabel.frame) + 24, kScreen_Width - K375(32), 40) text:LocalizedString(@"WalletPassword") font:kFont15 textColor:kGray700 alignment:NSTextAlignmentLeft];
     }
     return _nameLabel;
 }

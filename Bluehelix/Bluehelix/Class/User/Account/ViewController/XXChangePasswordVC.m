@@ -34,7 +34,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.titleLabel.text = LocalizedString(@"ChangePassword");
+    self.titleLabel.text = LocalizedString(@"ModifyPassword");
     [self.view addSubview:self.oldPasswordView];
     [self.view addSubview:self.passwordView];
     [self.view addSubview:self.okPasswordView];

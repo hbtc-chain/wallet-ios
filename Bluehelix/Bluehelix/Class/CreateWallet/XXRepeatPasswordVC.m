@@ -82,6 +82,8 @@
     if (account.mnemonicPhrase && IsEmpty(KUser.localPhraseString)) { //如果是通过助记词导入的 不需要备份和保留助记词
         NSString *mnemonicPhrase = [AESCrypt encrypt:account.mnemonicPhrase password:KUser.localPassword];
         model.mnemonicPhrase = mnemonicPhrase;
+    } else {
+        model.mnemonicPhrase = @"";
     }
     model.backupFlag = IsEmpty(KUser.localPhraseString) ? NO : YES; //如果是通过助记词导入的 不需要备份和保留助记词
     model.symbols = [NSString stringWithFormat:@"btc,eth,usdt,%@",kMainToken];
@@ -142,7 +144,7 @@
 
 - (XXLabel *)nameLabel {
     if (!_nameLabel) {
-        _nameLabel = [XXLabel labelWithFrame:CGRectMake(K375(16), CGRectGetMaxY(self.contentLabel.frame) + 6, kScreen_Width - K375(32), 40) text:LocalizedString(@"RepeatPassword") font:kFont15 textColor:kGray500 alignment:NSTextAlignmentLeft];
+        _nameLabel = [XXLabel labelWithFrame:CGRectMake(K375(16), CGRectGetMaxY(self.contentLabel.frame) + 24, kScreen_Width - K375(32), 40) text:LocalizedString(@"RepeatPassword") font:kFont15 textColor:kGray700 alignment:NSTextAlignmentLeft];
     }
     return _nameLabel;
 }
@@ -199,7 +201,7 @@
 
 - (UITextView *)textView {
     if (_textView == nil) {
-        _textView = [[UITextView alloc] initWithFrame:CGRectMake(CGRectGetMaxX(self.isAgreeButton.frame) - 5, self.isAgreeButton.top, K375(280), self.isAgreeButton.height)];
+        _textView = [[UITextView alloc] initWithFrame:CGRectMake(CGRectGetMaxX(self.isAgreeButton.frame) - 5, self.isAgreeButton.top - 4, K375(280), self.isAgreeButton.height)];
         _textView.backgroundColor = kWhiteColor;
         _textView.font = kFont12;
         _textView.textColor = kGray700;

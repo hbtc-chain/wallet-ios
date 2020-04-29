@@ -64,7 +64,7 @@
 
 - (UIView *)tipView {
     if (!_tipView) {
-        _tipView = [[UIView alloc] initWithFrame:CGRectMake(K375(16), CGRectGetMaxY(self.successLabel.frame) + 32, kScreen_Width - K375(32), 280)];
+        _tipView = [[UIView alloc] initWithFrame:CGRectMake(K375(16), CGRectGetMaxY(self.successLabel.frame) + 32, kScreen_Width - K375(32), 315)];
         _tipView.layer.borderColor = [KLine_Color CGColor];
         _tipView.layer.borderWidth = 1;
         _tipView.layer.cornerRadius = kBtnBorderRadius;
@@ -107,7 +107,7 @@
 
 - (XXButton *)laterBtn {
     if (!_laterBtn) {
-        _laterBtn = [XXButton buttonWithFrame:CGRectMake(K375(16), kScreen_Height - kBtnHeight - 24, kScreen_Width/2 - K375(40)/2, kBtnHeight) title:LocalizedString(@"BackupLater") font:kFont(17) titleColor:kPrimaryMain block:^(UIButton *button) {
+        _laterBtn = [XXButton buttonWithFrame:CGRectMake(K375(16), kScreen_Height - kBtnHeight - 24, kScreen_Width/2 - K375(40)/2, kBtnHeight) title:LocalizedString(@"BackupLater") font:kFont(17) titleColor:[UIColor whiteColor] block:^(UIButton *button) {
             KWindow.rootViewController = [[XXTabBarController alloc] init];
         }];
         _laterBtn.backgroundColor = kGray200;

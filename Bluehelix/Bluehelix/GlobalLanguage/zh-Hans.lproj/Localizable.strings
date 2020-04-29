@@ -73,7 +73,7 @@
 "BackupSecurityTip" = "安全提醒";
 "BackupSecurityTip1" = "您的钱包助记词未备份，请务必备份助记词";
 "BackupSecurityTip2" = "助记词可用于:";
-"BackupSecurityContent" = "·恢复钱包下的钱包资产\n·防止忘记密码\n·应用删除、手机丢失等情况导致的资产损失";
+"BackupSecurityContent" = "·恢复钱包下的钱包资产\n·防止忘记密码\n·应用删除、手机丢失\n等情况导致的资产损失";
 "BackupLaterRemind" = "稍后提醒";
 "CharCount" = "%@位字符";
 "ChooseImportWay" = "请选择导入方式";
@@ -191,6 +191,7 @@
 "TransactionDetail" = "交易详情";
 "Depositor" = "质押人";
 "ProposalID" = "提案编号";
+"Voter" = "投票人";
 
 //验证人
 "ValidatorVote" = "投票权";

@@ -63,9 +63,9 @@
 - (void)drawFormView {
     self.formView = [[UIView alloc] initWithFrame:CGRectMake(K375(16), self.tipLabel.bottom + K375(24), kScreen_Width - K375(32), K375(192))];
     self.formView.backgroundColor = kWhiteColor;
-    self.formView.layer.borderColor = [KLine_Color CGColor];
+    self.formView.layer.borderColor = [kE5EDFE CGColor];
     self.formView.layer.borderWidth = KLine_Height;
-    self.formView.layer.cornerRadius = 2;
+    self.formView.layer.cornerRadius = kBtnBorderRadius;
     self.formView.layer.masksToBounds = YES;
     [self.scrollView addSubview:self.formView];
     
@@ -100,13 +100,13 @@
     
     for (int i = 0; i < 3; i++) {
         UIView *lineView = [[UIView alloc] initWithFrame:CGRectMake(0, K375(48) + i*K375(48) - 1, self.formView.width, KLine_Height)];
-        lineView.backgroundColor = KLine_Color;
+        lineView.backgroundColor = kE5EDFE;
         [self.formView addSubview:lineView];
     }
     
     for (int i = 1; i < 3; i++) {
         UIView *lineView = [[UIView alloc] initWithFrame:CGRectMake(i*K375(115), 0, KLine_Height, self.formView.height)];
-        lineView.backgroundColor = KLine_Color;
+        lineView.backgroundColor = kE5EDFE;
         [self.formView addSubview:lineView];
     }
     if (rightCount == self.phraseArray.count) {

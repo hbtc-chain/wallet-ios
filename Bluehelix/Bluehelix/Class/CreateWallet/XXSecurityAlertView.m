@@ -60,7 +60,7 @@
     alert.contentView.top = kScreen_Height;
     [UIView animateWithDuration:0.3 animations:^{
         alert.backView.alpha = 0.3;
-        alert.contentView.top = kScreen_Height - 330;
+        alert.contentView.top = kScreen_Height - 350;
     } completion:^(BOOL finished) {
        
     }];
@@ -115,8 +115,10 @@
 
 - (UIView *)contentView {
     if (_contentView == nil) {
-        _contentView = [[UIView alloc] initWithFrame:CGRectMake(0, kScreen_Height - 330, kScreen_Width, 330)];
+        _contentView = [[UIView alloc] initWithFrame:CGRectMake(0, kScreen_Height - 350, kScreen_Width, 350)];
         _contentView.backgroundColor = kWhiteColor;
+        _contentView.layer.cornerRadius = 10;
+        _contentView.layer.masksToBounds = YES;
     }
     return _contentView;
 }
@@ -155,9 +157,10 @@
 
 - (UIView *)tipView {
     if (!_tipView) {
-        _tipView = [[UIView alloc] initWithFrame:CGRectMake(K375(16), CGRectGetMaxY(self.contentLabel.frame) + 8, kScreen_Width - K375(32), 150)];
-        _tipView.layer.borderColor = [KLine_Color CGColor];
-        _tipView.layer.borderWidth = 1;
+        _tipView = [[UIView alloc] initWithFrame:CGRectMake(K375(16), CGRectGetMaxY(self.contentLabel.frame) + 8, kScreen_Width - K375(32), 170)];
+        _tipView.backgroundColor = kGray50;
+//        _tipView.layer.borderColor = [KLine_Color CGColor];
+//        _tipView.layer.borderWidth = 1;
         _tipView.layer.cornerRadius = kBtnBorderRadius;
         _tipView.layer.masksToBounds = YES;
     }

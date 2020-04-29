@@ -163,6 +163,8 @@
     if (_typeLabel == nil) {
         _typeLabel = [XXLabel labelWithFrame:CGRectMake(CGRectGetMaxX(self.coinNameLabel.frame) +2, 20, 60, 16) text:@"" font:kFont10 textColor:kGray900];
         _typeLabel.textAlignment = NSTextAlignmentCenter;
+        _typeLabel.layer.cornerRadius = 2;
+        _typeLabel.layer.masksToBounds = YES;
     }
     return _typeLabel;
 }

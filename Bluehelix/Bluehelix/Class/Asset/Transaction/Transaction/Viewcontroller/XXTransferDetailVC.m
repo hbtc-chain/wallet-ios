@@ -84,7 +84,7 @@
     cellModel1.value = model.to_address;
     [cellData addObject:cellModel1];
     [self.cellArray addObject:cellData];
-//    self.titleLabel.text = LocalizedString(@"Transfer");
+    //    self.titleLabel.text = LocalizedString(@"Transfer");
 }
 
 #pragma mark 提币
@@ -107,7 +107,7 @@
     cellModel1.value = model.to_multi_sign_address;
     [cellData addObject:cellModel1];
     [self.cellArray addObject:cellData];
-//    self.titleLabel.text = LocalizedString(@"ChainWithdrawal");
+    //    self.titleLabel.text = LocalizedString(@"ChainWithdrawal");
 }
 
 #pragma mark 跨链充值
@@ -130,7 +130,7 @@
     cellModel1.value = model.to_cu;
     [cellData addObject:cellModel1];
     [self.cellArray addObject:cellData];
-//    self.titleLabel.text = LocalizedString(@"ChainDeposit");
+    //    self.titleLabel.text = LocalizedString(@"ChainDeposit");
 }
 
 #pragma mark 委托
@@ -154,7 +154,7 @@
     cellModel1.value = model.validator_address;
     [cellData addObject:cellModel1];
     [self.cellArray addObject:cellData];
-//    self.titleLabel.text = LocalizedString(@"Delegate");
+    //    self.titleLabel.text = LocalizedString(@"Delegate");
 }
 
 #pragma mark 取消委托
@@ -178,7 +178,7 @@
     cellModel1.value = model.validator_address;
     [cellData addObject:cellModel1];
     [self.cellArray addObject:cellData];
-//    self.titleLabel.text = LocalizedString(@"Delegate");
+    //    self.titleLabel.text = LocalizedString(@"Delegate");
 }
 
 #pragma mark 提取收益
@@ -202,12 +202,11 @@
     cellModel1.value = model.validator_address;
     [cellData addObject:cellModel1];
     [self.cellArray addObject:cellData];
-//    self.titleLabel.text = LocalizedString(@"WithdrawMoney");
+    //    self.titleLabel.text = LocalizedString(@"WithdrawMoney");
 }
 
 #pragma mark 质押
 - (void)msgGovDeposit:(NSDictionary *)value {
-    
     NSArray *amounts = value[@"amount"];
     XXCoinModel *coin = [XXCoinModel mj_objectWithKeyValues:[amounts firstObject]];
     XXTokenModel *token = [[XXSqliteManager sharedSqlite] tokenBySymbol:kMainToken];
@@ -231,7 +230,6 @@
 
 #pragma mark 发起提案
 - (void)msgCreateProposal:(NSDictionary *)value {
-    
     NSArray *amounts = value[@"initial_deposit"];
     XXCoinModel *coin = [XXCoinModel mj_objectWithKeyValues:[amounts firstObject]];
     XXTokenModel *token = [[XXSqliteManager sharedSqlite] tokenBySymbol:kMainToken];
@@ -246,10 +244,28 @@
     cellModel.name = LocalizedString(@"PayMoney");
     cellModel.value = value[@"proposer"];
     [cellData addObject:cellModel];
-//    XXTransactionCellModel *cellModel1 = [[XXTransactionCellModel alloc] init];
-//    cellModel1.name = LocalizedString(@"Depositor");
-//    cellModel1.value = value[@"proposer"];
-//    [cellData addObject:cellModel1];
+    [self.cellArray addObject:cellData];
+}
+
+#pragma mark 投票
+- (void)msgGovVote:(NSDictionary *)value {
+    XXTransactionSectionModel *sectionModel = [[XXTransactionSectionModel alloc] init];
+    sectionModel.name = LocalizedString(@"ProposalNavgationTitleVote");
+    sectionModel.value = @"";
+    [self.sectionArray addObject:sectionModel];
+    NSMutableArray *cellData = [NSMutableArray array];
+    XXTransactionCellModel *cellModel = [[XXTransactionCellModel alloc] init];
+    cellModel.name = LocalizedString(@"Voter");
+    cellModel.value = value[@"voter"];
+    [cellData addObject:cellModel];
+    XXTransactionCellModel *cellModel1 = [[XXTransactionCellModel alloc] init];
+    cellModel1.name = LocalizedString(@"ProposalID");
+    cellModel1.value = value[@"proposal_id"];
+    [cellData addObject:cellModel1];
+    XXTransactionCellModel *cellModel2 = [[XXTransactionCellModel alloc] init];
+    cellModel2.name = LocalizedString(@"ProposalNavgationTitleVote");
+    cellModel2.value = value[@"option"];
+    [cellData addObject:cellModel2];
     [self.cellArray addObject:cellData];
 }
 
@@ -263,10 +279,10 @@
         } else if ([type isEqualToString:kMsgDelegate]) {
             [self msgDelegate:value];
         } else if ([type isEqualToString:kMsgUndelegate]) {
-//            self.titleLabel.text = LocalizedString(@"CancelDelegate");
+            //            self.titleLabel.text = LocalizedString(@"CancelDelegate");
             [self msgCancelDelegate:value];
         } else if ([type isEqualToString:kMsgKeyGen]) {
-//            self.titleLabel.text = LocalizedString(@"ChainAddress");
+            //            self.titleLabel.text = LocalizedString(@"ChainAddress");
         } else if ([type isEqualToString:kMsgDeposit]) {
             [self msgDeposit:value];
         } else if ([type isEqualToString:kMsgWithdrawal]) {
@@ -278,16 +294,12 @@
         } else if([type isEqualToString:kMsgPledge]) {
             [self msgGovDeposit:value];
         } else if([type isEqualToString:kMsgVote]) {
-            
+            [self msgGovVote:value];
         } else {}
     }
     self.titleLabel.text = LocalizedString(@"TransactionDetail");
     [self.tableView reloadData];
 }
-
-//#define kMsgCreateProposal @"hbtcchain/gov/MsgSubmitProposal" //发起提案
-//#define kMsgPledge @"hbtcchain/gov/MsgDeposit" //质押
-//#define kMsgVote @"hbtcchain/gov/MsgVote" //投票
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
     return self.sectionArray.count;
