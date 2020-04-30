@@ -119,7 +119,7 @@
 #pragma mark lazy load
 - (XXAddProposalView *)addProposalView {
     if (!_addProposalView ) {
-        _addProposalView = [[XXAddProposalView alloc] initWithFrame:CGRectMake(0, kNavHeight, kScreen_Width, kScreen_Height - kNavHeight - 64)];
+        _addProposalView = [[XXAddProposalView alloc] initWithFrame:CGRectMake(0, kNavHeight, kScreen_Width, kScreen_Height - kNavHeight - 64 - 8)];
         _addProposalView.scrollEnabled = YES;
         _addProposalView.showsVerticalScrollIndicator = YES;
     }
@@ -129,7 +129,7 @@
 - (XXButton *)transferButton {
     if (!_transferButton) {
         @weakify(self)
-        _transferButton = [XXButton buttonWithFrame:CGRectMake(KSpacing, kScreen_Height - 64, kScreen_Width - KSpacing*2, 48) title:@"" font:kFontBold14 titleColor:kMainTextColor block:^(UIButton *button) {
+        _transferButton = [XXButton buttonWithFrame:CGRectMake(KSpacing, kScreen_Height - 64- 8, kScreen_Width - KSpacing*2, 48) title:@"" font:kFontBold14 titleColor:kWhiteNoChange block:^(UIButton *button) {
             @strongify(self)
             [self transferVerify];
         }];

@@ -149,7 +149,7 @@
 - (UIView *)contentView {
     if (_contentView == nil) {
         _contentView = [[UIView alloc] initWithFrame:CGRectMake((kScreen_Width - K375(280))/2, (self.height - K375(184))/2, K375(280), K375(184))];
-        _contentView.backgroundColor = kWhiteColor;
+        _contentView.backgroundColor = kBackgroundLeverThird;
         _contentView.layer.cornerRadius = 6;
         _contentView.layer.masksToBounds = YES;
     }

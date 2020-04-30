@@ -37,7 +37,7 @@
 }
 - (UITextView *)tipTextView{
     if (!_tipTextView) {
-        _tipTextView = [[UITextView alloc]initWithFrame:CGRectMake(10, 16, CGRectGetWidth(self.tipBackgroundView.frame) -20, CGRectGetHeight(self.tipBackgroundView.frame)- 32)];
+        _tipTextView = [[UITextView alloc]initWithFrame:CGRectMake(10, 8, CGRectGetWidth(self.tipBackgroundView.frame) -20, CGRectGetHeight(self.tipBackgroundView.frame)- 16)];
         _tipTextView.backgroundColor = kWhiteColor;
         _tipTextView.font = kFont15;
         _tipTextView.textColor = kGray700;

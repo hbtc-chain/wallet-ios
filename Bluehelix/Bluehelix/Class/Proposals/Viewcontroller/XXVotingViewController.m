@@ -123,7 +123,7 @@
 #pragma mark lazy load
 - (XXVotingView *)votingView {
     if (!_votingView ) {
-        _votingView = [[XXVotingView alloc] initWithFrame:CGRectMake(0, kNavHeight, kScreen_Width, kScreen_Height - kNavHeight - 64)];
+        _votingView = [[XXVotingView alloc] initWithFrame:CGRectMake(0, kNavHeight, kScreen_Width, kScreen_Height - kNavHeight - 64 - 8)];
         @weakify(self)
         _votingView.voteStringBlock = ^(NSString * _Nonnull voteString) {
             @strongify(self)
@@ -136,7 +136,7 @@
 - (XXButton *)transferButton {
     if (!_transferButton) {
         MJWeakSelf
-        _transferButton = [XXButton buttonWithFrame:CGRectMake(KSpacing, kScreen_Height - 80, kScreen_Width - KSpacing*2, 42) title:@"" font:kFontBold14 titleColor:kMainTextColor block:^(UIButton *button) {
+        _transferButton = [XXButton buttonWithFrame:CGRectMake(KSpacing, kScreen_Height - 64 -8, kScreen_Width - KSpacing*2, 48) title:@"" font:kFontBold14 titleColor:kWhiteNoChange block:^(UIButton *button) {
             [weakSelf transferVerify];
         }];
         _transferButton.backgroundColor = kPrimaryMain;
