@@ -147,7 +147,7 @@ static NSString *KValidatorGripSectionHeader = @"XXValidatorGripSectionHeader";
         cell = [[XXValidatorCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:KValidatorsListReuseCell];
     }
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
-    cell.backgroundColor = kWhiteColor;
+    cell.backgroundColor = kBackgroundLeverFirst;
     XXValidatorListModel *model = self.isFilting ? self.filtValidatorsDataArray[indexPath.row] : self.validatorsDataArray[indexPath.row];
     cell.validOrInvalid = [self.validOrInvalid isEqualToString:@"1"] ? YES :NO;
     [cell loadData:model];

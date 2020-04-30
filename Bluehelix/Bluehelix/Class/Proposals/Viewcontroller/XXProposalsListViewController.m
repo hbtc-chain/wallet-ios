@@ -155,7 +155,7 @@ static NSInteger pageCount = 20;
         cell = [[XXProposalTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:KProposalTableViewCell];
     }
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
-    cell.backgroundColor = kWhiteColor;
+    cell.backgroundColor = kBackgroundLeverFirst;
     XXProposalModel *model = self.isFilting ? self.filtProposalsArray[indexPath.row] : self.proposalListArray[indexPath.row];
     [cell loadDataWithModel:model];
     return cell;

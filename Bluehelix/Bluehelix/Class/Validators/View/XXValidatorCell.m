@@ -119,7 +119,7 @@
         _shadowView = [[UIView alloc] initWithFrame:CGRectMake(16, 6, kScreen_Width -32, 108)];
         //_shadowView.layer.shadowPath = [UIBezierPath bezierPathWithRect:self.bounds].CGPath;
         _shadowView.clipsToBounds = NO;
-        _shadowView.backgroundColor = kViewBackgroundColor;
+        _shadowView.backgroundColor = kBackgroundLeverSecond;
         _shadowView.layer.cornerRadius = 10.0;
         _shadowView.layer.shadowRadius = 12.0;
         _shadowView.layer.shadowOffset = CGSizeMake(0.0, 3.0);

@@ -132,7 +132,7 @@
     if (!_backShadowView) {
         _backShadowView = [[UIView alloc]initWithFrame:CGRectZero];
         _backShadowView.clipsToBounds = NO;
-        _backShadowView.backgroundColor = kViewBackgroundColor;
+        _backShadowView.backgroundColor = kBackgroundLeverSecond;
         _backShadowView.layer.cornerRadius = 10.0;
         _backShadowView.layer.shadowColor = [kShadowColor CGColor];
         _backShadowView.layer.shadowRadius = 6.0;
