@@ -122,7 +122,7 @@ typedef NS_ENUM(NSUInteger, NetworkMethod) {
 #define kScreen_Width [UIScreen mainScreen].bounds.size.width
 #define kStatusBarHeight [UIApplication sharedApplication].statusBarFrame.size.height
 #define kNavNormalHeight (CGRectGetMaxY([UIApplication sharedApplication].statusBarFrame) + 44)
-#define kNavHeight (CGRectGetMaxY([UIApplication sharedApplication].statusBarFrame) + 68)
+#define kNavHeight (CGRectGetMaxY([UIApplication sharedApplication].statusBarFrame) + 52)
 #define kNavBigHeight (CGRectGetMaxY([UIApplication sharedApplication].statusBarFrame) + 132)
 #define kNavShadowHeight 12 // 导航栏阴影完全显示出来的滚动高度
 #define DepthMapLineWidth 1 // 深度图线条宽度

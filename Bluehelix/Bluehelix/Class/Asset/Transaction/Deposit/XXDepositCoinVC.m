@@ -58,7 +58,7 @@
         tip5 = LocalizedString(@"ChainDepositTip5");
     }
     NSMutableAttributedString *attributedString = [[NSMutableAttributedString alloc] initWithString:[NSString stringWithFormat:@"%@%@%@%@%@",tip1,tip2,tip3,tip4,tip5]];
-    [attributedString addAttribute:NSFontAttributeName value:kFont14 range:NSMakeRange(0, attributedString.length)];
+    [attributedString addAttribute:NSFontAttributeName value:kFont15 range:NSMakeRange(0, attributedString.length)];
     [attributedString addAttribute:NSParagraphStyleAttributeName value:paraStyle range:NSMakeRange(0, attributedString.length)];
     [attributedString addAttribute:NSForegroundColorAttributeName value:kGray700 range:NSMakeRange(0, attributedString.length)];
     [attributedString addAttribute:NSForegroundColorAttributeName value:kPriceFall range:NSMakeRange(tip1.length, tip2.length)];
@@ -111,7 +111,7 @@
 
 - (UIImageView *)topBackImageView {
     if (!_topBackImageView) {
-        _topBackImageView = [[UIImageView alloc] initWithFrame:CGRectMake(K375(24), K375(40), kScreen_Width-K375(48), kScreen_Width-K375(48))];
+        _topBackImageView = [[UIImageView alloc] initWithFrame:CGRectMake(K375(24), K375(32), kScreen_Width-K375(48), kScreen_Width-K375(48))];
         _topBackImageView.image = [UIImage imageNamed:@"depositTopBack"];
     }
     return _topBackImageView;
@@ -119,7 +119,7 @@
 
 - (UIView *)symbolBackView {
     if (!_symbolBackView) {
-        _symbolBackView = [[UIView alloc] initWithFrame:CGRectMake(self.topBackImageView.width/2 - K375(56)/2, -K375(28), K375(60), K375(60))];
+        _symbolBackView = [[UIView alloc] initWithFrame:CGRectMake(self.topBackImageView.width/2 - K375(56)/2, -K375(28), K375(56), K375(56))];
         _symbolBackView.backgroundColor = [UIColor whiteColor];
         _symbolBackView.layer.cornerRadius = _symbolBackView.width/2;
         _symbolBackView.layer.masksToBounds = YES;
@@ -129,7 +129,7 @@
 
 - (UIImageView *)symbolImageView {
     if (!_symbolImageView) {
-        _symbolImageView = [[UIImageView alloc] initWithFrame:CGRectMake(self.symbolBackView.width/2-K375(56)/2, self.symbolBackView.height/2-K375(56)/2, K375(56), K375(56))];
+        _symbolImageView = [[UIImageView alloc] initWithFrame:CGRectMake(self.symbolBackView.width/2-K375(52)/2, self.symbolBackView.height/2-K375(52)/2, K375(52), K375(52))];
         [_symbolImageView sd_setImageWithURL:[NSURL URLWithString:self.tokenModel.logo] placeholderImage:[UIImage imageNamed:@"placeholderToken"]];
     }
     return _symbolImageView;
@@ -154,7 +154,7 @@
 
 - (XXLabel *)symbolLabel {
     if (!_symbolLabel) {
-        _symbolLabel = [XXLabel labelWithFrame:CGRectMake(0, K375(32), self.topBackImageView.width, 24) text:[NSString stringWithFormat:@"%@%@",self.tokenModel.symbol,LocalizedString(@"WalletAddress")] font:kFontBold18 textColor:kGray900];
+        _symbolLabel = [XXLabel labelWithFrame:CGRectMake(0, K375(32), self.topBackImageView.width, 24) text:[NSString stringWithFormat:@"%@%@",[self.tokenModel.symbol uppercaseString],LocalizedString(@"WalletAddress")] font:kFontBold18 textColor:kGray900];
     }
     _symbolLabel.textAlignment = NSTextAlignmentCenter;
     return _symbolLabel;
@@ -171,7 +171,7 @@
 
 - (XXButton *)copyAddressBtn {
     if (!_copyAddressBtn) {
-        _copyAddressBtn = [XXButton buttonWithFrame:CGRectMake(5, 2, self.bottomImageView.width - 10, self.bottomImageView.height - 4) title:LocalizedString(@"CopyAddress") font:kFont(17) titleColor:kPrimaryMain block:^(UIButton *button) {
+        _copyAddressBtn = [XXButton buttonWithFrame:CGRectMake(5, 2, self.bottomImageView.width - 10, self.bottomImageView.height - 4) title:LocalizedString(@"CopyAddress") font:kFontBold(17) titleColor:kPrimaryMain block:^(UIButton *button) {
             if (KUser.address  > 0) {
                 UIPasteboard *pab = [UIPasteboard generalPasteboard];
                 [pab setString:self.showAddress];

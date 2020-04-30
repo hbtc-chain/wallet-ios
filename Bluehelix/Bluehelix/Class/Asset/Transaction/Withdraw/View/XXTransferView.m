@@ -65,7 +65,7 @@
 - (XXWithdrawAddressView *)addressView {
     if (_addressView == nil) {
         MJWeakSelf
-        _addressView = [[XXWithdrawAddressView alloc] initWithFrame:CGRectMake(0, 0, kScreen_Width, 96)];
+        _addressView = [[XXWithdrawAddressView alloc] initWithFrame:CGRectMake(0, 0, kScreen_Width, 88)];
         _addressView.nameLabel.text = LocalizedString(@"TransferAddress");
         _addressView.codeBlock = ^{
             [weakSelf scanCodeGetAddress];
@@ -77,7 +77,7 @@
 /** 转账数量 */
 - (XXTransferAmountView *)amountView {
     if (_amountView == nil) {
-        _amountView = [[XXTransferAmountView alloc] initWithFrame:CGRectMake(0, CGRectGetMaxY(self.addressView.frame), kScreen_Width, 110)];
+        _amountView = [[XXTransferAmountView alloc] initWithFrame:CGRectMake(0, CGRectGetMaxY(self.addressView.frame) + 15, kScreen_Width, 88)];
         _amountView.userInteractionEnabled = YES;
         _amountView.nameLabel.text = LocalizedString(@"TransferAmount");
         _amountView.textField.placeholder = LocalizedString(@"PleaseEnterTransferAmount");
@@ -88,7 +88,7 @@
 /** 手续费 */
 - (XXWithdrawFeeView *)feeView {
     if (_feeView == nil) {
-        _feeView = [[XXWithdrawFeeView alloc] initWithFrame:CGRectMake(0, CGRectGetMaxY(self.amountView.frame), kScreen_Width, 96)];
+        _feeView = [[XXWithdrawFeeView alloc] initWithFrame:CGRectMake(0, CGRectGetMaxY(self.amountView.frame) + 15, kScreen_Width, 88)];
         _feeView.textField.placeholder = LocalizedString(@"PleaseEnterFee");
         _feeView.unitLabel.text = [kMainToken uppercaseString];
     }
@@ -98,7 +98,7 @@
 /** 提币加速视图 */
 - (XXWithdrawSpeedView *)speedView {
     if (_speedView == nil) {
-        _speedView = [[XXWithdrawSpeedView alloc] initWithFrame:CGRectMake(0, CGRectGetMaxY(self.feeView.frame), kScreen_Width, 72)];
+        _speedView = [[XXWithdrawSpeedView alloc] initWithFrame:CGRectMake(0, CGRectGetMaxY(self.feeView.frame) + 15, kScreen_Width, 72)];
         _speedView.nameLabel.text = LocalizedString(@"TransferSpeed");
 //        [_speedView.slider addTarget:self action:@selector(sliderValueChanged:) forControlEvents:UIControlEventValueChanged];
     }

@@ -20,7 +20,7 @@
 
 - (instancetype)initWithFrame:(CGRect)frame block:(Block)block {
     CGFloat width = [NSString widthWithText:LocalizedString(@"AccountManage") font:kFont10];
-    self = [super initWithFrame:CGRectMake(kScreen_Width - width - frame.size.height - 30, frame.origin.y, width + frame.size.height + 10, frame.size.height)];
+    self = [super initWithFrame:CGRectMake(kScreen_Width - width - 36 - 16, frame.origin.y, width + 36, frame.size.height)];
     if (self) {
         self.block = block;
         [self buildUI];
@@ -45,7 +45,7 @@
 
 - (UIImageView *)customImageView {
     if (!_customImageView) {
-        _customImageView = [[UIImageView alloc] initWithFrame:CGRectMake(2,2,self.height-4,self.height-4)];
+        _customImageView = [[UIImageView alloc] initWithFrame:CGRectMake(9,4,18,18)];
         _customImageView.image = [UIImage imageNamed:@"Me_setting"];
     }
     return _customImageView;
@@ -53,7 +53,7 @@
 
 - (UILabel *)customLabel {
     if (!_customLabel) {
-        _customLabel = [[UILabel alloc] initWithFrame:CGRectMake(CGRectGetMaxX(self.customImageView.frame) + 5, 0, self.width - 10 - self.height, self.height)];
+        _customLabel = [[UILabel alloc] initWithFrame:CGRectMake(CGRectGetMaxX(self.customImageView.frame) + 2, 0, self.width - 36, self.height)];
         _customLabel.textAlignment = NSTextAlignmentCenter;
         _customLabel.text = LocalizedString(@"AccountManage");
         _customLabel.font = kFont10;

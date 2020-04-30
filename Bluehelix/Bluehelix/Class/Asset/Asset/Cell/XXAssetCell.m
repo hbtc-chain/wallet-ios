@@ -102,12 +102,12 @@
             self.typeLabel.text = LocalizedString(@"NativeCoin");
             self.typeLabel.textColor = kGreen100;
             self.typeLabel.backgroundColor = KRGBA(212, 245, 220, 100);
-            self.typeLabel.frame = CGRectMake(CGRectGetMaxX(self.coinNameLabel.frame) +5, 20, [NSString widthWithText:LocalizedString(@"NativeCoin") font:kFont10] + 4, 16);
+            self.typeLabel.frame = CGRectMake(CGRectGetMaxX(self.coinNameLabel.frame) +5, 20, [NSString widthWithText:LocalizedString(@"NativeCoin") font:kFont10] + 8, 16);
         } else {
             self.typeLabel.text = LocalizedString(@"UnnativeCoin");
             self.typeLabel.textColor = KRGBA(91, 109, 132, 100);
             self.typeLabel.backgroundColor = KRGBA(235, 239, 246, 100);
-            self.typeLabel.frame = CGRectMake(CGRectGetMaxX(self.coinNameLabel.frame) +5, 20, [NSString widthWithText:LocalizedString(@"UnnativeCoin") font:kFont10] + 4, 16);
+            self.typeLabel.frame = CGRectMake(CGRectGetMaxX(self.coinNameLabel.frame) +5, 20, [NSString widthWithText:LocalizedString(@"UnnativeCoin") font:kFont10] + 8, 16);
         }
         self.typeLabel.hidden = NO;
         self.amountLabel.frame = CGRectMake(CGRectGetMaxX(self.typeLabel.frame), 16, kScreen_Width - 16 - CGRectGetMaxX(self.typeLabel.frame), 24);

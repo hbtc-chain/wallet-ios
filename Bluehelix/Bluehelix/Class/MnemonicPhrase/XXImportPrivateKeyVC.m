@@ -83,9 +83,9 @@
     if (!_textView) {
         _textView = [[UITextView alloc] initWithFrame:self.textBackView.bounds];
         _textView.backgroundColor = [UIColor clearColor];
-        _textView.font = kFont(15);
+        _textView.font = kFont(13);
         _textView.delegate = self;
-        _textView.textColor = kGray700;
+        _textView.textColor = kGray900;
     }
     return _textView;
 }

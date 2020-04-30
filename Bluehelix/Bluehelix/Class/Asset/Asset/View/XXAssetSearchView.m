@@ -62,6 +62,8 @@
     if (_searchBackView == nil) {
         _searchBackView = [[UIView alloc] initWithFrame:CGRectMake(kScreen_Width - 16 - 120, self.height/2 - 16, 120, 32)];
         _searchBackView.backgroundColor = kGray50;
+        _searchBackView.layer.cornerRadius = 4;
+        _searchBackView.layer.masksToBounds = YES;
     }
     return _searchBackView;
 }

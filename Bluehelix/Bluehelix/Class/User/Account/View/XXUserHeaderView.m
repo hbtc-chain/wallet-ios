@@ -40,7 +40,7 @@
 
 - (void)textFieldDidEndEditing:(UITextField *)textField {
     [[XXSqliteManager sharedSqlite] updateAccountColumn:@"userName" value:textField.text];
-    CGFloat width = [NSString widthWithText:textField.text font:kFont20];
+    CGFloat width = [NSString widthWithText:textField.text font:kFontBold(20)];
     self.textField.width = width > kScreen_Width - K375(48) - 80 ? kScreen_Width - K375(48) - 80 : width;
     self.editImageView.left = CGRectGetMaxX(self.textField.frame) + 8;
     self.editImageView.hidden = NO;
@@ -62,7 +62,7 @@
 - (XXAccountBtn *)manageBtn {
     if (!_manageBtn) {
         MJWeakSelf;
-        _manageBtn = [[XXAccountBtn alloc] initWithFrame:CGRectMake(00, 46, 0, 26) block:^{
+        _manageBtn = [[XXAccountBtn alloc] initWithFrame:CGRectMake(0, 46, 0, 26) block:^{
             XXAccountManageVC *accountVC = [[XXAccountManageVC alloc] init];
             [weakSelf.viewController.navigationController pushViewController:accountVC animated:YES];
         }];
@@ -79,10 +79,10 @@
 
 - (UITextField *)textField {
     if (!_textField) {
-        CGFloat width = [NSString widthWithText:KUser.currentAccount.userName font:kFont20];
+        CGFloat width = [NSString widthWithText:KUser.currentAccount.userName font:kFontBold(20)];
         CGFloat showWidth = width > kScreen_Width - K375(48) - 80 ? kScreen_Width - K375(48) - 80 : width;
         _textField = [[UITextField alloc] initWithFrame:CGRectMake(CGRectGetMaxX(self.icon.frame) + 8, K375(80), showWidth, 25)];
-        _textField.font = kFont20;
+        _textField.font = kFontBold(20);
         _textField.text = KUser.currentAccount.userName;
         _textField.delegate = self;
         _textField.textColor = [UIColor whiteColor];

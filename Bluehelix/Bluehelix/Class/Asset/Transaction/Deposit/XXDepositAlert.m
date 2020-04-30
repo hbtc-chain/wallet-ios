@@ -121,7 +121,7 @@
 - (XXButton *)sureButton {
     if (_sureButton == nil) {
         MJWeakSelf
-        _sureButton = [XXButton buttonWithFrame:CGRectMake(16, self.contentView.height - 56, self.contentView.width - 32, 44) title:LocalizedString(@"ShowAddress") font:kFont17 titleColor:[UIColor whiteColor] block:^(UIButton *button) {
+        _sureButton = [XXButton buttonWithFrame:CGRectMake(16, self.contentView.height - 56, self.contentView.width - 32, 44) title:LocalizedString(@"ShowAddress") font:kFontBold(17) titleColor:[UIColor whiteColor] block:^(UIButton *button) {
             [weakSelf okAction];
         }];
         _sureButton.backgroundColor = kPrimaryMain;

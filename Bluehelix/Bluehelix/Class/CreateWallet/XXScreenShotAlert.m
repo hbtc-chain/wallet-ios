@@ -110,6 +110,8 @@
     if (_contentView == nil) {
         _contentView = [[UIView alloc] initWithFrame:CGRectMake(0, kScreen_Height - 248, kScreen_Width, 248)];
         _contentView.backgroundColor = [UIColor whiteColor];
+        _contentView.layer.cornerRadius = 10;
+        _contentView.layer.masksToBounds = YES;
     }
     return _contentView;
 }
@@ -135,7 +137,7 @@
     if (_titleLabel == nil) {
         _titleLabel = [[UILabel alloc] initWithFrame:CGRectMake(16, 104, kScreen_Width - 32, 24)];
         _titleLabel.text = LocalizedString(@"NoScreenShot");
-        _titleLabel.font = kFontBold18;
+        _titleLabel.font = kFontBold(20);
         _titleLabel.textColor = kGray900;
         _titleLabel.textAlignment = NSTextAlignmentCenter;
     }
@@ -144,10 +146,10 @@
 
 - (UILabel *)contentLabel {
     if (_contentLabel == nil) {
-        _contentLabel = [[UILabel alloc] initWithFrame:CGRectMake(16, 132, kScreen_Width - 32, 18)];
+        _contentLabel = [[UILabel alloc] initWithFrame:CGRectMake(16, 144, kScreen_Width - 32, 24)];
         _contentLabel.text = LocalizedString(@"ScreenShotTip");
-        _contentLabel.font = kFont14;
-        _contentLabel.textColor = kGray500;
+        _contentLabel.font = kFont15;
+        _contentLabel.textColor = kGray700;
         _contentLabel.textAlignment = NSTextAlignmentCenter;
         _contentLabel.numberOfLines = 0;
     }

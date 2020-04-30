@@ -81,7 +81,7 @@
             [weakSelf withdrawButtonClick];
         }];
         _withdrawButton.backgroundColor = kPrimaryMain;
-        _withdrawButton.layer.cornerRadius = 3;
+        _withdrawButton.layer.cornerRadius = kBtnBorderRadius;
         _withdrawButton.layer.masksToBounds = YES;
     }
     return _withdrawButton;

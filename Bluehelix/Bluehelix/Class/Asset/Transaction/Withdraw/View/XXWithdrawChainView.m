@@ -50,7 +50,7 @@
 /** 手续费 */
 - (XXWithdrawFeeView *)feeView {
     if (_feeView == nil) {
-        _feeView = [[XXWithdrawFeeView alloc] initWithFrame:CGRectMake(0, 20, kScreen_Width, 96)];
+        _feeView = [[XXWithdrawFeeView alloc] initWithFrame:CGRectMake(0, 20, kScreen_Width, 88)];
         _feeView.textField.placeholder = LocalizedString(@"PleaseEnterFee");
     }
     return _feeView;
@@ -59,7 +59,8 @@
 /** 提币加速视图 */
 - (XXWithdrawSpeedView *)speedView {
     if (_speedView == nil) {
-        _speedView = [[XXWithdrawSpeedView alloc] initWithFrame:CGRectMake(0, CGRectGetMaxY(self.feeView.frame), kScreen_Width, 72)];
+        _speedView = [[XXWithdrawSpeedView alloc] initWithFrame:CGRectMake(0, CGRectGetMaxY(self.feeView.frame) + 15, kScreen_Width, 72)];
+        _speedView.nameLabel.text = LocalizedString(@"CashWithdrawal");
 //        [_speedView.slider addTarget:self action:@selector(sliderValueChanged:) forControlEvents:UIControlEventValueChanged];
     }
     return _speedView;

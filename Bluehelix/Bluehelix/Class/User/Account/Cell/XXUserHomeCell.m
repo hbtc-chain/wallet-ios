@@ -35,14 +35,14 @@
 
 - (XXLabel *)nameLabel {
     if (_nameLabel == nil) {
-        _nameLabel = [XXLabel labelWithFrame:CGRectMake(K375(16), 16, kScreen_Width - K375(50), 24) font:kFont15 textColor:kGray900];
+        _nameLabel = [XXLabel labelWithFrame:CGRectMake(K375(16), 0, kScreen_Width - K375(50), [XXUserHomeCell getCellHeight]) font:kFont15 textColor:kGray900];
     }
     return _nameLabel;
 }
 
 - (XXLabel *)valueLabel {
     if (_valueLabel == nil) {
-        _valueLabel = [XXLabel labelWithFrame:CGRectMake(kScreen_Width - K375(16) - 100, 16, 100, 24) font:kFont15 textColor:kGray500];
+        _valueLabel = [XXLabel labelWithFrame:CGRectMake(kScreen_Width - K375(16) - 100, 0, 100, [XXUserHomeCell getCellHeight]) font:kFont15 textColor:kGray500];
         _valueLabel.textAlignment = NSTextAlignmentRight;
     }
     return _valueLabel;
@@ -66,7 +66,7 @@
 
 
 + (CGFloat)getCellHeight {
-    return 57;
+    return 56;
 }
 
 @end

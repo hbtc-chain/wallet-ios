@@ -50,14 +50,14 @@
 
 - (XXLabel *)titleLabel {
     if (!_titleLabel) {
-        _titleLabel = [XXLabel labelWithFrame:CGRectMake(CGRectGetMaxX(self.icon.frame) + 20, 20, K375(200), self.height - 40) font:kFont(17) textColor:kGray900];
+        _titleLabel = [XXLabel labelWithFrame:CGRectMake(CGRectGetMaxX(self.icon.frame) + 20, 20, K375(200), self.height - 40) font:kFontBold(17) textColor:kGray900];
     }
     return _titleLabel;
 }
 
 - (UIImageView *)arrow {
     if (!_arrow) {
-        _arrow = [[UIImageView alloc] initWithFrame:CGRectMake(self.width - 60, 36, 24, 24)];
+        _arrow = [[UIImageView alloc] initWithFrame:CGRectMake(self.width - 60, self.height/2 - 24/2, 24, 24)];
         _arrow.image = [UIImage imageNamed:@"chooseArrow"];
     }
     return _arrow;

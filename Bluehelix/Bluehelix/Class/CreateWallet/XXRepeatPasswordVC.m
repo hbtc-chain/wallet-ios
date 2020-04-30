@@ -13,7 +13,7 @@
 #import "AESCrypt.h"
 #import "XXServiceAgreementVC.h"
 #import "XYHNumbersLabel.h"
-
+#import "XXTabBarController.h"
 
 @interface XXRepeatPasswordVC () <UITextViewDelegate>
 
@@ -88,12 +88,18 @@
     model.backupFlag = IsEmpty(KUser.localPhraseString) ? NO : YES; //如果是通过助记词导入的 不需要备份和保留助记词
     model.symbols = [NSString stringWithFormat:@"btc,eth,usdt,%@",kMainToken];
     [[XXSqliteManager sharedSqlite] insertAccount:model];
-    
     KUser.address = model.address;
     
-    XXCreateWalletSuccessVC *successVC = [[XXCreateWalletSuccessVC alloc] init];
-    successVC.text = KUser.localPassword;
-    [self.navigationController pushViewController:successVC animated:YES];
+    if (!IsEmpty(KUser.localPhraseString)) { //通过助记词导入 不需要
+        Alert *alert = [[Alert alloc] initWithTitle:LocalizedString(@"ImportSuccess") duration:kAlertDuration completion:^{
+            KWindow.rootViewController = [[XXTabBarController alloc] init];
+        }];
+        [alert showAlert];
+    } else {
+        XXCreateWalletSuccessVC *successVC = [[XXCreateWalletSuccessVC alloc] init];
+        successVC.text = KUser.localPassword;
+        [self.navigationController pushViewController:successVC animated:YES];
+    }
     KUser.localPassword = @"";
     KUser.localUserName = @"";
     KUser.localPhraseString = @"";
@@ -192,7 +198,7 @@
 - (BOOL)textView:(UITextView *)textView shouldInteractWithURL:(NSURL *)URL inRange:(NSRange)characterRange {
     if ([[URL scheme] isEqualToString:@"fwxy"]) {
         XXServiceAgreementVC *serviceVC = [[XXServiceAgreementVC alloc] init];
-//        XXNavigationController *nav = [[XXNavigationController alloc] initWithRootViewController:serviceVC];
+        //        XXNavigationController *nav = [[XXNavigationController alloc] initWithRootViewController:serviceVC];
         serviceVC.modalPresentationStyle = UIModalPresentationFullScreen;
         [self presentViewController:serviceVC animated:YES completion:nil];
     }

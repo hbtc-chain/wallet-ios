@@ -72,7 +72,7 @@
 /** 名称标签 */
 - (XXLabel *)nameLabel {
     if (_nameLabel == nil) {
-        _nameLabel = [XXLabel labelWithFrame:CGRectMake(KSpacing, 10, kScreen_Width - KSpacing*2, 24) font:kFontBold14 textColor:kGray];
+        _nameLabel = [XXLabel labelWithFrame:CGRectMake(KSpacing, 16, kScreen_Width - KSpacing*2, 24) font:kFontBold14 textColor:kGray];
     }
     return _nameLabel;
 }
@@ -89,8 +89,10 @@
 /** 背景图 */
 - (UIView *)banView {
     if (_banView == nil) {
-        _banView = [[UIView alloc] initWithFrame:CGRectMake(KSpacing, CGRectGetMaxY(self.nameLabel.frame) + 12, kScreen_Width - KSpacing*2, 48)];
+        _banView = [[UIView alloc] initWithFrame:CGRectMake(KSpacing, CGRectGetMaxY(self.nameLabel.frame) + 4, kScreen_Width - KSpacing*2, 48)];
         _banView.backgroundColor = kGray50;
+        _banView.layer.cornerRadius = 4;
+        _banView.layer.masksToBounds = YES;
     }
     return _banView;
 }

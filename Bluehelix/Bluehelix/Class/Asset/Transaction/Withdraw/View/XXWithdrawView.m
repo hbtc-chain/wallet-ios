@@ -85,7 +85,7 @@
 
 - (XXWithdrawAddressView *)addressView {
     if (_addressView == nil) {
-        _addressView = [[XXWithdrawAddressView alloc] initWithFrame:CGRectMake(0, CGRectGetMaxY(self.tipLabel.frame), kScreen_Width, 96)];
+        _addressView = [[XXWithdrawAddressView alloc] initWithFrame:CGRectMake(0, CGRectGetMaxY(self.tipLabel.frame), kScreen_Width, 88)];
     }
     return _addressView;
 }
@@ -93,7 +93,7 @@
 /** 提币数量 */
 - (XXWithdrawAmountView *)amountView {
     if (_amountView == nil) {
-        _amountView = [[XXWithdrawAmountView alloc] initWithFrame:CGRectMake(0, CGRectGetMaxY(self.addressView.frame), kScreen_Width, 110)];
+        _amountView = [[XXWithdrawAmountView alloc] initWithFrame:CGRectMake(0, CGRectGetMaxY(self.addressView.frame) + 15, kScreen_Width, 88)];
         _amountView.userInteractionEnabled = YES;
         _amountView.nameLabel.text = LocalizedString(@"WithdrawAmount");
         _amountView.textField.placeholder = LocalizedString(@"PleaseEnterAmount");
@@ -104,9 +104,9 @@
 /** 交易手续费 */
 - (XXWithdrawFeeView *)feeView {
     if (_feeView == nil) {
-        _feeView = [[XXWithdrawFeeView alloc] initWithFrame:CGRectMake(0, CGRectGetMaxY(self.amountView.frame), kScreen_Width, 96)];
+        _feeView = [[XXWithdrawFeeView alloc] initWithFrame:CGRectMake(0, CGRectGetMaxY(self.amountView.frame) + 15, kScreen_Width, 88)];
         _feeView.textField.placeholder = LocalizedString(@"PleaseEnterFee");
-        _feeView.nameLabel.text = @"交易手续费";
+        _feeView.nameLabel.text = LocalizedString(@"TransferFee");
     }
     return _feeView;
 }
@@ -114,9 +114,9 @@
 /** 跨链手续费 */
 - (XXWithdrawFeeView *)chainFeeView {
     if (_chainFeeView == nil) {
-        _chainFeeView = [[XXWithdrawFeeView alloc] initWithFrame:CGRectMake(0, CGRectGetMaxY(self.feeView.frame), kScreen_Width, 96)];
+        _chainFeeView = [[XXWithdrawFeeView alloc] initWithFrame:CGRectMake(0, CGRectGetMaxY(self.feeView.frame) + 15, kScreen_Width, 88)];
         _chainFeeView.textField.placeholder = LocalizedString(@"PleaseEnterFee");
-        _chainFeeView.nameLabel.text = @"跨链手续费";
+        _chainFeeView.nameLabel.text = LocalizedString(@"ChainFee");
     }
     return _chainFeeView;
 }
@@ -124,7 +124,7 @@
 /** 提币加速视图 */
 - (XXWithdrawSpeedView *)speedView {
     if (_speedView == nil) {
-        _speedView = [[XXWithdrawSpeedView alloc] initWithFrame:CGRectMake(0, CGRectGetMaxY(self.chainFeeView.frame), kScreen_Width, 72)];
+        _speedView = [[XXWithdrawSpeedView alloc] initWithFrame:CGRectMake(0, CGRectGetMaxY(self.chainFeeView.frame) + 15, kScreen_Width, 72)];
         _speedView.nameLabel.text = LocalizedString(@"CashWithdrawal");
 //        [_speedView.slider addTarget:self action:@selector(sliderValueChanged:) forControlEvents:UIControlEventValueChanged];
     }

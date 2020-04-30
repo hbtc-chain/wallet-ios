@@ -39,7 +39,7 @@
     
     // 标题
     self.titleLabel = [[UILabel alloc] initWithFrame:CGRectMake(K375(64), kStatusBarHeight + 12, K375(247), kNavHeight - (kStatusBarHeight + 14))];
-    self.titleLabel.font = kFontBold18;
+    self.titleLabel.font = kFontBold(17);
     self.titleLabel.textColor = KNavigationBar_TitleColor;
     self.titleLabel.textAlignment = NSTextAlignmentCenter;
     [self.navView addSubview:self.titleLabel];
@@ -56,7 +56,7 @@
     self.rightButton.frame = CGRectMake(kScreen_Width - K375(64), self.leftButton.top, self.leftButton.width, self.leftButton.height);
     [self.rightButton addTarget:self action:@selector(rightButtonClick:) forControlEvents:UIControlEventTouchUpInside];
     [self.rightButton setTitleColor:KNavigationBar_TitleColor forState:UIControlStateNormal];
-    self.rightButton.titleLabel.font = kFontBold18;
+    self.rightButton.titleLabel.font = kFontBold(17);
     [self.navView addSubview:self.rightButton];
     
     // 分割线

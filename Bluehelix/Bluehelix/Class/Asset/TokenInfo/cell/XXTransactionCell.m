@@ -65,12 +65,12 @@
         self.stateLabel.text = LocalizedString(@"Success");
         self.stateLabel.textColor = KRGBA(70, 206, 95, 100);
         self.stateLabel.backgroundColor = KRGBA(212, 245, 220, 100);
-        self.stateLabel.frame = CGRectMake(CGRectGetMaxX(self.typeLabel.frame) +5, 24, [NSString widthWithText:LocalizedString(@"Success") font:kFont10] + 4, 16);
+        self.stateLabel.frame = CGRectMake(CGRectGetMaxX(self.typeLabel.frame) +5, 24, [NSString widthWithText:LocalizedString(@"Success") font:kFont10] + 8, 16);
     } else {
         self.stateLabel.text = LocalizedString(@"Failed");
         self.stateLabel.textColor = KRGBA(242, 32, 55, 100);
         self.stateLabel.backgroundColor = KRGBA(252, 206, 209, 100);
-        self.stateLabel.frame = CGRectMake(CGRectGetMaxX(self.typeLabel.frame) +5, 24, [NSString widthWithText:LocalizedString(@"Failed") font:kFont10] + 4, 16);
+        self.stateLabel.frame = CGRectMake(CGRectGetMaxX(self.typeLabel.frame) +5, 24, [NSString widthWithText:LocalizedString(@"Failed") font:kFont10] + 8, 16);
     }
 }
 
@@ -166,6 +166,8 @@
         _stateLabel = [[XXLabel alloc] init];
         _stateLabel.font = kFont(10);
         _stateLabel.textAlignment = NSTextAlignmentCenter;
+        _stateLabel.layer.cornerRadius = 2;
+        _stateLabel.layer.masksToBounds = YES;
     }
     return _stateLabel;
 }
