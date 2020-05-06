@@ -103,6 +103,7 @@
 "NewPassword"="请输入新密码";
 "ConfirmNewPassword"="确认新密码";
 "ChangePasswordSuccess" = "密码修改成功";
+"ChooseAccount" = "选择账户";
 
 //资产
 "HideSmallCurrency" = "隐藏小额币种";

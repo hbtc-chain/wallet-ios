@@ -127,7 +127,7 @@
 
 - (XXLabel *)titleLabel {
     if (_titleLabel == nil) {
-        _titleLabel = [XXLabel labelWithFrame:CGRectMake(0, CGRectGetMaxY(self.icon.frame) +8, self.contentView.width, 24) text:self.title font:kFontBold18 textColor:kGray900];
+        _titleLabel = [XXLabel labelWithFrame:CGRectMake(0, CGRectGetMaxY(self.icon.frame) +8, self.contentView.width, 24) text:self.title font:kFontBold20 textColor:kGray900];
         _titleLabel.textAlignment = NSTextAlignmentCenter;
     }
     return _titleLabel;
@@ -135,7 +135,7 @@
 
 - (XYHNumbersLabel *)contentLabel {
     if (_contentLabel == nil) {
-        _contentLabel = [[XYHNumbersLabel alloc] initWithFrame:CGRectMake(24, CGRectGetMaxY(self.titleLabel.frame) + 24, self.contentView.width - 48, 0) font:kFont15];
+        _contentLabel = [[XYHNumbersLabel alloc] initWithFrame:CGRectMake(24, CGRectGetMaxY(self.titleLabel.frame) + 16, self.contentView.width - 48, 0) font:kFont15];
         _contentLabel.text = self.content;
         _contentLabel.textAlignment = NSTextAlignmentCenter;
         _contentLabel.textColor = kGray700;
@@ -146,10 +146,10 @@
 - (XXButton *)okButton {
     if (_okButton == nil) {
         MJWeakSelf
-        _okButton = [XXButton buttonWithFrame:CGRectMake(self.contentView.width/2 + K375(4), self.contentView.height - K375(48), (self.contentView.width - K375(24))/2, K375(40)) title:LocalizedString(@"Sure") font:kFontBold14 titleColor:[UIColor whiteColor] block:^(UIButton *button) {
+        _okButton = [XXButton buttonWithFrame:CGRectMake(self.contentView.width/2 + K375(4), self.contentView.height - K375(56), (self.contentView.width - K375(40))/2, K375(44)) title:LocalizedString(@"Sure") font:kFontBold14 titleColor:[UIColor whiteColor] block:^(UIButton *button) {
             [weakSelf okAction];
         }];
-        _okButton.layer.cornerRadius = kBtnBorderRadius;
+        _okButton.layer.cornerRadius = 4;
         _okButton.layer.masksToBounds = YES;
         _okButton.backgroundColor = kPrimaryMain;
     }
@@ -159,10 +159,10 @@
 - (XXButton *)cancelButton {
     if (_cancelButton == nil) {
         MJWeakSelf
-        _cancelButton = [XXButton buttonWithFrame:CGRectMake(K375(8), self.contentView.height - K375(48), (self.contentView.width - K375(24))/2, K375(40)) title:LocalizedString(@"Cancel") font:kFontBold14 titleColor:[UIColor whiteColor] block:^(UIButton *button) {
+        _cancelButton = [XXButton buttonWithFrame:CGRectMake(K375(16), self.contentView.height - K375(56), (self.contentView.width - K375(40))/2, K375(44)) title:LocalizedString(@"Cancel") font:kFontBold14 titleColor:[UIColor whiteColor] block:^(UIButton *button) {
             [[weakSelf class] dismiss];
         }];
-        _cancelButton.layer.cornerRadius = kBtnBorderRadius;
+        _cancelButton.layer.cornerRadius = 4;
         _cancelButton.layer.masksToBounds = YES;
         _cancelButton.backgroundColor = kGray200;
     }

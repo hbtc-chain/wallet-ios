@@ -24,9 +24,11 @@
     if (self) {
         self.backgroundColor = kWhiteColor;
         [self addSubview:self.addressLabel];
-        [self addSubview:self.downImageView];
-        UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tapAction)];
-        [self addGestureRecognizer:tap];
+        if (KUser.accounts.count > 1) {
+            [self addSubview:self.downImageView];
+            UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tapAction)];
+            [self addGestureRecognizer:tap];
+        }
     }
     return self;
 }
@@ -36,7 +38,7 @@
        window.rootViewController = [UIViewController new];
        window.windowLevel = UIWindowLevelAlert + 1;
        
-       UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"选择账户" message:nil preferredStyle:UIAlertControllerStyleActionSheet];
+       UIAlertController *alert = [UIAlertController alertControllerWithTitle:LocalizedString(@"ChooseAccount") message:nil preferredStyle:UIAlertControllerStyleActionSheet];
 
        for (NSInteger i=0; i < KUser.accounts.count; i ++) {
 

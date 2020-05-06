@@ -42,7 +42,7 @@
 
 - (XXLabel *)nameLabel {
     if (!_nameLabel) {
-        _nameLabel = [XXLabel labelWithFrame:CGRectMake(K375(24), 0, 100, 40) font:kFont17 textColor:kGray900];
+        _nameLabel = [XXLabel labelWithFrame:CGRectMake(K375(24), 0, 100, 40) font:kFontBold(17) textColor:kGray900];
     }
     return _nameLabel;
 }
