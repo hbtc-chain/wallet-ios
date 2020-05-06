@@ -70,19 +70,11 @@
 - (void)layoutSubviews{
 
     [self.indexLine mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.bottom.mas_equalTo(-4);
+        make.bottom.mas_equalTo(-2);
         make.width.mas_equalTo(16);
         make.height.mas_equalTo(3);
         make.centerX.mas_equalTo(self.selectedButton.mas_centerX).priorityLow(50);
     }];
-//    if (self.buttonArray.count >0) {
-//        [self.buttonArray mas_distributeViewsAlongAxis:MASAxisTypeHorizontal withFixedSpacing:32 leadSpacing:24 tailSpacing:24];
-//        [self.buttonArray mas_makeConstraints:^(MASConstraintMaker *make) {
-//
-//            make.centerY.mas_equalTo(self.mas_centerY);
-//            make.height.mas_equalTo(16);
-//        }];
-//    }
         
     UIButton *preButton ;
     for (int i =0; i<self.buttonArray.count; i++) {
@@ -116,9 +108,9 @@
     [self cancelSelected];//取消选中状态
     [UIView animateWithDuration:2 animations:^{
          [self.indexLine mas_remakeConstraints:^(MASConstraintMaker *make) {
-            make.bottom.mas_equalTo(-5);
-            make.width.mas_equalTo(20);
-            make.height.mas_equalTo(2);
+            make.bottom.mas_equalTo(-2);
+            make.width.mas_equalTo(16);
+            make.height.mas_equalTo(3);
             make.centerX.mas_equalTo(self.selectedButton.mas_centerX).priorityHigh(self.priorityValue);
             
            }];

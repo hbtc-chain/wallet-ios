@@ -60,13 +60,15 @@
     switch (self.delegateNodeType) {
         case 0:
             self.addressView.textField.text = KUser.address;
+            self.amountView.subLabel.text = [NSString stringWithFormat:@"%@ %@ %@",LocalizedString(@"ValidatorAvilable"),@"--",[kMainToken uppercaseString]];
             break;
         case 1:
-             
+            self.amountView.subLabel.text = [NSString stringWithFormat:@"%@ %@ %@",LocalizedString(@"ValidatorAvilableTransfer"),@"--",[kMainToken uppercaseString]];
             break;
             
         default:
             self.addressView.textField.text = KUser.address;
+            self.amountView.subLabel.text = [NSString stringWithFormat:@"%@ %@ %@",LocalizedString(@"ValidatorAvilableRelieve"),@"--",[kMainToken uppercaseString]];
             break;
     }
 }
@@ -155,6 +157,7 @@
     if (_addressView == nil) {
         _addressView = [[XXDelegateAddressView alloc] initWithFrame:CGRectMake(0, CGRectGetMaxY(self.transferTipView.frame), kScreen_Width, 96)];
         _addressView.textField.placeholder = LocalizedString(@"PleaseSelectValidator");
+        _addressView.textField.enabled = NO;
     }
     return _addressView;
 }
@@ -164,7 +167,7 @@
     @weakify(self)
     if (_amountView == nil) {
         _amountView = [[XXTransferAmountView alloc] initWithFrame:CGRectMake(0, CGRectGetMaxY(self.addressView.frame), kScreen_Width, 110)];
-        _amountView.userInteractionEnabled = YES;
+        _amountView.textField.enabled = YES;
         [_amountView.allButton setTitle:LocalizedString(@"DelegateAll") forState:UIControlStateNormal];
         _amountView.textField.placeholder = @"";
         _amountView.allButtonActionBlock = ^{

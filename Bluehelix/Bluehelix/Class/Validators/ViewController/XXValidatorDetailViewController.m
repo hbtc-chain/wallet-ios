@@ -48,8 +48,8 @@ static NSString *KValidatorDetailInfoCell = @"ValidatorDetailInfoCell";
     self.sectionFirstInfoArray = @[LocalizedString(@"ValidatorVote"),LocalizedString(@"ValidatorDelegateNumber"),LocalizedString(@"ValidatorCommissionRate"),LocalizedString(@"ValidatorUpdateTime"),LocalizedString(@"ValidatorOnlineRatio"),LocalizedString(@"ValidatorCommissionMostLimit"),LocalizedString(@"ValidatorCommissionMostLimitPerDay")];
     self.sectionSecondInfoArray = @[LocalizedString(@"ValidatorAddress"),LocalizedString(@"ValidatorWebsite")];
     
-    self.sectionFirstValueArray = @[[NSString stringWithFormat:@"%@(%@%@)",KString(self.validatorModel.voting_power),KString(self.validatorModel.voting_power_proportion),@"%"],[NSString stringWithFormat:@"%@(%@%@)",KString(self.validatorModel.self_delegate_amount),KString(self.validatorModel.self_delegate_proportion),@"%"],KString(self.validatorModel.up_time),[NSString stringWithFormat:@"%@%@",KString(self.validatorModel.commission.rate),@"%"],[NSString dateStringFromTimestampWithTimeTamp:[KString(self.validatorModel.last_voted_time) longLongValue]],[NSString stringWithFormat:@"%@%@",KString(self.validatorModel.commission.max_rate),@"%"],[NSString stringWithFormat:@"%@%@",KString(self.validatorModel.commission.max_change_rate),@"%"]];;
-    self.sectionSectionValueArray = @[KString(self.validatorModel.operator_address),KString(self.validatorModel.validatorDescription.website)];
+    self.sectionFirstValueArray = @[[NSString stringWithFormat:@"%@ (%@%@)",KString(self.validatorModel.voting_power),KString(self.validatorModel.voting_power_proportion),@"%"],[NSString stringWithFormat:@"%@ (%@%@)",KString(self.validatorModel.self_delegate_amount),KString(self.validatorModel.self_delegate_proportion),@"%"],KString(self.validatorModel.up_time),[NSString stringWithFormat:@"%@%@",KString(self.validatorModel.commission.rate),@"%"],[NSString dateStringFromTimestampWithTimeTamp:[KString(self.validatorModel.last_voted_time) longLongValue]],[NSString stringWithFormat:@"%@%@",KString(self.validatorModel.commission.max_rate),@"%"],[NSString stringWithFormat:@"%@%@",KString(self.validatorModel.commission.max_change_rate),@"%"]];;
+    self.sectionSectionValueArray = @[[NSString addressReplace:KString(self.validatorModel.operator_address)],KString(self.validatorModel.validatorDescription.website)];
     
     [self.validatorsDetailTableView reloadData];
 }
@@ -130,6 +130,7 @@ static NSString *KValidatorDetailInfoCell = @"ValidatorDetailInfoCell";
         if (!cell) {
             cell = [[XXValidatorDetailCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:KValidatorDetailViewCell];
         }
+        cell.validatorModel = self.validatorModel;
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
         cell.backgroundColor = kWhiteColor;
         if (indexPath.section ==1 && indexPath.row ==0) {

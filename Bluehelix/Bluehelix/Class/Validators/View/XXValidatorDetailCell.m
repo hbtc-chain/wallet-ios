@@ -93,7 +93,7 @@
             
             if (self.labelValue.text.length > 0) {
                 UIPasteboard *pab = [UIPasteboard generalPasteboard];
-                [pab setString:self.labelValue.text];
+                [pab setString:self.validatorModel.operator_address];
                 [MBProgressHUD showSuccessMessage:LocalizedString(@"CopySuccessfully")];
             }
         }];

@@ -45,12 +45,17 @@ static NSString *KValidatorGripSectionHeader = @"XXValidatorGripSectionHeader";
     [super viewWillAppear:animated];
     [self loadData];
 }
+- (void)viewDidDisappear:(BOOL)animated{
+    [super viewDidDisappear:animated];
+    self.sectionHeader.searchView.searchTextField.text = @"";
+}
 #pragma mark UI
 - (void)setupUI{
     self.leftButton.hidden = YES;
    // [self.rightButton setTitle:LocalizedString(@"ValidatorNewCreate") forState:UIControlStateNormal];
     [self.view addSubview:self.validatorsListTableView];
     self.validatorsListTableView.tableHeaderView = self.bigHeaderView;
+    [self.bigHeaderView bringSubviewToFront:self.validatorsListTableView];
     
 }
 #pragma mark 数据
@@ -121,6 +126,7 @@ static NSString *KValidatorGripSectionHeader = @"XXValidatorGripSectionHeader";
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
     self.sectionHeader = [tableView dequeueReusableHeaderFooterViewWithIdentifier:KValidatorGripSectionHeader];
     @weakify(self)
+    self.sectionHeader.backgroundColor = kBackgroundLeverFirst;
     self.sectionHeader.selectValidOrInvalidCallBack = ^(NSInteger index) {
         @strongify(self)
         NSNumber *number = [NSNumber numberWithInteger:index];
@@ -139,7 +145,7 @@ static NSString *KValidatorGripSectionHeader = @"XXValidatorGripSectionHeader";
     }
 }
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
-    return 120;
+    return 132;
 }
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     XXValidatorCell *cell = [tableView dequeueReusableCellWithIdentifier:KValidatorsListReuseCell];
@@ -181,7 +187,7 @@ static NSString *KValidatorGripSectionHeader = @"XXValidatorGripSectionHeader";
             _validatorsListTableView.contentInsetAdjustmentBehavior = UIScrollViewContentInsetAdjustmentNever;
         }
         _validatorsListTableView.mj_header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
-            [weakSelf requestValidatorsList];
+            [weakSelf loadData];
         }];
     }
     return _validatorsListTableView;

@@ -12,7 +12,7 @@
 
 - (instancetype)initWithReuseIdentifier:(NSString *)reuseIdentifier{
     if (self = [super initWithReuseIdentifier:reuseIdentifier]) {
-        self.backgroundColor = kWhiteColor;
+        self.backgroundColor = [UIColor clearColor];
         [self addSubview:self.searchView];
     }
     return self;
@@ -33,7 +33,7 @@
         make.left.mas_equalTo(K375(16));
         make.right.mas_equalTo(-K375(16));
         make.height.mas_equalTo(32);
-        make.bottom.mas_equalTo(-16);
+        make.bottom.mas_equalTo(-7);
     }];
 }
 #pragma mark lazy load

@@ -126,7 +126,7 @@ static NSInteger pageCount = 20;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
-    return 64;
+    return 55;
 }
 
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
@@ -140,7 +140,7 @@ static NSInteger pageCount = 20;
 }
 - (void)tableView:(UITableView *)tableView willDisplayHeaderView:(UIView *)view forSection:(NSInteger)section {
     if ([view isKindOfClass:[UITableViewHeaderFooterView class]]) {
-        ((UITableViewHeaderFooterView *)view).backgroundView.backgroundColor = [UIColor clearColor];
+        ((UITableViewHeaderFooterView *)view).backgroundView.backgroundColor = kBackgroundLeverFirst;
     }
 }
 
@@ -155,7 +155,7 @@ static NSInteger pageCount = 20;
         cell = [[XXProposalTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:KProposalTableViewCell];
     }
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
-    cell.backgroundColor = kBackgroundLeverFirst;
+    cell.backgroundColor = [UIColor clearColor];
     XXProposalModel *model = self.isFilting ? self.filtProposalsArray[indexPath.row] : self.proposalListArray[indexPath.row];
     [cell loadDataWithModel:model];
     return cell;

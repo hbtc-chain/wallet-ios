@@ -63,11 +63,6 @@
     self.amountView.subLabel.text = [NSString stringWithFormat:@"%@ %@ %@",LocalizedString(@"ValidatorAvilable"),self.tokenModel.amount,[kMainToken uppercaseString]];
     self.feeView.textField.text = kMinFee;
 }
-- (void)refreshRelieveAssets:(XXHadDelegateModel*)hadDelegateModel {
-    self.hadDelegateModel = hadDelegateModel;
-    self.amountView.subLabel.text = [NSString stringWithFormat:@"%@ %@ %@",LocalizedString(@"ValidatorAvilableRelieve"),hadDelegateModel.bonded,[kMainToken uppercaseString]];
-    self.feeView.textField.text = kMinFee;
-}
 - (void)reloadTransferData{
     self.amountView.textField.text = [NSString stringWithFormat:@"%@",self.tokenModel.amount];
 }

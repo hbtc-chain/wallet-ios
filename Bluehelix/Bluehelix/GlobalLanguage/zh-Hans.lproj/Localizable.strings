@@ -229,7 +229,7 @@
 "ValidatorAvilable" = "可用";
 "ValidatorAvilableTransfer" = "可转";
 "ValidatorAvilableRelieve" = "可解";
-"ValidatorRelieveToAddress" = "可解至";
+"ValidatorRelieveToAddress" = "我的托管单元";
 
 
 "PleaseFillAll" = "请填写完整信息";

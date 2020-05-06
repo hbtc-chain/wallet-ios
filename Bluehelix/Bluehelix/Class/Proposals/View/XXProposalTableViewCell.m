@@ -81,13 +81,13 @@
 #pragma mark layout
 - (void)layoutSubviews{
     [self.backShadowView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.mas_equalTo(12);
+        make.top.mas_equalTo(9);
         make.left.mas_equalTo(16);
         make.right.mas_equalTo(-16);
-        make.bottom.mas_equalTo(-12);
+        make.bottom.mas_equalTo(-3);
     }];
     [self.proposalStatusImageview mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.mas_equalTo(24);
+        make.top.mas_equalTo(21);
         make.left.mas_equalTo(32);
         make.width.height.mas_equalTo(20);
     }];
@@ -187,7 +187,7 @@
             
         }];
         _proposalDetalButton.userInteractionEnabled = NO;
-        _proposalDetalButton.layer.cornerRadius = 12;
+        _proposalDetalButton.layer.cornerRadius = 14;
         _proposalDetalButton.layer.borderWidth = 1.0;
         _proposalDetalButton.layer.borderColor = [UIColor colorWithHexString:@"#3375E0"].CGColor;
     }

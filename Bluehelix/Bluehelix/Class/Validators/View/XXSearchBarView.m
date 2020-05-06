@@ -17,6 +17,8 @@
         self.backgroundColor = kGray50;
         [self addSubview:self.searchIconImageView];
         [self addSubview:self.searchTextField];
+        self.layer.masksToBounds = YES;
+        self.layer.cornerRadius = 4.0f;
     }
     return self;
 }
@@ -25,7 +27,7 @@
 - (void)layoutSubviews{
     [super layoutSubviews];
     [self.searchIconImageView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.mas_equalTo(K375(16));
+        make.left.mas_equalTo(K375(8));
         make.width.height.mas_equalTo(16);
         make.top.mas_equalTo(8);
     }];
@@ -56,6 +58,7 @@
         _searchTextField.placeholder = LocalizedString(@"EnterTokenNameSearch");
         _searchTextField.placeholderColor = kGray500;
         _searchTextField.placeholderFont = kFont(15);
+        _searchTextField.clearButtonMode = UITextFieldViewModeWhileEditing;
 //        _searchTextField.backgroundColor = kGray50;
     }
     return _searchTextField;

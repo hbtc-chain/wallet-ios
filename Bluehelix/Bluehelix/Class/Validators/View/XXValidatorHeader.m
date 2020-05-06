@@ -15,6 +15,7 @@
     if (self) {
         [self addSubview:self.titleLabel];
         [self addSubview:self.headerBackgroundImageview];
+        [self.headerBackgroundImageview bringSubviewToFront:self];
     }
     return self;
 }

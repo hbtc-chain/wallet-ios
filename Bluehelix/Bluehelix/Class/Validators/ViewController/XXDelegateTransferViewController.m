@@ -66,7 +66,7 @@
         
     switch (self.delegateNodeType) {
         case 0:
-            self.delegateTransferView.addressView.textField.text = _validatorModel.operator_address;
+            self.delegateTransferView.addressView.textField.text = [NSString addressReplace:KString(_validatorModel.operator_address)];
             [self.assetManager requestAsset];
             break;
         case 1:
@@ -74,7 +74,7 @@
             break;
             
         default:
-            self.delegateTransferView.addressView.textField.text = [NSString stringWithFormat:@"%@: %@",LocalizedString(@"ValidatorRelieveToAddress"),KUser.address];
+            self.delegateTransferView.addressView.textField.text = [NSString stringWithFormat:@"%@: %@",LocalizedString(@"ValidatorRelieveToAddress"),[NSString addressReplace:KString(KUser.address)]];
             [self requestHadDelegatesList];
             break;
     }
@@ -135,7 +135,7 @@
     NSDecimalNumber *amountDecimal = [NSDecimalNumber decimalNumberWithString:self.delegateTransferView.amountView.textField.text];
     NSDecimalNumber *feeAmountDecimal = [NSDecimalNumber decimalNumberWithString:self.delegateTransferView.feeView.textField.text];
     NSDecimalNumber *gasPriceDecimal = [NSDecimalNumber decimalNumberWithString:[NSString stringWithFormat:@"%f",self.delegateTransferView.speedView.slider.value]];
-    NSString *toAddress = self.delegateTransferView.addressView.textField.text;
+    NSString *toAddress = KString(self.validatorModel.operator_address);
     NSString *amount = [[amountDecimal decimalNumberByMultiplyingBy:kPrecisionDecimalPower(tokenModel.decimals)] stringValue];
     NSString *feeAmount = [[feeAmountDecimal decimalNumberByMultiplyingBy:kPrecisionDecimalPower(tokenModel.decimals)] stringValue];
     NSString *gas = [[[feeAmountDecimal decimalNumberByDividingBy:gasPriceDecimal] decimalNumberByDividingBy:kPrecisionDecimal_U] stringValue];
@@ -210,7 +210,7 @@
 - (XXButton *)transferButton {
     if (!_transferButton) {
         MJWeakSelf
-        _transferButton = [XXButton buttonWithFrame:CGRectMake(KSpacing, kScreen_Height - 64- 8, kScreen_Width - KSpacing*2, 48) title:@"" font:kFontBold14 titleColor:kMainTextColor block:^(UIButton *button) {
+        _transferButton = [XXButton buttonWithFrame:CGRectMake(KSpacing, kScreen_Height - 64- 8, kScreen_Width - KSpacing*2, 48) title:@"" font:kFontBold14 titleColor:kWhiteNoChange block:^(UIButton *button) {
             [weakSelf transferVerify];
         }];
         _transferButton.backgroundColor = kPrimaryMain;

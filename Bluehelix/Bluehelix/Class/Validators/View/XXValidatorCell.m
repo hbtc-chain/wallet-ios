@@ -54,14 +54,20 @@
 #pragma mark layout
 - (void)layoutSubviews{
     [super layoutSubviews];
+    [self.shadowView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.mas_equalTo(9);
+        make.left.mas_equalTo(16);
+        make.right.mas_equalTo(-16);
+        make.bottom.mas_equalTo(-6);
+    }];
     [self.validatorName mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.mas_equalTo(32);
-        make.top.mas_equalTo(18);
+        make.top.mas_equalTo(21);
         make.height.mas_equalTo(32);
     }];
     [self.validatorStatusImageview mas_makeConstraints:^(MASConstraintMaker *make) {
         make.right.mas_equalTo(-32);
-        make.top.mas_equalTo(18);
+        make.top.mas_equalTo(21);
         make.height.width.mas_equalTo(16);
     }];
     //投票权
@@ -116,7 +122,7 @@
 #pragma mark lazy load
 - (UIView *)shadowView{
     if (!_shadowView) {
-        _shadowView = [[UIView alloc] initWithFrame:CGRectMake(16, 6, kScreen_Width -32, 108)];
+        _shadowView = [[UIView alloc] initWithFrame:CGRectZero];
         //_shadowView.layer.shadowPath = [UIBezierPath bezierPathWithRect:self.bounds].CGPath;
         _shadowView.clipsToBounds = NO;
         _shadowView.backgroundColor = kBackgroundLeverSecond;

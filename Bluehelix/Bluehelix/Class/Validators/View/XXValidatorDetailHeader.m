@@ -67,6 +67,9 @@
         _validatorStatuesButton = [XXButton buttonWithFrame:CGRectZero title:@"" font:kFontBold13 titleColor:kGreen100 block:^(UIButton *button) {
             
         }];
+        [_validatorStatuesButton setBackgroundImage:[UIImage createImageWithColor:kGray50] forState:UIControlStateNormal];
+        _validatorStatuesButton.userInteractionEnabled = NO;
+        _validatorStatuesButton.layer.masksToBounds = YES;
         _validatorStatuesButton.layer.cornerRadius = 16;
     }
     return _validatorStatuesButton;;

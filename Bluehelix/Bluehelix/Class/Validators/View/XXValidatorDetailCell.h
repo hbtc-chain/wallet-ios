@@ -7,10 +7,12 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "XXValidatorListModel.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
 @interface XXValidatorDetailCell : UITableViewCell
+@property (nonatomic, strong) XXValidatorListModel *validatorModel;
 
 @property (nonatomic, strong) XXLabel *labelInfo;
 
