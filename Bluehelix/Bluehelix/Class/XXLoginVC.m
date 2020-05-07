@@ -90,7 +90,7 @@
 - (XXAddressView *)addressView {
     if (!_addressView) {
         MJWeakSelf
-        _addressView = [[XXAddressView alloc] initWithFrame:CGRectMake(0, CGRectGetMaxY(self.userNameLabel.frame)+16, kScreen_Width, 18)];
+        _addressView = [[XXAddressView alloc] initWithFrame:CGRectMake(0, CGRectGetMaxY(self.userNameLabel.frame)+4, kScreen_Width, 18)];
         _addressView.sureBtnBlock = ^{
             weakSelf.userNameLabel.text = KUser.currentAccount.userName;
         };

@@ -146,14 +146,14 @@
 
 - (XXLabel *)priceLabel {
     if (_priceLabel == nil) {
-        _priceLabel = [XXLabel labelWithFrame:CGRectMake(self.coinNameLabel.left, CGRectGetMaxY(self.coinNameLabel.frame), 100, 24) text:@"" font:kNumberFont(13) textColor:kGray500];
+        _priceLabel = [XXLabel labelWithFrame:CGRectMake(self.coinNameLabel.left, CGRectGetMaxY(self.coinNameLabel.frame), 100, 16) text:@"" font:kNumberFont(13) textColor:kGray500];
     }
     return _priceLabel;
 }
 
 - (XXLabel *)moneyLabel {
     if (_moneyLabel == nil) {
-        _moneyLabel = [XXLabel labelWithFrame:CGRectMake(CGRectGetMaxX(self.priceLabel.frame), self.priceLabel.top, kScreen_Width - 16 - CGRectGetMaxX(self.priceLabel.frame), 24) text:@"" font:kNumberFont(13) textColor:kGray500];
+        _moneyLabel = [XXLabel labelWithFrame:CGRectMake(CGRectGetMaxX(self.priceLabel.frame), self.priceLabel.top, kScreen_Width - 16 - CGRectGetMaxX(self.priceLabel.frame), 16) text:@"" font:kNumberFont(13) textColor:kGray500];
         _moneyLabel.textAlignment = NSTextAlignmentRight;
     }
     return _moneyLabel;

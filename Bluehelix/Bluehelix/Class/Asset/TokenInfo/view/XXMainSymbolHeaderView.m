@@ -131,7 +131,7 @@
 
 - (XXLabel *)amountLabel {
     if (!_amountLabel) {
-        _amountLabel = [XXLabel labelWithFrame:CGRectMake(K375(16), CGRectGetMaxY(self.tipLabel.frame), self.backView.width - K375(32), 40) font:kNumberFont(26) textColor:kGray900];
+        _amountLabel = [XXLabel labelWithFrame:CGRectMake(K375(16), CGRectGetMaxY(self.tipLabel.frame), self.backView.width - K375(32), 40) font:kNumberFontBold(26) textColor:kGray900];
     }
     return _amountLabel;
 }
