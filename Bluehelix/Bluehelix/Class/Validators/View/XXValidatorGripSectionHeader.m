@@ -8,12 +8,15 @@
 
 #import "XXValidatorGripSectionHeader.h"
 @interface XXValidatorGripSectionHeader ()
+@property (nonatomic, strong) UIView *searchBackgroundView;
 @property (nonatomic, strong) UIView *lineView;
 @end
 @implementation XXValidatorGripSectionHeader
 - (instancetype)initWithReuseIdentifier:(NSString *)reuseIdentifier{
     if (self = [super initWithReuseIdentifier:reuseIdentifier]) {
         self.backgroundColor = kBackgroundLeverFirst;
+        [self addSubview:self.coverView];
+        [self addSubview:self.searchBackgroundView];
         [self addSubview:self.validatorToolBar];
         [self addSubview:self.lineView];
         [self addSubview:self.searchView];
@@ -41,6 +44,15 @@
         make.height.mas_equalTo(1);
         make.top.mas_equalTo(self.validatorToolBar.mas_bottom);
     }];
+    [self.coverView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.right.mas_equalTo(0);
+        make.top.mas_equalTo(0);
+        make.bottom.mas_equalTo(0);
+    }];
+    [self.searchBackgroundView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.right.bottom.mas_equalTo(0);
+        make.top.mas_equalTo(self.lineView.mas_bottom);
+    }];
     [self.searchView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.mas_equalTo(self.lineView.mas_bottom).offset(16);
         make.left.mas_equalTo(K375(16));
@@ -64,6 +76,13 @@
     }
     return _validatorToolBar;
 }
+- (UIView *)coverView{
+    if (!_coverView) {
+        _coverView = [[UIView alloc]initWithFrame:CGRectZero];
+        _coverView.backgroundColor = [UIColor clearColor];
+    }
+    return _coverView;
+}
 - (UIView*)lineView{
     if (!_lineView) {
         _lineView = [[UIView alloc]initWithFrame:CGRectZero];
@@ -71,10 +90,16 @@
     }
     return _lineView;
 }
+- (UIView *)searchBackgroundView{
+    if (!_searchBackgroundView) {
+        _searchBackgroundView = [[UIView alloc]initWithFrame:CGRectZero];
+        _searchBackgroundView.backgroundColor = kBackgroundLeverFirst;
+    }
+    return _searchBackgroundView;;
+}
 - (XXSearchBarView  *)searchView {
     if (!_searchView) {
         _searchView = [[XXSearchBarView alloc] initWithFrame:CGRectZero];
-        _searchView.backgroundColor = kBackgroundLeverFirst;
         _searchView.searchTextField.placeholder = LocalizedString(@"PleaseInputValidatorName");
         [_searchView.searchTextField addTarget:self action:@selector(textFieldValueChange:) forControlEvents:UIControlEventEditingChanged];
     }

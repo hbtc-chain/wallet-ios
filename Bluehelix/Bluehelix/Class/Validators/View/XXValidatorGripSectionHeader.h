@@ -19,7 +19,10 @@ typedef void(^XXTextFieldValueChangeCallBack)(NSString *textfiledText);
 @property (nonatomic, copy) XXSelectValidOrInvalidCallBack selectValidOrInvalidCallBack;
 
 @property (nonatomic, strong) XXValidatorToolBar *validatorToolBar;
+
 @property (nonatomic, strong) XXSearchBarView *searchView;
+
+@property (nonatomic, strong) UIView *coverView;
 @end
 
 NS_ASSUME_NONNULL_END

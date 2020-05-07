@@ -13,6 +13,8 @@
 #import "XXProposalTableViewCell.h"
 #import "XXProposalListHeader.h"
 #import "XXProposalGripSectionHeader.h"
+#import "XXEmptyView.h"
+#import "XXFailureView.h"
 /**model*/
 #import "XXProposalListModel.h"
 
@@ -30,10 +32,16 @@ static NSInteger pageCount = 20;
 @property (nonatomic, strong) XXProposalListHeader *bigHeaderView;
 /**seciton header*/
 @property (nonatomic, strong) XXProposalGripSectionHeader *sectionHeader;
+/**无数据空白页面*/
+@property (nonatomic, strong) XXEmptyView *emptyView;
+/**无网络*/
+@property (nonatomic, strong) XXFailureView *failureView;
 /**当前第几页*/
 @property (nonatomic, assign) NSInteger pageNumber;
 /**是否在搜索*/
 @property (nonatomic, assign) BOOL isFilting;
+/**是否数据请求失败*/
+@property (nonatomic, assign) BOOL isFailedNetworking;
 @end
 
 @implementation XXProposalsListViewController
@@ -84,7 +92,11 @@ static NSInteger pageCount = 20;
 /// 请求提案列表信息
 - (void)requestProposalList {
     @weakify(self)
-    
+    self.isFailedNetworking = NO;
+    if (self.proposalListArray.count == 0) {
+        //首次加载展示
+        [MBProgressHUD showActivityMessageInView:@""];
+    }
     NSMutableDictionary *dic = [NSMutableDictionary dictionary];
     [dic setObject:@(self.pageNumber) forKey:@"page"];
     [dic setObject:@(pageCount) forKey:@"page_size"];
@@ -106,6 +118,7 @@ static NSInteger pageCount = 20;
             [self.filtProposalsArray addObjectsFromArray:listArray];
             [self.proposalsTableView reloadData];
         } else {
+            self.isFailedNetworking = YES;
             Alert *alert = [[Alert alloc] initWithTitle:msg duration:kAlertDuration completion:^{
             }];
             [alert showAlert];
@@ -127,24 +140,45 @@ static NSInteger pageCount = 20;
 }
 #pragma mark UITableViewDelegate UITableViewDataSource
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-    return 1;
+    return self.proposalListArray.count  == 0 ? 2 : 1;
 }
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     return self.isFilting ? self.filtProposalsArray.count : self.proposalListArray.count;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
-    return 55;
+    if (section ==0) {
+        return 55;
+    }else{
+        if ([KUser.netWorkStatus isEqualToString:@"notReachable"] || self.isFailedNetworking) {
+            return self.failureView.height;
+        } else {
+            return self.emptyView.height;
+        }
+    };
 }
 
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
-    self.sectionHeader = [tableView dequeueReusableHeaderFooterViewWithIdentifier:KProposalGripSectionHeader];
-    @weakify(self)
-    self.sectionHeader.textfieldValueChangeBlock = ^(NSString * _Nonnull textfiledText) {
-        @strongify(self)
-        [self searchLoadData:textfiledText];
-    };
-    return self.sectionHeader;
+    if (section == 0) {
+        self.sectionHeader = [tableView dequeueReusableHeaderFooterViewWithIdentifier:KProposalGripSectionHeader];
+        @weakify(self)
+        self.sectionHeader.textfieldValueChangeBlock = ^(NSString * _Nonnull textfiledText) {
+            @strongify(self)
+            [self searchLoadData:textfiledText];
+        };
+        return self.sectionHeader;
+    }else{
+        if (self.proposalListArray.count == 0) {
+            if ([KUser.netWorkStatus isEqualToString:@"notReachable"] || self.isFailedNetworking) {
+                return self.failureView;
+            } else {
+                return self.emptyView ;
+            }
+            return self.emptyView ;
+        } else {
+            return [UIView new];
+        }
+    }
 }
 - (void)tableView:(UITableView *)tableView willDisplayHeaderView:(UIView *)view forSection:(NSInteger)section {
     if ([view isKindOfClass:[UITableViewHeaderFooterView class]]) {
@@ -211,6 +245,22 @@ static NSInteger pageCount = 20;
         _bigHeaderView = [[XXProposalListHeader alloc]initWithFrame:CGRectMake(0, 0, kScreen_Width, 122)];
     }
     return _bigHeaderView;;
+}
+- (XXEmptyView *)emptyView {
+    if (_emptyView == nil) {
+        _emptyView = [[XXEmptyView alloc] initWithFrame:CGRectMake(0, 0, kScreen_Width, K375(300)) iamgeName:@"noData" alert:LocalizedString(@"NoProposalTip")];
+    }
+    return _emptyView;
+}
+- (XXFailureView *)failureView {
+    if (_failureView == nil) {
+        _failureView = [[XXFailureView alloc] initWithFrame:CGRectMake(0, 0, kScreen_Width, K375(300))];
+        MJWeakSelf
+        _failureView.reloadBlock = ^{
+            [weakSelf loadData];
+        };
+    }
+    return _failureView;
 }
 #pragma mark lazy load data
 - (NSMutableArray *)proposalListArray{

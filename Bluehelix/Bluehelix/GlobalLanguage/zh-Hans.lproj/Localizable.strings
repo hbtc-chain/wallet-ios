@@ -230,6 +230,7 @@
 "ValidatorAvilableTransfer" = "可转";
 "ValidatorAvilableRelieve" = "可解";
 "ValidatorRelieveToAddress" = "我的托管单元";
+"NoValidatorTip" = "暂无验证人";
 
 
 "PleaseFillAll" = "请填写完整信息";
@@ -252,6 +253,7 @@
 "PleaseInputProposalDescription" = "请输入提案描述";
 "PleaseInputPledgeAmout" = "请输入质押数量";
 "PleaseInputFee" = "请输入手续费";
+"NoProposalTip" = "暂无治理提案";
 
 "ProposalDetailButton" = "查看详情";
 //治理提案状态
