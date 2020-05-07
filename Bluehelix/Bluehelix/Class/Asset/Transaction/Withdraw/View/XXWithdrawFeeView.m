@@ -40,7 +40,7 @@
 /** 名称标签 */
 - (XXLabel *)nameLabel {
     if (_nameLabel == nil) {
-        _nameLabel = [XXLabel labelWithFrame:CGRectMake(KSpacing, 16, kScreen_Width - KSpacing*2, 24) font:kFontBold14 textColor:kGray];
+        _nameLabel = [XXLabel labelWithFrame:CGRectMake(KSpacing, 16, kScreen_Width - KSpacing*2, 24) font:kFont15 textColor:kGray];
         _nameLabel.text = LocalizedString(@"Fee");
     }
     return _nameLabel;
@@ -79,7 +79,7 @@
     if (_textField == nil) {
         _textField = [[XXFloadtTextField alloc] initWithFrame:CGRectMake(K375(8), 0, self.banView.width - K375(16), self.banView.height)];
         _textField.textColor = kGray900;
-        _textField.font = kFont14;
+        _textField.font = kFont15;
         _textField.isPrecision = NO;
         [_textField addTarget:self action:@selector(textFieldChanged:) forControlEvents:UIControlEventEditingChanged];
         _textField.placeholderColor = kGray500;

@@ -72,7 +72,7 @@
 /** 名称标签 */
 - (XXLabel *)nameLabel {
     if (_nameLabel == nil) {
-        _nameLabel = [XXLabel labelWithFrame:CGRectMake(KSpacing, 16, kScreen_Width - KSpacing*2, 24) font:kFontBold14 textColor:kGray];
+        _nameLabel = [XXLabel labelWithFrame:CGRectMake(KSpacing, 16, kScreen_Width - KSpacing*2, 24) font:kFont15 textColor:kGray];
     }
     return _nameLabel;
 }
@@ -80,7 +80,7 @@
 /** 字标签 */
 - (XXLabel *)subLabel {
     if (_subLabel == nil) {
-        _subLabel = [XXLabel labelWithFrame:self.nameLabel.frame font:kFont14 textColor:kGray500];
+        _subLabel = [XXLabel labelWithFrame:self.nameLabel.frame font:kFont13 textColor:kGray500];
         _subLabel.textAlignment = NSTextAlignmentRight;
     }
     return _subLabel;
@@ -103,7 +103,7 @@
         MJWeakSelf
         NSString *titleString = LocalizedString(@"WithdrawAll");
         CGFloat btnWidth = [NSString widthWithText:titleString font:kFont14] + 16;
-        _allButton = [XXButton buttonWithFrame:CGRectMake(self.banView.width - btnWidth, 0, btnWidth, self.banView.height) title:titleString font:kFont14 titleColor:kPrimaryMain block:^(UIButton *button) {
+        _allButton = [XXButton buttonWithFrame:CGRectMake(self.banView.width - btnWidth, 0, btnWidth, self.banView.height) title:titleString font:kFont15 titleColor:kPrimaryMain block:^(UIButton *button) {
             [weakSelf allButtonClick:button];
         }];
     }
@@ -115,7 +115,7 @@
     if (_textField == nil) {
         _textField = [[XXFloadtTextField alloc] initWithFrame:CGRectMake(K375(8), 0, self.banView.width - K375(8) - self.allButton.width, self.banView.height)];
         _textField.textColor = kGray900;
-        _textField.font = kFont14;
+        _textField.font = kFont15;
         _textField.isPrecision = NO;
         [_textField addTarget:self action:@selector(textFieldChanged:) forControlEvents:UIControlEventEditingChanged];
         _textField.placeholderColor = kGray500;

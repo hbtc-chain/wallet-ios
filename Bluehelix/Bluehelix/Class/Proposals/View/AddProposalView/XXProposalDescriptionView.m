@@ -43,7 +43,6 @@
     self.countLabel.text = [NSString stringWithFormat:@"%lu/%ld%@", (unsigned long)textView.text.length,(long)MaxCount,LocalizedString(@"ProposalDescriptionMaxCountUnit")];
     if ( (unsigned long)textView.text.length > MaxCount) {
     // 对超出的部分进行剪切
-
         textView.text = [textView.text substringToIndex:MaxCount];
         self.countLabel.text = [NSString stringWithFormat:@"%ld/%ld%@",(long)MaxCount,(long)MaxCount,LocalizedString(@"ProposalDescriptionMaxCountUnit")];
      }
@@ -53,7 +52,7 @@
 /** 名称标签 */
 - (XXLabel *)nameLabel {
     if (_nameLabel == nil) {
-        _nameLabel = [XXLabel labelWithFrame:CGRectMake(KSpacing, 10, kScreen_Width - KSpacing*2, 24) font:kFontBold14 textColor:kGray];
+        _nameLabel = [XXLabel labelWithFrame:CGRectMake(KSpacing, 10, kScreen_Width - KSpacing*2, 24) font:kFont15 textColor:kGray];
         //_nameLabel.text = LocalizedString(@"WithdrawAddress");
     }
     return _nameLabel;
@@ -71,7 +70,7 @@
 /** 单位标签 */
 - (XXLabel *)unitLabel {
     if (_unitLabel == nil) {
-        _unitLabel = [XXLabel labelWithFrame:CGRectMake(self.banView.width - K375(200), 0, K375(192), self.banView.height) font:kFont14 textColor:kGray500];
+        _unitLabel = [XXLabel labelWithFrame:CGRectMake(self.banView.width - K375(200), 0, K375(192), self.banView.height) font:kFont15 textColor:kGray500];
         _unitLabel.textAlignment = NSTextAlignmentRight;
     }
     return _unitLabel;
@@ -82,7 +81,7 @@
     if (_textView == nil) {
         _textView = [[UITextView alloc] initWithFrame:CGRectMake(K375(8), 0, self.banView.width -K375(16), self.banView.height)];
         _textView.textColor = kGray900;
-        _textView.font = kFont14;
+        _textView.font = kFont15;
         _textView.delegate = self;
         _textView.textColor = kGray900;
         _textView.backgroundColor = [UIColor clearColor];

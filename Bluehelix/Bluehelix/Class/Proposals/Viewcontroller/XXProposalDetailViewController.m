@@ -57,7 +57,7 @@ static NSString *kProposalDetailInfoCell = @"ProposalDetailInfomationCell";
     //section info
     NSArray *firstInfoArray= @[LocalizedString(@"ProposalDetailStatus"),LocalizedString(@"ProposalDetailIdentify"),LocalizedString(@"ProposalDetailType"),LocalizedString(@"ProposalDetailUser"),LocalizedString(@"ProposalDetailDate")];
     //section value
-    NSArray *firstValueArray = @[KString(self.proposalModel.proposalId),KString(self.proposalModel.type),KString(self.proposalModel.proposer),[NSString dateStringFromTimestampWithTimeTamp:[KString(self.proposalModel.submit_time) longLongValue]]];
+    NSArray *firstValueArray = @[KString(self.proposalModel.proposalId),KString(self.proposalModel.type),[NSString addressReplace:KString(self.proposalModel.proposer)],[NSString dateStringFromTimestampWithTimeTamp:[KString(self.proposalModel.submit_time) longLongValue]]];
     //已质押
     NSString *pledgedString = [NSString stringWithFormat:@"%@/%@%@",KString(self.proposalModel.total_deposit),KString(self.proposalModel.deposit_threshold),[kMainToken uppercaseString]];
     //投票结束时间
@@ -347,7 +347,7 @@ static NSString *kProposalDetailInfoCell = @"ProposalDetailInfomationCell";
 - (XXButton *)transferButton {
     if (!_transferButton) {
         @weakify(self)
-        _transferButton = [XXButton buttonWithFrame:CGRectMake(KSpacing, kScreen_Height - 64 -8 , kScreen_Width - KSpacing*2, 48) title:@"" font:kFontBold14 titleColor:kMainTextColor block:^(UIButton *button) {
+        _transferButton = [XXButton buttonWithFrame:CGRectMake(KSpacing, kScreen_Height - 64 -8 , kScreen_Width - KSpacing*2, 48) title:@"" font:kFontBold17 titleColor:kMainTextColor block:^(UIButton *button) {
             @strongify(self)
             [self transferButtonAction:self.transferButton];
         }];

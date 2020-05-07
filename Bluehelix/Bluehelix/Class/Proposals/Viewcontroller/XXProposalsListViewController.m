@@ -19,7 +19,7 @@
 static NSString *KProposalTableViewCell = @"XXProposalTableViewCell";
 static NSString *KProposalGripSectionHeader = @"ProposalGripSectionHeader";
 static NSInteger pageCount = 20;
-@interface XXProposalsListViewController ()<UITableViewDelegate,UITableViewDataSource>
+@interface XXProposalsListViewController ()<UITableViewDelegate,UITableViewDataSource,UIScrollViewDelegate>
 /**列表*/
 @property (nonatomic, strong) UITableView *proposalsTableView;
 /**原有数据源*/
@@ -116,6 +116,14 @@ static NSInteger pageCount = 20;
 - (void)rightButtonClick:(UIButton *)sender{
     XXVoteProposalViewController *vote = [[XXVoteProposalViewController alloc]init];
     [self.navigationController pushViewController:vote animated:YES];
+}
+#pragma mark UIScrollViewDelegate
+- (void)scrollViewDidScroll:(UIScrollView *)scrollView{
+    if (scrollView.contentOffset.y >35) {
+        self.titleLabel.text = LocalizedString(@"ProposalVoteTitle");
+    }else{
+        self.titleLabel.text = @"";
+    }
 }
 #pragma mark UITableViewDelegate UITableViewDataSource
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {

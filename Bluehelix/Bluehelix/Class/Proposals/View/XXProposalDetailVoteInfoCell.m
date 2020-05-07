@@ -86,10 +86,10 @@
     
     NSDecimalNumber *voteNoWithVetoRatioDecimal = [[[NSDecimalNumber decimalNumberWithString:_proposalModel.result.no_with_veto] decimalNumberByDividingBy:totalStingDecimal]decimalNumberByMultiplyingBy:[NSDecimalNumber decimalNumberWithString:@"100"]];
     NSString *voteNoWithVetoRatio = [KDecimal decimalNumber:voteNoWithVetoRatioDecimal.stringValue RoundingMode:NSRoundDown scale:2];
-    self.voteValue.text = [NSString stringWithFormat:@"%@(%@%@)",KString(_proposalModel.result.yes),voteYesRatio,@"%"];
-    self.voteValue2.text = [NSString stringWithFormat:@"%@(%@%@)",KString(_proposalModel.result.no),voteNoRatio,@"%"];
-    self.voteValue3.text = [NSString stringWithFormat:@"%@(%@)%@",KString(_proposalModel.result.abstain),voteAbstainRatio,@"%"];
-    self.voteValue4.text = [NSString stringWithFormat:@"%@(%@)%@",KString(_proposalModel.result.no_with_veto),voteNoWithVetoRatio,@"%"];
+    self.voteValue.text = [NSString stringWithFormat:@"%@ (%@%@)",KString(_proposalModel.result.yes),voteYesRatio,@"%"];
+    self.voteValue2.text = [NSString stringWithFormat:@"%@ (%@%@)",KString(_proposalModel.result.no),voteNoRatio,@"%"];
+    self.voteValue3.text = [NSString stringWithFormat:@"%@ (%@)%@",KString(_proposalModel.result.abstain),voteAbstainRatio,@"%"];
+    self.voteValue4.text = [NSString stringWithFormat:@"%@ (%@)%@",KString(_proposalModel.result.no_with_veto),voteNoWithVetoRatio,@"%"];
     
 }
 #pragma mark layout

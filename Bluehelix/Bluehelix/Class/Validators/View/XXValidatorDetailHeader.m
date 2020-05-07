@@ -45,9 +45,11 @@
     if ([_validOrInvalid isEqualToString:@"1"]) {
         [self.validatorStatuesButton setTitle:LocalizedString(@"valid") forState:UIControlStateNormal];
         [self.validatorStatuesButton setImage:[UIImage imageNamed:@"Validator_valid"] forState:UIControlStateNormal];
+        [self.validatorStatuesButton setTitleColor:kGreen100 forState:UIControlStateNormal];
     }else{
         [self.validatorStatuesButton setTitle:LocalizedString(@"invalid") forState:UIControlStateNormal];
         [self.validatorStatuesButton setImage:[UIImage imageNamed:@"Validator_invalid"] forState:UIControlStateNormal];
+        [self.validatorStatuesButton setTitleColor:kGray700 forState:UIControlStateNormal];
     }
 }
 - (void)setValidatorModel:(XXValidatorListModel *)validatorModel{

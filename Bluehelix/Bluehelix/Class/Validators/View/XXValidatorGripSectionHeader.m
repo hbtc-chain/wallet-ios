@@ -13,7 +13,7 @@
 @implementation XXValidatorGripSectionHeader
 - (instancetype)initWithReuseIdentifier:(NSString *)reuseIdentifier{
     if (self = [super initWithReuseIdentifier:reuseIdentifier]) {
-        self.backgroundColor = kWhiteColor;
+        self.backgroundColor = kBackgroundLeverFirst;
         [self addSubview:self.validatorToolBar];
         [self addSubview:self.lineView];
         [self addSubview:self.searchView];
@@ -54,6 +54,7 @@
     MJWeakSelf
     if (!_validatorToolBar) {
         _validatorToolBar = [[XXValidatorToolBar alloc]initWithFrame:CGRectZero];
+        //_validatorToolBar.backgroundColor = kBackgroundLeverFirst;
         _validatorToolBar.itemsArray = [NSMutableArray arrayWithArray:@[LocalizedString(@"valid"),LocalizedString(@"invalid")]];
         _validatorToolBar.ToolbarSelectCallBack = ^(NSInteger index) {
             if (weakSelf.selectValidOrInvalidCallBack) {
@@ -73,6 +74,7 @@
 - (XXSearchBarView  *)searchView {
     if (!_searchView) {
         _searchView = [[XXSearchBarView alloc] initWithFrame:CGRectZero];
+        _searchView.backgroundColor = kBackgroundLeverFirst;
         _searchView.searchTextField.placeholder = LocalizedString(@"PleaseInputValidatorName");
         [_searchView.searchTextField addTarget:self action:@selector(textFieldValueChange:) forControlEvents:UIControlEventEditingChanged];
     }

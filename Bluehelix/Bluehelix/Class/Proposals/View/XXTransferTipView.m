@@ -30,7 +30,7 @@
     if (!_tipBackgroundView) {
         _tipBackgroundView = [[UIView alloc]initWithFrame:CGRectMake(16, 16, kScreen_Width- 32, 120)];
         _tipBackgroundView.layer.cornerRadius = 10.0f;
-        _tipBackgroundView.layer.borderWidth = 1.0f;
+        _tipBackgroundView.layer.borderWidth = 2.0f;
         _tipBackgroundView.layer.borderColor = [kGray100 CGColor];
     }
     return _tipBackgroundView;

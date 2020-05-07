@@ -16,7 +16,7 @@
 #import "XXValidatorListModel.h"
 static NSString *KValidatorsListReuseCell = @"validatorsListReuseCell";
 static NSString *KValidatorGripSectionHeader = @"XXValidatorGripSectionHeader";
-@interface XXValidatorsHomeViewController ()<UITableViewDelegate,UITableViewDataSource>
+@interface XXValidatorsHomeViewController ()<UITableViewDelegate,UITableViewDataSource,UIScrollViewDelegate>
 @property (nonatomic, strong) UITableView *validatorsListTableView;
 /**汇总数据源*/
 @property (nonatomic, strong) NSMutableArray *validatorsDataArray;
@@ -110,7 +110,14 @@ static NSString *KValidatorGripSectionHeader = @"XXValidatorGripSectionHeader";
         }
     }];
 }
-
+#pragma mark UIScrollViewDelegate
+- (void)scrollViewDidScroll:(UIScrollView *)scrollView{
+    if (scrollView.contentOffset.y >35) {
+        self.titleLabel.text = LocalizedString(@"ValidatorTitle");
+    }else{
+        self.titleLabel.text = @"";
+    }
+}
 #pragma mark UITableViewDelegate UITableViewDataSource
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
     return 1;
