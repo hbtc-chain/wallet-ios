@@ -41,7 +41,7 @@
     if (!_searchView) {
         _searchView = [[XXSearchBarView alloc] initWithFrame:CGRectZero];
         _searchView.searchTextField.placeholder = LocalizedString(@"PleaseInputVoteName");
-        [_searchView.searchTextField addTarget:self action:@selector(textFieldValueChange:) forControlEvents:UIControlEventEditingChanged];
+        [_searchView.searchTextField addTarget:self action:@selector(textFieldValueChange:) forControlEvents:UIControlEventEditingChanged | UIControlEventEditingDidEnd];
     }
     return _searchView;
 }

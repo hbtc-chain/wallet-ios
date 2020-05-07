@@ -73,12 +73,12 @@ static NSInteger pageCount = 20;
     if (inputSting.length ==0) {
         self.isFilting = NO;
         [self.filtProposalsArray removeAllObjects];
-        self.filtProposalsArray = [self.proposalListArray mutableCopy];
+        [self.filtProposalsArray addObjectsFromArray:self.proposalListArray];
         [self.proposalsTableView reloadData];
         return;
     }
     NSMutableArray *tempArray = [NSMutableArray array];
-    for (XXProposalModel*model in self.filtProposalsArray) {
+    for (XXProposalModel*model in self.proposalListArray) {
         if ([[model.title lowercaseString] containsString:[inputSting lowercaseString]]) {
             [tempArray addObject:model];
         }

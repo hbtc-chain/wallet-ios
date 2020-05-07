@@ -101,7 +101,7 @@
     if (!_searchView) {
         _searchView = [[XXSearchBarView alloc] initWithFrame:CGRectZero];
         _searchView.searchTextField.placeholder = LocalizedString(@"PleaseInputValidatorName");
-        [_searchView.searchTextField addTarget:self action:@selector(textFieldValueChange:) forControlEvents:UIControlEventEditingChanged];
+        [_searchView.searchTextField addTarget:self action:@selector(textFieldValueChange:) forControlEvents:UIControlEventEditingChanged | UIControlEventEditingDidEnd];
     }
     return _searchView;
 }

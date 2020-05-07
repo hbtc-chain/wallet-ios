@@ -72,18 +72,20 @@ static NSString *KValidatorGripSectionHeader = @"XXValidatorGripSectionHeader";
         [self.validatorsDataArray removeAllObjects];
         [self.filtValidatorsDataArray removeAllObjects];
     }
+    //还原输入框
+    self.sectionHeader.searchView.searchTextField.text = @"";
     [self requestValidatorsList];
 }
 - (void)searchLoadData:(NSString*)inputSting{
     if (inputSting.length ==0) {
         self.isFilting = NO;
         [self.filtValidatorsDataArray removeAllObjects];
-        self.filtValidatorsDataArray = [self.validatorsDataArray mutableCopy];
+        [self.filtValidatorsDataArray addObjectsFromArray:self.validatorsDataArray];
         [self.validatorsListTableView reloadData];
         return;
     }
     NSMutableArray *tempArray = [NSMutableArray array];
-    for (XXValidatorListModel*model in self.filtValidatorsDataArray) {
+    for (XXValidatorListModel*model in self.validatorsDataArray) {
         if ([[model.validatorDescription.moniker lowercaseString] containsString:[inputSting lowercaseString]]) {
             [tempArray addObject:model];
         }
@@ -195,7 +197,7 @@ static NSString *KValidatorGripSectionHeader = @"XXValidatorGripSectionHeader";
     }
 }
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
-    return 132;
+    return 120;
 }
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     XXValidatorCell *cell = [tableView dequeueReusableCellWithIdentifier:KValidatorsListReuseCell];
