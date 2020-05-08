@@ -82,7 +82,7 @@
 
 - (XXLabel *)userNameLabel {
     if (!_userNameLabel) {
-        _userNameLabel = [XXLabel labelWithFrame:CGRectMake(K375(16), CGRectGetMaxY(self.icon.frame), kScreen_Width - K375(32), 16) text:KUser.currentAccount.userName font:kFont15 textColor:kGray500 alignment:NSTextAlignmentCenter];
+        _userNameLabel = [XXLabel labelWithFrame:CGRectMake(K375(16), CGRectGetMaxY(self.icon.frame) + 8, kScreen_Width - K375(32), 16) text:KUser.currentAccount.userName font:kFont15 textColor:kGray500 alignment:NSTextAlignmentCenter];
     }
     return _userNameLabel;
 }
@@ -90,7 +90,7 @@
 - (XXAddressView *)addressView {
     if (!_addressView) {
         MJWeakSelf
-        _addressView = [[XXAddressView alloc] initWithFrame:CGRectMake(0, CGRectGetMaxY(self.userNameLabel.frame)+4, kScreen_Width, 18)];
+        _addressView = [[XXAddressView alloc] initWithFrame:CGRectMake(0, CGRectGetMaxY(self.userNameLabel.frame)+16, kScreen_Width, 18)];
         _addressView.sureBtnBlock = ^{
             weakSelf.userNameLabel.text = KUser.currentAccount.userName;
         };
