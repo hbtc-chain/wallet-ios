@@ -126,6 +126,8 @@
 "CompleteInfomation" = "请填写完整信息";
 "AddressWrong" = "转账地址不正确";
 "ReloadData" = "重新加载";
+"UpgradeAPP"="发现新版本";
+"Upgrade"="立即升级";
 
 //提币
 "PleaseEnterAmountReceived" = "请输入到账数量";

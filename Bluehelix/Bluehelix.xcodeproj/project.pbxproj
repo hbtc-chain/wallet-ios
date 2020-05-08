@@ -249,6 +249,8 @@
 		EABD719B244B3545008AA188 /* XXTransactionDetailCell.m in Sources */ = {isa = PBXBuildFile; fileRef = EABD719A244B3545008AA188 /* XXTransactionDetailCell.m */; };
 		EAC68719214F931200701874 /* NullSafe.m in Sources */ = {isa = PBXBuildFile; fileRef = EAC68718214F931200701874 /* NullSafe.m */; };
 		EAC6871D214FAD1C00701874 /* XXTabView.m in Sources */ = {isa = PBXBuildFile; fileRef = EAC6871B214FAD1600701874 /* XXTabView.m */; };
+		EAC83FAB2465899600340C95 /* XXVersionManager.m in Sources */ = {isa = PBXBuildFile; fileRef = EAC83FAA2465899600340C95 /* XXVersionManager.m */; };
+		EAC83FAE24658A2900340C95 /* XXUpdateVersionView.m in Sources */ = {isa = PBXBuildFile; fileRef = EAC83FAD24658A2900340C95 /* XXUpdateVersionView.m */; };
 		EAE4047E211C1DB300FFD028 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = EAE40478211C1DB300FFD028 /* Localizable.strings */; };
 		EAE4047F211C1DB300FFD028 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = EAE4047A211C1DB300FFD028 /* InfoPlist.strings */; };
 		EAE40482211C34A000FFD028 /* LocalizeHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = EAE40481211C34A000FFD028 /* LocalizeHelper.m */; };
@@ -792,6 +794,10 @@
 		EAC68718214F931200701874 /* NullSafe.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NullSafe.m; sourceTree = "<group>"; };
 		EAC6871B214FAD1600701874 /* XXTabView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XXTabView.m; sourceTree = "<group>"; };
 		EAC6871C214FAD1600701874 /* XXTabView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XXTabView.h; sourceTree = "<group>"; };
+		EAC83FA92465899600340C95 /* XXVersionManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = XXVersionManager.h; sourceTree = "<group>"; };
+		EAC83FAA2465899600340C95 /* XXVersionManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = XXVersionManager.m; sourceTree = "<group>"; };
+		EAC83FAC24658A2900340C95 /* XXUpdateVersionView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XXUpdateVersionView.h; sourceTree = "<group>"; };
+		EAC83FAD24658A2900340C95 /* XXUpdateVersionView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XXUpdateVersionView.m; sourceTree = "<group>"; };
 		EAE40479211C1DB300FFD028 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/Localizable.strings"; sourceTree = "<group>"; };
 		EAE4047B211C1DB300FFD028 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/InfoPlist.strings"; sourceTree = "<group>"; };
 		EAE4047C211C1DB300FFD028 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
@@ -1463,6 +1469,7 @@
 		EA964BA32414D34A00A941E5 /* Class */ = {
 			isa = PBXGroup;
 			children = (
+				EAC83FA82465895500340C95 /* Other */,
 				6C791DF52451A14F00F22CD0 /* Proposals */,
 				6CC12CEF2444624200917105 /* Validators */,
 				EA04AD3B2434D642004403FF /* Request */,
@@ -1470,12 +1477,6 @@
 				EA15E9742417DEC500A3E14A /* Asset */,
 				EA15E96D2417BC2200A3E14A /* CreateWallet */,
 				EA15E9632417A70200A3E14A /* User */,
-				EA15E95524163FDC00A3E14A /* XXStartWalletVC.h */,
-				EA15E95624163FDC00A3E14A /* XXStartWalletVC.m */,
-				EABD1BB9241E49EA00B1A03A /* XXImportWalletVC.h */,
-				EABD1BBA241E49EA00B1A03A /* XXImportWalletVC.m */,
-				EA2F952F2423A02B0070AC62 /* XXLoginVC.h */,
-				EA2F95302423A02B0070AC62 /* XXLoginVC.m */,
 			);
 			path = Class;
 			sourceTree = "<group>";
@@ -1930,6 +1931,23 @@
 			path = XXTab;
 			sourceTree = "<group>";
 		};
+		EAC83FA82465895500340C95 /* Other */ = {
+			isa = PBXGroup;
+			children = (
+				EA15E95524163FDC00A3E14A /* XXStartWalletVC.h */,
+				EA15E95624163FDC00A3E14A /* XXStartWalletVC.m */,
+				EABD1BB9241E49EA00B1A03A /* XXImportWalletVC.h */,
+				EABD1BBA241E49EA00B1A03A /* XXImportWalletVC.m */,
+				EA2F952F2423A02B0070AC62 /* XXLoginVC.h */,
+				EA2F95302423A02B0070AC62 /* XXLoginVC.m */,
+				EAC83FA92465899600340C95 /* XXVersionManager.h */,
+				EAC83FAA2465899600340C95 /* XXVersionManager.m */,
+				EAC83FAC24658A2900340C95 /* XXUpdateVersionView.h */,
+				EAC83FAD24658A2900340C95 /* XXUpdateVersionView.m */,
+			);
+			path = Other;
+			sourceTree = "<group>";
+		};
 		EAE40477211C1DB300FFD028 /* GlobalLanguage */ = {
 			isa = PBXGroup;
 			children = (
@@ -2272,6 +2290,8 @@
 				EABD1B82241BB25900B1A03A /* hmac.c in Sources */,
 				F31F7A4F20CF9693008B4403 /* MainTabBtn.m in Sources */,
 				EAA8DEDA244DE1DE00161698 /* XXImportWayView.m in Sources */,
+				EAC83FAE24658A2900340C95 /* XXUpdateVersionView.m in Sources */,
+				EAC83FAB2465899600340C95 /* XXVersionManager.m in Sources */,
 				EA15E95D24168F5600A3E14A /* XXVerifyMnemonicPhraseVC.m in Sources */,
 				EA04ABA9242D015B004403FF /* IQToolbar.m in Sources */,
 				EA9D3E2A2452BBD00060778C /* XXChangePasswordVC.m in Sources */,
