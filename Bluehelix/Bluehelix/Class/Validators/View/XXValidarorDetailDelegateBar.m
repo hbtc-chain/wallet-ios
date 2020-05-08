@@ -24,11 +24,11 @@
     self = [super initWithFrame:frame];
     if (self) {
         self.backgroundColor = kViewBackgroundColor;
-        [self addSubview:self.transferDelegateButton];
+        //[self addSubview:self.transferDelegateButton];
         [self addSubview:self.relieveDelegateButton];
         [self addSubview:self.delegateButton];
         
-        [self.buttonsArray addObject:self.transferDelegateButton];
+       // [self.buttonsArray addObject:self.transferDelegateButton];
         [self.buttonsArray addObject:self.relieveDelegateButton];
         [self.buttonsArray addObject:self.delegateButton];
     }
@@ -99,6 +99,3 @@
 }
 @end
 
-//"TransferDelegate" = "转委托";
-//"RelieveDelegate" = "解委托";
-//"Delegate" = "委托";
