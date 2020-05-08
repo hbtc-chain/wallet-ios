@@ -41,7 +41,7 @@
 
 - (UIImageView *)searchIconImageView {
     if (_searchIconImageView == nil) {
-        _searchIconImageView = [[UIImageView alloc] initWithFrame:CGRectMake(10, (self.searchBackView.height - 24) / 2, 24, 24)];
+        _searchIconImageView = [[UIImageView alloc] initWithFrame:CGRectMake(10, (self.searchBackView.height - 16) / 2, 16, 16)];
         _searchIconImageView.image = [UIImage subTextImageName:@"icon_search_0"];
     }
     return _searchIconImageView;
@@ -49,7 +49,7 @@
 
 - (XXTextField *)searchTextField {
     if (_searchTextField == nil) {
-        _searchTextField = [[XXTextField alloc] initWithFrame:CGRectMake(CGRectGetMaxX(self.searchIconImageView.frame) + 8, 0, self.searchBackView.width - (CGRectGetMaxX(self.searchIconImageView.frame) + 10) - K375(15), self.searchBackView.height)];
+        _searchTextField = [[XXTextField alloc] initWithFrame:CGRectMake(CGRectGetMaxX(self.searchIconImageView.frame) + 4, 0, self.searchBackView.width - (CGRectGetMaxX(self.searchIconImageView.frame) + 10) - K375(15), self.searchBackView.height)];
         _searchTextField.returnKeyType = UIReturnKeySearch;
         _searchTextField.autocorrectionType = UITextAutocorrectionTypeNo;
         _searchTextField.autocapitalizationType = UITextAutocapitalizationTypeNone;
