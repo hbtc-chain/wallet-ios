@@ -52,6 +52,11 @@ static NSString *KValidatorDetailInfoCell = @"ValidatorDetailInfoCell";
     self.sectionSectionValueArray = @[[NSString addressReplace:KString(self.validatorModel.operator_address)],KString(self.validatorModel.validatorDescription.website)];
     
     [self.validatorsDetailTableView reloadData];
+    if ([self.validOrInvalid isEqualToString:@"1"]) {
+        self.delegateBar.hidden = NO;
+    }else{
+        self.delegateBar.hidden = YES;
+    }
 }
 #pragma mark layout
 - (void)layoutViews{
