@@ -43,8 +43,14 @@
     [self setupUI];
 }
 
+- (void)viewWillDisappear:(BOOL)animated {
+    [super viewWillDisappear:animated];
+    [KSystem statusBarSetUpDefault];
+}
+
 - (void)viewDidAppear:(BOOL)animated {
     [super viewDidAppear:animated];
+    [KSystem statusBarSetUpWhiteColor];
     self.timer = [NSTimer scheduledTimerWithTimeInterval:5 target:self selector:@selector(timerAction) userInfo:nil repeats:YES];
     [self.timer fire];
 }

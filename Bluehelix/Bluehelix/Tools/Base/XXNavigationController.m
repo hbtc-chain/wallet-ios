@@ -18,7 +18,7 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
 
-//    [KSystem statusBarSetUpDefault];
+    [KSystem statusBarSetUpDefault];
     
     // 隐藏系统导航栏
     self.navigationBar.hidden = YES;

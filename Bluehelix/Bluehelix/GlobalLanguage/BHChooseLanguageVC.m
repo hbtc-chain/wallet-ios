@@ -28,18 +28,14 @@
     [super viewDidLoad];
     self.titleLabel.text = LocalizedString(@"Language");
     [self.view addSubview:self.tableView];
-    self.data = @[@"简体中文", @"English", @"한국어", @"Tiếng Việt",@"日本語",@"Türkçe"];
+    self.data = @[@"简体中文", @"English"];
     [self buildLocalData];
 }
 
 - (void)buildLocalData {
     BHChooseLanguageModel *zhModel = [[BHChooseLanguageModel alloc] initWithName:@"简体中文" code:@"zh-Hans"];
     BHChooseLanguageModel *enModel = [[BHChooseLanguageModel alloc] initWithName:@"English" code:@"en"];
-    BHChooseLanguageModel *koModel = [[BHChooseLanguageModel alloc] initWithName:@"한국어" code:@"ko"];
-    BHChooseLanguageModel *viModel = [[BHChooseLanguageModel alloc] initWithName:@"Tiếng Việt" code:@"vi-VN"];
-    BHChooseLanguageModel *jaModel = [[BHChooseLanguageModel alloc] initWithName:@"日本語" code:@"ja"];
-    BHChooseLanguageModel *trModel = [[BHChooseLanguageModel alloc] initWithName:@"Türkçe" code:@"tr"];
-    self.data = @[zhModel,enModel,koModel,viModel,jaModel,trModel];
+    self.data = @[zhModel,enModel];
 
     self.tableView.backgroundColor = KBigLine_Color;
     [self.tableView registerClass:[BHChooseLanguageCell class] forCellReuseIdentifier:@"cell"];

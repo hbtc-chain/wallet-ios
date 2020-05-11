@@ -34,7 +34,6 @@ static XXSystem *_sharedSystemData = nil;
 
 #pragma mark - 2. 状态栏设置为白色
 - (void)statusBarSetUpWhiteColor {
-    
     if (self.isDarkStyle) {
         [UIApplication sharedApplication].statusBarStyle = UIStatusBarStyleDefault;
     } else {

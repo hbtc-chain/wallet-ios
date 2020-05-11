@@ -44,6 +44,16 @@
     [self.tableView reloadData];
 }
 
+- (void)viewDidAppear:(BOOL)animated {
+    [super viewDidAppear:animated];
+    [KSystem statusBarSetUpWhiteColor];
+}
+
+- (void)viewWillDisappear:(BOOL)animated {
+    [super viewWillDisappear:animated];
+    [KSystem statusBarSetUpDefault];
+}
+
 - (void)initData {
     self.itemsArray = [NSMutableArray array];
     self.iconArray = [NSMutableArray array];

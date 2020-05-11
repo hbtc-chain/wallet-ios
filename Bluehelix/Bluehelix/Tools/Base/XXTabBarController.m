@@ -54,7 +54,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-//    [KSystem statusBarSetUpDefault];
+    [KSystem statusBarSetUpDefault];
     self.view.backgroundColor = kWhiteColor;
     
     
