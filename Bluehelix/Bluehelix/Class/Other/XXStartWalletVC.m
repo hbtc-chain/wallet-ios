@@ -30,7 +30,7 @@
     self.navView.hidden = YES;
     self.view.backgroundColor = kWhiteColor;
     UIImageView *logoImageView = [[UIImageView alloc] initWithFrame:CGRectMake(kScreen_Width/2 - K375(224)/2, K375(216), K375(224), K375(71))];
-    logoImageView.image = [UIImage imageNamed:@"startLogo"];
+    logoImageView.image = kIsNight ? [UIImage imageNamed:@"startLogo_Night"] : [UIImage imageNamed:@"startLogo"];
     [self.view addSubview:logoImageView];
     [self.view addSubview:self.createWalletBtn];
     [self.view addSubview:self.importWalletBtn];
@@ -39,7 +39,7 @@
 - (XXButton *)createWalletBtn {
     if (!_createWalletBtn) {
         MJWeakSelf
-        _createWalletBtn = [XXButton buttonWithFrame:CGRectMake(K375(15), kScreen_Height - 144, kScreen_Width - K375(30), kBtnHeight) title:LocalizedString(@"CreateWallet") font:kFontBold18 titleColor:kWhiteColor block:^(UIButton *button) {
+        _createWalletBtn = [XXButton buttonWithFrame:CGRectMake(K375(15), kScreen_Height - 144, kScreen_Width - K375(30), kBtnHeight) title:LocalizedString(@"CreateWallet") font:kFontBold18 titleColor:[UIColor whiteColor] block:^(UIButton *button) {
             XXCreateWalletVC *createVC = [[XXCreateWalletVC alloc] init];
             [weakSelf.navigationController pushViewController:createVC animated:YES];
         }];

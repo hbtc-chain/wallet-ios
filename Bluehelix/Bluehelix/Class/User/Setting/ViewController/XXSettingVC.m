@@ -97,7 +97,7 @@ static NSString *identifir = @"XXSettingCell";
 - (XXButton *)loginOutButton {
     if (_loginOutButton == nil) {
         MJWeakSelf
-        _loginOutButton = [XXButton buttonWithFrame:CGRectMake(K375(24), kScreen_Height - 70 - (self.tabBarController.tabBar.height - 49), kScreen_Width - K375(48), 40) title:LocalizedString(@"LogOut") font:kFont16 titleColor:kMainTextColor block:^(UIButton *button) {
+        _loginOutButton = [XXButton buttonWithFrame:CGRectMake(K375(24), kScreen_Height - 70 - (self.tabBarController.tabBar.height - 49), kScreen_Width - K375(48), 40) title:LocalizedString(@"LogOut") font:kFont16 titleColor:[UIColor whiteColor] block:^(UIButton *button) {
             [weakSelf loginOutButtonClick:button];
         }];
         _loginOutButton.backgroundColor = kPrimaryMain;

@@ -38,14 +38,14 @@
     NSArray *imageArr;
     NSArray *titleArr;
     if ([self.tokenModel.symbol isEqualToString:kMainToken]) {
-        imageArr = @[@"receiveMoney",@"payMoney",@"withdrawMoney",@"inMoney"];
+        imageArr = kIsNight ? @[@"receiveMoney_Night",@"payMoney_Night",@"withdrawMoney_Night",@"inMoney_Night"] : @[@"receiveMoney",@"payMoney",@"withdrawMoney",@"inMoney"];
         titleArr = @[LocalizedString(@"ReceiveMoney"),LocalizedString(@"Transfer"),LocalizedString(@"WithdrawMoney"),LocalizedString(@"InMoney")];
     } else {
         if (self.tokenModel.is_native) {
-            imageArr = @[@"receiveMoney",@"payMoney"];
+            imageArr = kIsNight ? @[@"receiveMoney_Night",@"payMoney_Night"] : @[@"receiveMoney",@"payMoney"];
             titleArr = @[LocalizedString(@"ReceiveMoney"),LocalizedString(@"Transfer")];
         } else {
-            imageArr = @[@"receiveMoney",@"payMoney",@"chainReceiveMoney",@"chainPayMoney"];
+            imageArr = kIsNight ? @[@"receiveMoney_Night",@"payMoney_Night",@"chainReceiveMoney_Night",@"chainPayMoney_Night"] : @[@"receiveMoney",@"payMoney",@"chainReceiveMoney",@"chainPayMoney"];
             titleArr = @[LocalizedString(@"ReceiveMoney"),LocalizedString(@"Transfer"),LocalizedString(@"ChainReceiveMoney"),LocalizedString(@"ChainPayMoney")];
         }
     }
@@ -59,11 +59,11 @@
         [self addSubview:itemButton];
 
         UIView *shadowView = [[UIView alloc] initWithFrame:CGRectMake((itemButton.width - 48)/2.0, 16, 48, 48)];
-        shadowView.backgroundColor = kViewBackgroundColor;
+        shadowView.backgroundColor = kDarkGray;
         shadowView.layer.cornerRadius = 24.0;
         shadowView.layer.shadowOffset = CGSizeMake(0.0, 1.0);
         shadowView.layer.shadowOpacity = 1;
-        shadowView.layer.shadowColor = (KUser.isNightType ? KRGBA(4,11.5,18,100) : kGray100).CGColor;
+        shadowView.layer.shadowColor = [kShadowColor CGColor];
         shadowView.userInteractionEnabled = NO;
         [itemButton addSubview:shadowView];
 
