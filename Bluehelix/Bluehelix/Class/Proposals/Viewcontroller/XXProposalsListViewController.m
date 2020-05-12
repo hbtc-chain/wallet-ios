@@ -51,6 +51,10 @@ static NSInteger pageCount = 20;
     [self setupUI];
     [self loadData];
 }
+- (void)viewWillDisappear:(BOOL)animated{
+    [super viewWillDisappear:animated];
+    [MBProgressHUD hideHUD];
+}
 #pragma mark UI
 - (void)setupUI{
     self.leftButton.hidden = YES;
