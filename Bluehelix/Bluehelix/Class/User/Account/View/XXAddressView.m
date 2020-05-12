@@ -7,7 +7,7 @@
 //
 
 #import "XXAddressView.h"
-
+#import "XXChooseLoginAccountView.h"
 
 @interface XXAddressView ()
 
@@ -34,39 +34,14 @@
 }
 
 - (void)tapAction {
-    UIWindow* window = [[UIWindow alloc] initWithFrame:[UIScreen mainScreen].bounds];
-       window.rootViewController = [UIViewController new];
-       window.windowLevel = UIWindowLevelAlert + 1;
-       
-       UIAlertController *alert = [UIAlertController alertControllerWithTitle:LocalizedString(@"ChooseAccount") message:nil preferredStyle:UIAlertControllerStyleActionSheet];
-
-       for (NSInteger i=0; i < KUser.accounts.count; i ++) {
-
-           XXAccountModel *model = KUser.accounts[i];
-           
-           UIAlertAction *action = [UIAlertAction actionWithTitle:model.address style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
-               KUser.address = model.address;
-               self.addressLabel.text = KUser.address;
-               if (self.sureBtnBlock) {
-                   self.sureBtnBlock();
-               }
-                window.hidden = YES;
-           }];
-           [alert addAction:action];
-       }
-       
-       UIAlertAction *action = [UIAlertAction actionWithTitle:LocalizedString(@"Cancel") style:UIAlertActionStyleCancel handler:^(UIAlertAction * _Nonnull action) {
-            window.hidden = YES;
-       }];
-//       [action setValue:ActionColor forKey:@"titleTextColor"];
-       [alert addAction:action];
-       
-       // 修改字体大小
-       UILabel *appearanceLabel = [UILabel appearanceWhenContainedIn:UIAlertController.class, nil];
-       [appearanceLabel setAppearanceFont:kFont(13)];
-    
-       [window makeKeyAndVisible];
-       [window.rootViewController presentViewController:alert animated:YES completion:nil];
+    [XXChooseLoginAccountView showWithSureBlock:^{
+        self.addressLabel.text = KUser.address;
+        CGFloat width = [NSString widthWithText:KUser.address font:kFont(13)];
+        self.addressLabel.frame = CGRectMake(kScreen_Width/2 - width/2, 0, width, self.height);
+        if (self.sureBtnBlock) {
+            self.sureBtnBlock();
+        }
+    }];
 }
 
 - (XXLabel *)addressLabel {

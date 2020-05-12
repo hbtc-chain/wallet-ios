@@ -22,11 +22,6 @@
  *  FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER
  *  DEALINGS IN THE SOFTWARE.
  */
-
-// publickey To address
-// 经过
-
-
 #import "Account.h"
 #include "crypto_scrypt.h"
 
@@ -167,7 +162,7 @@ static NSDateFormatter *TimeFormatter = nil;
     });
 }
 
-- (instancetype)initWithPrivateKey:(NSData *)privateKey { //通过私钥创建地址账户
+- (instancetype)initWithPrivateKey:(NSData *)privateKey {
     if (privateKey.length != 32) { return nil; }
     
     self = [super init];
@@ -176,9 +171,6 @@ static NSDateFormatter *TimeFormatter = nil;
         
         SecureData *publicKey = [SecureData secureDataWithLength:33];
         ecdsa_get_public_key33(&secp256k1, _privateKey.bytes, publicKey.mutableBytes);
-        //这里相当于SerializeCompressed 两次hash 取前33字节 一个字节 等于两个16进制字符 8byte
-        //        //生成公钥
-        NSLog(@"%@",publicKey);
         SecureData *ripemdData = [self ripemd160:publicKey];
         SecureData *sum = [self checkSum:ripemdData];
         NSString *address = [self base58:sum publicKey:ripemdData];
@@ -213,19 +205,12 @@ static NSDateFormatter *TimeFormatter = nil;
     if (CC_SHA256([Bytedata bytes], [Bytedata length], hash)) {
         sha1 = [NSData dataWithBytes:hash length:CC_SHA256_DIGEST_LENGTH];
     }
-//    if (CC_SHA256([sha1 bytes], [sha1 length], hash)) {
-//        sha2 = [NSData dataWithBytes:hash length:CC_SHA256_DIGEST_LENGTH];
-//    } //这里为什么是一次hash ? 两次hash 不对？？？
-    NSLog(@"%@",sha2);
     SecureData *ripemdData = [SecureData secureDataWithLength:20];
     ripemd160(sha1.bytes, sha1.length, ripemdData.mutableBytes);
-    NSLog(@"%@",ripemdData);
     return ripemdData;
 }
 
 - (SecureData *)checkSum:(SecureData *)publicKey {
-//    Byte byte[] = {5, -54, 81, -16, -9, 38, -118, 94, -72, 36, 87, 111, -12, 49, -85, 23, 77, -126, 119, 88, -112, 125};
-//    NSData *Bytedata = [[NSData alloc] initWithBytes:byte length:22];
     Byte prefix[] = {2,16,66}; //HBC
     NSData *prefixData = [[NSData alloc] initWithBytes:prefix length:3];
     SecureData *newData = [SecureData secureData];
@@ -260,7 +245,7 @@ static NSDateFormatter *TimeFormatter = nil;
 - (instancetype)initWithMnemonicPhrase: (NSString*)mnemonicPhrase {
     const char* phraseStr = [mnemonicPhrase cStringUsingEncoding:NSUTF8StringEncoding];
     if (!mnemonic_check(phraseStr)) { return nil; }
-    SecureData *seed = [SecureData secureDataWithLength:(512 / 8)]; //空的 后边会生成种子 <SecureMutableData data=0x00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000>
+    SecureData *seed = [SecureData secureDataWithLength:(512 / 8)]; //空的 后边会生成种子
     mnemonic_to_seed(phraseStr, "", seed.mutableBytes, NULL); //助记词生成种子
     HDNode node;
     hdnode_from_seed([seed bytes], (int)[seed length], SECP256K1_NAME, &node); //secp256k1曲线生成私钥，是由32字节随机数组成

@@ -17,8 +17,8 @@
 - (instancetype)initWithReuseIdentifier:(NSString *)reuseIdentifier{
     if (self = [super initWithReuseIdentifier:reuseIdentifier]) {
         self.backgroundColor = [UIColor clearColor];
-        [self addSubview:self.validatorTitleLabel];
-        [self addSubview:self.validatorStatuesButton];
+        [self.contentView addSubview:self.validatorTitleLabel];
+        [self.contentView addSubview:self.validatorStatuesButton];
     }
     return self;
 }

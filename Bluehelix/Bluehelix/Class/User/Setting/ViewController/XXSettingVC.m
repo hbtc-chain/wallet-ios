@@ -93,15 +93,14 @@ static NSString *identifir = @"XXSettingCell";
 }
 
 #pragma mark - || 懒加载
-/** 登录退出按钮 */
 - (XXButton *)loginOutButton {
     if (_loginOutButton == nil) {
         MJWeakSelf
-        _loginOutButton = [XXButton buttonWithFrame:CGRectMake(K375(24), kScreen_Height - 70 - (self.tabBarController.tabBar.height - 49), kScreen_Width - K375(48), 40) title:LocalizedString(@"LogOut") font:kFont16 titleColor:[UIColor whiteColor] block:^(UIButton *button) {
+        _loginOutButton = [XXButton buttonWithFrame:CGRectMake(K375(24), kScreen_Height - 70 - (self.tabBarController.tabBar.height - 49), kScreen_Width - K375(48), 48) title:LocalizedString(@"LogOut") font:kFont16 titleColor:[UIColor whiteColor] block:^(UIButton *button) {
             [weakSelf loginOutButtonClick:button];
         }];
         _loginOutButton.backgroundColor = kPrimaryMain;
-        _loginOutButton.layer.cornerRadius = 2;
+        _loginOutButton.layer.cornerRadius = kBtnBorderRadius;
         _loginOutButton.layer.masksToBounds = YES;
     }
     return _loginOutButton;

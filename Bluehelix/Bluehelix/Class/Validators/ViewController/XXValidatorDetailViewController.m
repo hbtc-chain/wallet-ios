@@ -129,6 +129,10 @@ static NSString *KValidatorDetailInfoCell = @"ValidatorDetailInfoCell";
         return 128;
     }
 }
+
+//- (CGFloat)tableView:(UITableView *)tableView estimatedHeightForHeaderInSection:(NSInteger)section {
+//    return 48;
+//}
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     if (indexPath.section == 0 || indexPath.section == 1) {
         XXValidatorDetailCell *cell = [tableView dequeueReusableCellWithIdentifier:KValidatorDetailViewCell];
@@ -178,6 +182,8 @@ static NSString *KValidatorDetailInfoCell = @"ValidatorDetailInfoCell";
         _validatorsDetailTableView.separatorStyle = UITableViewCellSeparatorStyleNone;
         _validatorsDetailTableView.estimatedSectionHeaderHeight = 48;
         _validatorsDetailTableView.sectionHeaderHeight =  UITableViewAutomaticDimension;
+        _validatorsDetailTableView.estimatedRowHeight = 40;
+        _validatorsDetailTableView.rowHeight = UITableViewAutomaticDimension;
         _validatorsDetailTableView.showsVerticalScrollIndicator = NO;
         [_validatorsDetailTableView registerClass:[XXValidatorDetailHeader class] forHeaderFooterViewReuseIdentifier:kSectionDetailHeader];
         [_validatorsDetailTableView registerClass:[XXValidatorDetailCell class] forCellReuseIdentifier:KValidatorDetailViewCell];

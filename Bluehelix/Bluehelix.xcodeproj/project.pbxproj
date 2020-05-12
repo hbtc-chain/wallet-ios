@@ -134,6 +134,8 @@
 		EA3E5965244721DD0080B98F /* XXMsgWithdrawalModel.m in Sources */ = {isa = PBXBuildFile; fileRef = EA3E5964244721DD0080B98F /* XXMsgWithdrawalModel.m */; };
 		EA3E5968244723200080B98F /* XXMsgSendModel.m in Sources */ = {isa = PBXBuildFile; fileRef = EA3E5967244723200080B98F /* XXMsgSendModel.m */; };
 		EA4F5E992179B5190025B350 /* AppDelegate+Category.m in Sources */ = {isa = PBXBuildFile; fileRef = EA4F5E982179B5190025B350 /* AppDelegate+Category.m */; };
+		EA677242246AA96C008C931A /* XXChooseLoginAccountView.m in Sources */ = {isa = PBXBuildFile; fileRef = EA677241246AA96C008C931A /* XXChooseLoginAccountView.m */; };
+		EA677245246ACFA4008C931A /* XXLoginCell.m in Sources */ = {isa = PBXBuildFile; fileRef = EA677244246ACFA4008C931A /* XXLoginCell.m */; };
 		EA6FA69721258EC5006305B8 /* FCUUID.m in Sources */ = {isa = PBXBuildFile; fileRef = EA6FA69521258EC5006305B8 /* FCUUID.m */; };
 		EA6FA69A21258FD3006305B8 /* UICKeyChainStore.m in Sources */ = {isa = PBXBuildFile; fileRef = EA6FA69821258FD3006305B8 /* UICKeyChainStore.m */; };
 		EA8F8C88240FA9F200D26E10 /* Icon.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EA8F8C86240FA9F200D26E10 /* Icon.xcassets */; };
@@ -559,6 +561,10 @@
 		EA51B5ED2123DE5F0041FA72 /* BHChooseLanguageCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BHChooseLanguageCell.m; sourceTree = "<group>"; };
 		EA51B5EF2123FA270041FA72 /* BHChooseLanguageModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BHChooseLanguageModel.h; sourceTree = "<group>"; };
 		EA51B5F02123FA270041FA72 /* BHChooseLanguageModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BHChooseLanguageModel.m; sourceTree = "<group>"; };
+		EA677240246AA96C008C931A /* XXChooseLoginAccountView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = XXChooseLoginAccountView.h; sourceTree = "<group>"; };
+		EA677241246AA96C008C931A /* XXChooseLoginAccountView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = XXChooseLoginAccountView.m; sourceTree = "<group>"; };
+		EA677243246ACFA4008C931A /* XXLoginCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = XXLoginCell.h; sourceTree = "<group>"; };
+		EA677244246ACFA4008C931A /* XXLoginCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = XXLoginCell.m; sourceTree = "<group>"; };
 		EA6FA69521258EC5006305B8 /* FCUUID.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FCUUID.m; sourceTree = "<group>"; };
 		EA6FA69621258EC5006305B8 /* FCUUID.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FCUUID.h; sourceTree = "<group>"; };
 		EA6FA69821258FD3006305B8 /* UICKeyChainStore.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UICKeyChainStore.m; sourceTree = "<group>"; };
@@ -1555,6 +1561,8 @@
 				EAA8DECE244D81CE00161698 /* XXAccountCell.m */,
 				EAA8DECC244D81CE00161698 /* XXUserHomeCell.h */,
 				EAA8DECD244D81CE00161698 /* XXUserHomeCell.m */,
+				EA677243246ACFA4008C931A /* XXLoginCell.h */,
+				EA677244246ACFA4008C931A /* XXLoginCell.m */,
 			);
 			path = Cell;
 			sourceTree = "<group>";
@@ -1587,6 +1595,8 @@
 				EAA8DEB0244D7E7C00161698 /* XXAccountFooterView.m */,
 				EAA8DEAC244D7E7C00161698 /* XXAccountBtn.h */,
 				EAA8DEB1244D7E7C00161698 /* XXAccountBtn.m */,
+				EA677240246AA96C008C931A /* XXChooseLoginAccountView.h */,
+				EA677241246AA96C008C931A /* XXChooseLoginAccountView.m */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -2255,6 +2265,7 @@
 				EA964BA62414D37F00A941E5 /* XXBackupMnemonicPhraseVC.m in Sources */,
 				EA04ABAC242D015B004403FF /* IQUIView+IQKeyboardToolbar.m in Sources */,
 				F31F7A5020CF9693008B4403 /* XXTabBarController.m in Sources */,
+				EA677245246ACFA4008C931A /* XXLoginCell.m in Sources */,
 				EABD1BBB241E49EA00B1A03A /* XXImportWalletVC.m in Sources */,
 				EABD1B86241BB25900B1A03A /* curves.c in Sources */,
 				EABD1BAA241BB25900B1A03A /* TransactionInfo.m in Sources */,
@@ -2379,6 +2390,7 @@
 				EA15E95724163FDC00A3E14A /* XXStartWalletVC.m in Sources */,
 				EA9D3E3D24545A1D0060778C /* SWTableViewCell.m in Sources */,
 				EAA8DEC8244D81BB00161698 /* XXSettingCell.m in Sources */,
+				EA677242246AA96C008C931A /* XXChooseLoginAccountView.m in Sources */,
 				EABD1B93241BB25900B1A03A /* scrypt_sha256.c in Sources */,
 				EA04ABAE242D015B004403FF /* IQKeyboardManager.m in Sources */,
 				EABD1BA9241BB25900B1A03A /* RegEx.m in Sources */,

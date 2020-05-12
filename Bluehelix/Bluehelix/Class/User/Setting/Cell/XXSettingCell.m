@@ -94,10 +94,11 @@
         _typeSwitch.layer.masksToBounds = YES;
         
         //tintColor 关状态下的背景颜色
-        _typeSwitch.tintColor = [UIColor clearColor];
+//        _typeSwitch.tintColor = [UIColor clearColor];
         
         //onTintColor 开状态下的背景颜色
-        _typeSwitch.onTintColor = kPrimaryMain;
+//        _typeSwitch.onTintColor = kPrimaryMain;
+        _typeSwitch.onImage = [UIImage imageNamed:@"inMoney"];
 
         //thumbTintColor 滑块的背景颜色
 //        _typeSwitch.thumbTintColor = kWhite100;
