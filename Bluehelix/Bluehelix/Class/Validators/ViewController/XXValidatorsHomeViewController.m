@@ -50,8 +50,9 @@ static NSString *KValidatorGripSectionHeader = @"XXValidatorGripSectionHeader";
     self.validOrInvalid = @"1";
     [self loadData];
 }
-- (void)viewWillAppear:(BOOL)animated{
-    [super viewWillAppear:animated];
+- (void)viewWillDisappear:(BOOL)animated{
+    [super viewWillDisappear:animated];
+    [MBProgressHUD hideHUD];
 }
 - (void)viewDidDisappear:(BOOL)animated{
     [super viewDidDisappear:animated];
