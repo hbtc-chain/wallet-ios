@@ -136,6 +136,7 @@
 		EA4F5E992179B5190025B350 /* AppDelegate+Category.m in Sources */ = {isa = PBXBuildFile; fileRef = EA4F5E982179B5190025B350 /* AppDelegate+Category.m */; };
 		EA677242246AA96C008C931A /* XXChooseLoginAccountView.m in Sources */ = {isa = PBXBuildFile; fileRef = EA677241246AA96C008C931A /* XXChooseLoginAccountView.m */; };
 		EA677245246ACFA4008C931A /* XXLoginCell.m in Sources */ = {isa = PBXBuildFile; fileRef = EA677244246ACFA4008C931A /* XXLoginCell.m */; };
+		EA677248246BBAE4008C931A /* XXImportKeystoreVC.m in Sources */ = {isa = PBXBuildFile; fileRef = EA677247246BBAE4008C931A /* XXImportKeystoreVC.m */; };
 		EA6FA69721258EC5006305B8 /* FCUUID.m in Sources */ = {isa = PBXBuildFile; fileRef = EA6FA69521258EC5006305B8 /* FCUUID.m */; };
 		EA6FA69A21258FD3006305B8 /* UICKeyChainStore.m in Sources */ = {isa = PBXBuildFile; fileRef = EA6FA69821258FD3006305B8 /* UICKeyChainStore.m */; };
 		EA8F8C88240FA9F200D26E10 /* Icon.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EA8F8C86240FA9F200D26E10 /* Icon.xcassets */; };
@@ -565,6 +566,8 @@
 		EA677241246AA96C008C931A /* XXChooseLoginAccountView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = XXChooseLoginAccountView.m; sourceTree = "<group>"; };
 		EA677243246ACFA4008C931A /* XXLoginCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = XXLoginCell.h; sourceTree = "<group>"; };
 		EA677244246ACFA4008C931A /* XXLoginCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = XXLoginCell.m; sourceTree = "<group>"; };
+		EA677246246BBAE4008C931A /* XXImportKeystoreVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = XXImportKeystoreVC.h; sourceTree = "<group>"; };
+		EA677247246BBAE4008C931A /* XXImportKeystoreVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = XXImportKeystoreVC.m; sourceTree = "<group>"; };
 		EA6FA69521258EC5006305B8 /* FCUUID.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FCUUID.m; sourceTree = "<group>"; };
 		EA6FA69621258EC5006305B8 /* FCUUID.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FCUUID.h; sourceTree = "<group>"; };
 		EA6FA69821258FD3006305B8 /* UICKeyChainStore.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UICKeyChainStore.m; sourceTree = "<group>"; };
@@ -1832,6 +1835,8 @@
 				EA15E95C24168F5600A3E14A /* XXVerifyMnemonicPhraseVC.m */,
 				EABD1BBC241E52ED00B1A03A /* XXImportMnemonicPhraseVC.h */,
 				EABD1BBD241E52ED00B1A03A /* XXImportMnemonicPhraseVC.m */,
+				EA677246246BBAE4008C931A /* XXImportKeystoreVC.h */,
+				EA677247246BBAE4008C931A /* XXImportKeystoreVC.m */,
 				EA35A5052421FC7D00ADF621 /* XXImportPrivateKeyVC.h */,
 				EA35A5062421FC7D00ADF621 /* XXImportPrivateKeyVC.m */,
 				EA15E9582416702C00A3E14A /* XXMnemonicBtn.h */,
@@ -2459,6 +2464,7 @@
 				EA20EAC22425FBC8004EBD7F /* XXServiceAgreementVC.m in Sources */,
 				EABD1B8A241BB25900B1A03A /* ripemd160.c in Sources */,
 				EAC68719214F931200701874 /* NullSafe.m in Sources */,
+				EA677248246BBAE4008C931A /* XXImportKeystoreVC.m in Sources */,
 				6C3E66FC244AD0700057B514 /* XXDelegateTransferView.m in Sources */,
 				F30EAF6320D26536005ADD5C /* NSDate+Helper.m in Sources */,
 				EABD7187244AFCD4008AA188 /* XXFailureView.m in Sources */,

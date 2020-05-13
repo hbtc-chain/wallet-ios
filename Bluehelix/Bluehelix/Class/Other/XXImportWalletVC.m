@@ -10,11 +10,13 @@
 #import "XXImportMnemonicPhraseVC.h"
 #import "XXImportPrivateKeyVC.h"
 #import "XXImportWayView.h"
+#import "XXImportKeystoreVC.h"
 
 @interface XXImportWalletVC ()
 
 @property (nonatomic, strong) XXLabel *tipLabel;
 @property (nonatomic, strong) XXImportWayView *mnemonicPhraseBtn;
+@property (nonatomic, strong) XXImportWayView *keystoreBtn;
 @property (nonatomic, strong) XXImportWayView *securityBtn;
 
 @end
@@ -31,6 +33,7 @@
     self.titleLabel.text = LocalizedString(@"ImportWallet");
     [self.view addSubview:self.tipLabel];
     [self.view addSubview:self.mnemonicPhraseBtn];
+    [self.view addSubview:self.keystoreBtn];
     [self.view addSubview:self.securityBtn];
 }
 
@@ -58,10 +61,27 @@
     return _mnemonicPhraseBtn;
 }
 
+- (XXImportWayView *)keystoreBtn {
+    if (!_keystoreBtn) {
+        MJWeakSelf
+        _keystoreBtn = [[XXImportWayView alloc] initWithFrame:CGRectMake(K375(24), CGRectGetMaxY(self.mnemonicPhraseBtn.frame) + K375(24), kScreen_Width - K375(48), 88) title:LocalizedString(@"ImportKeystore") imageName:@"importKeystore"];
+        _keystoreBtn.clickBlock = ^{
+            XXImportKeystoreVC *importVC = [[XXImportKeystoreVC alloc] init];
+            [weakSelf.navigationController pushViewController:importVC animated:YES];
+        };
+        _keystoreBtn.backgroundColor = kWhiteColor;
+        _keystoreBtn.layer.cornerRadius = kBtnBorderRadius;
+        _keystoreBtn.layer.masksToBounds = YES;
+        _keystoreBtn.layer.borderColor = [kPrimaryMain CGColor];
+        _keystoreBtn.layer.borderWidth = 2;
+    }
+    return _keystoreBtn;
+}
+
 - (XXImportWayView *)securityBtn {
     if (!_securityBtn) {
         MJWeakSelf
-        _securityBtn = [[XXImportWayView alloc] initWithFrame:CGRectMake(K375(24), CGRectGetMaxY(self.mnemonicPhraseBtn.frame) + K375(24), kScreen_Width - K375(48), 88) title:LocalizedString(@"ImportSecurity") imageName:@"importKey"];
+        _securityBtn = [[XXImportWayView alloc] initWithFrame:CGRectMake(K375(24), CGRectGetMaxY(self.keystoreBtn.frame) + K375(24), kScreen_Width - K375(48), 88) title:LocalizedString(@"ImportSecurity") imageName:@"importKey"];
         _securityBtn.clickBlock = ^{
             XXImportPrivateKeyVC *importVC = [[XXImportPrivateKeyVC alloc] init];
             [weakSelf.navigationController pushViewController:importVC animated:YES];

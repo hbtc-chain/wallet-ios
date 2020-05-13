@@ -52,10 +52,11 @@
 "CreateWalletBackupTipContent" = "·您将通过助记词备份钱包\n·助记词为12个英文单词\n·助记词可助您恢复钱包\n·请务必牢记您的助记词";
 "WeSuggestContent" = "请勿通过邮箱、通讯工具分享您的助记词\n请勿将您的助记词轻易告知他人\n请勿将助记词截屏、照相等方式保存于您的移动设备中";
 "ImportMnemonicPhrase" = "导入助记词";
-"ImportKeyStore" = "导入Keystore";
+"ImportKeystore" = "导入Keystore";
 "ImportSecurity" = "导入私钥";
 "ImportMnemonicPhraseTip" = "请在下方输入框中按顺序输入助记词，用空格分开";
 "ImportSecurityTip" = "请在下方输入框中输入私钥，并留意大小写";
+"ImportKeystoreTip" = "·复制粘贴 Bluehelix 钱包 Keystore 文件内容\n·粘贴至下方“Keystore”输入框";
 "AccountManage" = "管理托管单元";
 "TwoPasswordInconsistent" = "两次密码输入不一致！";
 "AccountNameRuleAlert" = "请输入1-20个字符";
@@ -68,6 +69,7 @@
 "Cancel" = "取消";
 "PrivateKeyOutOfOrder" = "您输入的私钥不符合规则";
 "MnemonicPhraseOutOfOrder" = "您输入的助记词不符合规则";
+"KeystoreOutOfOrder" = "您输入的Keystore不符合规则";
 "PasswordWrong" = "密码错误";
 "SecurityTip" = "验证密码";
 "Delete" = "删除";
@@ -85,6 +87,7 @@
 "ImportSuccess" = "导入成功";
 "MnemonicPhraseRepetition" = "助记词重复";
 "PrivateKeyRepetition" = "私钥重复";
+"KeystoreRepetition" = "Keystore重复";
 
 //我的
 "BackupMnemonicPhrase" = "备份助记词";
