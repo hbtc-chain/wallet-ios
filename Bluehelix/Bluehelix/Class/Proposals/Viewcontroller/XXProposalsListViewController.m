@@ -232,6 +232,10 @@ static NSInteger pageCount = 20;
             _proposalsTableView.contentInsetAdjustmentBehavior = UIScrollViewContentInsetAdjustmentNever;
         }
         _proposalsTableView.mj_header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
+            if (@available(iOS 10.0, *)) {
+                UIImpactFeedbackGenerator *impactLight = [[UIImpactFeedbackGenerator alloc]initWithStyle:UIImpactFeedbackStyleLight];
+                [impactLight impactOccurred];
+            }
             @strongify(self)
             [self loadData];
             [self.proposalsTableView.mj_footer resetNoMoreData];
