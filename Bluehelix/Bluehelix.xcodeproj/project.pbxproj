@@ -254,6 +254,9 @@
 		EAC6871D214FAD1C00701874 /* XXTabView.m in Sources */ = {isa = PBXBuildFile; fileRef = EAC6871B214FAD1600701874 /* XXTabView.m */; };
 		EAC83FAB2465899600340C95 /* XXVersionManager.m in Sources */ = {isa = PBXBuildFile; fileRef = EAC83FAA2465899600340C95 /* XXVersionManager.m */; };
 		EAC83FAE24658A2900340C95 /* XXUpdateVersionView.m in Sources */ = {isa = PBXBuildFile; fileRef = EAC83FAD24658A2900340C95 /* XXUpdateVersionView.m */; };
+		EAE285DC246E4BA4006D9F24 /* NS+BTCBase58.m in Sources */ = {isa = PBXBuildFile; fileRef = EAE285D7246E4BA4006D9F24 /* NS+BTCBase58.m */; };
+		EAE285DD246E4BA4006D9F24 /* BTCData.m in Sources */ = {isa = PBXBuildFile; fileRef = EAE285D8246E4BA4006D9F24 /* BTCData.m */; };
+		EAE285DE246E4BA4006D9F24 /* BTCBase58.m in Sources */ = {isa = PBXBuildFile; fileRef = EAE285D9246E4BA4006D9F24 /* BTCBase58.m */; };
 		EAE4047E211C1DB300FFD028 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = EAE40478211C1DB300FFD028 /* Localizable.strings */; };
 		EAE4047F211C1DB300FFD028 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = EAE4047A211C1DB300FFD028 /* InfoPlist.strings */; };
 		EAE40482211C34A000FFD028 /* LocalizeHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = EAE40481211C34A000FFD028 /* LocalizeHelper.m */; };
@@ -801,6 +804,12 @@
 		EAC83FAA2465899600340C95 /* XXVersionManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = XXVersionManager.m; sourceTree = "<group>"; };
 		EAC83FAC24658A2900340C95 /* XXUpdateVersionView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XXUpdateVersionView.h; sourceTree = "<group>"; };
 		EAC83FAD24658A2900340C95 /* XXUpdateVersionView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XXUpdateVersionView.m; sourceTree = "<group>"; };
+		EAE285D4246E4BA4006D9F24 /* BTCData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BTCData.h; sourceTree = "<group>"; };
+		EAE285D6246E4BA4006D9F24 /* BTCBase58.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BTCBase58.h; sourceTree = "<group>"; };
+		EAE285D7246E4BA4006D9F24 /* NS+BTCBase58.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NS+BTCBase58.m"; sourceTree = "<group>"; };
+		EAE285D8246E4BA4006D9F24 /* BTCData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BTCData.m; sourceTree = "<group>"; };
+		EAE285D9246E4BA4006D9F24 /* BTCBase58.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BTCBase58.m; sourceTree = "<group>"; };
+		EAE285DB246E4BA4006D9F24 /* NS+BTCBase58.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NS+BTCBase58.h"; sourceTree = "<group>"; };
 		EAE40479211C1DB300FFD028 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/Localizable.strings"; sourceTree = "<group>"; };
 		EAE4047B211C1DB300FFD028 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/InfoPlist.strings"; sourceTree = "<group>"; };
 		EAE4047C211C1DB300FFD028 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
@@ -1955,6 +1964,19 @@
 			path = Other;
 			sourceTree = "<group>";
 		};
+		EAE285D3246E4BA4006D9F24 /* CBBase58 */ = {
+			isa = PBXGroup;
+			children = (
+				EAE285D4246E4BA4006D9F24 /* BTCData.h */,
+				EAE285D6246E4BA4006D9F24 /* BTCBase58.h */,
+				EAE285D7246E4BA4006D9F24 /* NS+BTCBase58.m */,
+				EAE285D8246E4BA4006D9F24 /* BTCData.m */,
+				EAE285D9246E4BA4006D9F24 /* BTCBase58.m */,
+				EAE285DB246E4BA4006D9F24 /* NS+BTCBase58.h */,
+			);
+			path = CBBase58;
+			sourceTree = "<group>";
+		};
 		EAE40477211C1DB300FFD028 /* GlobalLanguage */ = {
 			isa = PBXGroup;
 			children = (
@@ -2037,6 +2059,7 @@
 		F3D9397520CCCB560055070B /* Tools */ = {
 			isa = PBXGroup;
 			children = (
+				EAE285D3246E4BA4006D9F24 /* CBBase58 */,
 				EA9D3E2B24545A1D0060778C /* SWCell */,
 				EABD7182244AFCD4008AA188 /* EmptyView */,
 				EAB356242438369200D750D6 /* fmdb */,
@@ -2192,7 +2215,7 @@
 			files = (
 			);
 			inputPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-Bluehelix/Pods-Bluehelix-resources.sh",
+				"${SRCROOT}/Pods/Target Support Files/Pods-Bluehelix/Pods-Bluehelix-resources.sh",
 				"${PODS_ROOT}/MBProgressHUD+JDragon/MBProgressHUD+JDragon/MBProgressHUD+JDragon.bundle",
 				"${PODS_ROOT}/MJRefresh/MJRefresh/MJRefresh.bundle",
 			);
@@ -2203,7 +2226,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Bluehelix/Pods-Bluehelix-resources.sh\"\n";
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Bluehelix/Pods-Bluehelix-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		A862161BA73B7D5FEA430435 /* [CP] Check Pods Manifest.lock */ = {
@@ -2296,6 +2319,7 @@
 				EAA8DEDA244DE1DE00161698 /* XXImportWayView.m in Sources */,
 				EAC83FAE24658A2900340C95 /* XXUpdateVersionView.m in Sources */,
 				EAC83FAB2465899600340C95 /* XXVersionManager.m in Sources */,
+				EAE285DD246E4BA4006D9F24 /* BTCData.m in Sources */,
 				EA15E95D24168F5600A3E14A /* XXVerifyMnemonicPhraseVC.m in Sources */,
 				EA04ABA9242D015B004403FF /* IQToolbar.m in Sources */,
 				EA9D3E2A2452BBD00060778C /* XXChangePasswordVC.m in Sources */,
@@ -2379,6 +2403,7 @@
 				6C0D91B8244984080043AF74 /* XXValidatorDetailHeader.m in Sources */,
 				EAA8DEC5244D7E7C00161698 /* XXUserHomeVC.m in Sources */,
 				EA309E3C236F21410098DE28 /* AFHTTPSessionManager.m in Sources */,
+				EAE285DE246E4BA4006D9F24 /* BTCBase58.m in Sources */,
 				6C791E182452DD7B00F22CD0 /* XXProposalDescriptionView.m in Sources */,
 				EA15E97A2417E24100A3E14A /* XXScreenShotAlert.m in Sources */,
 				EA3E592124441D160080B98F /* XXAssetVC.m in Sources */,
@@ -2466,6 +2491,7 @@
 				EAC68719214F931200701874 /* NullSafe.m in Sources */,
 				EA677248246BBAE4008C931A /* XXImportKeystoreVC.m in Sources */,
 				6C3E66FC244AD0700057B514 /* XXDelegateTransferView.m in Sources */,
+				EAE285DC246E4BA4006D9F24 /* NS+BTCBase58.m in Sources */,
 				F30EAF6320D26536005ADD5C /* NSDate+Helper.m in Sources */,
 				EABD7187244AFCD4008AA188 /* XXFailureView.m in Sources */,
 				7A3298452320EE9900196336 /* NSMutableArray+Safe.m in Sources */,

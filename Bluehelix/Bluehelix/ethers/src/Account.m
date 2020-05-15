@@ -36,7 +36,7 @@
 #import "BigNumber.h"
 #import <CommonCrypto/CommonDigest.h>
 #include "ripemd160.h"
-#import <BTCBase58.h>
+#import "BTCBase58.h"
 #import "NSData+Base64.h"
 #import "NSString+Base64.h"
 static NSErrorDomain ErrorDomain = @"io.ethers.AccountError";
