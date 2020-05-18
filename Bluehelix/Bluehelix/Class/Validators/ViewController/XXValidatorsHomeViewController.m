@@ -240,6 +240,10 @@ static NSString *KValidatorGripSectionHeader = @"XXValidatorGripSectionHeader";
             _validatorsListTableView.contentInsetAdjustmentBehavior = UIScrollViewContentInsetAdjustmentNever;
         }
         _validatorsListTableView.mj_header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
+            if (@available(iOS 10.0, *)) {
+                UIImpactFeedbackGenerator *impactLight = [[UIImpactFeedbackGenerator alloc]initWithStyle:UIImpactFeedbackStyleLight];
+                [impactLight impactOccurred];
+            }
             [weakSelf loadData];
         }];
     }

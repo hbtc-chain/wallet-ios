@@ -62,11 +62,16 @@
 }
 
 - (void)switchAction:(UISwitch *)sender {
+    if (@available(iOS 10.0, *)) {
+        UIImpactFeedbackGenerator *impactLight = [[UIImpactFeedbackGenerator alloc]initWithStyle:UIImpactFeedbackStyleLight];
+        [impactLight impactOccurred];
+    }
     if (sender.isOn) {
         [[XXSqliteManager sharedSqlite] insertSymbol:self.model.symbol];
     } else {
         [[XXSqliteManager sharedSqlite] deleteSymbol:self.model.symbol];
     }
+    
 }
 
 - (UIImageView *)iconView {

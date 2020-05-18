@@ -336,6 +336,10 @@ static NSString *kProposalDetailInfoCell = @"ProposalDetailInfomationCell";
         }
         @weakify(self)
         _proposalDetailTableView.mj_header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
+            if (@available(iOS 10.0, *)) {
+                UIImpactFeedbackGenerator *impactLight = [[UIImpactFeedbackGenerator alloc]initWithStyle:UIImpactFeedbackStyleLight];
+                [impactLight impactOccurred];
+            }
             @strongify(self)
             [self requestProposalDetail];
            
