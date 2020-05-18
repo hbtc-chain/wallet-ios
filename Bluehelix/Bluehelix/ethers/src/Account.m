@@ -65,9 +65,9 @@ NSObject *getPath(NSObject *object, NSString *path, Class expectedClass) {
 }
 
 NSData *getHexData(NSString *unprefixedHexString) {
-    if (![unprefixedHexString hasPrefix:@"0x"]) {
-        unprefixedHexString = [@"0x" stringByAppendingString:unprefixedHexString];
-    }
+//    if (![unprefixedHexString hasPrefix:@"0x"]) {
+//        unprefixedHexString = [@"0x" stringByAppendingString:unprefixedHexString];
+//    }
     return [SecureData hexStringToData:unprefixedHexString];
 }
 
@@ -178,6 +178,13 @@ static NSDateFormatter *TimeFormatter = nil;
         _BHAddress = address;
         _pubKey = publicKey.data;
 //        [self publicKeyStr:publicKey];
+        
+        
+//        SecureData *publicKey1 = [SecureData secureDataWithLength:65];
+//               ecdsa_get_public_key65(&secp256k1, _privateKey.bytes, publicKey1.mutableBytes);
+//               NSData *addressData = [[[publicKey1 subdataFromIndex:1] KECCAK256] subdataFromIndex:12].data;
+//               _address = [Address addressWithData:addressData];
+//        NSLog(@"%@",_address);
     }
     return self;
 }
@@ -345,11 +352,13 @@ static NSDateFormatter *TimeFormatter = nil;
         return nil;
     }
     
-    Address *expectedAddress = [Address addressWithString:(NSString*)getPath(data, @"address", [NSString class])];
-    if (!expectedAddress) {
-        sendError(kAccountErrorJSONInvalidParameter, [NSString stringWithFormat:@"invalidAddress(%@)", expectedAddress]);
-        return nil;
-    }
+//    Address *expectedAddress = [Address addressWithString:(NSString*)getPath(data, @"address", [NSString class])];
+    NSString *expectedAddress = (NSString*)getPath(data, @"address", [NSString class]);
+
+//    if (!expectedAddress) {
+//        sendError(kAccountErrorJSONInvalidParameter, [NSString stringWithFormat:@"invalidAddress(%@)", expectedAddress]);
+//        return nil;
+//    }
     
     NSString *kdf = (NSString*)getPath(data, @"crypto/kdf", [NSString class]);
     NSData *salt = getHexData((NSString*)getPath(data, @"crypto/kdfparams/salt", [NSString class]));
@@ -365,16 +374,16 @@ static NSDateFormatter *TimeFormatter = nil;
     NSString *cipher = (NSString*)getPath(data, @"crypto/cipher", [NSString class]);
     NSData *iv = getHexData((NSString*)getPath(data, @"crypto/cipherparams/iv", [NSString class]));
     NSData *cipherText = getHexData((NSString*)getPath(data, @"crypto/ciphertext", [NSString class]));
-    if (![cipher isEqualToString:@"aes-128-ctr"] || iv.length != 16 || cipherText.length != 32) {
-        sendError(kAccountErrorJSONUnsupportedCipher, @"Invalid cipher parameters");
-        return nil;
-    }
+//    if (![cipher isEqualToString:@"aes-128-ctr"] || iv.length != 16 || cipherText.length != 32) {
+//        sendError(kAccountErrorJSONUnsupportedCipher, @"Invalid cipher parameters");
+//        return nil;
+//    }
     
     NSData *mac = getHexData((NSString*)getPath(data, @"crypto/mac", [NSString class]));
-    if (mac.length != 32) {
-        sendError(kAccountErrorJSONInvalidParameter, [NSString stringWithFormat:@"Bad MAC length (%d)", (int)(mac.length)]);
-        return nil;
-    }
+//    if (mac.length != 32) {
+//        sendError(kAccountErrorJSONInvalidParameter, [NSString stringWithFormat:@"Bad MAC length (%d)", (int)(mac.length)]);
+//        return nil;
+//    }
     
     // Convert password to NFKC form
     NSData *passwordData = [[password precomposedStringWithCompatibilityMapping] dataUsingEncoding:NSUTF8StringEncoding];
@@ -441,7 +450,7 @@ static NSDateFormatter *TimeFormatter = nil;
         
         Account *account = [[Account alloc] initWithPrivateKey:privateKey.data];
         
-        if (![account.address isEqualToAddress:expectedAddress]) {
+        if (![[account.BHAddress lowercaseString] isEqualToString:expectedAddress]) {
             sendError(kAccountErrorJSONInvalidParameter, @"Address mismatch");
             return;
         }
@@ -534,8 +543,8 @@ static NSDateFormatter *TimeFormatter = nil;
     
     NSMutableDictionary *json = [NSMutableDictionary dictionary];
     
-//    [[json setObject:[[self.address.checksumAddress substringFromIndex:2] lowercaseString] forKey:@"address"];
-     [json setObject:self.BHAddress forKey:@"address"];
+//    [json setObject:[[self.address.checksumAddress substringFromIndex:2] lowercaseString] forKey:@"address"];
+     [json setObject:[self.BHAddress lowercaseString] forKey:@"address"];
     [json setObject:[uuid UUIDString] forKey:@"id"];
     [json setObject:@(3) forKey:@"version"];
     
@@ -550,13 +559,13 @@ static NSDateFormatter *TimeFormatter = nil;
         @"r": @(r),
         @"n": @(n),
         @"dklen": @([salt length]),
-        @"salt": [[salt hexString] substringFromIndex:2],
+        @"salt": [salt hexString],
     }
                forKey:@"kdfparams"];
     [crypto setObject:@"scrypt" forKey:@"kdf"];
     
     [crypto setObject:@{
-        @"iv": [[iv hexString] substringFromIndex:2],
+        @"iv": [iv hexString],
     }
                forKey:@"cipherparams"];
     [crypto setObject:@"aes-128-ctr" forKey:@"cipher"];
@@ -566,7 +575,7 @@ static NSDateFormatter *TimeFormatter = nil;
     NSString *gethFilename = [NSString stringWithFormat:@"UTC--%@T%@.0Z--%@",
                               [DateFormatter stringFromDate:now],
                               [TimeFormatter stringFromDate:now],
-                              [[self.address.checksumAddress substringFromIndex:2] lowercaseString]];
+                              [self.BHAddress lowercaseString]];
     [ethers setObject:gethFilename forKey:@"gethFilename"];
     [ethers setObject:@"ethers/iOS" forKey:@"client"];
     [ethers setObject:@"0.1" forKey:@"version"];
@@ -612,7 +621,7 @@ static NSDateFormatter *TimeFormatter = nil;
             }
         }
         
-        [crypto setObject:[[cipherText hexString] substringFromIndex:2] forKey:@"ciphertext"];
+        [crypto setObject:[[cipherText hexString] substringFromIndex:0] forKey:@"ciphertext"];
         
         if (_mnemonicData) {
             SecureData *mnemonicCounter = [SecureData secureDataWithLength:16];;
@@ -645,8 +654,8 @@ static NSDateFormatter *TimeFormatter = nil;
                 return;
             }
             
-            [ethers setObject:[[mnemonicCounter hexString] substringFromIndex:2] forKey:@"mnemonicCounter"];
-            [ethers setObject:[[mnemonicCiphertext hexString] substringFromIndex:2] forKey:@"mnemonicCiphertext"];
+            [ethers setObject:[mnemonicCounter hexString]  forKey:@"mnemonicCounter"];
+            [ethers setObject:[mnemonicCiphertext hexString] forKey:@"mnemonicCiphertext"];
         }
         
         
@@ -655,7 +664,7 @@ static NSDateFormatter *TimeFormatter = nil;
             SecureData *macCheck = [SecureData secureDataWithCapacity:(16 + 32)];
             [macCheck append:[derivedKey subdataWithRange:NSMakeRange(16, 16)]];
             [macCheck append:cipherText];
-            [crypto setObject:[[[macCheck KECCAK256] hexString] substringFromIndex:2] forKey:@"mac"];
+            [crypto setObject:[[macCheck KECCAK256] hexString] forKey:@"mac"];
         }
         
         NSError *error = nil;

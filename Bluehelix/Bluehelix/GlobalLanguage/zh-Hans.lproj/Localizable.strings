@@ -32,6 +32,7 @@
 "NextStep" = "下一步";
 "SetName" = "设置名称";
 "SetNameTip" = "您正在创建BlueHelix钱包的托管单元，并将拥有一份跨链钱包";
+"KeystoreSetNameTip" = "您正在导入BlueHelix钱包的托管单元，并将拥有一份跨链钱包";
 "SetPassword" = "设置密码";
 "SetPasswordTip" = "·安全密码是保护钱包私钥和操作资产的重要凭证\n·BlueHelix钱包不会缓存、上传、存储您的密码\n·请务必妥善保管密码";
 "RepeatPassword" = "重复密码";
@@ -88,6 +89,9 @@
 "MnemonicPhraseRepetition" = "助记词重复";
 "PrivateKeyRepetition" = "私钥重复";
 "KeystoreRepetition" = "Keystore重复";
+"Import" = "导入";
+"BackupPrivateKeyTip" = "·获取私钥等于拥有钱包资产所有权\n·私钥丢失无法找回，请务必备份\n·使用纸笔正确抄写，请务必妥善保管私钥";
+"BackupKeystoreTip" = "·获取 Keystore 和密码等于拥有钱包资产所有权\n·Keystore 丢失无法找回，请务必备份\n·使用纸笔正确抄写，请务必妥善保管Keystore";
 
 //我的
 "BackupMnemonicPhrase" = "备份助记词";
@@ -109,6 +113,22 @@
 "ConfirmNewPassword"="确认新密码";
 "ChangePasswordSuccess" = "密码修改成功";
 "ChooseAccount" = "选择账户";
+"BackupKeystore" = "备份Keystore";
+"BackupPrivateKey" = "备份私钥";
+"PrivateKey" = "私钥";
+"BackupPrivateKeyTip1" = "离线保存";
+"BackupPrivateKeyTip2" = "请勿使用网络传输";
+"BackupPrivateKeyTip3" = "密码管理工具保存";
+"BackupPrivateKeyContent1" = "·切勿保存至邮箱、记事本、网盘、聊天工具等";
+"BackupPrivateKeyContent2" = "·请勿通过网络工具传输，一旦被黑客获取将造成不可挽回的资产损失 ·建议离线设备通过扫二维码方式传输";
+"BackupPrivateKeyContent3" = "·建议使用密码管理工具管理";
+"CopyPrivateKey" = "复制私钥";
+"ShowCode" = "显示二维码";
+"BackupCodeTip1" = "仅供直接扫描";
+"BackupCodeTip2" = "在安全环境下使用";
+"BackupCodeContent1" = "·二维码禁止保存、截图、拍照\n·仅供用户在安全环境下直接扫描导入钱包";
+"BackupCodeContent2" = "·请务必确认在四周无人、无摄像头的环境中使用\n·二维码一旦被他人获取将造成不可挽回的资产损失";
+"CopyKeystore" = "复制Keystore";
 
 //资产
 "HideSmallCurrency" = "隐藏小额币种";

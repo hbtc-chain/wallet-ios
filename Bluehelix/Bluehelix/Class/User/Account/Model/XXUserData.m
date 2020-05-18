@@ -109,32 +109,32 @@ static XXUserData *_sharedUserData = nil;
 //    return [self getValueForKey:@"pubKey"];
 //}
 
-// 临时密码
-- (void)setLocalPassword:(NSString *)localPassword {
-    [self saveValeu:localPassword forKey:@"localPassword"];
-}
+//// 临时密码
+//- (void)setLocalPassword:(NSString *)localPassword {
+//    [self saveValeu:localPassword forKey:@"localPassword"];
+//}
+//
+//- (NSString *)localPassword {
+//    return [self getValueForKey:@"localPassword"];
+//}
 
-- (NSString *)localPassword {
-    return [self getValueForKey:@"localPassword"];
-}
-
-// 临时助记词
-- (void)setLocalPhraseString:(NSString *)localPhraseString {
-    [self saveValeu:localPhraseString forKey:@"localPhraseString"];
-}
-
-- (NSString *)localPhraseString {
-    return [self getValueForKey:@"localPhraseString"];
-}
-
-// 临时私钥
-- (void)setLocalPrivateKey:(NSString *)localPrivateKey {
-    [self saveValeu:localPrivateKey forKey:@"localPrivateKey"];
-}
-
-- (NSString *)localPrivateKey {
-    return [self getValueForKey:@"localPrivateKey"];
-}
+//// 临时助记词
+//- (void)setLocalPhraseString:(NSString *)localPhraseString {
+//    [self saveValeu:localPhraseString forKey:@"localPhraseString"];
+//}
+//
+//- (NSString *)localPhraseString {
+//    return [self getValueForKey:@"localPhraseString"];
+//}
+//
+//// 临时私钥
+//- (void)setLocalPrivateKey:(NSString *)localPrivateKey {
+//    [self saveValeu:localPrivateKey forKey:@"localPrivateKey"];
+//}
+//
+//- (NSString *)localPrivateKey {
+//    return [self getValueForKey:@"localPrivateKey"];
+//}
 
 // 当前账户
 - (XXAccountModel *)currentAccount {

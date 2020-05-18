@@ -171,7 +171,7 @@ static XXSqliteManager *_sqliteManager;
 #pragma mark 账户
 - (BOOL)existsAccount {
     [self.myFmdb open];
-    NSString *sql = @"create table if not exists account(ID INTEGER PRIMARY KEY AUTOINCREMENT,address TEXT,userName TEXT,password TEXT,backupFlag INTEGER,mnemonicPhrase TEXT,publicKey,privateKey TEXT,symbols TEXT)";
+    NSString *sql = @"create table if not exists account(ID INTEGER PRIMARY KEY AUTOINCREMENT,address TEXT,userName TEXT,password TEXT,backupFlag INTEGER,mnemonicPhrase TEXT,publicKey,privateKey TEXT,keystore TEXT,symbols TEXT)";
     BOOL result = [self.myFmdb executeUpdate:sql];
     return result;
 }
@@ -181,7 +181,7 @@ static XXSqliteManager *_sqliteManager;
     if (!existsTable) {
         return NO;
     }
-    BOOL result = [self.myFmdb executeUpdate:@"insert into 'account'(address,userName,password,backupFlag,publicKey,privateKey,mnemonicPhrase,symbols) values(?,?,?,?,?,?,?,?)" withArgumentsInArray:@[model.address,model.userName,model.password,[NSString stringWithFormat:@"%d",model.backupFlag],model.publicKey,model.privateKey,model.mnemonicPhrase,model.symbols]];
+    BOOL result = [self.myFmdb executeUpdate:@"insert into 'account'(address,userName,password,backupFlag,publicKey,privateKey,mnemonicPhrase,symbols,keystore) values(?,?,?,?,?,?,?,?,?)" withArgumentsInArray:@[model.address,model.userName,model.password,[NSString stringWithFormat:@"%d",model.backupFlag],model.publicKey,model.privateKey,model.mnemonicPhrase,model.symbols,model.keystore]];
     return result;
 }
 
@@ -225,6 +225,7 @@ static XXSqliteManager *_sqliteManager;
     model.publicKey = [set dataForColumn:@"publicKey"];
     model.privateKey = [set stringForColumn:@"privateKey"];
     model.mnemonicPhrase = [set stringForColumn:@"mnemonicPhrase"];
+    model.keystore = [set stringForColumn:@"keystore"];
     return model;
 }
 

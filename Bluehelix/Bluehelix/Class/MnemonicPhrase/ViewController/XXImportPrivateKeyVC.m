@@ -26,8 +26,15 @@
     [self buildUI];
 }
 
+- (void)buildUI {
+    self.titleLabel.text = LocalizedString(@"ImportSecurity");
+    [self.view addSubview:self.tipLabel];
+    [self.view addSubview:self.textBackView];
+    [self.textBackView addSubview:self.textView];
+    [self.view addSubview:self.createBtn];
+}
+
 - (void)nextStepAction {
-    NSLog(@"%@",self.textView.text);
     SecureData * data = [SecureData secureDataWithHexString:self.textView.text];
     Account *account = [Account accountWithPrivateKey:data.data];
     if (account) {
@@ -51,14 +58,6 @@
                    }];
         [alert showAlert];
     } 
-}
-
-- (void)buildUI {
-    self.titleLabel.text = LocalizedString(@"ImportSecurity");
-    [self.view addSubview:self.tipLabel];
-    [self.view addSubview:self.textBackView];
-    [self.textBackView addSubview:self.textView];
-    [self.view addSubview:self.createBtn];
 }
 
 - (void)textViewDidChange:(UITextView *)textView {

@@ -16,6 +16,8 @@
 #import "XXPasswordView.h"
 #import "XXSettingVC.h"
 #import "XXChangePasswordVC.h"
+#import "XXBackupPrivateKeyTipVC.h"
+#import "XXBackupKeystoreTipVC.h"
 
 @interface XXUserHomeVC () <UITableViewDataSource, UITableViewDelegate, UIGestureRecognizerDelegate>
 
@@ -57,11 +59,14 @@
 - (void)initData {
     self.itemsArray = [NSMutableArray array];
     self.iconArray = [NSMutableArray array];
+    NSMutableArray *firstSectionArray = [NSMutableArray array];
+    [firstSectionArray addObject:LocalizedString(@"ModifyPassword")];
     if (KUser.currentAccount.mnemonicPhrase && !KUser.currentAccount.backupFlag) {
-        self.itemsArray[0] = @[LocalizedString(@"BackupMnemonicPhrase"), LocalizedString(@"ModifyPassword")];
-    } else {
-        self.itemsArray[0] = @[LocalizedString(@"ModifyPassword")];
+        [firstSectionArray addObject:LocalizedString(@"BackupMnemonicPhrase")];
     }
+    [firstSectionArray addObject:LocalizedString(@"BackupKeystore")];
+    [firstSectionArray addObject:LocalizedString(@"BackupPrivateKey")];
+    self.itemsArray[0] = firstSectionArray;
     self.itemsArray[1] = @[LocalizedString(@"Setting"),LocalizedString(@"Version")];
 }
 
@@ -142,6 +147,12 @@
     if ([itemString isEqualToString:LocalizedString(@"BackupMnemonicPhrase")]) { // 备份助记词
         [self pushBackupPhrase];
     }
+    if ([itemString isEqualToString:LocalizedString(@"BackupKeystore")]) { // 备份Keystore
+        [self pushBackupKeystore];
+    }
+    if ([itemString isEqualToString:LocalizedString(@"BackupPrivateKey")]) { // 备份私钥
+        [self pushBackupPrivateKey];
+    }
     if ([itemString isEqualToString:LocalizedString(@"ModifyPassword")]) {
         XXChangePasswordVC *vc = [[XXChangePasswordVC alloc] init];
         [self.navigationController pushViewController:vc animated:YES];
@@ -158,6 +169,26 @@
         XXBackupMnemonicPhraseVC *backup = [[XXBackupMnemonicPhraseVC alloc] init];
         backup.text = text;
         [weakSelf.navigationController pushViewController:backup animated:YES];
+    }];
+}
+
+/// 备份Keystore
+- (void)pushBackupKeystore {
+    MJWeakSelf
+    [XXPasswordView showWithSureBtnBlock:^(NSString * _Nonnull text) {
+        XXBackupKeystoreTipVC *tipVC = [[XXBackupKeystoreTipVC alloc] init];
+        tipVC.text = text;
+        [weakSelf.navigationController pushViewController:tipVC animated:YES];
+    }];
+}
+
+/// 备份Private
+- (void)pushBackupPrivateKey {
+    MJWeakSelf
+    [XXPasswordView showWithSureBtnBlock:^(NSString * _Nonnull text) {
+        XXBackupPrivateKeyTipVC *privateKeyTipVC = [[XXBackupPrivateKeyTipVC alloc] init];
+        privateKeyTipVC.text = text;
+        [weakSelf.navigationController pushViewController:privateKeyTipVC animated:YES];
     }];
 }
 

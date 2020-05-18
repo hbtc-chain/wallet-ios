@@ -24,8 +24,9 @@
 @property (nonatomic, strong) XXTextFieldView *textFieldView;
 @property (nonatomic, strong) XXLabel *charCountLabel;
 @property (nonatomic, strong) XXButton *createBtn;
-@property (strong, nonatomic) XXButton *isAgreeButton;
-@property (strong, nonatomic) UITextView *textView;
+@property (nonatomic, strong) XXButton *isAgreeButton;
+@property (nonatomic, strong) UITextView *textView;
+@property (nonatomic, strong) Account *account;
 @end
 
 @implementation XXRepeatPasswordVC
@@ -33,7 +34,6 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-    KUser.agreeService = NO;
     [self buildUI];
 }
 
@@ -45,6 +45,7 @@
 
 - (void)buildUI {
     self.titleLabel.text = LocalizedString(@"CreateWallet");
+    KUser.agreeService = NO;
     [self.view addSubview:self.tipLabel];
     [self.view addSubview:self.stepTipLabel];
     [self.view addSubview:self.contentLabel];
@@ -63,24 +64,31 @@
         [alert showAlert];
         return;
     }
-    Account *account;
+    [MBProgressHUD showActivityMessageInView:nil];
     NSLog(@"%@   %@",KUser.localPrivateKey,KUser.localPhraseString);
     if (!IsEmpty(KUser.localPhraseString)) { //通过助记词导入创建
-        account = [Account accountWithMnemonicPhrase:KUser.localPhraseString];
+        self.account = [Account accountWithMnemonicPhrase:KUser.localPhraseString];
     } else if (!IsEmpty(KUser.localPrivateKey)) { //通过私钥导入创建
         SecureData * data = [SecureData secureDataWithHexString:KUser.localPrivateKey];
-        account = [Account accountWithPrivateKey:data.data];
-    } else {
-        account = [Account randomMnemonicAccount];
+        self.account = [Account accountWithPrivateKey:data.data];
+    }  else {
+        self.account = [Account randomMnemonicAccount];
     }
+    [self.account encryptSecretStorageJSON:KUser.localPassword callback:^(NSString *json) {
+        [self backupKeystore:json];
+    }];
+}
+
+- (void)backupKeystore:(NSString *)json {
     XXAccountModel *model = [[XXAccountModel alloc] init];
-    model.privateKey = [AESCrypt encrypt:account.privateKeyString password:KUser.localPassword];
-    model.publicKey = account.pubKey;
-    model.address = account.BHAddress;
+    model.privateKey = [AESCrypt encrypt:self.account.privateKeyString password:KUser.localPassword];
+    model.publicKey = self.account.pubKey;
+    model.address = self.account.BHAddress;
     model.userName = KUser.localUserName;
     model.password = [NSString md5:KUser.localPassword];
-    if (account.mnemonicPhrase && IsEmpty(KUser.localPhraseString)) { //如果是通过助记词导入的 不需要备份和保留助记词
-        NSString *mnemonicPhrase = [AESCrypt encrypt:account.mnemonicPhrase password:KUser.localPassword];
+    model.keystore = json;
+    if (self.account.mnemonicPhrase && IsEmpty(KUser.localPhraseString)) { //如果是通过助记词导入的 不需要备份和保留助记词
+        NSString *mnemonicPhrase = [AESCrypt encrypt:self.account.mnemonicPhrase password:KUser.localPassword];
         model.mnemonicPhrase = mnemonicPhrase;
     } else {
         model.mnemonicPhrase = @"";
@@ -89,7 +97,7 @@
     model.symbols = [NSString stringWithFormat:@"btc,eth,usdt,%@",kMainToken];
     [[XXSqliteManager sharedSqlite] insertAccount:model];
     KUser.address = model.address;
-    
+    [MBProgressHUD hideHUD];
     if (!IsEmpty(KUser.localPhraseString)) { //通过助记词导入 不需要
         Alert *alert = [[Alert alloc] initWithTitle:LocalizedString(@"ImportSuccess") duration:kAlertDuration completion:^{
             KWindow.rootViewController = [[XXTabBarController alloc] init];
@@ -175,7 +183,7 @@
 - (XXButton *)isAgreeButton {
     if (_isAgreeButton == nil) {
         MJWeakSelf
-        _isAgreeButton = [XXButton buttonWithFrame:CGRectMake(K375(24), CGRectGetMaxY(self.charCountLabel.frame), 30, 30) block:^(UIButton *button) {
+        _isAgreeButton = [XXButton buttonWithFrame:CGRectMake(K375(24), CGRectGetMaxY(self.charCountLabel.frame) + 4, 30, 24) block:^(UIButton *button) {
             weakSelf.isAgreeButton.selected = !weakSelf.isAgreeButton.selected;
             KUser.agreeService = weakSelf.isAgreeButton.selected;
             if (KUser.agreeService && weakSelf.textFieldView.textField.text.length) {
@@ -198,7 +206,6 @@
 - (BOOL)textView:(UITextView *)textView shouldInteractWithURL:(NSURL *)URL inRange:(NSRange)characterRange {
     if ([[URL scheme] isEqualToString:@"fwxy"]) {
         XXServiceAgreementVC *serviceVC = [[XXServiceAgreementVC alloc] init];
-        //        XXNavigationController *nav = [[XXNavigationController alloc] initWithRootViewController:serviceVC];
         serviceVC.modalPresentationStyle = UIModalPresentationFullScreen;
         [self presentViewController:serviceVC animated:YES completion:nil];
     }
@@ -207,7 +214,7 @@
 
 - (UITextView *)textView {
     if (_textView == nil) {
-        _textView = [[UITextView alloc] initWithFrame:CGRectMake(CGRectGetMaxX(self.isAgreeButton.frame) - 5, self.isAgreeButton.top - 4, K375(280), self.isAgreeButton.height)];
+        _textView = [[UITextView alloc] initWithFrame:CGRectMake(CGRectGetMaxX(self.isAgreeButton.frame) - 5, self.isAgreeButton.top - 4, K375(280), self.isAgreeButton.height +8)];
         _textView.backgroundColor = kWhiteColor;
         _textView.font = kFont12;
         _textView.textColor = kGray700;

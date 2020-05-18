@@ -12,6 +12,7 @@
 "Proposal" = "治理提案";
 "Me" = "我的";
 
+//创建钱包
 "Verify" = "验证";
 "logoName" = "Bluehelix Wallet";
 "CreateWallet" = "创建托管单元";
@@ -31,6 +32,7 @@
 "NextStep" = "下一步";
 "SetName" = "设置名称";
 "SetNameTip" = "您正在创建BlueHelix钱包的托管单元，并将拥有一份跨链钱包";
+"KeystoreSetNameTip" = "您正在导入BlueHelix钱包的托管单元，并将拥有一份跨链钱包";
 "SetPassword" = "设置密码";
 "SetPasswordTip" = "·安全密码是保护钱包私钥和操作资产的重要凭证\n·BlueHelix钱包不会缓存、上传、存储您的密码\n·请务必妥善保管密码";
 "RepeatPassword" = "重复密码";
@@ -55,6 +57,7 @@
 "ImportSecurity" = "导入私钥";
 "ImportMnemonicPhraseTip" = "请在下方输入框中按顺序输入助记词，用空格分开";
 "ImportSecurityTip" = "请在下方输入框中输入私钥，并留意大小写";
+"ImportKeystoreTip" = "·复制粘贴 Bluehelix 钱包 Keystore 文件内容\n·粘贴至下方“Keystore”输入框";
 "AccountManage" = "管理托管单元";
 "TwoPasswordInconsistent" = "两次密码输入不一致！";
 "AccountNameRuleAlert" = "请输入1-20个字符";
@@ -67,13 +70,14 @@
 "Cancel" = "取消";
 "PrivateKeyOutOfOrder" = "您输入的私钥不符合规则";
 "MnemonicPhraseOutOfOrder" = "您输入的助记词不符合规则";
+"KeystoreOutOfOrder" = "您输入的Keystore不符合规则";
 "PasswordWrong" = "密码错误";
 "SecurityTip" = "验证密码";
 "Delete" = "删除";
 "BackupSecurityTip" = "安全提醒";
 "BackupSecurityTip1" = "您的钱包助记词未备份，请务必备份助记词";
 "BackupSecurityTip2" = "助记词可用于:";
-"BackupSecurityContent" = "·恢复钱包下的钱包资产\n·防止忘记密码\n·应用删除、手机丢失等情况导致的资产损失";
+"BackupSecurityContent" = "·恢复钱包下的钱包资产\n·防止忘记密码\n·应用删除、手机丢失\n等情况导致的资产损失";
 "BackupLaterRemind" = "稍后提醒";
 "CharCount" = "%@位字符";
 "ChooseImportWay" = "请选择导入方式";
@@ -81,6 +85,13 @@
 "ServiceAgreementTip" = "您必须阅读并接受我们的隐私协议条款才能继续";
 "ReadAndAgree" = "我已阅读并同意服务协议";
 "ServiceContent" = "上了肯德基弗雷斯科的肌肤轮廓是江东父老开始江东父老绝世独立飞机上了肯德基分类考试的肌肤轮廓来看圣诞节福利开始的肌肤轮廓设计的弗兰克绝世独立开发建设的六块腹肌滴漏式咖啡机路上看到肌肤轮廓设计的弗兰克绝世独立开发建设独立开发上了肯德基弗雷斯科的肌肤轮廓是江东父老开始江东父老绝世独立飞机上了肯德基分类考试的肌肤轮廓来看圣诞节福利开始的肌肤轮廓设计的弗兰克绝世独立开发建设的六块腹肌滴漏式咖啡机路上看到肌肤轮廓设计的弗兰克绝世独立开发建设独立开发上了肯德基弗雷斯科的肌肤轮廓是江东父老开始江东父老绝世独立飞机上了肯德基分类考试的肌肤轮廓来看圣诞节福利开始的肌肤轮廓设计的弗兰克绝世独立开发建设的六块腹肌滴漏式咖啡机路上看到肌肤轮廓设计的弗兰克绝世独立开发建设独立开发上了肯德基弗雷斯科的肌肤轮廓是江东父老开始江东父老绝世独立飞机上了肯德基分类考试的肌肤轮廓来看圣诞节福利开始的肌肤轮廓设计的弗兰克绝世独立开发建设的六块腹肌滴漏式咖啡机路上看到肌肤轮廓设计的弗兰克绝世独立开发建设独立开发上了肯德基弗雷斯科的肌肤轮廓是江东父老开始江东父老绝世独立飞机上了肯德基分类考试的肌肤轮廓来看圣诞节福利开始的肌肤轮廓设计的弗兰克绝世独立开发建设的六块腹肌滴漏式咖啡机路上看到肌肤轮廓设计的弗兰克绝世独立开发建设独立开发上了肯德基弗雷斯科的肌肤轮廓是江东父老开始江东父老绝世独立飞机上了肯德基分类考试的肌肤轮廓来看圣诞节福利开始的肌肤轮廓设计的弗兰克绝世独立开发建设的六块腹肌滴漏式咖啡机路上看到肌肤轮廓设计的弗兰克绝世独立开发建设独立开发上了肯德基弗雷斯科的肌肤轮廓是江东父老开始江东父老绝世独立飞机上了肯德基分类考试的肌肤轮廓来看圣诞节福利开始的肌肤轮廓设计的弗兰克绝世独立开发建设的六块腹肌滴漏式咖啡机路上看到肌肤轮廓设计的弗兰克绝世独立开发建设独立开发上了肯德基弗雷斯科的肌肤轮廓是江东父老开始江东父老绝世独立飞机上了肯德基分类考试的肌肤轮廓来看圣诞节福利开始的肌肤轮廓设计的弗兰克绝世独立开发建设的六块腹肌滴漏式咖啡机路上看到肌肤轮廓设计的弗兰克绝世独立开发建设独立开发上了肯德基弗雷斯科的肌肤轮廓是江东父老开始江东父老绝世独立飞机上了肯德基分类考试的肌肤轮廓来看圣诞节福利开始的肌肤轮廓设计的弗兰克绝世独立开发建设的六块腹肌滴漏式咖啡机路上看到肌肤轮廓设计的弗兰克绝世独立开发建设独立开发上了肯德基弗雷斯科的肌肤轮廓是江东父老开始江东父老绝世独立飞机上了肯德基分类考试的肌肤轮廓来看圣诞节福利开始的肌肤轮廓设计的弗兰克绝世独立开发建设的六块腹肌滴漏式咖啡机路上看到肌肤轮廓设计的弗兰克绝世独立开发建设独立开发上了肯德基弗雷斯科的肌肤轮廓是江东父老开始江东父老绝世独立飞机上了肯德基分类考试的肌肤轮廓来看圣诞节福利开始的肌肤轮廓设计的弗兰克绝世独立开发建设的六块腹肌滴漏式咖啡机路上看到肌肤轮廓设计的弗兰克绝世独立开发建设独立开发上了肯德基弗雷斯科的肌肤轮廓是江东父老开始江东父老绝世独立飞机上了肯德基分类考试的肌肤轮廓来看圣诞节福利开始的肌肤轮廓设计的弗兰克绝世独立开发建设的六块腹肌滴漏式咖啡机路上看到肌肤轮廓设计的弗兰克绝世独立开发建设独立开发上了肯德基弗雷斯科的肌肤轮廓是江东父老开始江东父老绝世独立飞机上了肯德基分类考试的肌肤轮廓来看圣诞节福利开始的肌肤轮廓设计的弗兰克绝世独立开发建设的六块腹肌滴漏式咖啡机路上看到肌肤轮廓设计的弗兰克绝世独立开发建设独立开发上了肯德基弗雷斯科的肌肤轮廓是江东父老开始江东父老绝世独立飞机上了肯德基分类考试的肌肤轮廓来看圣诞节福利开始的肌肤轮廓设计的弗兰克绝世独立开发建设的六块腹肌滴漏式咖啡机路上看到肌肤轮廓设计的弗兰克绝世独立开发建设独立开发上了肯德基弗雷斯科的肌肤轮廓是江东父老开始江东父老绝世独立飞机上了肯德基分类考试的肌肤轮廓来看圣诞节福利开始的肌肤轮廓设计的弗兰克绝世独立开发建设的六块腹肌滴漏式咖啡机路上看到肌肤轮廓设计的弗兰克绝世独立开发建设独立开发上了肯德基弗雷斯科的肌肤轮廓是江东父老开始江东父老绝世独立飞机上了肯德基分类考试的肌肤轮廓来看圣诞节福利开始的肌肤轮廓设计的弗兰克绝世独立开发建设的六块腹肌滴漏式咖啡机路上看到肌肤轮廓设计的弗兰克绝世独立开发建设独立开发上了肯德基弗雷斯科的肌肤轮廓是江东父老开始江东父老绝世独立飞机上了肯德基分类考试的肌肤轮廓来看圣诞节福利开始的肌肤轮廓设计的弗兰克绝世独立开发建设的六块腹肌滴漏式咖啡机路上看到肌肤轮廓设计的弗兰克绝世独立开发建设独立开发上了肯德基弗雷斯科的肌肤轮廓是江东父老开始江东父老绝世独立飞机上了肯德基分类考试的肌肤轮廓来看圣诞节福利开始的肌肤轮廓设计的弗兰克绝世独立开发建设的六块腹肌滴漏式咖啡机路上看到肌肤轮廓设计的弗兰克绝世独立开发建设独立开发上了肯德基弗雷斯科的肌肤轮廓是江东父老开始江东父老绝世独立飞机上了肯德基分类考试的肌肤轮廓来看圣诞节福利开始的肌肤轮廓设计的弗兰克绝世独立开发建设的六块腹肌滴漏式咖啡机路上看到肌肤轮廓设计的弗兰克绝世独立开发建设独立开发上了肯德基弗雷斯科的肌肤轮廓是江东父老开始江东父老绝世独立飞机上了肯德基分类考试的肌肤轮廓来看圣诞节福利开始的肌肤轮廓设计的弗兰克绝世独立开发建设的六块腹肌滴漏式咖啡机路上看到肌肤轮廓设计的弗兰克绝世独立开发建设独立开发";
+"ImportSuccess" = "导入成功";
+"MnemonicPhraseRepetition" = "助记词重复";
+"PrivateKeyRepetition" = "私钥重复";
+"KeystoreRepetition" = "Keystore重复";
+"Import" = "导入";
+"BackupPrivateKeyTip" = "·获取私钥等于拥有钱包资产所有权\n·私钥丢失无法找回，请务必备份\n·使用纸笔正确抄写，请务必妥善保管私钥";
+"BackupKeystoreTip" = "·获取 Keystore 和密码等于拥有钱包资产所有权\n·Keystore 丢失无法找回，请务必备份\n·使用纸笔正确抄写，请务必妥善保管Keystore";
 
 //我的
 "BackupMnemonicPhrase" = "备份助记词";
@@ -93,7 +104,24 @@
 "Setting" = "设置";
 "ExchangeRate" = "计价货币";
 "Language" = "语言";
-"Version" = "版本";
+"Version" = "版本号";
+"NightMode" = "夜间模式";
+"LogOut" = "退出登录";
+"OldPassword" = "请输入原密码";
+"ChangePassword"="修改密码";
+"NewPassword"="请输入新密码";
+"ConfirmNewPassword"="确认新密码";
+"ChangePasswordSuccess" = "密码修改成功";
+"ChooseAccount" = "选择账户";
+"BackupKeystore" = "备份Keystore";
+"BackupPrivateKey" = "备份私钥";
+"PrivateKey" = "私钥";
+"BackupPrivateKeyTip1" = "离线保存";
+"BackupPrivateKeyTip2" = "请勿使用网络传输";
+"BackupPrivateKeyTip3" = "密码管理工具保存";
+"BackupPrivateKeyContent1" = "·切勿保存至邮箱、记事本、网盘、聊天工具等";
+"BackupPrivateKeyContent2" = "·请勿通过网络工具传输，一旦被黑客获取将造成不可挽回的资产损失 ·建议离线设备通过扫二维码方式传输";
+"BackupPrivateKeyContent3" = "·建议使用密码管理工具管理";
 
 //资产
 "HideSmallCurrency" = "隐藏小额币种";
@@ -110,6 +138,12 @@
 "EnterTokenNameSearch" = "输入币种名称";
 "TotalAsset" = "总资产(%@)";
 "NoAsset" = "暂无资产";
+"MsgSuccess" = "交易请求发送成功";
+"CompleteInfomation" = "请填写完整信息";
+"AddressWrong" = "转账地址不正确";
+"ReloadData" = "重新加载";
+"UpgradeAPP"="发现新版本";
+"Upgrade"="立即升级";
 
 //提币
 "PleaseEnterAmountReceived" = "请输入到账数量";
@@ -133,12 +167,23 @@
 "QRCode"="二维码";
 "Album"="相册";
 "QRCodeAlertKey"="将二维码放入框内，即可自动扫描";
+"WithdrawTip" = "·您正在进行托管单元跨链提币\n·请务必使用跨链提币的提币通道\n·请务必确认提币地址是该币的原生公链地址";
+"TransferFee" = "交易手续费";
+"ChainFee" = "跨链手续费";
 
 //收款地址
 "ShowAddress" = "我已知风险，显示地址";
 "Tip" = "提示";
-"ChainDepositTip" = "您正在进行托管单元跨链收款(充币)\n请提醒转出方，务必使用OMNI钱包提币";
-"DepositTip" = "您正在进行托管单元链内收款(充币)\n请提醒转出方，务必使用非跨链的提币通道";
+"ChainDepositTip1" = "·您正在进行托管单元";
+"ChainDepositTip2" = "跨链";
+"ChainDepositTip3" = "收款(充币)\n·请提醒转出方，务必使用";
+"ChainDepositTip4" = "OMNI钱包";
+"ChainDepositTip5" = "提币";
+"DepositTip1" = "·您正在进行托管单元";
+"DepositTip2" = "链内";
+"DepositTip3" = "收款(充币)\n·请提醒转出方，务必使用";
+"DepositTip4" = "非跨链";
+"DepositTip5" = "的提币通道";
 
 //币种详情
 "ReceiveMoney" = "收款";
@@ -150,6 +195,7 @@
 "Transfer" = "转账";
 "Delegate" = "委托";
 "TransferDelegate" = "转委托";
+"CancelDelegate" = "取消委托";
 "Bonded" = "委托中";
 "Unbonding" = "赎回中";
 "ClaimedReward" = "已收益";
@@ -164,6 +210,13 @@
 "State" = "状态";
 "From" = "转出";
 "To" = "转入";
+"WithdrawMoneyContent" = "提取所有分红%@HBC，并支付交易手续费%@HBC";
+"InMoneyContent" = "提取并委托所有分红%@HBC至验证节点，并支付交易手续费%@HBC";
+"Delegator" = "委托人";
+"TransactionDetail" = "交易详情";
+"Depositor" = "质押人";
+"ProposalID" = "提案编号";
+"Voter" = "投票人";
 
 //验证人
 "ValidatorVote" = "投票权";
@@ -196,7 +249,61 @@
 "ValidatorAvilable" = "可用";
 "ValidatorAvilableTransfer" = "可转";
 "ValidatorAvilableRelieve" = "可解";
+"ValidatorRelieveToAddress" = "我的托管单元";
+"NoValidatorTip" = "暂无验证人";
 
 
+"PleaseFillAll" = "请填写完整信息";
 
+//治理提案
+//nav 标题
+"ProposalVoteTitle"= "治理提案";
+"VotingProposal" = "发起提案";
+"ProposalNavgationTitlePledge" = "质押";
+"ProposalNavgationTitleDetail" = "提案详情";
+"ProposalNavgationTitleVote" = "投票";
+"Voting" = "发起";
+"ProposalTitle" = "标题";
+"ProposalType" = "类型";
+"ProposalDescripition" = "描述";
+"ProposalPledgeAmount" = "质押数量";
+"PleaseInputVoteName" = "请输入提案名称";
+"PleaseInputProposalTitle" = "请输入提案标题";
+"PleaseSelectProposalType" = "请选择提案类型";
+"PleaseInputProposalDescription" = "请输入提案描述";
+"PleaseInputPledgeAmout" = "请输入质押数量";
+"PleaseInputFee" = "请输入手续费";
+"NoProposalTip" = "暂无治理提案";
 
+"ProposalDetailButton" = "查看详情";
+//治理提案状态
+"ProposalRaising" = "质押募集中";
+"ProposalVoting" = "投票中";
+"ProposalVotePass" = "已通过";
+"ProposalVoteReject" = "已拒绝";
+"ProposalRaiseFailed" = "募集失败";
+
+"ProposalDescriptionMaxCountUnit" = "字";
+//按钮上文案
+"ProposalButtonTitleSubmit" = "提交";
+"ProposalButtonTitlePledge" = "质押";
+"ProposalButtonTitleVote" = "投票";
+//详情
+"ProposalDetailStatus" = "状态";
+"ProposalDetailIdentify" = "提案ID";
+"ProposalDetailType" = "提案类型";
+"ProposalDetailUser" = "提案人";
+"ProposalDetailDate" = "提案时间";
+"ProposalDetailHadPledge" = "已质押";
+"ProposalDetailVoteEndDate" = "投票结束时间";
+"ProposalDetailVoteRatio" = "投票比例";
+
+"ProposalDetailVoteYes" = "Yes";
+"ProposalDetailVoteNo" = "No";
+"ProposalDetailVoteAbstain" = "Abstain";
+"ProposalDetailVoteNoWithVeto" = "No With Veto";
+//提案类型
+"ProposalTypeWord" = "文字提案" ;
+//治理提案 提示内容
+"CreateProposalAmoutMustMoreTip" = "质押数量不能小于10万";
+"TransferTopTipMessage" = "It will take 21 days to unlock your tokens after they are staked. There is a risk that some tokens will be lost depending on the behaviour of the validator you choose.";

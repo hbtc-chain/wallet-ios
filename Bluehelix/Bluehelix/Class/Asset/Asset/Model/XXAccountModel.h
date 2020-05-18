@@ -15,6 +15,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, strong) NSString *address; //bht地址
 @property (nonatomic, strong) NSString *symbols; //保存的币种
 @property (nonatomic, strong) NSString *privateKey; //私钥
+@property (nonatomic, strong) NSString *keystore; //Keystore
 @property (nonatomic, strong) NSData *publicKey; //公钥
 @property (nonatomic, strong) NSString *userName; //昵称
 @property (nonatomic, strong) NSString *password; //密码
