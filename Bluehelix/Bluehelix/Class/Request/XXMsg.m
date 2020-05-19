@@ -2,7 +2,7 @@
 //  XXMsg.m
 //  Bluehelix
 //
-//  Created by 袁振 on 2020/04/16.
+//  Created by BHEX on 2020/04/16.
 //  Copyright © 2020 Bhex. All rights reserved.
 //
 
@@ -192,6 +192,18 @@ proposalDescription:(NSString *)proposalDescription
                 
         NSMutableDictionary *msg = [NSMutableDictionary dictionary];
         msg[@"type"] = _type;
+        msg[@"value"] = value;
+        [msgs addObject:msg];
+    } else if ([_type isEqualToString:kMsgNewToken]) {
+        NSMutableDictionary *value = [NSMutableDictionary dictionary];
+        value[@"from"] = KUser.address;
+        value[@"to"] = KUser.address;
+        value[@"symbol"] = _denom;
+        value[@"decimals"] = _decimals;
+        value[@"total_supply"] = _amount;
+        
+        NSMutableDictionary *msg = [NSMutableDictionary dictionary];
+        msg[@"type"] = kMsgNewToken;
         msg[@"value"] = value;
         [msgs addObject:msg];
     }

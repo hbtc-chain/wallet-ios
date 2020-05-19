@@ -673,8 +673,8 @@
             filePath = "Bluehelix/Class/Request/XXMsgRequest.m"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "192"
-            endingLineNumber = "192"
+            startingLineNumber = "194"
+            endingLineNumber = "194"
             landmarkName = "-sendTxRequest:"
             landmarkType = "7">
          </BreakpointContent>
@@ -724,6 +724,22 @@
             startingLineNumber = "476"
             endingLineNumber = "476"
             landmarkName = "+decryptSecretStorageJSON:password:callback:"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "2B7849C9-FF01-4137-82A5-089E58B70087"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Bluehelix/Class/Request/XXMsgRequest.m"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "175"
+            endingLineNumber = "175"
+            landmarkName = "-sendTxRequest:"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

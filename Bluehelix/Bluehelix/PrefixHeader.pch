@@ -113,6 +113,7 @@ typedef NS_ENUM(NSUInteger, NetworkMethod) {
 #define kMsgPledge @"hbtcchain/gov/MsgDeposit" //质押
 #define kMsgVote @"hbtcchain/gov/MsgVote" //投票
 #define kMsgWithdrawalDelegationReward @"hbtcchain/MsgWithdrawDelegationReward" //提取收益
+#define kMsgNewToken @"hbtcchain/hrc20/MsgNewToken" //发行代币
 
 #define kHideAssetText @"***"
 #define kPrecision 1000000000000000000 //精度是10的18次方

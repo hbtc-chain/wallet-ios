@@ -58,7 +58,7 @@
 "ImportMnemonicPhraseTip" = "请在下方输入框中按顺序输入助记词，用空格分开";
 "ImportSecurityTip" = "请在下方输入框中输入私钥，并留意大小写";
 "ImportKeystoreTip" = "·复制粘贴 Bluehelix 钱包 Keystore 文件内容\n·粘贴至下方“Keystore”输入框";
-"AccountManage" = "管理托管单元";
+"AccountManage" = "托管单元管理";
 "TwoPasswordInconsistent" = "两次密码输入不一致！";
 "AccountNameRuleAlert" = "请输入1-20个字符";
 "IAgreeTo" = "我已阅读并同意";
@@ -113,6 +113,8 @@
 "ConfirmNewPassword"="确认新密码";
 "ChangePasswordSuccess" = "密码修改成功";
 "ChooseAccount" = "选择账户";
+
+//备份Keystore
 "BackupKeystore" = "备份Keystore";
 "BackupPrivateKey" = "备份私钥";
 "PrivateKey" = "私钥";
@@ -122,6 +124,24 @@
 "BackupPrivateKeyContent1" = "·切勿保存至邮箱、记事本、网盘、聊天工具等";
 "BackupPrivateKeyContent2" = "·请勿通过网络工具传输，一旦被黑客获取将造成不可挽回的资产损失 ·建议离线设备通过扫二维码方式传输";
 "BackupPrivateKeyContent3" = "·建议使用密码管理工具管理";
+"CopyPrivateKey" = "复制私钥";
+"ShowCode" = "显示二维码";
+"BackupCodeTip1" = "仅供直接扫描";
+"BackupCodeTip2" = "在安全环境下使用";
+"BackupCodeContent1" = "·二维码禁止保存、截图、拍照\n·仅供用户在安全环境下直接扫描导入钱包";
+"BackupCodeContent2" = "·请务必确认在四周无人、无摄像头的环境中使用\n·二维码一旦被他人获取将造成不可挽回的资产损失";
+"CopyKeystore" = "复制Keystore";
+
+//代币发行申请
+"Speed" = "加速";
+"CoinPublishApply" = "代币发行申请";
+"Apply" = "申请";
+"AssetAddress" = "资产地址";
+"TotalPublishAmount" = "总发行量";
+"Precision" = "精度";
+"PublishTokenName" = "新发币种名称";
+"EnterPublishTokenName" = "请输入新币种名称";
+"LeastPrecision" = "最小精度不能超过18位";
 
 //资产
 "HideSmallCurrency" = "隐藏小额币种";

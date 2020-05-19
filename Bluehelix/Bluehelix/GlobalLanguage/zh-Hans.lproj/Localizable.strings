@@ -113,6 +113,8 @@
 "ConfirmNewPassword"="确认新密码";
 "ChangePasswordSuccess" = "密码修改成功";
 "ChooseAccount" = "选择账户";
+
+//备份Keystore
 "BackupKeystore" = "备份Keystore";
 "BackupPrivateKey" = "备份私钥";
 "PrivateKey" = "私钥";
@@ -129,8 +131,18 @@
 "BackupCodeContent1" = "·二维码禁止保存、截图、拍照\n·仅供用户在安全环境下直接扫描导入钱包";
 "BackupCodeContent2" = "·请务必确认在四周无人、无摄像头的环境中使用\n·二维码一旦被他人获取将造成不可挽回的资产损失";
 "CopyKeystore" = "复制Keystore";
-"CoinPublishApply" = "代币发行申请";
 
+//代币发行申请
+"Speed" = "加速";
+"CoinPublishApply" = "代币发行申请";
+"Apply" = "申请";
+"AssetAddress" = "资产地址";
+"TotalPublishAmount" = "总发行量";
+"Precision" = "精度";
+"PublishTokenName" = "新发币种名称";
+"EnterPublishTokenName" = "请输入新币种名称";
+"LeastPrecision" = "最小精度不能超过18位";
+"EnterTotalPublishAmount" = "请输入总发行数量";
 
 //资产
 "HideSmallCurrency" = "隐藏小额币种";

@@ -2,7 +2,7 @@
 //  XXTransationSectionHeaderView.m
 //  Bluehelix
 //
-//  Created by 袁振 on 2020/4/19.
+//  Created by BHEX on 2020/4/19.
 //  Copyright © 2020 Bhex. All rights reserved.
 //
 

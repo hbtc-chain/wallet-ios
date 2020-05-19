@@ -36,6 +36,11 @@
     [self buildUI];
 }
 
+- (void)viewDidDisappear:(BOOL)animated {
+    [super viewDidDisappear:animated];
+    [IQKeyboardManager sharedManager].enable = YES;
+}
+
 - (void)buildUI {
     self.titleLabel.text = LocalizedString(@"CreateWallet");
     [self.view addSubview:self.scrollView];

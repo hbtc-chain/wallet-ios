@@ -21,6 +21,7 @@ static dispatch_once_t onceToken;
     }
     self.responseSerializer = [AFHTTPResponseSerializer serializer];
     self.responseSerializer.acceptableContentTypes = [NSSet setWithObjects:@"application/json", @"text/plain", @"text/javascript", @"text/json", @"text/html", nil];
+    [self.requestSerializer setValue:[[LocalizeHelper sharedLocalSystem] getRequestHeaderLanguageCode] forHTTPHeaderField:@"local"];
     return self;
 }
 

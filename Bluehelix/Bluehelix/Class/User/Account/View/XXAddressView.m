@@ -34,6 +34,7 @@
 }
 
 - (void)tapAction {
+    [self.viewController.view endEditing:YES];
     [XXChooseLoginAccountView showWithSureBlock:^{
         self.addressLabel.text = KUser.address;
         CGFloat width = [NSString widthWithText:KUser.address font:kFont(13)];

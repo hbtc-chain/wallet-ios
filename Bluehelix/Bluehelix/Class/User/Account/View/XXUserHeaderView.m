@@ -7,13 +7,14 @@
 #import "XXAccountManageVC.h"
 #import "XXAccountBtn.h"
 #import "XXUserHeaderItemView.h"
+#import "XXCoinPublishApplyVC.h"
 
 @interface XXUserHeaderView () <UITextFieldDelegate>
 
 @property (strong, nonatomic) XXLabel *icon;
 @property (strong, nonatomic) UITextField *textField;
 @property (strong, nonatomic) XXLabel *addressLabel;
-@property (strong, nonatomic) XXAccountBtn *manageBtn;
+@property (strong, nonatomic) XXButton *messageBtn;
 @property (strong, nonatomic) UIImageView *backImageView;
 @property (strong, nonatomic) XXButton *copyButton;
 @property (strong, nonatomic) UIImageView *editImageView;
@@ -29,7 +30,7 @@
     if (self) {
         self.backgroundColor = kWhiteColor;
         [self addSubview:self.backImageView];
-        [self addSubview:self.manageBtn];
+        [self addSubview:self.messageBtn];
         [self addSubview:self.icon];
         [self addSubview:self.textField];
         [self addSubview:self.editImageView];
@@ -63,15 +64,14 @@
     return _backImageView;
 }
 
-- (XXAccountBtn *)manageBtn {
-    if (!_manageBtn) {
-        MJWeakSelf;
-        _manageBtn = [[XXAccountBtn alloc] initWithFrame:CGRectMake(0, 46, 0, 26) block:^{
-            XXAccountManageVC *accountVC = [[XXAccountManageVC alloc] init];
-            [weakSelf.viewController.navigationController pushViewController:accountVC animated:YES];
+- (XXButton *)messageBtn {
+    if (!_messageBtn) {
+        _messageBtn = [XXButton buttonWithFrame:CGRectMake(kScreen_Width - 40, 46, 24, 24) block:^(UIButton *button) {
+            
         }];
+        [_messageBtn setImage:[UIImage imageNamed:@"UserHeaderMessage"] forState:UIControlStateNormal];
     }
-    return _manageBtn;
+    return _messageBtn;
 }
 
 - (XXLabel *)icon {
@@ -132,8 +132,10 @@
         _leftItemView = [[XXUserHeaderItemView alloc] initWithFrame:CGRectMake(K375(16), CGRectGetMaxY(self.addressLabel.frame) + 30, (kScreen_Width - K375(40))/2, 88)];
         _leftItemView.icon.image = [UIImage imageNamed:@"UserHeaderCoin"];
         _leftItemView.nameLabel.text = LocalizedString(@"CoinPublishApply");
+        MJWeakSelf
         _leftItemView.block = ^{
-            NSLog(@"hahah");
+            XXCoinPublishApplyVC *coinVC = [[XXCoinPublishApplyVC alloc] init];
+            [weakSelf.viewController.navigationController pushViewController:coinVC animated:YES];
         };
     }
     return _leftItemView;

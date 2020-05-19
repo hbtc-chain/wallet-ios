@@ -267,6 +267,9 @@
 		EAE28626247285C3006D9F24 /* XXMnemonicBtn.m in Sources */ = {isa = PBXBuildFile; fileRef = EAE28617247285C3006D9F24 /* XXMnemonicBtn.m */; };
 		EAE2862924729471006D9F24 /* XXBackupKeystoreView.m in Sources */ = {isa = PBXBuildFile; fileRef = EAE2862824729471006D9F24 /* XXBackupKeystoreView.m */; };
 		EAE2862C2472D4EC006D9F24 /* XXUserHeaderItemView.m in Sources */ = {isa = PBXBuildFile; fileRef = EAE2862B2472D4EC006D9F24 /* XXUserHeaderItemView.m */; };
+		EAE2862F2473BB7C006D9F24 /* XXCoinPublishApplyVC.m in Sources */ = {isa = PBXBuildFile; fileRef = EAE2862E2473BB7C006D9F24 /* XXCoinPublishApplyVC.m */; };
+		EAE286322473C28F006D9F24 /* XXCoinPublishApplyView.m in Sources */ = {isa = PBXBuildFile; fileRef = EAE286312473C28F006D9F24 /* XXCoinPublishApplyView.m */; };
+		EAE286352473D652006D9F24 /* XXCoinPublishNameView.m in Sources */ = {isa = PBXBuildFile; fileRef = EAE286342473D652006D9F24 /* XXCoinPublishNameView.m */; };
 		EAE4047E211C1DB300FFD028 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = EAE40478211C1DB300FFD028 /* Localizable.strings */; };
 		EAE4047F211C1DB300FFD028 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = EAE4047A211C1DB300FFD028 /* InfoPlist.strings */; };
 		EAE40482211C34A000FFD028 /* LocalizeHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = EAE40481211C34A000FFD028 /* LocalizeHelper.m */; };
@@ -840,6 +843,12 @@
 		EAE2862824729471006D9F24 /* XXBackupKeystoreView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = XXBackupKeystoreView.m; sourceTree = "<group>"; };
 		EAE2862A2472D4EC006D9F24 /* XXUserHeaderItemView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = XXUserHeaderItemView.h; sourceTree = "<group>"; };
 		EAE2862B2472D4EC006D9F24 /* XXUserHeaderItemView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = XXUserHeaderItemView.m; sourceTree = "<group>"; };
+		EAE2862D2473BB7C006D9F24 /* XXCoinPublishApplyVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = XXCoinPublishApplyVC.h; sourceTree = "<group>"; };
+		EAE2862E2473BB7C006D9F24 /* XXCoinPublishApplyVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = XXCoinPublishApplyVC.m; sourceTree = "<group>"; };
+		EAE286302473C28F006D9F24 /* XXCoinPublishApplyView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = XXCoinPublishApplyView.h; sourceTree = "<group>"; };
+		EAE286312473C28F006D9F24 /* XXCoinPublishApplyView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = XXCoinPublishApplyView.m; sourceTree = "<group>"; };
+		EAE286332473D652006D9F24 /* XXCoinPublishNameView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = XXCoinPublishNameView.h; sourceTree = "<group>"; };
+		EAE286342473D652006D9F24 /* XXCoinPublishNameView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = XXCoinPublishNameView.m; sourceTree = "<group>"; };
 		EAE40479211C1DB300FFD028 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/Localizable.strings"; sourceTree = "<group>"; };
 		EAE4047B211C1DB300FFD028 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/InfoPlist.strings"; sourceTree = "<group>"; };
 		EAE4047C211C1DB300FFD028 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
@@ -850,7 +859,7 @@
 		EAE40484211C49F800FFD028 /* BHChooseLanguageVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BHChooseLanguageVC.m; sourceTree = "<group>"; };
 		EAE467EC244C7901006EACAF /* XXTransationSectionHeaderView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = XXTransationSectionHeaderView.h; sourceTree = "<group>"; };
 		EAE467ED244C7901006EACAF /* XXTransationSectionHeaderView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = XXTransationSectionHeaderView.m; sourceTree = "<group>"; };
-		F30AC1A020CCC641000652BB /* Bluehelix.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Bluehelix.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		F30AC1A020CCC641000652BB /* HBC Wallet.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "HBC Wallet.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		F30AC1AC20CCC642000652BB /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		F30AC1B220CCC642000652BB /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		F30EAF3B20D26535005ADD5C /* colorModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = colorModel.m; sourceTree = "<group>"; };
@@ -1641,6 +1650,10 @@
 				EA677241246AA96C008C931A /* XXChooseLoginAccountView.m */,
 				EAE2862A2472D4EC006D9F24 /* XXUserHeaderItemView.h */,
 				EAE2862B2472D4EC006D9F24 /* XXUserHeaderItemView.m */,
+				EAE286302473C28F006D9F24 /* XXCoinPublishApplyView.h */,
+				EAE286312473C28F006D9F24 /* XXCoinPublishApplyView.m */,
+				EAE286332473D652006D9F24 /* XXCoinPublishNameView.h */,
+				EAE286342473D652006D9F24 /* XXCoinPublishNameView.m */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -1654,6 +1667,8 @@
 				EAA8DEB4244D7E7C00161698 /* XXUserHomeVC.m */,
 				EA9D3E292452BBD00060778C /* XXChangePasswordVC.h */,
 				EA9D3E282452BBD00060778C /* XXChangePasswordVC.m */,
+				EAE2862D2473BB7C006D9F24 /* XXCoinPublishApplyVC.h */,
+				EAE2862E2473BB7C006D9F24 /* XXCoinPublishApplyVC.m */,
 			);
 			path = ViewController;
 			sourceTree = "<group>";
@@ -2074,7 +2089,7 @@
 		F30AC1A120CCC641000652BB /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				F30AC1A020CCC641000652BB /* Bluehelix.app */,
+				F30AC1A020CCC641000652BB /* HBC Wallet.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -2210,7 +2225,7 @@
 			);
 			name = Bluehelix;
 			productName = Bhex;
-			productReference = F30AC1A020CCC641000652BB /* Bluehelix.app */;
+			productReference = F30AC1A020CCC641000652BB /* HBC Wallet.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -2374,6 +2389,7 @@
 				EABD1B99241BB25900B1A03A /* EtherchainProvider.m in Sources */,
 				EABD1BA3241BB25900B1A03A /* BlockInfo.m in Sources */,
 				F30EAF5F20D26536005ADD5C /* UIColor+helper.m in Sources */,
+				EAE286322473C28F006D9F24 /* XXCoinPublishApplyView.m in Sources */,
 				EAA8DEBE244D7E7C00161698 /* XXAssetManager.m in Sources */,
 				6CC12D0A24459D1000917105 /* XXValidatorDetailViewController.m in Sources */,
 				EA30A121236F221B0098DE28 /* AFAutoPurgingImageCache.m in Sources */,
@@ -2489,6 +2505,7 @@
 				EABD1B8C241BB25900B1A03A /* aestab.c in Sources */,
 				EA15E95724163FDC00A3E14A /* XXStartWalletVC.m in Sources */,
 				EA9D3E3D24545A1D0060778C /* SWTableViewCell.m in Sources */,
+				EAE286352473D652006D9F24 /* XXCoinPublishNameView.m in Sources */,
 				EAA8DEC8244D81BB00161698 /* XXSettingCell.m in Sources */,
 				EA677242246AA96C008C931A /* XXChooseLoginAccountView.m in Sources */,
 				EABD1B93241BB25900B1A03A /* scrypt_sha256.c in Sources */,
@@ -2524,6 +2541,7 @@
 				EABD1B9B241BB25900B1A03A /* ApiProvider.m in Sources */,
 				EAA8DED0244D81CE00161698 /* XXUserHomeCell.m in Sources */,
 				F30AC1B320CCC642000652BB /* main.m in Sources */,
+				EAE2862F2473BB7C006D9F24 /* XXCoinPublishApplyVC.m in Sources */,
 				EABD1B9D241BB25900B1A03A /* EtherscanProvider.m in Sources */,
 				EABD1B8D241BB25900B1A03A /* bip32.c in Sources */,
 				EA04AD4F24362964004403FF /* NetAPIClient.m in Sources */,
@@ -2758,7 +2776,7 @@
 					"-ObjC",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.bluehelix.wallet.ios;
-				PRODUCT_NAME = Bluehelix;
+				PRODUCT_NAME = "HBC Wallet";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "Bluehelix/Tools/bech32/Bluehelix-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
@@ -2801,7 +2819,7 @@
 					"-ObjC",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.bluehelix.wallet.ios;
-				PRODUCT_NAME = Bluehelix;
+				PRODUCT_NAME = "HBC Wallet";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "Bluehelix/Tools/bech32/Bluehelix-Bridging-Header.h";
 				SWIFT_VERSION = 5.0;

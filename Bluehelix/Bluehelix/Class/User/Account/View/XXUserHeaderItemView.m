@@ -2,7 +2,7 @@
 //  XXUserHeaderItemView.m
 //  Bluehelix
 //
-//  Created by 袁振 on 2020/5/18.
+//  Created by BHEX on 2020/5/18.
 //  Copyright © 2020 Bhex. All rights reserved.
 //
 
@@ -14,7 +14,7 @@
     self = [super initWithFrame:frame];
     if (self) {
         self.backgroundColor = [UIColor whiteColor];
-         self.layer.cornerRadius = 10;
+         self.layer.cornerRadius = 8;
         self.layer.masksToBounds = YES;
         [self.layer insertSublayer:self.shadowLayer atIndex:0];
         [self addSubview:self.nameLabel];
@@ -35,7 +35,7 @@
     if (!_shadowLayer) {
         _shadowLayer = [CALayer layer];
         _shadowLayer.frame = CGRectMake(0, 0, self.width, self.height -4);
-        _shadowLayer.cornerRadius = 10;
+        _shadowLayer.cornerRadius = 8;
         _shadowLayer.backgroundColor = [kWhiteColor CGColor];
         _shadowLayer.shadowColor = [kGray200 CGColor];
         _shadowLayer.shadowOffset = CGSizeMake(0, 2);

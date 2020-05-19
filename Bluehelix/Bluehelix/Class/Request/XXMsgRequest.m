@@ -2,7 +2,7 @@
 //  XXMsgRequest.m
 //  Bluehelix
 //
-//  Created by 袁振 on 2020/04/16.
+//  Created by BHEX on 2020/04/16.
 //  Copyright © 2020 Bhex. All rights reserved.
 //
 
@@ -163,6 +163,8 @@
     manager.operationQueue.maxConcurrentOperationCount = 5;
     manager.requestSerializer = [AFJSONRequestSerializer serializer];
     manager.responseSerializer.acceptableContentTypes = [NSSet setWithObjects:@"application/json", @"text/plain", @"text/javascript", @"text/json", @"text/html", nil];
+    [manager.requestSerializer setValue:[[LocalizeHelper sharedLocalSystem] getRequestHeaderLanguageCode] forHTTPHeaderField:@"local"];
+
     
     [manager POST:[NSString stringWithFormat:@"%@%@",kServerUrl,@"/api/v1/txs"] parameters:rpc headers:nil progress:^(NSProgress * _Nonnull uploadProgress) {
         

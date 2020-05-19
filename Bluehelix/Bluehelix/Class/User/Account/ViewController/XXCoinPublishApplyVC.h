@@ -1,8 +1,8 @@
 //
-//  XXBackupPrivateKeyVC.h
+//  XXCoinPublishApplyVC.h
 //  Bluehelix
 //
-//  Created by BHEX on 2020/5/18.
+//  Created by BHEX on 2020/5/19.
 //  Copyright © 2020 Bhex. All rights reserved.
 //
 
@@ -10,9 +10,7 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface XXBackupPrivateKeyVC : BaseViewController
-
-@property (nonatomic, copy) NSString *text;
+@interface XXCoinPublishApplyVC : BaseViewController
 
 @end
 

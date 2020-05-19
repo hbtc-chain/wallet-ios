@@ -2,7 +2,7 @@
 //  XXServiceContentView.h
 //  Bluehelix
 //
-//  Created by 袁振 on 2020/4/21.
+//  Created by BHEX on 2020/4/21.
 //  Copyright © 2020 Bhex. All rights reserved.
 //
 

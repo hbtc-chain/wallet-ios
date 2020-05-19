@@ -2,7 +2,7 @@
 //  XXTransactionDetailCell.h
 //  Bluehelix
 //
-//  Created by 袁振 on 2020/4/18.
+//  Created by BHEX on 2020/4/18.
 //  Copyright © 2020 Bhex. All rights reserved.
 //
 

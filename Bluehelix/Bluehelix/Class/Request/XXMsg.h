@@ -2,7 +2,7 @@
 //  XXMsg.h
 //  Bluehelix
 //
-//  Created by 袁振 on 2020/04/16.
+//  Created by BHEX on 2020/04/16.
 //  Copyright © 2020 Bhex. All rights reserved.
 //
 
@@ -82,12 +82,13 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, strong) NSString *proposalType;
 @property (nonatomic, strong) NSString *proposalTitle;//提案标题
 @property (nonatomic, strong) NSString *proposalDescription;//提案描述
-
 @property (nonatomic, strong) NSString *proposalId;//提案id
-
 @property (nonatomic, strong) NSString *proposalOption;//提案投票
 
+@property (nonatomic, strong) NSString *decimals; //代币精度
 @property (nonatomic, strong) NSMutableArray *msgs; //交易msg
+
+- (void)buildMsgs;
 @end
 
 NS_ASSUME_NONNULL_END
