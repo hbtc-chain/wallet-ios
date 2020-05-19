@@ -58,7 +58,7 @@
 "ImportMnemonicPhraseTip" = "请在下方输入框中按顺序输入助记词，用空格分开";
 "ImportSecurityTip" = "请在下方输入框中输入私钥，并留意大小写";
 "ImportKeystoreTip" = "·复制粘贴 Bluehelix 钱包 Keystore 文件内容\n·粘贴至下方“Keystore”输入框";
-"AccountManage" = "管理托管单元";
+"AccountManage" = "托管单元管理";
 "TwoPasswordInconsistent" = "两次密码输入不一致！";
 "AccountNameRuleAlert" = "请输入1-20个字符";
 "IAgreeTo" = "我已阅读并同意";
@@ -129,6 +129,8 @@
 "BackupCodeContent1" = "·二维码禁止保存、截图、拍照\n·仅供用户在安全环境下直接扫描导入钱包";
 "BackupCodeContent2" = "·请务必确认在四周无人、无摄像头的环境中使用\n·二维码一旦被他人获取将造成不可挽回的资产损失";
 "CopyKeystore" = "复制Keystore";
+"CoinPublishApply" = "代币发行申请";
+
 
 //资产
 "HideSmallCurrency" = "隐藏小额币种";

@@ -13,6 +13,7 @@ NS_ASSUME_NONNULL_BEGIN
 @interface XXLoginCell : UITableViewCell
 
 @property (strong, nonatomic) XXLabel *nameLabel;
+@property (strong, nonatomic) XXLabel *addressLabel;
 @property (strong, nonatomic) UIView *lineView;
 
 @end

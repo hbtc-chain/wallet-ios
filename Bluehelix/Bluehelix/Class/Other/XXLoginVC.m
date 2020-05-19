@@ -82,7 +82,7 @@
 
 - (XXLabel *)userNameLabel {
     if (!_userNameLabel) {
-        _userNameLabel = [XXLabel labelWithFrame:CGRectMake(K375(16), CGRectGetMaxY(self.icon.frame) + 8, kScreen_Width - K375(32), 16) text:KUser.currentAccount.userName font:kFont15 textColor:kGray500 alignment:NSTextAlignmentCenter];
+        _userNameLabel = [XXLabel labelWithFrame:CGRectMake(K375(16), CGRectGetMaxY(self.icon.frame) + 8, kScreen_Width - K375(32), 18) text:KUser.currentAccount.userName font:kFont13 textColor:kGray500 alignment:NSTextAlignmentCenter];
     }
     return _userNameLabel;
 }

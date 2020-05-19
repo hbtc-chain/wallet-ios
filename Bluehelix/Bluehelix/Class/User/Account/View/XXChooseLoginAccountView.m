@@ -27,7 +27,7 @@
     self = [super initWithFrame:frame];
     if (self) {
         self.backgroundColor = [UIColor clearColor];
-        self.contentViewHeight = KUser.accounts.count > 2 ? 268 : 220;
+        self.contentViewHeight = KUser.accounts.count > 2 ? 300 : 252;
 
     }
     return self;
@@ -88,7 +88,7 @@
 
 #pragma mark delegate
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
-    return 48;
+    return 64;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
@@ -101,11 +101,14 @@
     if (!cell) {
         cell = [[XXLoginCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"XXLoginCell"];
     }
-    cell.nameLabel.text = model.address;
+    cell.addressLabel.text = model.address;
+    cell.nameLabel.text = model.userName;
     if ([model.address isEqualToString:KUser.address]) {
         cell.nameLabel.textColor = kPrimaryMain;
+        cell.addressLabel.textColor = kPrimaryMain;
     } else {
         cell.nameLabel.textColor = kGray900;
+        cell.addressLabel.textColor = kGray900;
     }
     return cell;
 }

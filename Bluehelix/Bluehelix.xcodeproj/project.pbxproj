@@ -266,6 +266,7 @@
 		EAE28625247285C3006D9F24 /* XXBackupCodeView.m in Sources */ = {isa = PBXBuildFile; fileRef = EAE28613247285C3006D9F24 /* XXBackupCodeView.m */; };
 		EAE28626247285C3006D9F24 /* XXMnemonicBtn.m in Sources */ = {isa = PBXBuildFile; fileRef = EAE28617247285C3006D9F24 /* XXMnemonicBtn.m */; };
 		EAE2862924729471006D9F24 /* XXBackupKeystoreView.m in Sources */ = {isa = PBXBuildFile; fileRef = EAE2862824729471006D9F24 /* XXBackupKeystoreView.m */; };
+		EAE2862C2472D4EC006D9F24 /* XXUserHeaderItemView.m in Sources */ = {isa = PBXBuildFile; fileRef = EAE2862B2472D4EC006D9F24 /* XXUserHeaderItemView.m */; };
 		EAE4047E211C1DB300FFD028 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = EAE40478211C1DB300FFD028 /* Localizable.strings */; };
 		EAE4047F211C1DB300FFD028 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = EAE4047A211C1DB300FFD028 /* InfoPlist.strings */; };
 		EAE40482211C34A000FFD028 /* LocalizeHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = EAE40481211C34A000FFD028 /* LocalizeHelper.m */; };
@@ -837,6 +838,8 @@
 		EAE28617247285C3006D9F24 /* XXMnemonicBtn.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XXMnemonicBtn.m; sourceTree = "<group>"; };
 		EAE2862724729471006D9F24 /* XXBackupKeystoreView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = XXBackupKeystoreView.h; sourceTree = "<group>"; };
 		EAE2862824729471006D9F24 /* XXBackupKeystoreView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = XXBackupKeystoreView.m; sourceTree = "<group>"; };
+		EAE2862A2472D4EC006D9F24 /* XXUserHeaderItemView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = XXUserHeaderItemView.h; sourceTree = "<group>"; };
+		EAE2862B2472D4EC006D9F24 /* XXUserHeaderItemView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = XXUserHeaderItemView.m; sourceTree = "<group>"; };
 		EAE40479211C1DB300FFD028 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/Localizable.strings"; sourceTree = "<group>"; };
 		EAE4047B211C1DB300FFD028 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/InfoPlist.strings"; sourceTree = "<group>"; };
 		EAE4047C211C1DB300FFD028 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
@@ -1636,6 +1639,8 @@
 				EAA8DEB1244D7E7C00161698 /* XXAccountBtn.m */,
 				EA677240246AA96C008C931A /* XXChooseLoginAccountView.h */,
 				EA677241246AA96C008C931A /* XXChooseLoginAccountView.m */,
+				EAE2862A2472D4EC006D9F24 /* XXUserHeaderItemView.h */,
+				EAE2862B2472D4EC006D9F24 /* XXUserHeaderItemView.m */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -2578,6 +2583,7 @@
 				6C791E0D2451B33B00F22CD0 /* XXProposalListModel.m in Sources */,
 				EAA8DED1244D81CE00161698 /* XXAccountCell.m in Sources */,
 				EA30A15D236F221B0098DE28 /* AFImageDownloader.m in Sources */,
+				EAE2862C2472D4EC006D9F24 /* XXUserHeaderItemView.m in Sources */,
 				F30EAF5B20D26536005ADD5C /* UITableViewCell+Extension.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

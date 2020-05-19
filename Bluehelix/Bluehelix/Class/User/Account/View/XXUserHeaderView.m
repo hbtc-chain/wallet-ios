@@ -6,6 +6,7 @@
 #import "XXUserHeaderView.h"
 #import "XXAccountManageVC.h"
 #import "XXAccountBtn.h"
+#import "XXUserHeaderItemView.h"
 
 @interface XXUserHeaderView () <UITextFieldDelegate>
 
@@ -16,7 +17,8 @@
 @property (strong, nonatomic) UIImageView *backImageView;
 @property (strong, nonatomic) XXButton *copyButton;
 @property (strong, nonatomic) UIImageView *editImageView;
-
+@property (strong, nonatomic) XXUserHeaderItemView *leftItemView;
+@property (strong, nonatomic) XXUserHeaderItemView *rightItemView;
 @end
 
 @implementation XXUserHeaderView
@@ -33,6 +35,8 @@
         [self addSubview:self.editImageView];
         [self addSubview:self.addressLabel];
         [self addSubview:self.copyButton];
+        [self addSubview:self.leftItemView];
+        [self addSubview:self.rightItemView];
         [self configIcon];
     }
     return self;
@@ -121,6 +125,32 @@
         [_copyButton setImage:[UIImage imageNamed:@"paste"] forState:UIControlStateNormal];
     }
     return _copyButton;
+}
+
+- (XXUserHeaderItemView *)leftItemView {
+    if (!_leftItemView) {
+        _leftItemView = [[XXUserHeaderItemView alloc] initWithFrame:CGRectMake(K375(16), CGRectGetMaxY(self.addressLabel.frame) + 30, (kScreen_Width - K375(40))/2, 88)];
+        _leftItemView.icon.image = [UIImage imageNamed:@"UserHeaderCoin"];
+        _leftItemView.nameLabel.text = LocalizedString(@"CoinPublishApply");
+        _leftItemView.block = ^{
+            NSLog(@"hahah");
+        };
+    }
+    return _leftItemView;
+}
+
+- (XXUserHeaderItemView *)rightItemView {
+    if (!_rightItemView) {
+        _rightItemView = [[XXUserHeaderItemView alloc] initWithFrame:CGRectMake(kScreen_Width/2 + 4, CGRectGetMaxY(self.addressLabel.frame) + 30, (kScreen_Width - K375(40))/2, 88)];
+        _rightItemView.icon.image = [UIImage imageNamed:@"UserHeaderAccount"];
+        _rightItemView.nameLabel.text =LocalizedString(@"AccountManage");
+        MJWeakSelf
+        _rightItemView.block = ^{
+            XXAccountManageVC *accountVC = [[XXAccountManageVC alloc] init];
+            [weakSelf.viewController.navigationController pushViewController:accountVC animated:YES];
+        };
+    }
+    return _rightItemView;
 }
 
 - (void)configIcon{

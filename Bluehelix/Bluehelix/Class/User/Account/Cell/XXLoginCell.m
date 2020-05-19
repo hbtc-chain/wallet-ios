@@ -17,6 +17,7 @@
         self.backgroundColor = kWhiteColor;
         self.selectionStyle = UITableViewCellSelectionStyleNone;
         [self addSubview:self.nameLabel];
+        [self addSubview:self.addressLabel];
         [self addSubview:self.lineView];
     }
     return self;
@@ -32,9 +33,16 @@
 
 - (XXLabel *)nameLabel {
     if (!_nameLabel) {
-        _nameLabel = [XXLabel labelWithFrame:CGRectMake(0, 0, kScreen_Width, 48) text:@"" font:kFont13 textColor:kGray900 alignment:NSTextAlignmentCenter];
+        _nameLabel = [XXLabel labelWithFrame:CGRectMake(0, 8, kScreen_Width, 24) text:@"" font:kFont15 textColor:kGray900 alignment:NSTextAlignmentCenter];
     }
     return _nameLabel;
+}
+
+- (XXLabel *)addressLabel {
+    if (!_addressLabel) {
+        _addressLabel = [XXLabel labelWithFrame:CGRectMake(0, CGRectGetMaxY(self.nameLabel.frame), kScreen_Width, 16) text:@"" font:kFont13 textColor:kGray900 alignment:NSTextAlignmentCenter];
+    }
+    return _addressLabel;
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {

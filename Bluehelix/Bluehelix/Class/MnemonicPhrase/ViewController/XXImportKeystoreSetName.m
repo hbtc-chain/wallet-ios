@@ -160,7 +160,7 @@
 
 - (UITextView *)textView {
     if (_textView == nil) {
-        _textView = [[UITextView alloc] initWithFrame:CGRectMake(CGRectGetMaxX(self.isAgreeButton.frame) - 5, self.isAgreeButton.top - 4, K375(280), self.isAgreeButton.height +8)];
+        _textView = [[UITextView alloc] initWithFrame:CGRectMake(CGRectGetMaxX(self.isAgreeButton.frame) - 5, self.isAgreeButton.top, K375(280), 30)];
         _textView.backgroundColor = kWhiteColor;
         _textView.font = kFont12;
         _textView.textColor = kGray700;
@@ -168,6 +168,7 @@
         _textView.editable  = NO;
         _textView.scrollEnabled = NO;
         _textView.textAlignment = NSTextAlignmentLeft;
+        _textView.contentOffset = CGPointMake(0, 7);
         NSString *fwxy = LocalizedString(@"ServiceAgreement");
         NSMutableAttributedString *attributedString = [[NSMutableAttributedString alloc] initWithString:[NSString stringWithFormat:@"%@ %@", LocalizedString(@"IAgreeTo"), fwxy]];
         [attributedString addAttribute:NSLinkAttributeName
