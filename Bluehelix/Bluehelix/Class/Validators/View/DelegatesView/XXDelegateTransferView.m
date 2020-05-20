@@ -99,13 +99,13 @@
 - (void)reloadTransferData{
     switch (self.delegateNodeType) {
         case XXDelegateNodeTypeAdd:
-            self.amountView.textField.text = [NSString stringWithFormat:@"%@",self.tokenModel.amount];
+            self.amountView.textField.text = [NSString stringWithFormat:@"%@",KString(self.tokenModel.amount)];
             break;
         case XXDelegateNodeTypeTransfer:
-             self.amountView.textField.text = [NSString stringWithFormat:@"%@",self.tokenModel.amount];
+            self.amountView.textField.text = [NSString stringWithFormat:@"%@",KString(self.tokenModel.amount)];
             break;
         case XXDelegateNodeTypeRelieve:
-            self.amountView.textField.text = [NSString stringWithFormat:@"%@",self.hadDelegateModel.bonded];
+            self.amountView.textField.text = [NSString stringWithFormat:@"%@",KString(self.hadDelegateModel.bonded)];
                    
             break;
         break;

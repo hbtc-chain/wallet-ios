@@ -23,6 +23,10 @@
 @property (strong, nonatomic) NSString *text;
 /// 交易请求
 @property (strong, nonatomic) XXMsgRequest *msgRequest;
+
+/**资产模型*/
+@property (nonatomic, strong) XXTokenModel *tokenModel;
+
 @end
 
 @implementation XXVoteProposalViewController
@@ -51,6 +55,7 @@
     self.assetModel = [self.assetManager assetModel];
     for (XXTokenModel *tokenModel in self.assetModel.assets) {
         if ([[tokenModel.symbol uppercaseString] isEqualToString:[kMainToken uppercaseString]]) {
+            self.tokenModel = tokenModel;
             [self.addProposalView refreshAssets:tokenModel];
             break;
         }
@@ -64,6 +69,14 @@
     }
     @weakify(self)
     if (self.addProposalView.propotalTitleView.textField.text.length && self.addProposalView.proposalDescriptionView.textView.text.length&& self.addProposalView.amountView.textField.text.length && self.addProposalView.feeView.textField.text.length) {
+               
+        NSDecimalNumber *feeAndQuantyDecimal =  [[NSDecimalNumber decimalNumberWithString:self.addProposalView.amountView.textField.text]decimalNumberByAdding:[NSDecimalNumber decimalNumberWithString:self.addProposalView.feeView.textField.text]];
+        if (feeAndQuantyDecimal.doubleValue > self.tokenModel.amount.doubleValue) {
+            Alert *alert = [[Alert alloc] initWithTitle:LocalizedString(@"FeeNotEnough") duration:kAlertDuration completion:^{
+            }];
+            [alert showAlert];
+            return;
+        }
         MJWeakSelf
         [XXPasswordView showWithSureBtnBlock:^(NSString * _Nonnull text) {
             @strongify(self)

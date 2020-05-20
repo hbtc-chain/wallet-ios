@@ -29,6 +29,8 @@
 /// 交易请求
 @property (strong, nonatomic) XXMsgRequest *msgRequest;
 @property (nonatomic, strong) NSString *voteResultSting;
+/**当前币资产模型*/
+@property (nonatomic, strong) XXTokenModel *tokenModel;
 
 @end
 
@@ -59,6 +61,7 @@
     self.assetModel = [self.assetManager assetModel];
     for (XXTokenModel *tokenModel in self.assetModel.assets) {
         if ([[tokenModel.symbol uppercaseString] isEqualToString:[kMainToken uppercaseString]]) {
+            self.tokenModel = tokenModel;
             [self.votingView refreshAssets:tokenModel];
             break;
         }
@@ -68,6 +71,12 @@
 - (void)transferVerify {
     @weakify(self)
     if (self.voteResultSting.length >0 &&self.votingView.feeView.textField.text.length) {
+        if (self.votingView.feeView.textField.text.doubleValue > self.tokenModel.amount.doubleValue) {
+            Alert *alert = [[Alert alloc] initWithTitle:LocalizedString(@"FeeNotEnough") duration:kAlertDuration completion:^{
+            }];
+            [alert showAlert];
+            return;
+        }
         [XXPasswordView showWithSureBtnBlock:^(NSString * _Nonnull text) {
             @strongify(self)
             self.text = text;

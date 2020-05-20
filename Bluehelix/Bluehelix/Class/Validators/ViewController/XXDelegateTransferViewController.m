@@ -27,6 +27,10 @@
 @property (nonatomic, strong) XXAssetManager *assetManager;
 
 @property (strong, nonatomic) NSString *text;
+/**资产模型*/
+@property (nonatomic, strong) XXTokenModel *tokenModel;
+/**已经委托模型*/
+@property (nonatomic, strong) XXHadDelegateModel *hadDelegateModel;
 
 /// 交易请求
 @property (strong, nonatomic) XXMsgRequest *msgRequest;
@@ -104,6 +108,34 @@
 #pragma mark privity
 - (void)transferVerify {
     if (self.delegateTransferView.addressView.textField.text.length && self.delegateTransferView.amountView.textField.text.length && self.delegateTransferView.feeView.textField.text.length) {
+        
+        NSDecimalNumber *feeAndQuantyDecimal =  [[NSDecimalNumber decimalNumberWithString:self.delegateTransferView.amountView.textField.text]decimalNumberByAdding:[NSDecimalNumber decimalNumberWithString:self.delegateTransferView.feeView.textField.text]];
+        switch (self.delegateNodeType) {
+            case XXDelegateNodeTypeAdd:
+                if (feeAndQuantyDecimal.doubleValue > self.tokenModel.amount.doubleValue) {
+                    Alert *alert = [[Alert alloc] initWithTitle:LocalizedString(@"FeeNotEnough") duration:kAlertDuration completion:^{
+                    }];
+                    [alert showAlert];
+                    return;
+                }
+                break;
+            case XXDelegateNodeTypeTransfer:
+                 
+                break;
+            case XXDelegateNodeTypeRelieve:
+                if (feeAndQuantyDecimal.doubleValue > self.hadDelegateModel.bonded.doubleValue) {
+                    Alert *alert = [[Alert alloc] initWithTitle:LocalizedString(@"FeeNotEnough") duration:kAlertDuration completion:^{
+                    }];
+                    [alert showAlert];
+                    return;
+                }
+                break;
+            default:
+                 
+                break;
+        }
+        
+        
         MJWeakSelf
         [XXPasswordView showWithSureBtnBlock:^(NSString * _Nonnull text) {
             weakSelf.text = text;
@@ -180,6 +212,7 @@
     self.assetModel = [self.assetManager assetModel];
     for (XXTokenModel *tokenModel in self.assetModel.assets) {
         if ([[tokenModel.symbol uppercaseString] isEqualToString:[kMainToken uppercaseString]]) {
+            self.tokenModel = tokenModel;
             [self.delegateTransferView refreshAssets:tokenModel];
             break;
         }
@@ -189,6 +222,7 @@
 - (void)refreshRelieveDelegate:(NSArray *)array{
     for (XXHadDelegateModel *hadDelegateModel in array) {
         if ([hadDelegateModel.validator isEqualToString:self.validatorModel.operator_address]) {
+            self.hadDelegateModel = hadDelegateModel;
             [self.delegateTransferView refreshRelieveAssets:hadDelegateModel];
             break;
         }

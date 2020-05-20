@@ -273,7 +273,7 @@
 "ValidatorRelieveToAddress" = "我的托管单元";
 "NoValidatorTip" = "暂无验证人";
 
-
+"FeeNotEnough" = "用户手续费不足";
 "PleaseFillAll" = "请填写完整信息";
 
 //治理提案
