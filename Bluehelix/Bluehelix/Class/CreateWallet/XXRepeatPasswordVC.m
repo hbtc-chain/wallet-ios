@@ -14,6 +14,9 @@
 #import "XXServiceAgreementVC.h"
 #import "XYHNumbersLabel.h"
 #import "XXTabBarController.h"
+#import "YZAuthID.h"
+#import "SecurityHelper.h"
+#import "XYHAlertView.h"
 
 @interface XXRepeatPasswordVC () <UITextViewDelegate>
 
@@ -103,10 +106,12 @@
             KWindow.rootViewController = [[XXTabBarController alloc] init];
         }];
         [alert showAlert];
+        [self showBiometricAlert];
     } else {
         XXCreateWalletSuccessVC *successVC = [[XXCreateWalletSuccessVC alloc] init];
         successVC.text = KUser.localPassword;
         [self.navigationController pushViewController:successVC animated:YES];
+        [self showBiometricAlert];
     }
     KUser.localPassword = @"";
     KUser.localUserName = @"";
@@ -248,6 +253,91 @@
         _createBtn.enabled = NO;
     }
     return _createBtn;
+}
+
+#pragma mark faceID
+- (void)showBiometricAlert {
+    if (SecurityHelperSupportFaceID) {
+        [XYHAlertView showAlertViewWithTitle:LocalizedString(@"SetFacialLogin") message:LocalizedString(@"CancelFacialLogin") titlesArray:@[LocalizedString(@"QueDing")] andBlock:^(NSInteger index) {
+            if (index == 0) {
+                [self openFaceID];
+            }
+        }];
+    } else {
+        [XYHAlertView showAlertViewWithTitle:LocalizedString(@"SetTouchIDLogin") message:LocalizedString(@"CancelTouchIDLogin") titlesArray:@[LocalizedString(@"QueDing")] andBlock:^(NSInteger index) {
+            if (index == 0) {
+                [self openFingerprint];
+            }
+        }];
+    }
+}
+
+- (void)openFingerprint {
+    LAContext *myContext = [[LAContext alloc] init];
+    NSError *authError = nil;
+    if ([myContext canEvaluatePolicy:LAPolicyDeviceOwnerAuthenticationWithBiometrics error:&authError])
+    {
+    } else {
+        if (@available(iOS 11.0, *)) {
+            if (authError.code == LAErrorBiometryLockout) {
+                
+            } else if (authError.code == LAErrorBiometryNotAvailable) {
+                [MBProgressHUD showInfoMessage:LocalizedString(@"NotSupportTouchID")];
+                return;
+            } else {
+                [MBProgressHUD showInfoMessage:LocalizedString(@"NotSetTouchID")];
+                return;
+            }
+        }
+    }
+    
+    YZAuthID *authID = [[YZAuthID alloc] init];
+    [authID yz_showAuthIDWithDescribe:nil block:^(YZAuthIDState state, NSError *error) {
+        if (state == YZAuthIDStateNotSupport) {
+            [MBProgressHUD showInfoMessage:LocalizedString(@"NotSupportTouchID")];
+        } else if (state == YZAuthIDStateSuccess) {
+            KUser.isTouchIDLockOpen = YES;
+            [[SecurityHelper sharedSecurityHelper] saveBiometricData];
+            [MBProgressHUD showSuccessMessage:LocalizedString(@"TouchIdIsOn")];
+        } else if (state == YZAuthIDStatePasswordNotSet) {
+            [MBProgressHUD showInfoMessage:LocalizedString(@"NotSetTouchID")];
+        } else {
+        }
+    }];
+}
+
+#pragma mark open faceID
+- (void)openFaceID {
+    LAContext *myContext = [[LAContext alloc] init];
+    NSError *authError = nil;
+    if ([myContext canEvaluatePolicy:LAPolicyDeviceOwnerAuthenticationWithBiometrics error:&authError])
+    {
+    } else {
+        if (@available(iOS 11.0, *)) {
+            if (authError.code == LAErrorBiometryLockout) {
+                
+            } else if (authError.code == LAErrorBiometryNotAvailable) {
+                [MBProgressHUD showInfoMessage:NSLocalizedFormatString(LocalizedString(@"NotAllowFaceID"), kApp_Name)];
+                return;
+            } else {
+                [MBProgressHUD showInfoMessage:LocalizedString(@"NotSetFaceID")];
+                return;
+            }
+        }
+    }
+    
+    YZAuthID *authID = [[YZAuthID alloc] init];
+    [authID yz_showAuthIDWithDescribe:nil block:^(YZAuthIDState state, NSError *error) {
+        if (state == YZAuthIDStateNotSupport) {
+            [XYHAlertView showAlertViewWithTitle:LocalizedString(@"NotSupportFaceID") message:nil titlesArray:nil andBlock:nil];
+        } else if (state == YZAuthIDStateSuccess) {
+            KUser.isFaceIDLockOpen = YES;
+            [[SecurityHelper sharedSecurityHelper] saveBiometricData];
+        } else if (state == YZAuthIDStatePasswordNotSet) {
+            [XYHAlertView showAlertViewWithTitle:LocalizedString(@"NotSetFaceID") message:nil titlesArray:nil andBlock:nil];
+        } else {
+        }
+    }];
 }
 
 @end

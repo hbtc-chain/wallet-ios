@@ -100,41 +100,74 @@ static XXUserData *_sharedUserData = nil;
     }
     return [self getValueForKey:@"ratesKey"];
 }
-//// pubkey
-//- (void)setPubKey:(NSString *)pubKey {
-//    [self saveValeu:pubKey forKey:@"pubKey"];
-//}
-//
-//- (NSString *)pubKey {
-//    return [self getValueForKey:@"pubKey"];
-//}
 
-//// 临时密码
-//- (void)setLocalPassword:(NSString *)localPassword {
-//    [self saveValeu:localPassword forKey:@"localPassword"];
-//}
-//
-//- (NSString *)localPassword {
-//    return [self getValueForKey:@"localPassword"];
-//}
+- (void)setIsFaceIDLockOpen:(BOOL)isFaceIDLockOpen {
+//    if (isFaceIDLockOpen) {
+//        KUser.shouldVerify = NO;
+//    }
+//    NSDictionary *userLockDic = [BHUserDefaults objectForKey:KUser.address];
+//    NSMutableDictionary *saveDic = [NSMutableDictionary dictionaryWithDictionary:userLockDic];
+//    [saveDic setObject:@(isFaceIDLockOpen) forKey:@"FaceIDLockOpen"];
+//    [BHUserDefaults setObject:saveDic forKey:KUser.address];
+    [self saveValeu:@(isFaceIDLockOpen) forKey:@"FaceIDLockOpen"];
+}
 
-//// 临时助记词
-//- (void)setLocalPhraseString:(NSString *)localPhraseString {
-//    [self saveValeu:localPhraseString forKey:@"localPhraseString"];
-//}
-//
-//- (NSString *)localPhraseString {
-//    return [self getValueForKey:@"localPhraseString"];
-//}
-//
-//// 临时私钥
-//- (void)setLocalPrivateKey:(NSString *)localPrivateKey {
-//    [self saveValeu:localPrivateKey forKey:@"localPrivateKey"];
-//}
-//
-//- (NSString *)localPrivateKey {
-//    return [self getValueForKey:@"localPrivateKey"];
-//}
+- (BOOL)isFaceIDLockOpen {
+//    NSDictionary *userLockDic = [BHUserDefaults objectForKey:KUser.address];
+//    if (!userLockDic) {
+//        return NO;
+//    } else {
+//        return [[userLockDic objectForKey:@"FaceIDLockOpen"] boolValue];
+//    }
+    return [[self getValueForKey:@"FaceIDLockOpen"] boolValue];
+}
+
+- (BOOL)isTouchIDLockOpen {
+//    NSDictionary *userLockDic = [BHUserDefaults objectForKey:KUser.address];
+//    if (!userLockDic) {
+//        return NO;
+//    } else {
+//        return [[userLockDic objectForKey:@"TouchIDLockOpen"] boolValue];
+//    }
+     return [[self getValueForKey:@"TouchIDLockOpen"] boolValue];
+}
+
+- (void)setIsTouchIDLockOpen:(BOOL)isTouchIDLockOpen {
+//    if (isTouchIDLockOpen) {
+//        KUser.shouldVerify = NO;
+//    }
+//    NSDictionary *userLockDic = [BHUserDefaults objectForKey:KUser.address];
+//    NSMutableDictionary *saveDic = [NSMutableDictionary dictionaryWithDictionary:userLockDic];
+//    [saveDic setObject:@(isTouchIDLockOpen) forKey:@"TouchIDLockOpen"];
+//    [BHUserDefaults setObject:saveDic forKey:KUser.address];
+     [self saveValeu:@(isTouchIDLockOpen) forKey:@"TouchIDLockOpen"];
+}
+
+- (void)setHaveLogged:(BOOL)haveLogged {
+//    NSDictionary *userLockDic = [BHUserDefaults objectForKey:KUser.address];
+//    NSMutableDictionary *saveDic = [NSMutableDictionary dictionaryWithDictionary:userLockDic];
+//    [saveDic setObject:@(haveLogged) forKey:@"HaveLogged"];
+//    [BHUserDefaults setObject:saveDic forKey:KUser.address];
+    [self saveValeu:@(haveLogged) forKey:@"HaveLogged"];
+}
+
+- (BOOL)haveLogged {
+//    NSDictionary *userLockDic = [BHUserDefaults objectForKey:KUser.address];
+//    if (!userLockDic) {
+//        return NO;
+//    } else {
+//        return [[userLockDic objectForKey:@"HaveLogged"] boolValue];
+//    }
+     return [[self getValueForKey:@"HaveLogged"] boolValue];
+}
+
+- (BOOL)shouldVerify {
+    return [[self getValueForKey:@"BHShouldVerify"] boolValue];
+}
+
+- (void)setShouldVerify:(BOOL)shouldVerify {
+    [self saveValeu:@(shouldVerify) forKey:@"BHShouldVerify"];
+}
 
 // 当前账户
 - (XXAccountModel *)currentAccount {

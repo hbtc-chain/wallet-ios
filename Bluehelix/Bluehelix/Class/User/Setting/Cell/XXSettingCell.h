@@ -21,6 +21,9 @@
 
 @property (strong, nonatomic) UIImageView *rightIconImageView;
 
+@property (assign, nonatomic) NSInteger indexCell;
 /** 开关控件 */
 @property (strong, nonatomic) UISwitch *typeSwitch;
+/** 开关回调 */
+@property (strong, nonatomic) void(^switchBlock)(BOOL isOn, NSInteger indexCell);
 @end

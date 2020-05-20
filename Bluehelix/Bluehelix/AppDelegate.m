@@ -15,10 +15,12 @@
 #import "XXRepeatPasswordVC.h"
 #import "AFNetworkReachabilityManager.h"
 #import "XXVersionManager.h"
+#import "SecurityHelper.h"
 @implementation AppDelegate
 
 #pragma mark - 1. 程序开始
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
+    KUser.shouldVerify = YES;
     [self AFNReachability];
     [[XXSqliteManager sharedSqlite] requestTokens];
     [[RatesManager shareRatesManager] loadDataOfRates];
@@ -29,9 +31,13 @@
     KWindow.backgroundColor = [UIColor whiteColor];
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     if (KUser.address) {
-        XXLoginVC *loginVC = [[XXLoginVC alloc] init];
-        XXNavigationController *loginNav = [[XXNavigationController alloc] initWithRootViewController:loginVC];
-        self.window.rootViewController = loginNav;
+        if (KUser.isFaceIDLockOpen || KUser.isTouchIDLockOpen) {
+            self.window.rootViewController = [[XXTabBarController alloc] init];
+        } else {
+            XXLoginVC *loginVC = [[XXLoginVC alloc] init];
+            XXNavigationController *loginNav = [[XXNavigationController alloc] initWithRootViewController:loginVC];
+            self.window.rootViewController = loginNav;
+        }
 //        self.window.rootViewController = [[XXTabBarController alloc] init];
     } else {
         XXStartWalletVC *startVC = [[XXStartWalletVC alloc] init];

@@ -28,6 +28,17 @@ NS_ASSUME_NONNULL_BEGIN
 
 @property (nonatomic, strong) NSString *ratesKey; //汇率
 @property (nonatomic, strong) NSString *netWorkStatus; //网络状态
+
+/** 面容锁是否开启 */
+@property (assign, nonatomic) BOOL isFaceIDLockOpen;
+/** 指纹锁是否开启 */
+@property (assign, nonatomic) BOOL isTouchIDLockOpen;
+
+/**
+ 需要验证
+ 分两种情况 1.每次重新进入app
+ */
+@property (nonatomic, assign) BOOL shouldVerify;
 @end
 
 NS_ASSUME_NONNULL_END

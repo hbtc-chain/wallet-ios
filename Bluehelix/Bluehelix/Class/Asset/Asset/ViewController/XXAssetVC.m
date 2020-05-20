@@ -20,6 +20,7 @@
 #import "XXEmptyView.h"
 #import "SWTableViewCell.h"
 #import "XXFailureView.h"
+#import "SecurityHelper.h"
 
 @interface XXAssetVC ()<UITableViewDataSource, UITableViewDelegate>
 
@@ -40,6 +41,9 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    if (KUser.shouldVerify) {
+        SecurityHelperVerify;
+    }
     [self setupUI];
 }
 

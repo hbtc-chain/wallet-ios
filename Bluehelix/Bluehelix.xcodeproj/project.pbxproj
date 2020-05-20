@@ -270,6 +270,11 @@
 		EAE2862F2473BB7C006D9F24 /* XXCoinPublishApplyVC.m in Sources */ = {isa = PBXBuildFile; fileRef = EAE2862E2473BB7C006D9F24 /* XXCoinPublishApplyVC.m */; };
 		EAE286322473C28F006D9F24 /* XXCoinPublishApplyView.m in Sources */ = {isa = PBXBuildFile; fileRef = EAE286312473C28F006D9F24 /* XXCoinPublishApplyView.m */; };
 		EAE286352473D652006D9F24 /* XXCoinPublishNameView.m in Sources */ = {isa = PBXBuildFile; fileRef = EAE286342473D652006D9F24 /* XXCoinPublishNameView.m */; };
+		EAE2864024742483006D9F24 /* YZAuthID.m in Sources */ = {isa = PBXBuildFile; fileRef = EAE2863824742482006D9F24 /* YZAuthID.m */; };
+		EAE2864124742483006D9F24 /* SecurityHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = EAE2863924742482006D9F24 /* SecurityHelper.m */; };
+		EAE2864224742483006D9F24 /* BHFaceIDLockVC.m in Sources */ = {isa = PBXBuildFile; fileRef = EAE2863E24742482006D9F24 /* BHFaceIDLockVC.m */; };
+		EAE2864A24751640006D9F24 /* XYHAlertView.m in Sources */ = {isa = PBXBuildFile; fileRef = EAE2864424751640006D9F24 /* XYHAlertView.m */; };
+		EAE2864B24751640006D9F24 /* UIAlertAction+index.m in Sources */ = {isa = PBXBuildFile; fileRef = EAE2864824751640006D9F24 /* UIAlertAction+index.m */; };
 		EAE4047E211C1DB300FFD028 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = EAE40478211C1DB300FFD028 /* Localizable.strings */; };
 		EAE4047F211C1DB300FFD028 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = EAE4047A211C1DB300FFD028 /* InfoPlist.strings */; };
 		EAE40482211C34A000FFD028 /* LocalizeHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = EAE40481211C34A000FFD028 /* LocalizeHelper.m */; };
@@ -849,6 +854,16 @@
 		EAE286312473C28F006D9F24 /* XXCoinPublishApplyView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = XXCoinPublishApplyView.m; sourceTree = "<group>"; };
 		EAE286332473D652006D9F24 /* XXCoinPublishNameView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = XXCoinPublishNameView.h; sourceTree = "<group>"; };
 		EAE286342473D652006D9F24 /* XXCoinPublishNameView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = XXCoinPublishNameView.m; sourceTree = "<group>"; };
+		EAE2863824742482006D9F24 /* YZAuthID.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YZAuthID.m; sourceTree = "<group>"; };
+		EAE2863924742482006D9F24 /* SecurityHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SecurityHelper.m; sourceTree = "<group>"; };
+		EAE2863A24742482006D9F24 /* BHFaceIDLockVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BHFaceIDLockVC.h; sourceTree = "<group>"; };
+		EAE2863C24742482006D9F24 /* SecurityHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SecurityHelper.h; sourceTree = "<group>"; };
+		EAE2863D24742482006D9F24 /* YZAuthID.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YZAuthID.h; sourceTree = "<group>"; };
+		EAE2863E24742482006D9F24 /* BHFaceIDLockVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BHFaceIDLockVC.m; sourceTree = "<group>"; };
+		EAE2864424751640006D9F24 /* XYHAlertView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XYHAlertView.m; sourceTree = "<group>"; };
+		EAE2864624751640006D9F24 /* UIAlertAction+index.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIAlertAction+index.h"; sourceTree = "<group>"; };
+		EAE2864724751640006D9F24 /* XYHAlertView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XYHAlertView.h; sourceTree = "<group>"; };
+		EAE2864824751640006D9F24 /* UIAlertAction+index.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIAlertAction+index.m"; sourceTree = "<group>"; };
 		EAE40479211C1DB300FFD028 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/Localizable.strings"; sourceTree = "<group>"; };
 		EAE4047B211C1DB300FFD028 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/InfoPlist.strings"; sourceTree = "<group>"; };
 		EAE4047C211C1DB300FFD028 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
@@ -2058,6 +2073,30 @@
 			path = View;
 			sourceTree = "<group>";
 		};
+		EAE2863624742482006D9F24 /* Security */ = {
+			isa = PBXGroup;
+			children = (
+				EAE2863824742482006D9F24 /* YZAuthID.m */,
+				EAE2863924742482006D9F24 /* SecurityHelper.m */,
+				EAE2863A24742482006D9F24 /* BHFaceIDLockVC.h */,
+				EAE2863C24742482006D9F24 /* SecurityHelper.h */,
+				EAE2863D24742482006D9F24 /* YZAuthID.h */,
+				EAE2863E24742482006D9F24 /* BHFaceIDLockVC.m */,
+			);
+			path = Security;
+			sourceTree = "<group>";
+		};
+		EAE2864324751640006D9F24 /* XYHAlertView */ = {
+			isa = PBXGroup;
+			children = (
+				EAE2864424751640006D9F24 /* XYHAlertView.m */,
+				EAE2864624751640006D9F24 /* UIAlertAction+index.h */,
+				EAE2864724751640006D9F24 /* XYHAlertView.h */,
+				EAE2864824751640006D9F24 /* UIAlertAction+index.m */,
+			);
+			path = XYHAlertView;
+			sourceTree = "<group>";
+		};
 		EAE40477211C1DB300FFD028 /* GlobalLanguage */ = {
 			isa = PBXGroup;
 			children = (
@@ -2140,6 +2179,8 @@
 		F3D9397520CCCB560055070B /* Tools */ = {
 			isa = PBXGroup;
 			children = (
+				EAE2864324751640006D9F24 /* XYHAlertView */,
+				EAE2863624742482006D9F24 /* Security */,
 				EAE285D3246E4BA4006D9F24 /* CBBase58 */,
 				EA9D3E2B24545A1D0060778C /* SWCell */,
 				EABD7182244AFCD4008AA188 /* EmptyView */,
@@ -2339,6 +2380,8 @@
 				EAA8DED6244D9B8F00161698 /* BHChooseLanguageCell.m in Sources */,
 				EAA8DED7244D9B8F00161698 /* BHChooseLanguageModel.m in Sources */,
 				6C0D91BB24498E280043AF74 /* XXValidatorDetailCell.m in Sources */,
+				EAE2864124742483006D9F24 /* SecurityHelper.m in Sources */,
+				EAE2864A24751640006D9F24 /* XYHAlertView.m in Sources */,
 				EAE28618247285C3006D9F24 /* XXBackupPrivateKeyTipVC.m in Sources */,
 				EABD1B84241BB25900B1A03A /* rand.c in Sources */,
 				EABD717F2449F651008AA188 /* XXMainSymbolHeaderView.m in Sources */,
@@ -2358,6 +2401,7 @@
 				EA3E5965244721DD0080B98F /* XXMsgWithdrawalModel.m in Sources */,
 				EABD1B87241BB25900B1A03A /* secp256k1.c in Sources */,
 				6CF3F0C82451809B00CC5780 /* XXHadDelegateModel.m in Sources */,
+				EAE2864B24751640006D9F24 /* UIAlertAction+index.m in Sources */,
 				EABD1B85241BB25900B1A03A /* aescrypt.c in Sources */,
 				6C791E042451A37E00F22CD0 /* XXVoteProposalViewController.m in Sources */,
 				F30EAF5A20D26536005ADD5C /* NSString+TL.m in Sources */,
@@ -2369,6 +2413,7 @@
 				EABD1B83241BB25900B1A03A /* sha2.c in Sources */,
 				EABD1B89241BB25900B1A03A /* bignum.c in Sources */,
 				EA3E594824445DAE0080B98F /* XXTransferAmountView.m in Sources */,
+				EAE2864224742483006D9F24 /* BHFaceIDLockVC.m in Sources */,
 				6C0D91BE2449A32B0043AF74 /* XXValidatorDetailInfoCell.m in Sources */,
 				EABD1B8E241BB25900B1A03A /* sha3.c in Sources */,
 				EA04ABAC242D015B004403FF /* IQUIView+IQKeyboardToolbar.m in Sources */,
@@ -2603,6 +2648,7 @@
 				EA30A15D236F221B0098DE28 /* AFImageDownloader.m in Sources */,
 				EAE2862C2472D4EC006D9F24 /* XXUserHeaderItemView.m in Sources */,
 				F30EAF5B20D26536005ADD5C /* UITableViewCell+Extension.m in Sources */,
+				EAE2864024742483006D9F24 /* YZAuthID.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

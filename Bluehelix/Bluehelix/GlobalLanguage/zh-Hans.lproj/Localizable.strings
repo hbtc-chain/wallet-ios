@@ -328,3 +328,25 @@
 //治理提案 提示内容
 "CreateProposalAmoutMustMoreTip" = "质押数量不能小于10万";
 "TransferTopTipMessage" = "It will take 21 days to unlock your tokens after they are staked. There is a risk that some tokens will be lost depending on the behaviour of the validator you choose.";
+
+
+//面容登录
+"FingerprintUnlock" = "指纹登录";
+"FaceUnlock" = "面容登录";
+"ClickOnFingerPrintToUnlock" = "点击进行指纹解锁";
+"ClickToFaceIDUnlock" = "点击进行面容解锁";
+"FingerUnlockBottomText" = "密码登录";
+"NotSetTouchID" = "请先在您的手机上设置指纹";
+"NotSupportTouchID" = "您的手机暂不支持指纹功能";
+"NotSetFaceID" = "请先在您的手机上设置面部识别";
+"NotSupportFaceID" = "您的手机暂不支持面部识别功能";
+"NotAllowFaceID" = "请在iPhone的“设置-面容ID与密码”选项中，允许%@访问你的面容";
+"VerifyTouchID" = "请验证指纹";
+"TouchIdIsOn" = "指纹已开启";
+"FaceIdIsOn" = "面容已开启";
+"SetTouchIDLogin" = "设置指纹登录";
+"SetFacialLogin" = "设置面容识别登录";
+"CancelTouchIDLogin" = "如取消，请前往: 我的--安全 打开指纹登录";
+"CancelFacialLogin" = "如取消，请前往: 我的--安全 打开面容登录";
+"ClickOnFingerPrintToUnlock" = "点击进行指纹验证";
+"ClickToFaceIDUnlock" = "点击进行面容验证";

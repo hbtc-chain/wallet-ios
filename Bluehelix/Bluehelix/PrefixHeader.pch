@@ -53,6 +53,7 @@ typedef NS_ENUM(NSUInteger, NetworkMethod) {
 
 //wallet
 #define kNotificationNetCome @"NotificationNetCome"
+#define kApp_Name [[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleDisplayName"]
 
 #define kBtnBorderRadius 6
 #define kBtnHeight 48

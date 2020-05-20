@@ -41,14 +41,9 @@
 }
 
 - (void)switchAction:(UISwitch *)sender {
-    KUser.isNightType = sender.isOn;
-    KUser.isSettedNightType = YES;
-    XXTabBarController *tabVC = [[XXTabBarController alloc] init];
-    [tabVC setIndex:3];
-    KWindow.rootViewController = tabVC;
-    
-    XXSettingVC *vc = [[XXSettingVC alloc] init];
-    [tabVC.selectedViewController pushViewController:vc animated:NO];
+    if (self.switchBlock) {
+        self.switchBlock(sender.isOn, self.indexCell);
+    }
 }
 
 - (XXLabel *)nameLabel {
