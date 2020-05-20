@@ -36,19 +36,19 @@
     [self addSubview:self.backView];
     [self addSubview:self.versionView];
     [self.versionView addSubview:self.rocketImageView];
-    [self.versionView addSubview:self.dismissBtn];
+//    [self.versionView addSubview:self.dismissBtn];
     [self.versionView addSubview:self.titleLabel];
     [self.versionView addSubview:self.contentLabel];
     [self.contentLabel setText:content];
-    self.versionView.frame = CGRectMake(K375(16), (self.height - 260 -self.contentLabel.height)/2, K375(344), 260 + self.contentLabel.height);
+    self.versionView.frame = CGRectMake(K375(24), (self.height - 280 -self.contentLabel.height)/2, kScreen_Width - K375(48), 280 + self.contentLabel.height);
     [self.versionView addSubview:self.updateBtn];
     if (forceFlag) {
-        self.updateBtn.frame = CGRectMake(K375(24), self.versionView.height - 56, kScreen_Width - K375(80), 40);
-        self.dismissBtn.hidden = YES;
+        self.updateBtn.frame = CGRectMake(K375(24), self.versionView.height - 60, self.versionView.width - K375(48), 44);
+//        self.dismissBtn.hidden = YES;
     } else {
         [self.versionView addSubview:self.cancelBtn];
-        self.updateBtn.frame = CGRectMake(CGRectGetMaxX(self.cancelBtn.frame) + 8, self.versionView.height - 56, kScreen_Width/2 - K375(88)/2, 40);
-        self.dismissBtn.hidden = NO;
+        self.updateBtn.frame = CGRectMake(CGRectGetMaxX(self.cancelBtn.frame) + 8, self.versionView.height - 60, (self.versionView.width - K375(40))/2, 44);
+//        self.dismissBtn.hidden = NO;
     }
 }
 
@@ -142,35 +142,37 @@
 
 - (UIView *)versionView {
     if (_versionView == nil) {
-        _versionView = [[UIView alloc] initWithFrame:CGRectMake(K375(16), (self.height - 304)/2, K375(344), 304)];
+        _versionView = [[UIView alloc] initWithFrame:CGRectMake(K375(24), (self.height - 304)/2, kScreen_Width - K375(48), 304)];
         _versionView.backgroundColor = [UIColor whiteColor];
+        _versionView.layer.cornerRadius = 8;
+//        _versionView.layer.masksToBounds = YES;
     }
     return _versionView;
 }
 
 - (UIImageView *)rocketImageView {
     if (_rocketImageView == nil) {
-        _rocketImageView = [[UIImageView alloc] initWithFrame:CGRectMake(0, -K375(52), self.versionView.width, K375(196))];
+        _rocketImageView = [[UIImageView alloc] initWithFrame:CGRectMake(0, -26, self.versionView.width, K375(194))];
         _rocketImageView.image = [UIImage imageNamed:@"updateVersion"];
     }
     return _rocketImageView;
 }
 
-- (UIButton *)dismissBtn {
-    if (_dismissBtn == nil ) {
-        _dismissBtn = [[UIButton alloc] initWithFrame:CGRectMake(kScreen_Width - K375(30) - K375(50), 0, K375(50), K375(50))];
-        [_dismissBtn setImage:[UIImage imageNamed:@"versionUpdateDismiss"] forState:UIControlStateNormal];
-        [_dismissBtn addTarget:self action:@selector(cancelAction) forControlEvents:UIControlEventTouchUpInside];
-    }
-    return _dismissBtn;
-}
+//- (UIButton *)dismissBtn {
+//    if (_dismissBtn == nil ) {
+//        _dismissBtn = [[UIButton alloc] initWithFrame:CGRectMake(kScreen_Width - K375(30) - K375(50), 0, K375(50), K375(50))];
+//        [_dismissBtn setImage:[UIImage imageNamed:@"versionUpdateDismiss"] forState:UIControlStateNormal];
+//        [_dismissBtn addTarget:self action:@selector(cancelAction) forControlEvents:UIControlEventTouchUpInside];
+//    }
+//    return _dismissBtn;
+//}
 
 - (UILabel *)titleLabel {
     if (_titleLabel == nil) {
-        _titleLabel = [[UILabel alloc] initWithFrame:CGRectMake(K375(24), K375(144), kScreen_Width - K375(80), 24)];
+        _titleLabel = [[UILabel alloc] initWithFrame:CGRectMake(K375(24), K375(164), kScreen_Width - K375(80), 24)];
         _titleLabel.text = LocalizedString(@"UpgradeAPP");
         _titleLabel.font = kFontBold18;
-        _titleLabel.textColor = kPrimaryMain;
+        _titleLabel.textColor = [UIColor blackColor];
     }
     return _titleLabel;
 }
@@ -186,24 +188,28 @@
 
 - (UIButton *)updateBtn {
     if (_updateBtn == nil) {
-        _updateBtn = [[UIButton alloc] initWithFrame:CGRectMake(K375(154), self.versionView.height - 56, 100, 40)];
+        _updateBtn = [[UIButton alloc] initWithFrame:CGRectMake(K375(154), self.versionView.height - 60, 100, 44)];
         [_updateBtn setTitle:LocalizedString(@"Upgrade") forState:UIControlStateNormal];
         [_updateBtn setBackgroundColor:kPrimaryMain];
-        [_updateBtn.titleLabel setFont:kFontBold12];
+        [_updateBtn.titleLabel setFont:kFontBold17];
         [_updateBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
         [_updateBtn addTarget:self action:@selector(updateAction) forControlEvents:UIControlEventTouchUpInside];
+        _updateBtn.layer.cornerRadius = 4;
+        _updateBtn.layer.masksToBounds = YES;
     }
     return _updateBtn;
 }
 
 - (UIButton *)cancelBtn {
     if (_cancelBtn == nil) {
-        _cancelBtn = [[UIButton alloc] initWithFrame:CGRectMake(K375(24), self.versionView.height - 56, kScreen_Width/2 - K375(88)/2, 40)];
+        _cancelBtn = [[UIButton alloc] initWithFrame:CGRectMake(K375(16), self.versionView.height - 60, (self.versionView.width - K375(40))/2, 44)];
         [_cancelBtn setTitle:LocalizedString(@"Cancel") forState:UIControlStateNormal];
         [_cancelBtn setBackgroundColor:KRGBA(244, 244, 245, 100)];
-        [_cancelBtn setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
-        [_cancelBtn.titleLabel setFont:kFontBold12];
+        [_cancelBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+        [_cancelBtn.titleLabel setFont:kFontBold17];
         [_cancelBtn addTarget:self action:@selector(cancelAction) forControlEvents:UIControlEventTouchUpInside];
+        _cancelBtn.layer.cornerRadius = 4;
+        _cancelBtn.layer.masksToBounds = YES;
     }
     return _cancelBtn;
 }
