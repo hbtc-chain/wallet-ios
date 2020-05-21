@@ -83,6 +83,7 @@
 		EA26447F211C7CF400FCEC6E /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EA26447E211C7CF400FCEC6E /* Security.framework */; };
 		EA264481211C7D0800FCEC6E /* libz.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = EA264480211C7D0800FCEC6E /* libz.tbd */; };
 		EA264483211C7D1400FCEC6E /* libc++.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = EA264482211C7D1400FCEC6E /* libc++.tbd */; };
+		EA26B34D2476650200EAF205 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EA26B34C2476650200EAF205 /* LaunchScreen.storyboard */; };
 		EA2931B822CCB22B003B60E8 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F30AC1AC20CCC642000652BB /* Assets.xcassets */; };
 		EA2F95312423A02B0070AC62 /* XXLoginVC.m in Sources */ = {isa = PBXBuildFile; fileRef = EA2F95302423A02B0070AC62 /* XXLoginVC.m */; };
 		EA309E00236F21400098DE28 /* AFURLResponseSerialization.m in Sources */ = {isa = PBXBuildFile; fileRef = EA309DF6236F21400098DE28 /* AFURLResponseSerialization.m */; };
@@ -477,6 +478,7 @@
 		EA26447E211C7CF400FCEC6E /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
 		EA264480211C7D0800FCEC6E /* libz.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libz.tbd; path = usr/lib/libz.tbd; sourceTree = SDKROOT; };
 		EA264482211C7D1400FCEC6E /* libc++.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = "libc++.tbd"; path = "usr/lib/libc++.tbd"; sourceTree = SDKROOT; };
+		EA26B34C2476650200EAF205 /* LaunchScreen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
 		EA2F952F2423A02B0070AC62 /* XXLoginVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = XXLoginVC.h; sourceTree = "<group>"; };
 		EA2F95302423A02B0070AC62 /* XXLoginVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = XXLoginVC.m; sourceTree = "<group>"; };
 		EA309DF2236F21400098DE28 /* AFSecurityPolicy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFSecurityPolicy.h; sourceTree = "<group>"; };
@@ -2145,6 +2147,7 @@
 				F3D93A0520CCCBF80055070B /* PrefixHeader.pch */,
 				EA964C422414E18500A941E5 /* AppDelegate.h */,
 				EA964C432414E18500A941E5 /* AppDelegate.m */,
+				EA26B34C2476650200EAF205 /* LaunchScreen.storyboard */,
 				EAE40477211C1DB300FFD028 /* GlobalLanguage */,
 			);
 			path = Bluehelix;
@@ -2324,6 +2327,7 @@
 				EA2931B822CCB22B003B60E8 /* Assets.xcassets in Resources */,
 				EA3E595324446A310080B98F /* Lato-Regular.ttf in Resources */,
 				F30EAF5C20D26536005ADD5C /* README.textile in Resources */,
+				EA26B34D2476650200EAF205 /* LaunchScreen.storyboard in Resources */,
 				EA8F8C88240FA9F200D26E10 /* Icon.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -2794,7 +2798,7 @@
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = Icon;
-				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = Launch;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = "";
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = "";
 				CODE_SIGN_IDENTITY = "iPhone Developer";
@@ -2837,7 +2841,7 @@
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = Icon;
-				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = Launch;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = "";
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = "";
 				CODE_SIGN_IDENTITY = "iPhone Developer";
