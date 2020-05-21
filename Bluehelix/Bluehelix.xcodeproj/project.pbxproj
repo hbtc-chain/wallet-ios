@@ -84,6 +84,7 @@
 		EA264481211C7D0800FCEC6E /* libz.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = EA264480211C7D0800FCEC6E /* libz.tbd */; };
 		EA264483211C7D1400FCEC6E /* libc++.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = EA264482211C7D1400FCEC6E /* libc++.tbd */; };
 		EA26B34D2476650200EAF205 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EA26B34C2476650200EAF205 /* LaunchScreen.storyboard */; };
+		EA26B350247670A500EAF205 /* XXSplashScreen.m in Sources */ = {isa = PBXBuildFile; fileRef = EA26B34F247670A500EAF205 /* XXSplashScreen.m */; };
 		EA2931B822CCB22B003B60E8 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F30AC1AC20CCC642000652BB /* Assets.xcassets */; };
 		EA2F95312423A02B0070AC62 /* XXLoginVC.m in Sources */ = {isa = PBXBuildFile; fileRef = EA2F95302423A02B0070AC62 /* XXLoginVC.m */; };
 		EA309E00236F21400098DE28 /* AFURLResponseSerialization.m in Sources */ = {isa = PBXBuildFile; fileRef = EA309DF6236F21400098DE28 /* AFURLResponseSerialization.m */; };
@@ -479,6 +480,8 @@
 		EA264480211C7D0800FCEC6E /* libz.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libz.tbd; path = usr/lib/libz.tbd; sourceTree = SDKROOT; };
 		EA264482211C7D1400FCEC6E /* libc++.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = "libc++.tbd"; path = "usr/lib/libc++.tbd"; sourceTree = SDKROOT; };
 		EA26B34C2476650200EAF205 /* LaunchScreen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
+		EA26B34E247670A500EAF205 /* XXSplashScreen.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XXSplashScreen.h; sourceTree = "<group>"; };
+		EA26B34F247670A500EAF205 /* XXSplashScreen.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XXSplashScreen.m; sourceTree = "<group>"; };
 		EA2F952F2423A02B0070AC62 /* XXLoginVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = XXLoginVC.h; sourceTree = "<group>"; };
 		EA2F95302423A02B0070AC62 /* XXLoginVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = XXLoginVC.m; sourceTree = "<group>"; };
 		EA309DF2236F21400098DE28 /* AFSecurityPolicy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFSecurityPolicy.h; sourceTree = "<group>"; };
@@ -2012,6 +2015,8 @@
 				EAC83FAA2465899600340C95 /* XXVersionManager.m */,
 				EAC83FAC24658A2900340C95 /* XXUpdateVersionView.h */,
 				EAC83FAD24658A2900340C95 /* XXUpdateVersionView.m */,
+				EA26B34E247670A500EAF205 /* XXSplashScreen.h */,
+				EA26B34F247670A500EAF205 /* XXSplashScreen.m */,
 			);
 			path = Other;
 			sourceTree = "<group>";
@@ -2466,6 +2471,7 @@
 				EABBC08A24232DCD00B7E412 /* AESCrypt.m in Sources */,
 				6C791DFB2451A1D800F22CD0 /* XXProposalsListViewController.m in Sources */,
 				EAB356342438369200D750D6 /* FMResultSet.m in Sources */,
+				EA26B350247670A500EAF205 /* XXSplashScreen.m in Sources */,
 				EAB3566A243E402100D750D6 /* JSONKit.m in Sources */,
 				EAE467EE244C7901006EACAF /* XXTransationSectionHeaderView.m in Sources */,
 				6CC12CEE24445DF200917105 /* XXDecimalNumberHelper.m in Sources */,

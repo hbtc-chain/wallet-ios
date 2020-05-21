@@ -16,18 +16,21 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="LanchIcon" translatesAutoresizingMaskIntoConstraints="NO" id="7wz-Gq-hR5">
-                                <rect key="frame" x="157" y="403" width="100" height="100"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="HBC Wallet" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ex4-yB-c9g">
+                                <rect key="frame" x="0.0" y="795" width="414" height="50"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="100" id="gwL-PB-v8C"/>
-                                    <constraint firstAttribute="height" constant="100" id="qw2-yQ-91d"/>
+                                    <constraint firstAttribute="height" constant="50" id="Vfr-bN-X5D"/>
                                 </constraints>
-                            </imageView>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="28"/>
+                                <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
-                            <constraint firstItem="7wz-Gq-hR5" firstAttribute="centerY" secondItem="Bcu-3y-fUS" secondAttribute="centerY" id="2Iw-60-2AN"/>
-                            <constraint firstItem="7wz-Gq-hR5" firstAttribute="centerX" secondItem="Bcu-3y-fUS" secondAttribute="centerX" id="RWj-ph-Tvs"/>
+                            <constraint firstItem="Bcu-3y-fUS" firstAttribute="trailing" secondItem="Ex4-yB-c9g" secondAttribute="trailing" id="KlY-1w-dpp"/>
+                            <constraint firstItem="Ex4-yB-c9g" firstAttribute="leading" secondItem="Bcu-3y-fUS" secondAttribute="leading" id="zEq-mD-5Gj"/>
+                            <constraint firstItem="Bcu-3y-fUS" firstAttribute="bottom" secondItem="Ex4-yB-c9g" secondAttribute="bottom" constant="17" id="zFu-61-YlA"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="Bcu-3y-fUS"/>
                     </view>
@@ -37,7 +40,4 @@
             <point key="canvasLocation" x="52.173913043478265" y="375"/>
         </scene>
     </scenes>
-    <resources>
-        <image name="LanchIcon" width="330" height="330"/>
-    </resources>
 </document>

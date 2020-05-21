@@ -16,6 +16,15 @@
 #import "AFNetworkReachabilityManager.h"
 #import "XXVersionManager.h"
 #import "SecurityHelper.h"
+#import "XXSplashScreen.h"
+
+@interface AppDelegate ()
+
+/** 闪屏 */
+@property (nonatomic, strong) XXSplashScreen *splashScreen;
+
+@end
+
 @implementation AppDelegate
 
 #pragma mark - 1. 程序开始
@@ -45,6 +54,7 @@
         self.window.rootViewController = startNav;
     }
     [self.window makeKeyAndVisible];
+    [self.splashScreen showSplashScreen];
     return YES;
 }
 
@@ -100,5 +110,12 @@
 - (void)applicationWillTerminate:(UIApplication *)application {
     
     
+}
+
+- (XXSplashScreen *)splashScreen {
+    if (!_splashScreen) {
+        _splashScreen = [[XXSplashScreen alloc] initWithFrame:CGRectMake(0, 0, kScreen_Width, kScreen_Height)];
+    }
+    return _splashScreen;
 }
 @end
