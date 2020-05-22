@@ -13,7 +13,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface BHFaceIDLockVC : BaseViewController
 
-@property (nonatomic, copy) void(^completeBlock)(void);
+//@property (nonatomic, copy) void(^completeBlock)(void);
 
 @end
 

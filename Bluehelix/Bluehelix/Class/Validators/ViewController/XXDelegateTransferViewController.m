@@ -176,7 +176,9 @@
     XXMsg *model = [[XXMsg alloc] initWithfrom:KUser.address to:toAddress amount:amount denom:tokenModel.symbol feeAmount:feeAmount feeGas:gas feeDenom:tokenModel.symbol memo:@"" type:kMsgDelegate withdrawal_fee:@"" text:self.text];
     _msgRequest = [[XXMsgRequest alloc] init];
     [_msgRequest sendMsg:model];
+    MJWeakSelf
     _msgRequest.msgSendSuccessBlock = ^{
+        [weakSelf.navigationController popViewControllerAnimated:YES];
         [MBProgressHUD hideHUD];
     };
     _msgRequest.msgSendFaildBlock = ^{
@@ -198,8 +200,10 @@
     XXMsg *model = [[XXMsg alloc] initWithfrom:KUser.address to:toAddress amount:amount denom:tokenModel.symbol feeAmount:feeAmount feeGas:gas feeDenom:tokenModel.symbol memo:@"" type:kMsgUndelegate withdrawal_fee:@"" text:self.text];
     _msgRequest = [[XXMsgRequest alloc] init];
     [_msgRequest sendMsg:model];
+    MJWeakSelf
     _msgRequest.msgSendSuccessBlock = ^{
         [MBProgressHUD hideHUD];
+        [weakSelf.navigationController popViewControllerAnimated:YES];
     };
     _msgRequest.msgSendFaildBlock = ^{
         [MBProgressHUD hideHUD];

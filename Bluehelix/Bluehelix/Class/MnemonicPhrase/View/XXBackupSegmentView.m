@@ -18,6 +18,7 @@
 /** 指示线 */
 @property (nonatomic, strong) UIImageView *indexLine;
 
+@property (nonatomic, strong) UIView *lineView;
 @end
 
 @implementation XXBackupSegmentView
@@ -32,6 +33,8 @@
         [self addSubview:self.indexLine];
         
         self.priorityValue = 50.0;
+        
+        [self addSubview:self.lineView];
  
     }
     return self;
@@ -156,6 +159,14 @@
 
 - (void)setIsHaveIndexLine:(BOOL)isHaveIndexLine{
     self.indexLine.hidden = !isHaveIndexLine;
+}
+
+- (UIView *)lineView {
+    if (!_lineView) {
+        _lineView = [[UIView alloc] initWithFrame:CGRectMake(0, self.height - 1, kScreen_Width, 1)];
+        _lineView.backgroundColor = KLine_Color;
+    }
+    return _lineView;
 }
 
 @end

@@ -22,7 +22,6 @@
 #import "XXMsgRequest.h"
 #import "XXPasswordView.h"
 
-int pageSize = 30;
 @interface XXSymbolDetailVC ()<UITableViewDataSource, UITableViewDelegate>
 
 @property (nonatomic, strong) UITableView *tableView;
@@ -32,6 +31,7 @@ int pageSize = 30;
 @property (nonatomic, strong) XXMainSymbolHeaderView *mainSymbolHeaderView; //主代币 有分红等信息
 @property (nonatomic, strong) XXSymbolDetailHeaderView *symbolDetailHeaderView; //其它币没有分红等信息
 @property (nonatomic, assign) int page;
+@property (nonatomic, assign) int pageSize;
 @property (nonatomic, strong) XXEmptyView *emptyView;
 @property (nonatomic, strong) XXAssetManager *assetManager; // 资产请求
 @property (nonatomic, strong) NSTimer *timer; //定时刷新交易记录
@@ -46,6 +46,7 @@ int pageSize = 30;
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     self.page = 1;
+    self.pageSize = 30;
     [self buildUI];
 }
 
@@ -104,19 +105,19 @@ int pageSize = 30;
     NSMutableDictionary *param = [NSMutableDictionary dictionary];
     param[@"token"] = self.tokenModel.symbol;
     param[@"page"] = [NSString stringWithFormat:@"%d",self.page];
-    param[@"size"] = [NSString stringWithFormat:@"%d",pageSize];
+    param[@"size"] = [NSString stringWithFormat:@"%d",self.pageSize];
     [HttpManager getWithPath:path params:param andBlock:^(id data, NSString *msg, NSInteger code) {
         [weakSelf.tableView.mj_header endRefreshing];
         [weakSelf.tableView.mj_footer endRefreshing];
         if (code == 0) {
             NSLog(@"%@",data);
-            NSArray *tempArr = [data objectForKey:@"txs"];
+            NSArray *tempArr = [data objectForKey:@"items"];
             if (self.page == 1) {
                 weakSelf.txs = [NSMutableArray arrayWithArray:tempArr];;
             } else {
                 [weakSelf.txs addObjectsFromArray:tempArr];
             }
-            if (tempArr.count < pageSize) {
+            if (tempArr.count < self.pageSize) {
                 [weakSelf.tableView.mj_footer endRefreshingWithNoMoreData];
             }
             [weakSelf.tableView reloadData];
@@ -341,8 +342,9 @@ int pageSize = 30;
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
+    NSDictionary *tx = self.txs[indexPath.row];
     XXTransferDetailVC *detailVC = [[XXTransferDetailVC alloc] init];
-    detailVC.dic = self.txs[indexPath.row];
+    detailVC.hashString = tx[@"hash"];
     [self.navigationController pushViewController:detailVC animated:YES];
 }
 

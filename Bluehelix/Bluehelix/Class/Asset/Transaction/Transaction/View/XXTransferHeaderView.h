@@ -12,8 +12,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface XXTransferHeaderView : UIView
 
-- (instancetype)initWithFrame:(CGRect)frame data:(NSDictionary *)dic;
-
+- (void)buildUI:(NSDictionary *)dic;
 @property (nonatomic, strong) XXLabel *amountLabel;
 @property (nonatomic, assign) CGFloat maxHeight;
 @end

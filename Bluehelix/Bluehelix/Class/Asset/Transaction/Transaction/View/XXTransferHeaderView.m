@@ -15,7 +15,6 @@
     self = [super initWithFrame:frame];
     if (self) {
         self.backgroundColor = kWhiteColor;
-        [self buildUI:dic];
     }
     return self;
 }

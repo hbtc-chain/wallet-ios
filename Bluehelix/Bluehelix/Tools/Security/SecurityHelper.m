@@ -69,9 +69,6 @@ static SecurityHelper *_sharedManager;
     AppDelegate *delegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
     XXTabBarController * tab = (XXTabBarController *)delegate.window.rootViewController;
     BHFaceIDLockVC *lockVC = [[BHFaceIDLockVC alloc] init];
-    if (self.completeBlock) {
-        lockVC.completeBlock = self.completeBlock;
-    }
     XXNavigationController *nav = [[XXNavigationController alloc] initWithRootViewController:lockVC];
     nav.modalPresentationStyle = UIModalPresentationFullScreen;
     [tab.selectedViewController presentViewController:nav animated:YES completion:nil];

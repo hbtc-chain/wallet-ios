@@ -12,8 +12,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface XXTransferDetailVC : BaseViewController
 
-@property (nonatomic, strong) NSDictionary *dic;
-
+@property (nonatomic, copy) NSString *hashString;
+@property (nonatomic, copy) NSString *idString;
 @end
 
 NS_ASSUME_NONNULL_END

@@ -15,7 +15,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, assign) NSNumber *page;
 @property (nonatomic, assign) NSNumber *page_size;
 @property (nonatomic, assign) NSNumber *total;
-@property (nonatomic, copy) NSArray *proposals;
+@property (nonatomic, copy) NSArray *items;
 @end
 
 @class XXProposalResultModel;

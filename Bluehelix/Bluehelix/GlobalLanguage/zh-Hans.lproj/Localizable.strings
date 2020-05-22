@@ -14,7 +14,7 @@
 
 //创建钱包
 "Verify" = "验证";
-"logoName" = "Bluehelix Wallet";
+"logoName" = "HBTC Wallet";
 "CreateWallet" = "创建托管单元";
 "ImportWallet" = "导入托管单元";
 "VerifyMnemonicPhraseTip" = "请按顺序点击助记词，填入下方表格中";
@@ -31,10 +31,10 @@
 "BackupTipContent"="牢记并妥善保管这12个单词,一旦遗失，您的资产将无法找回";
 "NextStep" = "下一步";
 "SetName" = "设置名称";
-"SetNameTip" = "您正在创建BlueHelix钱包的托管单元，并将拥有一份跨链钱包";
-"KeystoreSetNameTip" = "您正在导入BlueHelix钱包的托管单元，并将拥有一份跨链钱包";
+"SetNameTip" = "您正在创建HBTC钱包的托管单元，并将拥有一份跨链钱包";
+"KeystoreSetNameTip" = "您正在导入HBTC钱包的托管单元，并将拥有一份跨链钱包";
 "SetPassword" = "设置密码";
-"SetPasswordTip" = "·安全密码是保护钱包私钥和操作资产的重要凭证\n·BlueHelix钱包不会缓存、上传、存储您的密码\n·请务必妥善保管密码";
+"SetPasswordTip" = "·安全密码是保护钱包私钥和操作资产的重要凭证\HBTC钱包不会缓存、上传、存储您的密码\n·请务必妥善保管密码";
 "RepeatPassword" = "重复密码";
 "Step1" = "(第1步，共3步)";
 "Step2" = "(第2步，共3步)";
@@ -57,12 +57,12 @@
 "ImportSecurity" = "导入私钥";
 "ImportMnemonicPhraseTip" = "请在下方输入框中按顺序输入助记词，用空格分开";
 "ImportSecurityTip" = "请在下方输入框中输入私钥，并留意大小写";
-"ImportKeystoreTip" = "·复制粘贴 Bluehelix 钱包 Keystore 文件内容\n·粘贴至下方“Keystore”输入框";
+"ImportKeystoreTip" = "·复制粘贴 HBTC 钱包 Keystore 文件内容\n·粘贴至下方“Keystore”输入框";
 "AccountManage" = "托管单元管理";
 "TwoPasswordInconsistent" = "两次密码输入不一致！";
 "AccountNameRuleAlert" = "请输入1-20个字符";
 "IAgreeTo" = "我已阅读并同意";
-"ServiceAgreement" = "《Bluehelix服务协议》";
+"ServiceAgreement" = "《HBTC服务协议》";
 "PleaseEnterPassword" = "请输入钱包密码";
 "Password" = "验证密码";
 "ForgetPassword" = "忘记密码";
@@ -329,7 +329,6 @@
 "CreateProposalAmoutMustMoreTip" = "质押数量不能小于10万";
 "TransferTopTipMessage" = "It will take 21 days to unlock your tokens after they are staked. There is a risk that some tokens will be lost depending on the behaviour of the validator you choose.";
 
-
 //面容登录
 "FingerprintUnlock" = "指纹登录";
 "FaceUnlock" = "面容登录";
@@ -350,3 +349,10 @@
 "CancelFacialLogin" = "如取消，请前往: 我的--安全 打开面容登录";
 "ClickOnFingerPrintToUnlock" = "点击进行指纹验证";
 "ClickToFaceIDUnlock" = "点击进行面容验证";
+"QueDing" = "确定";
+
+//消息中心
+"MessageCenter" = "消息中心";
+"TransferNotification" = "转账通知";
+"SystemMessage" = "系统消息";
+"Recharge" = "充值";

@@ -41,6 +41,8 @@
 @property (nonatomic, strong) XXTransferHeaderView *headerView;
 @property (nonatomic, strong) NSMutableArray *cellArray;
 @property (nonatomic, strong) NSMutableArray *sectionArray;
+@property (nonatomic, strong) NSDictionary *dic;
+
 @end
 
 @implementation XXTransferDetailVC
@@ -49,8 +51,31 @@
     [super viewDidLoad];
     self.cellArray = [NSMutableArray array];
     self.sectionArray = [NSMutableArray array];
-    [self configDic];
     [self buildUI];
+    [self requestTransaction];
+    if (!IsEmpty(self.idString)) {
+        [self requestRead];
+    }
+}
+
+- (void)requestTransaction {
+    [MBProgressHUD showActivityMessageInView:@""];
+    MJWeakSelf
+    NSString *path = [NSString stringWithFormat:@"/api/v1/txs/%@",self.hashString];
+    [HttpManager getWithPath:path params:nil andBlock:^(id data, NSString *msg, NSInteger code) {
+        [MBProgressHUD hideHUD];
+        if (code == 0) {
+            weakSelf.dic = data;
+            [weakSelf.headerView buildUI:data];
+            [weakSelf configDic];
+        }
+    }];
+}
+
+- (void)requestRead {
+    NSString *path = [NSString stringWithFormat:@"/api/v1/cus/%@/notifications/%@/read",KUser.address,self.idString];
+    [HttpManager postWithPath:path params:nil andBlock:^(id data, NSString *msg, NSInteger code) {
+    }];
 }
 
 - (void)buildUI {
@@ -356,7 +381,7 @@
 
 - (XXTransferHeaderView *)headerView {
     if (!_headerView) {
-        _headerView = [[XXTransferHeaderView alloc] initWithFrame:CGRectMake(0, 0, kScreen_Width, 0) data:self.dic];
+        _headerView = [[XXTransferHeaderView alloc] initWithFrame:CGRectMake(0, 0, kScreen_Width, 0)];
     }
     return _headerView;
 }

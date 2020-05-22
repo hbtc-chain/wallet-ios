@@ -85,6 +85,10 @@
 		EA264483211C7D1400FCEC6E /* libc++.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = EA264482211C7D1400FCEC6E /* libc++.tbd */; };
 		EA26B34D2476650200EAF205 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EA26B34C2476650200EAF205 /* LaunchScreen.storyboard */; };
 		EA26B350247670A500EAF205 /* XXSplashScreen.m in Sources */ = {isa = PBXBuildFile; fileRef = EA26B34F247670A500EAF205 /* XXSplashScreen.m */; };
+		EA26B3542476C53500EAF205 /* XXMessageCenterVC.m in Sources */ = {isa = PBXBuildFile; fileRef = EA26B3532476C53500EAF205 /* XXMessageCenterVC.m */; };
+		EA26B3572476CC9000EAF205 /* XXTransferMessageView.m in Sources */ = {isa = PBXBuildFile; fileRef = EA26B3562476CC9000EAF205 /* XXTransferMessageView.m */; };
+		EA26B35A2477A4F400EAF205 /* XXMessageCell.m in Sources */ = {isa = PBXBuildFile; fileRef = EA26B3592477A4F400EAF205 /* XXMessageCell.m */; };
+		EA26B35D2477A5C600EAF205 /* XXMessageModel.m in Sources */ = {isa = PBXBuildFile; fileRef = EA26B35C2477A5C600EAF205 /* XXMessageModel.m */; };
 		EA2931B822CCB22B003B60E8 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F30AC1AC20CCC642000652BB /* Assets.xcassets */; };
 		EA2F95312423A02B0070AC62 /* XXLoginVC.m in Sources */ = {isa = PBXBuildFile; fileRef = EA2F95302423A02B0070AC62 /* XXLoginVC.m */; };
 		EA309E00236F21400098DE28 /* AFURLResponseSerialization.m in Sources */ = {isa = PBXBuildFile; fileRef = EA309DF6236F21400098DE28 /* AFURLResponseSerialization.m */; };
@@ -482,6 +486,14 @@
 		EA26B34C2476650200EAF205 /* LaunchScreen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
 		EA26B34E247670A500EAF205 /* XXSplashScreen.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XXSplashScreen.h; sourceTree = "<group>"; };
 		EA26B34F247670A500EAF205 /* XXSplashScreen.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XXSplashScreen.m; sourceTree = "<group>"; };
+		EA26B3522476C53500EAF205 /* XXMessageCenterVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = XXMessageCenterVC.h; sourceTree = "<group>"; };
+		EA26B3532476C53500EAF205 /* XXMessageCenterVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = XXMessageCenterVC.m; sourceTree = "<group>"; };
+		EA26B3552476CC9000EAF205 /* XXTransferMessageView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = XXTransferMessageView.h; sourceTree = "<group>"; };
+		EA26B3562476CC9000EAF205 /* XXTransferMessageView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = XXTransferMessageView.m; sourceTree = "<group>"; };
+		EA26B3582477A4F400EAF205 /* XXMessageCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = XXMessageCell.h; sourceTree = "<group>"; };
+		EA26B3592477A4F400EAF205 /* XXMessageCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = XXMessageCell.m; sourceTree = "<group>"; };
+		EA26B35B2477A5C600EAF205 /* XXMessageModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = XXMessageModel.h; sourceTree = "<group>"; };
+		EA26B35C2477A5C600EAF205 /* XXMessageModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = XXMessageModel.m; sourceTree = "<group>"; };
 		EA2F952F2423A02B0070AC62 /* XXLoginVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = XXLoginVC.h; sourceTree = "<group>"; };
 		EA2F95302423A02B0070AC62 /* XXLoginVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = XXLoginVC.m; sourceTree = "<group>"; };
 		EA309DF2236F21400098DE28 /* AFSecurityPolicy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFSecurityPolicy.h; sourceTree = "<group>"; };
@@ -879,7 +891,7 @@
 		EAE40484211C49F800FFD028 /* BHChooseLanguageVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BHChooseLanguageVC.m; sourceTree = "<group>"; };
 		EAE467EC244C7901006EACAF /* XXTransationSectionHeaderView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = XXTransationSectionHeaderView.h; sourceTree = "<group>"; };
 		EAE467ED244C7901006EACAF /* XXTransationSectionHeaderView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = XXTransationSectionHeaderView.m; sourceTree = "<group>"; };
-		F30AC1A020CCC641000652BB /* HBC Wallet.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "HBC Wallet.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		F30AC1A020CCC641000652BB /* HBTC Wallet.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "HBTC Wallet.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		F30AC1AC20CCC642000652BB /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		F30AC1B220CCC642000652BB /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		F30EAF3B20D26535005ADD5C /* colorModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = colorModel.m; sourceTree = "<group>"; };
@@ -1246,6 +1258,7 @@
 		EA15E9632417A70200A3E14A /* User */ = {
 			isa = PBXGroup;
 			children = (
+				EA26B3512476C4BA00EAF205 /* Message */,
 				EAA8DE98244D7E7C00161698 /* Account */,
 				EAA8DE8F244D7E7C00161698 /* Setting */,
 			);
@@ -1283,6 +1296,21 @@
 				EA3E587A24441B980080B98F /* Transaction */,
 			);
 			path = Asset;
+			sourceTree = "<group>";
+		};
+		EA26B3512476C4BA00EAF205 /* Message */ = {
+			isa = PBXGroup;
+			children = (
+				EA26B3522476C53500EAF205 /* XXMessageCenterVC.h */,
+				EA26B3532476C53500EAF205 /* XXMessageCenterVC.m */,
+				EA26B3552476CC9000EAF205 /* XXTransferMessageView.h */,
+				EA26B3562476CC9000EAF205 /* XXTransferMessageView.m */,
+				EA26B3582477A4F400EAF205 /* XXMessageCell.h */,
+				EA26B3592477A4F400EAF205 /* XXMessageCell.m */,
+				EA26B35B2477A5C600EAF205 /* XXMessageModel.h */,
+				EA26B35C2477A5C600EAF205 /* XXMessageModel.m */,
+			);
+			path = Message;
 			sourceTree = "<group>";
 		};
 		EA309DF1236F21400098DE28 /* AFNetworking */ = {
@@ -2135,7 +2163,7 @@
 		F30AC1A120CCC641000652BB /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				F30AC1A020CCC641000652BB /* HBC Wallet.app */,
+				F30AC1A020CCC641000652BB /* HBTC Wallet.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -2274,7 +2302,7 @@
 			);
 			name = Bluehelix;
 			productName = Bhex;
-			productReference = F30AC1A020CCC641000652BB /* HBC Wallet.app */;
+			productReference = F30AC1A020CCC641000652BB /* HBTC Wallet.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -2432,6 +2460,7 @@
 				EA677245246ACFA4008C931A /* XXLoginCell.m in Sources */,
 				EABD1BBB241E49EA00B1A03A /* XXImportWalletVC.m in Sources */,
 				EABD1B86241BB25900B1A03A /* curves.c in Sources */,
+				EA26B3572476CC9000EAF205 /* XXTransferMessageView.m in Sources */,
 				EABD1BAA241BB25900B1A03A /* TransactionInfo.m in Sources */,
 				EABD1B81241BB25900B1A03A /* aeskey.c in Sources */,
 				F30EAF6020D26536005ADD5C /* UILabel+Extension.m in Sources */,
@@ -2559,6 +2588,7 @@
 				EABD1BB1241DFC3E00B1A03A /* XXTextFieldView.m in Sources */,
 				EABD1B8C241BB25900B1A03A /* aestab.c in Sources */,
 				EA15E95724163FDC00A3E14A /* XXStartWalletVC.m in Sources */,
+				EA26B35D2477A5C600EAF205 /* XXMessageModel.m in Sources */,
 				EA9D3E3D24545A1D0060778C /* SWTableViewCell.m in Sources */,
 				EAE286352473D652006D9F24 /* XXCoinPublishNameView.m in Sources */,
 				EAA8DEC8244D81BB00161698 /* XXSettingCell.m in Sources */,
@@ -2596,6 +2626,7 @@
 				EABD1B9B241BB25900B1A03A /* ApiProvider.m in Sources */,
 				EAA8DED0244D81CE00161698 /* XXUserHomeCell.m in Sources */,
 				F30AC1B320CCC642000652BB /* main.m in Sources */,
+				EA26B3542476C53500EAF205 /* XXMessageCenterVC.m in Sources */,
 				EAE2862F2473BB7C006D9F24 /* XXCoinPublishApplyVC.m in Sources */,
 				EABD1B9D241BB25900B1A03A /* EtherscanProvider.m in Sources */,
 				EABD1B8D241BB25900B1A03A /* bip32.c in Sources */,
@@ -2635,6 +2666,7 @@
 				EAB356332438369200D750D6 /* FMDatabasePool.m in Sources */,
 				EA309EF0236F21410098DE28 /* AFNetworkReachabilityManager.m in Sources */,
 				EA20EAC22425FBC8004EBD7F /* XXServiceAgreementVC.m in Sources */,
+				EA26B35A2477A4F400EAF205 /* XXMessageCell.m in Sources */,
 				EABD1B8A241BB25900B1A03A /* ripemd160.c in Sources */,
 				EAC68719214F931200701874 /* NullSafe.m in Sources */,
 				6C3E66FC244AD0700057B514 /* XXDelegateTransferView.m in Sources */,
@@ -2832,7 +2864,7 @@
 					"-ObjC",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.bluehelix.wallet.ios;
-				PRODUCT_NAME = "HBC Wallet";
+				PRODUCT_NAME = "HBTC Wallet";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "Bluehelix/Tools/bech32/Bluehelix-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
@@ -2875,7 +2907,7 @@
 					"-ObjC",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.bluehelix.wallet.ios;
-				PRODUCT_NAME = "HBC Wallet";
+				PRODUCT_NAME = "HBTC Wallet";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "Bluehelix/Tools/bech32/Bluehelix-Bridging-Header.h";
 				SWIFT_VERSION = 5.0;

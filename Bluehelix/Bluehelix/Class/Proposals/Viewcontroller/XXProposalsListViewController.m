@@ -114,7 +114,7 @@ static NSInteger pageCount = 20;
             NSLog(@"%@",data);
             
             XXProposalListModel *dataModel= [XXProposalListModel mj_objectWithKeyValues:data];
-            NSMutableArray *listArray = [NSMutableArray arrayWithArray:dataModel.proposals];
+            NSMutableArray *listArray = [NSMutableArray arrayWithArray:dataModel.items];
             if (listArray.count < pageCount) {
                 [self.proposalsTableView.mj_footer endRefreshingWithNoMoreData];
             }

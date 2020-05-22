@@ -10,7 +10,7 @@
 
 @implementation XXProposalListModel
 + (NSDictionary *)mj_objectClassInArray{
-    return @{@"proposals" : [XXProposalModel class]};
+    return @{@"items" : [XXProposalModel class]};
 }
 @end
 

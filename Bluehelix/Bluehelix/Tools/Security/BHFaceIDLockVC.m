@@ -32,7 +32,9 @@
     self.leftButton.hidden = YES;
     self.navView.backgroundColor = kWhiteColor;
     [self setupSameUI];
-    [self faceIDVerify];
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1.5 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+           [self faceIDVerify];
+       });
 }
 
 - (void)faceIDVerify {
@@ -68,31 +70,20 @@
 }
 
 - (void)faceIDAuthorize {
-    MJWeakSelf
     KUser.shouldVerify = NO;
-    [self dismissViewControllerAnimated:YES completion:^{
-        if (weakSelf.completeBlock) {
-            weakSelf.completeBlock();
-        }
-    }];
+    [AppDelegate appDelegate].window.rootViewController = [[XXTabBarController alloc] init];
 }
 
 - (void)closeBiometricAuth {
     KUser.isFaceIDLockOpen = NO;
     KUser.isTouchIDLockOpen = NO;
     [self performSelector:@selector(pushLoginVC) withObject:nil afterDelay:0.5];
-    [self dismissViewControllerAnimated:YES completion:nil];
 }
 
 - (void)pushLoginVC {
     XXLoginVC *vc = [XXLoginVC new];
     XXNavigationController *nav = [[XXNavigationController alloc] initWithRootViewController:vc];
-    nav.modalPresentationStyle = UIModalPresentationFullScreen;
-    [[AppDelegate appDelegate].TopVC presentViewController:nav animated:YES completion:nil];
-}
-
-- (void)leftButtonClick:(UIButton *)sender {
-    [self dismissViewControllerAnimated:YES completion:nil];
+    [AppDelegate appDelegate].window.rootViewController = nav;
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -142,15 +133,6 @@
     [loginBtn setTitleColor:kPrimaryMain forState:UIControlStateNormal];
     [loginBtn addTarget:self action:@selector(pushLoginVC) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:loginBtn];
-}
-
-- (void)loginWithPassword {
-    AppDelegate *delegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
-    XXTabBarController * tab = (XXTabBarController *)delegate.window.rootViewController;
-    [self dismissViewControllerAnimated:YES completion:^{
-        //        [KUser clearAllUserDefaultsData];
-        //        [XXPush toLoginViewController:tab.selectedViewController];
-    }];
 }
 
 - (UIImageView *)icon {

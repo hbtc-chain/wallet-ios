@@ -51,7 +51,7 @@
         [MBProgressHUD hideHUD];
         if (code == 0) {
             NSLog(@"%@",data);
-            weakSelf.tokenList = [XXTokenModel mj_objectArrayWithKeyValuesArray:data[@"tokens"]];
+            weakSelf.tokenList = [XXTokenModel mj_objectArrayWithKeyValuesArray:data[@"items"]];
             weakSelf.showArray = [NSMutableArray arrayWithArray:weakSelf.tokenList];
             [[XXSqliteManager sharedSqlite] insertTokens:weakSelf.tokenList];
             [weakSelf.tableView reloadData];

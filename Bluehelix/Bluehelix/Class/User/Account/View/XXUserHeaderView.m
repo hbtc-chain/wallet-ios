@@ -8,6 +8,7 @@
 #import "XXAccountBtn.h"
 #import "XXUserHeaderItemView.h"
 #import "XXCoinPublishApplyVC.h"
+#import "XXMessageCenterVC.h"
 
 @interface XXUserHeaderView () <UITextFieldDelegate>
 
@@ -66,8 +67,10 @@
 
 - (XXButton *)messageBtn {
     if (!_messageBtn) {
+        MJWeakSelf
         _messageBtn = [XXButton buttonWithFrame:CGRectMake(kScreen_Width - 40, 46, 24, 24) block:^(UIButton *button) {
-            
+            XXMessageCenterVC *messageCenterVC = [[XXMessageCenterVC alloc] init];
+            [weakSelf.viewController.navigationController pushViewController:messageCenterVC animated:YES];
         }];
         [_messageBtn setImage:[UIImage imageNamed:@"UserHeaderMessage"] forState:UIControlStateNormal];
     }

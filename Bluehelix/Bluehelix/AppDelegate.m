@@ -17,7 +17,7 @@
 #import "XXVersionManager.h"
 #import "SecurityHelper.h"
 #import "XXSplashScreen.h"
-
+#import "BHFaceIDLockVC.h"
 @interface AppDelegate ()
 
 /** 闪屏 */
@@ -41,7 +41,8 @@
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     if (KUser.address) {
         if (KUser.isFaceIDLockOpen || KUser.isTouchIDLockOpen) {
-            self.window.rootViewController = [[XXTabBarController alloc] init];
+            self.window.rootViewController = [[BHFaceIDLockVC alloc] init];
+//            self.window.rootViewController = [[XXTabBarController alloc] init];
         } else {
             XXLoginVC *loginVC = [[XXLoginVC alloc] init];
             XXNavigationController *loginNav = [[XXNavigationController alloc] initWithRootViewController:loginVC];
