@@ -18,6 +18,7 @@
 #import "XXChangePasswordVC.h"
 #import "XXBackupPrivateKeyTipVC.h"
 #import "XXBackupKeystoreTipVC.h"
+#import "XYHAlertView.h"
 
 @interface XXUserHomeVC () <UITableViewDataSource, UITableViewDelegate, UIGestureRecognizerDelegate>
 
@@ -67,7 +68,7 @@
     [firstSectionArray addObject:LocalizedString(@"BackupKeystore")];
     [firstSectionArray addObject:LocalizedString(@"BackupPrivateKey")];
     self.itemsArray[0] = firstSectionArray;
-    self.itemsArray[1] = @[LocalizedString(@"Setting"),LocalizedString(@"Version")];
+    self.itemsArray[1] = @[LocalizedString(@"Setting"),LocalizedString(@"ContactUs"),LocalizedString(@"Version")];
 }
 
 - (void)setupUI {
@@ -160,6 +161,9 @@
     if ([itemString isEqualToString:LocalizedString(@"Setting")]) {
         [self pushSetting];
     }
+    if ([itemString isEqualToString:LocalizedString(@"ContactUs")]) {
+        [self contactUs];
+    }
 }
 
 /// 备份助记词
@@ -196,6 +200,22 @@
 - (void)pushSetting {
     XXSettingVC *settingVC = [[XXSettingVC alloc] init];
     [self.navigationController pushViewController:settingVC animated:YES];
+}
+
+
+/// 联系我们
+- (void)contactUs {
+    [XYHAlertView showAlertViewWithTitle:LocalizedString(@"ContactUs") message:LocalizedString(@"ContactMail") titlesArray:@[LocalizedString(@"CopyMail")] andBlock:^(NSInteger index) {
+        [self performSelector:@selector(copyMail) withObject:nil afterDelay:0.1];
+    }];
+}
+
+- (void)copyMail {
+    UIPasteboard *pab = [UIPasteboard generalPasteboard];
+    [pab setString:LocalizedString(@"ContactMail")];
+    Alert *alert = [[Alert alloc] initWithTitle:LocalizedString(@"CopySuccessfully") duration:kAlertDuration completion:^{
+    }];
+    [alert showAlert];
 }
 
 - (UITableView *)tableView {
