@@ -104,9 +104,9 @@
     if (!IsEmpty(KUser.localPhraseString)) { //通过助记词导入 不需要
         Alert *alert = [[Alert alloc] initWithTitle:LocalizedString(@"ImportSuccess") duration:kAlertDuration completion:^{
             KWindow.rootViewController = [[XXTabBarController alloc] init];
+            [self showBiometricAlert];
         }];
         [alert showAlert];
-        [self showBiometricAlert];
     } else {
         XXCreateWalletSuccessVC *successVC = [[XXCreateWalletSuccessVC alloc] init];
         successVC.text = KUser.localPassword;

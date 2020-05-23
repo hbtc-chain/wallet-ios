@@ -61,7 +61,7 @@
 - (XXButton *)createBtn {
     if (!_createBtn) {
         MJWeakSelf
-        _createBtn = [XXButton buttonWithFrame:CGRectMake(K375(16), kScreen_Height - 54, kScreen_Width - K375(32), kBtnHeight) title:LocalizedString(@"NextStep") font:kFontBold18 titleColor:[UIColor whiteColor] block:^(UIButton *button) {
+        _createBtn = [XXButton buttonWithFrame:CGRectMake(K375(16), kScreen_Height - 64, kScreen_Width - K375(32), kBtnHeight) title:LocalizedString(@"NextStep") font:kFontBold18 titleColor:[UIColor whiteColor] block:^(UIButton *button) {
             [weakSelf nextStepAction];
         }];
         _createBtn.backgroundColor = kPrimaryMain;

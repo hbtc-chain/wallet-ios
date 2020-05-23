@@ -62,7 +62,7 @@
 "TwoPasswordInconsistent" = "两次密码输入不一致！";
 "AccountNameRuleAlert" = "请输入1-20个字符";
 "IAgreeTo" = "我已阅读并同意";
-"ServiceAgreement" = "《HBTC服务协议》";
+"ServiceAgreement" = "《HBTC钱包服务协议》";
 "PleaseEnterPassword" = "请输入钱包密码";
 "Password" = "验证密码";
 "ForgetPassword" = "忘记密码";
@@ -345,8 +345,8 @@
 "FaceIdIsOn" = "面容已开启";
 "SetTouchIDLogin" = "设置指纹登录";
 "SetFacialLogin" = "设置面容识别登录";
-"CancelTouchIDLogin" = "如取消，请前往: 我的--安全 打开指纹登录";
-"CancelFacialLogin" = "如取消，请前往: 我的--安全 打开面容登录";
+"CancelTouchIDLogin" = "如取消，请前往: 我的--设置 打开指纹登录";
+"CancelFacialLogin" = "如取消，请前往: 我的--设置 打开面容登录";
 "ClickOnFingerPrintToUnlock" = "点击进行指纹验证";
 "ClickToFaceIDUnlock" = "点击进行面容验证";
 "QueDing" = "确定";

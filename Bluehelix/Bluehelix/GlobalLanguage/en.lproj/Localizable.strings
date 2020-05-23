@@ -198,7 +198,7 @@
 "ChainDepositTip1" = "·您正在进行托管单元";
 "ChainDepositTip2" = "跨链";
 "ChainDepositTip3" = "收款(充币)\n·请提醒转出方，务必使用";
-"ChainDepositTip4" = "OMNI钱包";
+"ChainDepositTip4" = "原生公链钱包";
 "ChainDepositTip5" = "提币";
 "DepositTip1" = "·您正在进行托管单元";
 "DepositTip2" = "链内";
@@ -327,7 +327,7 @@
 "ProposalTypeWord" = "文字提案" ;
 //治理提案 提示内容
 "CreateProposalAmoutMustMoreTip" = "质押数量不能小于10万";
-"TransferTopTipMessage" = "It will take 21 days to unlock your tokens after they are staked. There is a risk that some tokens will be lost depending on the behaviour of the validator you choose.";
+"TransferTopTipMessage" = "质押解锁周期为21天，请谨慎选择质押节点.";
 
 //面容登录
 "FingerprintUnlock" = "指纹登录";
@@ -345,8 +345,8 @@
 "FaceIdIsOn" = "面容已开启";
 "SetTouchIDLogin" = "设置指纹登录";
 "SetFacialLogin" = "设置面容识别登录";
-"CancelTouchIDLogin" = "如取消，请前往: 我的--安全 打开指纹登录";
-"CancelFacialLogin" = "如取消，请前往: 我的--安全 打开面容登录";
+"CancelTouchIDLogin" = "如取消，请前往: 我的--设置 打开指纹登录";
+"CancelFacialLogin" = "如取消，请前往: 我的--设置 打开面容登录";
 "ClickOnFingerPrintToUnlock" = "点击进行指纹验证";
 "ClickToFaceIDUnlock" = "点击进行面容验证";
 "QueDing" = "确定";
@@ -356,3 +356,6 @@
 "TransferNotification" = "转账通知";
 "SystemMessage" = "系统消息";
 "Recharge" = "充值";
+"ContactUs" = "联系我们";
+"ContactMail" = "Hbcwallet@hbtc.com";
+"CopyMail" = "复制邮箱";

@@ -127,7 +127,7 @@
 - (XXButton *)copyBtn {
     if (!_copyBtn) {
         MJWeakSelf
-        _copyBtn = [XXButton buttonWithFrame:CGRectMake(K375(16), self.height - 54, kScreen_Width - K375(32), kBtnHeight) title:LocalizedString(@"CopyPrivateKey") font:kFontBold18 titleColor:[UIColor whiteColor] block:^(UIButton *button) {
+        _copyBtn = [XXButton buttonWithFrame:CGRectMake(K375(16), self.height - 64, kScreen_Width - K375(32), kBtnHeight) title:LocalizedString(@"CopyPrivateKey") font:kFontBold18 titleColor:[UIColor whiteColor] block:^(UIButton *button) {
             [weakSelf copyAction];
         }];
         _copyBtn.backgroundColor = kPrimaryMain;
