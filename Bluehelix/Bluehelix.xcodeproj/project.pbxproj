@@ -79,6 +79,7 @@
 		EA20EAC22425FBC8004EBD7F /* XXServiceAgreementVC.m in Sources */ = {isa = PBXBuildFile; fileRef = EA20EAC12425FBC8004EBD7F /* XXServiceAgreementVC.m */; };
 		EA20EAC524261661004EBD7F /* XXSecurityAlertView.m in Sources */ = {isa = PBXBuildFile; fileRef = EA20EAC424261661004EBD7F /* XXSecurityAlertView.m */; };
 		EA20EACB2429CB13004EBD7F /* XXSystem.m in Sources */ = {isa = PBXBuildFile; fileRef = EA20EAC92429CB13004EBD7F /* XXSystem.m */; };
+		EA22BDBF24795A5800F04563 /* XXUserNameView.m in Sources */ = {isa = PBXBuildFile; fileRef = EA22BDBE24795A5800F04563 /* XXUserNameView.m */; };
 		EA26447D211C7CE600FCEC6E /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EA26447C211C7CE600FCEC6E /* SystemConfiguration.framework */; };
 		EA26447F211C7CF400FCEC6E /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EA26447E211C7CF400FCEC6E /* Security.framework */; };
 		EA264481211C7D0800FCEC6E /* libz.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = EA264480211C7D0800FCEC6E /* libz.tbd */; };
@@ -141,6 +142,8 @@
 		EA677245246ACFA4008C931A /* XXLoginCell.m in Sources */ = {isa = PBXBuildFile; fileRef = EA677244246ACFA4008C931A /* XXLoginCell.m */; };
 		EA6FA69721258EC5006305B8 /* FCUUID.m in Sources */ = {isa = PBXBuildFile; fileRef = EA6FA69521258EC5006305B8 /* FCUUID.m */; };
 		EA6FA69A21258FD3006305B8 /* UICKeyChainStore.m in Sources */ = {isa = PBXBuildFile; fileRef = EA6FA69821258FD3006305B8 /* UICKeyChainStore.m */; };
+		EA811AC42479144400C1038F /* XXMessageSegmentButton.m in Sources */ = {isa = PBXBuildFile; fileRef = EA811AC32479144400C1038F /* XXMessageSegmentButton.m */; };
+		EA811AC72479214100C1038F /* XXMessageSegmentView.m in Sources */ = {isa = PBXBuildFile; fileRef = EA811AC62479214100C1038F /* XXMessageSegmentView.m */; };
 		EA8F8C88240FA9F200D26E10 /* Icon.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EA8F8C86240FA9F200D26E10 /* Icon.xcassets */; };
 		EA92EDBB2448086F00B194DA /* XXMsgRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = EA92EDBA2448086F00B194DA /* XXMsgRequest.m */; };
 		EA92EDBE244809E800B194DA /* XXMsg.m in Sources */ = {isa = PBXBuildFile; fileRef = EA92EDBD244809E800B194DA /* XXMsg.m */; };
@@ -479,6 +482,8 @@
 		EA20EAC424261661004EBD7F /* XXSecurityAlertView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = XXSecurityAlertView.m; sourceTree = "<group>"; };
 		EA20EAC92429CB13004EBD7F /* XXSystem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XXSystem.m; sourceTree = "<group>"; };
 		EA20EACA2429CB13004EBD7F /* XXSystem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XXSystem.h; sourceTree = "<group>"; };
+		EA22BDBD24795A5800F04563 /* XXUserNameView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = XXUserNameView.h; sourceTree = "<group>"; };
+		EA22BDBE24795A5800F04563 /* XXUserNameView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = XXUserNameView.m; sourceTree = "<group>"; };
 		EA26447C211C7CE600FCEC6E /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		EA26447E211C7CF400FCEC6E /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
 		EA264480211C7D0800FCEC6E /* libz.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libz.tbd; path = usr/lib/libz.tbd; sourceTree = SDKROOT; };
@@ -602,6 +607,10 @@
 		EA6FA69621258EC5006305B8 /* FCUUID.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FCUUID.h; sourceTree = "<group>"; };
 		EA6FA69821258FD3006305B8 /* UICKeyChainStore.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UICKeyChainStore.m; sourceTree = "<group>"; };
 		EA6FA69921258FD3006305B8 /* UICKeyChainStore.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UICKeyChainStore.h; sourceTree = "<group>"; };
+		EA811AC22479144400C1038F /* XXMessageSegmentButton.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = XXMessageSegmentButton.h; sourceTree = "<group>"; };
+		EA811AC32479144400C1038F /* XXMessageSegmentButton.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = XXMessageSegmentButton.m; sourceTree = "<group>"; };
+		EA811AC52479214000C1038F /* XXMessageSegmentView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = XXMessageSegmentView.h; sourceTree = "<group>"; };
+		EA811AC62479214100C1038F /* XXMessageSegmentView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = XXMessageSegmentView.m; sourceTree = "<group>"; };
 		EA8F8C84240FA9F200D26E10 /* XXFontHeader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XXFontHeader.h; sourceTree = "<group>"; };
 		EA8F8C85240FA9F200D26E10 /* XXColorHeader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XXColorHeader.h; sourceTree = "<group>"; };
 		EA8F8C86240FA9F200D26E10 /* Icon.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Icon.xcassets; sourceTree = "<group>"; };
@@ -1309,6 +1318,10 @@
 				EA26B3592477A4F400EAF205 /* XXMessageCell.m */,
 				EA26B35B2477A5C600EAF205 /* XXMessageModel.h */,
 				EA26B35C2477A5C600EAF205 /* XXMessageModel.m */,
+				EA811AC22479144400C1038F /* XXMessageSegmentButton.h */,
+				EA811AC32479144400C1038F /* XXMessageSegmentButton.m */,
+				EA811AC52479214000C1038F /* XXMessageSegmentView.h */,
+				EA811AC62479214100C1038F /* XXMessageSegmentView.m */,
 			);
 			path = Message;
 			sourceTree = "<group>";
@@ -1702,6 +1715,8 @@
 				EAE286312473C28F006D9F24 /* XXCoinPublishApplyView.m */,
 				EAE286332473D652006D9F24 /* XXCoinPublishNameView.h */,
 				EAE286342473D652006D9F24 /* XXCoinPublishNameView.m */,
+				EA22BDBD24795A5800F04563 /* XXUserNameView.h */,
+				EA22BDBE24795A5800F04563 /* XXUserNameView.m */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -2316,7 +2331,7 @@
 				TargetAttributes = {
 					F30AC19F20CCC641000652BB = {
 						CreatedOnToolsVersion = 9.4;
-						DevelopmentTeam = L2J536XCKC;
+						DevelopmentTeam = 768MYA9JJQ;
 						LastSwiftMigration = 1130;
 						ProvisioningStyle = Automatic;
 						SystemCapabilities = {
@@ -2501,6 +2516,7 @@
 				6C791DFB2451A1D800F22CD0 /* XXProposalsListViewController.m in Sources */,
 				EAB356342438369200D750D6 /* FMResultSet.m in Sources */,
 				EA26B350247670A500EAF205 /* XXSplashScreen.m in Sources */,
+				EA811AC42479144400C1038F /* XXMessageSegmentButton.m in Sources */,
 				EAB3566A243E402100D750D6 /* JSONKit.m in Sources */,
 				EAE467EE244C7901006EACAF /* XXTransationSectionHeaderView.m in Sources */,
 				6CC12CEE24445DF200917105 /* XXDecimalNumberHelper.m in Sources */,
@@ -2620,6 +2636,7 @@
 				EAE28624247285C3006D9F24 /* XXBackupPrivateKeyView.m in Sources */,
 				EAA8DEBF244D7E7C00161698 /* XXUserHeaderView.m in Sources */,
 				EABD1B8F241BB25900B1A03A /* base58.c in Sources */,
+				EA22BDBF24795A5800F04563 /* XXUserNameView.m in Sources */,
 				EA3E58F524441C7B0080B98F /* XXDepositCoinVC.m in Sources */,
 				7AC4D82C234C808F00F5E5F8 /* XXBlurView.m in Sources */,
 				6CC12CFB2444749D00917105 /* XXValidatorHeader.m in Sources */,
@@ -2672,6 +2689,7 @@
 				6C3E66FC244AD0700057B514 /* XXDelegateTransferView.m in Sources */,
 				EAE285DC246E4BA4006D9F24 /* NS+BTCBase58.m in Sources */,
 				EAE28621247285C3006D9F24 /* XXImportKeystoreVC.m in Sources */,
+				EA811AC72479214100C1038F /* XXMessageSegmentView.m in Sources */,
 				F30EAF6320D26536005ADD5C /* NSDate+Helper.m in Sources */,
 				EABD7187244AFCD4008AA188 /* XXFailureView.m in Sources */,
 				7A3298452320EE9900196336 /* NSMutableArray+Safe.m in Sources */,
@@ -2843,7 +2861,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 523;
 				DEFINES_MODULE = NO;
-				DEVELOPMENT_TEAM = L2J536XCKC;
+				DEVELOPMENT_TEAM = 768MYA9JJQ;
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -2856,7 +2874,7 @@
 					"TARGET_BHEX=1",
 				);
 				INFOPLIST_FILE = "$(SRCROOT)/Bluehelix/AppResource/Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				MARKETING_VERSION = 0.0.6;
 				OTHER_LDFLAGS = (
@@ -2886,7 +2904,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 523;
 				DEFINES_MODULE = NO;
-				DEVELOPMENT_TEAM = L2J536XCKC;
+				DEVELOPMENT_TEAM = 768MYA9JJQ;
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -2899,7 +2917,7 @@
 					"TARGET_BHEX=1",
 				);
 				INFOPLIST_FILE = "$(SRCROOT)/Bluehelix/AppResource/Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				MARKETING_VERSION = 0.0.6;
 				OTHER_LDFLAGS = (

@@ -9,8 +9,9 @@
 #import "XXUserHeaderItemView.h"
 #import "XXCoinPublishApplyVC.h"
 #import "XXMessageCenterVC.h"
+#import "XXUserNameView.h"
 
-@interface XXUserHeaderView () <UITextFieldDelegate>
+@interface XXUserHeaderView ()
 
 @property (strong, nonatomic) XXLabel *icon;
 @property (strong, nonatomic) UITextField *textField;
@@ -44,17 +45,35 @@
     return self;
 }
 
-- (void)textFieldDidEndEditing:(UITextField *)textField {
-    [[XXSqliteManager sharedSqlite] updateAccountColumn:@"userName" value:textField.text];
-    CGFloat width = [NSString widthWithText:textField.text font:kFontBold(20)];
-    self.textField.width = width > kScreen_Width - K375(48) - 80 ? kScreen_Width - K375(48) - 80 : width;
-    self.editImageView.left = CGRectGetMaxX(self.textField.frame) + 8;
-    self.editImageView.hidden = NO;
+//- (void)textFieldDidEndEditing:(UITextField *)textField {
+//    [[XXSqliteManager sharedSqlite] updateAccountColumn:@"userName" value:textField.text];
+//    CGFloat width = [NSString widthWithText:textField.text font:kFontBold(20)];
+//    self.textField.width = width > kScreen_Width - K375(48) - 80 ? kScreen_Width - K375(48) - 80 : width;
+//    self.editImageView.left = CGRectGetMaxX(self.textField.frame) + 8;
+//    self.editImageView.hidden = NO;
+//}
+//
+//- (void)textFieldDidBeginEditing:(UITextField *)textField {
+//    self.textField.width = kScreen_Width - K375(48) - 80;
+//    self.editImageView.hidden = YES;
+//}
+
+- (void)setUnreadNum:(NSNumber *)unReadNum {
+    if (unReadNum.intValue > 0) {
+        [self.messageBtn setImage:[UIImage imageNamed:@"UserHeaderRedMessage"] forState:UIControlStateNormal];
+    } else {
+        [self.messageBtn setImage:[UIImage imageNamed:@"UserHeaderMessage"] forState:UIControlStateNormal];
+    }
 }
 
-- (void)textFieldDidBeginEditing:(UITextField *)textField {
-    self.textField.width = kScreen_Width - K375(48) - 80;
-    self.editImageView.hidden = YES;
+- (void)editAction {
+    MJWeakSelf
+    [XXUserNameView showWithSureBlock:^{
+        weakSelf.textField.text = KUser.currentAccount.userName;
+        CGFloat width = [NSString widthWithText:weakSelf.textField.text font:kFontBold(20)];
+        weakSelf.textField.width = width > kScreen_Width - K375(48) - 80 ? kScreen_Width - K375(48) - 80 : width;
+        weakSelf.editImageView.left = CGRectGetMaxX(weakSelf.textField.frame) + 8;
+    }];
 }
 
 - (UIImageView *)backImageView {
@@ -91,8 +110,9 @@
         _textField = [[UITextField alloc] initWithFrame:CGRectMake(CGRectGetMaxX(self.icon.frame) + 8, K375(80), showWidth, 25)];
         _textField.font = kFontBold(20);
         _textField.text = KUser.currentAccount.userName;
-        _textField.delegate = self;
+//        _textField.delegate = self;
         _textField.textColor = [UIColor whiteColor];
+        _textField.enabled = NO;
     }
     return _textField;
 }
@@ -101,6 +121,9 @@
     if (!_editImageView) {
         _editImageView = [[UIImageView alloc] initWithFrame:CGRectMake(CGRectGetMaxX(self.textField.frame) + 8,self.textField.top -2, self.textField.height, self.textField.height)];
         _editImageView.image = [UIImage imageNamed:@"editUserName"];
+        UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(editAction)];
+        [_editImageView addGestureRecognizer:tap];
+        _editImageView.userInteractionEnabled = YES;
     }
     return _editImageView;
 }

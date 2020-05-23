@@ -32,6 +32,7 @@
 
 @property (strong, nonatomic) XXUserHeaderView *headerView;
 
+@property (strong, nonatomic) NSTimer *timer;
 @end
 
 @implementation XXUserHomeVC
@@ -40,11 +41,17 @@
     [super viewDidLoad];
     [self initData];
     [self setupUI];
+    MJWeakSelf
+    self.timer = [NSTimer scheduledTimerWithTimeInterval:60 repeats:YES block:^(NSTimer * _Nonnull timer) {
+        [weakSelf requestNotifications];
+    }];
+    [self.timer fire];
 }
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     [self.tableView reloadData];
+    [self requestNotifications];
 }
 
 - (void)viewDidAppear:(BOOL)animated {
@@ -69,6 +76,22 @@
     [firstSectionArray addObject:LocalizedString(@"BackupPrivateKey")];
     self.itemsArray[0] = firstSectionArray;
     self.itemsArray[1] = @[LocalizedString(@"Setting"),LocalizedString(@"ContactUs"),LocalizedString(@"Version")];
+}
+
+/// 请求消息列表
+- (void)requestNotifications {
+    MJWeakSelf
+    NSString *path = [NSString stringWithFormat:@"/api/v1/cus/%@/notifications",KUser.address];
+    NSMutableDictionary *param = [NSMutableDictionary dictionary];
+    param[@"page"] = @"1";
+    param[@"size"] = @"30";
+    [HttpManager getWithPath:path params:param andBlock:^(id data, NSString *msg, NSInteger code) {
+        if (code == 0) {
+            NSNumber *unRead = data[@"unread"];
+            [weakSelf.headerView setUnreadNum:unRead];
+            NSLog(@"%@",data);
+        }
+    }];
 }
 
 - (void)setupUI {

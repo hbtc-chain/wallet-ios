@@ -7,12 +7,12 @@
 //
 
 #import "XXMessageCenterVC.h"
-#import "XXBackupSegmentView.h"
+#import "XXMessageSegmentView.h"
 #import "XXTransferMessageView.h"
 
 @interface XXMessageCenterVC ()
 
-@property (nonatomic, strong) XXBackupSegmentView *toolBar;
+@property (nonatomic, strong) XXMessageSegmentView *toolBar;
 @property (nonatomic, strong) UIScrollView *scrollView;
 @property (nonatomic, strong) XXTransferMessageView *transferView;
 
@@ -29,10 +29,31 @@
     [self.scrollView addSubview:self.transferView];
 }
 
-- (XXBackupSegmentView*)toolBar {
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+    [self requestNotifications];
+}
+
+/// 请求消息列表
+- (void)requestNotifications {
+    MJWeakSelf
+    NSString *path = [NSString stringWithFormat:@"/api/v1/cus/%@/notifications",KUser.address];
+    NSMutableDictionary *param = [NSMutableDictionary dictionary];
+    param[@"page"] = @"1";
+    param[@"size"] = @"30";
+    [HttpManager getWithPath:path params:param andBlock:^(id data, NSString *msg, NSInteger code) {
+        if (code == 0) {
+            NSNumber *unRead = data[@"unread"];
+            [weakSelf.toolBar setUnreadNum:unRead buttonIndex:0];
+            NSLog(@"%@",data);
+        }
+    }];
+}
+
+- (XXMessageSegmentView *)toolBar {
     MJWeakSelf
     if (!_toolBar) {
-        _toolBar = [[XXBackupSegmentView alloc]initWithFrame:CGRectMake(0, kNavHeight, kScreen_Width, 40)];
+        _toolBar = [[XXMessageSegmentView alloc]initWithFrame:CGRectMake(0, kNavHeight, kScreen_Width, 40)];
         _toolBar.itemsArray = [NSMutableArray arrayWithArray:@[LocalizedString(@"TransferNotification"),LocalizedString(@"SystemMessage")]];
         _toolBar.ToolbarSelectCallBack = ^(NSInteger index) {
             if (index == 0) {

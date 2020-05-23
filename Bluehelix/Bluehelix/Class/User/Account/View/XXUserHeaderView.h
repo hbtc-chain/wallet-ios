@@ -7,5 +7,6 @@
 
 @interface XXUserHeaderView : UIView
 
+- (void)setUnreadNum:(NSNumber *)unReadNum;
 
 @end
