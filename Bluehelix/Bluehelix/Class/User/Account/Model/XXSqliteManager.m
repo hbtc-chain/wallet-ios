@@ -96,13 +96,13 @@ static XXSqliteManager *_sqliteManager;
     if (!existsTable) {
         return nil;
     }
-    FMResultSet *set = [self.myFmdb executeQuery:@"select * from tokens where symbol = ?",symbol];
+    FMResultSet *set = [self.myFmdb executeQuery:@"select * from tokens where symbol = ? limit 1",symbol];
     NSMutableArray *resultArr = [NSMutableArray array];
     while ([set next]) {
         XXTokenModel *model = [self tokenModel:set];
         [resultArr addObject:model];
     }
-    return [resultArr firstObject]; //TODO 只查找一个
+    return [resultArr firstObject];
 }
 
 - (XXTokenModel *)withdrawFeeToken:(XXTokenModel *)token {
@@ -113,13 +113,13 @@ static XXSqliteManager *_sqliteManager;
            if (!existsTable) {
                return nil;
            }
-           FMResultSet *set = [self.myFmdb executeQuery:@"select * from tokens where symbol = ?",token.chain];
+           FMResultSet *set = [self.myFmdb executeQuery:@"select * from tokens where symbol = ? limit 1",token.chain];
            NSMutableArray *resultArr = [NSMutableArray array];
            while ([set next]) {
                XXTokenModel *model = [self tokenModel:set];
                [resultArr addObject:model];
            }
-           return [resultArr firstObject]; //TODO 只查找一个
+           return [resultArr firstObject];
     }
 }
 
@@ -234,7 +234,6 @@ static XXSqliteManager *_sqliteManager;
     if (!existsTable) {
         return @[];
     }
-    // TODO: 老的数据表 新的column???
     NSString *sql = @"select * from 'account'";
     FMResultSet *set = [self.myFmdb executeQuery:sql];
     NSMutableArray *resultArr = [NSMutableArray array];
