@@ -86,8 +86,7 @@
 
 - (UIImageView *)logoImageView {
     if (_logoImageView == nil) {
-        CGFloat height = 16;
-        _logoImageView = [[UIImageView alloc] initWithFrame:CGRectMake((kScreen_Width - 123)/2, kStatusBarHeight, 123, height)];
+        _logoImageView = [[UIImageView alloc] initWithFrame:CGRectMake((kScreen_Width - 148)/2, kStatusBarHeight, 148, 20)];
         _logoImageView.contentMode = UIViewContentModeScaleAspectFit;
         _logoImageView.image = [UIImage imageNamed:@"logoHeader"];
     }

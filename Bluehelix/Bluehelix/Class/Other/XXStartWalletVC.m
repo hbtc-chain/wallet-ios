@@ -29,7 +29,7 @@
 - (void)buildUI {
     self.navView.hidden = YES;
     self.view.backgroundColor = kWhiteColor;
-    UIImageView *logoImageView = [[UIImageView alloc] initWithFrame:CGRectMake(kScreen_Width/2 - K375(224)/2, K375(216), K375(224), K375(71))];
+    UIImageView *logoImageView = [[UIImageView alloc] initWithFrame:CGRectMake(kScreen_Width/2 - K375(240)/2, K375(192), K375(240), K375(140))];
     logoImageView.image = kIsNight ? [UIImage imageNamed:@"startLogo_Night"] : [UIImage imageNamed:@"startLogo"];
     [self.view addSubview:logoImageView];
     [self.view addSubview:self.createWalletBtn];
