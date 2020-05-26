@@ -32,7 +32,6 @@
 "NextStep" = "下一步";
 "SetName" = "设置名称";
 "SetNameTip" = "您正在创建HBTC钱包的托管单元，并将拥有一份跨链钱包";
-"KeystoreSetNameTip" = "您正在导入HBTC钱包的托管单元，并将拥有一份跨链钱包";
 "SetPassword" = "设置密码";
 "SetPasswordTip" = "·安全密码是保护钱包私钥和操作资产的重要凭证\HBTC钱包不会缓存、上传、存储您的密码\n·请务必妥善保管密码";
 "RepeatPassword" = "重复密码";
@@ -57,7 +56,6 @@
 "ImportSecurity" = "导入私钥";
 "ImportMnemonicPhraseTip" = "请在下方输入框中按顺序输入助记词，用空格分开";
 "ImportSecurityTip" = "请在下方输入框中输入私钥，并留意大小写";
-"ImportKeystoreTip" = "·复制粘贴 HBTC 钱包 Keystore 文件内容\n·粘贴至下方“Keystore”输入框";
 "AccountManage" = "托管单元管理";
 "TwoPasswordInconsistent" = "两次密码输入不一致！";
 "AccountNameRuleAlert" = "请输入1-20个字符";
@@ -70,7 +68,6 @@
 "Cancel" = "取消";
 "PrivateKeyOutOfOrder" = "您输入的私钥不符合规则";
 "MnemonicPhraseOutOfOrder" = "您输入的助记词不符合规则";
-"KeystoreOutOfOrder" = "您输入的Keystore不符合规则";
 "PasswordWrong" = "密码错误";
 "SecurityTip" = "验证密码";
 "Delete" = "删除";
@@ -86,12 +83,6 @@
 "ReadAndAgree" = "我已阅读并同意服务协议";
 "ServiceContent" = "上了肯德基弗雷斯科的肌肤轮廓是江东父老开始江东父老绝世独立飞机上了肯德基分类考试的肌肤轮廓来看圣诞节福利开始的肌肤轮廓设计的弗兰克绝世独立开发建设的六块腹肌滴漏式咖啡机路上看到肌肤轮廓设计的弗兰克绝世独立开发建设独立开发上了肯德基弗雷斯科的肌肤轮廓是江东父老开始江东父老绝世独立飞机上了肯德基分类考试的肌肤轮廓来看圣诞节福利开始的肌肤轮廓设计的弗兰克绝世独立开发建设的六块腹肌滴漏式咖啡机路上看到肌肤轮廓设计的弗兰克绝世独立开发建设独立开发上了肯德基弗雷斯科的肌肤轮廓是江东父老开始江东父老绝世独立飞机上了肯德基分类考试的肌肤轮廓来看圣诞节福利开始的肌肤轮廓设计的弗兰克绝世独立开发建设的六块腹肌滴漏式咖啡机路上看到肌肤轮廓设计的弗兰克绝世独立开发建设独立开发上了肯德基弗雷斯科的肌肤轮廓是江东父老开始江东父老绝世独立飞机上了肯德基分类考试的肌肤轮廓来看圣诞节福利开始的肌肤轮廓设计的弗兰克绝世独立开发建设的六块腹肌滴漏式咖啡机路上看到肌肤轮廓设计的弗兰克绝世独立开发建设独立开发上了肯德基弗雷斯科的肌肤轮廓是江东父老开始江东父老绝世独立飞机上了肯德基分类考试的肌肤轮廓来看圣诞节福利开始的肌肤轮廓设计的弗兰克绝世独立开发建设的六块腹肌滴漏式咖啡机路上看到肌肤轮廓设计的弗兰克绝世独立开发建设独立开发上了肯德基弗雷斯科的肌肤轮廓是江东父老开始江东父老绝世独立飞机上了肯德基分类考试的肌肤轮廓来看圣诞节福利开始的肌肤轮廓设计的弗兰克绝世独立开发建设的六块腹肌滴漏式咖啡机路上看到肌肤轮廓设计的弗兰克绝世独立开发建设独立开发上了肯德基弗雷斯科的肌肤轮廓是江东父老开始江东父老绝世独立飞机上了肯德基分类考试的肌肤轮廓来看圣诞节福利开始的肌肤轮廓设计的弗兰克绝世独立开发建设的六块腹肌滴漏式咖啡机路上看到肌肤轮廓设计的弗兰克绝世独立开发建设独立开发上了肯德基弗雷斯科的肌肤轮廓是江东父老开始江东父老绝世独立飞机上了肯德基分类考试的肌肤轮廓来看圣诞节福利开始的肌肤轮廓设计的弗兰克绝世独立开发建设的六块腹肌滴漏式咖啡机路上看到肌肤轮廓设计的弗兰克绝世独立开发建设独立开发上了肯德基弗雷斯科的肌肤轮廓是江东父老开始江东父老绝世独立飞机上了肯德基分类考试的肌肤轮廓来看圣诞节福利开始的肌肤轮廓设计的弗兰克绝世独立开发建设的六块腹肌滴漏式咖啡机路上看到肌肤轮廓设计的弗兰克绝世独立开发建设独立开发上了肯德基弗雷斯科的肌肤轮廓是江东父老开始江东父老绝世独立飞机上了肯德基分类考试的肌肤轮廓来看圣诞节福利开始的肌肤轮廓设计的弗兰克绝世独立开发建设的六块腹肌滴漏式咖啡机路上看到肌肤轮廓设计的弗兰克绝世独立开发建设独立开发上了肯德基弗雷斯科的肌肤轮廓是江东父老开始江东父老绝世独立飞机上了肯德基分类考试的肌肤轮廓来看圣诞节福利开始的肌肤轮廓设计的弗兰克绝世独立开发建设的六块腹肌滴漏式咖啡机路上看到肌肤轮廓设计的弗兰克绝世独立开发建设独立开发上了肯德基弗雷斯科的肌肤轮廓是江东父老开始江东父老绝世独立飞机上了肯德基分类考试的肌肤轮廓来看圣诞节福利开始的肌肤轮廓设计的弗兰克绝世独立开发建设的六块腹肌滴漏式咖啡机路上看到肌肤轮廓设计的弗兰克绝世独立开发建设独立开发上了肯德基弗雷斯科的肌肤轮廓是江东父老开始江东父老绝世独立飞机上了肯德基分类考试的肌肤轮廓来看圣诞节福利开始的肌肤轮廓设计的弗兰克绝世独立开发建设的六块腹肌滴漏式咖啡机路上看到肌肤轮廓设计的弗兰克绝世独立开发建设独立开发上了肯德基弗雷斯科的肌肤轮廓是江东父老开始江东父老绝世独立飞机上了肯德基分类考试的肌肤轮廓来看圣诞节福利开始的肌肤轮廓设计的弗兰克绝世独立开发建设的六块腹肌滴漏式咖啡机路上看到肌肤轮廓设计的弗兰克绝世独立开发建设独立开发上了肯德基弗雷斯科的肌肤轮廓是江东父老开始江东父老绝世独立飞机上了肯德基分类考试的肌肤轮廓来看圣诞节福利开始的肌肤轮廓设计的弗兰克绝世独立开发建设的六块腹肌滴漏式咖啡机路上看到肌肤轮廓设计的弗兰克绝世独立开发建设独立开发上了肯德基弗雷斯科的肌肤轮廓是江东父老开始江东父老绝世独立飞机上了肯德基分类考试的肌肤轮廓来看圣诞节福利开始的肌肤轮廓设计的弗兰克绝世独立开发建设的六块腹肌滴漏式咖啡机路上看到肌肤轮廓设计的弗兰克绝世独立开发建设独立开发上了肯德基弗雷斯科的肌肤轮廓是江东父老开始江东父老绝世独立飞机上了肯德基分类考试的肌肤轮廓来看圣诞节福利开始的肌肤轮廓设计的弗兰克绝世独立开发建设的六块腹肌滴漏式咖啡机路上看到肌肤轮廓设计的弗兰克绝世独立开发建设独立开发上了肯德基弗雷斯科的肌肤轮廓是江东父老开始江东父老绝世独立飞机上了肯德基分类考试的肌肤轮廓来看圣诞节福利开始的肌肤轮廓设计的弗兰克绝世独立开发建设的六块腹肌滴漏式咖啡机路上看到肌肤轮廓设计的弗兰克绝世独立开发建设独立开发上了肯德基弗雷斯科的肌肤轮廓是江东父老开始江东父老绝世独立飞机上了肯德基分类考试的肌肤轮廓来看圣诞节福利开始的肌肤轮廓设计的弗兰克绝世独立开发建设的六块腹肌滴漏式咖啡机路上看到肌肤轮廓设计的弗兰克绝世独立开发建设独立开发上了肯德基弗雷斯科的肌肤轮廓是江东父老开始江东父老绝世独立飞机上了肯德基分类考试的肌肤轮廓来看圣诞节福利开始的肌肤轮廓设计的弗兰克绝世独立开发建设的六块腹肌滴漏式咖啡机路上看到肌肤轮廓设计的弗兰克绝世独立开发建设独立开发";
 "ImportSuccess" = "导入成功";
-"MnemonicPhraseRepetition" = "助记词重复";
-"PrivateKeyRepetition" = "私钥重复";
-"KeystoreRepetition" = "Keystore重复";
-"Import" = "导入";
-"BackupPrivateKeyTip" = "·获取私钥等于拥有钱包资产所有权\n·私钥丢失无法找回，请务必备份\n·使用纸笔正确抄写，请务必妥善保管私钥";
-"BackupKeystoreTip" = "·获取 Keystore 和密码等于拥有钱包资产所有权\n·Keystore 丢失无法找回，请务必备份\n·使用纸笔正确抄写，请务必妥善保管Keystore";
 
 //我的
 "BackupMnemonicPhrase" = "备份助记词";
@@ -113,36 +104,6 @@
 "ConfirmNewPassword"="确认新密码";
 "ChangePasswordSuccess" = "密码修改成功";
 "ChooseAccount" = "选择账户";
-
-//备份Keystore
-"BackupKeystore" = "备份Keystore";
-"BackupPrivateKey" = "备份私钥";
-"PrivateKey" = "私钥";
-"BackupPrivateKeyTip1" = "离线保存";
-"BackupPrivateKeyTip2" = "请勿使用网络传输";
-"BackupPrivateKeyTip3" = "密码管理工具保存";
-"BackupPrivateKeyContent1" = "·切勿保存至邮箱、记事本、网盘、聊天工具等";
-"BackupPrivateKeyContent2" = "·请勿通过网络工具传输，一旦被黑客获取将造成不可挽回的资产损失 ·建议离线设备通过扫二维码方式传输";
-"BackupPrivateKeyContent3" = "·建议使用密码管理工具管理";
-"CopyPrivateKey" = "复制私钥";
-"ShowCode" = "显示二维码";
-"BackupCodeTip1" = "仅供直接扫描";
-"BackupCodeTip2" = "在安全环境下使用";
-"BackupCodeContent1" = "·二维码禁止保存、截图、拍照\n·仅供用户在安全环境下直接扫描导入钱包";
-"BackupCodeContent2" = "·请务必确认在四周无人、无摄像头的环境中使用\n·二维码一旦被他人获取将造成不可挽回的资产损失";
-"CopyKeystore" = "复制Keystore";
-
-//代币发行申请
-"Speed" = "加速";
-"CoinPublishApply" = "代币发行申请";
-"Apply" = "申请";
-"AssetAddress" = "资产地址";
-"TotalPublishAmount" = "总发行量";
-"Precision" = "精度";
-"PublishTokenName" = "新发币种名称";
-"EnterPublishTokenName" = "请输入新币种名称";
-"LeastPrecision" = "最小精度不能超过18位";
-"EnterTotalPublishAmount" = "请输入总发行数量";
 
 //资产
 "HideSmallCurrency" = "隐藏小额币种";
@@ -272,12 +233,9 @@
 "ValidatorAvilableRelieve" = "可解";
 "ValidatorRelieveToAddress" = "我的托管单元";
 "NoValidatorTip" = "暂无验证人";
-
-"FeeNotEnough" = "用户手续费不足";
 "PleaseFillAll" = "请填写完整信息";
 
 //治理提案
-//nav 标题
 "ProposalVoteTitle"= "治理提案";
 "VotingProposal" = "发起提案";
 "ProposalNavgationTitlePledge" = "质押";
@@ -295,21 +253,16 @@
 "PleaseInputPledgeAmout" = "请输入质押数量";
 "PleaseInputFee" = "请输入手续费";
 "NoProposalTip" = "暂无治理提案";
-
 "ProposalDetailButton" = "查看详情";
-//治理提案状态
 "ProposalRaising" = "质押募集中";
 "ProposalVoting" = "投票中";
 "ProposalVotePass" = "已通过";
 "ProposalVoteReject" = "已拒绝";
 "ProposalRaiseFailed" = "募集失败";
-
 "ProposalDescriptionMaxCountUnit" = "字";
-//按钮上文案
 "ProposalButtonTitleSubmit" = "提交";
 "ProposalButtonTitlePledge" = "质押";
 "ProposalButtonTitleVote" = "投票";
-//详情
 "ProposalDetailStatus" = "状态";
 "ProposalDetailIdentify" = "提案ID";
 "ProposalDetailType" = "提案类型";
@@ -318,14 +271,11 @@
 "ProposalDetailHadPledge" = "已质押";
 "ProposalDetailVoteEndDate" = "投票结束时间";
 "ProposalDetailVoteRatio" = "投票比例";
-
 "ProposalDetailVoteYes" = "Yes";
 "ProposalDetailVoteNo" = "No";
 "ProposalDetailVoteAbstain" = "Abstain";
 "ProposalDetailVoteNoWithVeto" = "No With Veto";
-//提案类型
 "ProposalTypeWord" = "文字提案" ;
-//治理提案 提示内容
 "CreateProposalAmoutMustMoreTip" = "质押数量不能小于10万";
 "TransferTopTipMessage" = "质押解锁周期为21天，请谨慎选择质押节点.";
 
@@ -350,8 +300,9 @@
 "ClickOnFingerPrintToUnlock" = "点击进行指纹验证";
 "ClickToFaceIDUnlock" = "点击进行面容验证";
 "QueDing" = "确定";
-
-//消息中心
+"UpgradeAPP"="发现新版本";
+"Upgrade"="立即升级";
+//新增加的
 "MessageCenter" = "消息中心";
 "TransferNotification" = "转账通知";
 "SystemMessage" = "系统消息";
@@ -360,3 +311,29 @@
 "ContactMail" = "Hbcwallet@hbtc.com";
 "CopyMail" = "复制邮箱";
 "ModifyUserName" = "修改名称";
+"KeystoreSetNameTip" = "您正在导入HBTC钱包的托管单元，并将拥有一份跨链钱包";
+"ImportKeystoreTip" = "·复制粘贴 HBTC 钱包 Keystore 文件内容\n·粘贴至下方“Keystore”输入框";
+"KeystoreOutOfOrder" = "您输入的Keystore不符合规则";
+"MnemonicPhraseRepetition" = "助记词重复";
+"PrivateKeyRepetition" = "私钥重复";
+"KeystoreRepetition" = "Keystore重复";
+"Import" = "导入";
+"BackupPrivateKeyTip" = "·获取私钥等于拥有钱包资产所有权\n·私钥丢失无法找回，请务必备份\n·使用纸笔正确抄写，请务必妥善保管私钥";
+"BackupKeystoreTip" = "·获取 Keystore 和密码等于拥有钱包资产所有权\n·Keystore 丢失无法找回，请务必备份\n·使用纸笔正确抄写，请务必妥善保管Keystore";
+"BackupKeystore" = "备份Keystore";
+"BackupPrivateKey" = "备份私钥";
+"PrivateKey" = "私钥";
+"Speed" = "加速";
+"CoinPublishApply" = "代币发行申请";
+"Apply" = "申请";
+"AssetAddress" = "资产地址";
+"TotalPublishAmount" = "总发行量";
+"Precision" = "精度";
+"PublishTokenName" = "新发币种名称";
+"EnterPublishTokenName" = "请输入新币种名称";
+"LeastPrecision" = "最小精度不能超过18位";
+"EnterTotalPublishAmount" = "请输入总发行数量";
+"TransferFee" = "交易手续费";
+"NoValidatorTip" = "暂无验证人";
+"FeeNotEnough" = "用户手续费不足";
+"NoProposalTip" = "暂无治理提案";
