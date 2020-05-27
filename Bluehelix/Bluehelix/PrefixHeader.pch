@@ -153,7 +153,7 @@ typedef NS_ENUM(NSUInteger, NetworkMethod) {
 #define BH_IS_IPHONE_X ([UIScreen mainScreen].nativeBounds.size.height == 2436 || [UIScreen mainScreen].nativeBounds.size.height == 1792 || [UIScreen mainScreen].nativeBounds.size.height == 2688)
 #define kTabbarHeight (BH_IS_IPHONE_X ? 83 : 59)
 #define TradeDepthHeight 64.5 // 交易盘口的高度
-#define UILabel_Line_Space 5.0f
+#define UILabel_Line_Space [[[LocalizeHelper sharedLocalSystem] getLanguageCode] isEqualToString:@"en"] ? 2.0f : 5.0f
 #define UILabel_Text_Space 0.2f
 
 #pragma mark - 数据

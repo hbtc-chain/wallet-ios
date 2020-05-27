@@ -52,6 +52,7 @@
 - (void)configData:(XXAssetModel *)model {
     if (KUser.isHideAsset) {
         self.totalAssetLabel.text = @"***";
+        self.assetSymbolLabel.hidden = YES;
     } else {
         double totalAsset = 0;
         for (XXTokenModel *tokenModel in model.assets) {
@@ -62,6 +63,7 @@
         }
         self.assetSymbolLabel.text = [RatesManager shareRatesManager].rateUnit;
         self.totalAssetLabel.text = [NSString stringWithFormat:@"%.3f",totalAsset];
+        self.assetSymbolLabel.hidden = NO;
     }
 }
 
@@ -164,9 +166,11 @@
 
 - (XXLabel *)assetNameLabel {
     if (!_assetNameLabel) {
-        _assetNameLabel = [XXLabel labelWithFrame:CGRectMake(K375(20), K375(20), 100, 24) font:kFont(17) textColor:kGray700];
+        NSString *text = NSLocalizedFormatString(LocalizedString(@"TotalAsset"),[KUser.ratesKey uppercaseString]);
+        CGFloat width = [NSString widthWithText:text font:kFont17];
+        _assetNameLabel = [XXLabel labelWithFrame:CGRectMake(K375(20), K375(20), width, 24) font:kFont(17) textColor:kGray700];
+        _assetNameLabel.text = text;
     }
-    _assetNameLabel.text = NSLocalizedFormatString(LocalizedString(@"TotalAsset"),[KUser.ratesKey uppercaseString]);
     return _assetNameLabel;
 }
 

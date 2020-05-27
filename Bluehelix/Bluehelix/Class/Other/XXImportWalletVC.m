@@ -39,7 +39,9 @@
 
 - (XXLabel *)tipLabel {
     if (!_tipLabel) {
-        _tipLabel = [XXLabel labelWithFrame:CGRectMake(K375(24), kNavHeight + 20, kScreen_Width - K375(48), 24) text:LocalizedString(@"ChooseImportWay") font:kFontBold(20) textColor:kGray900];
+        _tipLabel = [XXLabel labelWithFrame:CGRectMake(K375(24), kNavHeight + 20, kScreen_Width - K375(48), 0) text:LocalizedString(@"ChooseImportWay") font:kFontBold(20) textColor:kGray900];
+        _tipLabel.numberOfLines = 0;
+        [_tipLabel sizeToFit];
     }
     return _tipLabel;
 }

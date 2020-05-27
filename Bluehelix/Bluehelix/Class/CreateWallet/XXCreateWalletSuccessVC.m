@@ -16,7 +16,7 @@
 
 @property (nonatomic, strong) UIImageView *successImageView;
 @property (nonatomic, strong) XXLabel *successLabel;
-@property (nonatomic, strong) UIView *tipView;
+@property (nonatomic, strong) UIScrollView *tipView;
 @property (nonatomic, strong) XXLabel *tipNamelabel1;
 @property (nonatomic, strong) XXLabel *tipNamelabel2;
 @property (nonatomic, strong) XYHNumbersLabel *tipContentlabel1;
@@ -62,9 +62,15 @@
     return _successLabel;
 }
 
-- (UIView *)tipView {
+- (UIScrollView *)tipView {
     if (!_tipView) {
-        _tipView = [[UIView alloc] initWithFrame:CGRectMake(K375(16), CGRectGetMaxY(self.successLabel.frame) + 32, kScreen_Width - K375(32), 315)];
+        CGFloat height = 78 + K375(32) + [XYHNumbersLabel getSpaceLabelHeight:LocalizedString(@"CreateWalletBackupTipContent") withFont:kFont(15) withWidth:kScreen_Width - K375(64)] + [XYHNumbersLabel getSpaceLabelHeight:LocalizedString(@"WeSuggestContent") withFont:kFont(15) withWidth:kScreen_Width - K375(64)];
+        if (kScreen_Height < 680) {
+            _tipView = [[UIScrollView alloc] initWithFrame:CGRectMake(K375(16), CGRectGetMaxY(self.successLabel.frame) + 32, kScreen_Width - K375(32), 315)];
+            _tipView.contentSize = CGSizeMake(kScreen_Width - K375(32), height);
+        } else {
+            _tipView = [[UIScrollView alloc] initWithFrame:CGRectMake(K375(16), CGRectGetMaxY(self.successLabel.frame) + 32, kScreen_Width - K375(32), height)];
+        }
         _tipView.layer.borderColor = [KLine_Color CGColor];
         _tipView.layer.borderWidth = 1;
         _tipView.layer.cornerRadius = kBtnBorderRadius;

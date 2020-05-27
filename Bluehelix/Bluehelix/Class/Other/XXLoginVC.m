@@ -132,7 +132,7 @@
 - (XXButton *)forgetPasswordBtn {
     if (!_forgetPasswordBtn) {
         MJWeakSelf
-        _forgetPasswordBtn = [XXButton buttonWithFrame:CGRectMake(K375(16), CGRectGetMaxY(self.okBtn.frame) + 24, 100, 24) title:LocalizedString(@"ForgetPassword") font:kFont15 titleColor:kPrimaryMain block:^(UIButton *button) {
+        _forgetPasswordBtn = [XXButton buttonWithFrame:CGRectMake(K375(16), CGRectGetMaxY(self.okBtn.frame) + 24, 150, 24) title:LocalizedString(@"ForgetPassword") font:kFont15 titleColor:kPrimaryMain block:^(UIButton *button) {
             XXImportWalletVC *importVC = [[XXImportWalletVC alloc] init];
             [weakSelf.navigationController pushViewController:importVC animated:YES];
         }];

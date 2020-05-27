@@ -135,9 +135,9 @@
 
 - (UILabel *)titleLabel {
     if (_titleLabel == nil) {
-        _titleLabel = [[UILabel alloc] initWithFrame:CGRectMake(16, 104, kScreen_Width - 32, 24)];
+        _titleLabel = [[UILabel alloc] initWithFrame:CGRectMake(16, 94, kScreen_Width - 32, 24)];
         _titleLabel.text = LocalizedString(@"NoScreenShot");
-        _titleLabel.font = kFontBold(20);
+        _titleLabel.font = kFontBold(19);
         _titleLabel.textColor = kGray900;
         _titleLabel.textAlignment = NSTextAlignmentCenter;
     }
@@ -146,12 +146,13 @@
 
 - (UILabel *)contentLabel {
     if (_contentLabel == nil) {
-        _contentLabel = [[UILabel alloc] initWithFrame:CGRectMake(16, 144, kScreen_Width - 32, 24)];
+        _contentLabel = [[UILabel alloc] initWithFrame:CGRectMake(16, 124, kScreen_Width - 32, 44)];
         _contentLabel.text = LocalizedString(@"ScreenShotTip");
         _contentLabel.font = kFont15;
         _contentLabel.textColor = kGray700;
         _contentLabel.textAlignment = NSTextAlignmentCenter;
         _contentLabel.numberOfLines = 0;
+        _contentLabel.adjustsFontSizeToFitWidth = YES;
     }
     return _contentLabel;
 }

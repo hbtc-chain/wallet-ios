@@ -134,7 +134,7 @@
 
 - (UILabel *)titleLabel {
     if (_titleLabel == nil) {
-        _titleLabel = [[UILabel alloc] initWithFrame:CGRectMake(100, 24, kScreen_Width - 200, 24)];
+        _titleLabel = [[UILabel alloc] initWithFrame:CGRectMake(100, 18, kScreen_Width - 200, 26)];
         _titleLabel.text = LocalizedString(@"BackupSecurityTip");
         _titleLabel.font = kFontBold20;
         _titleLabel.textColor = kGray900;
@@ -145,12 +145,13 @@
 
 - (UILabel *)contentLabel {
     if (_contentLabel == nil) {
-        _contentLabel = [[UILabel alloc] initWithFrame:CGRectMake(K375(16), 64, kScreen_Width - K375(32), 18)];
+        _contentLabel = [[UILabel alloc] initWithFrame:CGRectMake(K375(16), 45, kScreen_Width - K375(32), 38)];
         _contentLabel.text = LocalizedString(@"BackupSecurityTip1");
         _contentLabel.font = kFont14;
         _contentLabel.textColor = kGray900;
         _contentLabel.textAlignment = NSTextAlignmentLeft;
         _contentLabel.numberOfLines = 0;
+        _contentLabel.adjustsFontSizeToFitWidth = YES;
     }
     return _contentLabel;
 }
