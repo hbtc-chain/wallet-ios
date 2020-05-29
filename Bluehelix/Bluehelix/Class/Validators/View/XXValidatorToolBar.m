@@ -8,7 +8,7 @@
 
 #import "XXValidatorToolBar.h"
 
-#define kButtonWidth 40
+#define kButtonWidth 48
 @interface XXValidatorToolBar ()
 @property (nonatomic, strong) NSMutableArray *buttonArray;
 

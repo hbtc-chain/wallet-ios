@@ -249,7 +249,7 @@
 "PleaseInputProposalDescription" = "Please enter a description of the proposal";
 "PleaseInputPledgeAmout" = "Please enter the amount of the pledge";
 "PleaseInputFee" = "Please enter the gas fee";
-"ProposalDetailButton" = "View details";
+"ProposalDetailButton" = "Detail";
 "ProposalRaising" = "Pledging in progress";
 "ProposalVoting" = "Voting";
 "ProposalVotePass" = "Passed";
