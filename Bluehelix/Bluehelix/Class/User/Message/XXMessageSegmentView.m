@@ -60,6 +60,7 @@
 //        itemButton.titleLabel.font = kFont15;
         if (self.indexBtn == i) {
             self.selectedButton = itemButton;
+            itemButton.leftLabel.textColor = kGray900;
             itemButton.selected = YES;
         }
         [self.buttonArray addObject:itemButton];
@@ -139,11 +140,13 @@
 
 - (void)cancelSelected{
     for (int i = 0; i<self.buttonArray.count; i++) {
-        UIButton *button = self.buttonArray[i];
+        XXMessageSegmentButton *button = self.buttonArray[i];
         if ([self.selectedButton isEqual:button]) {
             button.selected= YES;
+            button.leftLabel.textColor = kGray900;
         }else{
             button.selected = NO;
+            button.leftLabel.textColor = kGray500;
         }
     }
 }

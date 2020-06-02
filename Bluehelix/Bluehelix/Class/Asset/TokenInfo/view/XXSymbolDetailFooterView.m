@@ -59,15 +59,17 @@
         [self addSubview:itemButton];
 
         UIView *shadowView = [[UIView alloc] initWithFrame:CGRectMake((itemButton.width - 48)/2.0, 16, 48, 48)];
-        shadowView.backgroundColor = kDarkGray;
-        shadowView.layer.cornerRadius = 24.0;
-        shadowView.layer.shadowOffset = CGSizeMake(0.0, 1.0);
+        shadowView.backgroundColor = kBackgroundLeverSecond;
+        shadowView.layer.cornerRadius = 18.0;
+        shadowView.layer.shadowOffset = CGSizeMake(0.0, 2.0);
         shadowView.layer.shadowOpacity = 1;
         shadowView.layer.shadowColor = [kShadowColor CGColor];
+        shadowView.layer.shadowRadius = 6.0f;
         shadowView.userInteractionEnabled = NO;
         [itemButton addSubview:shadowView];
 
         UIImageView *iconImageView = [[UIImageView alloc] initWithFrame:CGRectMake((shadowView.width - 24)/2.0, (shadowView.height - 24)/2.0, 24, 24)];
+        iconImageView.backgroundColor = kBackgroundLeverSecond;
         iconImageView.image = [UIImage imageNamed:imageArr[i]];
         [shadowView addSubview:iconImageView];
 

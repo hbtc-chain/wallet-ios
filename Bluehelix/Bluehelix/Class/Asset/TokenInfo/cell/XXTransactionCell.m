@@ -63,13 +63,13 @@
     
     if ([dic[@"success"] intValue]) {
         self.stateLabel.text = LocalizedString(@"Success");
-        self.stateLabel.textColor = KRGBA(70, 206, 95, 100);
-        self.stateLabel.backgroundColor = KRGBA(212, 245, 220, 100);
+        self.stateLabel.textColor = kGreen100;
+        self.stateLabel.backgroundColor = [kGreen100 colorWithAlphaComponent:0.2];
         self.stateLabel.frame = CGRectMake(CGRectGetMaxX(self.typeLabel.frame) +5, 24, [NSString widthWithText:LocalizedString(@"Success") font:kFont10] + 8, 16);
     } else {
         self.stateLabel.text = LocalizedString(@"Failed");
-        self.stateLabel.textColor = KRGBA(242, 32, 55, 100);
-        self.stateLabel.backgroundColor = KRGBA(252, 206, 209, 100);
+        self.stateLabel.textColor = kRed100;
+        self.stateLabel.backgroundColor = [kRed100 colorWithAlphaComponent:0.2];
         self.stateLabel.frame = CGRectMake(CGRectGetMaxX(self.typeLabel.frame) +5, 24, [NSString widthWithText:LocalizedString(@"Failed") font:kFont10] + 8, 16);
     }
 }

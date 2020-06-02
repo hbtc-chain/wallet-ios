@@ -47,7 +47,7 @@
 
 - (XXLabel *)nameLabel {
     if (!_nameLabel) {
-        _nameLabel = [XXLabel labelWithFrame:CGRectMake(16, 24, self.width - 60, self.height - 48) font:kFontBold(15) textColor:kGray700];
+        _nameLabel = [XXLabel labelWithFrame:CGRectMake(16, 24, self.width - 60, self.height - 48) font:kFontBold(15) textColor:kGray900];
         _nameLabel.numberOfLines = 0;
     }
     return _nameLabel;

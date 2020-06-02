@@ -79,12 +79,14 @@ typedef NS_ENUM(NSUInteger, NetworkMethod) {
 #define kGray kIsNight ? [UIColor colorWithHexString:@"#475563"] : [UIColor colorWithHexString:@"#475563"]
 #define kDarkGray kIsNight ? [UIColor colorWithHexString:@"#1A2233"] : [UIColor colorWithHexString:@"#F4F7FF"]
 #define kE5EDFE [UIColor colorWithHexString:@"#E5EDFE"]
-//特殊
+/**特殊*/
 #define kButtonDisableColor kIsNight ? [UIColor colorWithHexString:@"#475563"] : [UIColor colorWithHexString:@"#E7ECF4"]
 //dark 也是白色
 #define kWhiteNoChange [UIColor colorWithHexString:@"#FFFFFF"]
 //
 #define kGray900NoChange kIsNight ? [UIColor colorWithHexString:@"#0A1825"] : [UIColor colorWithHexString:@"#0A1825"]
+//正常Gray700 DarkModel Gray200
+#define kGray700Special kIsNight ? [UIColor colorWithHexString:@"#B0BFDB"] : [UIColor colorWithHexString:@"#475563"]
 //底色
 #define kBackgroundLeverFirst kIsNight ? [UIColor colorWithHexString:@"#141A27"] : [UIColor colorWithHexString:@"#FFFFFF"]
 #define kBackgroundLeverSecond kIsNight ? [UIColor colorWithHexString:@"#1A2233"] : [UIColor colorWithHexString:@"#FFFFFF"]

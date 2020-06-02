@@ -120,6 +120,7 @@
         _textView.backgroundColor = [UIColor clearColor];
         _textView.font = kFont(13);
         _textView.textColor = kGray700;
+        _textView.editable = NO;
     }
     return _textView;
 }
