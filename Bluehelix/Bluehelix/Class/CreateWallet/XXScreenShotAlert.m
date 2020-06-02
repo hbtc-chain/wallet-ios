@@ -138,7 +138,7 @@
         _titleLabel = [[UILabel alloc] initWithFrame:CGRectMake(16, 94, kScreen_Width - 32, 24)];
         _titleLabel.text = LocalizedString(@"NoScreenShot");
         _titleLabel.font = kFontBold(19);
-        _titleLabel.textColor = kGray900;
+        _titleLabel.textColor = kGray900NoChange;
         _titleLabel.textAlignment = NSTextAlignmentCenter;
     }
     return _titleLabel;

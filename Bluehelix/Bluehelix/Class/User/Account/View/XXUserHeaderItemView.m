@@ -13,7 +13,7 @@
 - (id)initWithFrame:(CGRect)frame {
     self = [super initWithFrame:frame];
     if (self) {
-        self.backgroundColor = [UIColor whiteColor];
+        self.backgroundColor = kBackgroundLeverSecond;
          self.layer.cornerRadius = 8;
         self.layer.masksToBounds = YES;
         [self.layer insertSublayer:self.shadowLayer atIndex:0];
@@ -36,10 +36,10 @@
         _shadowLayer = [CALayer layer];
         _shadowLayer.frame = CGRectMake(0, 0, self.width, self.height -4);
         _shadowLayer.cornerRadius = 8;
-        _shadowLayer.backgroundColor = [[UIColor whiteColor] CGColor];
-        _shadowLayer.shadowColor = [[UIColor colorWithHexString:@"#B0BFDB"] CGColor];
+        _shadowLayer.backgroundColor = [kBackgroundLeverSecond CGColor];
+        _shadowLayer.shadowColor = [kShadowColor CGColor];
         _shadowLayer.shadowOffset = CGSizeMake(0, 2);
-        _shadowLayer.shadowOpacity = 0.8;
+        _shadowLayer.shadowOpacity = 1.0;
         _shadowLayer.shadowRadius = 2;
     }
     return _shadowLayer;

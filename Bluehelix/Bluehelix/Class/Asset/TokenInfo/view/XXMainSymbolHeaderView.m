@@ -86,12 +86,12 @@
 - (CALayer *)shadowLayer {
     if (!_shadowLayer) {
         _shadowLayer = [CALayer layer];
-        _shadowLayer.frame = CGRectMake(0, 0, self.backView.width, self.backView.height-8);
+        _shadowLayer.frame = CGRectMake(0, 0, self.backView.width, self.backView.height-4);
         _shadowLayer.cornerRadius = 10;
-        _shadowLayer.backgroundColor = [kWhiteColor CGColor];
-        _shadowLayer.shadowColor = [kGray200 CGColor];
+        _shadowLayer.backgroundColor = [kBackgroundLeverSecond CGColor];
+        _shadowLayer.shadowColor = [kShadowColor CGColor];
         _shadowLayer.shadowOffset = CGSizeMake(0, 2);
-        _shadowLayer.shadowOpacity = 0.8;
+        _shadowLayer.shadowOpacity = 1.0;
         _shadowLayer.shadowRadius = 2;
     }
     return _shadowLayer;

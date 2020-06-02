@@ -154,7 +154,7 @@
 
 - (XXLabel *)symbolLabel {
     if (!_symbolLabel) {
-        _symbolLabel = [XXLabel labelWithFrame:CGRectMake(0, K375(32), self.topBackImageView.width, 24) text:[NSString stringWithFormat:@"%@%@",@"HBTC",LocalizedString(@"WalletAddress")] font:kFontBold18 textColor:kGray900];
+        _symbolLabel = [XXLabel labelWithFrame:CGRectMake(0, K375(32), self.topBackImageView.width, 24) text:[NSString stringWithFormat:@"%@ %@",@"HBTC",LocalizedString(@"WalletAddress")] font:kFontBold18 textColor:kGray900NoChange];
     }
     _symbolLabel.textAlignment = NSTextAlignmentCenter;
     return _symbolLabel;

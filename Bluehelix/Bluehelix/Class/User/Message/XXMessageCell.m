@@ -54,8 +54,8 @@
     }
     self.typeLabel.frame = CGRectMake(K375(24), 20, [NSString widthWithText:self.typeLabel.text font:kFontBold(17)], 24);
     self.stateLabel.text = LocalizedString(@"Success");
-    self.stateLabel.textColor = KRGBA(70, 206, 95, 100);
-    self.stateLabel.backgroundColor = KRGBA(212, 245, 220, 100);
+    self.stateLabel.textColor = kGreen100;
+    self.stateLabel.backgroundColor = [kGreen100 colorWithAlphaComponent:0.2];
     self.stateLabel.frame = CGRectMake(CGRectGetMaxX(self.typeLabel.frame) +5, 24, [NSString widthWithText:LocalizedString(@"Success") font:kFont10] + 8, 16);
     if (model.read) {
         self.amountLabel.textColor = kGray500;

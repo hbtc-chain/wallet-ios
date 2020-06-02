@@ -101,12 +101,12 @@
         if (model.is_native && ![model.symbol isEqualToString:kMainToken]) {
             self.typeLabel.text = LocalizedString(@"NativeCoin");
             self.typeLabel.textColor = kGreen100;
-            self.typeLabel.backgroundColor = KRGBA(212, 245, 220, 100);
+            self.typeLabel.backgroundColor = [kGreen100 colorWithAlphaComponent:0.2];
             self.typeLabel.frame = CGRectMake(CGRectGetMaxX(self.coinNameLabel.frame) +5, 20, [NSString widthWithText:LocalizedString(@"NativeCoin") font:kFont10] + 8, 16);
         } else {
             self.typeLabel.text = LocalizedString(@"UnnativeCoin");
-            self.typeLabel.textColor = KRGBA(91, 109, 132, 100);
-            self.typeLabel.backgroundColor = KRGBA(235, 239, 246, 100);
+            self.typeLabel.textColor = kGray500;
+            self.typeLabel.backgroundColor = [kGray200 colorWithAlphaComponent:0.2];
             self.typeLabel.frame = CGRectMake(CGRectGetMaxX(self.coinNameLabel.frame) +5, 20, [NSString widthWithText:LocalizedString(@"UnnativeCoin") font:kFont10] + 8, 16);
         }
         self.typeLabel.hidden = NO;
