@@ -56,7 +56,7 @@
 "ImportSecurity" = "Import private key";
 "ImportMnemonicPhraseTip" = "Please type the mnemonic words in sequence in the input box below, separate by spaces";
 "ImportSecurityTip" = "Please enter your private key in the input box below, and notice the cases";
-"AccountManage" = "Manage custodian unit";
+"AccountManage" = "custodian unit";
 "TwoPasswordInconsistent" = "Passwords does not match!";
 "AccountNameRuleAlert" = "Please enter 1-20 characters";
 "IAgreeTo" = "I have read and accept";
@@ -107,7 +107,7 @@
 
 //资产
 "HideSmallCurrency" = "Hide small currency";
-"SearchPairs" = "Search pairs";
+"SearchPairs" = "Search";
 "ReceiveMoney" = "Receipt";
 "CopyAddress" = "Copy address";
 "WalletAddress" = "Custodian unit address";
@@ -327,7 +327,7 @@
 "BackupPrivateKeyContent2" = "·Do not transmit it through network tools, once it is acquired by hackers, it will cause irreparable loss of assets. · it is suggested that offline devices should be transmitted by scanning qr code";
 "BackupPrivateKeyContent3" = "·Password management tools are recommended";
 "CopyPrivateKey" = "Copy";
-"ShowCode" = "Display QR code";
+"ShowCode" = "QR code";
 "BackupCodeTip1" = "For direct scanning only";
 "BackupCodeTip2" = "Use in a safe environment";
 "BackupCodeContent1" = "·The qr code is not allowed to save, take screenshots or take photos\n·Only for users to scan directly into the wallet in a secure environment";

@@ -73,7 +73,9 @@
         iconImageView.image = [UIImage imageNamed:imageArr[i]];
         [shadowView addSubview:iconImageView];
 
-        XXLabel *nameLabel = [XXLabel labelWithFrame:CGRectMake(0, CGRectGetMaxY(shadowView.frame), itemButton.width, 32) text:titleArr[i] font:kFont12 textColor:kGray900 alignment:NSTextAlignmentCenter];
+        XXLabel *nameLabel = [XXLabel labelWithFrame:CGRectMake(0, CGRectGetMaxY(shadowView.frame), itemButton.width, 42) text:titleArr[i] font:kFont12 textColor:kGray900 alignment:NSTextAlignmentCenter];
+        nameLabel.numberOfLines = 0;
+//        [nameLabel sizeToFit];
         [itemButton addSubview:nameLabel];
     }
 }
