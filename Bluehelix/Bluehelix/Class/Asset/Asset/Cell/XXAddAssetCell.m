@@ -51,7 +51,7 @@
 - (void)configData:(XXTokenModel *)model {
     self.model = model;
     [self.iconView sd_setImageWithURL:[NSURL URLWithString:model.logo] placeholderImage:[UIImage imageNamed:@"placeholderToken"]];
-    self.coinNameLabel.text = model.symbol;
+    self.coinNameLabel.text = [model.symbol uppercaseString];
     BOOL isOn = NO;
     
     if (!IsEmpty(KUser.currentAccount.symbols)) {

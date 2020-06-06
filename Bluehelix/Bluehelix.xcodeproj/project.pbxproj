@@ -140,6 +140,8 @@
 		EA4F5E992179B5190025B350 /* AppDelegate+Category.m in Sources */ = {isa = PBXBuildFile; fileRef = EA4F5E982179B5190025B350 /* AppDelegate+Category.m */; };
 		EA677242246AA96C008C931A /* XXChooseLoginAccountView.m in Sources */ = {isa = PBXBuildFile; fileRef = EA677241246AA96C008C931A /* XXChooseLoginAccountView.m */; };
 		EA677245246ACFA4008C931A /* XXLoginCell.m in Sources */ = {isa = PBXBuildFile; fileRef = EA677244246ACFA4008C931A /* XXLoginCell.m */; };
+		EA6E5B39248B6E40000AAAF7 /* XXServiceView.m in Sources */ = {isa = PBXBuildFile; fileRef = EA6E5B38248B6E40000AAAF7 /* XXServiceView.m */; };
+		EA6E5B3B248B6F3D000AAAF7 /* service.html in Resources */ = {isa = PBXBuildFile; fileRef = EA6E5B3A248B6F3D000AAAF7 /* service.html */; };
 		EA6FA69721258EC5006305B8 /* FCUUID.m in Sources */ = {isa = PBXBuildFile; fileRef = EA6FA69521258EC5006305B8 /* FCUUID.m */; };
 		EA6FA69A21258FD3006305B8 /* UICKeyChainStore.m in Sources */ = {isa = PBXBuildFile; fileRef = EA6FA69821258FD3006305B8 /* UICKeyChainStore.m */; };
 		EA811AC42479144400C1038F /* XXMessageSegmentButton.m in Sources */ = {isa = PBXBuildFile; fileRef = EA811AC32479144400C1038F /* XXMessageSegmentButton.m */; };
@@ -603,6 +605,9 @@
 		EA677241246AA96C008C931A /* XXChooseLoginAccountView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = XXChooseLoginAccountView.m; sourceTree = "<group>"; };
 		EA677243246ACFA4008C931A /* XXLoginCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = XXLoginCell.h; sourceTree = "<group>"; };
 		EA677244246ACFA4008C931A /* XXLoginCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = XXLoginCell.m; sourceTree = "<group>"; };
+		EA6E5B37248B6E40000AAAF7 /* XXServiceView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XXServiceView.h; sourceTree = "<group>"; };
+		EA6E5B38248B6E40000AAAF7 /* XXServiceView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XXServiceView.m; sourceTree = "<group>"; };
+		EA6E5B3A248B6F3D000AAAF7 /* service.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = service.html; sourceTree = "<group>"; };
 		EA6FA69521258EC5006305B8 /* FCUUID.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FCUUID.m; sourceTree = "<group>"; };
 		EA6FA69621258EC5006305B8 /* FCUUID.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FCUUID.h; sourceTree = "<group>"; };
 		EA6FA69821258FD3006305B8 /* UICKeyChainStore.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UICKeyChainStore.m; sourceTree = "<group>"; };
@@ -1293,6 +1298,8 @@
 				EA20EAC12425FBC8004EBD7F /* XXServiceAgreementVC.m */,
 				EAA8DEDB244EC62900161698 /* XXServiceContentView.h */,
 				EAA8DEDC244EC62900161698 /* XXServiceContentView.m */,
+				EA6E5B37248B6E40000AAAF7 /* XXServiceView.h */,
+				EA6E5B38248B6E40000AAAF7 /* XXServiceView.m */,
 			);
 			path = CreateWallet;
 			sourceTree = "<group>";
@@ -1570,6 +1577,7 @@
 				EA3E594B24446A310080B98F /* Font */,
 				EA8F8C84240FA9F200D26E10 /* XXFontHeader.h */,
 				EA8F8C85240FA9F200D26E10 /* XXColorHeader.h */,
+				EA6E5B3A248B6F3D000AAAF7 /* service.html */,
 				EA8F8C86240FA9F200D26E10 /* Icon.xcassets */,
 				EA8F8C87240FA9F200D26E10 /* Info.plist */,
 			);
@@ -2374,6 +2382,7 @@
 				EAB8DF28245979A0004B3445 /* NotoSansSC-Regular.otf in Resources */,
 				EA2931B822CCB22B003B60E8 /* Assets.xcassets in Resources */,
 				EA3E595324446A310080B98F /* Lato-Regular.ttf in Resources */,
+				EA6E5B3B248B6F3D000AAAF7 /* service.html in Resources */,
 				F30EAF5C20D26536005ADD5C /* README.textile in Resources */,
 				EA26B34D2476650200EAF205 /* LaunchScreen.storyboard in Resources */,
 				EA8F8C88240FA9F200D26E10 /* Icon.xcassets in Resources */,
@@ -2636,6 +2645,7 @@
 				EAE28624247285C3006D9F24 /* XXBackupPrivateKeyView.m in Sources */,
 				EAA8DEBF244D7E7C00161698 /* XXUserHeaderView.m in Sources */,
 				EABD1B8F241BB25900B1A03A /* base58.c in Sources */,
+				EA6E5B39248B6E40000AAAF7 /* XXServiceView.m in Sources */,
 				EA22BDBF24795A5800F04563 /* XXUserNameView.m in Sources */,
 				EA3E58F524441C7B0080B98F /* XXDepositCoinVC.m in Sources */,
 				7AC4D82C234C808F00F5E5F8 /* XXBlurView.m in Sources */,

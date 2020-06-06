@@ -54,9 +54,9 @@
     [self.view addSubview:self.contentLabel];
     [self.view addSubview:self.nameLabel];
     [self.view addSubview:self.textFieldView];
-    [self.view addSubview:self.charCountLabel];
     [self.view addSubview:self.isAgreeButton];
     [self.view addSubview:self.textView];
+    [self.view addSubview:self.charCountLabel];
     [self.view addSubview:self.createBtn];
 }
 
@@ -116,6 +116,7 @@
     KUser.localPassword = @"";
     KUser.localUserName = @"";
     KUser.localPhraseString = @"";
+    KUser.localPrivateKey = @"";
 }
 
 - (void)textFiledValueChange:(UITextField *)textField {
@@ -188,7 +189,7 @@
 - (XXButton *)isAgreeButton {
     if (_isAgreeButton == nil) {
         MJWeakSelf
-        _isAgreeButton = [XXButton buttonWithFrame:CGRectMake(K375(24), CGRectGetMaxY(self.charCountLabel.frame), 30, 24) block:^(UIButton *button) {
+        _isAgreeButton = [XXButton buttonWithFrame:CGRectMake(K375(24), CGRectGetMaxY(self.textFieldView.frame) + 23, 30, 24) block:^(UIButton *button) {
             weakSelf.isAgreeButton.selected = !weakSelf.isAgreeButton.selected;
             KUser.agreeService = weakSelf.isAgreeButton.selected;
             if (KUser.agreeService && weakSelf.textFieldView.textField.text.length) {
@@ -219,14 +220,13 @@
 
 - (UITextView *)textView {
     if (_textView == nil) {
-        _textView = [[UITextView alloc] initWithFrame:CGRectMake(CGRectGetMaxX(self.isAgreeButton.frame) - 5, self.isAgreeButton.top , K375(280), 30)];
+        _textView = [[UITextView alloc] initWithFrame:CGRectMake(CGRectGetMaxX(self.isAgreeButton.frame) - 5, self.isAgreeButton.top -7 , K375(280), 30)];
         _textView.backgroundColor = kWhiteColor;
         _textView.font = kFont12;
         _textView.textColor = kGray700;
         _textView.delegate  = self;
         _textView.editable  = NO;
         _textView.scrollEnabled = NO;
-        _textView.contentOffset = CGPointMake(0, 7);
         _textView.textAlignment = NSTextAlignmentLeft;
         NSString *fwxy = LocalizedString(@"ServiceAgreement");
         NSMutableAttributedString *attributedString = [[NSMutableAttributedString alloc] initWithString:[NSString stringWithFormat:@"%@ %@", LocalizedString(@"IAgreeTo"), fwxy]];

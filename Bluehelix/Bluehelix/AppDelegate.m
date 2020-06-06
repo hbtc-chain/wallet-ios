@@ -42,13 +42,11 @@
     if (KUser.address) {
         if (KUser.isFaceIDLockOpen || KUser.isTouchIDLockOpen) {
             self.window.rootViewController = [[BHFaceIDLockVC alloc] init];
-//            self.window.rootViewController = [[XXTabBarController alloc] init];
         } else {
             XXLoginVC *loginVC = [[XXLoginVC alloc] init];
             XXNavigationController *loginNav = [[XXNavigationController alloc] initWithRootViewController:loginVC];
             self.window.rootViewController = loginNav;
         }
-//        self.window.rootViewController = [[XXTabBarController alloc] init];
     } else {
         XXStartWalletVC *startVC = [[XXStartWalletVC alloc] init];
         XXNavigationController *startNav = [[XXNavigationController alloc] initWithRootViewController:startVC];
