@@ -90,6 +90,10 @@
             [self.inputWordsArray addObject:@""];
             [self refreshWords];
             [self setFirstResponder:[self getInputIndex:textField] + 1];
+        } else if (self.inputWordsArray.count == 12) {
+            [self.inputWordsArray replaceObjectAtIndex:[self getInputIndex:textField] withObject:textField.text];
+            [self refreshWords];
+            [self setFirstResponder:[self getInputIndex:textField] + 1];
         }
         return NO;
     } else {
