@@ -72,8 +72,8 @@
     if (KUser.currentAccount.mnemonicPhrase && !KUser.currentAccount.backupFlag) {
         [firstSectionArray addObject:LocalizedString(@"BackupMnemonicPhrase")];
     }
-    [firstSectionArray addObject:LocalizedString(@"BackupKeystore")];
     [firstSectionArray addObject:LocalizedString(@"BackupPrivateKey")];
+    [firstSectionArray addObject:LocalizedString(@"BackupKeystore")];
     self.itemsArray[0] = firstSectionArray;
     self.itemsArray[1] = @[LocalizedString(@"Setting"),LocalizedString(@"ContactUs"),LocalizedString(@"Version")];
 }

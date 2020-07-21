@@ -146,6 +146,8 @@
 		EA6FA69A21258FD3006305B8 /* UICKeyChainStore.m in Sources */ = {isa = PBXBuildFile; fileRef = EA6FA69821258FD3006305B8 /* UICKeyChainStore.m */; };
 		EA811AC42479144400C1038F /* XXMessageSegmentButton.m in Sources */ = {isa = PBXBuildFile; fileRef = EA811AC32479144400C1038F /* XXMessageSegmentButton.m */; };
 		EA811AC72479214100C1038F /* XXMessageSegmentView.m in Sources */ = {isa = PBXBuildFile; fileRef = EA811AC62479214100C1038F /* XXMessageSegmentView.m */; };
+		EA877EFD24C6D9220049545A /* XXMnemonicWordTextFieldView.m in Sources */ = {isa = PBXBuildFile; fileRef = EA877EFB24C6D9220049545A /* XXMnemonicWordTextFieldView.m */; };
+		EA877F0024C6E4180049545A /* XXImportMnemonicWordsVC.m in Sources */ = {isa = PBXBuildFile; fileRef = EA877EFE24C6E4180049545A /* XXImportMnemonicWordsVC.m */; };
 		EA8F8C88240FA9F200D26E10 /* Icon.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EA8F8C86240FA9F200D26E10 /* Icon.xcassets */; };
 		EA92EDBB2448086F00B194DA /* XXMsgRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = EA92EDBA2448086F00B194DA /* XXMsgRequest.m */; };
 		EA92EDBE244809E800B194DA /* XXMsg.m in Sources */ = {isa = PBXBuildFile; fileRef = EA92EDBD244809E800B194DA /* XXMsg.m */; };
@@ -616,6 +618,10 @@
 		EA811AC32479144400C1038F /* XXMessageSegmentButton.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = XXMessageSegmentButton.m; sourceTree = "<group>"; };
 		EA811AC52479214000C1038F /* XXMessageSegmentView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = XXMessageSegmentView.h; sourceTree = "<group>"; };
 		EA811AC62479214100C1038F /* XXMessageSegmentView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = XXMessageSegmentView.m; sourceTree = "<group>"; };
+		EA877EFB24C6D9220049545A /* XXMnemonicWordTextFieldView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XXMnemonicWordTextFieldView.m; sourceTree = "<group>"; };
+		EA877EFC24C6D9220049545A /* XXMnemonicWordTextFieldView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XXMnemonicWordTextFieldView.h; sourceTree = "<group>"; };
+		EA877EFE24C6E4180049545A /* XXImportMnemonicWordsVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XXImportMnemonicWordsVC.m; sourceTree = "<group>"; };
+		EA877EFF24C6E4180049545A /* XXImportMnemonicWordsVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XXImportMnemonicWordsVC.h; sourceTree = "<group>"; };
 		EA8F8C84240FA9F200D26E10 /* XXFontHeader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XXFontHeader.h; sourceTree = "<group>"; };
 		EA8F8C85240FA9F200D26E10 /* XXColorHeader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XXColorHeader.h; sourceTree = "<group>"; };
 		EA8F8C86240FA9F200D26E10 /* Icon.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Icon.xcassets; sourceTree = "<group>"; };
@@ -2108,6 +2114,8 @@
 				EAE2860B247285C3006D9F24 /* XXVerifyMnemonicPhraseVC.m */,
 				EAE285FD247285C3006D9F24 /* XXImportKeystoreVC.h */,
 				EAE2860C247285C3006D9F24 /* XXImportKeystoreVC.m */,
+				EA877EFF24C6E4180049545A /* XXImportMnemonicWordsVC.h */,
+				EA877EFE24C6E4180049545A /* XXImportMnemonicWordsVC.m */,
 			);
 			path = ViewController;
 			sourceTree = "<group>";
@@ -2115,6 +2123,8 @@
 		EAE2860D247285C3006D9F24 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				EA877EFC24C6D9220049545A /* XXMnemonicWordTextFieldView.h */,
+				EA877EFB24C6D9220049545A /* XXMnemonicWordTextFieldView.m */,
 				EAE2860F247285C3006D9F24 /* XXBackupCodeView.h */,
 				EAE28613247285C3006D9F24 /* XXBackupCodeView.m */,
 				EAE28614247285C3006D9F24 /* XXImportWayView.h */,
@@ -2551,6 +2561,7 @@
 				EABD1B88241BB25900B1A03A /* aes_modes.c in Sources */,
 				EABD1BA8241BB25900B1A03A /* Utilities.m in Sources */,
 				EABD1BAC241BB25900B1A03A /* Account.m in Sources */,
+				EA877EFD24C6D9220049545A /* XXMnemonicWordTextFieldView.m in Sources */,
 				EABBC08B24232DCD00B7E412 /* NSData+CommonCrypto.m in Sources */,
 				EAA8DEBC244D7E7C00161698 /* XXAccountManageVC.m in Sources */,
 				EA6FA69721258EC5006305B8 /* FCUUID.m in Sources */,
@@ -2621,6 +2632,7 @@
 				EABD1B93241BB25900B1A03A /* scrypt_sha256.c in Sources */,
 				EA04ABAE242D015B004403FF /* IQKeyboardManager.m in Sources */,
 				EABD1BA9241BB25900B1A03A /* RegEx.m in Sources */,
+				EA877F0024C6E4180049545A /* XXImportMnemonicWordsVC.m in Sources */,
 				EA04ABB4242D015B004403FF /* IQKeyboardReturnKeyHandler.m in Sources */,
 				6CC12D0124455C4B00917105 /* XXValidatorToolBar.m in Sources */,
 				EABD1B96241BB25900B1A03A /* crypto_scrypt-sse.c in Sources */,

@@ -14,7 +14,6 @@
 #import "XXLoginVC.h"
 #import "XXRepeatPasswordVC.h"
 #import "AFNetworkReachabilityManager.h"
-#import "XXVersionManager.h"
 #import "SecurityHelper.h"
 #import "XXSplashScreen.h"
 #import "BHFaceIDLockVC.h"
@@ -36,7 +35,6 @@
     if (!KUser.isSettedNightType) {
         KUser.isNightType = KSystem.isDarkStyle;
     }
-    [XXVersionManager checkVersion];
     KWindow.backgroundColor = [UIColor whiteColor];
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     if (KUser.address) {

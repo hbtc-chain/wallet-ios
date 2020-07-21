@@ -21,6 +21,7 @@
 #import "SWTableViewCell.h"
 #import "XXFailureView.h"
 #import "SecurityHelper.h"
+#import "XXVersionManager.h"
 
 @interface XXAssetVC ()<UITableViewDataSource, UITableViewDelegate>
 
@@ -42,6 +43,7 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     [self setupUI];
+    [XXVersionManager checkVersion];
 }
 
 - (void)viewWillDisappear:(BOOL)animated {

@@ -78,7 +78,7 @@
 
 - (XXTextField *)searchTextField {
     if (_searchTextField == nil) {
-        _searchTextField = [[XXTextField alloc] initWithFrame:CGRectMake(CGRectGetMaxX(self.searchIconImageView.frame) + 4, 8, self.searchBackView.width - (CGRectGetMaxX(self.searchIconImageView.frame) + 10) - K375(15), self.searchBackView.height - 16)];
+        _searchTextField = [[XXTextField alloc] initWithFrame:CGRectMake(CGRectGetMaxX(self.searchIconImageView.frame) + 4, 4, self.searchBackView.width - (CGRectGetMaxX(self.searchIconImageView.frame) + 10) - K375(15), self.searchBackView.height - 8)];
         _searchTextField.returnKeyType = UIReturnKeySearch;
         _searchTextField.autocorrectionType = UITextAutocorrectionTypeNo;
         _searchTextField.autocapitalizationType = UITextAutocapitalizationTypeNone;

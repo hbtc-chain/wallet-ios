@@ -10,6 +10,13 @@
 
 @implementation XXTextField
 
+- (void)deleteBackward {
+    [super deleteBackward];
+    if (_keyInputDelegate && [_keyInputDelegate respondsToSelector:@selector(deleteBackward:)]) {
+        [_keyInputDelegate deleteBackward:self];
+    }
+}
+
 - (void)setPlaceholder:(NSString *)placeholder {
     [super setPlaceholder:placeholder];
     

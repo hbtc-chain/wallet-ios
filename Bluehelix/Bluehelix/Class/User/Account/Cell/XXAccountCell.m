@@ -11,7 +11,8 @@
 
 @interface XXAccountCell ()
 
-@property (strong, nonatomic) XXLabel *icon;
+//@property (strong, nonatomic) XXLabel *icon;
+@property (strong, nonatomic) UIImageView *icon;
 @property (strong, nonatomic) XXLabel *nameLabel;
 @property (strong, nonatomic) XXLabel *addressLabel;
 @property (strong, nonatomic) UIView *lineView;
@@ -49,12 +50,21 @@
     } else {
         self.checkView.image = [UIImage imageNamed:@"unCheck"];
     }
-    [self configIcon:model];
+//    [self configIcon:model];
 }
 
-- (XXLabel *)icon {
+//- (XXLabel *)icon {
+//    if (!_icon) {
+//        _icon = [XXLabel labelWithFrame:CGRectMake(16, 16, 40, 40) text:@"" font:kFont14 textColor:kWhiteColor alignment:NSTextAlignmentCenter cornerRadius:20];
+//    }
+//    return _icon;
+//}
+
+- (UIImageView *)icon {
     if (!_icon) {
-        _icon = [XXLabel labelWithFrame:CGRectMake(16, 16, 40, 40) text:@"" font:kFont14 textColor:kWhiteColor alignment:NSTextAlignmentCenter cornerRadius:20];
+        _icon = [[UIImageView alloc] initWithFrame:CGRectMake(16, 16, 40, 40)];
+        _icon.image = [UIImage imageNamed:@"AssetUserHead"];
+        _icon.layer.cornerRadius = 20;
     }
     return _icon;
 }
@@ -93,16 +103,16 @@
     return 72;
 }
 
-- (void)configIcon:(XXAccountModel *)model{
-    NSArray *colorArr = @[@"#54E19E",@"#66A3FF",@"#38a1e6",@"#E2C97F",@"#7887C5",@"#68B38F",@"#8B58DF",@"#66D0D7",@"#BEC65D",@"#F4934D"];
-    if (!IsEmpty(model.userName)) {
-        NSString *lastNumStr =[model.userName substringFromIndex:[model.userName length] - 1];
-        int colorIndex = lastNumStr.intValue % 10;
-        self.icon.backgroundColor = [UIColor colorWithHexString:colorArr[colorIndex]];
-    }
-    if (!IsEmpty(model.userName)) {
-        self.icon.text = [model.userName substringToIndex:1];
-    }
-}
+//- (void)configIcon:(XXAccountModel *)model{
+//    NSArray *colorArr = @[@"#54E19E",@"#66A3FF",@"#38a1e6",@"#E2C97F",@"#7887C5",@"#68B38F",@"#8B58DF",@"#66D0D7",@"#BEC65D",@"#F4934D"];
+//    if (!IsEmpty(model.userName)) {
+//        NSString *lastNumStr =[model.userName substringFromIndex:[model.userName length] - 1];
+//        int colorIndex = lastNumStr.intValue % 10;
+//        self.icon.backgroundColor = [UIColor colorWithHexString:colorArr[colorIndex]];
+//    }
+//    if (!IsEmpty(model.userName)) {
+//        self.icon.text = [model.userName substringToIndex:1];
+//    }
+//}
 
 @end

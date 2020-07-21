@@ -7,7 +7,7 @@
 //
 
 #import "XXImportWalletVC.h"
-#import "XXImportMnemonicPhraseVC.h"
+#import "XXImportMnemonicWordsVC.h"
 #import "XXImportPrivateKeyVC.h"
 #import "XXImportWayView.h"
 #import "XXImportKeystoreVC.h"
@@ -51,7 +51,7 @@
         MJWeakSelf
         _mnemonicPhraseBtn = [[XXImportWayView alloc] initWithFrame:CGRectMake(K375(24), CGRectGetMaxY(self.tipLabel.frame) + 36, kScreen_Width - K375(48), 88) title:LocalizedString(@"ImportMnemonicPhrase") imageName:@"importPhrase"];
         _mnemonicPhraseBtn.clickBlock = ^{
-            XXImportMnemonicPhraseVC *importVC = [[XXImportMnemonicPhraseVC alloc] init];
+            XXImportMnemonicWordsVC *importVC = [[XXImportMnemonicWordsVC alloc] init];
             [weakSelf.navigationController pushViewController:importVC animated:YES];
         };
         _mnemonicPhraseBtn.backgroundColor = kWhiteColor;

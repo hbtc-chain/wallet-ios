@@ -10,7 +10,16 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
+@protocol KeyInputTextFieldDelegate <NSObject>
+
+@optional
+- (void)deleteBackward:(UITextField*)textField;
+
+@end
+
 @interface XXTextField : UITextField
+
+@property (nonatomic, assign) id <KeyInputTextFieldDelegate>keyInputDelegate;
 
 /** 占位符颜色 */
 @property (strong, nonatomic) UIColor *placeholderColor;
