@@ -93,15 +93,16 @@
     if (self.account.mnemonicPhrase && IsEmpty(KUser.localPhraseString)) { //如果是通过助记词导入的 不需要备份和保留助记词
         NSString *mnemonicPhrase = [AESCrypt encrypt:self.account.mnemonicPhrase password:KUser.localPassword];
         model.mnemonicPhrase = mnemonicPhrase;
+        model.backupFlag = NO;
     } else {
         model.mnemonicPhrase = @"";
+        model.backupFlag = YES;
     }
-    model.backupFlag = IsEmpty(KUser.localPhraseString) ? NO : YES; //如果是通过助记词导入的 不需要备份和保留助记词
     model.symbols = [NSString stringWithFormat:@"btc,eth,usdt,%@",kMainToken];
     [[XXSqliteManager sharedSqlite] insertAccount:model];
     KUser.address = model.address;
     [MBProgressHUD hideHUD];
-    if (!IsEmpty(KUser.localPhraseString)) { //通过助记词导入 不需要
+    if (model.backupFlag) { //导入的不需要备份助记词
         Alert *alert = [[Alert alloc] initWithTitle:LocalizedString(@"ImportSuccess") duration:kAlertDuration completion:^{
             KWindow.rootViewController = [[XXTabBarController alloc] init];
             [self showBiometricAlert];

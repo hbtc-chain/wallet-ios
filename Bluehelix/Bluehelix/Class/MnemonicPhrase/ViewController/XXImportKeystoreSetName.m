@@ -62,7 +62,7 @@
 - (void)createAccount {
     self.account.userName = self.textFieldView.textField.text;
     self.account.mnemonicPhrase = @"";
-    self.account.backupFlag = IsEmpty(KUser.localPhraseString) ? NO : YES; //如果是通过助记词导入的 不需要备份和保留助记词
+    self.account.backupFlag = YES; //keystore导入不需要备份助记词
     self.account.symbols = [NSString stringWithFormat:@"btc,eth,usdt,%@",kMainToken];
     [[XXSqliteManager sharedSqlite] insertAccount:self.account];
     KUser.address = self.account.address;
