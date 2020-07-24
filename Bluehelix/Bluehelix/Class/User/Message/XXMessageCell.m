@@ -40,7 +40,7 @@
 }
 
 - (void)configData:(XXMessageModel *)model {
-    self.amountLabel.text = model.amount;
+    self.amountLabel.text = [NSString stringWithFormat:@"%@ %@",model.amount, [model.symbol uppercaseString]];
     NSString *time = model.time;
     self.timeLabel.text = [NSString dateStringFromTimestampWithTimeTamp:[time longLongValue]];
     if (model.tx_type.intValue == 1) {

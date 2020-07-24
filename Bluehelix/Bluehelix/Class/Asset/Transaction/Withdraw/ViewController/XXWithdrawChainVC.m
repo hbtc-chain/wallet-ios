@@ -62,6 +62,10 @@
     
     XXMsg *model = [[XXMsg alloc] initWithfrom:KUser.address to:KUser.address amount:@"" denom:self.tokenModel.symbol feeAmount:feeAmount feeGas:gas feeDenom:kMainToken memo:@"" type:kMsgKeyGen withdrawal_fee:@"" text:text];
     _keyGenRequest = [[XXMsgRequest alloc] init];
+    MJWeakSelf
+    _keyGenRequest.msgSendSuccessBlock = ^{
+        [weakSelf.navigationController popViewControllerAnimated:YES];
+    };
     [_keyGenRequest sendMsg:model];
 }
 
@@ -69,6 +73,7 @@
 - (XXWithdrawChainView *)chainView {
     if (_chainView == nil) {
         _chainView = [[XXWithdrawChainView alloc] initWithFrame:CGRectMake(0, kNavHeight, kScreen_Width, kScreen_Height - kNavHeight - 90)];
+        _chainView.feeView.textField.text = kMinFee;
     }
     return _chainView;
 }

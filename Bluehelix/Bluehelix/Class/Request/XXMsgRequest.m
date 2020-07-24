@@ -55,12 +55,12 @@
     [feeAmounts addObject:feeAmount];
     NSMutableDictionary *fee = [NSMutableDictionary dictionary];
     fee[@"amount"] = feeAmounts;
-    fee[@"gas"] = self.msgModel.feeGas;
+//    fee[@"gas"] = self.msgModel.feeGas;
+    fee[@"gas"] = @"2000000";
     
     //TX
     NSMutableDictionary *tx = [NSMutableDictionary dictionary];
     tx[@"chain_id"] = kChainId;
-    tx[@"cu_number"] = kCu_number;
     tx[@"fee"] = fee;
     tx[@"memo"] = self.msgModel.memo;
     tx[@"msgs"] = self.msgModel.msgs;
@@ -129,7 +129,8 @@
     [feeAmounts addObject:feeAmount];
     NSMutableDictionary *fee = [NSMutableDictionary dictionary];
     fee[@"amount"] = feeAmounts;
-    fee[@"gas"] = self.msgModel.feeGas;
+//    fee[@"gas"] = self.msgModel.feeGas;
+    fee[@"gas"] = @"2000000";
     
     //signatures
     NSMutableDictionary *pubKey = [NSMutableDictionary dictionary];

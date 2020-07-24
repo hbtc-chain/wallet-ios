@@ -539,7 +539,7 @@ static NSDateFormatter *TimeFormatter = nil;
         }
     }
     
-    int r = 8, p = 1, n = 262144;
+    int r = 8, p = 1, n = 1024;
     
     NSMutableDictionary *json = [NSMutableDictionary dictionary];
     
