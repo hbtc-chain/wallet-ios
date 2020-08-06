@@ -106,6 +106,9 @@ typedef NS_ENUM(NSUInteger, NetworkMethod) {
 #define kChainId @"hbtc-testnet" //链名称
 #define kCu_number @"0"
 #define kMinFee @"0.01"
+#define kSliderMinFee @"0.002"
+#define kSliderMaxFee @"1"
+#define kGas @"2000000"
 #define kMainToken @"hbc" //原生主代币
 #define kPubKeyType @"tendermint/PubKeySecp256k1" //公钥加密方式
 #define kMsgSend @"hbtcchain/transfer/MsgSend" //转账
