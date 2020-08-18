@@ -29,14 +29,16 @@
              window.hidden = YES;
         }];
         action.indexTap = i;
-        [action setValue:ActionColor forKey:@"titleTextColor"];
+        //TODO
+        [action setValue:kDark100 forKey:@"titleTextColor"];
         [alert addAction:action];
     }
     
     UIAlertAction *action = [UIAlertAction actionWithTitle:LocalizedString(@"Cancel") style:UIAlertActionStyleCancel handler:^(UIAlertAction * _Nonnull action) {
          window.hidden = YES;
     }];
-    [action setValue:ActionColor forKey:@"titleTextColor"];
+    //TODO
+    [action setValue:kDark100 forKey:@"titleTextColor"];
     [alert addAction:action];
     
     // 修改字体大小
@@ -63,7 +65,9 @@
             window.hidden = YES;
         }];
         action.indexTap = i;
-        [action setValue:ActionColor forKey:@"titleTextColor"];
+        //TODO
+        [action setValue:kDark100 forKey:@"titleTextColor"];
+//        [action setValue:ActionColor forKey:@"titleTextColor"];
         [alert addAction:action];
     }
     
@@ -71,7 +75,7 @@
         window.hidden = YES;
         cancelBlock();
     }];
-    [action setValue:ActionColor forKey:@"titleTextColor"];
+    [action setValue:kDark100 forKey:@"titleTextColor"];
     [alert addAction:action];
     
     // 修改字体大小

@@ -207,26 +207,4 @@ static XXUserData *_sharedUserData = nil;
     [[NSUserDefaults standardUserDefaults] synchronize];
 }
 
-//- (void)addAccount:(NSDictionary *)account {
-//    NSArray *oldArray = [self getValueForKey:@"accounts"];
-//    if (!oldArray) {
-//        oldArray = [NSMutableArray array];
-//    }
-//    NSMutableArray *array = [NSMutableArray arrayWithArray:oldArray];
-//    [array addObject:account];
-//    [self saveValeu:array forKey:@"accounts"];
-//}
-
-//- (NSString *)increaseID {
-//   NSString *increaseID = [self getValueForKey:@"increaseID"];
-//    if (increaseID) {
-//        int num = increaseID.intValue +1;
-//        [self saveValeu:[NSString stringWithFormat:@"%d",num] forKey:@"increaseID"];
-//        return [NSString stringWithFormat:@"%d",num];
-//    } else {
-//        [self saveValeu:@"0" forKey:@"increaseID"];
-//        return @"0";
-//    }
-//}
-
 @end

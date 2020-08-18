@@ -11,6 +11,7 @@ PODS:
   - SDWebImage (4.0.0):
     - SDWebImage/Core (= 4.0.0)
   - SDWebImage/Core (4.0.0)
+  - SocketRocket (0.5.1)
 
 DEPENDENCIES:
   - Masonry (~> 1.0.2)
@@ -19,9 +20,10 @@ DEPENDENCIES:
   - MJRefresh (~> 3.1.12)
   - OpenSSL-Universal
   - SDWebImage (~> 4.0.0)
+  - SocketRocket (~> 0.5.1)
 
 SPEC REPOS:
-  https://github.com/cocoapods/specs.git:
+  https://github.com/CocoaPods/Specs.git:
     - Masonry
     - MBProgressHUD
     - "MBProgressHUD+JDragon"
@@ -29,6 +31,8 @@ SPEC REPOS:
     - MJRefresh
     - OpenSSL-Universal
     - SDWebImage
+  trunk:
+    - SocketRocket
 
 SPEC CHECKSUMS:
   Masonry: 7c429b56da9d4ee0bbb3ed77a5ea710d6a5df39e
@@ -38,7 +42,8 @@ SPEC CHECKSUMS:
   MJRefresh: ee5b68f639775462faba4db0fd243baf4d42c2cf
   OpenSSL-Universal: 8b48cc0d10c1b2923617dfe5c178aa9ed2689355
   SDWebImage: 76a6348bdc74eb5a55dd08a091ef298e56b55e41
+  SocketRocket: d57c7159b83c3c6655745cd15302aa24b6bae531
 
-PODFILE CHECKSUM: 8ea8d2a2e60c61b94aa36711a92e02ee35ed3982
+PODFILE CHECKSUM: 225939540ef0a04e977f9a99e7fcd6e70c970336
 
-COCOAPODS: 1.5.3
+COCOAPODS: 1.9.3

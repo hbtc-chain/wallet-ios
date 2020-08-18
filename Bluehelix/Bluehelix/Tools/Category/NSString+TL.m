@@ -330,6 +330,14 @@
     return [text boundingRectWithSize:CGSizeMake(width, 1000) options:NSStringDrawingUsesLineFragmentOrigin attributes:attrs context:nil].size.height;
 }
 
++ (NSString *)riseFallValue:(double)value {
+    if (isinf(value) || isnan(value)) {
+        value = 0.0;
+    }
+    NSString *riseString = [KDecimal decimalNumber:[NSString stringWithFormat:@"%.12f", value] RoundingMode:NSRoundDown scale:2];
+    return [NSString stringWithFormat:@"%@%@", riseString, @"%"];
+}
+
 -(BOOL)isValidPasswordString {
     BOOL result = NO;
     BOOL isHaveNumber = NO;

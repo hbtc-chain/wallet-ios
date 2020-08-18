@@ -44,10 +44,6 @@
     [self.mainView addSubview:self.tipView];
 }
 
--(void)sliderValueChanged:(UISlider *)slider {
-    self.feeView.textField.text = [NSString stringWithFormat:@"%.3f",slider.value];
-}
-
 - (void)scanCodeGetAddress {
     MJWeakSelf
     [XCQrCodeTool readQrCode:self.viewController callBack:^(id data) {
@@ -83,17 +79,6 @@
     if (_amountView == nil) {
         _amountView = [[XXTransferAmountView alloc] initWithFrame:CGRectMake(0, CGRectGetMaxY(self.addressView.frame) + 15, kScreen_Width, 88)];
         _amountView.userInteractionEnabled = YES;
-        MJWeakSelf
-        _amountView.allButtonActionBlock = ^{
-            NSDecimalNumber *currentlyAvailable = [NSDecimalNumber decimalNumberWithString:weakSelf.amountView.currentlyAvailable];
-            NSDecimalNumber *feeAmountDecimal = [NSDecimalNumber decimalNumberWithString:weakSelf.feeView.textField.text];
-            NSString *availableAmount = [[currentlyAvailable decimalNumberBySubtracting:feeAmountDecimal] stringValue];
-            if (availableAmount.doubleValue > 0) {
-                weakSelf.amountView.textField.text = kAmountTrim(availableAmount);
-            } else {
-                weakSelf.amountView.textField.text = @"0";
-            }
-        };
         _amountView.nameLabel.text = LocalizedString(@"TransferAmount");
         _amountView.textField.placeholder = LocalizedString(@"PleaseEnterTransferAmount");
     }
@@ -106,7 +91,6 @@
         _feeView = [[XXWithdrawFeeView alloc] initWithFrame:CGRectMake(0, CGRectGetMaxY(self.amountView.frame) + 15, kScreen_Width, 88)];
         _feeView.textField.placeholder = LocalizedString(@"PleaseEnterFee");
         _feeView.unitLabel.text = [kMainToken uppercaseString];
-        _feeView.textField.enabled = NO;
     }
     return _feeView;
 }
@@ -116,7 +100,7 @@
     if (_speedView == nil) {
         _speedView = [[XXWithdrawSpeedView alloc] initWithFrame:CGRectMake(0, CGRectGetMaxY(self.feeView.frame) + 15, kScreen_Width, 72)];
         _speedView.nameLabel.text = LocalizedString(@"TransferSpeed");
-        [_speedView.slider addTarget:self action:@selector(sliderValueChanged:) forControlEvents:UIControlEventValueChanged];
+//        [_speedView.slider addTarget:self action:@selector(sliderValueChanged:) forControlEvents:UIControlEventValueChanged];
     }
     return _speedView;
 }

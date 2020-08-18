@@ -137,6 +137,116 @@
 		EA3E59622447208F0080B98F /* XXMsgKeyGenModel.m in Sources */ = {isa = PBXBuildFile; fileRef = EA3E59612447208F0080B98F /* XXMsgKeyGenModel.m */; };
 		EA3E5965244721DD0080B98F /* XXMsgWithdrawalModel.m in Sources */ = {isa = PBXBuildFile; fileRef = EA3E5964244721DD0080B98F /* XXMsgWithdrawalModel.m */; };
 		EA3E5968244723200080B98F /* XXMsgSendModel.m in Sources */ = {isa = PBXBuildFile; fileRef = EA3E5967244723200080B98F /* XXMsgSendModel.m */; };
+		EA45BA5E24DE76BE00132984 /* XXOrderManagerVC.m in Sources */ = {isa = PBXBuildFile; fileRef = EA45B8A524DE76BD00132984 /* XXOrderManagerVC.m */; };
+		EA45BA5F24DE76BE00132984 /* XXOrderDetailVC.m in Sources */ = {isa = PBXBuildFile; fileRef = EA45B8A624DE76BD00132984 /* XXOrderDetailVC.m */; };
+		EA45BA6124DE76BE00132984 /* XXHistoryOderCell.m in Sources */ = {isa = PBXBuildFile; fileRef = EA45B8AB24DE76BD00132984 /* XXHistoryOderCell.m */; };
+		EA45BA6224DE76BE00132984 /* XXOrderDetailCell.m in Sources */ = {isa = PBXBuildFile; fileRef = EA45B8AE24DE76BD00132984 /* XXOrderDetailCell.m */; };
+		EA45BA6324DE76BE00132984 /* XXCurrentOrderCell.m in Sources */ = {isa = PBXBuildFile; fileRef = EA45B8B024DE76BD00132984 /* XXCurrentOrderCell.m */; };
+		EA45BA6424DE76BE00132984 /* XXOrderInfoModel.m in Sources */ = {isa = PBXBuildFile; fileRef = EA45B8B224DE76BD00132984 /* XXOrderInfoModel.m */; };
+		EA45BA6524DE76BE00132984 /* XXOrderModel.m in Sources */ = {isa = PBXBuildFile; fileRef = EA45B8B524DE76BD00132984 /* XXOrderModel.m */; };
+		EA45BA6624DE76BE00132984 /* XXHistoryOderView.m in Sources */ = {isa = PBXBuildFile; fileRef = EA45B8B724DE76BD00132984 /* XXHistoryOderView.m */; };
+		EA45BA6724DE76BE00132984 /* XXScreenOrderView.m in Sources */ = {isa = PBXBuildFile; fileRef = EA45B8B824DE76BD00132984 /* XXScreenOrderView.m */; };
+		EA45BA6824DE76BE00132984 /* XXOrderDetailHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = EA45B8BA24DE76BD00132984 /* XXOrderDetailHeaderView.m */; };
+		EA45BA6924DE76BE00132984 /* XXOrderTypeView.m in Sources */ = {isa = PBXBuildFile; fileRef = EA45B8BB24DE76BD00132984 /* XXOrderTypeView.m */; };
+		EA45BA6A24DE76BE00132984 /* XXCurrentOrderView.m in Sources */ = {isa = PBXBuildFile; fileRef = EA45B8BE24DE76BD00132984 /* XXCurrentOrderView.m */; };
+		EA45BA6B24DE76BE00132984 /* XXTradeHomeVC.m in Sources */ = {isa = PBXBuildFile; fileRef = EA45B8C424DE76BD00132984 /* XXTradeHomeVC.m */; };
+		EA45BA6C24DE76BE00132984 /* XXTradeDepthCell.m in Sources */ = {isa = PBXBuildFile; fileRef = EA45B8C624DE76BD00132984 /* XXTradeDepthCell.m */; };
+		EA45BA6D24DE76BE00132984 /* XXSwitchPairsCell.m in Sources */ = {isa = PBXBuildFile; fileRef = EA45B8CA24DE76BD00132984 /* XXSwitchPairsCell.m */; };
+		EA45BA6E24DE76BE00132984 /* XXSwitchPairsOptionCell.m in Sources */ = {isa = PBXBuildFile; fileRef = EA45B8CB24DE76BD00132984 /* XXSwitchPairsOptionCell.m */; };
+		EA45BA7024DE76BE00132984 /* XXDepthModel.m in Sources */ = {isa = PBXBuildFile; fileRef = EA45B8CF24DE76BD00132984 /* XXDepthModel.m */; };
+		EA45BA7324DE76BE00132984 /* XXTradeableModel.m in Sources */ = {isa = PBXBuildFile; fileRef = EA45B8D424DE76BD00132984 /* XXTradeableModel.m */; };
+		EA45BA7424DE76BE00132984 /* XXTradeCoinData.m in Sources */ = {isa = PBXBuildFile; fileRef = EA45B8D624DE76BD00132984 /* XXTradeCoinData.m */; };
+		EA45BA7624DE76BE00132984 /* XXDepthTool.m in Sources */ = {isa = PBXBuildFile; fileRef = EA45B8DB24DE76BD00132984 /* XXDepthTool.m */; };
+		EA45BA7724DE76BE00132984 /* XXCoinTradeSectionHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = EA45B8DC24DE76BD00132984 /* XXCoinTradeSectionHeaderView.m */; };
+		EA45BA7824DE76BE00132984 /* XXPickerView.m in Sources */ = {isa = PBXBuildFile; fileRef = EA45B8DF24DE76BD00132984 /* XXPickerView.m */; };
+		EA45BA7924DE76BE00132984 /* XXSwitchCoinView.m in Sources */ = {isa = PBXBuildFile; fileRef = EA45B8E024DE76BD00132984 /* XXSwitchCoinView.m */; };
+		EA45BA7B24DE76BE00132984 /* XXCoinView.m in Sources */ = {isa = PBXBuildFile; fileRef = EA45B8E424DE76BD00132984 /* XXCoinView.m */; };
+		EA45BA7C24DE76BE00132984 /* XXMenuView.m in Sources */ = {isa = PBXBuildFile; fileRef = EA45B8E824DE76BD00132984 /* XXMenuView.m */; };
+		EA45BA7D24DE76BE00132984 /* XXBuySellButton.m in Sources */ = {isa = PBXBuildFile; fileRef = EA45B8F024DE76BD00132984 /* XXBuySellButton.m */; };
+		EA45BA7E24DE76BE00132984 /* XXBusinessPriceView.m in Sources */ = {isa = PBXBuildFile; fileRef = EA45B8F224DE76BD00132984 /* XXBusinessPriceView.m */; };
+		EA45BA7F24DE76BE00132984 /* XXTradeView.m in Sources */ = {isa = PBXBuildFile; fileRef = EA45B8F324DE76BD00132984 /* XXTradeView.m */; };
+		EA45BA8024DE76BE00132984 /* XXTradeLeverBar.m in Sources */ = {isa = PBXBuildFile; fileRef = EA45B8F424DE76BD00132984 /* XXTradeLeverBar.m */; };
+		EA45BA8124DE76BE00132984 /* XXBusinessProgressView.m in Sources */ = {isa = PBXBuildFile; fileRef = EA45B8F524DE76BD00132984 /* XXBusinessProgressView.m */; };
+		EA45BA8224DE76BE00132984 /* XXBusinessAmountView.m in Sources */ = {isa = PBXBuildFile; fileRef = EA45B8F624DE76BD00132984 /* XXBusinessAmountView.m */; };
+		EA45BA8324DE76BE00132984 /* XXDepthView.m in Sources */ = {isa = PBXBuildFile; fileRef = EA45B8F724DE76BD00132984 /* XXDepthView.m */; };
+		EA45BAF724DE76BF00132984 /* XXFavoriteEditingVC.m in Sources */ = {isa = PBXBuildFile; fileRef = EA45B9F024DE76BE00132984 /* XXFavoriteEditingVC.m */; };
+		EA45BAF824DE76BF00132984 /* XXQuoteVC.m in Sources */ = {isa = PBXBuildFile; fileRef = EA45B9F324DE76BE00132984 /* XXQuoteVC.m */; };
+		EA45BAFA24DE76BF00132984 /* XXFavoriteEditingCell.m in Sources */ = {isa = PBXBuildFile; fileRef = EA45B9F924DE76BE00132984 /* XXFavoriteEditingCell.m */; };
+		EA45BAFB24DE76BF00132984 /* XXMarketCell.m in Sources */ = {isa = PBXBuildFile; fileRef = EA45B9FA24DE76BE00132984 /* XXMarketCell.m */; };
+		EA45BB0124DE76BF00132984 /* XXQuoteModel.m in Sources */ = {isa = PBXBuildFile; fileRef = EA45BA0824DE76BE00132984 /* XXQuoteModel.m */; };
+		EA45BB0224DE76BF00132984 /* XXQuoteTokenModel.m in Sources */ = {isa = PBXBuildFile; fileRef = EA45BA0A24DE76BE00132984 /* XXQuoteTokenModel.m */; };
+		EA45BB0324DE76BF00132984 /* XXSymbolModel.m in Sources */ = {isa = PBXBuildFile; fileRef = EA45BA0B24DE76BE00132984 /* XXSymbolModel.m */; };
+		EA45BB0724DE76BF00132984 /* XXCoinQuoteView.m in Sources */ = {isa = PBXBuildFile; fileRef = EA45BA1624DE76BE00132984 /* XXCoinQuoteView.m */; };
+		EA45BB0824DE76BF00132984 /* XXFavoriteQuoteView.m in Sources */ = {isa = PBXBuildFile; fileRef = EA45BA1724DE76BE00132984 /* XXFavoriteQuoteView.m */; };
+		EA45BB0924DE76BF00132984 /* XXSymbolView.m in Sources */ = {isa = PBXBuildFile; fileRef = EA45BA1924DE76BE00132984 /* XXSymbolView.m */; };
+		EA45BB0B24DE76BF00132984 /* XXMarketSortButton.m in Sources */ = {isa = PBXBuildFile; fileRef = EA45BA1C24DE76BE00132984 /* XXMarketSortButton.m */; };
+		EA45BB0C24DE76BF00132984 /* XXQuoteView.m in Sources */ = {isa = PBXBuildFile; fileRef = EA45BA1E24DE76BE00132984 /* XXQuoteView.m */; };
+		EA45BB0D24DE76BF00132984 /* XXBitcoinDetailVC.m in Sources */ = {isa = PBXBuildFile; fileRef = EA45BA2124DE76BE00132984 /* XXBitcoinDetailVC.m */; };
+		EA45BB0E24DE76BF00132984 /* XXTradeCell.m in Sources */ = {isa = PBXBuildFile; fileRef = EA45BA2624DE76BE00132984 /* XXTradeCell.m */; };
+		EA45BB0F24DE76BF00132984 /* XXDepthCell.m in Sources */ = {isa = PBXBuildFile; fileRef = EA45BA2724DE76BE00132984 /* XXDepthCell.m */; };
+		EA45BB1024DE76BF00132984 /* XXDepthMapData.m in Sources */ = {isa = PBXBuildFile; fileRef = EA45BA2D24DE76BE00132984 /* XXDepthMapData.m */; };
+		EA45BB1124DE76BF00132984 /* KSymbolDetailData.m in Sources */ = {isa = PBXBuildFile; fileRef = EA45BA2E24DE76BE00132984 /* KSymbolDetailData.m */; };
+		EA45BB1224DE76BF00132984 /* XXTickerModel.m in Sources */ = {isa = PBXBuildFile; fileRef = EA45BA2F24DE76BE00132984 /* XXTickerModel.m */; };
+		EA45BB1324DE76BF00132984 /* XXTradeModel.m in Sources */ = {isa = PBXBuildFile; fileRef = EA45BA3024DE76BE00132984 /* XXTradeModel.m */; };
+		EA45BB1424DE76BF00132984 /* XXDepthMapModel.m in Sources */ = {isa = PBXBuildFile; fileRef = EA45BA3124DE76BE00132984 /* XXDepthMapModel.m */; };
+		EA45BB1524DE76BF00132984 /* XXDepthOrderModel.m in Sources */ = {isa = PBXBuildFile; fileRef = EA45BA3224DE76BE00132984 /* XXDepthOrderModel.m */; };
+		EA45BB1624DE76BF00132984 /* XXFullPopButton.m in Sources */ = {isa = PBXBuildFile; fileRef = EA45BA3624DE76BE00132984 /* XXFullPopButton.m */; };
+		EA45BB1724DE76BF00132984 /* XXTickerWindow.m in Sources */ = {isa = PBXBuildFile; fileRef = EA45BA3824DE76BE00132984 /* XXTickerWindow.m */; };
+		EA45BB1824DE76BF00132984 /* XXBDetailSectionHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = EA45BA3924DE76BE00132984 /* XXBDetailSectionHeaderView.m */; };
+		EA45BB1924DE76BF00132984 /* XXFullView.m in Sources */ = {isa = PBXBuildFile; fileRef = EA45BA3A24DE76BE00132984 /* XXFullView.m */; };
+		EA45BB1A24DE76BF00132984 /* XXKlineShareView.m in Sources */ = {isa = PBXBuildFile; fileRef = EA45BA3B24DE76BE00132984 /* XXKlineShareView.m */; };
+		EA45BB1B24DE76BF00132984 /* XXKlineActionView.m in Sources */ = {isa = PBXBuildFile; fileRef = EA45BA3C24DE76BE00132984 /* XXKlineActionView.m */; };
+		EA45BB1C24DE76BF00132984 /* XXDetailDepthListView.m in Sources */ = {isa = PBXBuildFile; fileRef = EA45BA3D24DE76BE00132984 /* XXDetailDepthListView.m */; };
+		EA45BB1D24DE76BF00132984 /* XXDepthMapView.m in Sources */ = {isa = PBXBuildFile; fileRef = EA45BA3E24DE76BE00132984 /* XXDepthMapView.m */; };
+		EA45BB1E24DE76BF00132984 /* XXBDetailHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = EA45BA4024DE76BE00132984 /* XXBDetailHeaderView.m */; };
+		EA45BB1F24DE76BF00132984 /* XXDetailTradesListView.m in Sources */ = {isa = PBXBuildFile; fileRef = EA45BA4224DE76BE00132984 /* XXDetailTradesListView.m */; };
+		EA45BB2024DE76BF00132984 /* XXCoinInfoView.m in Sources */ = {isa = PBXBuildFile; fileRef = EA45BA4324DE76BE00132984 /* XXCoinInfoView.m */; };
+		EA45BB2224DE76BF00132984 /* XXTickerView.m in Sources */ = {isa = PBXBuildFile; fileRef = EA45BA4C24DE76BE00132984 /* XXTickerView.m */; };
+		EA45BB2324DE76BF00132984 /* XXKineView.m in Sources */ = {isa = PBXBuildFile; fileRef = EA45BA5024DE76BE00132984 /* XXKineView.m */; };
+		EA45BB2424DE76BF00132984 /* XXKlineDepthActionView.m in Sources */ = {isa = PBXBuildFile; fileRef = EA45BA5324DE76BE00132984 /* XXKlineDepthActionView.m */; };
+		EA45BB2524DE76BF00132984 /* XXBitcoinSearchVC.m in Sources */ = {isa = PBXBuildFile; fileRef = EA45BA5724DE76BE00132984 /* XXBitcoinSearchVC.m */; };
+		EA45BB2624DE76BF00132984 /* XXMarketSearchCell.m in Sources */ = {isa = PBXBuildFile; fileRef = EA45BA5924DE76BE00132984 /* XXMarketSearchCell.m */; };
+		EA45BB2724DE76BF00132984 /* XXHistoryView.m in Sources */ = {isa = PBXBuildFile; fileRef = EA45BA5C24DE76BE00132984 /* XXHistoryView.m */; };
+		EA45BB7524DF999F00132984 /* YBRectConst.m in Sources */ = {isa = PBXBuildFile; fileRef = EA45BB2A24DF999E00132984 /* YBRectConst.m */; };
+		EA45BB7624DF999F00132984 /* YBPopupMenuPath.m in Sources */ = {isa = PBXBuildFile; fileRef = EA45BB2B24DF999E00132984 /* YBPopupMenuPath.m */; };
+		EA45BB7724DF999F00132984 /* YBPopupMenu.m in Sources */ = {isa = PBXBuildFile; fileRef = EA45BB2D24DF999E00132984 /* YBPopupMenu.m */; };
+		EA45BB7824DF999F00132984 /* Y_SmallKLineView.m in Sources */ = {isa = PBXBuildFile; fileRef = EA45BB3024DF999E00132984 /* Y_SmallKLineView.m */; };
+		EA45BB7924DF999F00132984 /* Y_StockChartGlobalVariable.m in Sources */ = {isa = PBXBuildFile; fileRef = EA45BB3424DF999E00132984 /* Y_StockChartGlobalVariable.m */; };
+		EA45BB7A24DF999F00132984 /* UIColor+Y_StockChart.m in Sources */ = {isa = PBXBuildFile; fileRef = EA45BB3924DF999E00132984 /* UIColor+Y_StockChart.m */; };
+		EA45BB7B24DF999F00132984 /* XYHKLineView.m in Sources */ = {isa = PBXBuildFile; fileRef = EA45BB3F24DF999E00132984 /* XYHKLineView.m */; };
+		EA45BB7C24DF999F00132984 /* KLineRightView.m in Sources */ = {isa = PBXBuildFile; fileRef = EA45BB4324DF999E00132984 /* KLineRightView.m */; };
+		EA45BB7D24DF999F00132984 /* KLineHistoryView.m in Sources */ = {isa = PBXBuildFile; fileRef = EA45BB4524DF999E00132984 /* KLineHistoryView.m */; };
+		EA45BB7E24DF999F00132984 /* KLineTransverseLine.m in Sources */ = {isa = PBXBuildFile; fileRef = EA45BB4624DF999E00132984 /* KLineTransverseLine.m */; };
+		EA45BB7F24DF999F00132984 /* KLineLastPriceView.m in Sources */ = {isa = PBXBuildFile; fileRef = EA45BB4724DF999E00132984 /* KLineLastPriceView.m */; };
+		EA45BB8024DF999F00132984 /* Y_KLineMAView.m in Sources */ = {isa = PBXBuildFile; fileRef = EA45BB4A24DF999E00132984 /* Y_KLineMAView.m */; };
+		EA45BB8124DF999F00132984 /* Y_KLineView.m in Sources */ = {isa = PBXBuildFile; fileRef = EA45BB4B24DF999E00132984 /* Y_KLineView.m */; };
+		EA45BB8224DF999F00132984 /* Y_StockChartRightYView.m in Sources */ = {isa = PBXBuildFile; fileRef = EA45BB4D24DF999E00132984 /* Y_StockChartRightYView.m */; };
+		EA45BB8324DF999F00132984 /* Y_VolumeMAView.m in Sources */ = {isa = PBXBuildFile; fileRef = EA45BB5124DF999E00132984 /* Y_VolumeMAView.m */; };
+		EA45BB8424DF999F00132984 /* Y_KLineAccessoryView.m in Sources */ = {isa = PBXBuildFile; fileRef = EA45BB5324DF999E00132984 /* Y_KLineAccessoryView.m */; };
+		EA45BB8524DF999F00132984 /* Y_KLineAccessory.m in Sources */ = {isa = PBXBuildFile; fileRef = EA45BB5624DF999E00132984 /* Y_KLineAccessory.m */; };
+		EA45BB8624DF999F00132984 /* Y_AccessoryMAView.m in Sources */ = {isa = PBXBuildFile; fileRef = EA45BB5924DF999E00132984 /* Y_AccessoryMAView.m */; };
+		EA45BB8724DF999F00132984 /* Y_KLinePositionModel.m in Sources */ = {isa = PBXBuildFile; fileRef = EA45BB5D24DF999E00132984 /* Y_KLinePositionModel.m */; };
+		EA45BB8824DF999F00132984 /* Y_KLineModel.m in Sources */ = {isa = PBXBuildFile; fileRef = EA45BB6224DF999E00132984 /* Y_KLineModel.m */; };
+		EA45BB8924DF999F00132984 /* Y_KLineGroupModel.m in Sources */ = {isa = PBXBuildFile; fileRef = EA45BB6324DF999E00132984 /* Y_KLineGroupModel.m */; };
+		EA45BB8A24DF999F00132984 /* Y_KLineVolumePositionModel.m in Sources */ = {isa = PBXBuildFile; fileRef = EA45BB6424DF999E00132984 /* Y_KLineVolumePositionModel.m */; };
+		EA45BB8B24DF999F00132984 /* Y_KLineVolumeView.m in Sources */ = {isa = PBXBuildFile; fileRef = EA45BB6724DF999E00132984 /* Y_KLineVolumeView.m */; };
+		EA45BB8C24DF999F00132984 /* Y_KLineVolume.m in Sources */ = {isa = PBXBuildFile; fileRef = EA45BB6924DF999E00132984 /* Y_KLineVolume.m */; };
+		EA45BB8D24DF999F00132984 /* Y_KLineMainView.m in Sources */ = {isa = PBXBuildFile; fileRef = EA45BB6D24DF999E00132984 /* Y_KLineMainView.m */; };
+		EA45BB8E24DF999F00132984 /* Y_MALine.m in Sources */ = {isa = PBXBuildFile; fileRef = EA45BB7124DF999F00132984 /* Y_MALine.m */; };
+		EA45BB8F24DF999F00132984 /* Y_KLine.m in Sources */ = {isa = PBXBuildFile; fileRef = EA45BB7224DF999F00132984 /* Y_KLine.m */; };
+		EA45BB9024DF999F00132984 /* Y_StockChartViewItemModel.m in Sources */ = {isa = PBXBuildFile; fileRef = EA45BB7424DF999F00132984 /* Y_StockChartViewItemModel.m */; };
+		EA45BBA324DFC42F00132984 /* NotificationManager.m in Sources */ = {isa = PBXBuildFile; fileRef = EA45BB9924DFC42E00132984 /* NotificationManager.m */; };
+		EA45BBA524DFC42F00132984 /* XXIndexModules.m in Sources */ = {isa = PBXBuildFile; fileRef = EA45BB9C24DFC42E00132984 /* XXIndexModules.m */; };
+		EA45BBA624DFC42F00132984 /* XXMarketData.m in Sources */ = {isa = PBXBuildFile; fileRef = EA45BB9E24DFC42E00132984 /* XXMarketData.m */; };
+		EA45BBA724DFC42F00132984 /* XXTradeData.m in Sources */ = {isa = PBXBuildFile; fileRef = EA45BB9F24DFC42E00132984 /* XXTradeData.m */; };
+		EA45BBA924DFC42F00132984 /* XXShareInfoModel.m in Sources */ = {isa = PBXBuildFile; fileRef = EA45BBA124DFC42E00132984 /* XXShareInfoModel.m */; };
+		EA45BBB624DFD7B400132984 /* XXWebQuoteModel.m in Sources */ = {isa = PBXBuildFile; fileRef = EA45BBAC24DFD7B400132984 /* XXWebQuoteModel.m */; };
+		EA45BBB724DFD7B400132984 /* XXUserSocket.m in Sources */ = {isa = PBXBuildFile; fileRef = EA45BBAE24DFD7B400132984 /* XXUserSocket.m */; };
+		EA45BBB824DFD7B400132984 /* XXWebSocket.m in Sources */ = {isa = PBXBuildFile; fileRef = EA45BBB324DFD7B400132984 /* XXWebSocket.m */; };
+		EA45BBB924DFD7B400132984 /* XXQuoteSocket.m in Sources */ = {isa = PBXBuildFile; fileRef = EA45BBB424DFD7B400132984 /* XXQuoteSocket.m */; };
+		EA45BBBA24DFD7B400132984 /* XXReqWebModel.m in Sources */ = {isa = PBXBuildFile; fileRef = EA45BBB524DFD7B400132984 /* XXReqWebModel.m */; };
+		EA45BBC424E185C200132984 /* XXIndexModel.m in Sources */ = {isa = PBXBuildFile; fileRef = EA45BBC324E185C200132984 /* XXIndexModel.m */; };
+		EA45BBC524E2B11B00132984 /* XXSegmentView.m in Sources */ = {isa = PBXBuildFile; fileRef = 7A1477E323617639008212B8 /* XXSegmentView.m */; };
 		EA4F5E992179B5190025B350 /* AppDelegate+Category.m in Sources */ = {isa = PBXBuildFile; fileRef = EA4F5E982179B5190025B350 /* AppDelegate+Category.m */; };
 		EA677242246AA96C008C931A /* XXChooseLoginAccountView.m in Sources */ = {isa = PBXBuildFile; fileRef = EA677241246AA96C008C931A /* XXChooseLoginAccountView.m */; };
 		EA677245246ACFA4008C931A /* XXLoginCell.m in Sources */ = {isa = PBXBuildFile; fileRef = EA677244246ACFA4008C931A /* XXLoginCell.m */; };
@@ -597,6 +707,226 @@
 		EA3E5964244721DD0080B98F /* XXMsgWithdrawalModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = XXMsgWithdrawalModel.m; sourceTree = "<group>"; };
 		EA3E5966244723200080B98F /* XXMsgSendModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = XXMsgSendModel.h; sourceTree = "<group>"; };
 		EA3E5967244723200080B98F /* XXMsgSendModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = XXMsgSendModel.m; sourceTree = "<group>"; };
+		EA45B8A524DE76BD00132984 /* XXOrderManagerVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XXOrderManagerVC.m; sourceTree = "<group>"; };
+		EA45B8A624DE76BD00132984 /* XXOrderDetailVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XXOrderDetailVC.m; sourceTree = "<group>"; };
+		EA45B8A824DE76BD00132984 /* XXOrderManagerVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XXOrderManagerVC.h; sourceTree = "<group>"; };
+		EA45B8A924DE76BD00132984 /* XXOrderDetailVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XXOrderDetailVC.h; sourceTree = "<group>"; };
+		EA45B8AB24DE76BD00132984 /* XXHistoryOderCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XXHistoryOderCell.m; sourceTree = "<group>"; };
+		EA45B8AC24DE76BD00132984 /* XXOrderDetailCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XXOrderDetailCell.h; sourceTree = "<group>"; };
+		EA45B8AD24DE76BD00132984 /* XXCurrentOrderCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XXCurrentOrderCell.h; sourceTree = "<group>"; };
+		EA45B8AE24DE76BD00132984 /* XXOrderDetailCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XXOrderDetailCell.m; sourceTree = "<group>"; };
+		EA45B8AF24DE76BD00132984 /* XXHistoryOderCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XXHistoryOderCell.h; sourceTree = "<group>"; };
+		EA45B8B024DE76BD00132984 /* XXCurrentOrderCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XXCurrentOrderCell.m; sourceTree = "<group>"; };
+		EA45B8B224DE76BD00132984 /* XXOrderInfoModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XXOrderInfoModel.m; sourceTree = "<group>"; };
+		EA45B8B324DE76BD00132984 /* XXOrderModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XXOrderModel.h; sourceTree = "<group>"; };
+		EA45B8B424DE76BD00132984 /* XXOrderInfoModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XXOrderInfoModel.h; sourceTree = "<group>"; };
+		EA45B8B524DE76BD00132984 /* XXOrderModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XXOrderModel.m; sourceTree = "<group>"; };
+		EA45B8B724DE76BD00132984 /* XXHistoryOderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XXHistoryOderView.m; sourceTree = "<group>"; };
+		EA45B8B824DE76BD00132984 /* XXScreenOrderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XXScreenOrderView.m; sourceTree = "<group>"; };
+		EA45B8B924DE76BD00132984 /* XXCurrentOrderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XXCurrentOrderView.h; sourceTree = "<group>"; };
+		EA45B8BA24DE76BD00132984 /* XXOrderDetailHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XXOrderDetailHeaderView.m; sourceTree = "<group>"; };
+		EA45B8BB24DE76BD00132984 /* XXOrderTypeView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XXOrderTypeView.m; sourceTree = "<group>"; };
+		EA45B8BC24DE76BD00132984 /* XXHistoryOderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XXHistoryOderView.h; sourceTree = "<group>"; };
+		EA45B8BD24DE76BD00132984 /* XXScreenOrderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XXScreenOrderView.h; sourceTree = "<group>"; };
+		EA45B8BE24DE76BD00132984 /* XXCurrentOrderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XXCurrentOrderView.m; sourceTree = "<group>"; };
+		EA45B8BF24DE76BD00132984 /* XXOrderTypeView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XXOrderTypeView.h; sourceTree = "<group>"; };
+		EA45B8C024DE76BD00132984 /* XXOrderDetailHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XXOrderDetailHeaderView.h; sourceTree = "<group>"; };
+		EA45B8C324DE76BD00132984 /* XXTradeHomeVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XXTradeHomeVC.h; sourceTree = "<group>"; };
+		EA45B8C424DE76BD00132984 /* XXTradeHomeVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XXTradeHomeVC.m; sourceTree = "<group>"; };
+		EA45B8C624DE76BD00132984 /* XXTradeDepthCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XXTradeDepthCell.m; sourceTree = "<group>"; };
+		EA45B8C724DE76BD00132984 /* XXSwitchPairsCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XXSwitchPairsCell.h; sourceTree = "<group>"; };
+		EA45B8C824DE76BD00132984 /* XXSwitchPairsOptionCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XXSwitchPairsOptionCell.h; sourceTree = "<group>"; };
+		EA45B8C924DE76BD00132984 /* XXTradeDepthCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XXTradeDepthCell.h; sourceTree = "<group>"; };
+		EA45B8CA24DE76BD00132984 /* XXSwitchPairsCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XXSwitchPairsCell.m; sourceTree = "<group>"; };
+		EA45B8CB24DE76BD00132984 /* XXSwitchPairsOptionCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XXSwitchPairsOptionCell.m; sourceTree = "<group>"; };
+		EA45B8CE24DE76BD00132984 /* XXTradeableModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XXTradeableModel.h; sourceTree = "<group>"; };
+		EA45B8CF24DE76BD00132984 /* XXDepthModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XXDepthModel.m; sourceTree = "<group>"; };
+		EA45B8D224DE76BD00132984 /* XXTradeCoinData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XXTradeCoinData.h; sourceTree = "<group>"; };
+		EA45B8D424DE76BD00132984 /* XXTradeableModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XXTradeableModel.m; sourceTree = "<group>"; };
+		EA45B8D524DE76BD00132984 /* XXDepthModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XXDepthModel.h; sourceTree = "<group>"; };
+		EA45B8D624DE76BD00132984 /* XXTradeCoinData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XXTradeCoinData.m; sourceTree = "<group>"; };
+		EA45B8DB24DE76BD00132984 /* XXDepthTool.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XXDepthTool.m; sourceTree = "<group>"; };
+		EA45B8DC24DE76BD00132984 /* XXCoinTradeSectionHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XXCoinTradeSectionHeaderView.m; sourceTree = "<group>"; };
+		EA45B8DD24DE76BD00132984 /* XXCoinView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XXCoinView.h; sourceTree = "<group>"; };
+		EA45B8DF24DE76BD00132984 /* XXPickerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XXPickerView.m; sourceTree = "<group>"; };
+		EA45B8E024DE76BD00132984 /* XXSwitchCoinView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XXSwitchCoinView.m; sourceTree = "<group>"; };
+		EA45B8E124DE76BD00132984 /* XXMenuView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XXMenuView.h; sourceTree = "<group>"; };
+		EA45B8E424DE76BD00132984 /* XXCoinView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XXCoinView.m; sourceTree = "<group>"; };
+		EA45B8E524DE76BD00132984 /* XXCoinTradeSectionHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XXCoinTradeSectionHeaderView.h; sourceTree = "<group>"; };
+		EA45B8E624DE76BD00132984 /* XXDepthTool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XXDepthTool.h; sourceTree = "<group>"; };
+		EA45B8E724DE76BD00132984 /* XXPickerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XXPickerView.h; sourceTree = "<group>"; };
+		EA45B8E824DE76BD00132984 /* XXMenuView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XXMenuView.m; sourceTree = "<group>"; };
+		EA45B8E924DE76BD00132984 /* XXSwitchCoinView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XXSwitchCoinView.h; sourceTree = "<group>"; };
+		EA45B8EB24DE76BD00132984 /* XXTradeLeverBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XXTradeLeverBar.h; sourceTree = "<group>"; };
+		EA45B8EC24DE76BD00132984 /* XXTradeView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XXTradeView.h; sourceTree = "<group>"; };
+		EA45B8ED24DE76BD00132984 /* XXBusinessPriceView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XXBusinessPriceView.h; sourceTree = "<group>"; };
+		EA45B8EE24DE76BD00132984 /* XXBusinessProgressView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XXBusinessProgressView.h; sourceTree = "<group>"; };
+		EA45B8EF24DE76BD00132984 /* XXBusinessAmountView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XXBusinessAmountView.h; sourceTree = "<group>"; };
+		EA45B8F024DE76BD00132984 /* XXBuySellButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XXBuySellButton.m; sourceTree = "<group>"; };
+		EA45B8F124DE76BD00132984 /* XXDepthView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XXDepthView.h; sourceTree = "<group>"; };
+		EA45B8F224DE76BD00132984 /* XXBusinessPriceView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XXBusinessPriceView.m; sourceTree = "<group>"; };
+		EA45B8F324DE76BD00132984 /* XXTradeView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XXTradeView.m; sourceTree = "<group>"; };
+		EA45B8F424DE76BD00132984 /* XXTradeLeverBar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XXTradeLeverBar.m; sourceTree = "<group>"; };
+		EA45B8F524DE76BD00132984 /* XXBusinessProgressView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XXBusinessProgressView.m; sourceTree = "<group>"; };
+		EA45B8F624DE76BD00132984 /* XXBusinessAmountView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XXBusinessAmountView.m; sourceTree = "<group>"; };
+		EA45B8F724DE76BD00132984 /* XXDepthView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XXDepthView.m; sourceTree = "<group>"; };
+		EA45B8F824DE76BD00132984 /* XXBuySellButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XXBuySellButton.h; sourceTree = "<group>"; };
+		EA45B9EF24DE76BE00132984 /* XXQuoteVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XXQuoteVC.h; sourceTree = "<group>"; };
+		EA45B9F024DE76BE00132984 /* XXFavoriteEditingVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XXFavoriteEditingVC.m; sourceTree = "<group>"; };
+		EA45B9F224DE76BE00132984 /* XXFavoriteEditingVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XXFavoriteEditingVC.h; sourceTree = "<group>"; };
+		EA45B9F324DE76BE00132984 /* XXQuoteVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XXQuoteVC.m; sourceTree = "<group>"; };
+		EA45B9F624DE76BE00132984 /* XXMarketCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XXMarketCell.h; sourceTree = "<group>"; };
+		EA45B9F724DE76BE00132984 /* XXFavoriteEditingCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XXFavoriteEditingCell.h; sourceTree = "<group>"; };
+		EA45B9F924DE76BE00132984 /* XXFavoriteEditingCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XXFavoriteEditingCell.m; sourceTree = "<group>"; };
+		EA45B9FA24DE76BE00132984 /* XXMarketCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XXMarketCell.m; sourceTree = "<group>"; };
+		EA45B9FF24DE76BE00132984 /* XXQuoteModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XXQuoteModel.h; sourceTree = "<group>"; };
+		EA45BA0124DE76BE00132984 /* XXSymbolModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XXSymbolModel.h; sourceTree = "<group>"; };
+		EA45BA0224DE76BE00132984 /* XXQuoteTokenModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XXQuoteTokenModel.h; sourceTree = "<group>"; };
+		EA45BA0824DE76BE00132984 /* XXQuoteModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XXQuoteModel.m; sourceTree = "<group>"; };
+		EA45BA0A24DE76BE00132984 /* XXQuoteTokenModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XXQuoteTokenModel.m; sourceTree = "<group>"; };
+		EA45BA0B24DE76BE00132984 /* XXSymbolModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XXSymbolModel.m; sourceTree = "<group>"; };
+		EA45BA0E24DE76BE00132984 /* XXFavoriteQuoteView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XXFavoriteQuoteView.h; sourceTree = "<group>"; };
+		EA45BA0F24DE76BE00132984 /* XXCoinQuoteView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XXCoinQuoteView.h; sourceTree = "<group>"; };
+		EA45BA1124DE76BE00132984 /* XXSymbolView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XXSymbolView.h; sourceTree = "<group>"; };
+		EA45BA1324DE76BE00132984 /* XXMarketSortButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XXMarketSortButton.h; sourceTree = "<group>"; };
+		EA45BA1524DE76BE00132984 /* XXQuoteView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XXQuoteView.h; sourceTree = "<group>"; };
+		EA45BA1624DE76BE00132984 /* XXCoinQuoteView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XXCoinQuoteView.m; sourceTree = "<group>"; };
+		EA45BA1724DE76BE00132984 /* XXFavoriteQuoteView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XXFavoriteQuoteView.m; sourceTree = "<group>"; };
+		EA45BA1924DE76BE00132984 /* XXSymbolView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XXSymbolView.m; sourceTree = "<group>"; };
+		EA45BA1C24DE76BE00132984 /* XXMarketSortButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XXMarketSortButton.m; sourceTree = "<group>"; };
+		EA45BA1E24DE76BE00132984 /* XXQuoteView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XXQuoteView.m; sourceTree = "<group>"; };
+		EA45BA2124DE76BE00132984 /* XXBitcoinDetailVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XXBitcoinDetailVC.m; sourceTree = "<group>"; };
+		EA45BA2224DE76BE00132984 /* XXBitcoinDetailVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XXBitcoinDetailVC.h; sourceTree = "<group>"; };
+		EA45BA2424DE76BE00132984 /* XXTradeCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XXTradeCell.h; sourceTree = "<group>"; };
+		EA45BA2524DE76BE00132984 /* XXDepthCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XXDepthCell.h; sourceTree = "<group>"; };
+		EA45BA2624DE76BE00132984 /* XXTradeCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XXTradeCell.m; sourceTree = "<group>"; };
+		EA45BA2724DE76BE00132984 /* XXDepthCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XXDepthCell.m; sourceTree = "<group>"; };
+		EA45BA2924DE76BE00132984 /* XXTickerModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XXTickerModel.h; sourceTree = "<group>"; };
+		EA45BA2A24DE76BE00132984 /* XXDepthMapModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XXDepthMapModel.h; sourceTree = "<group>"; };
+		EA45BA2B24DE76BE00132984 /* XXTradeModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XXTradeModel.h; sourceTree = "<group>"; };
+		EA45BA2C24DE76BE00132984 /* XXDepthOrderModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XXDepthOrderModel.h; sourceTree = "<group>"; };
+		EA45BA2D24DE76BE00132984 /* XXDepthMapData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XXDepthMapData.m; sourceTree = "<group>"; };
+		EA45BA2E24DE76BE00132984 /* KSymbolDetailData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KSymbolDetailData.m; sourceTree = "<group>"; };
+		EA45BA2F24DE76BE00132984 /* XXTickerModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XXTickerModel.m; sourceTree = "<group>"; };
+		EA45BA3024DE76BE00132984 /* XXTradeModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XXTradeModel.m; sourceTree = "<group>"; };
+		EA45BA3124DE76BE00132984 /* XXDepthMapModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XXDepthMapModel.m; sourceTree = "<group>"; };
+		EA45BA3224DE76BE00132984 /* XXDepthOrderModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XXDepthOrderModel.m; sourceTree = "<group>"; };
+		EA45BA3324DE76BE00132984 /* KSymbolDetailData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KSymbolDetailData.h; sourceTree = "<group>"; };
+		EA45BA3424DE76BE00132984 /* XXDepthMapData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XXDepthMapData.h; sourceTree = "<group>"; };
+		EA45BA3624DE76BE00132984 /* XXFullPopButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XXFullPopButton.m; sourceTree = "<group>"; };
+		EA45BA3824DE76BE00132984 /* XXTickerWindow.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XXTickerWindow.m; sourceTree = "<group>"; };
+		EA45BA3924DE76BE00132984 /* XXBDetailSectionHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XXBDetailSectionHeaderView.m; sourceTree = "<group>"; };
+		EA45BA3A24DE76BE00132984 /* XXFullView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XXFullView.m; sourceTree = "<group>"; };
+		EA45BA3B24DE76BE00132984 /* XXKlineShareView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XXKlineShareView.m; sourceTree = "<group>"; };
+		EA45BA3C24DE76BE00132984 /* XXKlineActionView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XXKlineActionView.m; sourceTree = "<group>"; };
+		EA45BA3D24DE76BE00132984 /* XXDetailDepthListView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XXDetailDepthListView.m; sourceTree = "<group>"; };
+		EA45BA3E24DE76BE00132984 /* XXDepthMapView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XXDepthMapView.m; sourceTree = "<group>"; };
+		EA45BA3F24DE76BE00132984 /* XXTickerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XXTickerView.h; sourceTree = "<group>"; };
+		EA45BA4024DE76BE00132984 /* XXBDetailHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XXBDetailHeaderView.m; sourceTree = "<group>"; };
+		EA45BA4124DE76BE00132984 /* XXKlineDepthActionView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XXKlineDepthActionView.h; sourceTree = "<group>"; };
+		EA45BA4224DE76BE00132984 /* XXDetailTradesListView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XXDetailTradesListView.m; sourceTree = "<group>"; };
+		EA45BA4324DE76BE00132984 /* XXCoinInfoView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XXCoinInfoView.m; sourceTree = "<group>"; };
+		EA45BA4424DE76BE00132984 /* XXKineView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XXKineView.h; sourceTree = "<group>"; };
+		EA45BA4524DE76BE00132984 /* XXTickerWindow.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XXTickerWindow.h; sourceTree = "<group>"; };
+		EA45BA4724DE76BE00132984 /* XXFullPopButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XXFullPopButton.h; sourceTree = "<group>"; };
+		EA45BA4824DE76BE00132984 /* XXFullView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XXFullView.h; sourceTree = "<group>"; };
+		EA45BA4924DE76BE00132984 /* XXKlineShareView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XXKlineShareView.h; sourceTree = "<group>"; };
+		EA45BA4A24DE76BE00132984 /* XXBDetailSectionHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XXBDetailSectionHeaderView.h; sourceTree = "<group>"; };
+		EA45BA4B24DE76BE00132984 /* XXBDetailHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XXBDetailHeaderView.h; sourceTree = "<group>"; };
+		EA45BA4C24DE76BE00132984 /* XXTickerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XXTickerView.m; sourceTree = "<group>"; };
+		EA45BA4D24DE76BE00132984 /* XXDetailDepthListView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XXDetailDepthListView.h; sourceTree = "<group>"; };
+		EA45BA4E24DE76BE00132984 /* XXDepthMapView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XXDepthMapView.h; sourceTree = "<group>"; };
+		EA45BA4F24DE76BE00132984 /* XXKlineActionView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XXKlineActionView.h; sourceTree = "<group>"; };
+		EA45BA5024DE76BE00132984 /* XXKineView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XXKineView.m; sourceTree = "<group>"; };
+		EA45BA5124DE76BE00132984 /* XXCoinInfoView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XXCoinInfoView.h; sourceTree = "<group>"; };
+		EA45BA5224DE76BE00132984 /* XXDetailTradesListView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XXDetailTradesListView.h; sourceTree = "<group>"; };
+		EA45BA5324DE76BE00132984 /* XXKlineDepthActionView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XXKlineDepthActionView.m; sourceTree = "<group>"; };
+		EA45BA5624DE76BE00132984 /* XXBitcoinSearchVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XXBitcoinSearchVC.h; sourceTree = "<group>"; };
+		EA45BA5724DE76BE00132984 /* XXBitcoinSearchVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XXBitcoinSearchVC.m; sourceTree = "<group>"; };
+		EA45BA5924DE76BE00132984 /* XXMarketSearchCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XXMarketSearchCell.m; sourceTree = "<group>"; };
+		EA45BA5A24DE76BE00132984 /* XXMarketSearchCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XXMarketSearchCell.h; sourceTree = "<group>"; };
+		EA45BA5C24DE76BE00132984 /* XXHistoryView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XXHistoryView.m; sourceTree = "<group>"; };
+		EA45BA5D24DE76BE00132984 /* XXHistoryView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XXHistoryView.h; sourceTree = "<group>"; };
+		EA45BB2924DF999E00132984 /* YBPopupMenu.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YBPopupMenu.h; sourceTree = "<group>"; };
+		EA45BB2A24DF999E00132984 /* YBRectConst.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YBRectConst.m; sourceTree = "<group>"; };
+		EA45BB2B24DF999E00132984 /* YBPopupMenuPath.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YBPopupMenuPath.m; sourceTree = "<group>"; };
+		EA45BB2C24DF999E00132984 /* YBRectConst.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YBRectConst.h; sourceTree = "<group>"; };
+		EA45BB2D24DF999E00132984 /* YBPopupMenu.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YBPopupMenu.m; sourceTree = "<group>"; };
+		EA45BB2E24DF999E00132984 /* YBPopupMenuPath.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YBPopupMenuPath.h; sourceTree = "<group>"; };
+		EA45BB3024DF999E00132984 /* Y_SmallKLineView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Y_SmallKLineView.m; sourceTree = "<group>"; };
+		EA45BB3324DF999E00132984 /* Y_StockChartGlobalVariable.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Y_StockChartGlobalVariable.h; sourceTree = "<group>"; };
+		EA45BB3424DF999E00132984 /* Y_StockChartGlobalVariable.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Y_StockChartGlobalVariable.m; sourceTree = "<group>"; };
+		EA45BB3624DF999E00132984 /* Y_StockChartConstant.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Y_StockChartConstant.h; sourceTree = "<group>"; };
+		EA45BB3824DF999E00132984 /* UIColor+Y_StockChart.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIColor+Y_StockChart.h"; sourceTree = "<group>"; };
+		EA45BB3924DF999E00132984 /* UIColor+Y_StockChart.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIColor+Y_StockChart.m"; sourceTree = "<group>"; };
+		EA45BB3A24DF999E00132984 /* Y_StockChartViewItemModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Y_StockChartViewItemModel.h; sourceTree = "<group>"; };
+		EA45BB3B24DF999E00132984 /* Y_SmallKLineView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Y_SmallKLineView.h; sourceTree = "<group>"; };
+		EA45BB3E24DF999E00132984 /* KLineRightView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KLineRightView.h; sourceTree = "<group>"; };
+		EA45BB3F24DF999E00132984 /* XYHKLineView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XYHKLineView.m; sourceTree = "<group>"; };
+		EA45BB4024DF999E00132984 /* KLineHistoryView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KLineHistoryView.h; sourceTree = "<group>"; };
+		EA45BB4124DF999E00132984 /* KLineLastPriceView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KLineLastPriceView.h; sourceTree = "<group>"; };
+		EA45BB4224DF999E00132984 /* KLineTransverseLine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KLineTransverseLine.h; sourceTree = "<group>"; };
+		EA45BB4324DF999E00132984 /* KLineRightView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KLineRightView.m; sourceTree = "<group>"; };
+		EA45BB4424DF999E00132984 /* XYHKLineView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XYHKLineView.h; sourceTree = "<group>"; };
+		EA45BB4524DF999E00132984 /* KLineHistoryView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KLineHistoryView.m; sourceTree = "<group>"; };
+		EA45BB4624DF999E00132984 /* KLineTransverseLine.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KLineTransverseLine.m; sourceTree = "<group>"; };
+		EA45BB4724DF999E00132984 /* KLineLastPriceView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KLineLastPriceView.m; sourceTree = "<group>"; };
+		EA45BB4924DF999E00132984 /* Y_KLineMAView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Y_KLineMAView.h; sourceTree = "<group>"; };
+		EA45BB4A24DF999E00132984 /* Y_KLineMAView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Y_KLineMAView.m; sourceTree = "<group>"; };
+		EA45BB4B24DF999E00132984 /* Y_KLineView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Y_KLineView.m; sourceTree = "<group>"; };
+		EA45BB4D24DF999E00132984 /* Y_StockChartRightYView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Y_StockChartRightYView.m; sourceTree = "<group>"; };
+		EA45BB4E24DF999E00132984 /* Y_StockChartRightYView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Y_StockChartRightYView.h; sourceTree = "<group>"; };
+		EA45BB5024DF999E00132984 /* Y_VolumeMAView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Y_VolumeMAView.h; sourceTree = "<group>"; };
+		EA45BB5124DF999E00132984 /* Y_VolumeMAView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Y_VolumeMAView.m; sourceTree = "<group>"; };
+		EA45BB5324DF999E00132984 /* Y_KLineAccessoryView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Y_KLineAccessoryView.m; sourceTree = "<group>"; };
+		EA45BB5524DF999E00132984 /* Y_KLineAccessory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Y_KLineAccessory.h; sourceTree = "<group>"; };
+		EA45BB5624DF999E00132984 /* Y_KLineAccessory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Y_KLineAccessory.m; sourceTree = "<group>"; };
+		EA45BB5724DF999E00132984 /* Y_KLineAccessoryView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Y_KLineAccessoryView.h; sourceTree = "<group>"; };
+		EA45BB5924DF999E00132984 /* Y_AccessoryMAView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Y_AccessoryMAView.m; sourceTree = "<group>"; };
+		EA45BB5A24DF999E00132984 /* Y_AccessoryMAView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Y_AccessoryMAView.h; sourceTree = "<group>"; };
+		EA45BB5D24DF999E00132984 /* Y_KLinePositionModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Y_KLinePositionModel.m; sourceTree = "<group>"; };
+		EA45BB5E24DF999E00132984 /* Y_KLineModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Y_KLineModel.h; sourceTree = "<group>"; };
+		EA45BB5F24DF999E00132984 /* Y_KLineGroupModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Y_KLineGroupModel.h; sourceTree = "<group>"; };
+		EA45BB6024DF999E00132984 /* Y_KLineVolumePositionModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Y_KLineVolumePositionModel.h; sourceTree = "<group>"; };
+		EA45BB6124DF999E00132984 /* Y_KLinePositionModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Y_KLinePositionModel.h; sourceTree = "<group>"; };
+		EA45BB6224DF999E00132984 /* Y_KLineModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Y_KLineModel.m; sourceTree = "<group>"; };
+		EA45BB6324DF999E00132984 /* Y_KLineGroupModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Y_KLineGroupModel.m; sourceTree = "<group>"; };
+		EA45BB6424DF999E00132984 /* Y_KLineVolumePositionModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Y_KLineVolumePositionModel.m; sourceTree = "<group>"; };
+		EA45BB6524DF999E00132984 /* Y_KLineView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Y_KLineView.h; sourceTree = "<group>"; };
+		EA45BB6724DF999E00132984 /* Y_KLineVolumeView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Y_KLineVolumeView.m; sourceTree = "<group>"; };
+		EA45BB6924DF999E00132984 /* Y_KLineVolume.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Y_KLineVolume.m; sourceTree = "<group>"; };
+		EA45BB6A24DF999E00132984 /* Y_KLineVolume.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Y_KLineVolume.h; sourceTree = "<group>"; };
+		EA45BB6B24DF999E00132984 /* Y_KLineVolumeView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Y_KLineVolumeView.h; sourceTree = "<group>"; };
+		EA45BB6D24DF999E00132984 /* Y_KLineMainView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Y_KLineMainView.m; sourceTree = "<group>"; };
+		EA45BB6F24DF999F00132984 /* Y_MALine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Y_MALine.h; sourceTree = "<group>"; };
+		EA45BB7024DF999F00132984 /* Y_KLine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Y_KLine.h; sourceTree = "<group>"; };
+		EA45BB7124DF999F00132984 /* Y_MALine.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Y_MALine.m; sourceTree = "<group>"; };
+		EA45BB7224DF999F00132984 /* Y_KLine.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Y_KLine.m; sourceTree = "<group>"; };
+		EA45BB7324DF999F00132984 /* Y_KLineMainView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Y_KLineMainView.h; sourceTree = "<group>"; };
+		EA45BB7424DF999F00132984 /* Y_StockChartViewItemModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Y_StockChartViewItemModel.m; sourceTree = "<group>"; };
+		EA45BB9224DFC42E00132984 /* XXIndexModules.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XXIndexModules.h; sourceTree = "<group>"; };
+		EA45BB9424DFC42E00132984 /* XXShareInfoModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XXShareInfoModel.h; sourceTree = "<group>"; };
+		EA45BB9624DFC42E00132984 /* XXTradeData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XXTradeData.h; sourceTree = "<group>"; };
+		EA45BB9724DFC42E00132984 /* XXMarketData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XXMarketData.h; sourceTree = "<group>"; };
+		EA45BB9824DFC42E00132984 /* Singleton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Singleton.h; sourceTree = "<group>"; };
+		EA45BB9924DFC42E00132984 /* NotificationManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NotificationManager.m; sourceTree = "<group>"; };
+		EA45BB9C24DFC42E00132984 /* XXIndexModules.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XXIndexModules.m; sourceTree = "<group>"; };
+		EA45BB9D24DFC42E00132984 /* NotificationManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NotificationManager.h; sourceTree = "<group>"; };
+		EA45BB9E24DFC42E00132984 /* XXMarketData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XXMarketData.m; sourceTree = "<group>"; };
+		EA45BB9F24DFC42E00132984 /* XXTradeData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XXTradeData.m; sourceTree = "<group>"; };
+		EA45BBA124DFC42E00132984 /* XXShareInfoModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XXShareInfoModel.m; sourceTree = "<group>"; };
+		EA45BBAC24DFD7B400132984 /* XXWebQuoteModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XXWebQuoteModel.m; sourceTree = "<group>"; };
+		EA45BBAD24DFD7B400132984 /* XXWebSocket.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XXWebSocket.h; sourceTree = "<group>"; };
+		EA45BBAE24DFD7B400132984 /* XXUserSocket.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XXUserSocket.m; sourceTree = "<group>"; };
+		EA45BBAF24DFD7B400132984 /* XXQuoteSocket.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XXQuoteSocket.h; sourceTree = "<group>"; };
+		EA45BBB024DFD7B400132984 /* XXReqWebModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XXReqWebModel.h; sourceTree = "<group>"; };
+		EA45BBB124DFD7B400132984 /* XXWebQuoteModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XXWebQuoteModel.h; sourceTree = "<group>"; };
+		EA45BBB224DFD7B400132984 /* XXUserSocket.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XXUserSocket.h; sourceTree = "<group>"; };
+		EA45BBB324DFD7B400132984 /* XXWebSocket.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XXWebSocket.m; sourceTree = "<group>"; };
+		EA45BBB424DFD7B400132984 /* XXQuoteSocket.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XXQuoteSocket.m; sourceTree = "<group>"; };
+		EA45BBB524DFD7B400132984 /* XXReqWebModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XXReqWebModel.m; sourceTree = "<group>"; };
+		EA45BBC224E185C200132984 /* XXIndexModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XXIndexModel.h; sourceTree = "<group>"; };
+		EA45BBC324E185C200132984 /* XXIndexModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XXIndexModel.m; sourceTree = "<group>"; };
 		EA4F5E972179B5190025B350 /* AppDelegate+Category.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "AppDelegate+Category.h"; sourceTree = "<group>"; };
 		EA4F5E982179B5190025B350 /* AppDelegate+Category.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "AppDelegate+Category.m"; sourceTree = "<group>"; };
 		EA51B5EC2123DE5F0041FA72 /* BHChooseLanguageCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BHChooseLanguageCell.h; sourceTree = "<group>"; };
@@ -1566,6 +1896,612 @@
 			path = model;
 			sourceTree = "<group>";
 		};
+		EA45B8A124DE76BD00132984 /* Transaction */ = {
+			isa = PBXGroup;
+			children = (
+				EA45B8A224DE76BD00132984 /* Order */,
+				EA45B8C124DE76BD00132984 /* Home */,
+			);
+			path = Transaction;
+			sourceTree = "<group>";
+		};
+		EA45B8A224DE76BD00132984 /* Order */ = {
+			isa = PBXGroup;
+			children = (
+				EA45B8A324DE76BD00132984 /* Controller */,
+				EA45B8AA24DE76BD00132984 /* Cell */,
+				EA45B8B124DE76BD00132984 /* Model */,
+				EA45B8B624DE76BD00132984 /* View */,
+			);
+			path = Order;
+			sourceTree = "<group>";
+		};
+		EA45B8A324DE76BD00132984 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				EA45B8A524DE76BD00132984 /* XXOrderManagerVC.m */,
+				EA45B8A624DE76BD00132984 /* XXOrderDetailVC.m */,
+				EA45B8A824DE76BD00132984 /* XXOrderManagerVC.h */,
+				EA45B8A924DE76BD00132984 /* XXOrderDetailVC.h */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		EA45B8AA24DE76BD00132984 /* Cell */ = {
+			isa = PBXGroup;
+			children = (
+				EA45B8AB24DE76BD00132984 /* XXHistoryOderCell.m */,
+				EA45B8AC24DE76BD00132984 /* XXOrderDetailCell.h */,
+				EA45B8AD24DE76BD00132984 /* XXCurrentOrderCell.h */,
+				EA45B8AE24DE76BD00132984 /* XXOrderDetailCell.m */,
+				EA45B8AF24DE76BD00132984 /* XXHistoryOderCell.h */,
+				EA45B8B024DE76BD00132984 /* XXCurrentOrderCell.m */,
+			);
+			path = Cell;
+			sourceTree = "<group>";
+		};
+		EA45B8B124DE76BD00132984 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				EA45B8B224DE76BD00132984 /* XXOrderInfoModel.m */,
+				EA45B8B324DE76BD00132984 /* XXOrderModel.h */,
+				EA45B8B424DE76BD00132984 /* XXOrderInfoModel.h */,
+				EA45B8B524DE76BD00132984 /* XXOrderModel.m */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		EA45B8B624DE76BD00132984 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				EA45B8B724DE76BD00132984 /* XXHistoryOderView.m */,
+				EA45B8B824DE76BD00132984 /* XXScreenOrderView.m */,
+				EA45B8B924DE76BD00132984 /* XXCurrentOrderView.h */,
+				EA45B8BA24DE76BD00132984 /* XXOrderDetailHeaderView.m */,
+				EA45B8BB24DE76BD00132984 /* XXOrderTypeView.m */,
+				EA45B8BC24DE76BD00132984 /* XXHistoryOderView.h */,
+				EA45B8BD24DE76BD00132984 /* XXScreenOrderView.h */,
+				EA45B8BE24DE76BD00132984 /* XXCurrentOrderView.m */,
+				EA45B8BF24DE76BD00132984 /* XXOrderTypeView.h */,
+				EA45B8C024DE76BD00132984 /* XXOrderDetailHeaderView.h */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		EA45B8C124DE76BD00132984 /* Home */ = {
+			isa = PBXGroup;
+			children = (
+				EA45B8C224DE76BD00132984 /* Controller */,
+				EA45B8C524DE76BD00132984 /* Cell */,
+				EA45B8CC24DE76BD00132984 /* Model */,
+				EA45B8D924DE76BD00132984 /* View */,
+				EA45B8EA24DE76BD00132984 /* TransactionView */,
+			);
+			path = Home;
+			sourceTree = "<group>";
+		};
+		EA45B8C224DE76BD00132984 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				EA45B8C324DE76BD00132984 /* XXTradeHomeVC.h */,
+				EA45B8C424DE76BD00132984 /* XXTradeHomeVC.m */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		EA45B8C524DE76BD00132984 /* Cell */ = {
+			isa = PBXGroup;
+			children = (
+				EA45B8C924DE76BD00132984 /* XXTradeDepthCell.h */,
+				EA45B8C624DE76BD00132984 /* XXTradeDepthCell.m */,
+				EA45B8C724DE76BD00132984 /* XXSwitchPairsCell.h */,
+				EA45B8CA24DE76BD00132984 /* XXSwitchPairsCell.m */,
+				EA45B8C824DE76BD00132984 /* XXSwitchPairsOptionCell.h */,
+				EA45B8CB24DE76BD00132984 /* XXSwitchPairsOptionCell.m */,
+			);
+			path = Cell;
+			sourceTree = "<group>";
+		};
+		EA45B8CC24DE76BD00132984 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				EA45BBC224E185C200132984 /* XXIndexModel.h */,
+				EA45BBC324E185C200132984 /* XXIndexModel.m */,
+				EA45B8D524DE76BD00132984 /* XXDepthModel.h */,
+				EA45B8CF24DE76BD00132984 /* XXDepthModel.m */,
+				EA45B8D224DE76BD00132984 /* XXTradeCoinData.h */,
+				EA45B8D624DE76BD00132984 /* XXTradeCoinData.m */,
+				EA45B8CE24DE76BD00132984 /* XXTradeableModel.h */,
+				EA45B8D424DE76BD00132984 /* XXTradeableModel.m */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		EA45B8D924DE76BD00132984 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				EA45B8E624DE76BD00132984 /* XXDepthTool.h */,
+				EA45B8DB24DE76BD00132984 /* XXDepthTool.m */,
+				EA45B8DD24DE76BD00132984 /* XXCoinView.h */,
+				EA45B8E424DE76BD00132984 /* XXCoinView.m */,
+				EA45B8E724DE76BD00132984 /* XXPickerView.h */,
+				EA45B8DF24DE76BD00132984 /* XXPickerView.m */,
+				EA45B8E924DE76BD00132984 /* XXSwitchCoinView.h */,
+				EA45B8E024DE76BD00132984 /* XXSwitchCoinView.m */,
+				EA45B8E124DE76BD00132984 /* XXMenuView.h */,
+				EA45B8E824DE76BD00132984 /* XXMenuView.m */,
+				EA45B8E524DE76BD00132984 /* XXCoinTradeSectionHeaderView.h */,
+				EA45B8DC24DE76BD00132984 /* XXCoinTradeSectionHeaderView.m */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		EA45B8EA24DE76BD00132984 /* TransactionView */ = {
+			isa = PBXGroup;
+			children = (
+				EA45B8EB24DE76BD00132984 /* XXTradeLeverBar.h */,
+				EA45B8EC24DE76BD00132984 /* XXTradeView.h */,
+				EA45B8ED24DE76BD00132984 /* XXBusinessPriceView.h */,
+				EA45B8EE24DE76BD00132984 /* XXBusinessProgressView.h */,
+				EA45B8EF24DE76BD00132984 /* XXBusinessAmountView.h */,
+				EA45B8F024DE76BD00132984 /* XXBuySellButton.m */,
+				EA45B8F124DE76BD00132984 /* XXDepthView.h */,
+				EA45B8F224DE76BD00132984 /* XXBusinessPriceView.m */,
+				EA45B8F324DE76BD00132984 /* XXTradeView.m */,
+				EA45B8F424DE76BD00132984 /* XXTradeLeverBar.m */,
+				EA45B8F524DE76BD00132984 /* XXBusinessProgressView.m */,
+				EA45B8F624DE76BD00132984 /* XXBusinessAmountView.m */,
+				EA45B8F724DE76BD00132984 /* XXDepthView.m */,
+				EA45B8F824DE76BD00132984 /* XXBuySellButton.h */,
+			);
+			path = TransactionView;
+			sourceTree = "<group>";
+		};
+		EA45B9EB24DE76BE00132984 /* Markets */ = {
+			isa = PBXGroup;
+			children = (
+				EA45B9EC24DE76BE00132984 /* Home */,
+				EA45BA1F24DE76BE00132984 /* BitcoinDetail */,
+				EA45BA5424DE76BE00132984 /* BitcoinSearch */,
+			);
+			path = Markets;
+			sourceTree = "<group>";
+		};
+		EA45B9EC24DE76BE00132984 /* Home */ = {
+			isa = PBXGroup;
+			children = (
+				EA45B9ED24DE76BE00132984 /* Controller */,
+				EA45B9F424DE76BE00132984 /* Cell */,
+				EA45B9FB24DE76BE00132984 /* Model */,
+				EA45BA0C24DE76BE00132984 /* View */,
+			);
+			path = Home;
+			sourceTree = "<group>";
+		};
+		EA45B9ED24DE76BE00132984 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				EA45B9EF24DE76BE00132984 /* XXQuoteVC.h */,
+				EA45B9F324DE76BE00132984 /* XXQuoteVC.m */,
+				EA45B9F224DE76BE00132984 /* XXFavoriteEditingVC.h */,
+				EA45B9F024DE76BE00132984 /* XXFavoriteEditingVC.m */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		EA45B9F424DE76BE00132984 /* Cell */ = {
+			isa = PBXGroup;
+			children = (
+				EA45B9F624DE76BE00132984 /* XXMarketCell.h */,
+				EA45B9F724DE76BE00132984 /* XXFavoriteEditingCell.h */,
+				EA45B9F924DE76BE00132984 /* XXFavoriteEditingCell.m */,
+				EA45B9FA24DE76BE00132984 /* XXMarketCell.m */,
+			);
+			path = Cell;
+			sourceTree = "<group>";
+		};
+		EA45B9FB24DE76BE00132984 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				EA45B9FF24DE76BE00132984 /* XXQuoteModel.h */,
+				EA45BA0824DE76BE00132984 /* XXQuoteModel.m */,
+				EA45BA0224DE76BE00132984 /* XXQuoteTokenModel.h */,
+				EA45BA0A24DE76BE00132984 /* XXQuoteTokenModel.m */,
+				EA45BA0124DE76BE00132984 /* XXSymbolModel.h */,
+				EA45BA0B24DE76BE00132984 /* XXSymbolModel.m */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		EA45BA0C24DE76BE00132984 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				EA45BA1524DE76BE00132984 /* XXQuoteView.h */,
+				EA45BA1E24DE76BE00132984 /* XXQuoteView.m */,
+				EA45BA1124DE76BE00132984 /* XXSymbolView.h */,
+				EA45BA1924DE76BE00132984 /* XXSymbolView.m */,
+				EA45BA0F24DE76BE00132984 /* XXCoinQuoteView.h */,
+				EA45BA1624DE76BE00132984 /* XXCoinQuoteView.m */,
+				EA45BA0E24DE76BE00132984 /* XXFavoriteQuoteView.h */,
+				EA45BA1724DE76BE00132984 /* XXFavoriteQuoteView.m */,
+				EA45BA1324DE76BE00132984 /* XXMarketSortButton.h */,
+				EA45BA1C24DE76BE00132984 /* XXMarketSortButton.m */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		EA45BA1F24DE76BE00132984 /* BitcoinDetail */ = {
+			isa = PBXGroup;
+			children = (
+				EA45BA2024DE76BE00132984 /* Controller */,
+				EA45BA2324DE76BE00132984 /* Cell */,
+				EA45BA2824DE76BE00132984 /* Model */,
+				EA45BA3524DE76BE00132984 /* View */,
+			);
+			path = BitcoinDetail;
+			sourceTree = "<group>";
+		};
+		EA45BA2024DE76BE00132984 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				EA45BA2224DE76BE00132984 /* XXBitcoinDetailVC.h */,
+				EA45BA2124DE76BE00132984 /* XXBitcoinDetailVC.m */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		EA45BA2324DE76BE00132984 /* Cell */ = {
+			isa = PBXGroup;
+			children = (
+				EA45BA2424DE76BE00132984 /* XXTradeCell.h */,
+				EA45BA2524DE76BE00132984 /* XXDepthCell.h */,
+				EA45BA2624DE76BE00132984 /* XXTradeCell.m */,
+				EA45BA2724DE76BE00132984 /* XXDepthCell.m */,
+			);
+			path = Cell;
+			sourceTree = "<group>";
+		};
+		EA45BA2824DE76BE00132984 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				EA45BA3324DE76BE00132984 /* KSymbolDetailData.h */,
+				EA45BA2E24DE76BE00132984 /* KSymbolDetailData.m */,
+				EA45BA2924DE76BE00132984 /* XXTickerModel.h */,
+				EA45BA2F24DE76BE00132984 /* XXTickerModel.m */,
+				EA45BA2B24DE76BE00132984 /* XXTradeModel.h */,
+				EA45BA3024DE76BE00132984 /* XXTradeModel.m */,
+				EA45BA3424DE76BE00132984 /* XXDepthMapData.h */,
+				EA45BA2D24DE76BE00132984 /* XXDepthMapData.m */,
+				EA45BA2A24DE76BE00132984 /* XXDepthMapModel.h */,
+				EA45BA3124DE76BE00132984 /* XXDepthMapModel.m */,
+				EA45BA2C24DE76BE00132984 /* XXDepthOrderModel.h */,
+				EA45BA3224DE76BE00132984 /* XXDepthOrderModel.m */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		EA45BA3524DE76BE00132984 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				EA45BA4E24DE76BE00132984 /* XXDepthMapView.h */,
+				EA45BA3E24DE76BE00132984 /* XXDepthMapView.m */,
+				EA45BA4524DE76BE00132984 /* XXTickerWindow.h */,
+				EA45BA3824DE76BE00132984 /* XXTickerWindow.m */,
+				EA45BA4724DE76BE00132984 /* XXFullPopButton.h */,
+				EA45BA3624DE76BE00132984 /* XXFullPopButton.m */,
+				EA45BA4824DE76BE00132984 /* XXFullView.h */,
+				EA45BA3A24DE76BE00132984 /* XXFullView.m */,
+				EA45BA4924DE76BE00132984 /* XXKlineShareView.h */,
+				EA45BA3B24DE76BE00132984 /* XXKlineShareView.m */,
+				EA45BA4A24DE76BE00132984 /* XXBDetailSectionHeaderView.h */,
+				EA45BA3924DE76BE00132984 /* XXBDetailSectionHeaderView.m */,
+				EA45BA4B24DE76BE00132984 /* XXBDetailHeaderView.h */,
+				EA45BA4024DE76BE00132984 /* XXBDetailHeaderView.m */,
+				EA45BA3F24DE76BE00132984 /* XXTickerView.h */,
+				EA45BA4C24DE76BE00132984 /* XXTickerView.m */,
+				EA45BA4F24DE76BE00132984 /* XXKlineActionView.h */,
+				EA45BA3C24DE76BE00132984 /* XXKlineActionView.m */,
+				EA45BA4424DE76BE00132984 /* XXKineView.h */,
+				EA45BA5024DE76BE00132984 /* XXKineView.m */,
+				EA45BA5124DE76BE00132984 /* XXCoinInfoView.h */,
+				EA45BA4324DE76BE00132984 /* XXCoinInfoView.m */,
+				EA45BA4D24DE76BE00132984 /* XXDetailDepthListView.h */,
+				EA45BA3D24DE76BE00132984 /* XXDetailDepthListView.m */,
+				EA45BA5224DE76BE00132984 /* XXDetailTradesListView.h */,
+				EA45BA4224DE76BE00132984 /* XXDetailTradesListView.m */,
+				EA45BA4124DE76BE00132984 /* XXKlineDepthActionView.h */,
+				EA45BA5324DE76BE00132984 /* XXKlineDepthActionView.m */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		EA45BA5424DE76BE00132984 /* BitcoinSearch */ = {
+			isa = PBXGroup;
+			children = (
+				EA45BA5524DE76BE00132984 /* Contrller */,
+				EA45BA5824DE76BE00132984 /* Cell */,
+				EA45BA5B24DE76BE00132984 /* View */,
+			);
+			path = BitcoinSearch;
+			sourceTree = "<group>";
+		};
+		EA45BA5524DE76BE00132984 /* Contrller */ = {
+			isa = PBXGroup;
+			children = (
+				EA45BA5624DE76BE00132984 /* XXBitcoinSearchVC.h */,
+				EA45BA5724DE76BE00132984 /* XXBitcoinSearchVC.m */,
+			);
+			path = Contrller;
+			sourceTree = "<group>";
+		};
+		EA45BA5824DE76BE00132984 /* Cell */ = {
+			isa = PBXGroup;
+			children = (
+				EA45BA5924DE76BE00132984 /* XXMarketSearchCell.m */,
+				EA45BA5A24DE76BE00132984 /* XXMarketSearchCell.h */,
+			);
+			path = Cell;
+			sourceTree = "<group>";
+		};
+		EA45BA5B24DE76BE00132984 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				EA45BA5C24DE76BE00132984 /* XXHistoryView.m */,
+				EA45BA5D24DE76BE00132984 /* XXHistoryView.h */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		EA45BB2824DF999E00132984 /* YBPopupMenu */ = {
+			isa = PBXGroup;
+			children = (
+				EA45BB2924DF999E00132984 /* YBPopupMenu.h */,
+				EA45BB2A24DF999E00132984 /* YBRectConst.m */,
+				EA45BB2B24DF999E00132984 /* YBPopupMenuPath.m */,
+				EA45BB2C24DF999E00132984 /* YBRectConst.h */,
+				EA45BB2D24DF999E00132984 /* YBPopupMenu.m */,
+				EA45BB2E24DF999E00132984 /* YBPopupMenuPath.h */,
+			);
+			path = YBPopupMenu;
+			sourceTree = "<group>";
+		};
+		EA45BB2F24DF999E00132984 /* BTC_K线图 */ = {
+			isa = PBXGroup;
+			children = (
+				EA45BB3024DF999E00132984 /* Y_SmallKLineView.m */,
+				EA45BB3124DF999E00132984 /* Config */,
+				EA45BB3A24DF999E00132984 /* Y_StockChartViewItemModel.h */,
+				EA45BB3B24DF999E00132984 /* Y_SmallKLineView.h */,
+				EA45BB3C24DF999E00132984 /* KLine */,
+				EA45BB7424DF999F00132984 /* Y_StockChartViewItemModel.m */,
+			);
+			path = "BTC_K线图";
+			sourceTree = "<group>";
+		};
+		EA45BB3124DF999E00132984 /* Config */ = {
+			isa = PBXGroup;
+			children = (
+				EA45BB3224DF999E00132984 /* GlobalVariable */,
+				EA45BB3524DF999E00132984 /* Constant */,
+				EA45BB3724DF999E00132984 /* Theme */,
+			);
+			path = Config;
+			sourceTree = "<group>";
+		};
+		EA45BB3224DF999E00132984 /* GlobalVariable */ = {
+			isa = PBXGroup;
+			children = (
+				EA45BB3324DF999E00132984 /* Y_StockChartGlobalVariable.h */,
+				EA45BB3424DF999E00132984 /* Y_StockChartGlobalVariable.m */,
+			);
+			path = GlobalVariable;
+			sourceTree = "<group>";
+		};
+		EA45BB3524DF999E00132984 /* Constant */ = {
+			isa = PBXGroup;
+			children = (
+				EA45BB3624DF999E00132984 /* Y_StockChartConstant.h */,
+			);
+			path = Constant;
+			sourceTree = "<group>";
+		};
+		EA45BB3724DF999E00132984 /* Theme */ = {
+			isa = PBXGroup;
+			children = (
+				EA45BB3824DF999E00132984 /* UIColor+Y_StockChart.h */,
+				EA45BB3924DF999E00132984 /* UIColor+Y_StockChart.m */,
+			);
+			path = Theme;
+			sourceTree = "<group>";
+		};
+		EA45BB3C24DF999E00132984 /* KLine */ = {
+			isa = PBXGroup;
+			children = (
+				EA45BB3D24DF999E00132984 /* XYHKline */,
+				EA45BB4824DF999E00132984 /* KLine_MAView */,
+				EA45BB4B24DF999E00132984 /* Y_KLineView.m */,
+				EA45BB4C24DF999E00132984 /* PriceView */,
+				EA45BB4F24DF999E00132984 /* Volume_MAView */,
+				EA45BB5224DF999E00132984 /* AccessoryView */,
+				EA45BB5824DF999E00132984 /* Accessory_MAView */,
+				EA45BB5B24DF999E00132984 /* Model */,
+				EA45BB6524DF999E00132984 /* Y_KLineView.h */,
+				EA45BB6624DF999E00132984 /* VolumeView */,
+				EA45BB6C24DF999E00132984 /* MainKLineView */,
+			);
+			path = KLine;
+			sourceTree = "<group>";
+		};
+		EA45BB3D24DF999E00132984 /* XYHKline */ = {
+			isa = PBXGroup;
+			children = (
+				EA45BB3E24DF999E00132984 /* KLineRightView.h */,
+				EA45BB3F24DF999E00132984 /* XYHKLineView.m */,
+				EA45BB4024DF999E00132984 /* KLineHistoryView.h */,
+				EA45BB4124DF999E00132984 /* KLineLastPriceView.h */,
+				EA45BB4224DF999E00132984 /* KLineTransverseLine.h */,
+				EA45BB4324DF999E00132984 /* KLineRightView.m */,
+				EA45BB4424DF999E00132984 /* XYHKLineView.h */,
+				EA45BB4524DF999E00132984 /* KLineHistoryView.m */,
+				EA45BB4624DF999E00132984 /* KLineTransverseLine.m */,
+				EA45BB4724DF999E00132984 /* KLineLastPriceView.m */,
+			);
+			path = XYHKline;
+			sourceTree = "<group>";
+		};
+		EA45BB4824DF999E00132984 /* KLine_MAView */ = {
+			isa = PBXGroup;
+			children = (
+				EA45BB4924DF999E00132984 /* Y_KLineMAView.h */,
+				EA45BB4A24DF999E00132984 /* Y_KLineMAView.m */,
+			);
+			path = KLine_MAView;
+			sourceTree = "<group>";
+		};
+		EA45BB4C24DF999E00132984 /* PriceView */ = {
+			isa = PBXGroup;
+			children = (
+				EA45BB4D24DF999E00132984 /* Y_StockChartRightYView.m */,
+				EA45BB4E24DF999E00132984 /* Y_StockChartRightYView.h */,
+			);
+			path = PriceView;
+			sourceTree = "<group>";
+		};
+		EA45BB4F24DF999E00132984 /* Volume_MAView */ = {
+			isa = PBXGroup;
+			children = (
+				EA45BB5024DF999E00132984 /* Y_VolumeMAView.h */,
+				EA45BB5124DF999E00132984 /* Y_VolumeMAView.m */,
+			);
+			path = Volume_MAView;
+			sourceTree = "<group>";
+		};
+		EA45BB5224DF999E00132984 /* AccessoryView */ = {
+			isa = PBXGroup;
+			children = (
+				EA45BB5324DF999E00132984 /* Y_KLineAccessoryView.m */,
+				EA45BB5424DF999E00132984 /* Line */,
+				EA45BB5724DF999E00132984 /* Y_KLineAccessoryView.h */,
+			);
+			path = AccessoryView;
+			sourceTree = "<group>";
+		};
+		EA45BB5424DF999E00132984 /* Line */ = {
+			isa = PBXGroup;
+			children = (
+				EA45BB5524DF999E00132984 /* Y_KLineAccessory.h */,
+				EA45BB5624DF999E00132984 /* Y_KLineAccessory.m */,
+			);
+			path = Line;
+			sourceTree = "<group>";
+		};
+		EA45BB5824DF999E00132984 /* Accessory_MAView */ = {
+			isa = PBXGroup;
+			children = (
+				EA45BB5924DF999E00132984 /* Y_AccessoryMAView.m */,
+				EA45BB5A24DF999E00132984 /* Y_AccessoryMAView.h */,
+			);
+			path = Accessory_MAView;
+			sourceTree = "<group>";
+		};
+		EA45BB5B24DF999E00132984 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				EA45BB5C24DF999E00132984 /* KLineModel */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		EA45BB5C24DF999E00132984 /* KLineModel */ = {
+			isa = PBXGroup;
+			children = (
+				EA45BB5D24DF999E00132984 /* Y_KLinePositionModel.m */,
+				EA45BB5E24DF999E00132984 /* Y_KLineModel.h */,
+				EA45BB5F24DF999E00132984 /* Y_KLineGroupModel.h */,
+				EA45BB6024DF999E00132984 /* Y_KLineVolumePositionModel.h */,
+				EA45BB6124DF999E00132984 /* Y_KLinePositionModel.h */,
+				EA45BB6224DF999E00132984 /* Y_KLineModel.m */,
+				EA45BB6324DF999E00132984 /* Y_KLineGroupModel.m */,
+				EA45BB6424DF999E00132984 /* Y_KLineVolumePositionModel.m */,
+			);
+			path = KLineModel;
+			sourceTree = "<group>";
+		};
+		EA45BB6624DF999E00132984 /* VolumeView */ = {
+			isa = PBXGroup;
+			children = (
+				EA45BB6724DF999E00132984 /* Y_KLineVolumeView.m */,
+				EA45BB6824DF999E00132984 /* Line */,
+				EA45BB6B24DF999E00132984 /* Y_KLineVolumeView.h */,
+			);
+			path = VolumeView;
+			sourceTree = "<group>";
+		};
+		EA45BB6824DF999E00132984 /* Line */ = {
+			isa = PBXGroup;
+			children = (
+				EA45BB6924DF999E00132984 /* Y_KLineVolume.m */,
+				EA45BB6A24DF999E00132984 /* Y_KLineVolume.h */,
+			);
+			path = Line;
+			sourceTree = "<group>";
+		};
+		EA45BB6C24DF999E00132984 /* MainKLineView */ = {
+			isa = PBXGroup;
+			children = (
+				EA45BB6D24DF999E00132984 /* Y_KLineMainView.m */,
+				EA45BB6E24DF999F00132984 /* Line */,
+				EA45BB7324DF999F00132984 /* Y_KLineMainView.h */,
+			);
+			path = MainKLineView;
+			sourceTree = "<group>";
+		};
+		EA45BB6E24DF999F00132984 /* Line */ = {
+			isa = PBXGroup;
+			children = (
+				EA45BB6F24DF999F00132984 /* Y_MALine.h */,
+				EA45BB7024DF999F00132984 /* Y_KLine.h */,
+				EA45BB7124DF999F00132984 /* Y_MALine.m */,
+				EA45BB7224DF999F00132984 /* Y_KLine.m */,
+			);
+			path = Line;
+			sourceTree = "<group>";
+		};
+		EA45BB9124DFC42E00132984 /* UserData */ = {
+			isa = PBXGroup;
+			children = (
+				EA45BB9824DFC42E00132984 /* Singleton.h */,
+				EA45BB9624DFC42E00132984 /* XXTradeData.h */,
+				EA45BB9F24DFC42E00132984 /* XXTradeData.m */,
+				EA45BB9724DFC42E00132984 /* XXMarketData.h */,
+				EA45BB9E24DFC42E00132984 /* XXMarketData.m */,
+				EA45BB9224DFC42E00132984 /* XXIndexModules.h */,
+				EA45BB9C24DFC42E00132984 /* XXIndexModules.m */,
+				EA45BB9D24DFC42E00132984 /* NotificationManager.h */,
+				EA45BB9924DFC42E00132984 /* NotificationManager.m */,
+				EA45BB9424DFC42E00132984 /* XXShareInfoModel.h */,
+				EA45BBA124DFC42E00132984 /* XXShareInfoModel.m */,
+			);
+			path = UserData;
+			sourceTree = "<group>";
+		};
+		EA45BBAB24DFD7B400132984 /* WebSocket */ = {
+			isa = PBXGroup;
+			children = (
+				EA45BBAD24DFD7B400132984 /* XXWebSocket.h */,
+				EA45BBB324DFD7B400132984 /* XXWebSocket.m */,
+				EA45BBB224DFD7B400132984 /* XXUserSocket.h */,
+				EA45BBAE24DFD7B400132984 /* XXUserSocket.m */,
+				EA45BBAF24DFD7B400132984 /* XXQuoteSocket.h */,
+				EA45BBB424DFD7B400132984 /* XXQuoteSocket.m */,
+				EA45BBB024DFD7B400132984 /* XXReqWebModel.h */,
+				EA45BBB524DFD7B400132984 /* XXReqWebModel.m */,
+				EA45BBB124DFD7B400132984 /* XXWebQuoteModel.h */,
+				EA45BBAC24DFD7B400132984 /* XXWebQuoteModel.m */,
+			);
+			path = WebSocket;
+			sourceTree = "<group>";
+		};
 		EA6FA69421258EC5006305B8 /* FCUUID */ = {
 			isa = PBXGroup;
 			children = (
@@ -1593,6 +2529,8 @@
 		EA964BA32414D34A00A941E5 /* Class */ = {
 			isa = PBXGroup;
 			children = (
+				EA45B9EB24DE76BE00132984 /* Markets */,
+				EA45B8A124DE76BD00132984 /* Transaction */,
 				EAC83FA82465895500340C95 /* Other */,
 				6C791DF52451A14F00F22CD0 /* Proposals */,
 				6CC12CEF2444624200917105 /* Validators */,
@@ -2248,6 +3186,10 @@
 		F3D9397520CCCB560055070B /* Tools */ = {
 			isa = PBXGroup;
 			children = (
+				EA45BBAB24DFD7B400132984 /* WebSocket */,
+				EA45BB9124DFC42E00132984 /* UserData */,
+				EA45BB2F24DF999E00132984 /* BTC_K线图 */,
+				EA45BB2824DF999E00132984 /* YBPopupMenu */,
 				EAE2864324751640006D9F24 /* XYHAlertView */,
 				EAE2863624742482006D9F24 /* Security */,
 				EAE285D3246E4BA4006D9F24 /* CBBase58 */,
@@ -2408,7 +3350,7 @@
 			files = (
 			);
 			inputPaths = (
-				"${SRCROOT}/Pods/Target Support Files/Pods-Bluehelix/Pods-Bluehelix-resources.sh",
+				"${PODS_ROOT}/Target Support Files/Pods-Bluehelix/Pods-Bluehelix-resources.sh",
 				"${PODS_ROOT}/MBProgressHUD+JDragon/MBProgressHUD+JDragon/MBProgressHUD+JDragon.bundle",
 				"${PODS_ROOT}/MJRefresh/MJRefresh/MJRefresh.bundle",
 			);
@@ -2419,7 +3361,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Bluehelix/Pods-Bluehelix-resources.sh\"\n";
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Bluehelix/Pods-Bluehelix-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		A862161BA73B7D5FEA430435 /* [CP] Check Pods Manifest.lock */ = {
@@ -2447,12 +3389,17 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				EA45BBC524E2B11B00132984 /* XXSegmentView.m in Sources */,
 				EAA8DED5244D9B8F00161698 /* BHChooseLanguageVC.m in Sources */,
+				EA45BB8224DF999F00132984 /* Y_StockChartRightYView.m in Sources */,
 				EAA8DED6244D9B8F00161698 /* BHChooseLanguageCell.m in Sources */,
+				EA45BA7E24DE76BE00132984 /* XXBusinessPriceView.m in Sources */,
 				EAA8DED7244D9B8F00161698 /* BHChooseLanguageModel.m in Sources */,
 				6C0D91BB24498E280043AF74 /* XXValidatorDetailCell.m in Sources */,
 				EAE2864124742483006D9F24 /* SecurityHelper.m in Sources */,
 				EAE2864A24751640006D9F24 /* XYHAlertView.m in Sources */,
+				EA45BB7524DF999F00132984 /* YBRectConst.m in Sources */,
+				EA45BB7A24DF999F00132984 /* UIColor+Y_StockChart.m in Sources */,
 				EAE28618247285C3006D9F24 /* XXBackupPrivateKeyTipVC.m in Sources */,
 				EABD1B84241BB25900B1A03A /* rand.c in Sources */,
 				EABD717F2449F651008AA188 /* XXMainSymbolHeaderView.m in Sources */,
@@ -2461,12 +3408,17 @@
 				6C791E0A2451AF6400F22CD0 /* XXProposalGripSectionHeader.m in Sources */,
 				EA04ABAB242D015B004403FF /* IQBarButtonItem.m in Sources */,
 				EABD7193244B1AEA008AA188 /* XXTransactionModel.m in Sources */,
+				EA45BAFB24DE76BF00132984 /* XXMarketCell.m in Sources */,
+				EA45BA7B24DE76BE00132984 /* XXCoinView.m in Sources */,
+				EA45BB8624DF999F00132984 /* Y_AccessoryMAView.m in Sources */,
 				EAC6871D214FAD1C00701874 /* XXTabView.m in Sources */,
 				EABD1BA5241BB25900B1A03A /* Promise.m in Sources */,
 				EABD71802449F651008AA188 /* XXSymbolDetailFooterView.m in Sources */,
+				EA45BBB624DFD7B400132984 /* XXWebQuoteModel.m in Sources */,
 				6C0D91B5244890570043AF74 /* XXValidarorDetailDelegateBar.m in Sources */,
 				7AC4D793234C808F00F5E5F8 /* XXShadowView.m in Sources */,
 				6C791E342456BE3900F22CD0 /* XXVotingViewController.m in Sources */,
+				EA45BB8724DF999F00132984 /* Y_KLinePositionModel.m in Sources */,
 				EA30A0A9236F221A0098DE28 /* UIActivityIndicatorView+AFNetworking.m in Sources */,
 				EA04ABA8242D015B004403FF /* IQTextView.m in Sources */,
 				EA3E5965244721DD0080B98F /* XXMsgWithdrawalModel.m in Sources */,
@@ -2480,37 +3432,54 @@
 				EA3E593E24441D950080B98F /* XXWithdrawTipView.m in Sources */,
 				EA04ABB0242D015B004403FF /* IQUITextFieldView+Additions.m in Sources */,
 				EA30A0E5236F221A0098DE28 /* UIWebView+AFNetworking.m in Sources */,
+				EA45BB1324DE76BF00132984 /* XXTradeModel.m in Sources */,
 				EAB356322438369200D750D6 /* FMDatabase.m in Sources */,
+				EA45BA6524DE76BE00132984 /* XXOrderModel.m in Sources */,
 				EABD1B83241BB25900B1A03A /* sha2.c in Sources */,
+				EA45BA6224DE76BE00132984 /* XXOrderDetailCell.m in Sources */,
+				EA45BB7824DF999F00132984 /* Y_SmallKLineView.m in Sources */,
 				EABD1B89241BB25900B1A03A /* bignum.c in Sources */,
 				EA3E594824445DAE0080B98F /* XXTransferAmountView.m in Sources */,
 				EAE2864224742483006D9F24 /* BHFaceIDLockVC.m in Sources */,
 				6C0D91BE2449A32B0043AF74 /* XXValidatorDetailInfoCell.m in Sources */,
+				EA45BB0F24DE76BF00132984 /* XXDepthCell.m in Sources */,
 				EABD1B8E241BB25900B1A03A /* sha3.c in Sources */,
 				EA04ABAC242D015B004403FF /* IQUIView+IQKeyboardToolbar.m in Sources */,
 				F31F7A5020CF9693008B4403 /* XXTabBarController.m in Sources */,
 				EAE2861D247285C3006D9F24 /* XXImportKeystoreSetName.m in Sources */,
 				EAE28626247285C3006D9F24 /* XXMnemonicBtn.m in Sources */,
+				EA45BB1024DE76BF00132984 /* XXDepthMapData.m in Sources */,
+				EA45BB1E24DE76BF00132984 /* XXBDetailHeaderView.m in Sources */,
 				EA677245246ACFA4008C931A /* XXLoginCell.m in Sources */,
+				EA45BA6724DE76BE00132984 /* XXScreenOrderView.m in Sources */,
+				EA45BB8924DF999F00132984 /* Y_KLineGroupModel.m in Sources */,
+				EA45BA6C24DE76BE00132984 /* XXTradeDepthCell.m in Sources */,
+				EA45BA6E24DE76BE00132984 /* XXSwitchPairsOptionCell.m in Sources */,
 				EABD1BBB241E49EA00B1A03A /* XXImportWalletVC.m in Sources */,
 				EABD1B86241BB25900B1A03A /* curves.c in Sources */,
 				EA26B3572476CC9000EAF205 /* XXTransferMessageView.m in Sources */,
 				EABD1BAA241BB25900B1A03A /* TransactionInfo.m in Sources */,
+				EA45BA6B24DE76BE00132984 /* XXTradeHomeVC.m in Sources */,
 				EABD1B81241BB25900B1A03A /* aeskey.c in Sources */,
 				F30EAF6020D26536005ADD5C /* UILabel+Extension.m in Sources */,
 				EABD7195244B1AEA008AA188 /* XXTransferHeaderView.m in Sources */,
 				EA3E591C24441D160080B98F /* XXAssetHeaderView.m in Sources */,
 				EA3E591F24441D160080B98F /* XXAssetCell.m in Sources */,
+				EA45BB9024DF999F00132984 /* Y_StockChartViewItemModel.m in Sources */,
 				EA6FA69A21258FD3006305B8 /* UICKeyChainStore.m in Sources */,
 				EA3E594124441D950080B98F /* XXTransferVC.m in Sources */,
 				EABD1B99241BB25900B1A03A /* EtherchainProvider.m in Sources */,
 				EABD1BA3241BB25900B1A03A /* BlockInfo.m in Sources */,
 				F30EAF5F20D26536005ADD5C /* UIColor+helper.m in Sources */,
+				EA45BB0D24DE76BF00132984 /* XXBitcoinDetailVC.m in Sources */,
+				EA45BB8124DF999F00132984 /* Y_KLineView.m in Sources */,
 				EAE286322473C28F006D9F24 /* XXCoinPublishApplyView.m in Sources */,
+				EA45BB2424DE76BF00132984 /* XXKlineDepthActionView.m in Sources */,
 				EAA8DEBE244D7E7C00161698 /* XXAssetManager.m in Sources */,
 				6CC12D0A24459D1000917105 /* XXValidatorDetailViewController.m in Sources */,
 				EA30A121236F221B0098DE28 /* AFAutoPurgingImageCache.m in Sources */,
 				F31F7A4D20CF9693008B4403 /* XXNavigationController.m in Sources */,
+				EA45BA7624DE76BE00132984 /* XXDepthTool.m in Sources */,
 				EAA8DECB244D81C300161698 /* XXSettingVC.m in Sources */,
 				EA3E595F24471F410080B98F /* XXMsgDepositModel.m in Sources */,
 				7AC4D7F9234C808F00F5E5F8 /* XXButton.m in Sources */,
@@ -2519,25 +3488,35 @@
 				EAC83FAE24658A2900340C95 /* XXUpdateVersionView.m in Sources */,
 				EAE28619247285C3006D9F24 /* XXBackupKeystoreVC.m in Sources */,
 				EAC83FAB2465899600340C95 /* XXVersionManager.m in Sources */,
+				EA45BA5F24DE76BE00132984 /* XXOrderDetailVC.m in Sources */,
 				EAE285DD246E4BA4006D9F24 /* BTCData.m in Sources */,
 				EA04ABA9242D015B004403FF /* IQToolbar.m in Sources */,
+				EA45BAFA24DE76BF00132984 /* XXFavoriteEditingCell.m in Sources */,
 				EA9D3E2A2452BBD00060778C /* XXChangePasswordVC.m in Sources */,
+				EA45BB8B24DF999F00132984 /* Y_KLineVolumeView.m in Sources */,
+				EA45BB0724DE76BF00132984 /* XXCoinQuoteView.m in Sources */,
 				EA04ABB2242D015B004403FF /* IQUIView+Hierarchy.m in Sources */,
 				EA964C442414E18500A941E5 /* AppDelegate.m in Sources */,
+				EA45BB2724DE76BF00132984 /* XXHistoryView.m in Sources */,
 				EA3E592024441D160080B98F /* XXAddAssetCell.m in Sources */,
 				EAE28620247285C3006D9F24 /* XXVerifyMnemonicPhraseVC.m in Sources */,
+				EA45BA5E24DE76BE00132984 /* XXOrderManagerVC.m in Sources */,
 				EAE28625247285C3006D9F24 /* XXBackupCodeView.m in Sources */,
 				EA04AD5024362964004403FF /* HttpManager.m in Sources */,
 				F31F7A4E20CF9693008B4403 /* BaseViewController.m in Sources */,
 				EABD7188244AFCD4008AA188 /* XXEmptyView.m in Sources */,
 				EA9537002455623B0060D1FC /* XXRewardView.m in Sources */,
+				EA45BA7D24DE76BE00132984 /* XXBuySellButton.m in Sources */,
 				EABBC08A24232DCD00B7E412 /* AESCrypt.m in Sources */,
+				EA45BB8D24DF999F00132984 /* Y_KLineMainView.m in Sources */,
 				6C791DFB2451A1D800F22CD0 /* XXProposalsListViewController.m in Sources */,
 				EAB356342438369200D750D6 /* FMResultSet.m in Sources */,
 				EA26B350247670A500EAF205 /* XXSplashScreen.m in Sources */,
+				EA45BA6124DE76BE00132984 /* XXHistoryOderCell.m in Sources */,
 				EA811AC42479144400C1038F /* XXMessageSegmentButton.m in Sources */,
 				EAB3566A243E402100D750D6 /* JSONKit.m in Sources */,
 				EAE467EE244C7901006EACAF /* XXTransationSectionHeaderView.m in Sources */,
+				EA45BB1224DE76BF00132984 /* XXTickerModel.m in Sources */,
 				6CC12CEE24445DF200917105 /* XXDecimalNumberHelper.m in Sources */,
 				EA2F95312423A02B0070AC62 /* XXLoginVC.m in Sources */,
 				EABD1B98241BB25900B1A03A /* Provider.m in Sources */,
@@ -2547,6 +3526,7 @@
 				6C791E152452D94300F22CD0 /* XXProposalNormalView.m in Sources */,
 				EABD1B95241BB25900B1A03A /* crypto_scrypt-ref.c in Sources */,
 				7AC4D760234C808E00F5E5F8 /* XXFloadtTextField.m in Sources */,
+				EA45BB2624DE76BF00132984 /* XXMarketSearchCell.m in Sources */,
 				EA3E591A24441D160080B98F /* XXAssetSearchView.m in Sources */,
 				EA3E593F24441D950080B98F /* XXWithdrawAmountView.m in Sources */,
 				EA92EDBE244809E800B194DA /* XXMsg.m in Sources */,
@@ -2564,43 +3544,60 @@
 				EA877EFD24C6D9220049545A /* XXMnemonicWordTextFieldView.m in Sources */,
 				EABBC08B24232DCD00B7E412 /* NSData+CommonCrypto.m in Sources */,
 				EAA8DEBC244D7E7C00161698 /* XXAccountManageVC.m in Sources */,
+				EA45BB0824DE76BF00132984 /* XXFavoriteQuoteView.m in Sources */,
+				EA45BA6624DE76BE00132984 /* XXHistoryOderView.m in Sources */,
 				EA6FA69721258EC5006305B8 /* FCUUID.m in Sources */,
 				EA3E593D24441D950080B98F /* XXWithdrawView.m in Sources */,
 				EABD1B94241BB25900B1A03A /* crypto_scrypt-nosse.c in Sources */,
 				EAE2861E247285C3006D9F24 /* XXImportPrivateKeyVC.m in Sources */,
+				EA45BB0224DE76BF00132984 /* XXQuoteTokenModel.m in Sources */,
+				EA45BBA924DFC42F00132984 /* XXShareInfoModel.m in Sources */,
 				EAE2861C247285C3006D9F24 /* XXBackupPrivateKeyVC.m in Sources */,
 				7A3298152320EE9900196336 /* NSArray+Safe.m in Sources */,
+				EA45BB2324DE76BF00132984 /* XXKineView.m in Sources */,
+				EA45BB7C24DF999F00132984 /* KLineRightView.m in Sources */,
 				7A3298752320EE9900196336 /* NSObject+Swizzling.m in Sources */,
 				EA309EB4236F21410098DE28 /* AFURLRequestSerialization.m in Sources */,
+				EA45BBBA24DFD7B400132984 /* XXReqWebModel.m in Sources */,
 				EABD71782449F481008AA188 /* XXSymbolDetailVC.m in Sources */,
 				EA4F5E992179B5190025B350 /* AppDelegate+Category.m in Sources */,
 				EA309F2C236F21410098DE28 /* AFSecurityPolicy.m in Sources */,
 				EA3E594024441D950080B98F /* XXWithdrawSpeedView.m in Sources */,
+				EA45BB7924DF999F00132984 /* Y_StockChartGlobalVariable.m in Sources */,
 				7AC4D85F234C808F00F5E5F8 /* XXImageView.m in Sources */,
 				7AC4D7C6234C808F00F5E5F8 /* XXLabel.m in Sources */,
 				F30EAF6220D26536005ADD5C /* NSDate+Common.m in Sources */,
 				EA3E591B24441D160080B98F /* XXAssetSearchHeaderView.m in Sources */,
+				EA45BB2024DE76BF00132984 /* XXCoinInfoView.m in Sources */,
+				EA45BBB724DFD7B400132984 /* XXUserSocket.m in Sources */,
 				EA30A031236F221A0098DE28 /* UIImageView+AFNetworking.m in Sources */,
 				6C3E66F8244AB10E0057B514 /* XXDelegateTransferViewController.m in Sources */,
+				EA45BB7724DF999F00132984 /* YBPopupMenu.m in Sources */,
+				EA45BBB924DFD7B400132984 /* XXQuoteSocket.m in Sources */,
 				EA309E00236F21400098DE28 /* AFURLResponseSerialization.m in Sources */,
 				EA9D3E3B24545A1D0060778C /* SWLongPressGestureRecognizer.m in Sources */,
+				EA45BB8024DF999F00132984 /* Y_KLineMAView.m in Sources */,
 				EA3E594524445B510080B98F /* XXTransferView.m in Sources */,
 				EABD1B91241BB25900B1A03A /* pbkdf2.c in Sources */,
 				EABD71772449F481008AA188 /* XXTransactionCell.m in Sources */,
 				6CC12D0424456A3800917105 /* XXSearchBarView.m in Sources */,
 				EA309E78236F21410098DE28 /* AFURLSessionManager.m in Sources */,
 				6C791E3A2456CA4200F22CD0 /* XXTransferTipView.m in Sources */,
+				EA45BA6824DE76BE00132984 /* XXOrderDetailHeaderView.m in Sources */,
 				EA04ABAF242D015B004403FF /* IQNSArray+Sort.m in Sources */,
 				EAE2861F247285C3006D9F24 /* XXBackupKeystoreTipVC.m in Sources */,
 				EA9D3E3C24545A1D0060778C /* NSMutableArray+SWUtilityButtons.m in Sources */,
 				EABD1B9E241BB25900B1A03A /* LightClientProvider.m in Sources */,
 				EABD1BA7241BB25900B1A03A /* RLPSerialization.m in Sources */,
 				EABD1B80241BB25900B1A03A /* bip39.c in Sources */,
+				EA45BAF824DE76BF00132984 /* XXQuoteVC.m in Sources */,
 				EA3E591D24441D160080B98F /* XXAssetModel.m in Sources */,
 				EA309FF5236F221A0098DE28 /* AFNetworkActivityIndicatorManager.m in Sources */,
 				EA3E595C24471F190080B98F /* XXTokenModel.m in Sources */,
 				EABD1B9C241BB25900B1A03A /* InfuraProvider.m in Sources */,
+				EA45BB0124DE76BF00132984 /* XXQuoteModel.m in Sources */,
 				EABBC08C24232DCD00B7E412 /* NSData+Base64.m in Sources */,
+				EA45BA7024DE76BE00132984 /* XXDepthModel.m in Sources */,
 				6C791E2B245684DE00F22CD0 /* XXProposalDetailInfomationCell.m in Sources */,
 				6C791E012451A33700F22CD0 /* XXProposalDetailViewController.m in Sources */,
 				EABD719B244B3545008AA188 /* XXTransactionDetailCell.m in Sources */,
@@ -2612,29 +3609,40 @@
 				EAE285DE246E4BA4006D9F24 /* BTCBase58.m in Sources */,
 				6C791E182452DD7B00F22CD0 /* XXProposalDescriptionView.m in Sources */,
 				EA15E97A2417E24100A3E14A /* XXScreenShotAlert.m in Sources */,
+				EA45BB1724DE76BF00132984 /* XXTickerWindow.m in Sources */,
 				EA3E592124441D160080B98F /* XXAssetVC.m in Sources */,
+				EA45BB8F24DF999F00132984 /* Y_KLine.m in Sources */,
 				EAA8DEC3244D7E7C00161698 /* XXAccountBtn.m in Sources */,
+				EA45BB7F24DF999F00132984 /* KLineLastPriceView.m in Sources */,
 				EA04ABB3242D015B004403FF /* IQUIViewController+Additions.m in Sources */,
 				6C791E1B245586B600F22CD0 /* XXPledgeViewController.m in Sources */,
+				EA45BB1D24DE76BF00132984 /* XXDepthMapView.m in Sources */,
 				EABD1BAD241BB25900B1A03A /* Address.m in Sources */,
 				6C791E282455A5F400F22CD0 /* XXProposalDetailTableViewCell.m in Sources */,
 				EA35A5102422426900ADF621 /* Alert.m in Sources */,
 				EABD1B9A241BB25900B1A03A /* JsonRpcProvider.m in Sources */,
+				EA45BBA724DFC42F00132984 /* XXTradeData.m in Sources */,
 				6C791E3E2456D02100F22CD0 /* XXVotingView.m in Sources */,
 				EABD1BB1241DFC3E00B1A03A /* XXTextFieldView.m in Sources */,
 				EABD1B8C241BB25900B1A03A /* aestab.c in Sources */,
 				EA15E95724163FDC00A3E14A /* XXStartWalletVC.m in Sources */,
 				EA26B35D2477A5C600EAF205 /* XXMessageModel.m in Sources */,
+				EA45BB2224DE76BF00132984 /* XXTickerView.m in Sources */,
+				EA45BB1924DE76BF00132984 /* XXFullView.m in Sources */,
+				EA45BA7F24DE76BE00132984 /* XXTradeView.m in Sources */,
 				EA9D3E3D24545A1D0060778C /* SWTableViewCell.m in Sources */,
 				EAE286352473D652006D9F24 /* XXCoinPublishNameView.m in Sources */,
 				EAA8DEC8244D81BB00161698 /* XXSettingCell.m in Sources */,
+				EA45BA6924DE76BE00132984 /* XXOrderTypeView.m in Sources */,
 				EA677242246AA96C008C931A /* XXChooseLoginAccountView.m in Sources */,
 				EABD1B93241BB25900B1A03A /* scrypt_sha256.c in Sources */,
 				EA04ABAE242D015B004403FF /* IQKeyboardManager.m in Sources */,
 				EABD1BA9241BB25900B1A03A /* RegEx.m in Sources */,
 				EA877F0024C6E4180049545A /* XXImportMnemonicWordsVC.m in Sources */,
 				EA04ABB4242D015B004403FF /* IQKeyboardReturnKeyHandler.m in Sources */,
+				EA45BB2524DE76BF00132984 /* XXBitcoinSearchVC.m in Sources */,
 				6CC12D0124455C4B00917105 /* XXValidatorToolBar.m in Sources */,
+				EA45BA6424DE76BE00132984 /* XXOrderInfoModel.m in Sources */,
 				EABD1B96241BB25900B1A03A /* crypto_scrypt-sse.c in Sources */,
 				EAA8DEC1244D7E7C00161698 /* XXAddressView.m in Sources */,
 				EABBC08924232DCD00B7E412 /* NSString+Base64.m in Sources */,
@@ -2645,50 +3653,83 @@
 				EABD1BAB241BB25900B1A03A /* Signature.m in Sources */,
 				F30EAF5E20D26536005ADD5C /* NSDate+convenience.m in Sources */,
 				6C791E122452D72F00F22CD0 /* XXAddProposalView.m in Sources */,
+				EA45BB1524DE76BF00132984 /* XXDepthOrderModel.m in Sources */,
+				EA45BB1A24DE76BF00132984 /* XXKlineShareView.m in Sources */,
 				F38839362108B30600EAC95D /* XYHNumbersLabel.m in Sources */,
+				EA45BA6A24DE76BE00132984 /* XXCurrentOrderView.m in Sources */,
 				EABD1BB4241E21B300B1A03A /* XXCreateWalletSetPasswordVC.m in Sources */,
 				EAE40482211C34A000FFD028 /* LocalizeHelper.m in Sources */,
 				EABD1BB7241E2EAA00B1A03A /* XXRepeatPasswordVC.m in Sources */,
 				EAA8DEBB244D7E7C00161698 /* XXUserData.m in Sources */,
+				EA45BB8C24DF999F00132984 /* Y_KLineVolume.m in Sources */,
 				EA3E591E24441D160080B98F /* XXAccountModel.m in Sources */,
 				EABD1B90241BB25900B1A03A /* ecdsa.c in Sources */,
 				EAA8DED4244D99CA00161698 /* XXRatesListVC.m in Sources */,
+				EA45BB0324DE76BF00132984 /* XXSymbolModel.m in Sources */,
+				EA45BB0B24DE76BF00132984 /* XXMarketSortButton.m in Sources */,
+				EA45BB7D24DF999F00132984 /* KLineHistoryView.m in Sources */,
 				EABD1BA6241BB25900B1A03A /* SecureData.m in Sources */,
 				EAE28624247285C3006D9F24 /* XXBackupPrivateKeyView.m in Sources */,
 				EAA8DEBF244D7E7C00161698 /* XXUserHeaderView.m in Sources */,
+				EA45BA8024DE76BE00132984 /* XXTradeLeverBar.m in Sources */,
 				EABD1B8F241BB25900B1A03A /* base58.c in Sources */,
+				EA45BB0E24DE76BF00132984 /* XXTradeCell.m in Sources */,
 				EA6E5B39248B6E40000AAAF7 /* XXServiceView.m in Sources */,
 				EA22BDBF24795A5800F04563 /* XXUserNameView.m in Sources */,
 				EA3E58F524441C7B0080B98F /* XXDepositCoinVC.m in Sources */,
 				7AC4D82C234C808F00F5E5F8 /* XXBlurView.m in Sources */,
 				6CC12CFB2444749D00917105 /* XXValidatorHeader.m in Sources */,
+				EA45BB7B24DF999F00132984 /* XYHKLineView.m in Sources */,
 				EABD1B9B241BB25900B1A03A /* ApiProvider.m in Sources */,
 				EAA8DED0244D81CE00161698 /* XXUserHomeCell.m in Sources */,
+				EA45BA6D24DE76BE00132984 /* XXSwitchPairsCell.m in Sources */,
 				F30AC1B320CCC642000652BB /* main.m in Sources */,
+				EA45BB8E24DF999F00132984 /* Y_MALine.m in Sources */,
 				EA26B3542476C53500EAF205 /* XXMessageCenterVC.m in Sources */,
 				EAE2862F2473BB7C006D9F24 /* XXCoinPublishApplyVC.m in Sources */,
 				EABD1B9D241BB25900B1A03A /* EtherscanProvider.m in Sources */,
 				EABD1B8D241BB25900B1A03A /* bip32.c in Sources */,
 				EA04AD4F24362964004403FF /* NetAPIClient.m in Sources */,
+				EA45BB1124DE76BF00132984 /* KSymbolDetailData.m in Sources */,
+				EA45BA7C24DE76BE00132984 /* XXMenuView.m in Sources */,
+				EA45BB1424DE76BF00132984 /* XXDepthMapModel.m in Sources */,
 				EA9D3E3A24545A1D0060778C /* SWUtilityButtonTapGestureRecognizer.m in Sources */,
+				EA45BB7E24DF999F00132984 /* KLineTransverseLine.m in Sources */,
+				EA45BAF724DE76BF00132984 /* XXFavoriteEditingVC.m in Sources */,
 				EAE28622247285C3006D9F24 /* XXImportWayView.m in Sources */,
 				EA309FB9236F22190098DE28 /* UIRefreshControl+AFNetworking.m in Sources */,
+				EA45BBB824DFD7B400132984 /* XXWebSocket.m in Sources */,
 				EABD1BAE241BB25900B1A03A /* Payment.m in Sources */,
+				EA45BB8424DF999F00132984 /* Y_KLineAccessoryView.m in Sources */,
+				EA45BB1C24DE76BF00132984 /* XXDetailDepthListView.m in Sources */,
 				EABD1BA4241BB25900B1A03A /* BigNumber.m in Sources */,
 				6C3E66FF244ADF280057B514 /* XXDelegateAddressView.m in Sources */,
+				EA45BA6324DE76BE00132984 /* XXCurrentOrderCell.m in Sources */,
 				EA04ABB1242D015B004403FF /* IQUIScrollView+Additions.m in Sources */,
 				EA953706245590B90060D1FC /* XXCoinModel.m in Sources */,
 				EABD1B9F241BB25900B1A03A /* FallbackProvider.m in Sources */,
+				EA45BA8324DE76BE00132984 /* XXDepthView.m in Sources */,
 				6C791E3124568A1200F22CD0 /* XXProposalDetailVoteInfoCell.m in Sources */,
+				EA45BBA524DFC42F00132984 /* XXIndexModules.m in Sources */,
+				EA45BBA624DFC42F00132984 /* XXMarketData.m in Sources */,
 				6C791DFE2451A2B800F22CD0 /* XXProposalTableViewCell.m in Sources */,
+				EA45BB8824DF999F00132984 /* Y_KLineModel.m in Sources */,
+				EA45BA8224DE76BE00132984 /* XXBusinessAmountView.m in Sources */,
+				EA45BB0C24DE76BF00132984 /* XXQuoteView.m in Sources */,
+				EA45BA7824DE76BE00132984 /* XXPickerView.m in Sources */,
 				EA3E59622447208F0080B98F /* XXMsgKeyGenModel.m in Sources */,
+				EA45BB1B24DE76BF00132984 /* XXKlineActionView.m in Sources */,
 				EAB356312438369200D750D6 /* FMDatabaseAdditions.m in Sources */,
+				EA45BB1624DE76BF00132984 /* XXFullPopButton.m in Sources */,
+				EA45BB8324DF999F00132984 /* Y_VolumeMAView.m in Sources */,
 				EAB356302438369200D750D6 /* FMDatabaseQueue.m in Sources */,
+				EA45BB0924DE76BF00132984 /* XXSymbolView.m in Sources */,
 				EA3E594224441D950080B98F /* XXWithdrawChainVC.m in Sources */,
 				EA20EAC524261661004EBD7F /* XXSecurityAlertView.m in Sources */,
 				EA3E593924441D950080B98F /* XXWithdrawFeeView.m in Sources */,
 				EAE2862924729471006D9F24 /* XXBackupKeystoreView.m in Sources */,
 				EA9D3E3924545A1D0060778C /* SWUtilityButtonView.m in Sources */,
+				EA45BB8A24DF999F00132984 /* Y_KLineVolumePositionModel.m in Sources */,
 				7A13E5222121B86D00B2B529 /* XCQrCodeTool.m in Sources */,
 				EAA8DEDD244EC62900161698 /* XXServiceContentView.m in Sources */,
 				EA3E592224441D160080B98F /* XXAddNewAssetVC.m in Sources */,
@@ -2698,27 +3739,35 @@
 				EA3E593A24441D950080B98F /* XXWithdrawAddressView.m in Sources */,
 				EA3E593B24441D950080B98F /* XXWithdrawAmountReceivedView.m in Sources */,
 				6C791E072451A71600F22CD0 /* XXProposalListHeader.m in Sources */,
+				EA45BBA324DFC42F00132984 /* NotificationManager.m in Sources */,
+				EA45BB1F24DE76BF00132984 /* XXDetailTradesListView.m in Sources */,
 				EAE2861B247285C3006D9F24 /* XXBackupMnemonicPhraseVC.m in Sources */,
 				EABD1B92241BB25900B1A03A /* mpi.c in Sources */,
 				EA04ABAD242D015B004403FF /* IQPreviousNextView.m in Sources */,
 				6C791E222455A53400F22CD0 /* XXProposalDetailHeader.m in Sources */,
 				EAB356332438369200D750D6 /* FMDatabasePool.m in Sources */,
 				EA309EF0236F21410098DE28 /* AFNetworkReachabilityManager.m in Sources */,
+				EA45BA8124DE76BE00132984 /* XXBusinessProgressView.m in Sources */,
 				EA20EAC22425FBC8004EBD7F /* XXServiceAgreementVC.m in Sources */,
 				EA26B35A2477A4F400EAF205 /* XXMessageCell.m in Sources */,
 				EABD1B8A241BB25900B1A03A /* ripemd160.c in Sources */,
+				EA45BB7624DF999F00132984 /* YBPopupMenuPath.m in Sources */,
 				EAC68719214F931200701874 /* NullSafe.m in Sources */,
 				6C3E66FC244AD0700057B514 /* XXDelegateTransferView.m in Sources */,
+				EA45BA7324DE76BE00132984 /* XXTradeableModel.m in Sources */,
 				EAE285DC246E4BA4006D9F24 /* NS+BTCBase58.m in Sources */,
 				EAE28621247285C3006D9F24 /* XXImportKeystoreVC.m in Sources */,
 				EA811AC72479214100C1038F /* XXMessageSegmentView.m in Sources */,
 				F30EAF6320D26536005ADD5C /* NSDate+Helper.m in Sources */,
 				EABD7187244AFCD4008AA188 /* XXFailureView.m in Sources */,
+				EA45BA7924DE76BE00132984 /* XXSwitchCoinView.m in Sources */,
 				7A3298452320EE9900196336 /* NSMutableArray+Safe.m in Sources */,
 				F30EAF5720D26536005ADD5C /* colorModel.m in Sources */,
 				EA04ABAA242D015B004403FF /* IQTitleBarButtonItem.m in Sources */,
 				EA9D3E4024546D820060778C /* XXDepositAlert.m in Sources */,
+				EA45BB1824DE76BF00132984 /* XXBDetailSectionHeaderView.m in Sources */,
 				EA309F7D236F22190098DE28 /* UIProgressView+AFNetworking.m in Sources */,
+				EA45BA7724DE76BE00132984 /* XXCoinTradeSectionHeaderView.m in Sources */,
 				EAA8DEC0244D7E7C00161698 /* XXPasswordView.m in Sources */,
 				EA30A06D236F221A0098DE28 /* UIButton+AFNetworking.m in Sources */,
 				EAA8DEBA244D7E7C00161698 /* RatesManager.m in Sources */,
@@ -2726,11 +3775,14 @@
 				F30EAF6120D26536005ADD5C /* UIView+VJQ.m in Sources */,
 				EAA8DEBD244D7E7C00161698 /* XXSqliteManager.m in Sources */,
 				6C791E0D2451B33B00F22CD0 /* XXProposalListModel.m in Sources */,
+				EA45BBC424E185C200132984 /* XXIndexModel.m in Sources */,
+				EA45BB8524DF999F00132984 /* Y_KLineAccessory.m in Sources */,
 				EAA8DED1244D81CE00161698 /* XXAccountCell.m in Sources */,
 				EA30A15D236F221B0098DE28 /* AFImageDownloader.m in Sources */,
 				EAE2862C2472D4EC006D9F24 /* XXUserHeaderItemView.m in Sources */,
 				F30EAF5B20D26536005ADD5C /* UITableViewCell+Extension.m in Sources */,
 				EAE2864024742483006D9F24 /* YZAuthID.m in Sources */,
+				EA45BA7424DE76BE00132984 /* XXTradeCoinData.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2881,7 +3933,7 @@
 				CODE_SIGN_ENTITLEMENTS = "";
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 0724;
+				CURRENT_PROJECT_VERSION = 1;
 				DEFINES_MODULE = NO;
 				DEVELOPMENT_TEAM = 768MYA9JJQ;
 				ENABLE_BITCODE = NO;
@@ -2898,7 +3950,7 @@
 				INFOPLIST_FILE = "$(SRCROOT)/Bluehelix/AppResource/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				MARKETING_VERSION = 0.2;
+				MARKETING_VERSION = 3.4.0;
 				OTHER_LDFLAGS = (
 					"$(inherited)",
 					"-ObjC",
@@ -2924,7 +3976,7 @@
 				CODE_SIGN_ENTITLEMENTS = "";
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 0724;
+				CURRENT_PROJECT_VERSION = 1;
 				DEFINES_MODULE = NO;
 				DEVELOPMENT_TEAM = 768MYA9JJQ;
 				ENABLE_BITCODE = NO;
@@ -2941,7 +3993,7 @@
 				INFOPLIST_FILE = "$(SRCROOT)/Bluehelix/AppResource/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				MARKETING_VERSION = 0.2;
+				MARKETING_VERSION = 3.4.0;
 				OTHER_LDFLAGS = (
 					"$(inherited)",
 					"-ObjC",

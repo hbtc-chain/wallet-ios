@@ -37,21 +37,23 @@
     }
     KWindow.backgroundColor = [UIColor whiteColor];
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
-    if (KUser.address) {
-        if (KUser.isFaceIDLockOpen || KUser.isTouchIDLockOpen) {
-            self.window.rootViewController = [[BHFaceIDLockVC alloc] init];
-        } else {
-            XXLoginVC *loginVC = [[XXLoginVC alloc] init];
-            XXNavigationController *loginNav = [[XXNavigationController alloc] initWithRootViewController:loginVC];
-            self.window.rootViewController = loginNav;
-        }
-    } else {
-        XXStartWalletVC *startVC = [[XXStartWalletVC alloc] init];
-        XXNavigationController *startNav = [[XXNavigationController alloc] initWithRootViewController:startVC];
-        self.window.rootViewController = startNav;
-    }
+    self.window.rootViewController = [[XXTabBarController alloc] init];
+//    if (KUser.address) {
+//        if (KUser.isFaceIDLockOpen || KUser.isTouchIDLockOpen) {
+//            self.window.rootViewController = [[BHFaceIDLockVC alloc] init];
+//        } else {
+//            XXLoginVC *loginVC = [[XXLoginVC alloc] init];
+//            XXNavigationController *loginNav = [[XXNavigationController alloc] initWithRootViewController:loginVC];
+//            self.window.rootViewController = loginNav;
+//        }
+//    } else {
+//        XXStartWalletVC *startVC = [[XXStartWalletVC alloc] init];
+//        XXNavigationController *startNav = [[XXNavigationController alloc] initWithRootViewController:startVC];
+//        self.window.rootViewController = startNav;
+//    }
     [self.window makeKeyAndVisible];
     [self.splashScreen showSplashScreen];
+    [KMarket readCachedDataOfMarket];
     return YES;
 }
 
@@ -93,8 +95,7 @@
 
 #pragma mark - 4. 程序激活
 - (void)applicationDidBecomeActive:(UIApplication *)application {
-    
-    
+    [KSystem applicationActive];
 }
 
 #pragma mark - 5. 程序暂行

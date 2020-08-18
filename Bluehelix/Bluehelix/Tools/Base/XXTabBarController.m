@@ -19,6 +19,8 @@
 #import "XXAssetVC.h"
 #import "XXValidatorsHomeViewController.h"
 #import "XXProposalsListViewController.h"
+#import "XXQuoteVC.h"
+#import "XXTradeHomeVC.h"
 
 @interface XXTabBarController ()
 
@@ -73,10 +75,10 @@
     XXNavigationController *nav0 = [[XXNavigationController alloc] initWithRootViewController:[[XXAssetVC alloc] init]];
     [controllers addObject:nav0];
     
-    XXNavigationController *nav1 = [[XXNavigationController alloc] initWithRootViewController:[[XXValidatorsHomeViewController alloc] init]];
+    XXNavigationController *nav1 = [[XXNavigationController alloc] initWithRootViewController:[[XXQuoteVC alloc] init]];
     [controllers addObject:nav1];
     
-    XXNavigationController *nav2 = [[XXNavigationController alloc] initWithRootViewController:[[XXProposalsListViewController alloc] init]];
+    XXNavigationController *nav2 = [[XXNavigationController alloc] initWithRootViewController:[[XXTradeHomeVC alloc] init]];
     [controllers addObject:nav2];
     
     XXNavigationController *nav3 = [[XXNavigationController alloc] initWithRootViewController:[[XXUserHomeVC alloc] init]];
@@ -158,18 +160,29 @@
                                  @"normalImage":[UIImage textImageName:@"tabbarNew_0"],
                                  @"selectedImage":[UIImage mainImageName:@"tabbarNew_0"]
                                  }];
+        [_namesArray addObject:@{
+                                        @"title":LocalizedString(@"Markets"),
+                                        @"normalImage":[UIImage textImageName:@"tabbarNew_1"],
+                                        @"selectedImage":[UIImage mainImageName:@"tabbarNew_1"]
+                                        }];
         
         [_namesArray addObject:@{
-                                 @"title":LocalizedString(@"Validator"),
-                                 @"normalImage":[UIImage textImageName:@"tabbarNew_1"],
-                                 @"selectedImage":[UIImage mainImageName:@"tabbarNew_1"]
-                                 }];
+        @"title":LocalizedString(@"TradesTabbar"),
+        @"normalImage":[UIImage textImageName:@"tabbarNew_2"],
+        @"selectedImage":[UIImage mainImageName:@"tabbarNew_2"]
+        }];
         
-        [_namesArray addObject:@{
-                                 @"title":LocalizedString(@"Proposal"),
-                                 @"normalImage":[UIImage textImageName:@"tabbarNew_2"],
-                                 @"selectedImage":[UIImage mainImageName:@"tabbarNew_2"]
-                                 }];
+//        [_namesArray addObject:@{
+//                                 @"title":LocalizedString(@"Validator"),
+//                                 @"normalImage":[UIImage textImageName:@"tabbarNew_1"],
+//                                 @"selectedImage":[UIImage mainImageName:@"tabbarNew_1"]
+//                                 }];
+//
+//        [_namesArray addObject:@{
+//                                 @"title":LocalizedString(@"Proposal"),
+//                                 @"normalImage":[UIImage textImageName:@"tabbarNew_2"],
+//                                 @"selectedImage":[UIImage mainImageName:@"tabbarNew_2"]
+//                                 }];
         
         
         [_namesArray addObject:@{

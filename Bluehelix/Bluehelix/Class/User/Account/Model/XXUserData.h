@@ -7,6 +7,8 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "Singleton.h"
+#import "XXSymbolModel.h"
 NS_ASSUME_NONNULL_BEGIN
 @class XXAccountModel;
 @interface XXUserData : NSObject
@@ -39,6 +41,10 @@ NS_ASSUME_NONNULL_BEGIN
  分两种情况 1.每次重新进入app
  */
 @property (nonatomic, assign) BOOL shouldVerify;
+
+-(id)getValueForKey:(NSString*)key;
+-(void)saveValeu:(id)value forKey:(NSString *)key;
+
 @end
 
 NS_ASSUME_NONNULL_END
