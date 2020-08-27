@@ -18,6 +18,7 @@
 #import "XXHistoryOderCell.h"
 #import "XXOrderDetailVC.h"
 #import "XXEmptyView.h"
+#import "XYHAlertView.h"
 
 @interface XXCoinView () <XXTradeDataDelegate, XXMenuViewDelegate, YBPopupMenuDelegate> {
     BOOL _isShowing;
@@ -675,32 +676,6 @@ static NSString *identifir1 = @"TradeXXHistoryOrderCell";
     if (![self verifyInputIsLegal]) {
         return;
     }
-    
-    double closeValue  =  [KTrade.coinTradeModel.quote.close doubleValue];
-    BOOL isHaveClose = closeValue > 0;
-    if (!self.isMarketPrice && isHaveClose) {
-        double buyRise  = ([self.priceView.textField.text doubleValue] - closeValue) / closeValue;
-        double sellRise  = (closeValue - [self.priceView.textField.text doubleValue]) / closeValue;
-        if (KTrade.coinIsSell && sellRise > 0.2) {
-            MJWeakSelf
-//            [XYHAlertView showAlertViewWithTitle:LocalizedString(@"QuestionsAlertTitle") message:LocalizedString(@"CreateSellOrderTip") titlesArray:@[LocalizedString(@"QueDing")] andBlock:^(NSInteger index) {
-//                [weakSelf createCoinOrder];
-//            }];
-        } else if (!KTrade.coinIsSell && buyRise > 0.2) {
-            MJWeakSelf
-//            [XYHAlertView showAlertViewWithTitle:LocalizedString(@"QuestionsAlertTitle") message:LocalizedString(@"CreateBuyOrderTip") titlesArray:@[LocalizedString(@"QueDing")] andBlock:^(NSInteger index) {
-//                [weakSelf createCoinOrder];
-//            }];
-        } else {
-            [self createCoinOrder];
-        }
-    } else {
-        [self createCoinOrder];
-    }
-}
-
-#pragma mark - 8.3 创建订单
-- (void)createCoinOrder {
     [MBProgressHUD showActivityMessageInWindow:@""];
     NSMutableDictionary *param = [NSMutableDictionary dictionary];
     param[@"exchange_id"] = KTrade.coinTradeModel.exchangeId;
@@ -715,12 +690,12 @@ static NSString *identifir1 = @"TradeXXHistoryOrderCell";
         param[@"price"] = self.priceView.textField.text;
     }
     param[@"quantity"] = self.amountView.textField.text;
-    MJWeakSelf
+    
 //    [HttpManager order_PostWithPath:@"order/create" params:param andBlock:^(id data, NSString *msg, NSInteger code) {
 //        [MBProgressHUD hideHUD];
 //        if (code == 0) {
 //            [MBProgressHUD showSuccessMessage:LocalizedString(@"OrderSucceeded")];
-//            [weakSelf initTradeData];
+//            [self initTradeData];
 //        } else {
 //            [MBProgressHUD showErrorMessage:msg];
 //        }

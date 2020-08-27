@@ -463,3 +463,6 @@
 "OrderStatus" = "订单状态";
 "Reset"="重置";
 "Done"="完成";
+"QuestionsAlertTitle" = "温馨提示";
+"Loading" = "加载中...";
+"NoRecord" = "暂无记录";

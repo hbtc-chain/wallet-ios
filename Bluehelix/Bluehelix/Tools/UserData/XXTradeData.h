@@ -8,7 +8,6 @@
 
 #import <Foundation/Foundation.h>
 #import "Singleton.h"
-#import "XXOptionModel.h"
 
 NS_ASSUME_NONNULL_BEGIN
 

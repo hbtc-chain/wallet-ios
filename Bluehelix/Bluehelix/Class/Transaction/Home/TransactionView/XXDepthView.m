@@ -232,13 +232,6 @@
     NSArray *titleArr = @[
         [NSString stringWithFormat:@"%@(%@)",LocalizedString(@"Amount"), KTrade.currentModel.baseTokenName],
         [NSString stringWithFormat:@"%@(%@)",LocalizedString(@"Cumulative"), KTrade.currentModel.baseTokenName]];
-    
-    if (KTrade.currentModel.type == SymbolTypeOption) {
-        titleArr = @[
-            [NSString stringWithFormat:@"%@(%@)",LocalizedString(@"Amount"), LocalizedString(@"Paper")],
-            [NSString stringWithFormat:@"%@(%@)",LocalizedString(@"Cumulative"), LocalizedString(@"Paper")]
-        ];
-    }
     CGFloat itemWith = 0;
     UIFont *font = kFont14;
     for (NSInteger i=0; i < titleArr.count; i ++) {
@@ -274,13 +267,6 @@
     NSArray *titleArr = @[
         [NSString stringWithFormat:@"%@(%@)",LocalizedString(@"Amount"), KTrade.currentModel.baseTokenName],
         [NSString stringWithFormat:@"%@(%@)",LocalizedString(@"Cumulative"), KTrade.currentModel.baseTokenName]];
-    
-    if (KTrade.currentModel.type == SymbolTypeOption) {
-        titleArr = @[
-            [NSString stringWithFormat:@"%@(%@)",LocalizedString(@"Amount"), LocalizedString(@"Paper")],
-            [NSString stringWithFormat:@"%@(%@)",LocalizedString(@"Cumulative"), LocalizedString(@"Paper")]
-        ];
-    }
     self.numberLabel.text = titleArr[index];
     
     // 个cell赋值

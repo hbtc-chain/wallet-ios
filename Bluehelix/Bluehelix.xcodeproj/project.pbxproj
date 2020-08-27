@@ -2039,20 +2039,20 @@
 		EA45B8EA24DE76BD00132984 /* TransactionView */ = {
 			isa = PBXGroup;
 			children = (
-				EA45B8EB24DE76BD00132984 /* XXTradeLeverBar.h */,
 				EA45B8EC24DE76BD00132984 /* XXTradeView.h */,
-				EA45B8ED24DE76BD00132984 /* XXBusinessPriceView.h */,
-				EA45B8EE24DE76BD00132984 /* XXBusinessProgressView.h */,
-				EA45B8EF24DE76BD00132984 /* XXBusinessAmountView.h */,
-				EA45B8F024DE76BD00132984 /* XXBuySellButton.m */,
-				EA45B8F124DE76BD00132984 /* XXDepthView.h */,
-				EA45B8F224DE76BD00132984 /* XXBusinessPriceView.m */,
 				EA45B8F324DE76BD00132984 /* XXTradeView.m */,
-				EA45B8F424DE76BD00132984 /* XXTradeLeverBar.m */,
-				EA45B8F524DE76BD00132984 /* XXBusinessProgressView.m */,
+				EA45B8ED24DE76BD00132984 /* XXBusinessPriceView.h */,
+				EA45B8F224DE76BD00132984 /* XXBusinessPriceView.m */,
+				EA45B8EF24DE76BD00132984 /* XXBusinessAmountView.h */,
 				EA45B8F624DE76BD00132984 /* XXBusinessAmountView.m */,
+				EA45B8EB24DE76BD00132984 /* XXTradeLeverBar.h */,
+				EA45B8F424DE76BD00132984 /* XXTradeLeverBar.m */,
+				EA45B8EE24DE76BD00132984 /* XXBusinessProgressView.h */,
+				EA45B8F524DE76BD00132984 /* XXBusinessProgressView.m */,
+				EA45B8F124DE76BD00132984 /* XXDepthView.h */,
 				EA45B8F724DE76BD00132984 /* XXDepthView.m */,
 				EA45B8F824DE76BD00132984 /* XXBuySellButton.h */,
+				EA45B8F024DE76BD00132984 /* XXBuySellButton.m */,
 			);
 			path = TransactionView;
 			sourceTree = "<group>";

@@ -12,22 +12,14 @@
 #import "XXBusinessProgressView.h"
 #import "XXDepthView.h"
 #import "XXBuySellButton.h"
-//#import "XXOptionTimeView.h"
 #import "XXTradeLeverBar.h"
 
 NS_ASSUME_NONNULL_BEGIN
 typedef NS_ENUM(NSInteger, XXTradeViewType) {
     XXTradeViewTypeCoin = 0,//币币现货
-    XXTradeViewTypeLever = 1 //币币杠杆
 };
 
 @interface XXTradeView : UIView <UITableViewDataSource, UITableViewDelegate>
-/**是否有风险提醒*/
-@property (nonatomic, assign) BOOL isHaveRiskBar;
- 
-@property (nonatomic, strong) XXTradeLeverBar *leverRiskBar;
-/**杠杆更多按钮*/
-@property (strong, nonatomic) XXButton *leverMoreButton;
 
 /** 标题按钮 */
 @property (strong, nonatomic) XXButton *titleButton;
@@ -37,9 +29,6 @@ typedef NS_ENUM(NSInteger, XXTradeViewType) {
 
 /** 头视图 */
 @property (strong, nonatomic) UIView *headerView;
-
-/** 行权价、指数、交割时间 */
-//@property (strong, nonatomic) XXOptionTimeView *optionTimeView;
 
 /** 买卖方式按钮 */
 @property (strong, nonatomic) XXBuySellButton *typeButton;

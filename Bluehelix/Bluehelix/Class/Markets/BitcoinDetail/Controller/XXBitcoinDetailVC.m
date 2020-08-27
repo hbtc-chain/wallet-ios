@@ -231,8 +231,12 @@ static NSString *identifierTwo = @"XXEntrustmentOrderCell";
 
 #pragma mark - 6. 收藏按钮点击事件
 - (void)saveButtonClick:(UIButton *)sender {
-    sender.enabled = NO;
     sender.selected = !sender.selected;
+    if (sender.selected) {
+        [KMarket addFavoriteSymbolId:KDetail.symbolModel.symbolId];
+    } else {
+        [KMarket cancelFavoriteSymbolId:KDetail.symbolModel.symbolId];
+    }
 }
 
 #pragma mark - 7. 表示图代理

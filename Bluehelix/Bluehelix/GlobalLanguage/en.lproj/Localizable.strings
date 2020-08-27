@@ -461,3 +461,6 @@
 "OrderStatus" = "Side";
 "Reset"="Reset";
 "Done"="Done";
+"QuestionsAlertTitle" = "Reminder";
+"Loading" = "Loading...";
+"NoRecord" = "No Record";

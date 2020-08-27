@@ -17,7 +17,6 @@
 /** 进入详情按钮 */
 @property (strong, nonatomic) XXButton *rightActionButton;
 
-
 /** 分割线 */
 @property (strong, nonatomic) UIView *lineView;
 
@@ -31,11 +30,6 @@
     if (self) {
         self.backgroundColor = kWhite100;
         self.tradeViewType = tradeType;
-        if (self.tradeViewType == XXTradeViewTypeLever) {
-            self.isHaveRiskBar = YES;
-        }else{
-            self.isHaveRiskBar = NO;
-        }
         [self setupUI];
     }
     return self;
@@ -55,16 +49,11 @@
 - (void)setupUI {
     
     self.itemWidth = kScreen_Width - KSpacing * 2 - K375(144) -K375(15);
-    if (self.isHaveRiskBar) {
-        [self addSubview:self.leverRiskBar];
-        [self addSubview:self.leverMoreButton];
-    }
     [self addSubview:self.titleButton];
     [self addSubview:self.riseFallLabel];
     [self addSubview:self.rightActionButton];
     [self addSubview:self.lineView];
     
-//    [self addOptionTimeView];
     [self.headerView addSubview:self.typeButton];
     [self.headerView addSubview:self.fixedPriceButton];
     [self.headerView addSubview:self.priceView];
@@ -77,9 +66,6 @@
     [self.headerView addSubview:self.tradeTitleLabel];
     [self.headerView addSubview:self.tradeNameLabel];
     [self.headerView addSubview:self.tradeValueLabel];
-    if (self.tradeViewType == XXTradeViewTypeLever) {
-        [self.headerView addSubview:self.transferButton];
-    }
     [self.headerView addSubview:self.actionButton];
     
     [self.headerView addSubview:self.depthView];
@@ -87,10 +73,6 @@
     [self addSubview:self.tableView];
     self.tableView.tableHeaderView = self.headerView;
     
-}
-
-- (void)addOptionTimeView {
-
 }
 
 #pragma mark - 2. 标题按钮赋值
@@ -145,18 +127,7 @@
 - (void)tradeActionButtonAction:(UIButton *)sender {
     
 }
-#pragma mark - 11 杠杆风险
-- (void)riskRatioAction:(UIButton *)sender{
-    
-}
-#pragma mark - 12. 借还币 事件按钮
-- (void)borrowOrReturnAction:(UIButton *)sender{
-    
-}
-#pragma mark  13.杠杆更多按钮事件
-- (void)leverMoreButtonAction:(UIButton *)sender{
-    
-}
+
 #pragma mark  14. 资金划转按钮事件
 - (void)transferButtonAction:(UIButton *)sender{
     
@@ -175,33 +146,12 @@
 - (void)selectPrice:(NSString *)price ReloadAmount:(double)amount isBuy:(BOOL)isBuy {
     
 }
-#pragma mark set/get
-- (void)setIsHaveRiskBar:(BOOL)isHaveRiskBar{
-    _isHaveRiskBar = isHaveRiskBar;
-    if (!_isHaveRiskBar) {
-        self.leverRiskBar.hidden = YES;
-        [self setNeedsDisplay];
-    }
-}
-#pragma mark - || 懒加载
-- (XXTradeLeverBar *)leverRiskBar{
-    MJWeakSelf
-    if (!_leverRiskBar) {
-        _leverRiskBar = [[XXTradeLeverBar alloc]initWithFrame:CGRectMake(0, 0, kScreen_Width, 48)];
-        _leverRiskBar.riskRatioButtonActionBlock = ^(UIButton * _Nonnull action) {
-            [weakSelf riskRatioAction:action];
-        };
-        _leverRiskBar.XXBorrowOrReturnButtonActionBlock = ^(UIButton * _Nonnull action){
-            [weakSelf borrowOrReturnAction:action];
-        };
-    }
-    return _leverRiskBar;
-}
+
 /** 标题按钮 */
 - (XXButton *)titleButton {
     if (_titleButton == nil) {
         MJWeakSelf
-        _titleButton = [XXButton buttonWithFrame:CGRectMake(KSpacing, self.isHaveRiskBar ? 48 :0, K375(220), 44) title:@"" font:kFontBold16 titleColor:KNavigationBar_TitleColor block:^(UIButton *button) {
+        _titleButton = [XXButton buttonWithFrame:CGRectMake(KSpacing, 0, K375(220), 44) title:@"" font:kFontBold16 titleColor:KNavigationBar_TitleColor block:^(UIButton *button) {
             [weakSelf tradeViewTitleButtonAction:button];
         }];
     }
@@ -211,7 +161,7 @@
 /** 涨跌幅标签 */
 - (XXLabel *)riseFallLabel {
     if (_riseFallLabel == nil) {
-        _riseFallLabel = [XXLabel labelWithFrame:CGRectMake(40, self.isHaveRiskBar ? 48 :0,self.isHaveRiskBar ? kScreen_Width - 90 - 44 : kScreen_Width - 90, self.titleButton.height) text:@"" font:kFont14 textColor:kGreen100 alignment:NSTextAlignmentRight];
+        _riseFallLabel = [XXLabel labelWithFrame:CGRectMake(40, 0,kScreen_Width - 90, self.titleButton.height) text:@"" font:kFont14 textColor:kGreen100 alignment:NSTextAlignmentRight];
     }
     return _riseFallLabel;
 }
@@ -220,7 +170,7 @@
 - (XXButton *)rightActionButton {
     if (_rightActionButton == nil) {
         MJWeakSelf
-        _rightActionButton = [XXButton buttonWithFrame:CGRectMake(self.isHaveRiskBar ? kScreen_Width  - 45- 44 :kScreen_Width  - 60, self.isHaveRiskBar ? 48 :0, self.isHaveRiskBar ? 44 :60, self.titleButton.height) block:^(UIButton *button) {
+        _rightActionButton = [XXButton buttonWithFrame:CGRectMake(kScreen_Width  - 60, 0, 60, self.titleButton.height) block:^(UIButton *button) {
             [weakSelf tradeViewPushToDetailVC];
         }];
         [_rightActionButton setImage:[UIImage textImageName:@"klineNav_0"] forState:UIControlStateNormal];
@@ -228,16 +178,6 @@
     return _rightActionButton;
 }
 
-- (XXButton *)leverMoreButton{
-    MJWeakSelf
-    if (!_leverMoreButton) {
-        _leverMoreButton = [XXButton buttonWithFrame:CGRectMake(kScreen_Width  - 45, self.isHaveRiskBar ? 48 :0, 44, self.titleButton.height) block:^(UIButton *button) {
-            [weakSelf leverMoreButtonAction:self.leverMoreButton];
-        }];
-        [_leverMoreButton setImage:[UIImage textImageName:@"moreActions_0"] forState:UIControlStateNormal];
-    }
-    return _leverMoreButton;
-}
 - (UIView *)lineView {
     if (_lineView == nil) {
         _lineView = [[UIView alloc] initWithFrame:CGRectMake(0, CGRectGetMaxY(self.titleButton.frame), kScreen_Width, 1)];
@@ -258,7 +198,7 @@
 /** 表示图 */
 - (UITableView *)tableView {
     if (_tableView == nil) {
-        _tableView = [[UITableView alloc] initWithFrame:CGRectMake(0,self.isHaveRiskBar ? 45 +48 : 45, kScreen_Width, self.isHaveRiskBar ? self.height -45 -48 : self.height - 45) style:UITableViewStylePlain];
+        _tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 45, kScreen_Width, self.height - 45) style:UITableViewStylePlain];
         _tableView.dataSource = self;
         _tableView.delegate = self;
         _tableView.backgroundColor = kWhite100;
@@ -270,42 +210,18 @@
     return _tableView;
 }
 
-//- (XXOptionTimeView *)optionTimeView {
-//    if (_optionTimeView == nil) {
-//        _optionTimeView = [[XXOptionTimeView alloc] initWithFrame:CGRectMake(0, 0, kScreen_Width, 64)];
-//    }
-//    return _optionTimeView;
-//}
-
 /** 买卖方式按钮 */
 - (XXBuySellButton *)typeButton {
     if (_typeButton == nil) {
         _typeButton = [[XXBuySellButton alloc] initWithFrame:CGRectMake(KSpacing, 0, self.itemWidth, 40)];
         MJWeakSelf
         _typeButton.buySellBlock = ^(NSInteger index) {
-   //TODO
-//            if (KTrade.currentModel.type == SymbolTypeCoin) {
-//                if ((index == 0 && KTrade.coinIsSell == NO) || (index == 1 && KTrade.coinIsSell == YES)) {
-//
-//                } else {
-//                    KTrade.coinIsSell = index == 0 ? NO : YES;
-//                    [weakSelf tradeViewSwitchTradeType];
-//                }
-//            } else if (KTrade.currentModel.type == SymbolTypeOption) {
-//                if ((index == 0 && KTrade.optionIsSell == NO) || (index == 1 && KTrade.optionIsSell == YES)) {
-//
-//                } else {
-//                    KTrade.optionIsSell = index == 0 ? NO : YES;
-//                    [weakSelf tradeViewSwitchTradeType];
-//                }
-//            }else if (KTrade.currentModel.type == SymbolTypeCoinMargin ){
-//                if ((index == 0 && KTrade.coinLeverIsSell == NO) || (index == 1 && KTrade.coinLeverIsSell == YES)) {
-//
-//                } else {
-//                    KTrade.coinLeverIsSell = index == 0 ? NO : YES;
-//                    [weakSelf tradeViewSwitchTradeType];
-//                }
-//            }
+                if ((index == 0 && KTrade.coinIsSell == NO) || (index == 1 && KTrade.coinIsSell == YES)) {
+
+                } else {
+                    KTrade.coinIsSell = index == 0 ? NO : YES;
+                    [weakSelf tradeViewSwitchTradeType];
+                }
         };
     }
     return _typeButton;
