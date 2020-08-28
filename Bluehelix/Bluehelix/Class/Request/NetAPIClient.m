@@ -47,7 +47,7 @@ static dispatch_once_t onceToken;
     //发起请求
     switch (method) {
         case Get:{
-            [self GET:aPath parameters:params progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+            [self GET:aPath parameters:params headers:nil progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
                 id data = [NSJSONSerialization JSONObjectWithData:responseObject options:NSJSONReadingMutableContainers error:nil];
                 if ([data isKindOfClass:[NSArray class]] || [data isKindOfClass:[NSDictionary class]]) {
                     block(data, @"网络请求正常！", 0);
@@ -73,7 +73,7 @@ static dispatch_once_t onceToken;
             break;
         }
         case Post:{
-            [self POST:aPath parameters:params progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+            [self POST:aPath parameters:params headers:nil progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
                 id data = [NSJSONSerialization JSONObjectWithData:responseObject options:NSJSONReadingMutableContainers error:nil];
                 if ([data isKindOfClass:[NSArray class]] || [data isKindOfClass:[NSDictionary class]]) {
                     block(data, @"网络请求正常！", 0);

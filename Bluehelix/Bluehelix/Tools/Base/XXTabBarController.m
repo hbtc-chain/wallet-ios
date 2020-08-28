@@ -21,6 +21,7 @@
 #import "XXProposalsListViewController.h"
 #import "XXQuoteVC.h"
 #import "XXTradeHomeVC.h"
+#import "XXWebViewController.h"
 
 @interface XXTabBarController ()
 
@@ -75,11 +76,16 @@
     XXNavigationController *nav0 = [[XXNavigationController alloc] initWithRootViewController:[[XXAssetVC alloc] init]];
     [controllers addObject:nav0];
     
-    XXNavigationController *nav1 = [[XXNavigationController alloc] initWithRootViewController:[[XXQuoteVC alloc] init]];
+    XXWebViewController *webVC = [[XXWebViewController alloc] init];
+    webVC.urlString = kWebUrl;
+    XXNavigationController *nav1 = [[XXNavigationController alloc] initWithRootViewController:webVC];
     [controllers addObject:nav1];
     
-    XXNavigationController *nav2 = [[XXNavigationController alloc] initWithRootViewController:[[XXTradeHomeVC alloc] init]];
-    [controllers addObject:nav2];
+//    XXNavigationController *nav1 = [[XXNavigationController alloc] initWithRootViewController:[[XXQuoteVC alloc] init]];
+//    [controllers addObject:nav1];
+//
+//    XXNavigationController *nav2 = [[XXNavigationController alloc] initWithRootViewController:[[XXTradeHomeVC alloc] init]];
+//    [controllers addObject:nav2];
     
     XXNavigationController *nav3 = [[XXNavigationController alloc] initWithRootViewController:[[XXUserHomeVC alloc] init]];
     [controllers addObject:nav3];
@@ -166,11 +172,11 @@
                                         @"selectedImage":[UIImage mainImageName:@"tabbarNew_1"]
                                         }];
         
-        [_namesArray addObject:@{
-        @"title":LocalizedString(@"TradesTabbar"),
-        @"normalImage":[UIImage textImageName:@"tabbarNew_2"],
-        @"selectedImage":[UIImage mainImageName:@"tabbarNew_2"]
-        }];
+//        [_namesArray addObject:@{
+//        @"title":LocalizedString(@"TradesTabbar"),
+//        @"normalImage":[UIImage textImageName:@"tabbarNew_2"],
+//        @"selectedImage":[UIImage mainImageName:@"tabbarNew_2"]
+//        }];
         
 //        [_namesArray addObject:@{
 //                                 @"title":LocalizedString(@"Validator"),
