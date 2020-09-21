@@ -21,6 +21,10 @@
 #import "XXMsg.h"
 #import "XXMsgRequest.h"
 #import "XXPasswordView.h"
+#import "XXValidatorsHomeViewController.h"
+#import "XYHPickerView.h"
+#import "XXExchangeVC.h"
+#import "XXTabBarController.h"
 
 @interface XXSymbolDetailVC ()<UITableViewDataSource, UITableViewDelegate>
 
@@ -147,6 +151,13 @@
     }];
 }
 
+// 委托
+- (void)pushDelegate {
+    XXValidatorsHomeViewController *vc = [[XXValidatorsHomeViewController alloc] init];
+    [self.navigationController pushViewController:vc animated:YES];
+}
+
+// 收款
 - (void)pushDepositVC {
     XXDepositCoinVC *depositVC = [[XXDepositCoinVC alloc] init];
     depositVC.tokenModel = self.tokenModel;
@@ -154,6 +165,7 @@
     [self.navigationController pushViewController:depositVC animated:YES];
 }
 
+// 转账
 - (void)pushTransferVC {
     XXTransferVC *transferVC = [[XXTransferVC alloc] init];
     transferVC.tokenModel = self.tokenModel;
@@ -166,21 +178,62 @@
     if ([self.tokenModel.symbol isEqualToString:kMainToken]) {
         [self requestDelegations:YES];
     } else {
-        if (!self.tokenModel.is_native) {
-            [self chainInAction];
-        }
+        [self chainAction];
     }
 }
 
 /// 底部第四个按钮点击事件
 - (void)forthBtnAction {
     if ([self.tokenModel.symbol isEqualToString:kMainToken]) {
-        [self requestDelegations:NO];
+        [self pushDelegate];
     } else {
-        if (!self.tokenModel.is_native) {
-            [self chainOutAction];
-        }
+        [self exchangeAndTradeAction];
     }
+}
+
+// 跨链
+- (void)chainAction {
+    MJWeakSelf
+    [XYHPickerView showPickerViewWithNamesArray:@[LocalizedString(@"ChainReceiveMoney"),LocalizedString(@"ChainPayMoney")] selectIndex:100 Block:^(NSString *title, NSInteger index) {
+        if (index == 0) {
+            if (!weakSelf.tokenModel.is_native) {
+                [weakSelf chainInAction];
+            }
+        } else if (index == 1) {
+            if (!weakSelf.tokenModel.is_native) {
+                [weakSelf chainOutAction];
+            }
+        } else {}
+    }];
+}
+
+// 兑换 && 交易
+- (void)exchangeAndTradeAction {
+    MJWeakSelf
+    [XYHPickerView showPickerViewWithNamesArray:@[LocalizedString(@"Exchange"),LocalizedString(@"TradesTabbar")] selectIndex:100 Block:^(NSString *title, NSInteger index) {
+        if (index == 0) {
+            if (!weakSelf.tokenModel.is_native) {
+                [weakSelf exchangeAction];
+            }
+        } else if (index == 1) {
+            if (!weakSelf.tokenModel.is_native) {
+                [weakSelf tradeAction];
+            }
+        } else {}
+    }];
+}
+
+// 兑换
+- (void)exchangeAction {
+    XXExchangeVC *exchangeVC = [[XXExchangeVC alloc] init];
+    [self.navigationController pushViewController:exchangeVC animated:YES];
+}
+
+// 交易
+- (void)tradeAction {
+    [self.navigationController popToRootViewControllerAnimated:NO];
+    XXTabBarController *tabBarVC = (XXTabBarController *)KWindow.rootViewController;
+    [tabBarVC setIndex:1];
 }
 
 /// 跨链转出
@@ -359,10 +412,6 @@
             [weakSelf.assetManager requestAsset];
             [weakSelf requestHistory];
         }];
-        //        _tableView.mj_footer = [MJRefreshBackNormalFooter footerWithRefreshingBlock:^{
-        //            weakSelf.page ++;
-        //            [weakSelf requestHistory];
-        //        }];
     }
     return _tableView;
 }

@@ -10,12 +10,18 @@
 #import <WebKit/WebKit.h>
 #import "XXFailureView.h"
 #import "NJKWebViewProgressView.h"
+#import "XXVisitAddressAlert.h"
+#import "XXChangeAccountAlert.h"
+#import "XXPayInfoView.h"
+#import "XXWebMenuAlert.h"
+#import "WKWebViewJavascriptBridge.h"
 
 @interface XXWebViewController () <WKUIDelegate, WKNavigationDelegate>
 
 /** webView */
 @property (strong, nonatomic, nullable) WKWebView *webView;
 @property (strong, nonatomic, nullable) NJKWebViewProgressView *progressView;;
+@property (nonatomic, strong) WKWebViewJavascriptBridge *bridge;
 
 /** 失败视图 */
 @property (nonatomic, strong) XXFailureView *failureView;
@@ -27,6 +33,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self setupUI];
+    [self initBridge];
     [self loadRequest];
 }
 
@@ -47,14 +54,27 @@
     [self.webView addObserver:self forKeyPath:@"title" options:NSKeyValueObservingOptionNew context:NULL];
 }
 
+- (void)initBridge {
+    MJWeakSelf;
+       self.bridge = [WKWebViewJavascriptBridge bridgeForWebView:self.webView];
+       [WKWebViewJavascriptBridge enableLogging];
+       [self.bridge registerHandler:@"get_account" handler:^(id data, WVJBResponseCallback responseCallback) {
+           NSLog(@"=========js%@",data);
+       }];
+    [self.bridge registerHandler:@"action" handler:^(id data, WVJBResponseCallback responseCallback) {
+        NSLog(@"=========js%@",data);
+    }];
+    [self.bridge setWebViewDelegate:self];
+}
+
 #pragma mark - 3. WKNavigationDelegate
 // 页面开始加载时调用
 - (void)webView:(WKWebView *)webView didStartProvisionalNavigation:(WKNavigation *)navigation{
- 
+    
 }
 // 当内容开始返回时调用
 - (void)webView:(WKWebView *)webView didCommitNavigation:(WKNavigation *)navigation{
- 
+    
 }
 // 页面加载完成之后调用
 - (void)webView:(WKWebView *)webView didFinishNavigation:(WKNavigation *)navigation{
@@ -62,8 +82,8 @@
 }
 // 页面加载失败时调用
 - (void)webView:(WKWebView *)webView didFailProvisionalNavigation:(WKNavigation *)navigation{
- 
-//    [self.webView.scrollView.mj_header endRefreshing];
+    
+    //    [self.webView.scrollView.mj_header endRefreshing];
     self.failureView.hidden = NO;
 }
 // 接收到服务器跳转请求之后调用
@@ -72,7 +92,7 @@
 }
 // 在收到响应后，决定是否跳转
 - (void)webView:(WKWebView *)webView decidePolicyForNavigationResponse:(WKNavigationResponse *)navigationResponse decisionHandler:(void (^)(WKNavigationResponsePolicy))decisionHandler{
- 
+    
     NSLog(@"%@",navigationResponse.response.URL.absoluteString);
     //允许跳转
     decisionHandler(WKNavigationResponsePolicyAllow);
@@ -81,8 +101,8 @@
 }
 // 在发送请求之前，决定是否跳转
 - (void)webView:(WKWebView *)webView decidePolicyForNavigationAction:(WKNavigationAction *)navigationAction decisionHandler:(void (^)(WKNavigationActionPolicy))decisionHandler{
- 
-     NSLog(@"%@",navigationAction.request.URL.absoluteString);
+    
+    NSLog(@"%@",navigationAction.request.URL.absoluteString);
     
     if ([navigationAction.request.URL.absoluteString hasPrefix:@"sms:"]
         || [navigationAction.request.URL.absoluteString hasPrefix:@"tel:"]
@@ -156,8 +176,8 @@
 
 #pragma mark - 5.1 加载Request
 - (void)loadRequest {
-        NSMutableURLRequest *request = [[NSMutableURLRequest alloc] initWithURL:[NSURL URLWithString:self.urlString]];
-        [self.webView loadRequest:request];
+    NSMutableURLRequest *request = [[NSMutableURLRequest alloc] initWithURL:[NSURL URLWithString:self.urlString]];
+    [self.webView loadRequest:request];
 }
 
 #pragma mark - 6. 监听加载进度
@@ -198,12 +218,30 @@
     if ([self.webView canGoBack]) {
         [self.webView goBack];
     } else {
-         [self.webView reload];
+        [self.webView reload];
     }
+    
+//    [XXChangeAccountAlert showWithSureBlock:^{
+//
+//    }];
+    [XXWebMenuAlert showWithSureBlock:^{
+        
+    }];
 }
 
 - (void)rightButtonClick:(UIButton *)sender {
     [self.webView reload];
+    [XXVisitAddressAlert showWithSureBlock:^{
+        
+    } rejectBlock:^{
+        
+    }];
+    //    [XXChangeAccountAlert showWithSureBlock:^{
+    //
+    //    }];
+    //    [XXPayInfoView showWithSureBlock:^{
+    //
+    //    }];
 }
 
 #pragma mark - Dealloc
@@ -243,15 +281,15 @@
         
         _webView = [[WKWebView alloc] initWithFrame:CGRectMake(0, kNavHeight, kScreen_Width, kScreen_Height - kNavHeight - kTabbarHeight) configuration:config];
         _webView.UIDelegate = self;
-
+        
         if (@available(iOS 11.0, *)) {
             _webView.scrollView.contentInsetAdjustmentBehavior = UIScrollViewContentInsetAdjustmentNever;
         }
         
-//        MJWeakSelf
-//        _webView.scrollView.mj_header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
-//            [weakSelf.webView reload];
-//        }];
+        //        MJWeakSelf
+        //        _webView.scrollView.mj_header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
+        //            [weakSelf.webView reload];
+        //        }];
         
     }
     return _webView;

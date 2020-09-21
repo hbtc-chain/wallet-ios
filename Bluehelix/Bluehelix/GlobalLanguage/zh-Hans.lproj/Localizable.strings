@@ -172,8 +172,8 @@
 //币种详情
 "ReceiveMoney" = "收款";
 "PayMoney" = "转出";
-"WithdrawMoney" = "提取分红";
-"InMoney" = "复投分红";
+"WithdrawMoney" = "提取收益";
+"InMoney" = "复投收益";
 "ChainReceiveMoney" = "跨链充币";
 "ChainPayMoney" = "跨链提币";
 "Transfer" = "转账";
@@ -194,8 +194,8 @@
 "State" = "状态";
 "From" = "转出";
 "To" = "转入";
-"WithdrawMoneyContent" = "提取所有分红%@HBC，并支付交易手续费%@HBC";
-"InMoneyContent" = "提取并委托所有分红%@HBC至验证节点，并支付交易手续费%@HBC";
+"WithdrawMoneyContent" = "提取所有收益%@HBC，并支付交易手续费%@HBC";
+"InMoneyContent" = "提取并委托所有收益%@HBC至验证节点，并支付交易手续费%@HBC";
 "Delegator" = "委托人";
 "TransactionDetail" = "交易详情";
 "Depositor" = "质押人";
@@ -481,3 +481,19 @@
 "MJRefreshHeaderLastTimeText" = "最后更新：";
 "MJRefreshHeaderDateTodayText" = "今天";
 "MJRefreshHeaderNoneLastDateText" = "无记录";
+
+//
+"DelegateAndRelieve" = "委托/解委托";
+"Exchange" = "兑换";
+"Rate" = "汇率";
+"ExchangePlaceholder" = "请输入兑换数量";
+"ClickCopyAddress" = "点击复制地址";
+"VisitDescription" = "正在申请访问你的钱包地址，你确认将钱包地址公开给此网站吗？";
+"Reject" = "拒绝";
+"ChangeAccount" = "切换托管单元";
+"PayDetail" = "支付详情";
+"PayInfo" = "支付信息";
+"ReceiveAddress" = "收款地址";
+"PayAddress" = "付款地址";
+"Gas" = "矿工费";
+"ClickAndWatch" = "点击查看";

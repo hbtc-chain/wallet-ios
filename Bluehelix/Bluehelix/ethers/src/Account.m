@@ -168,7 +168,6 @@ static NSDateFormatter *TimeFormatter = nil;
     self = [super init];
     if (self) {
         _privateKey = [SecureData secureDataWithData:privateKey];
-        
         SecureData *publicKey = [SecureData secureDataWithLength:33];
         ecdsa_get_public_key33(&secp256k1, _privateKey.bytes, publicKey.mutableBytes);
         SecureData *ripemdData = [self ripemd160:publicKey];
@@ -207,7 +206,6 @@ static NSDateFormatter *TimeFormatter = nil;
 - (SecureData *)ripemd160:(SecureData*)publicKey {
     NSData *Bytedata = [publicKey data];
     NSData *sha1;
-    NSData *sha2;
     unsigned char hash[CC_SHA256_DIGEST_LENGTH];
     if (CC_SHA256([Bytedata bytes], [Bytedata length], hash)) {
         sha1 = [NSData dataWithBytes:hash length:CC_SHA256_DIGEST_LENGTH];

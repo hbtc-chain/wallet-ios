@@ -206,6 +206,22 @@ proposalDescription:(NSString *)proposalDescription
         msg[@"type"] = kMsgNewToken;
         msg[@"value"] = value;
         [msgs addObject:msg];
+    } else if ([_type isEqualToString:kMsgMappingSwap]) {
+        NSMutableDictionary *amount = [NSMutableDictionary dictionary];
+        amount[@"amount"] = _amount;
+        amount[@"denom"] = _denom;
+        NSMutableArray *amounts = [NSMutableArray array];
+        [amounts addObject:amount];
+        
+        NSMutableDictionary *value = [NSMutableDictionary dictionary];
+        value[@"coins"] = amounts;
+        value[@"from"] = _fromAddress;
+        value[@"issue_symbol"] = _toAddress;
+        
+        NSMutableDictionary *msg = [NSMutableDictionary dictionary];
+        msg[@"type"] = _type;
+        msg[@"value"] = value;
+        [msgs addObject:msg];
     }
     _msgs = msgs;
 }

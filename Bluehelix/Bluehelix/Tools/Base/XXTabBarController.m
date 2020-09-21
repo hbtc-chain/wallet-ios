@@ -16,7 +16,7 @@
 
 #import "XXBackupMnemonicPhraseVC.h"
 #import "XXUserHomeVC.h"
-#import "XXAssetVC.h"
+#import "XXChainAssertVC.h"
 #import "XXValidatorsHomeViewController.h"
 #import "XXProposalsListViewController.h"
 #import "XXQuoteVC.h"
@@ -73,7 +73,7 @@
     
     NSMutableArray *controllers = [NSMutableArray array];
     
-    XXNavigationController *nav0 = [[XXNavigationController alloc] initWithRootViewController:[[XXAssetVC alloc] init]];
+    XXNavigationController *nav0 = [[XXNavigationController alloc] initWithRootViewController:[[XXChainAssertVC alloc] init]];
     [controllers addObject:nav0];
     
     XXWebViewController *webVC = [[XXWebViewController alloc] init];

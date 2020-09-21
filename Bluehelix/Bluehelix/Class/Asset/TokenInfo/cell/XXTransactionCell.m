@@ -149,6 +149,19 @@
         NSDecimalNumber *amountDecimal = [NSDecimalNumber decimalNumberWithString:coin.amount];
         NSString *amountStr = [[amountDecimal decimalNumberByDividingBy:kPrecisionDecimalPower(token.decimals)] stringValue];
         self.amountLabel.text = [NSString stringWithFormat:@"-%@",amountStr];
+    } else if ([type isEqualToString:kMsgMappingSwap]) { //映射
+        showTypeStr = LocalizedString(@"Exchange");
+        NSArray *coins = value[@"coins"];
+        XXCoinModel *coin = [XXCoinModel mj_objectWithKeyValues:[coins firstObject]];
+        XXTokenModel *token = [[XXSqliteManager sharedSqlite] tokenBySymbol:coin.denom];
+        NSDecimalNumber *amountDecimal = [NSDecimalNumber decimalNumberWithString:coin.amount];
+        NSString *amountStr = [[amountDecimal decimalNumberByDividingBy:kPrecisionDecimalPower(token.decimals)] stringValue];
+        self.amountLabel.text = [NSString stringWithFormat:@"-%@",amountStr];
+        if ([coin.denom isEqualToString:value[@"issue_symbol"]]) {
+            self.amountLabel.text = [NSString stringWithFormat:@"-%@",amountStr];
+        } else {
+            self.amountLabel.text = [NSString stringWithFormat:@"+%@",amountStr];
+        }
     } else {}
     self.typeLabel.text = [NSString stringWithFormat:@"%@%@",showTypeStr,countString];
     self.typeLabel.frame = CGRectMake(K375(24), 20, [NSString widthWithText:self.typeLabel.text font:kFontBold(17)], 24);

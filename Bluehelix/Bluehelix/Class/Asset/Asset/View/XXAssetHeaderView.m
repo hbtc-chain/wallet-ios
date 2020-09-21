@@ -22,8 +22,10 @@
 @property (strong, nonatomic) XXLabel *assetNameLabel;
 @property (strong, nonatomic) XXLabel *totalAssetLabel;
 @property (strong, nonatomic) XXLabel *assetSymbolLabel;
-@property (strong, nonatomic) XXButton *menuBtn;
+//@property (strong, nonatomic) XXButton *menuBtn;
 @property (strong, nonatomic) UIImageView *logoImageView;
+@property (strong, nonatomic) XXLabel *addressLabel;
+@property (strong, nonatomic) XXButton *copyButton;
 
 @end
 
@@ -36,6 +38,8 @@
         self.backgroundColor = kWhiteColor;
         [self addSubview:self.backImageView];
         [self addSubview:self.nameLabel];
+        [self addSubview:self.addressLabel];
+        [self addSubview:self.copyButton];
         [self addSubview:self.shadowImageView];
         [self.shadowImageView.layer insertSublayer:self.shadowLayer atIndex:0];
         [self.shadowImageView addSubview:self.assetNameLabel];
@@ -43,7 +47,7 @@
         [self.shadowImageView addSubview:self.totalAssetLabel];
 //        [self addSubview:self.logoLabel];
         [self addSubview:self.logoImageView];
-        [self addSubview:self.menuBtn];
+//        [self addSubview:self.menuBtn];
         [self.shadowImageView addSubview:self.hidenAssetsButton];
     }
     return self;
@@ -111,6 +115,31 @@
     return _nameLabel;
 }
 
+- (XXLabel *)addressLabel {
+    if (!_addressLabel) {
+        CGFloat width = [NSString widthWithText:kAddressReplace(KUser.address) font:kFont12];
+        CGFloat maxWidth = kScreen_Width - K375(24) - 40;
+        width = width > maxWidth ? maxWidth : width;
+        _addressLabel = [XXLabel labelWithFrame:CGRectMake(K375(24), CGRectGetMaxY(self.nameLabel.frame), width, 20) font:kFont12 textColor:[UIColor whiteColor]];
+        _addressLabel.text = kAddressReplace(KUser.address);
+    }
+    return _addressLabel;
+}
+
+- (XXButton *)copyButton {
+    if (_copyButton == nil) {
+        _copyButton = [XXButton buttonWithFrame:CGRectMake(CGRectGetMaxX(self.addressLabel.frame), self.addressLabel.top - 12, 40, 40) block:^(UIButton *button) {
+            UIPasteboard *pab = [UIPasteboard generalPasteboard];
+            [pab setString:KUser.address];
+            Alert *alert = [[Alert alloc] initWithTitle:LocalizedString(@"CopySuccessfully") duration:kAlertDuration completion:^{
+            }];
+            [alert showAlert];
+        }];
+        [_copyButton setImage:[UIImage imageNamed:@"paste"] forState:UIControlStateNormal];
+    }
+    return _copyButton;
+}
+
 - (XXButton *)hidenAssetsButton {
     if (_hidenAssetsButton == nil) {
         MJWeakSelf
@@ -128,22 +157,21 @@
     return _hidenAssetsButton;
 }
 
-- (XXButton *)menuBtn {
-    if (!_menuBtn) {
-        MJWeakSelf
-        _menuBtn = [XXButton buttonWithFrame:CGRectMake(kScreen_Width - 60, K375(64), 40, 40) block:^(UIButton *button) {
-            XXAddNewAssetVC *addVC = [[XXAddNewAssetVC alloc] init];
-            [weakSelf.viewController.navigationController pushViewController:addVC animated:YES];
-        }];
-        [_menuBtn setImage:[UIImage imageNamed:@"menu"] forState:UIControlStateNormal];
-    }
-    return _menuBtn;
-}
+//- (XXButton *)menuBtn {
+//    if (!_menuBtn) {
+//        MJWeakSelf
+//        _menuBtn = [XXButton buttonWithFrame:CGRectMake(kScreen_Width - 60, K375(64), 40, 40) block:^(UIButton *button) {
+//            XXAddNewAssetVC *addVC = [[XXAddNewAssetVC alloc] init];
+//            [weakSelf.viewController.navigationController pushViewController:addVC animated:YES];
+//        }];
+//        [_menuBtn setImage:[UIImage imageNamed:@"menu"] forState:UIControlStateNormal];
+//    }
+//    return _menuBtn;
+//}
 
 - (UIImageView *)shadowImageView {
     if (!_shadowImageView) {
-        _shadowImageView = [[UIImageView alloc] initWithFrame:CGRectMake(K375(16), K375(115), kScreen_Width - K375(32), K375(140))];
-//        _shadowImageView.backgroundColor = KRGBA(251, 251, 251, 100);
+        _shadowImageView = [[UIImageView alloc] initWithFrame:CGRectMake(K375(16), K375(135), kScreen_Width - K375(32), K375(140))];
         _shadowImageView.image = [UIImage imageNamed:@"assetBack"];
         _shadowImageView.userInteractionEnabled = YES;
     }

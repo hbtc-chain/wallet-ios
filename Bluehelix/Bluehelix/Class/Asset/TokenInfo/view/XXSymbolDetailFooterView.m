@@ -38,15 +38,15 @@
     NSArray *imageArr;
     NSArray *titleArr;
     if ([self.tokenModel.symbol isEqualToString:kMainToken]) {
-        imageArr = kIsNight ? @[@"receiveMoney_Night",@"payMoney_Night",@"withdrawMoney_Night",@"inMoney_Night"] : @[@"receiveMoney",@"payMoney",@"withdrawMoney",@"inMoney"];
-        titleArr = @[LocalizedString(@"ReceiveMoney"),LocalizedString(@"Transfer"),LocalizedString(@"WithdrawMoney"),LocalizedString(@"InMoney")];
+        imageArr = kIsNight ? @[@"receiveMoney_Night",@"payMoney_Night",@"withdrawMoney_Night",@"inMoney_Night"] : @[@"receiveMoney",@"payMoney",@"withdrawMoney",@"chainReceiveMoney"];
+        titleArr = @[LocalizedString(@"ReceiveMoney"),LocalizedString(@"Transfer"),LocalizedString(@"WithdrawMoney"),LocalizedString(@"DelegateAndRelieve")];
     } else {
         if (self.tokenModel.is_native) {
             imageArr = kIsNight ? @[@"receiveMoney_Night",@"payMoney_Night"] : @[@"receiveMoney",@"payMoney"];
             titleArr = @[LocalizedString(@"ReceiveMoney"),LocalizedString(@"Transfer")];
         } else {
-            imageArr = kIsNight ? @[@"receiveMoney_Night",@"payMoney_Night",@"chainReceiveMoney_Night",@"chainPayMoney_Night"] : @[@"receiveMoney",@"payMoney",@"chainReceiveMoney",@"chainPayMoney"];
-            titleArr = @[LocalizedString(@"ReceiveMoney"),LocalizedString(@"Transfer"),LocalizedString(@"ChainReceiveMoney"),LocalizedString(@"ChainPayMoney")];
+            imageArr = kIsNight ? @[@"receiveMoney_Night",@"payMoney_Night",@"chainReceiveMoney_Night",@"chainPayMoney_Night"] : @[@"receiveMoney",@"payMoney",@"chainInOut",@"chainReceiveMoney"];
+            titleArr = @[LocalizedString(@"ReceiveMoney"),LocalizedString(@"Transfer"),LocalizedString(@"ChainDepositTip2"),LocalizedString(@"Exchange")];
         }
     }
     CGFloat btnWidth = (kScreen_Width - K375(15))/titleArr.count;
@@ -58,7 +58,11 @@
         itemButton.tag = 100 + i;
         [self addSubview:itemButton];
 
-        UIView *shadowView = [[UIView alloc] initWithFrame:CGRectMake((itemButton.width - 48)/2.0, 16, 48, 48)];
+        CGFloat shadowViewWidth = 48;
+        if (i > 1) {
+            shadowViewWidth = shadowViewWidth*4/3;
+        }
+        UIView *shadowView = [[UIView alloc] initWithFrame:CGRectMake((itemButton.width - shadowViewWidth)/2.0, 16, shadowViewWidth, 48)];
         shadowView.backgroundColor = kBackgroundLeverSecond;
         shadowView.layer.cornerRadius = 18.0;
         shadowView.layer.shadowOffset = CGSizeMake(0.0, 2.0);
@@ -72,10 +76,16 @@
         iconImageView.backgroundColor = kBackgroundLeverSecond;
         iconImageView.image = [UIImage imageNamed:imageArr[i]];
         [shadowView addSubview:iconImageView];
+        
+        if (i > 1) {
+            UIImageView *arrowImageView = [[UIImageView alloc] initWithFrame:CGRectMake(CGRectGetMaxX(iconImageView.frame), (shadowView.height - 16)/2.0, 16, 16)];
+            arrowImageView.backgroundColor = kBackgroundLeverSecond;
+            arrowImageView.image = [UIImage imageNamed:@"arrowdown"];
+            [shadowView addSubview:arrowImageView];
+        }
 
         XXLabel *nameLabel = [XXLabel labelWithFrame:CGRectMake(0, CGRectGetMaxY(shadowView.frame), itemButton.width, 42) text:titleArr[i] font:kFont12 textColor:kGray900 alignment:NSTextAlignmentCenter];
         nameLabel.numberOfLines = 0;
-//        [nameLabel sizeToFit];
         [itemButton addSubview:nameLabel];
     }
 }
