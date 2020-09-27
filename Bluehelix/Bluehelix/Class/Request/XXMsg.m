@@ -84,6 +84,35 @@ proposalDescription:(NSString *)proposalDescription
     return self;
 }
 
+- (instancetype)initWithfrom:(NSString *)from
+                   feeAmount:(NSString *)feeAmount
+                    feeDenom:(NSString *)feeDenom
+                     token_a:(NSString *)token_a
+                     token_b:(NSString *)token_b
+          min_token_a_amount:(NSString *)min_token_a_amount
+          min_token_b_amount:(NSString *)min_token_b_amount
+                  expired_at:(NSString *)expired_at
+                        memo:(NSString *)memo
+                        type:(NSString *)type
+                        text:(NSString *)text {
+    self = [super init];
+    if (self) {
+        _fromAddress = from;
+        _feeAmount = feeAmount;
+        _feeDenom = feeDenom;
+        _token_a = token_a;
+        _token_b = token_b;
+        _min_token_a_amount = min_token_a_amount;
+        _min_token_b_amount = min_token_b_amount;
+        _expired_at = expired_at;
+        _memo = memo;
+        _type = type;
+        _text = text;
+        [self buildMsgs];
+    }
+    return self;
+}
+
 /// 构造msgs
 - (void)buildMsgs {
     _uuid  = [FCUUID uuid];
@@ -222,8 +251,39 @@ proposalDescription:(NSString *)proposalDescription
         msg[@"type"] = _type;
         msg[@"value"] = value;
         [msgs addObject:msg];
+    } else if([_type isEqualToString:kMsgAddLiquidity]) {
+        NSMutableDictionary *value = [NSMutableDictionary dictionary];
+        value[@"from"] = _fromAddress;
+        value[@"token_a"] = _token_a;
+        value[@"token_b"] = _token_b;
+        value[@"min_token_a_amount"] = _min_token_a_amount;
+        value[@"min_token_b_amount"] = _min_token_b_amount;
+        value[@"expired_at"] = _expired_at;
+        
+        NSMutableDictionary *msg = [NSMutableDictionary dictionary];
+        msg[@"type"] = kMsgAddLiquidity;
+        msg[@"value"] = value;
+        [msgs addObject:msg];
     }
     _msgs = msgs;
 }
 
+/// 构造msgs 外部传入msg
+- (instancetype)initWithFeeAmount:(NSString *)feeAmount
+                    feeDenom:(NSString *)feeDenom
+                              msg:(id)msg
+                        memo:(NSString *)memo
+                        text:(NSString *)text {
+    self = [super init];
+    if (self) {
+        _feeAmount = feeAmount;
+        _feeDenom = feeDenom;
+        _memo = memo;
+        _text = text;
+        _uuid  = [FCUUID uuid];
+        _msgs = [NSMutableArray array];
+        [_msgs addObject:msg];
+    }
+    return self;
+}
 @end

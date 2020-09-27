@@ -15,6 +15,10 @@
 #import "XXPayInfoView.h"
 #import "XXWebMenuAlert.h"
 #import "WKWebViewJavascriptBridge.h"
+#import "XXMsgRequest.h"
+#import "XXMsg.h"
+#import "XXPasswordView.h"
+#import "XXTokenModel.h"
 
 @interface XXWebViewController () <WKUIDelegate, WKNavigationDelegate>
 
@@ -25,6 +29,9 @@
 
 /** 失败视图 */
 @property (nonatomic, strong) XXFailureView *failureView;
+
+/// 交易请求
+@property (strong, nonatomic) XXMsgRequest *signRequest;
 
 @end
 
@@ -39,32 +46,64 @@
 
 #pragma mark - 1. 初始化页面
 - (void)setupUI {
-    self.navView.backgroundColor = [UIColor colorWithHexString:@"#1A2233"];
-    self.titleLabel.textColor = [UIColor whiteColor];
-    [self.leftButton setImage:[UIImage imageNamed:@"IconBackWhite"] forState:UIControlStateNormal];
+    self.navView.backgroundColor = [UIColor whiteColor];
+    self.titleLabel.textColor = [UIColor blackColor];
+    [self.leftButton setImage:[UIImage imageNamed:@"icon_back_0"] forState:UIControlStateNormal];
     [self.rightButton setTitle:LocalizedString(@"Refresh") forState:UIControlStateNormal];
-    [self.rightButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+    [self.rightButton setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
     [self.view addSubview:self.webView];
     [self.view addSubview:self.failureView];
     [self.view addSubview:self.progressView];
     if (!IsEmpty(self.navTitle)) {
         self.titleLabel.text = self.navTitle;
     }
-    [self.webView addObserver:self forKeyPath:@"estimatedProgress" options:NSKeyValueObservingOptionNew context:nil];
-    [self.webView addObserver:self forKeyPath:@"title" options:NSKeyValueObservingOptionNew context:NULL];
+//    [self.webView addObserver:self forKeyPath:@"estimatedProgress" options:NSKeyValueObservingOptionNew context:nil];
+//    [self.webView addObserver:self forKeyPath:@"title" options:NSKeyValueObservingOptionNew context:NULL];
 }
 
 - (void)initBridge {
     MJWeakSelf;
-       self.bridge = [WKWebViewJavascriptBridge bridgeForWebView:self.webView];
-       [WKWebViewJavascriptBridge enableLogging];
-       [self.bridge registerHandler:@"get_account" handler:^(id data, WVJBResponseCallback responseCallback) {
-           NSLog(@"=========js%@",data);
-       }];
-    [self.bridge registerHandler:@"action" handler:^(id data, WVJBResponseCallback responseCallback) {
+    self.bridge = [WKWebViewJavascriptBridge bridgeForWebView:self.webView];
+    [WKWebViewJavascriptBridge enableLogging];
+    [self.bridge registerHandler:@"get_account" handler:^(id data, WVJBResponseCallback responseCallback) {
+        NSDictionary *dic = @{@"address":KUser.address};
+        responseCallback([dic mj_JSONString]);
+    }];
+    [self.bridge registerHandler:@"sign" handler:^(id data, WVJBResponseCallback responseCallback) {
+        NSString *type = data[@"type"];
+        if ([type isEqualToString:kMsgAddLiquidity] || [type isEqualToString:kMsgRemoveLiquidity] || [type isEqualToString:kMsgSwapExactOut] || [type isEqualToString:kMsgSwapExactIn]) {
+            XXPayInfoModel *model = [[XXPayInfoModel alloc] initWithData:data];
+            [XXPayInfoView showWithSureBlock:^{
+                [weakSelf alertPassword:data];
+            } model:model];
+        } else {
+            [weakSelf alertPassword:data];
+        }
         NSLog(@"=========js%@",data);
     }];
     [self.bridge setWebViewDelegate:self];
+}
+
+/// 弹出密码
+- (void)alertPassword:(id)data {
+    MJWeakSelf
+    [XXPasswordView showWithSureBtnBlock:^(NSString * _Nonnull text) {
+        [weakSelf requestWebTrade:text data:data];
+    }];
+}
+
+- (void)requestWebTrade:(NSString *)text data:(id)data {
+    XXTokenModel *mainToken = [[XXSqliteManager sharedSqlite] tokenBySymbol:kMainToken];
+    NSDecimalNumber *feeAmountDecimal = [NSDecimalNumber decimalNumberWithString:kMinFee];
+    NSString *feeAmount = [[feeAmountDecimal decimalNumberByMultiplyingBy:kPrecisionDecimalPower(mainToken.decimals)] stringValue];
+    
+    XXMsg *model = [[XXMsg alloc] initWithFeeAmount:feeAmount feeDenom:kMainToken msg:data memo:@"" text:text];
+    _signRequest = [[XXMsgRequest alloc] init];
+    MJWeakSelf
+    _signRequest.msgSendSuccessBlock = ^{
+        [weakSelf.navigationController popViewControllerAnimated:YES];
+    };
+    [_signRequest sendMsg:model];
 }
 
 #pragma mark - 3. WKNavigationDelegate
@@ -119,7 +158,6 @@
     if (!navigationAction.targetFrame.isMainFrame) {
         [webView evaluateJavaScript:@"var a = document.getElementsByTagName('a');for(var i=0;i<a.length;i++){a[i].setAttribute('target','');}" completionHandler:nil];
     }
-    
     
     //允许跳转
     decisionHandler(WKNavigationActionPolicyAllow);
@@ -188,24 +226,25 @@
         return;
     }
     
-    if ([keyPath isEqualToString:@"estimatedProgress"]) { // 加载进度
-        if(self.webView.estimatedProgress >=1.0f) {
-            
-            [self.progressView setProgress:self.webView.estimatedProgress];
-            [UIView animateWithDuration:0.25f animations:^{
-                [self.progressView setAlpha:0.0f];
-            } completion:^(BOOL finished) {
-                [self.progressView setProgress:0.0f animated:NO];
-            }];
-        } else {
-            self.progressView.alpha = 1.0f;
-            [self.progressView setProgress:self.webView.estimatedProgress animated:YES];
-        }
-    } else if ([keyPath isEqualToString:@"title"]) { // 标题
-        if (!self.navTitle) {
-            self.titleLabel.text = self.webView.title;
-        }
-    }
+//    if ([keyPath isEqualToString:@"estimatedProgress"]) { // 加载进度
+//        if(self.webView.estimatedProgress >=1.0f) {
+//
+//            [self.progressView setProgress:self.webView.estimatedProgress];
+//            [UIView animateWithDuration:0.25f animations:^{
+//                [self.progressView setAlpha:0.0f];
+//            } completion:^(BOOL finished) {
+//                [self.progressView setProgress:0.0f animated:NO];
+//            }];
+//        } else {
+//            self.progressView.alpha = 1.0f;
+//            [self.progressView setProgress:self.webView.estimatedProgress animated:YES];
+//        }
+//    }
+//    else if ([keyPath isEqualToString:@"title"]) { // 标题
+//        if (!self.navTitle) {
+//            self.titleLabel.text = self.webView.title;
+//        }
+//    }
 }
 
 #pragma mark - 7. 关闭按钮点击事件
@@ -220,36 +259,18 @@
     } else {
         [self.webView reload];
     }
-    
-//    [XXChangeAccountAlert showWithSureBlock:^{
-//
-//    }];
-    [XXWebMenuAlert showWithSureBlock:^{
-        
-    }];
 }
 
 - (void)rightButtonClick:(UIButton *)sender {
     [self.webView reload];
-    [XXVisitAddressAlert showWithSureBlock:^{
-        
-    } rejectBlock:^{
-        
-    }];
-    //    [XXChangeAccountAlert showWithSureBlock:^{
-    //
-    //    }];
-    //    [XXPayInfoView showWithSureBlock:^{
-    //
-    //    }];
 }
 
 #pragma mark - Dealloc
 - (void)dealloc {
-    if (_webView) {
-        [_webView removeObserver:self forKeyPath:@"estimatedProgress"];
-        [_webView removeObserver:self forKeyPath:@"title"];
-    }
+//    if (_webView) {
+//        [_webView removeObserver:self forKeyPath:@"estimatedProgress"];
+//        [_webView removeObserver:self forKeyPath:@"title"];
+//    }
     [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 
@@ -285,12 +306,6 @@
         if (@available(iOS 11.0, *)) {
             _webView.scrollView.contentInsetAdjustmentBehavior = UIScrollViewContentInsetAdjustmentNever;
         }
-        
-        //        MJWeakSelf
-        //        _webView.scrollView.mj_header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
-        //            [weakSelf.webView reload];
-        //        }];
-        
     }
     return _webView;
 }

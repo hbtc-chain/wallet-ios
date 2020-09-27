@@ -50,7 +50,7 @@
     [self addSubview:self.backView];
     [self.backView.layer insertSublayer:self.shadowLayer atIndex:0];
     [self.backView addSubview:self.imageBackView];
-    [self.imageBackView addSubview:self.imageView];
+//    [self.imageBackView addSubview:self.imageView];
     [self.backView addSubview:self.lineView];
     [self.backView addSubview:self.tipLabel];
     [self.backView addSubview:self.amountLabel];
@@ -73,7 +73,7 @@
     self.valueLabel3.text = kAmountTrim(assetModel.unbonding);
     self.valueLabel4.text = kAmountTrim(assetModel.claimed_reward);
     XXTokenModel *tokenModel = [[XXSqliteManager sharedSqlite] tokenBySymbol:assetModel.symbol];
-    [self.imageView sd_setImageWithURL:[NSURL URLWithString:tokenModel.logo] placeholderImage:[UIImage imageNamed:@"placeholderToken"]];
+//    [self.imageView sd_setImageWithURL:[NSURL URLWithString:tokenModel.logo] placeholderImage:[UIImage imageNamed:@"placeholderToken"]];
 }
 
 - (UIView *)backView {

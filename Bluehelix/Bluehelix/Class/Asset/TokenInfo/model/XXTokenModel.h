@@ -21,7 +21,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, strong) NSString *address; //链内地址
 @property (nonatomic, assign) int decimals; //精度
 @property (nonatomic, assign) BOOL is_native; //是否原生代币
-@property (nonatomic, strong) NSString *withdrawal_fee;//跨链手续费
+@property (nonatomic, strong) NSString *withdrawal_fee_rate;//跨链手续费
 @property (nonatomic, assign) BOOL is_withdrawal_enabled; //是否可以提币
 @property (nonatomic, copy) NSString *frozen_amount;
 

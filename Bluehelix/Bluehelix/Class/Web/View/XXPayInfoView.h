@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "XXPayInfoModel.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
@@ -15,7 +16,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, copy) void (^sureBlock)(void);
 @property (nonatomic, copy) void (^cancelBlock)(void);
 
-+ (void)showWithSureBlock:(void (^)(void))sureBlock;
++ (void)showWithSureBlock:(void (^)(void))sureBlock model:(XXPayInfoModel *)model;
 
 + (void)dismiss;
 

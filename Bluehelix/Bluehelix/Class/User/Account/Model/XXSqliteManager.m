@@ -45,13 +45,13 @@ static XXSqliteManager *_sqliteManager;
 #pragma mark 币
 - (BOOL)existsTokens {
     [self.myFmdb open];
-    BOOL result = [self.myFmdb executeUpdate:@"create table if not exists tokens(ID INTEGER PRIMARY KEY AUTOINCREMENT,symbol TEXT,chain TEXT,decimals INTEGER,is_native BOOLEAN,withdrawal_fee TEXT,logo TEXT,is_withdrawal_enabled BOOLEAN)"];
+    BOOL result = [self.myFmdb executeUpdate:@"create table if not exists tokens(ID INTEGER PRIMARY KEY AUTOINCREMENT,symbol TEXT,chain TEXT,decimals INTEGER,is_native BOOLEAN,withdrawal_fee_rate TEXT,logo TEXT,is_withdrawal_enabled BOOLEAN)"];
     return result;
 }
 
 
 - (void)insertTokens:(NSArray *)tokens {
-    if (![self.myFmdb columnExists:@"is_withdrawal_enabled" inTableWithName:@"tokens"]) {
+    if (![self.myFmdb columnExists:@"withdrawal_fee_rate" inTableWithName:@"tokens"]) {
         [self.myFmdb executeUpdate:@"drop table if exists tokens"];
     }
     BOOL existsTable = [self existsTokens];
@@ -60,7 +60,18 @@ static XXSqliteManager *_sqliteManager;
     }
     [self.myFmdb executeUpdate:@"delete from 'tokens'"];
     for (XXTokenModel *model  in tokens) {
-        [self.myFmdb executeUpdate:@"insert into 'tokens'(symbol,decimals,is_native,withdrawal_fee,logo,chain,is_withdrawal_enabled) values(?,?,?,?,?,?,?)" withArgumentsInArray:@[model.symbol,[NSNumber numberWithInt:model.decimals],[NSNumber numberWithInt:model.is_native],model.withdrawal_fee,model.logo,model.chain,[NSNumber numberWithInt:model.is_withdrawal_enabled]]];
+        NSMutableArray *argumentsArr = [[NSMutableArray alloc] init];
+        [argumentsArr addObject:model.symbol];
+        [argumentsArr addObject:[NSNumber numberWithInt:model.decimals]];
+        [argumentsArr addObject:[NSNumber numberWithInt:model.is_native]];
+        [argumentsArr addObject:model.withdrawal_fee_rate];
+        [argumentsArr addObject:model.logo];
+        [argumentsArr addObject:model.chain];
+        [argumentsArr addObject:[NSNumber numberWithInt:model.is_withdrawal_enabled]];
+        if (argumentsArr.count != 7) {
+            return;
+        }
+        [self.myFmdb executeUpdate:@"insert into 'tokens'(symbol,decimals,is_native,withdrawal_fee_rate,logo,chain,is_withdrawal_enabled) values(?,?,?,?,?,?,?)" withArgumentsInArray:argumentsArr];
     }
 }
 
@@ -69,7 +80,7 @@ static XXSqliteManager *_sqliteManager;
     model.symbol = [set stringForColumn:@"symbol"];
     model.decimals = [set intForColumn:@"decimals"];
     model.is_native = [set boolForColumn:@"is_native"];
-    model.withdrawal_fee = [set stringForColumn:@"withdrawal_fee"];
+    model.withdrawal_fee_rate = [set stringForColumn:@"withdrawal_fee_rate"];
     model.logo = [set stringForColumn:@"logo"];
     model.chain = [set stringForColumn:@"chain"];
     model.is_withdrawal_enabled = [set boolForColumn:@"is_withdrawal_enabled"];
@@ -181,7 +192,19 @@ static XXSqliteManager *_sqliteManager;
     if (!existsTable) {
         return NO;
     }
-    BOOL result = [self.myFmdb executeUpdate:@"insert into 'account'(address,userName,password,backupFlag,publicKey,privateKey,mnemonicPhrase,symbols,keystore) values(?,?,?,?,?,?,?,?,?)" withArgumentsInArray:@[model.address,model.userName,model.password,[NSString stringWithFormat:@"%d",model.backupFlag],model.publicKey,model.privateKey,model.mnemonicPhrase,model.symbols,model.keystore]];
+    NSMutableArray *argumentsArr = [[NSMutableArray alloc] init];
+    [argumentsArr addObject:model.address];
+    [argumentsArr addObject:model.userName];
+    [argumentsArr addObject:model.password];
+    [argumentsArr addObject:[NSString stringWithFormat:@"%d",model.backupFlag]];
+    [argumentsArr addObject:model.publicKey];
+    [argumentsArr addObject:model.privateKey];
+    [argumentsArr addObject:model.mnemonicPhrase];
+    [argumentsArr addObject:model.symbols];
+    [argumentsArr addObject:model.keystore];
+//    BOOL result = [self.myFmdb executeUpdate:@"insert into 'account'(address,userName,password,backupFlag,publicKey,privateKey,mnemonicPhrase,symbols,keystore) values(?,?,?,?,?,?,?,?,?)" withArgumentsInArray:@[model.address,model.userName,model.password,[NSString stringWithFormat:@"%d",model.backupFlag],model.publicKey,model.privateKey,model.mnemonicPhrase,model.symbols,model.keystore]];
+    BOOL result = [self.myFmdb executeUpdate:@"insert into 'account'(address,userName,password,backupFlag,publicKey,privateKey,mnemonicPhrase,symbols,keystore) values(?,?,?,?,?,?,?,?,?)" withArgumentsInArray:argumentsArr];
+
     return result;
 }
 

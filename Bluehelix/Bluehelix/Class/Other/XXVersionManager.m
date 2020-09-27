@@ -13,8 +13,6 @@
 
 + (void)checkVersion {
     NSDictionary *infoDictionary = [[NSBundle mainBundle] infoDictionary];
-    CFShow((__bridge CFTypeRef)(infoDictionary));
-
     UIDevice *device = [UIDevice currentDevice];
     NSMutableDictionary *params = [NSMutableDictionary dictionary];
     params[@"app_id"] = [infoDictionary objectForKey:@"CFBundleIdentifier"];

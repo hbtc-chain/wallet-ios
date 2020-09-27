@@ -666,22 +666,6 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "72F188F8-F884-408C-899F-23481F8BB28A"
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "Bluehelix/Class/Request/XXMsgRequest.m"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "195"
-            endingLineNumber = "195"
-            landmarkName = "-sendTxRequest:"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
             uuid = "E8D4E54D-60C7-4CC4-B22B-F27B2B92AA37"
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
@@ -906,80 +890,96 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "BBB53971-E504-4536-938B-F408605E3FCE"
+            uuid = "CD1049E0-7EDB-492F-809B-6112C7549BF2"
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Bluehelix/Class/Request/XXMsgRequest.m"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "41"
-            endingLineNumber = "41"
-            landmarkName = "-send"
+            startingLineNumber = "182"
+            endingLineNumber = "182"
+            landmarkName = "-sendTxRequest:"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "215388FA-83A3-434C-BA7C-427F8BD7DBAF"
+            uuid = "379B0B89-4761-4B71-BF90-28E57BA94186"
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Bluehelix/Class/Web/XXWebViewController.m"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "62"
-            endingLineNumber = "62"
-            landmarkName = "-initBridge"
+            startingLineNumber = "90"
+            endingLineNumber = "90"
+            landmarkName = "-alertPassword:"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "379B0B89-4761-4B71-BF90-28E57BA94186 - a35efa84018f6963"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "-[XXWebViewController alertPassword:]"
+                  moduleName = "HBTC Wallet"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/yuanzhen/wallet-ios/Bluehelix/Bluehelix/Class/Web/XXWebViewController.m"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "90"
+                  endingLineNumber = "90"
+                  offsetFromSymbolStart = "59">
+               </Location>
+               <Location
+                  uuid = "379B0B89-4761-4B71-BF90-28E57BA94186 - 86fdf22000eab055"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "__37-[XXWebViewController alertPassword:]_block_invoke"
+                  moduleName = "HBTC Wallet"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/yuanzhen/wallet-ios/Bluehelix/Bluehelix/Class/Web/XXWebViewController.m"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "90"
+                  endingLineNumber = "90"
+                  offsetFromSymbolStart = "12">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "9E2F6BDD-FD70-4B40-A7B2-1E5FEEF8AA2C"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Bluehelix/Class/Web/View/XXPayInfoView.m"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "127"
+            endingLineNumber = "127"
+            landmarkName = "-cancelAction"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "04CE52AA-6460-45A7-ACDA-486C69ED5D2E"
+            uuid = "A5DE2688-0254-4123-BCA4-31EAFC825416"
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Bluehelix/Class/Web/XXWebViewController.m"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "65"
-            endingLineNumber = "65"
-            landmarkName = "-initBridge"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "7CDED878-C6DD-48FC-8CAE-53A10D7EFDAF"
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "Bluehelix/Class/Web/XXWebViewController.m"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "59"
-            endingLineNumber = "59"
-            landmarkName = "-initBridge"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "47295833-C3FA-4887-92C9-ACB0A14FFF07"
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "Bluehelix/Tools/WebViewJavascriptBridge/WKWebViewJavascriptBridge.m"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "65"
-            endingLineNumber = "65"
-            landmarkName = "-setWebViewDelegate:"
+            startingLineNumber = "100"
+            endingLineNumber = "100"
+            landmarkName = "-requestWebTrade:data:"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

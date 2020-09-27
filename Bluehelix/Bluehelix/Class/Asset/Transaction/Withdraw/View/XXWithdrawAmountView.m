@@ -42,7 +42,7 @@
 #pragma mark - 2. 全部按钮点击事件
 - (void)allButtonClick:(UIButton *)sender {
     NSDecimalNumber *availableDecimal = [NSDecimalNumber decimalNumberWithString:self.currentlyAvailable];
-    NSDecimalNumber *withdrawFeeDecimal = [NSDecimalNumber decimalNumberWithString:self.tokenModel.withdrawal_fee];
+    NSDecimalNumber *withdrawFeeDecimal = [NSDecimalNumber decimalNumberWithString:self.tokenModel.withdrawal_fee_rate];
     NSDecimalNumber *resultDecimal = [availableDecimal decimalNumberBySubtracting:withdrawFeeDecimal];
     if (resultDecimal.doubleValue > 0) {
         self.textField.text = kAmountTrim(resultDecimal.stringValue);

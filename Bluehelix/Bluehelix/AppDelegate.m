@@ -17,10 +17,13 @@
 #import "SecurityHelper.h"
 #import "XXSplashScreen.h"
 #import "BHFaceIDLockVC.h"
+#import <WebKit/WebKit.h>
+#import <Bugly/Bugly.h>
 @interface AppDelegate ()
 
 /** 闪屏 */
 @property (nonatomic, strong) XXSplashScreen *splashScreen;
+@property (strong, nonatomic, nullable) WKWebView *webView;
 
 @end
 
@@ -28,17 +31,19 @@
 
 #pragma mark - 1. 程序开始
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
+    [Bugly startWithAppId:kBuglyID];
+    [self registerWebViewUserAgent];
     KUser.shouldVerify = YES;
     [self AFNReachability];
     [[XXSqliteManager sharedSqlite] requestTokens];
-    [[RatesManager shareRatesManager] loadDataOfRates];
+//    [[RatesManager shareRatesManager] loadDataOfRates];
     if (!KUser.isSettedNightType) {
         KUser.isNightType = KSystem.isDarkStyle;
     }
     KWindow.backgroundColor = [UIColor whiteColor];
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     self.window.rootViewController = [[XXTabBarController alloc] init];
-    if (KUser.address) {
+//    if (KUser.address) {
 //        if (KUser.isFaceIDLockOpen || KUser.isTouchIDLockOpen) {
 //            self.window.rootViewController = [[BHFaceIDLockVC alloc] init];
 //        } else {
@@ -46,11 +51,11 @@
 //            XXNavigationController *loginNav = [[XXNavigationController alloc] initWithRootViewController:loginVC];
 //            self.window.rootViewController = loginNav;
 //        }
-    } else {
-        XXStartWalletVC *startVC = [[XXStartWalletVC alloc] init];
-        XXNavigationController *startNav = [[XXNavigationController alloc] initWithRootViewController:startVC];
-        self.window.rootViewController = startNav;
-    }
+//    } else {
+//        XXStartWalletVC *startVC = [[XXStartWalletVC alloc] init];
+//        XXNavigationController *startNav = [[XXNavigationController alloc] initWithRootViewController:startVC];
+//        self.window.rootViewController = startNav;
+//    }
     [self.window makeKeyAndVisible];
     [self.splashScreen showSplashScreen];
     [KMarket readCachedDataOfMarket];
@@ -115,5 +120,23 @@
         _splashScreen = [[XXSplashScreen alloc] initWithFrame:CGRectMake(0, 0, kScreen_Width, kScreen_Height)];
     }
     return _splashScreen;
+}
+
+- (void)registerWebViewUserAgent {
+    [self.webView evaluateJavaScript:@"navigator.userAgent" completionHandler:^(id _Nullable oldUserAgent, NSError * _Nullable error) {
+        if (![oldUserAgent isKindOfClass:[NSString class]] || ((NSString *)oldUserAgent).length == 0) {
+            oldUserAgent = @"Mozilla/5.0 (iPhone; CPU iPhone OS 13_3_1 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Mobile/15E148";
+        }
+        NSString *newAgent = [NSString stringWithFormat:@"hbtcchainwallet %@;",oldUserAgent];
+        NSDictionary *dictionnary = [[NSDictionary alloc] initWithObjectsAndKeys:newAgent, @"UserAgent", nil];
+        [[NSUserDefaults standardUserDefaults] registerDefaults:dictionnary];
+    }];
+}
+
+- (WKWebView *)webView {
+    if (_webView == nil) {
+        _webView = [WKWebView new];
+    }
+    return _webView;
 }
 @end

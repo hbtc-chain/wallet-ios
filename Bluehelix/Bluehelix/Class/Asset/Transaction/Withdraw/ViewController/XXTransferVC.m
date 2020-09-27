@@ -56,7 +56,7 @@
         self.withdrawView.feeView.unitLabel.text = [kMainToken uppercaseString];
         self.withdrawFeeModel = [[XXSqliteManager sharedSqlite] withdrawFeeToken:self.tokenModel];
         self.withdrawView.chainFeeView.unitLabel.text = [self.withdrawFeeModel.symbol uppercaseString];
-        self.withdrawView.chainFeeView.textField.text = self.tokenModel.withdrawal_fee;
+        self.withdrawView.chainFeeView.textField.text = self.tokenModel.withdrawal_fee_rate;
         self.withdrawView.feeView.textField.text = kMinFee;
         
     }

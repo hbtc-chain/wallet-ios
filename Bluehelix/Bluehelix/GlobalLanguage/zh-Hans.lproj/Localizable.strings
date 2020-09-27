@@ -495,5 +495,11 @@
 "PayInfo" = "支付信息";
 "ReceiveAddress" = "收款地址";
 "PayAddress" = "付款地址";
-"Gas" = "矿工费";
+"Gas" = "矿工费用";
 "ClickAndWatch" = "点击查看";
+"PayToken" = "支付币种";
+"MsgAddLiquidity" = "添加流动性";
+"MsgRemoveLiquidity" = "移除流动性";
+"MsgSwapExactIn" = "兑换输入确定";
+"MsgSwapExactOut" = "兑换输出确定";
+"Refresh" = "刷新";

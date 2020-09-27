@@ -19,6 +19,7 @@
 @property (nonatomic, strong) UILabel *amountLabel;
 @property (nonatomic, strong) XXButton *okBtn;
 @property (nonatomic, strong) NSMutableArray *labelArray;
+@property (nonatomic, strong) XXPayInfoModel *model;
 
 @end
 
@@ -37,7 +38,7 @@
     [self addSubview:self.backView];
     [self addSubview:self.contentView];
     [self.contentView addSubview:self.scrollView];
-    [self.contentView addSubview:self.keyBtn];
+//    [self.contentView addSubview:self.keyBtn];
     [self.contentView addSubview:self.dismissBtn];
     [self.contentView addSubview:self.titleLabel];
     [self.contentView addSubview:self.amountLabel];
@@ -45,21 +46,24 @@
     [self buildPayInfoLabels];
     
     // TODO 测试
-    self.amountLabel.text = @"1000 ETH";
-//    XXLabel *label = self.labelArray[0];
+//    self.amountLabel.text = @"1000 ETH";
 }
 
 - (void)buildPayInfoLabels {
-    NSArray *titleArray = @[LocalizedString(@"PayInfo"),LocalizedString(@"ReceiveAddress"),LocalizedString(@"PayAddress"),LocalizedString(@"Gas")];
     CGFloat offsetY = 24;
-    for (NSInteger i=0; i < titleArray.count; i ++) {
+    for (NSInteger i=0; i < self.model.titleArr.count; i ++) {
         
-        XXLabel *leftLabel = [XXLabel labelWithFrame:CGRectMake(K375(24), offsetY, K375(120), 32) text:titleArray[i] font:kFont15 textColor:kGray500];
+        XXLabel *leftLabel = [XXLabel labelWithFrame:CGRectMake(K375(24), offsetY, K375(120), 32) text:self.model.titleArr[i] font:kFont15 textColor:kGray500];
         [self.scrollView addSubview:leftLabel];
         
-        XXLabel *rightLabel = [XXLabel labelWithFrame:CGRectMake(K375(151), offsetY, K375(200),0) text:KUser.address font:kFont15 textColor:kGray900];
+        XXLabel *rightLabel = [XXLabel labelWithFrame:CGRectMake(K375(151), offsetY, K375(200),32) text:self.model.valueArr[i] font:kFont15 textColor:kGray900];
         rightLabel.numberOfLines = 0;
-        [rightLabel sizeToFit];
+        CGSize size = [rightLabel sizeThatFits:CGSizeMake(K375(200),32)];
+        if (size.height < 32) {
+            rightLabel.size = CGSizeMake(K375(200),32);
+        } else {
+            rightLabel.size = size;
+        }
         [rightLabel addClickCopyFunction];
         [self.scrollView addSubview:rightLabel];
         [self.labelArray addObject:rightLabel];
@@ -68,10 +72,11 @@
     }
 }
 
-+ (void)showWithSureBlock:(void (^)(void))sureBlock {
++ (void)showWithSureBlock:(void (^)(void))sureBlock model:(XXPayInfoModel *)model {
     
     XXPayInfoView *alert = [[XXPayInfoView alloc] initWithFrame:CGRectMake(0, 0, kScreen_Width, kScreen_Height)];
     [KWindow addSubview:alert];
+    alert.model = model;
     [alert buildUI];
     alert.sureBlock = sureBlock;
     
@@ -80,7 +85,7 @@
     alert.contentView.top = kScreen_Height;
     [UIView animateWithDuration:0.3 animations:^{
         alert.backView.alpha = 0.3;
-        alert.contentView.top = kScreen_Height - 552;
+        alert.contentView.top = kScreen_Height - 350;
     } completion:^(BOOL finished) {
        
     }];
@@ -139,7 +144,7 @@
 
 - (UIView *)contentView {
     if (_contentView == nil) {
-        _contentView = [[UIView alloc] initWithFrame:CGRectMake(0, kScreen_Height - 552, kScreen_Width, 552)];
+        _contentView = [[UIView alloc] initWithFrame:CGRectMake(0, kScreen_Height - 350, kScreen_Width, 350)];
         _contentView.backgroundColor = [UIColor whiteColor];
         _contentView.layer.cornerRadius = 10;
         _contentView.layer.masksToBounds = YES;
@@ -149,7 +154,7 @@
 
 - (UIScrollView *)scrollView {
     if (_scrollView == nil) {
-        _scrollView = [[UIScrollView alloc] initWithFrame:CGRectMake(0, 184, self.contentView.width, self.contentView.height - 184)];
+        _scrollView = [[UIScrollView alloc] initWithFrame:CGRectMake(0, 30, self.contentView.width, self.contentView.height - 30)];
     }
     return _scrollView;
 }
@@ -197,7 +202,7 @@
     if (!_okBtn) {
         MJWeakSelf
         _okBtn = [XXButton buttonWithFrame:CGRectMake(16, self.contentView.height - kBtnHeight - 24, kScreen_Width - 32, kBtnHeight) title:LocalizedString(@"Sure") font:kFont(17) titleColor:[UIColor whiteColor] block:^(UIButton *button) {
-            [[weakSelf class] dismiss];
+            [weakSelf okAction];
         }];
         _okBtn.backgroundColor = kPrimaryMain;
         _okBtn.layer.cornerRadius = kBtnBorderRadius;

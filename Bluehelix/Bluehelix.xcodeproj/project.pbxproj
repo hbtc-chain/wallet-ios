@@ -324,6 +324,10 @@
 		EAA8DED6244D9B8F00161698 /* BHChooseLanguageCell.m in Sources */ = {isa = PBXBuildFile; fileRef = EA51B5ED2123DE5F0041FA72 /* BHChooseLanguageCell.m */; };
 		EAA8DED7244D9B8F00161698 /* BHChooseLanguageModel.m in Sources */ = {isa = PBXBuildFile; fileRef = EA51B5F02123FA270041FA72 /* BHChooseLanguageModel.m */; };
 		EAA8DEDD244EC62900161698 /* XXServiceContentView.m in Sources */ = {isa = PBXBuildFile; fileRef = EAA8DEDC244EC62900161698 /* XXServiceContentView.m */; };
+		EAAA896825202B4000A4AB5B /* XXPayInfoModel.m in Sources */ = {isa = PBXBuildFile; fileRef = EAAA896725202B4000A4AB5B /* XXPayInfoModel.m */; };
+		EAAA896B252032EE00A4AB5B /* XXMsgAddLiquidityModel.m in Sources */ = {isa = PBXBuildFile; fileRef = EAAA896A252032EE00A4AB5B /* XXMsgAddLiquidityModel.m */; };
+		EAAA896E25204BFA00A4AB5B /* XXMsgSwapExact.m in Sources */ = {isa = PBXBuildFile; fileRef = EAAA896D25204BFA00A4AB5B /* XXMsgSwapExact.m */; };
+		EAAA897125207FFA00A4AB5B /* Bugly.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EAAA897025207FFA00A4AB5B /* Bugly.framework */; };
 		EAB356302438369200D750D6 /* FMDatabaseQueue.m in Sources */ = {isa = PBXBuildFile; fileRef = EAB356262438369200D750D6 /* FMDatabaseQueue.m */; };
 		EAB356312438369200D750D6 /* FMDatabaseAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = EAB356292438369200D750D6 /* FMDatabaseAdditions.m */; };
 		EAB356322438369200D750D6 /* FMDatabase.m in Sources */ = {isa = PBXBuildFile; fileRef = EAB3562A2438369200D750D6 /* FMDatabase.m */; };
@@ -1108,6 +1112,13 @@
 		EAA8DED3244D99C900161698 /* XXRatesListVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XXRatesListVC.m; sourceTree = "<group>"; };
 		EAA8DEDB244EC62900161698 /* XXServiceContentView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = XXServiceContentView.h; sourceTree = "<group>"; };
 		EAA8DEDC244EC62900161698 /* XXServiceContentView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = XXServiceContentView.m; sourceTree = "<group>"; };
+		EAAA896625202B4000A4AB5B /* XXPayInfoModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = XXPayInfoModel.h; sourceTree = "<group>"; };
+		EAAA896725202B4000A4AB5B /* XXPayInfoModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = XXPayInfoModel.m; sourceTree = "<group>"; };
+		EAAA8969252032EE00A4AB5B /* XXMsgAddLiquidityModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = XXMsgAddLiquidityModel.h; sourceTree = "<group>"; };
+		EAAA896A252032EE00A4AB5B /* XXMsgAddLiquidityModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = XXMsgAddLiquidityModel.m; sourceTree = "<group>"; };
+		EAAA896C25204BFA00A4AB5B /* XXMsgSwapExact.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = XXMsgSwapExact.h; sourceTree = "<group>"; };
+		EAAA896D25204BFA00A4AB5B /* XXMsgSwapExact.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = XXMsgSwapExact.m; sourceTree = "<group>"; };
+		EAAA897025207FFA00A4AB5B /* Bugly.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Bugly.framework; sourceTree = "<group>"; };
 		EAB356252438369200D750D6 /* FMDatabase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FMDatabase.h; sourceTree = "<group>"; };
 		EAB356262438369200D750D6 /* FMDatabaseQueue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FMDatabaseQueue.m; sourceTree = "<group>"; };
 		EAB356272438369200D750D6 /* FMResultSet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FMResultSet.h; sourceTree = "<group>"; };
@@ -1382,6 +1393,7 @@
 				EA26447F211C7CF400FCEC6E /* Security.framework in Frameworks */,
 				EA26447D211C7CE600FCEC6E /* SystemConfiguration.framework in Frameworks */,
 				F38839332108AF7500EAC95D /* Photos.framework in Frameworks */,
+				EAAA897125207FFA00A4AB5B /* Bugly.framework in Frameworks */,
 				9F157B1443F00923BEDC45EF /* libPods-Bluehelix.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -2767,6 +2779,7 @@
 		EA9D745024F91E5700B53997 /* Web */ = {
 			isa = PBXGroup;
 			children = (
+				EAAA896525202B1F00A4AB5B /* Model */,
 				EA36AC442509293100B3788A /* View */,
 				EA9D745124F91E5700B53997 /* XXWebViewController.h */,
 				EA9D745224F91E5700B53997 /* XXWebViewController.m */,
@@ -2907,6 +2920,27 @@
 				EAE2862E2473BB7C006D9F24 /* XXCoinPublishApplyVC.m */,
 			);
 			path = ViewController;
+			sourceTree = "<group>";
+		};
+		EAAA896525202B1F00A4AB5B /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				EAAA896625202B4000A4AB5B /* XXPayInfoModel.h */,
+				EAAA896725202B4000A4AB5B /* XXPayInfoModel.m */,
+				EAAA8969252032EE00A4AB5B /* XXMsgAddLiquidityModel.h */,
+				EAAA896A252032EE00A4AB5B /* XXMsgAddLiquidityModel.m */,
+				EAAA896C25204BFA00A4AB5B /* XXMsgSwapExact.h */,
+				EAAA896D25204BFA00A4AB5B /* XXMsgSwapExact.m */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		EAAA896F25207FFA00A4AB5B /* Bugly */ = {
+			isa = PBXGroup;
+			children = (
+				EAAA897025207FFA00A4AB5B /* Bugly.framework */,
+			);
+			path = Bugly;
 			sourceTree = "<group>";
 		};
 		EAB356242438369200D750D6 /* fmdb */ = {
@@ -3421,6 +3455,7 @@
 		F3D9397520CCCB560055070B /* Tools */ = {
 			isa = PBXGroup;
 			children = (
+				EAAA896F25207FFA00A4AB5B /* Bugly */,
 				EA066A202518CE1300DFB45C /* WebViewJavascriptBridge */,
 				EA9D745424F91FB900B53997 /* NJKWebViewProgress */,
 				EA9D740724F91DD000B53997 /* MJRefresh */,
@@ -3660,6 +3695,7 @@
 				EA36AC4D250A132300B3788A /* XXPayInfoView.m in Sources */,
 				7AC4D793234C808F00F5E5F8 /* XXShadowView.m in Sources */,
 				6C791E342456BE3900F22CD0 /* XXVotingViewController.m in Sources */,
+				EAAA896825202B4000A4AB5B /* XXPayInfoModel.m in Sources */,
 				EA45BB8724DF999F00132984 /* Y_KLinePositionModel.m in Sources */,
 				EA04ABA8242D015B004403FF /* IQTextView.m in Sources */,
 				EA3E5965244721DD0080B98F /* XXMsgWithdrawalModel.m in Sources */,
@@ -3898,6 +3934,7 @@
 				EA04ABB4242D015B004403FF /* IQKeyboardReturnKeyHandler.m in Sources */,
 				EA45BB2524DE76BF00132984 /* XXBitcoinSearchVC.m in Sources */,
 				6CC12D0124455C4B00917105 /* XXValidatorToolBar.m in Sources */,
+				EAAA896B252032EE00A4AB5B /* XXMsgAddLiquidityModel.m in Sources */,
 				EA45BA6424DE76BE00132984 /* XXOrderInfoModel.m in Sources */,
 				EABD1B96241BB25900B1A03A /* crypto_scrypt-sse.c in Sources */,
 				EAA8DEC1244D7E7C00161698 /* XXAddressView.m in Sources */,
@@ -4012,6 +4049,7 @@
 				EA04ABAD242D015B004403FF /* IQPreviousNextView.m in Sources */,
 				6C791E222455A53400F22CD0 /* XXProposalDetailHeader.m in Sources */,
 				EAB356332438369200D750D6 /* FMDatabasePool.m in Sources */,
+				EAAA896E25204BFA00A4AB5B /* XXMsgSwapExact.m in Sources */,
 				EA309EF0236F21410098DE28 /* AFNetworkReachabilityManager.m in Sources */,
 				EA45BA8124DE76BE00132984 /* XXBusinessProgressView.m in Sources */,
 				EA20EAC22425FBC8004EBD7F /* XXServiceAgreementVC.m in Sources */,
@@ -4199,13 +4237,14 @@
 				CODE_SIGN_ENTITLEMENTS = "";
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 3;
 				DEFINES_MODULE = NO;
 				DEVELOPMENT_TEAM = 768MYA9JJQ;
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
+					"$(PROJECT_DIR)/Bluehelix/Tools/Bugly",
 				);
 				GCC_INPUT_FILETYPE = automatic;
 				GCC_PREFIX_HEADER = Bluehelix/PrefixHeader.pch;
@@ -4216,7 +4255,7 @@
 				INFOPLIST_FILE = "$(SRCROOT)/Bluehelix/AppResource/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				MARKETING_VERSION = 0.7;
+				MARKETING_VERSION = 0.8;
 				OTHER_LDFLAGS = (
 					"$(inherited)",
 					"-ObjC",
@@ -4242,13 +4281,14 @@
 				CODE_SIGN_ENTITLEMENTS = "";
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 3;
 				DEFINES_MODULE = NO;
 				DEVELOPMENT_TEAM = 768MYA9JJQ;
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
+					"$(PROJECT_DIR)/Bluehelix/Tools/Bugly",
 				);
 				GCC_INPUT_FILETYPE = automatic;
 				GCC_PREFIX_HEADER = Bluehelix/PrefixHeader.pch;
@@ -4259,7 +4299,7 @@
 				INFOPLIST_FILE = "$(SRCROOT)/Bluehelix/AppResource/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				MARKETING_VERSION = 0.7;
+				MARKETING_VERSION = 0.8;
 				OTHER_LDFLAGS = (
 					"$(inherited)",
 					"-ObjC",

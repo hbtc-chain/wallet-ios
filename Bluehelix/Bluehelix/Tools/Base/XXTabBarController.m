@@ -78,6 +78,7 @@
     
     XXWebViewController *webVC = [[XXWebViewController alloc] init];
     webVC.urlString = kWebUrl;
+    webVC.navTitle = LocalizedString(@"TradesTabbar");
     XXNavigationController *nav1 = [[XXNavigationController alloc] initWithRootViewController:webVC];
     [controllers addObject:nav1];
     
@@ -167,7 +168,7 @@
                                  @"selectedImage":[UIImage mainImageName:@"tabbarNew_0"]
                                  }];
         [_namesArray addObject:@{
-                                        @"title":LocalizedString(@"Markets"),
+                                        @"title":LocalizedString(@"TradesTabbar"),
                                         @"normalImage":[UIImage textImageName:@"tabbarNew_1"],
                                         @"selectedImage":[UIImage mainImageName:@"tabbarNew_1"]
                                         }];
