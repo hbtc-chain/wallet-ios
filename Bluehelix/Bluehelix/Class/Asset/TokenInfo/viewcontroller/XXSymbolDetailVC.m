@@ -238,10 +238,16 @@
 
 /// 跨链转出
 - (void)chainOutAction {
-    XXTransferVC *transferVC = [[XXTransferVC alloc] init];
-    transferVC.tokenModel = self.tokenModel;
-    transferVC.InnerChain = NO;
-    [self.navigationController pushViewController:transferVC animated:YES];
+    if (IsEmpty(self.tokenModel.external_address)) { //判断是否存在外链地址
+        XXWithdrawChainVC *chain = [[XXWithdrawChainVC alloc] init];
+        chain.tokenModel = self.tokenModel;
+        [self.navigationController pushViewController:chain animated:YES];
+    } else {
+        XXTransferVC *transferVC = [[XXTransferVC alloc] init];
+        transferVC.tokenModel = self.tokenModel;
+        transferVC.InnerChain = NO;
+        [self.navigationController pushViewController:transferVC animated:YES];
+    }
 }
 
 /// 跨链收款

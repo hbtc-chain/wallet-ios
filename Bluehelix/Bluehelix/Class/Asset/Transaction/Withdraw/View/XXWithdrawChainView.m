@@ -38,6 +38,10 @@
     [self.mainView addSubview:self.tipView];
 }
 
+-(void)sliderValueChanged:(UISlider *)slider {
+    self.feeView.textField.text = [NSString stringWithFormat:@"%.3f",slider.value];
+}
+
 /** 地址视图 */
 - (UIView *)mainView {
     if (_mainView == nil) {
@@ -52,6 +56,7 @@
     if (_feeView == nil) {
         _feeView = [[XXWithdrawFeeView alloc] initWithFrame:CGRectMake(0, 20, kScreen_Width, 88)];
         _feeView.textField.placeholder = LocalizedString(@"PleaseEnterFee");
+        _feeView.textField.enabled = NO;
     }
     return _feeView;
 }
@@ -61,7 +66,7 @@
     if (_speedView == nil) {
         _speedView = [[XXWithdrawSpeedView alloc] initWithFrame:CGRectMake(0, CGRectGetMaxY(self.feeView.frame) + 15, kScreen_Width, 72)];
         _speedView.nameLabel.text = LocalizedString(@"CashWithdrawal");
-//        [_speedView.slider addTarget:self action:@selector(sliderValueChanged:) forControlEvents:UIControlEventValueChanged];
+        [_speedView.slider addTarget:self action:@selector(sliderValueChanged:) forControlEvents:UIControlEventValueChanged];
     }
     return _speedView;
 }

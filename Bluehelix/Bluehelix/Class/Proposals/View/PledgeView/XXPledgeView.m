@@ -49,7 +49,7 @@
     [self.mainView addSubview:self.feeView];
 
     /** 加速视图 */
-    [self.mainView addSubview:self.speedView];
+//    [self.mainView addSubview:self.speedView];
 
     /** 提示语视图 */
     [self.mainView addSubview:self.tipView];

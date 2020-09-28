@@ -40,8 +40,6 @@
         _slider.minimumTrackTintColor = kPrimaryMain;
         _slider.maximumTrackTintColor = kGray100;
         _slider.thumbTintColor = kPrimaryMain;
-        _slider.minimumValue = 1;
-        _slider.maximumValue = 100;
 //        [_slider setThumbImage:[UIImage imageNamed:@"slider"] forState:UIControlStateNormal];
     }
     return _slider;

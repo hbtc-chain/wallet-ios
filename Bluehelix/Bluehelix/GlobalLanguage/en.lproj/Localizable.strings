@@ -17,8 +17,8 @@
 //创建钱包
 "Verify" = "Verify";
 "logoName" = "HBTC Wallet";
-"CreateWallet" = "Create custodian unit";
-"ImportWallet" = "Import custodian unit";
+"CreateWallet" = "Create";
+"ImportWallet" = "Import";
 "VerifyMnemonicPhraseTip" = "Fill in the form below by clicking on the mnemonic in sequence";
 "CreateWalletSuccess" = "Created successfully";
 "BackupImmediately" = "Backup immediately";

@@ -43,19 +43,19 @@
     KWindow.backgroundColor = [UIColor whiteColor];
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     self.window.rootViewController = [[XXTabBarController alloc] init];
-//    if (KUser.address) {
-//        if (KUser.isFaceIDLockOpen || KUser.isTouchIDLockOpen) {
-//            self.window.rootViewController = [[BHFaceIDLockVC alloc] init];
-//        } else {
-//            XXLoginVC *loginVC = [[XXLoginVC alloc] init];
-//            XXNavigationController *loginNav = [[XXNavigationController alloc] initWithRootViewController:loginVC];
-//            self.window.rootViewController = loginNav;
-//        }
-//    } else {
-//        XXStartWalletVC *startVC = [[XXStartWalletVC alloc] init];
-//        XXNavigationController *startNav = [[XXNavigationController alloc] initWithRootViewController:startVC];
-//        self.window.rootViewController = startNav;
-//    }
+    if (KUser.address) {
+        if (KUser.isFaceIDLockOpen || KUser.isTouchIDLockOpen) {
+            self.window.rootViewController = [[BHFaceIDLockVC alloc] init];
+        } else {
+            XXLoginVC *loginVC = [[XXLoginVC alloc] init];
+            XXNavigationController *loginNav = [[XXNavigationController alloc] initWithRootViewController:loginVC];
+            self.window.rootViewController = loginNav;
+        }
+    } else {
+        XXStartWalletVC *startVC = [[XXStartWalletVC alloc] init];
+        XXNavigationController *startNav = [[XXNavigationController alloc] initWithRootViewController:startVC];
+        self.window.rootViewController = startNav;
+    }
     [self.window makeKeyAndVisible];
     [self.splashScreen showSplashScreen];
     [KMarket readCachedDataOfMarket];

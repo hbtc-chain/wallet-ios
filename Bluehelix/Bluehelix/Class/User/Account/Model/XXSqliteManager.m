@@ -45,13 +45,13 @@ static XXSqliteManager *_sqliteManager;
 #pragma mark 币
 - (BOOL)existsTokens {
     [self.myFmdb open];
-    BOOL result = [self.myFmdb executeUpdate:@"create table if not exists tokens(ID INTEGER PRIMARY KEY AUTOINCREMENT,symbol TEXT,chain TEXT,decimals INTEGER,is_native BOOLEAN,withdrawal_fee_rate TEXT,logo TEXT,is_withdrawal_enabled BOOLEAN)"];
+    BOOL result = [self.myFmdb executeUpdate:@"create table if not exists tokens(ID INTEGER PRIMARY KEY AUTOINCREMENT,symbol TEXT,chain TEXT,decimals INTEGER,is_native BOOLEAN,withdrawal_fee TEXT,logo TEXT,is_withdrawal_enabled BOOLEAN)"];
     return result;
 }
 
 
 - (void)insertTokens:(NSArray *)tokens {
-    if (![self.myFmdb columnExists:@"withdrawal_fee_rate" inTableWithName:@"tokens"]) {
+    if (![self.myFmdb columnExists:@"withdrawal_fee" inTableWithName:@"tokens"]) {
         [self.myFmdb executeUpdate:@"drop table if exists tokens"];
     }
     BOOL existsTable = [self existsTokens];
@@ -64,14 +64,14 @@ static XXSqliteManager *_sqliteManager;
         [argumentsArr addObject:model.symbol];
         [argumentsArr addObject:[NSNumber numberWithInt:model.decimals]];
         [argumentsArr addObject:[NSNumber numberWithInt:model.is_native]];
-        [argumentsArr addObject:model.withdrawal_fee_rate];
+        [argumentsArr addObject:model.withdrawal_fee];
         [argumentsArr addObject:model.logo];
         [argumentsArr addObject:model.chain];
         [argumentsArr addObject:[NSNumber numberWithInt:model.is_withdrawal_enabled]];
         if (argumentsArr.count != 7) {
             return;
         }
-        [self.myFmdb executeUpdate:@"insert into 'tokens'(symbol,decimals,is_native,withdrawal_fee_rate,logo,chain,is_withdrawal_enabled) values(?,?,?,?,?,?,?)" withArgumentsInArray:argumentsArr];
+        [self.myFmdb executeUpdate:@"insert into 'tokens'(symbol,decimals,is_native,withdrawal_fee,logo,chain,is_withdrawal_enabled) values(?,?,?,?,?,?,?)" withArgumentsInArray:argumentsArr];
     }
 }
 
@@ -80,7 +80,7 @@ static XXSqliteManager *_sqliteManager;
     model.symbol = [set stringForColumn:@"symbol"];
     model.decimals = [set intForColumn:@"decimals"];
     model.is_native = [set boolForColumn:@"is_native"];
-    model.withdrawal_fee_rate = [set stringForColumn:@"withdrawal_fee_rate"];
+    model.withdrawal_fee = [set stringForColumn:@"withdrawal_fee"];
     model.logo = [set stringForColumn:@"logo"];
     model.chain = [set stringForColumn:@"chain"];
     model.is_withdrawal_enabled = [set boolForColumn:@"is_withdrawal_enabled"];

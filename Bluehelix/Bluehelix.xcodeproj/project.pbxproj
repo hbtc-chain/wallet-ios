@@ -328,6 +328,7 @@
 		EAAA896B252032EE00A4AB5B /* XXMsgAddLiquidityModel.m in Sources */ = {isa = PBXBuildFile; fileRef = EAAA896A252032EE00A4AB5B /* XXMsgAddLiquidityModel.m */; };
 		EAAA896E25204BFA00A4AB5B /* XXMsgSwapExact.m in Sources */ = {isa = PBXBuildFile; fileRef = EAAA896D25204BFA00A4AB5B /* XXMsgSwapExact.m */; };
 		EAAA897125207FFA00A4AB5B /* Bugly.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EAAA897025207FFA00A4AB5B /* Bugly.framework */; };
+		EAAA89742520B7A200A4AB5B /* XXTransferMemoView.m in Sources */ = {isa = PBXBuildFile; fileRef = EAAA89732520B7A200A4AB5B /* XXTransferMemoView.m */; };
 		EAB356302438369200D750D6 /* FMDatabaseQueue.m in Sources */ = {isa = PBXBuildFile; fileRef = EAB356262438369200D750D6 /* FMDatabaseQueue.m */; };
 		EAB356312438369200D750D6 /* FMDatabaseAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = EAB356292438369200D750D6 /* FMDatabaseAdditions.m */; };
 		EAB356322438369200D750D6 /* FMDatabase.m in Sources */ = {isa = PBXBuildFile; fileRef = EAB3562A2438369200D750D6 /* FMDatabase.m */; };
@@ -1119,6 +1120,8 @@
 		EAAA896C25204BFA00A4AB5B /* XXMsgSwapExact.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = XXMsgSwapExact.h; sourceTree = "<group>"; };
 		EAAA896D25204BFA00A4AB5B /* XXMsgSwapExact.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = XXMsgSwapExact.m; sourceTree = "<group>"; };
 		EAAA897025207FFA00A4AB5B /* Bugly.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Bugly.framework; sourceTree = "<group>"; };
+		EAAA89722520B7A100A4AB5B /* XXTransferMemoView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XXTransferMemoView.h; sourceTree = "<group>"; };
+		EAAA89732520B7A200A4AB5B /* XXTransferMemoView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XXTransferMemoView.m; sourceTree = "<group>"; };
 		EAB356252438369200D750D6 /* FMDatabase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FMDatabase.h; sourceTree = "<group>"; };
 		EAB356262438369200D750D6 /* FMDatabaseQueue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FMDatabaseQueue.m; sourceTree = "<group>"; };
 		EAB356272438369200D750D6 /* FMResultSet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FMResultSet.h; sourceTree = "<group>"; };
@@ -1936,6 +1939,8 @@
 		EA3E592324441D950080B98F /* View */ = {
 			isa = PBXGroup;
 			children = (
+				EAAA89722520B7A100A4AB5B /* XXTransferMemoView.h */,
+				EAAA89732520B7A200A4AB5B /* XXTransferMemoView.m */,
 				EA3E594324445B510080B98F /* XXTransferView.h */,
 				EA3E594424445B510080B98F /* XXTransferView.m */,
 				EA3E593224441D950080B98F /* XXWithdrawView.h */,
@@ -3933,6 +3938,7 @@
 				EA877F0024C6E4180049545A /* XXImportMnemonicWordsVC.m in Sources */,
 				EA04ABB4242D015B004403FF /* IQKeyboardReturnKeyHandler.m in Sources */,
 				EA45BB2524DE76BF00132984 /* XXBitcoinSearchVC.m in Sources */,
+				EAAA89742520B7A200A4AB5B /* XXTransferMemoView.m in Sources */,
 				6CC12D0124455C4B00917105 /* XXValidatorToolBar.m in Sources */,
 				EAAA896B252032EE00A4AB5B /* XXMsgAddLiquidityModel.m in Sources */,
 				EA45BA6424DE76BE00132984 /* XXOrderInfoModel.m in Sources */,

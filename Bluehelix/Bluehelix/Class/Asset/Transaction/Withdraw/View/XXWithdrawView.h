@@ -13,6 +13,7 @@
 #import "XXWithdrawFeeView.h"
 #import "XXWithdrawSpeedView.h"
 #import "XXWithdrawTipView.h"
+#import "XXTransferMemoView.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
@@ -44,6 +45,8 @@ NS_ASSUME_NONNULL_BEGIN
 /** 提示语视图 */
 @property (strong, nonatomic) XXWithdrawTipView *tipView;
 
+/** Memo */
+@property (strong, nonatomic) XXTransferMemoView *memoView;
 @end
 
 NS_ASSUME_NONNULL_END

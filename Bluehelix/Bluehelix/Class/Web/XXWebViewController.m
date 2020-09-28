@@ -47,10 +47,10 @@
 #pragma mark - 1. 初始化页面
 - (void)setupUI {
     self.navView.backgroundColor = [UIColor whiteColor];
+    self.view.backgroundColor = [UIColor whiteColor];
     self.titleLabel.textColor = [UIColor blackColor];
     [self.leftButton setImage:[UIImage imageNamed:@"icon_back_0"] forState:UIControlStateNormal];
-    [self.rightButton setTitle:LocalizedString(@"Refresh") forState:UIControlStateNormal];
-    [self.rightButton setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+    [self.rightButton setImage:[UIImage imageNamed:@"dapp_refresh"] forState:UIControlStateNormal];
     [self.view addSubview:self.webView];
     [self.view addSubview:self.failureView];
     [self.view addSubview:self.progressView];

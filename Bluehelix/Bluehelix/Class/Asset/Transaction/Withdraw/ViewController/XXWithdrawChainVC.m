@@ -37,6 +37,9 @@
     self.titleLabel.text = LocalizedString(@"WithdrawChainAddress");
     [self.view addSubview:self.chainView];
     self.chainView.feeView.unitLabel.text = [kMainToken uppercaseString];
+    self.chainView.speedView.slider.maximumValue = [kSliderMaxFee floatValue];
+    self.chainView.speedView.slider.minimumValue = [kSliderMinFee floatValue];
+    self.chainView.speedView.slider.value = [kMinFee doubleValue];
     [self.view addSubview:self.withdrawButton];
 }
 
@@ -56,11 +59,9 @@
 - (void)requestWithdrawVerify:(NSString *)text {
     XXTokenModel *mainToken = [[XXSqliteManager sharedSqlite] tokenBySymbol:kMainToken];
     NSDecimalNumber *feeAmountDecimal = [NSDecimalNumber decimalNumberWithString:self.chainView.feeView.textField.text];
-    NSDecimalNumber *gasPriceDecimal = [NSDecimalNumber decimalNumberWithString:[NSString stringWithFormat:@"%f",self.chainView.speedView.slider.value]];
     NSString *feeAmount = [[feeAmountDecimal decimalNumberByMultiplyingBy:kPrecisionDecimalPower(mainToken.decimals)] stringValue];
-    NSString *gas = [[[feeAmountDecimal decimalNumberByDividingBy:gasPriceDecimal] decimalNumberByDividingBy:kPrecisionDecimal_U] stringValue];
     
-    XXMsg *model = [[XXMsg alloc] initWithfrom:KUser.address to:KUser.address amount:@"" denom:self.tokenModel.symbol feeAmount:feeAmount feeGas:gas feeDenom:kMainToken memo:@"" type:kMsgKeyGen withdrawal_fee:@"" text:text];
+    XXMsg *model = [[XXMsg alloc] initWithfrom:KUser.address to:KUser.address amount:@"" denom:self.tokenModel.symbol feeAmount:feeAmount feeGas:@"" feeDenom:kMainToken memo:@"" type:kMsgKeyGen withdrawal_fee:@"" text:text];
     _keyGenRequest = [[XXMsgRequest alloc] init];
     MJWeakSelf
     _keyGenRequest.msgSendSuccessBlock = ^{

@@ -503,3 +503,5 @@
 "MsgSwapExactIn" = "兑换输入确定";
 "MsgSwapExactOut" = "兑换输出确定";
 "Refresh" = "刷新";
+"EnterMemo" = "填写MEMO或者TAG";
+"MemoTip" = "填写MEMO或者TAG";

@@ -63,10 +63,11 @@
 
 - (XXLabel *)addressLabel {
     if (!_addressLabel) {
-        CGFloat width = [NSString widthWithText:KUser.address font:kFont13];
-        CGFloat maxWidth = kScreen_Width - K375(16) - 40;
-        width = width > maxWidth ? maxWidth : width;
-        _addressLabel = [XXLabel labelWithFrame:CGRectMake(K375(16), CGRectGetMaxY(self.chainNameLabel.frame), width, 20) font:kFont13 textColor:[UIColor whiteColor]];
+//        CGFloat width = [NSString widthWithText:KUser.address font:kFont13];
+//        CGFloat maxWidth = self.backView.width - K375(32) - 30;
+//        width = width > maxWidth ? maxWidth : width;
+        _addressLabel = [XXLabel labelWithFrame:CGRectMake(K375(16), CGRectGetMaxY(self.chainNameLabel.frame), 250, 40) font:kFont13 textColor:[UIColor whiteColor]];
+        _addressLabel.numberOfLines = 0;
     }
     return _addressLabel;
 }
@@ -74,7 +75,7 @@
 - (XXButton *)copyButton {
     if (_copyButton == nil) {
         MJWeakSelf
-        _copyButton = [XXButton buttonWithFrame:CGRectMake(CGRectGetMaxX(self.addressLabel.frame), self.addressLabel.top - 10, 40, 40) block:^(UIButton *button) {
+        _copyButton = [XXButton buttonWithFrame:CGRectMake(CGRectGetMaxX(self.addressLabel.frame), self.addressLabel.top, 40, 40) block:^(UIButton *button) {
             UIPasteboard *pab = [UIPasteboard generalPasteboard];
             [pab setString:weakSelf.addressLabel.text];
             Alert *alert = [[Alert alloc] initWithTitle:LocalizedString(@"CopySuccessfully") duration:kAlertDuration completion:^{
@@ -89,7 +90,7 @@
 - (XXButton *)codeBtn {
     if (!_codeBtn) {
         MJWeakSelf
-        _codeBtn = [XXButton buttonWithFrame:CGRectMake(CGRectGetMaxX(self.copyButton.frame)-15, self.addressLabel.top - 14, 48, 48) block:^(UIButton *button) {
+        _codeBtn = [XXButton buttonWithFrame:CGRectMake(self.backView.width - 48, self.chainNameLabel.top - 18, 48, 48) block:^(UIButton *button) {
             NSLog(@"%@",self.address);
             [XXChainAddressView showWithAddress:weakSelf.address];
         }];

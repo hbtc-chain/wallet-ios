@@ -94,11 +94,11 @@
     XXTokenModel *tokenModel = [[XXSqliteManager sharedSqlite] tokenBySymbol:kMainToken];
     NSDecimalNumber *amountDecimal = [NSDecimalNumber decimalNumberWithString:self.pledgeView.amountView.textField.text];
     NSDecimalNumber *feeAmountDecimal = [NSDecimalNumber decimalNumberWithString:self.pledgeView.feeView.textField.text];
-    NSDecimalNumber *gasPriceDecimal = [NSDecimalNumber decimalNumberWithString:[NSString stringWithFormat:@"%f",self.pledgeView.speedView.slider.value]];
+//    NSDecimalNumber *gasPriceDecimal = [NSDecimalNumber decimalNumberWithString:[NSString stringWithFormat:@"%f",self.pledgeView.speedView.slider.value]];
 //    NSString *toAddress = self.pledgeView.addressView.textField.text;
     NSString *amount = [[amountDecimal decimalNumberByMultiplyingBy:kPrecisionDecimalPower(tokenModel.decimals)] stringValue];
     NSString *feeAmount = [[feeAmountDecimal decimalNumberByMultiplyingBy:kPrecisionDecimalPower(tokenModel.decimals)] stringValue];
-    NSString *gas = [[[feeAmountDecimal decimalNumberByDividingBy:gasPriceDecimal] decimalNumberByDividingBy:kPrecisionDecimal_U] stringValue];
+//    NSString *gas = [[[feeAmountDecimal decimalNumberByDividingBy:gasPriceDecimal] decimalNumberByDividingBy:kPrecisionDecimal_U] stringValue];
     
     [MBProgressHUD showActivityMessageInView:@""];
     XXMsg *model = [[XXMsg alloc] initProposalMessageWithfrom:KUser.address
@@ -106,7 +106,7 @@
                                                           amount:amount
                                                            denom:tokenModel.symbol
                                                        feeAmount:feeAmount
-                                                          feeGas:gas
+                                                          feeGas:@""
                                                         feeDenom:tokenModel.symbol
                                                             memo:tokenModel.symbol
                                                             type:kMsgPledge

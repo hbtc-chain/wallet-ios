@@ -198,15 +198,19 @@ typedef NS_ENUM(NSUInteger, NetworkMethod) {
 #define kBuglyID @"bb0f612e68"
 
 #define kDomain @""
-#define kServerUrl @"http://hbtc.yym.plus/"
+#define kServerUrl @"http://hbtc.yym.plus"
 //#define kServerUrl @"https://explorer.hbtc.com"
 #define kMarketUrl @"https://app.hbtc.com/"
 #define kSocketQuoteUrl @"wss://ws.hbtc.com/ws/quote/v1"
 #define kWebUrl @"http://juswap.io/swap"
+//#define kWebUrl @"http://10.197.61.45:8080"
+
 
 #define kChainId @"hbtc-testnet" //链名称
 #define kCu_number @"0"
 #define kMinFee @"0.01"
+#define kSliderMinFee @"0.002"
+#define kSliderMaxFee @"1"
 #define kMainToken @"hbc" //原生主代币
 #define kPubKeyType @"tendermint/PubKeySecp256k1" //公钥加密方式
 #define kMsgSend @"hbtcchain/transfer/MsgSend" //转账

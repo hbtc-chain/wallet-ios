@@ -41,6 +41,9 @@
         [self.view addSubview:self.coinPublishView];
         self.coinPublishView.feeView.unitLabel.text = [kMainToken uppercaseString];
         self.coinPublishView.feeView.textField.text = kMinFee;
+    self.coinPublishView.speedView.slider.maximumValue = [kSliderMaxFee floatValue];
+           self.coinPublishView.speedView.slider.minimumValue = [kSliderMinFee floatValue];
+           self.coinPublishView.speedView.slider.value = [kMinFee doubleValue];
     [self.view addSubview:self.applyButton];
 }
 
@@ -80,9 +83,9 @@
     NSDecimalNumber *amountDecimal = [NSDecimalNumber decimalNumberWithString:self.coinPublishView.amountView.textField.text]; //数量
     NSString *amount = [[amountDecimal decimalNumberByMultiplyingBy:kPrecisionDecimalPower(precision.intValue)] stringValue];
     NSDecimalNumber *feeAmountDecimal = [NSDecimalNumber decimalNumberWithString:self.coinPublishView.feeView.textField.text]; //手续费
-    NSDecimalNumber *gasPriceDecimal = [NSDecimalNumber decimalNumberWithString:[NSString stringWithFormat:@"%f",self.coinPublishView.speedView.slider.value]]; //gas price
+//    NSDecimalNumber *gasPriceDecimal = [NSDecimalNumber decimalNumberWithString:[NSString stringWithFormat:@"%f",self.coinPublishView.speedView.slider.value]]; //gas price
     NSString *feeAmount = [[feeAmountDecimal decimalNumberByMultiplyingBy:kPrecisionDecimalPower(mainToken.decimals)] stringValue];
-    NSString *gas = [[[feeAmountDecimal decimalNumberByDividingBy:gasPriceDecimal] decimalNumberByDividingBy:kPrecisionDecimal_U] stringValue];
+//    NSString *gas = [[[feeAmountDecimal decimalNumberByDividingBy:gasPriceDecimal] decimalNumberByDividingBy:kPrecisionDecimal_U] stringValue];
     
     XXMsg *model = [[XXMsg alloc] init];
     model.fromAddress = KUser.address;
@@ -90,7 +93,7 @@
     model.amount = amount;
     model.denom = symbol;
     model.feeAmount = feeAmount;
-    model.feeGas = gas;
+    model.feeGas = @"";
     model.feeDenom = kMainToken;
     model.type = kMsgNewToken;
     model.memo = @"";
