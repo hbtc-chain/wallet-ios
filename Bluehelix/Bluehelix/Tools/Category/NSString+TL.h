@@ -118,4 +118,8 @@
 /// 地址隐藏中间部分
 /// @param address 地址
 + (NSString *)addressReplace:(NSString *)address;
+
+/// 地址隐藏中间部分
+/// @param address 地址
++ (NSString *)addressShortReplace:(NSString *)address;
 @end

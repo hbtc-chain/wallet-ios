@@ -11,6 +11,7 @@
 #import "XXTokenModel.h"
 #import <UIImageView+WebCache.h>
 #import "XXDepositAlert.h"
+#import "XXAssetSingleManager.h"
 
 @interface XXDepositCoinVC ()
 
@@ -50,7 +51,7 @@
     if (self.InnerChain) {
         self.showAddress = KUser.address;
     } else {
-        self.showAddress = self.tokenModel.external_address;
+        self.showAddress = [[XXAssetSingleManager sharedManager] externalAddressBySymbol:self.tokenModel.symbol];
         tip1 = LocalizedString(@"ChainDepositTip1");
         tip2 = LocalizedString(@"ChainDepositTip2");
         tip3 = LocalizedString(@"ChainDepositTip3");

@@ -13,6 +13,7 @@
 #import "XXTokenModel.h"
 #import "XXTransferView.h"
 #import "XXPasswordView.h"
+#import "XXAssetSingleManager.h"
 
 @interface XXTransferVC ()
 
@@ -33,7 +34,7 @@
 
 @property (strong, nonatomic) NSString *text;
 
-@property (nonatomic, strong) XXAssetManager *assetManager; // 资产请求
+@property (nonatomic, strong) XXAssetSingleManager *assetManager; // 资产请求
 
 @end
 
@@ -41,16 +42,15 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    [self.assetManager requestAsset];
     [self setupUI];
+    [self refreshAsset];
 }
 
 - (void)refreshAsset {
-    for (XXTokenModel *tokenModel in self.assetManager.assetModel.assets) {
+    for (XXTokenModel *tokenModel in [XXAssetSingleManager sharedManager].assetModel.assets) {
         if ([tokenModel.symbol isEqualToString:self.tokenModel.symbol]) {
             self.tokenModel.amount = kAmountTrim(tokenModel.amount);
             self.tokenModel.symbol = self.tokenModel.symbol;
-            self.tokenModel.external_address = tokenModel.external_address;
         }
     }
     if (self.InnerChain) {
@@ -123,23 +123,23 @@
         NSDecimalNumber *amountDecimal = [NSDecimalNumber decimalNumberWithString:self.tokenModel.amount];
         NSDecimalNumber *feeAmountDecimal = [NSDecimalNumber decimalNumberWithString:self.transferView.feeView.textField.text];
         NSString *availableAmount = [[amountDecimal decimalNumberBySubtracting:feeAmountDecimal] stringValue];
-               if (self.transferView.amountView.textField.text.doubleValue > availableAmount.doubleValue) {
-                          Alert *alert = [[Alert alloc] initWithTitle:LocalizedString(@"TransferErrorTip") duration:kAlertDuration completion:^{
-                          }];
-                          [alert showAlert];
-                          return;
-                      }
-               if (self.tokenModel.amount.doubleValue < self.transferView.feeView.textField.text.doubleValue) {
-                          Alert *alert = [[Alert alloc] initWithTitle:LocalizedString(@"FeeNotEnough") duration:kAlertDuration completion:^{
-                          }];
-                          [alert showAlert];
-                          return;
-                      }
+        if (self.transferView.amountView.textField.text.doubleValue > availableAmount.doubleValue) {
+            Alert *alert = [[Alert alloc] initWithTitle:LocalizedString(@"TransferErrorTip") duration:kAlertDuration completion:^{
+            }];
+            [alert showAlert];
+            return;
+        }
+        if (self.tokenModel.amount.doubleValue < self.transferView.feeView.textField.text.doubleValue) {
+            Alert *alert = [[Alert alloc] initWithTitle:LocalizedString(@"FeeNotEnough") duration:kAlertDuration completion:^{
+            }];
+            [alert showAlert];
+            return;
+        }
         MJWeakSelf
         [XXPasswordView showWithSureBtnBlock:^(NSString * _Nonnull text) {
             weakSelf.text = text;
             [weakSelf requestTransfer];
-           }];
+        }];
     } else {
         Alert *alert = [[Alert alloc] initWithTitle:LocalizedString(@"CompleteInfomation") duration:kAlertDuration completion:^{
         }];
@@ -152,17 +152,20 @@
 - (void)requestTransfer {
     NSDecimalNumber *amountDecimal = [NSDecimalNumber decimalNumberWithString:self.transferView.amountView.textField.text];
     NSDecimalNumber *feeAmountDecimal = [NSDecimalNumber decimalNumberWithString:self.transferView.feeView.textField.text];
-//    NSDecimalNumber *gasPriceDecimal = [NSDecimalNumber decimalNumberWithString:[NSString stringWithFormat:@"%f",self.transferView.speedView.slider.value]];
     NSString *toAddress = self.transferView.addressView.textField.text;
     NSString *amount = [[amountDecimal decimalNumberByMultiplyingBy:kPrecisionDecimalPower(self.tokenModel.decimals)] stringValue];
     NSString *feeAmount = [[feeAmountDecimal decimalNumberByMultiplyingBy:kPrecisionDecimalPower(self.tokenModel.decimals)] stringValue];
-//    NSString *gas = [[[feeAmountDecimal decimalNumberByDividingBy:gasPriceDecimal] decimalNumberByDividingBy:kPrecisionDecimal_U] stringValue];
-
+    
+    [MBProgressHUD showActivityMessageInView:@""];
     XXMsg *model = [[XXMsg alloc] initWithfrom:KUser.address to:toAddress amount:amount denom:self.tokenModel.symbol feeAmount:feeAmount feeGas:@"" feeDenom:self.tokenModel.symbol memo:self.transferView.memoView.textField.text type:kMsgSend withdrawal_fee:@"" text:self.text];
     _msgRequest = [[XXMsgRequest alloc] init];
     MJWeakSelf
     _msgRequest.msgSendSuccessBlock = ^{
+        [MBProgressHUD hideHUD];
         [weakSelf.navigationController popViewControllerAnimated:YES];
+    };
+    _msgRequest.msgSendFaildBlock = ^(NSString * _Nonnull msg) {
+        [MBProgressHUD hideHUD];
     };
     [_msgRequest sendMsg:model];
 }
@@ -170,11 +173,26 @@
 /// 提币
 - (void)withdrawVerify {
     if (self.withdrawView.addressView.textField.text.length && self.withdrawView.amountView.textField.text.length && self.withdrawView.feeView.textField.text.length) {
+        NSDecimalNumber *amountDecimal = [NSDecimalNumber decimalNumberWithString:self.tokenModel.amount];
+        NSDecimalNumber *feeAmountDecimal = [NSDecimalNumber decimalNumberWithString:self.withdrawView.chainFeeView.textField.text];
+        NSString *availableAmount = [[amountDecimal decimalNumberBySubtracting:feeAmountDecimal] stringValue];
+        if (self.withdrawView.amountView.textField.text.doubleValue > availableAmount.doubleValue) {
+            Alert *alert = [[Alert alloc] initWithTitle:LocalizedString(@"WithdrawErrorTip") duration:kAlertDuration completion:^{
+            }];
+            [alert showAlert];
+            return;
+        }
+        if (self.tokenModel.amount.doubleValue < self.withdrawView.chainFeeView.textField.text.doubleValue) {
+            Alert *alert = [[Alert alloc] initWithTitle:LocalizedString(@"ChainFeeNotEnough") duration:kAlertDuration completion:^{
+            }];
+            [alert showAlert];
+            return;
+        }
         MJWeakSelf
         [XXPasswordView showWithSureBtnBlock:^(NSString * _Nonnull text) {
             weakSelf.text = text;
             [weakSelf requestWithdraw];
-           }];
+        }];
     } else {
         Alert *alert = [[Alert alloc] initWithTitle:LocalizedString(@"CompleteInfomation") duration:kAlertDuration completion:^{
         }];
@@ -194,11 +212,16 @@
     NSString *feeAmount = [[feeAmountDecimal decimalNumberByMultiplyingBy:kPrecisionDecimalPower(mainToken.decimals)] stringValue];
     NSString *chainFeeAmount = [[chainFeeDecimal decimalNumberByMultiplyingBy:kPrecisionDecimalPower(self.withdrawFeeModel.decimals)] stringValue];
     
+    [MBProgressHUD showActivityMessageInView:@""];
     XXMsg *model = [[XXMsg alloc] initWithfrom:KUser.address to:toAddress amount:amount denom:self.tokenModel.symbol feeAmount:feeAmount feeGas:@"" feeDenom:kMainToken memo:self.withdrawView.memoView.textField.text type:kMsgWithdrawal withdrawal_fee:chainFeeAmount text:self.text];
     _msgRequest = [[XXMsgRequest alloc] init];
     MJWeakSelf
     _msgRequest.msgSendSuccessBlock = ^{
+        [MBProgressHUD hideHUD];
         [weakSelf.navigationController popViewControllerAnimated:YES];
+    };
+    _msgRequest.msgSendFaildBlock = ^(NSString * _Nonnull msg) {
+        [MBProgressHUD hideHUD];
     };
     [_msgRequest sendMsg:model];
 }
@@ -238,14 +261,4 @@
     return _withdrawButton;
 }
 
-- (XXAssetManager *)assetManager {
-    if (!_assetManager) {
-        MJWeakSelf
-        _assetManager = [[XXAssetManager alloc] init];
-        _assetManager.assetChangeBlock = ^{
-            [weakSelf refreshAsset];
-        };
-    }
-    return _assetManager;
-}
 @end

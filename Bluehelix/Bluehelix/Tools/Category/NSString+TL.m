@@ -507,4 +507,15 @@
         return address;
     }
 }
+
++ (NSString *)addressShortReplace:(NSString *)address {
+    if (IsEmpty(address)) {
+        return @"";
+    }
+    if (address.length > 14) {
+       return [address stringByReplacingCharactersInRange:NSMakeRange(7, address.length - 14) withString:@"***"];
+    } else {
+        return address;
+    }
+}
 @end

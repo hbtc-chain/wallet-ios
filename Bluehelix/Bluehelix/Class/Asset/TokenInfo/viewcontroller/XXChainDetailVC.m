@@ -17,6 +17,7 @@
 #import "XXEmptyView.h"
 #import "XXFailureView.h"
 #import "XXChainHeaderView.h"
+#import "XXAssetSingleManager.h"
 
 @interface XXChainDetailVC ()<UITableViewDataSource, UITableViewDelegate>
 
@@ -25,11 +26,8 @@
 @property (nonatomic, strong) XXAssetModel *assetModel; //资产数据
 @property (nonatomic, strong) NSArray *tokenList; //资产币列表
 @property (nonatomic, strong) NSMutableArray *showArray; //展示的币
-@property (nonatomic, strong) XXAssetManager *assetManager;
 @property (nonatomic, strong) XXEmptyView *emptyView;
-@property (nonatomic, strong) NSTimer *timer; //定时刷新交易记录
 @property (nonatomic, strong) XXFailureView *failureView; //无网络
-
 @end
 
 @implementation XXChainDetailVC
@@ -38,30 +36,8 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     [self setupUI];
-}
-
-- (void)viewWillDisappear:(BOOL)animated {
-    [super viewWillDisappear:animated];
-    [KSystem statusBarSetUpDefault];
-}
-
-- (void)viewDidAppear:(BOOL)animated {
-    [super viewDidAppear:animated];
-    [KSystem statusBarSetUpWhiteColor];
-    self.timer = [NSTimer scheduledTimerWithTimeInterval:5 target:self selector:@selector(timerAction) userInfo:nil repeats:YES];
-    [self.timer fire];
-}
-
-- (void)viewDidDisappear:(BOOL)animated {
-    [super viewDidDisappear:animated];
-    if (_timer) {
-        [_timer invalidate];
-        _timer = nil;
-    }
-}
-
-- (void)timerAction {
-    [self.assetManager requestAsset];
+    [self refreshAsset];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(refreshAsset) name:kNotificationAssetRefresh object:nil];
 }
 
 - (void)setupUI {
@@ -74,6 +50,7 @@
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
     return 1;
 }
+
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     return self.showArray.count;
 }
@@ -141,30 +118,14 @@
             [self.showArray addObject:sModel];
         }
     }
-    NSString *external_address;
-    for (XXTokenModel *assetsToken in self.assetModel.assets) {
-        for (XXTokenModel *token in self.showArray) {
-            if ([assetsToken.symbol isEqualToString:token.symbol]) {
-                token.amount = kAmountTrim(assetsToken.amount);
-                token.external_address = assetsToken.external_address;
-                if ([self.chainName isEqualToString:token.chain] && !IsEmpty(assetsToken.external_address)) {
-                    external_address = assetsToken.external_address;
-                }
-            }
-        }
-    }
-    if (IsEmpty(external_address)) {
-        self.headerView.address = KUser.address;
-    } else {
-        self.headerView.address = external_address;
-    }
+    self.headerView.chain = self.chainName;
     [self.tableView reloadData];
 }
 
 /// 刷新资产
 - (void)refreshAsset {
     [self.tableView.mj_header endRefreshing];
-    self.assetModel = self.assetManager.assetModel;
+    self.assetModel = [XXAssetSingleManager sharedManager].assetModel;
     [self reloadData];
 }
 
@@ -181,7 +142,7 @@
             _tableView.contentInsetAdjustmentBehavior = UIScrollViewContentInsetAdjustmentNever;
         }
         _tableView.mj_header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
-            [weakSelf.assetManager  requestAsset];
+            [weakSelf refreshAsset];
         }];
     }
     return _tableView;
@@ -189,7 +150,11 @@
 
 - (XXChainHeaderView *)headerView {
     if (!_headerView) {
-        _headerView = [[XXChainHeaderView alloc] initWithFrame:CGRectMake(0, 0, kScreen_Width, K375(88))];
+        if ([self.chainName isEqualToString:kMainToken]) {
+            _headerView = [[XXChainHeaderView alloc] initWithFrame:CGRectMake(0, 0, kScreen_Width, K375(88))];
+        } else {
+            _headerView = [[XXChainHeaderView alloc] initWithFrame:CGRectMake(0, 0, kScreen_Width, 144)];
+        }
         _headerView.chain = self.chainName;
     }
     return _headerView;
@@ -214,21 +179,10 @@
         _failureView = [[XXFailureView alloc] initWithFrame:CGRectMake(0, 0, kScreen_Width, K375(300))];
         MJWeakSelf
         _failureView.reloadBlock = ^{
-            [weakSelf.assetManager requestAsset];
-        };
-    }
-    return _failureView;
-}
-
-- (XXAssetManager *)assetManager {
-    if (!_assetManager) {
-        MJWeakSelf
-        _assetManager = [[XXAssetManager alloc] init];
-        _assetManager.assetChangeBlock = ^{
             [weakSelf refreshAsset];
         };
     }
-    return _assetManager;
+    return _failureView;
 }
 
 @end

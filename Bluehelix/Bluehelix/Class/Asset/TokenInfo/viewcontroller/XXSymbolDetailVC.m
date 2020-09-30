@@ -25,6 +25,7 @@
 #import "XYHPickerView.h"
 #import "XXExchangeVC.h"
 #import "XXTabBarController.h"
+#import "XXAssetSingleManager.h"
 
 @interface XXSymbolDetailVC ()<UITableViewDataSource, UITableViewDelegate>
 
@@ -37,7 +38,6 @@
 @property (nonatomic, assign) int page;
 @property (nonatomic, assign) int pageSize;
 @property (nonatomic, strong) XXEmptyView *emptyView;
-@property (nonatomic, strong) XXAssetManager *assetManager; // 资产请求
 @property (nonatomic, strong) NSTimer *timer; //定时刷新交易记录
 @property (nonatomic, strong) NSArray *delegations; //委托列表
 @property (nonatomic, strong) XXMsgRequest *msgRequest; //提取分红
@@ -52,6 +52,8 @@
     self.page = 1;
     self.pageSize = 30;
     [self buildUI];
+    [self refreshHeader];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(refreshHeader) name:kNotificationAssetRefresh object:nil];
 }
 
 - (void)viewDidAppear:(BOOL)animated {
@@ -70,18 +72,16 @@
 
 - (void)timerAction {
     [self requestHistory];
-    [self.assetManager requestAsset];
 }
 
 /// 资产请求回来 刷新header
 - (void)refreshHeader {
-    self.assetModel = self.assetManager.assetModel;
+    self.assetModel = [XXAssetSingleManager sharedManager].assetModel;
     [self.tableView.mj_header endRefreshing];
     for (XXTokenModel *tokenModel in self.assetModel.assets) {
         if ([tokenModel.symbol isEqualToString:self.tokenModel.symbol]) {
             self.assetModel.amount = kAmountTrim(tokenModel.amount);
             self.assetModel.symbol = self.tokenModel.symbol;
-            self.tokenModel.external_address = tokenModel.external_address;
         }
     }
     if ([self.tokenModel.symbol isEqualToString:kMainToken]) {
@@ -238,7 +238,7 @@
 
 /// 跨链转出
 - (void)chainOutAction {
-    if (IsEmpty(self.tokenModel.external_address)) { //判断是否存在外链地址
+    if (IsEmpty([[XXAssetSingleManager sharedManager] externalAddressBySymbol:self.tokenModel.symbol])) { //判断是否存在外链地址
         XXWithdrawChainVC *chain = [[XXWithdrawChainVC alloc] init];
         chain.tokenModel = self.tokenModel;
         [self.navigationController pushViewController:chain animated:YES];
@@ -252,7 +252,7 @@
 
 /// 跨链收款
 - (void)chainInAction {
-    if (IsEmpty(self.tokenModel.external_address)) { //判断是否存在外链地址
+    if (IsEmpty([[XXAssetSingleManager sharedManager] externalAddressBySymbol:self.tokenModel.symbol])) { //判断是否存在外链地址
         XXWithdrawChainVC *chain = [[XXWithdrawChainVC alloc] init];
         chain.tokenModel = self.tokenModel;
         [self.navigationController pushViewController:chain animated:YES];
@@ -415,7 +415,7 @@
         MJWeakSelf
         _tableView.mj_header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
             weakSelf.page = 1;
-            [weakSelf.assetManager requestAsset];
+            [weakSelf refreshHeader];
             [weakSelf requestHistory];
         }];
     }
@@ -469,14 +469,4 @@
     return _emptyView;
 }
 
-- (XXAssetManager *)assetManager {
-    if (!_assetManager) {
-        MJWeakSelf
-        _assetManager = [[XXAssetManager alloc] init];
-        _assetManager.assetChangeBlock = ^{
-            [weakSelf refreshHeader];
-        };
-    }
-    return _assetManager;
-}
 @end

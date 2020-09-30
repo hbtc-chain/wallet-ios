@@ -14,7 +14,7 @@
 #import "XXHadDelegateModel.h"
 #import "XXMsg.h"
 #import "XXMsgRequest.h"
-#import "XXAssetManager.h"
+#import "XXAssetSingleManager.h"
 
 @interface XXPledgeViewController ()
 /**view*/
@@ -23,8 +23,6 @@
 @property (nonatomic, strong) XXButton *transferButton;
 /**资产数据*/
 @property (nonatomic, strong) XXAssetModel *assetModel;
-/**资产请求*/
-@property (nonatomic, strong) XXAssetManager *assetManager;
 
 @property (strong, nonatomic) NSString *text;
 
@@ -49,16 +47,16 @@
 }
 #pragma mark load data
 - (void)configAsset {
-    [self.assetManager requestAsset];
-    @weakify(self)
-    self.assetManager.assetChangeBlock = ^{
-        @strongify(self)
-        [self refreshPledgeAmount];
-    };
+//    @weakify(self)
+//     [XXAssetSingleManager sharedManager].assetChangeBlock = ^{
+//        @strongify(self)
+//        [self refreshPledgeAmount];
+//    };
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(refreshPledgeAmount) name:kNotificationAssetRefresh object:nil];
 }
 #pragma mark 刷新资产
 - (void)refreshPledgeAmount{
-    self.assetModel = [self.assetManager assetModel];
+    self.assetModel = [XXAssetSingleManager sharedManager].assetModel;
     for (XXTokenModel *tokenModel in self.assetModel.assets) {
         if ([[tokenModel.symbol uppercaseString] isEqualToString:[kMainToken uppercaseString]]) {
             self.tokenModel = tokenModel;
@@ -126,8 +124,8 @@
         [MBProgressHUD hideHUD];
          [weakSelf.navigationController popViewControllerAnimated:YES];
     };
-    _msgRequest.msgSendFaildBlock = ^{
-        [MBProgressHUD hideHUD];
+     _msgRequest.msgSendFaildBlock = ^(NSString * _Nonnull msg) {
+           [MBProgressHUD hideHUD];
     };
 }
 #pragma mark set/get
@@ -160,17 +158,5 @@
         _assetModel = [[XXAssetModel alloc]init];
     }
     return _assetModel;
-}
-
-- (XXAssetManager *)assetManager {
-    if (!_assetManager) {
-        @weakify(self)
-        _assetManager = [[XXAssetManager alloc] init];
-        _assetManager.assetChangeBlock = ^{
-            @strongify(self)
-            [self refreshPledgeAmount];
-        };
-    }
-    return _assetManager;
 }
 @end

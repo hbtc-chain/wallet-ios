@@ -185,19 +185,19 @@
                 Alert *alert = [[Alert alloc] initWithTitle:dic[@"message"] duration:kAlertDuration completion:^{
                 }];
                 [alert showAlert];
-            }
-            if (self.msgSendFaildBlock) {
-                self.msgSendFaildBlock();
+                if (self.msgSendFaildBlock) {
+                    self.msgSendFaildBlock(dic[@"message"]);
+                }
             }
         }
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
         [MBProgressHUD hideHUD];
         NSLog(@"%@ %@",task,error);
-        if (self.msgSendFaildBlock) {
-            self.msgSendFaildBlock();
-        }
         NSDictionary *dataDic = [error.userInfo[@"com.alamofire.serialization.response.error.data"] mj_JSONObject];
         NSLog(@"错误信息=%@", [dataDic mj_JSONString]);
+        if (self.msgSendFaildBlock) {
+            self.msgSendFaildBlock(dataDic[@"error"]);
+        }
         Alert *alert = [[Alert alloc] initWithTitle:dataDic[@"error"] duration:kAlertDuration completion:^{
         }];
         [alert showAlert];

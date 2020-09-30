@@ -11,12 +11,12 @@
 #import "XXMsgRequest.h"
 #import "XXPasswordView.h"
 #import "XXTokenModel.h"
+#import "XXAssetSingleManager.h"
 
 @interface XXVoteProposalViewController ()
 /**提交按钮*/
 @property (nonatomic, strong) XXButton *transferButton;
-/**资产请求*/
-@property (nonatomic, strong) XXAssetManager *assetManager;
+
 /**资产数据*/
 @property (nonatomic, strong) XXAssetModel *assetModel;
 
@@ -35,6 +35,7 @@
     [super viewDidLoad];
     [self createUI];
     [self configAsset];
+    
 }
 - (void)createUI{
     self.titleLabel.text = LocalizedString(@"VotingProposal");
@@ -43,16 +44,16 @@
 }
 #pragma mark load data
 - (void)configAsset {
-    @weakify(self)
-    
-    self.assetManager.assetChangeBlock = ^{
-        @strongify(self)
-        [self refreshAssetAmount];
-    };
+//    @weakify(self)
+//     [XXAssetSingleManager sharedManager].assetChangeBlock = ^{
+//        @strongify(self)
+//        [self refreshAssetAmount];
+//    };
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(refreshAssetAmount) name:kNotificationAssetRefresh object:nil];
 }
 #pragma mark 刷新资产
 - (void)refreshAssetAmount{
-    self.assetModel = [self.assetManager assetModel];
+    self.assetModel = [XXAssetSingleManager sharedManager].assetModel;
     for (XXTokenModel *tokenModel in self.assetModel.assets) {
         if ([[tokenModel.symbol uppercaseString] isEqualToString:[kMainToken uppercaseString]]) {
             self.tokenModel = tokenModel;
@@ -127,7 +128,7 @@
         [MBProgressHUD hideHUD];
         [weakSelf.navigationController popViewControllerAnimated:YES];
     };
-    _msgRequest.msgSendFaildBlock = ^{
+    _msgRequest.msgSendFaildBlock = ^(NSString * _Nonnull msg) {
         [MBProgressHUD hideHUD];
     };
 }
@@ -163,15 +164,4 @@
     return _assetModel;
 }
 
-- (XXAssetManager *)assetManager {
-    if (!_assetManager) {
-        @weakify(self)
-        _assetManager = [[XXAssetManager alloc] init];
-        _assetManager.assetChangeBlock = ^{
-            @strongify(self)
-            [self refreshAssetAmount];
-        };
-    }
-    return _assetManager;
-}
 @end

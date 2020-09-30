@@ -83,10 +83,9 @@
     NSDecimalNumber *amountDecimal = [NSDecimalNumber decimalNumberWithString:self.coinPublishView.amountView.textField.text]; //数量
     NSString *amount = [[amountDecimal decimalNumberByMultiplyingBy:kPrecisionDecimalPower(precision.intValue)] stringValue];
     NSDecimalNumber *feeAmountDecimal = [NSDecimalNumber decimalNumberWithString:self.coinPublishView.feeView.textField.text]; //手续费
-//    NSDecimalNumber *gasPriceDecimal = [NSDecimalNumber decimalNumberWithString:[NSString stringWithFormat:@"%f",self.coinPublishView.speedView.slider.value]]; //gas price
     NSString *feeAmount = [[feeAmountDecimal decimalNumberByMultiplyingBy:kPrecisionDecimalPower(mainToken.decimals)] stringValue];
-//    NSString *gas = [[[feeAmountDecimal decimalNumberByDividingBy:gasPriceDecimal] decimalNumberByDividingBy:kPrecisionDecimal_U] stringValue];
     
+    [MBProgressHUD showActivityMessageInView:@""];
     XXMsg *model = [[XXMsg alloc] init];
     model.fromAddress = KUser.address;
     model.toAddress = toAddress;
@@ -104,7 +103,11 @@
     _msgRequest = [[XXMsgRequest alloc] init];
     MJWeakSelf
     _msgRequest.msgSendSuccessBlock = ^{
+        [MBProgressHUD hideHUD];
         [weakSelf.navigationController popViewControllerAnimated:YES];
+    };
+    _msgRequest.msgSendFaildBlock = ^(NSString * _Nonnull msg) {
+        [MBProgressHUD hideHUD];
     };
     [_msgRequest sendMsg:model];
 }

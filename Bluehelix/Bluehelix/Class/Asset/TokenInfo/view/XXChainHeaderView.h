@@ -13,8 +13,6 @@ NS_ASSUME_NONNULL_BEGIN
 @interface XXChainHeaderView : UIView
 
 @property (nonatomic, copy) NSString *chain;
-@property (nonatomic, copy) NSString *address;
-
 @end
 
 NS_ASSUME_NONNULL_END

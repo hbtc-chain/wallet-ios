@@ -65,9 +65,9 @@ NSObject *getPath(NSObject *object, NSString *path, Class expectedClass) {
 }
 
 NSData *getHexData(NSString *unprefixedHexString) {
-//    if (![unprefixedHexString hasPrefix:@"0x"]) {
-//        unprefixedHexString = [@"0x" stringByAppendingString:unprefixedHexString];
-//    }
+    //    if (![unprefixedHexString hasPrefix:@"0x"]) {
+    //        unprefixedHexString = [@"0x" stringByAppendingString:unprefixedHexString];
+    //    }
     return [SecureData hexStringToData:unprefixedHexString];
 }
 
@@ -176,14 +176,14 @@ static NSDateFormatter *TimeFormatter = nil;
         _privateKeyString = _privateKey.hexString;
         _BHAddress = address;
         _pubKey = publicKey.data;
-//        [self publicKeyStr:publicKey];
+        //        [self publicKeyStr:publicKey];
         
         
-//        SecureData *publicKey1 = [SecureData secureDataWithLength:65];
-//               ecdsa_get_public_key65(&secp256k1, _privateKey.bytes, publicKey1.mutableBytes);
-//               NSData *addressData = [[[publicKey1 subdataFromIndex:1] KECCAK256] subdataFromIndex:12].data;
-//               _address = [Address addressWithData:addressData];
-//        NSLog(@"%@",_address);
+        //        SecureData *publicKey1 = [SecureData secureDataWithLength:65];
+        //               ecdsa_get_public_key65(&secp256k1, _privateKey.bytes, publicKey1.mutableBytes);
+        //               NSData *addressData = [[[publicKey1 subdataFromIndex:1] KECCAK256] subdataFromIndex:12].data;
+        //               _address = [Address addressWithData:addressData];
+        //        NSLog(@"%@",_address);
     }
     return self;
 }
@@ -269,10 +269,10 @@ static NSDateFormatter *TimeFormatter = nil;
     if (self) {
         _mnemonicPhrase = mnemonicPhrase;
         _privateKeyString = privateKey.hexString;
-//        SecureData *fullData = [SecureData secureDataWithLength:MAXIMUM_BIP39_DATA_LENGTH];
-//        int length = data_from_mnemonic([_mnemonicPhrase cStringUsingEncoding:NSUTF8StringEncoding], fullData.mutableBytes);
-//
-//        _mnemonicData = [fullData subdataToIndex:length].data;
+        //        SecureData *fullData = [SecureData secureDataWithLength:MAXIMUM_BIP39_DATA_LENGTH];
+        //        int length = data_from_mnemonic([_mnemonicPhrase cStringUsingEncoding:NSUTF8StringEncoding], fullData.mutableBytes);
+        //
+        //        _mnemonicData = [fullData subdataToIndex:length].data;
     }
     
     // Wipe the node
@@ -350,13 +350,13 @@ static NSDateFormatter *TimeFormatter = nil;
         return nil;
     }
     
-//    Address *expectedAddress = [Address addressWithString:(NSString*)getPath(data, @"address", [NSString class])];
+    //    Address *expectedAddress = [Address addressWithString:(NSString*)getPath(data, @"address", [NSString class])];
     NSString *expectedAddress = (NSString*)getPath(data, @"address", [NSString class]);
-
-//    if (!expectedAddress) {
-//        sendError(kAccountErrorJSONInvalidParameter, [NSString stringWithFormat:@"invalidAddress(%@)", expectedAddress]);
-//        return nil;
-//    }
+    
+    //    if (!expectedAddress) {
+    //        sendError(kAccountErrorJSONInvalidParameter, [NSString stringWithFormat:@"invalidAddress(%@)", expectedAddress]);
+    //        return nil;
+    //    }
     
     NSString *kdf = (NSString*)getPath(data, @"crypto/kdf", [NSString class]);
     NSData *salt = getHexData((NSString*)getPath(data, @"crypto/kdfparams/salt", [NSString class]));
@@ -372,16 +372,16 @@ static NSDateFormatter *TimeFormatter = nil;
     NSString *cipher = (NSString*)getPath(data, @"crypto/cipher", [NSString class]);
     NSData *iv = getHexData((NSString*)getPath(data, @"crypto/cipherparams/iv", [NSString class]));
     NSData *cipherText = getHexData((NSString*)getPath(data, @"crypto/ciphertext", [NSString class]));
-//    if (![cipher isEqualToString:@"aes-128-ctr"] || iv.length != 16 || cipherText.length != 32) {
-//        sendError(kAccountErrorJSONUnsupportedCipher, @"Invalid cipher parameters");
-//        return nil;
-//    }
+    //    if (![cipher isEqualToString:@"aes-128-ctr"] || iv.length != 16 || cipherText.length != 32) {
+    //        sendError(kAccountErrorJSONUnsupportedCipher, @"Invalid cipher parameters");
+    //        return nil;
+    //    }
     
     NSData *mac = getHexData((NSString*)getPath(data, @"crypto/mac", [NSString class]));
-//    if (mac.length != 32) {
-//        sendError(kAccountErrorJSONInvalidParameter, [NSString stringWithFormat:@"Bad MAC length (%d)", (int)(mac.length)]);
-//        return nil;
-//    }
+    //    if (mac.length != 32) {
+    //        sendError(kAccountErrorJSONInvalidParameter, [NSString stringWithFormat:@"Bad MAC length (%d)", (int)(mac.length)]);
+    //        return nil;
+    //    }
     
     // Convert password to NFKC form
     NSData *passwordData = [[password precomposedStringWithCompatibilityMapping] dataUsingEncoding:NSUTF8StringEncoding];
@@ -453,43 +453,43 @@ static NSDateFormatter *TimeFormatter = nil;
             return;
         }
         
-//        // Check for an mnemonic phrase
-//        NSDictionary *ethersData = [data objectForKey:@"x-ethers"];
-//        if ([ethersData isKindOfClass:[NSDictionary class]] && [[ethersData objectForKey:@"version"] isEqual:@"0.1"]) {
-//
-//            NSData *mnemonicCounter = ensureDataLength([ethersData objectForKey:@"mnemonicCounter"], 16);
-//            NSData *mnemonicCiphertext = ensureDataLength([ethersData objectForKey:@"mnemonicCiphertext"], 16);
-//            if (mnemonicCounter && mnemonicCiphertext) {
-//
-//                SecureData *mnemonicData = [SecureData secureDataWithLength:[mnemonicCiphertext length]];
-//
-//                unsigned char counter[16];
-//                [mnemonicCounter getBytes:counter length:mnemonicCounter.length];
-//
-//                aes_encrypt_ctx context;
-//                aes_encrypt_key256([derivedKey subdataWithRange:NSMakeRange(32, 32)].bytes, &context);
-//
-//                AES_RETURN aesStatus = aes_ctr_decrypt([mnemonicCiphertext bytes],
-//                                                       [mnemonicData mutableBytes],
-//                                                       (int)mnemonicData.length,
-//                                                       counter,
-//                                                       &aes_ctr_cbuf_inc,
-//                                                       &context);
-//
-//                if (aesStatus != EXIT_SUCCESS) {
-//                    sendError(kAccountErrorUnknownError, @"AES Error");
-//                    return;
-//                }
-//
-//                Account *mnemonicAccount = [Account accountWithMnemonicData:mnemonicData.data];
-//                if (![mnemonicAccount.address isEqualToAddress:account.address]) {
-//                    sendError(kAccountErrorMnemonicMismatch, @"Mnemonic Mismatch");
-//                    return;
-//                }
-//
-//                account = mnemonicAccount;
-//            }
-//        }
+        //        // Check for an mnemonic phrase
+        //        NSDictionary *ethersData = [data objectForKey:@"x-ethers"];
+        //        if ([ethersData isKindOfClass:[NSDictionary class]] && [[ethersData objectForKey:@"version"] isEqual:@"0.1"]) {
+        //
+        //            NSData *mnemonicCounter = ensureDataLength([ethersData objectForKey:@"mnemonicCounter"], 16);
+        //            NSData *mnemonicCiphertext = ensureDataLength([ethersData objectForKey:@"mnemonicCiphertext"], 16);
+        //            if (mnemonicCounter && mnemonicCiphertext) {
+        //
+        //                SecureData *mnemonicData = [SecureData secureDataWithLength:[mnemonicCiphertext length]];
+        //
+        //                unsigned char counter[16];
+        //                [mnemonicCounter getBytes:counter length:mnemonicCounter.length];
+        //
+        //                aes_encrypt_ctx context;
+        //                aes_encrypt_key256([derivedKey subdataWithRange:NSMakeRange(32, 32)].bytes, &context);
+        //
+        //                AES_RETURN aesStatus = aes_ctr_decrypt([mnemonicCiphertext bytes],
+        //                                                       [mnemonicData mutableBytes],
+        //                                                       (int)mnemonicData.length,
+        //                                                       counter,
+        //                                                       &aes_ctr_cbuf_inc,
+        //                                                       &context);
+        //
+        //                if (aesStatus != EXIT_SUCCESS) {
+        //                    sendError(kAccountErrorUnknownError, @"AES Error");
+        //                    return;
+        //                }
+        //
+        //                Account *mnemonicAccount = [Account accountWithMnemonicData:mnemonicData.data];
+        //                if (![mnemonicAccount.address isEqualToAddress:account.address]) {
+        //                    sendError(kAccountErrorMnemonicMismatch, @"Mnemonic Mismatch");
+        //                    return;
+        //                }
+        //
+        //                account = mnemonicAccount;
+        //            }
+        //        }
         
         dispatch_async(dispatch_get_main_queue(), ^() {
             // Cancelled after derfivation completed but before we responded (on the main thread)
@@ -541,13 +541,13 @@ static NSDateFormatter *TimeFormatter = nil;
     
     NSMutableDictionary *json = [NSMutableDictionary dictionary];
     
-//    [json setObject:[[self.address.checksumAddress substringFromIndex:2] lowercaseString] forKey:@"address"];
-     [json setObject:[self.BHAddress lowercaseString] forKey:@"address"];
+    //    [json setObject:[[self.address.checksumAddress substringFromIndex:2] lowercaseString] forKey:@"address"];
+    [json setObject:[self.BHAddress lowercaseString] forKey:@"address"];
     [json setObject:[uuid UUIDString] forKey:@"id"];
     [json setObject:@(3) forKey:@"version"];
     
-//    NSMutableDictionary *ethers = [NSMutableDictionary dictionary];
-//    [json setObject:ethers forKey:@"x-ethers"];
+    //    NSMutableDictionary *ethers = [NSMutableDictionary dictionary];
+    //    [json setObject:ethers forKey:@"x-ethers"];
     
     NSMutableDictionary *crypto = [NSMutableDictionary dictionary];
     [json setObject:crypto forKey:@"Crypto"];
@@ -569,14 +569,14 @@ static NSDateFormatter *TimeFormatter = nil;
     [crypto setObject:@"aes-128-ctr" forKey:@"cipher"];
     
     // Set ethers parameters
-//    NSDate *now = [NSDate date];
-//    NSString *gethFilename = [NSString stringWithFormat:@"UTC--%@T%@.0Z--%@",
-//                              [DateFormatter stringFromDate:now],
-//                              [TimeFormatter stringFromDate:now],
-//                              [self.BHAddress lowercaseString]];
-//    [ethers setObject:gethFilename forKey:@"gethFilename"];
-//    [ethers setObject:@"ethers/iOS" forKey:@"client"];
-//    [ethers setObject:@"0.1" forKey:@"version"];
+    //    NSDate *now = [NSDate date];
+    //    NSString *gethFilename = [NSString stringWithFormat:@"UTC--%@T%@.0Z--%@",
+    //                              [DateFormatter stringFromDate:now],
+    //                              [TimeFormatter stringFromDate:now],
+    //                              [self.BHAddress lowercaseString]];
+    //    [ethers setObject:gethFilename forKey:@"gethFilename"];
+    //    [ethers setObject:@"ethers/iOS" forKey:@"client"];
+    //    [ethers setObject:@"0.1" forKey:@"version"];
     
     __block char stop = 0;
     
@@ -621,40 +621,40 @@ static NSDateFormatter *TimeFormatter = nil;
         
         [crypto setObject:[[cipherText hexString] substringFromIndex:0] forKey:@"ciphertext"];
         
-//        if (_mnemonicData) {
-//            SecureData *mnemonicCounter = [SecureData secureDataWithLength:16];;
-//            {
-//                int failure = SecRandomCopyBytes(kSecRandomDefault, (int)mnemonicCounter.length, [mnemonicCounter mutableBytes]);
-//                if (failure) {
-//                    sendResult(nil);
-//                    return;
-//                }
-//            }
-//
-//            SecureData *mnemonicCiphertext = [SecureData secureDataWithLength:_mnemonicData.length];
-//
-//            // We are using a different key, so it is safe to use the same IV
-//            unsigned char counter[16];
-//            memcpy(counter, mnemonicCounter.bytes, MIN(mnemonicCounter.length, sizeof(counter)));
-//
-//            aes_encrypt_ctx context;
-//            aes_encrypt_key256([derivedKey subdataWithRange:NSMakeRange(32, 32)].bytes, &context);
-//
-//            AES_RETURN aesStatus = aes_ctr_encrypt([_mnemonicData bytes],
-//                                                   [mnemonicCiphertext mutableBytes],
-//                                                   (int)_mnemonicData.length,
-//                                                   counter,
-//                                                   &aes_ctr_cbuf_inc,
-//                                                   &context);
-//
-//            if (aesStatus != EXIT_SUCCESS) {
-//                sendResult(nil);
-//                return;
-//            }
-//
-//            [ethers setObject:[mnemonicCounter hexString]  forKey:@"mnemonicCounter"];
-//            [ethers setObject:[mnemonicCiphertext hexString] forKey:@"mnemonicCiphertext"];
-//        }
+        //        if (_mnemonicData) {
+        //            SecureData *mnemonicCounter = [SecureData secureDataWithLength:16];;
+        //            {
+        //                int failure = SecRandomCopyBytes(kSecRandomDefault, (int)mnemonicCounter.length, [mnemonicCounter mutableBytes]);
+        //                if (failure) {
+        //                    sendResult(nil);
+        //                    return;
+        //                }
+        //            }
+        //
+        //            SecureData *mnemonicCiphertext = [SecureData secureDataWithLength:_mnemonicData.length];
+        //
+        //            // We are using a different key, so it is safe to use the same IV
+        //            unsigned char counter[16];
+        //            memcpy(counter, mnemonicCounter.bytes, MIN(mnemonicCounter.length, sizeof(counter)));
+        //
+        //            aes_encrypt_ctx context;
+        //            aes_encrypt_key256([derivedKey subdataWithRange:NSMakeRange(32, 32)].bytes, &context);
+        //
+        //            AES_RETURN aesStatus = aes_ctr_encrypt([_mnemonicData bytes],
+        //                                                   [mnemonicCiphertext mutableBytes],
+        //                                                   (int)_mnemonicData.length,
+        //                                                   counter,
+        //                                                   &aes_ctr_cbuf_inc,
+        //                                                   &context);
+        //
+        //            if (aesStatus != EXIT_SUCCESS) {
+        //                sendResult(nil);
+        //                return;
+        //            }
+        //
+        //            [ethers setObject:[mnemonicCounter hexString]  forKey:@"mnemonicCounter"];
+        //            [ethers setObject:[mnemonicCiphertext hexString] forKey:@"mnemonicCiphertext"];
+        //        }
         
         
         // Compute the MAC
@@ -693,9 +693,9 @@ static NSDateFormatter *TimeFormatter = nil;
 
 - (SecureData *)signData:(NSData *)data {
     if (data.length == 32) {
-    SecureData *signatureData = [SecureData secureDataWithLength:64];;
-    uint8_t pby;
-    ecdsa_sign_digest(&secp256k1, [_privateKey bytes], data.bytes, signatureData.mutableBytes, &pby, NULL);
+        SecureData *signatureData = [SecureData secureDataWithLength:64];;
+        uint8_t pby;
+        ecdsa_sign_digest(&secp256k1, [_privateKey bytes], data.bytes, signatureData.mutableBytes, &pby, NULL);
         return signatureData;
     }
     return nil;

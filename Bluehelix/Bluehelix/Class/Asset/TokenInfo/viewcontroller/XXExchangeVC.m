@@ -60,8 +60,13 @@
     XXMsg *model = [[XXMsg alloc] initWithfrom:KUser.address to:@"cbtc" amount:amount denom:self.swapToken feeAmount:feeAmount feeGas:@"" feeDenom:kMainToken memo:@"" type:kMsgMappingSwap withdrawal_fee:@"" text:self.text];
     _msgRequest = [[XXMsgRequest alloc] init];
     MJWeakSelf
+    [MBProgressHUD showActivityMessageInView:@""];
     _msgRequest.msgSendSuccessBlock = ^{
+        [MBProgressHUD hideHUD];
         [weakSelf.navigationController popViewControllerAnimated:YES];
+    };
+    _msgRequest.msgSendFaildBlock = ^(NSString * _Nonnull msg) {
+        [MBProgressHUD hideHUD];
     };
     [_msgRequest sendMsg:model];
 }

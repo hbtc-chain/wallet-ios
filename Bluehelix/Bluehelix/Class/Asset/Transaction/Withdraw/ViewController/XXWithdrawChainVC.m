@@ -61,11 +61,16 @@
     NSDecimalNumber *feeAmountDecimal = [NSDecimalNumber decimalNumberWithString:self.chainView.feeView.textField.text];
     NSString *feeAmount = [[feeAmountDecimal decimalNumberByMultiplyingBy:kPrecisionDecimalPower(mainToken.decimals)] stringValue];
     
+    [MBProgressHUD showActivityMessageInView:@""];
     XXMsg *model = [[XXMsg alloc] initWithfrom:KUser.address to:KUser.address amount:@"" denom:self.tokenModel.symbol feeAmount:feeAmount feeGas:@"" feeDenom:kMainToken memo:@"" type:kMsgKeyGen withdrawal_fee:@"" text:text];
     _keyGenRequest = [[XXMsgRequest alloc] init];
     MJWeakSelf
     _keyGenRequest.msgSendSuccessBlock = ^{
+        [MBProgressHUD hideHUD];
         [weakSelf.navigationController popViewControllerAnimated:YES];
+    };
+    _keyGenRequest.msgSendFaildBlock = ^(NSString * _Nonnull msg) {
+        [MBProgressHUD hideHUD];
     };
     [_keyGenRequest sendMsg:model];
 }

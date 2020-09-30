@@ -36,7 +36,6 @@
     KUser.shouldVerify = YES;
     [self AFNReachability];
     [[XXSqliteManager sharedSqlite] requestTokens];
-//    [[RatesManager shareRatesManager] loadDataOfRates];
     if (!KUser.isSettedNightType) {
         KUser.isNightType = KSystem.isDarkStyle;
     }

@@ -36,7 +36,6 @@
 #import "XXDecimalNumberHelper.h"
 #import "XXAccountModel.h"
 #import "RatesManager.h"
-#import "XXAssetManager.h"
 #import "Singleton.h"
 #import "XXTradeData.h" // 交易数据
 #import "XXMarketData.h" // 市场数据
@@ -97,6 +96,7 @@ typedef NS_ENUM(NSUInteger, NetworkMethod) {
 
 //wallet
 #define kNotificationNetCome @"NotificationNetCome"
+#define kNotificationAssetRefresh @"AssetRefresh"
 #define kApp_Name [[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleDisplayName"]
 
 #define kBtnBorderRadius 6

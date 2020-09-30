@@ -14,7 +14,7 @@
 #import "XXHadDelegateModel.h"
 #import "XXMsg.h"
 #import "XXMsgRequest.h"
-#import "XXAssetManager.h"
+#import "XXAssetSingleManager.h"
 
 @interface XXDelegateTransferViewController ()
 /**委托view*/
@@ -23,8 +23,6 @@
 @property (nonatomic, strong) XXButton *transferButton;
 /**资产数据*/
 @property (nonatomic, strong) XXAssetModel *assetModel;
-/**资产请求*/
-@property (nonatomic, strong) XXAssetManager *assetManager;
 
 @property (strong, nonatomic) NSString *text;
 /**资产模型*/
@@ -42,6 +40,7 @@
     [super viewDidLoad];
     [self createUI];
     [self loadDefaultData];
+    [self refreshDelegateAmount];
 }
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
@@ -51,7 +50,6 @@
     switch (self.delegateNodeType) {
         case 0:
             self.titleLabel.text =  LocalizedString(@"Delegate");
-            [self.assetManager requestAsset];
             break;
         case 1:
             self.titleLabel.text =  LocalizedString(@"TransferDelegate");
@@ -64,14 +62,16 @@
     }
     [self.view addSubview:self.delegateTransferView];
     [self.view addSubview:self.transferButton];
-    
+    self.delegateTransferView.feeView.textField.text = kMinFee;
+    self.delegateTransferView.speedView.slider.maximumValue = [kSliderMaxFee floatValue];
+    self.delegateTransferView.speedView.slider.minimumValue = [kSliderMinFee floatValue];
+    self.delegateTransferView.speedView.slider.value = [kMinFee doubleValue];
 }
 - (void)loadDefaultData{
         
     switch (self.delegateNodeType) {
         case 0:
             self.delegateTransferView.addressView.textField.text = [NSString addressReplace:KString(_validatorModel.operator_address)];
-            [self.assetManager requestAsset];
             break;
         case 1:
             
@@ -83,15 +83,7 @@
             break;
     }
 }
-#pragma mark load data
-- (void)configAsset {
-    @weakify(self)
-    
-    self.assetManager.assetChangeBlock = ^{
-        @strongify(self)
-        [self refreshDelegateAmount];
-    };
-}
+
 - (void)requestHadDelegatesList {
     MJWeakSelf
     NSString *path = [NSString stringWithFormat:@"/api/v1/cus/%@/delegations",KUser.address];
@@ -108,12 +100,14 @@
 #pragma mark privity
 - (void)transferVerify {
     if (self.delegateTransferView.addressView.textField.text.length && self.delegateTransferView.amountView.textField.text.length && self.delegateTransferView.feeView.textField.text.length) {
+        NSDecimalNumber *amountDecimal = [NSDecimalNumber decimalNumberWithString:self.tokenModel.amount];
+        NSDecimalNumber *feeAmountDecimal = [NSDecimalNumber decimalNumberWithString:self.delegateTransferView.feeView.textField.text];
+        NSString *availableAmount = [[amountDecimal decimalNumberBySubtracting:feeAmountDecimal] stringValue];
         
-        NSDecimalNumber *feeAndQuantyDecimal =  [[NSDecimalNumber decimalNumberWithString:self.delegateTransferView.amountView.textField.text]decimalNumberByAdding:[NSDecimalNumber decimalNumberWithString:self.delegateTransferView.feeView.textField.text]];
         switch (self.delegateNodeType) {
             case XXDelegateNodeTypeAdd:
-                if (feeAndQuantyDecimal.doubleValue > self.tokenModel.amount.doubleValue) {
-                    Alert *alert = [[Alert alloc] initWithTitle:LocalizedString(@"FeeNotEnough") duration:kAlertDuration completion:^{
+                if (self.delegateTransferView.amountView.textField.text.doubleValue > availableAmount.doubleValue) {
+                    Alert *alert = [[Alert alloc] initWithTitle:LocalizedString(@"DelegateError") duration:kAlertDuration completion:^{
                     }];
                     [alert showAlert];
                     return;
@@ -123,7 +117,13 @@
                  
                 break;
             case XXDelegateNodeTypeRelieve:
-                if (feeAndQuantyDecimal.doubleValue > self.hadDelegateModel.bonded.doubleValue) {
+                if (self.delegateTransferView.amountView.textField.text.doubleValue > self.hadDelegateModel.bonded.doubleValue) {
+                    Alert *alert = [[Alert alloc] initWithTitle:LocalizedString(@"RelieveDelegateError") duration:kAlertDuration completion:^{
+                    }];
+                    [alert showAlert];
+                    return;
+                }
+                if (self.delegateTransferView.feeView.textField.text.doubleValue > amountDecimal.doubleValue) {
                     Alert *alert = [[Alert alloc] initWithTitle:LocalizedString(@"FeeNotEnough") duration:kAlertDuration completion:^{
                     }];
                     [alert showAlert];
@@ -166,11 +166,9 @@
     XXTokenModel *tokenModel = [[XXSqliteManager sharedSqlite] tokenBySymbol:kMainToken];
     NSDecimalNumber *amountDecimal = [NSDecimalNumber decimalNumberWithString:self.delegateTransferView.amountView.textField.text];
     NSDecimalNumber *feeAmountDecimal = [NSDecimalNumber decimalNumberWithString:self.delegateTransferView.feeView.textField.text];
-//    NSDecimalNumber *gasPriceDecimal = [NSDecimalNumber decimalNumberWithString:[NSString stringWithFormat:@"%f",self.delegateTransferView.speedView.slider.value]];
     NSString *toAddress = KString(self.validatorModel.operator_address);
     NSString *amount = [[amountDecimal decimalNumberByMultiplyingBy:kPrecisionDecimalPower(tokenModel.decimals)] stringValue];
     NSString *feeAmount = [[feeAmountDecimal decimalNumberByMultiplyingBy:kPrecisionDecimalPower(tokenModel.decimals)] stringValue];
-//    NSString *gas = [[[feeAmountDecimal decimalNumberByDividingBy:gasPriceDecimal] decimalNumberByDividingBy:kPrecisionDecimal_U] stringValue];
     
     [MBProgressHUD showActivityMessageInView:@""];
     XXMsg *model = [[XXMsg alloc] initWithfrom:KUser.address to:toAddress amount:amount denom:tokenModel.symbol feeAmount:feeAmount feeGas:@"" feeDenom:tokenModel.symbol memo:@"" type:kMsgDelegate withdrawal_fee:@"" text:self.text];
@@ -181,7 +179,7 @@
         [weakSelf.navigationController popViewControllerAnimated:YES];
         [MBProgressHUD hideHUD];
     };
-    _msgRequest.msgSendFaildBlock = ^{
+    _msgRequest.msgSendFaildBlock = ^(NSString * _Nonnull msg) {
         [MBProgressHUD hideHUD];
     };
 }
@@ -190,11 +188,9 @@
     XXTokenModel *tokenModel = [[XXSqliteManager sharedSqlite] tokenBySymbol:kMainToken];
     NSDecimalNumber *amountDecimal = [NSDecimalNumber decimalNumberWithString:self.delegateTransferView.amountView.textField.text];
     NSDecimalNumber *feeAmountDecimal = [NSDecimalNumber decimalNumberWithString:self.delegateTransferView.feeView.textField.text];
-//    NSDecimalNumber *gasPriceDecimal = [NSDecimalNumber decimalNumberWithString:[NSString stringWithFormat:@"%f",self.delegateTransferView.speedView.slider.value]];
     NSString *toAddress = self.validatorModel.operator_address;
     NSString *amount = [[amountDecimal decimalNumberByMultiplyingBy:kPrecisionDecimalPower(tokenModel.decimals)] stringValue];
     NSString *feeAmount = [[feeAmountDecimal decimalNumberByMultiplyingBy:kPrecisionDecimalPower(tokenModel.decimals)] stringValue];
-//    NSString *gas = [[[feeAmountDecimal decimalNumberByDividingBy:gasPriceDecimal] decimalNumberByDividingBy:kPrecisionDecimal_U] stringValue];
 
     [MBProgressHUD showActivityMessageInView:@""];
     XXMsg *model = [[XXMsg alloc] initWithfrom:KUser.address to:toAddress amount:amount denom:tokenModel.symbol feeAmount:feeAmount feeGas:@"" feeDenom:tokenModel.symbol memo:@"" type:kMsgUndelegate withdrawal_fee:@"" text:self.text];
@@ -205,7 +201,7 @@
         [MBProgressHUD hideHUD];
         [weakSelf.navigationController popViewControllerAnimated:YES];
     };
-    _msgRequest.msgSendFaildBlock = ^{
+    _msgRequest.msgSendFaildBlock = ^(NSString * _Nonnull msg) {
         [MBProgressHUD hideHUD];
     };
 }
@@ -213,7 +209,7 @@
 
 #pragma mark 刷新资产
 - (void)refreshDelegateAmount{
-    self.assetModel = [self.assetManager assetModel];
+    self.assetModel = [XXAssetSingleManager sharedManager].assetModel;
     for (XXTokenModel *tokenModel in self.assetModel.assets) {
         if ([[tokenModel.symbol uppercaseString] isEqualToString:[kMainToken uppercaseString]]) {
             self.tokenModel = tokenModel;
@@ -275,17 +271,5 @@
         _assetModel = [[XXAssetModel alloc]init];
     }
     return _assetModel;
-}
-
-- (XXAssetManager *)assetManager {
-    if (!_assetManager) {
-        @weakify(self)
-        _assetManager = [[XXAssetManager alloc] init];
-        _assetManager.assetChangeBlock = ^{
-            @strongify(self)
-            [self refreshDelegateAmount];
-        };
-    }
-    return _assetManager;
 }
 @end

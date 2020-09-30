@@ -22,6 +22,7 @@
 #import "XXFailureView.h"
 #import "SecurityHelper.h"
 #import "XXVersionManager.h"
+#import "XXAssetSingleManager.h"
 
 @interface XXChainAssertVC ()<UITableViewDataSource, UITableViewDelegate>
 
@@ -30,9 +31,7 @@
 @property (nonatomic, strong) XXAssetModel *assetModel; //资产数据
 @property (nonatomic, strong) NSArray *tokenList; //资产币列表
 @property (nonatomic, strong) NSMutableArray *chainArray; //展示的链
-@property (nonatomic, strong) XXAssetManager *assetManager;
 @property (nonatomic, strong) XXEmptyView *emptyView;
-@property (nonatomic, strong) NSTimer *timer; //定时刷新交易记录
 @property (nonatomic, strong) XXFailureView *failureView; //无网络
 @end
 
@@ -43,6 +42,12 @@
     // Do any additional setup after loading the view.
     [self setupUI];
     [XXVersionManager checkVersion];
+    self.assetModel = [XXAssetSingleManager sharedManager].assetModel;
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(refreshAsset) name:kNotificationAssetRefresh object:nil];
+//    MJWeakSelf
+//    [XXAssetSingleManager sharedManager].assetChangeBlock = ^{
+//        [weakSelf refreshAsset];
+//    };
 }
 
 - (void)viewWillDisappear:(BOOL)animated {
@@ -53,20 +58,6 @@
 - (void)viewDidAppear:(BOOL)animated {
     [super viewDidAppear:animated];
     [KSystem statusBarSetUpWhiteColor];
-    self.timer = [NSTimer scheduledTimerWithTimeInterval:5 target:self selector:@selector(timerAction) userInfo:nil repeats:YES];
-    [self.timer fire];
-}
-
-- (void)viewDidDisappear:(BOOL)animated {
-    [super viewDidDisappear:animated];
-    if (_timer) {
-        [_timer invalidate];
-        _timer = nil;
-    }
-}
-
-- (void)timerAction {
-    [self.assetManager requestAsset];
 }
 
 - (void)setupUI {
@@ -154,7 +145,7 @@
 /// 刷新资产
 - (void)refreshAsset {
     [self.tableView.mj_header endRefreshing];
-    self.assetModel = self.assetManager.assetModel;
+    self.assetModel = [XXAssetSingleManager sharedManager].assetModel;
     [self reloadData];
     [self.headerView configData:self.assetModel];
 }
@@ -172,7 +163,7 @@
             _tableView.contentInsetAdjustmentBehavior = UIScrollViewContentInsetAdjustmentNever;
         }
         _tableView.mj_header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
-            [weakSelf.assetManager  requestAsset];
+            [weakSelf refreshAsset];
         }];
     }
     return _tableView;
@@ -192,7 +183,7 @@
 
 - (NSMutableArray *)chainArray {
     if (!_chainArray) {
-        _chainArray = [[NSMutableArray alloc] initWithObjects:@"btc",@"hbc",@"trx",@"eth", nil];
+        _chainArray = [[NSMutableArray alloc] initWithObjects:@"hbc",@"btc",@"eth",@"trx", nil];
     }
     return _chainArray;
 }
@@ -209,21 +200,10 @@
         _failureView = [[XXFailureView alloc] initWithFrame:CGRectMake(0, 0, kScreen_Width, K375(300))];
         MJWeakSelf
         _failureView.reloadBlock = ^{
-            [weakSelf.assetManager requestAsset];
-        };
-    }
-    return _failureView;
-}
-
-- (XXAssetManager *)assetManager {
-    if (!_assetManager) {
-        MJWeakSelf
-        _assetManager = [[XXAssetManager alloc] init];
-        _assetManager.assetChangeBlock = ^{
             [weakSelf refreshAsset];
         };
     }
-    return _assetManager;
+    return _failureView;
 }
 
 @end

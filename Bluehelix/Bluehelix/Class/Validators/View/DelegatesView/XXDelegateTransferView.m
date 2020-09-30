@@ -32,7 +32,7 @@
 
 #pragma mark - 1. 初始化UI
 - (void)setupUI {
-    self.contentSize = CGSizeMake(0, 500);
+    self.contentSize = CGSizeMake(0, 700);
     // 提币主视图
     [self addSubview:self.mainView];
     /**提示文案*/
@@ -50,7 +50,7 @@
     [self.mainView addSubview:self.feeView];
 
     /** 加速视图 */
-//    [self.mainView addSubview:self.speedView];
+    [self.mainView addSubview:self.speedView];
 
     /** 提示语视图 */
     [self.mainView addSubview:self.tipView];
@@ -97,12 +97,15 @@
     self.feeView.textField.text = kMinFee;
 }
 - (void)reloadTransferData{
+    NSDecimalNumber *amountDecimal = [NSDecimalNumber decimalNumberWithString:self.tokenModel.amount];
+    NSDecimalNumber *feeAmountDecimal = [NSDecimalNumber decimalNumberWithString:self.feeView.textField.text];
+    NSString *availableAmount = [[amountDecimal decimalNumberBySubtracting:feeAmountDecimal] stringValue];
     switch (self.delegateNodeType) {
         case XXDelegateNodeTypeAdd:
-            self.amountView.textField.text = [NSString stringWithFormat:@"%@",KString(self.tokenModel.amount)];
+            self.amountView.textField.text = availableAmount;
             break;
         case XXDelegateNodeTypeTransfer:
-            self.amountView.textField.text = [NSString stringWithFormat:@"%@",KString(self.tokenModel.amount)];
+            self.amountView.textField.text = availableAmount;
             break;
         case XXDelegateNodeTypeRelieve:
             self.amountView.textField.text = [NSString stringWithFormat:@"%@",KString(self.hadDelegateModel.bonded)];
@@ -138,6 +141,11 @@
     }
 
 }
+
+-(void)sliderValueChanged:(UISlider *)slider {
+    self.feeView.textField.text = [NSString stringWithFormat:@"%.3f",slider.value];
+}
+
 #pragma mark lazy load
 /** 地址视图 */
 - (UIView *)mainView {
@@ -204,7 +212,7 @@
     if (_speedView == nil) {
         _speedView = [[XXWithdrawSpeedView alloc] initWithFrame:CGRectMake(0, CGRectGetMaxY(self.feeView.frame), kScreen_Width, 72)];
         _speedView.nameLabel.text = LocalizedString(@"TransferSpeed");
-//        [_speedView.slider addTarget:self action:@selector(sliderValueChanged:) forControlEvents:UIControlEventValueChanged];
+        [_speedView.slider addTarget:self action:@selector(sliderValueChanged:) forControlEvents:UIControlEventValueChanged];
     }
     return _speedView;
 }
