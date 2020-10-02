@@ -44,10 +44,6 @@
     [XXVersionManager checkVersion];
     self.assetModel = [XXAssetSingleManager sharedManager].assetModel;
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(refreshAsset) name:kNotificationAssetRefresh object:nil];
-//    MJWeakSelf
-//    [XXAssetSingleManager sharedManager].assetChangeBlock = ^{
-//        [weakSelf refreshAsset];
-//    };
 }
 
 - (void)viewWillDisappear:(BOOL)animated {

@@ -18,11 +18,13 @@
 #import "XXFailureView.h"
 #import "XXChainHeaderView.h"
 #import "XXAssetSingleManager.h"
+#import "XXMainChainHeaderView.h"
 
 @interface XXChainDetailVC ()<UITableViewDataSource, UITableViewDelegate>
 
 @property (nonatomic, strong) UITableView *tableView;
 @property (nonatomic, strong) XXChainHeaderView *headerView;
+@property (nonatomic, strong) XXMainChainHeaderView *mainHeaderView;
 @property (nonatomic, strong) XXAssetModel *assetModel; //资产数据
 @property (nonatomic, strong) NSArray *tokenList; //资产币列表
 @property (nonatomic, strong) NSMutableArray *showArray; //展示的币
@@ -44,7 +46,11 @@
     self.titleLabel.text = [self.chainName uppercaseString];
     [self.view addSubview:self.tableView];
     self.tableView.separatorColor = KLine_Color;
-    self.tableView.tableHeaderView = self.headerView;
+    if ([self.chainName isEqualToString:kMainToken]) {
+        self.tableView.tableHeaderView = self.mainHeaderView;
+    } else {
+        self.tableView.tableHeaderView = self.headerView;
+    }
 }
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
@@ -118,7 +124,9 @@
             [self.showArray addObject:sModel];
         }
     }
-    self.headerView.chain = self.chainName;
+    if (![self.chainName isEqualToString:kMainToken]) {
+        self.headerView.chain = self.chainName;
+    }
     [self.tableView reloadData];
 }
 
@@ -150,14 +158,17 @@
 
 - (XXChainHeaderView *)headerView {
     if (!_headerView) {
-        if ([self.chainName isEqualToString:kMainToken]) {
-            _headerView = [[XXChainHeaderView alloc] initWithFrame:CGRectMake(0, 0, kScreen_Width, K375(88))];
-        } else {
-            _headerView = [[XXChainHeaderView alloc] initWithFrame:CGRectMake(0, 0, kScreen_Width, 144)];
-        }
+        _headerView = [[XXChainHeaderView alloc] initWithFrame:CGRectMake(0, 0, kScreen_Width, 190)];
         _headerView.chain = self.chainName;
     }
     return _headerView;
+}
+
+- (XXMainChainHeaderView *)mainHeaderView {
+    if (!_mainHeaderView) {
+        _mainHeaderView = [[XXMainChainHeaderView alloc] initWithFrame:CGRectMake(0, 0, kScreen_Width, 110)];
+    }
+    return _mainHeaderView;
 }
 
 - (NSMutableArray *)showArray {

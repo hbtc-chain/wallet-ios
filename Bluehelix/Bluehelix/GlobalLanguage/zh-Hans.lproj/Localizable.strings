@@ -513,3 +513,4 @@
 "DelegateError" = "委托数量不能大于可用数量";
 "ChainTitle" = "HBTC Chain地址";
 "WithdrawChainTitle" = "跨链充值地址";
+"ClickWithdrawChainAddress" = "点击生成跨链地址";

@@ -327,7 +327,6 @@
 		EAAA897125207FFA00A4AB5B /* Bugly.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EAAA897025207FFA00A4AB5B /* Bugly.framework */; };
 		EAAA89742520B7A200A4AB5B /* XXTransferMemoView.m in Sources */ = {isa = PBXBuildFile; fileRef = EAAA89732520B7A200A4AB5B /* XXTransferMemoView.m */; };
 		EAAA89772521CD0A00A4AB5B /* XXAssetSingleManager.m in Sources */ = {isa = PBXBuildFile; fileRef = EAAA89762521CD0A00A4AB5B /* XXAssetSingleManager.m */; };
-		EAAA8979252447D300A4AB5B /* service.html in Resources */ = {isa = PBXBuildFile; fileRef = EAAA8978252447D300A4AB5B /* service.html */; };
 		EAB356302438369200D750D6 /* FMDatabaseQueue.m in Sources */ = {isa = PBXBuildFile; fileRef = EAB356262438369200D750D6 /* FMDatabaseQueue.m */; };
 		EAB356312438369200D750D6 /* FMDatabaseAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = EAB356292438369200D750D6 /* FMDatabaseAdditions.m */; };
 		EAB356322438369200D750D6 /* FMDatabase.m in Sources */ = {isa = PBXBuildFile; fileRef = EAB3562A2438369200D750D6 /* FMDatabase.m */; };
@@ -336,6 +335,8 @@
 		EAB3566A243E402100D750D6 /* JSONKit.m in Sources */ = {isa = PBXBuildFile; fileRef = EAB35668243E402100D750D6 /* JSONKit.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		EAB8DF27245979A0004B3445 /* NotoSansSC-Medium.otf in Resources */ = {isa = PBXBuildFile; fileRef = EAB8DF25245979A0004B3445 /* NotoSansSC-Medium.otf */; };
 		EAB8DF28245979A0004B3445 /* NotoSansSC-Regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = EAB8DF26245979A0004B3445 /* NotoSansSC-Regular.otf */; };
+		EAB9A3C72527309600607E11 /* service.html in Resources */ = {isa = PBXBuildFile; fileRef = EAB9A3C62527309600607E11 /* service.html */; };
+		EAB9A3CA252743D200607E11 /* XXMainChainHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = EAB9A3C9252743D200607E11 /* XXMainChainHeaderView.m */; };
 		EABBC08924232DCD00B7E412 /* NSString+Base64.m in Sources */ = {isa = PBXBuildFile; fileRef = EABBC08124232DCD00B7E412 /* NSString+Base64.m */; };
 		EABBC08A24232DCD00B7E412 /* AESCrypt.m in Sources */ = {isa = PBXBuildFile; fileRef = EABBC08224232DCD00B7E412 /* AESCrypt.m */; };
 		EABBC08B24232DCD00B7E412 /* NSData+CommonCrypto.m in Sources */ = {isa = PBXBuildFile; fileRef = EABBC08724232DCD00B7E412 /* NSData+CommonCrypto.m */; };
@@ -1118,7 +1119,6 @@
 		EAAA89732520B7A200A4AB5B /* XXTransferMemoView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XXTransferMemoView.m; sourceTree = "<group>"; };
 		EAAA89752521CD0A00A4AB5B /* XXAssetSingleManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = XXAssetSingleManager.h; sourceTree = "<group>"; };
 		EAAA89762521CD0A00A4AB5B /* XXAssetSingleManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = XXAssetSingleManager.m; sourceTree = "<group>"; };
-		EAAA8978252447D300A4AB5B /* service.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; name = service.html; path = ../../../../Desktop/service.html; sourceTree = "<group>"; };
 		EAB356252438369200D750D6 /* FMDatabase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FMDatabase.h; sourceTree = "<group>"; };
 		EAB356262438369200D750D6 /* FMDatabaseQueue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FMDatabaseQueue.m; sourceTree = "<group>"; };
 		EAB356272438369200D750D6 /* FMResultSet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FMResultSet.h; sourceTree = "<group>"; };
@@ -1134,6 +1134,9 @@
 		EAB35669243E402100D750D6 /* JSONKit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JSONKit.h; sourceTree = "<group>"; };
 		EAB8DF25245979A0004B3445 /* NotoSansSC-Medium.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "NotoSansSC-Medium.otf"; sourceTree = "<group>"; };
 		EAB8DF26245979A0004B3445 /* NotoSansSC-Regular.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "NotoSansSC-Regular.otf"; sourceTree = "<group>"; };
+		EAB9A3C62527309600607E11 /* service.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = service.html; sourceTree = "<group>"; };
+		EAB9A3C8252743D200607E11 /* XXMainChainHeaderView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = XXMainChainHeaderView.h; sourceTree = "<group>"; };
+		EAB9A3C9252743D200607E11 /* XXMainChainHeaderView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = XXMainChainHeaderView.m; sourceTree = "<group>"; };
 		EABBC08124232DCD00B7E412 /* NSString+Base64.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+Base64.m"; sourceTree = "<group>"; };
 		EABBC08224232DCD00B7E412 /* AESCrypt.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AESCrypt.m; sourceTree = "<group>"; };
 		EABBC08324232DCD00B7E412 /* NSData+Base64.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSData+Base64.h"; sourceTree = "<group>"; };
@@ -2623,10 +2626,10 @@
 		EA8F8C83240FA9F200D26E10 /* AppResource */ = {
 			isa = PBXGroup;
 			children = (
+				EAB9A3C62527309600607E11 /* service.html */,
 				EA3E594B24446A310080B98F /* Font */,
 				EA8F8C84240FA9F200D26E10 /* XXFontHeader.h */,
 				EA8F8C85240FA9F200D26E10 /* XXColorHeader.h */,
-				EAAA8978252447D300A4AB5B /* service.html */,
 				EA8F8C86240FA9F200D26E10 /* Icon.xcassets */,
 				EA8F8C87240FA9F200D26E10 /* Info.plist */,
 			);
@@ -3181,6 +3184,8 @@
 				EABD717E2449F651008AA188 /* XXSymbolDetailHeaderView.m */,
 				EA8994D12501455E007B4A19 /* XXChainHeaderView.h */,
 				EA8994D22501455E007B4A19 /* XXChainHeaderView.m */,
+				EAB9A3C8252743D200607E11 /* XXMainChainHeaderView.h */,
+				EAB9A3C9252743D200607E11 /* XXMainChainHeaderView.m */,
 				EA71E14D25024A3600B52558 /* XXExchangeView.h */,
 				EA71E14E25024A3600B52558 /* XXExchangeView.m */,
 				EA71E1502502534500B52558 /* XXExchangeBtn.h */,
@@ -3603,7 +3608,7 @@
 				EA9D743E24F91DD100B53997 /* MJRefresh.bundle in Resources */,
 				EA9D743A24F91DD100B53997 /* LICENSE in Resources */,
 				EAE4047E211C1DB300FFD028 /* Localizable.strings in Resources */,
-				EAAA8979252447D300A4AB5B /* service.html in Resources */,
+				EAB9A3C72527309600607E11 /* service.html in Resources */,
 				EABD1B8B241BB25900B1A03A /* secp256k1.table in Resources */,
 				EAE4047F211C1DB300FFD028 /* InfoPlist.strings in Resources */,
 				EAB8DF28245979A0004B3445 /* NotoSansSC-Regular.otf in Resources */,
@@ -3858,6 +3863,7 @@
 				7AC4D85F234C808F00F5E5F8 /* XXImageView.m in Sources */,
 				7AC4D7C6234C808F00F5E5F8 /* XXLabel.m in Sources */,
 				F30EAF6220D26536005ADD5C /* NSDate+Common.m in Sources */,
+				EAB9A3CA252743D200607E11 /* XXMainChainHeaderView.m in Sources */,
 				EA3E591B24441D160080B98F /* XXAssetSearchHeaderView.m in Sources */,
 				EA45BB2024DE76BF00132984 /* XXCoinInfoView.m in Sources */,
 				EA45BBB724DFD7B400132984 /* XXUserSocket.m in Sources */,
