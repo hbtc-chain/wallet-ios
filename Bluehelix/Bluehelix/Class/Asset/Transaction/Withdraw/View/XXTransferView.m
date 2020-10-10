@@ -29,7 +29,7 @@
     /** 地址  */
     [self.mainView addSubview:self.addressView];
     
-    [self.mainView addSubview:self.memoView];
+//    [self.mainView addSubview:self.memoView];
     
     /** 提币数量 */
     [self.mainView addSubview:self.amountView];
@@ -88,7 +88,7 @@
 /** 转账数量 */
 - (XXTransferAmountView *)amountView {
     if (_amountView == nil) {
-        _amountView = [[XXTransferAmountView alloc] initWithFrame:CGRectMake(0, CGRectGetMaxY(self.memoView.frame) + 15, kScreen_Width, 88)];
+        _amountView = [[XXTransferAmountView alloc] initWithFrame:CGRectMake(0, CGRectGetMaxY(self.addressView.frame) + 15, kScreen_Width, 88)];
         _amountView.userInteractionEnabled = YES;
         _amountView.nameLabel.text = LocalizedString(@"TransferAmount");
         _amountView.textField.placeholder = LocalizedString(@"PleaseEnterTransferAmount");

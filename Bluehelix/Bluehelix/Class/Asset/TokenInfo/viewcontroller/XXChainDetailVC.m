@@ -124,6 +124,13 @@
             [self.showArray addObject:sModel];
         }
     }
+    for (XXTokenModel *assetsToken in self.assetModel.assets) {
+        for (XXTokenModel *token in self.showArray) {
+            if ([assetsToken.symbol isEqualToString:token.symbol]) {
+                token.amount = kAmountTrim(assetsToken.amount);
+            }
+        }
+    }
     if (![self.chainName isEqualToString:kMainToken]) {
         self.headerView.chain = self.chainName;
     }
