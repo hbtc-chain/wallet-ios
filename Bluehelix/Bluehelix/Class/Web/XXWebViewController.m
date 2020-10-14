@@ -45,6 +45,18 @@
     [self loadRequest];
 }
 
+- (void)viewWillDisappear:(BOOL)animated {
+    [super viewWillDisappear:animated];
+    if (self.dismissBlock) {
+        self.dismissBlock();
+    }
+}
+
+- (void)viewDidAppear:(BOOL)animated {
+    [super viewDidAppear:animated];
+    [KSystem statusBarSetUpDarkColor];
+}
+
 #pragma mark - 1. 初始化页面
 - (void)setupUI {
     self.navView.backgroundColor = [UIColor whiteColor];
@@ -106,12 +118,18 @@
     _signRequest = [[XXMsgRequest alloc] init];
     MJWeakSelf
     _signRequest.msgSendSuccessBlock = ^{
-        NSDictionary *callBackDic = @{@"code":@200,@"msg":@"OK",@"data":@""};
-        weakSelf.responseCallback([callBackDic mj_JSONString]);
+        if (weakSelf.responseCallback) {
+            NSDictionary *callBackDic = @{@"code":@200,@"msg":@"OK",@"data":@""};
+            weakSelf.responseCallback([callBackDic mj_JSONString]);
+            weakSelf.responseCallback = nil;
+        }
     };
     _signRequest.msgSendFaildBlock = ^(NSString * _Nonnull msg) {
-        NSDictionary *callBackDic = @{@"code":@0,@"msg":msg,@"data":@""};
-        weakSelf.responseCallback([callBackDic mj_JSONString]);
+        if (weakSelf.responseCallback) {
+            NSDictionary *callBackDic = @{@"code":@0,@"msg":msg,@"data":@""};
+            weakSelf.responseCallback([callBackDic mj_JSONString]);
+            weakSelf.responseCallback = nil;
+        }
     };
     [_signRequest sendMsg:model];
 }
@@ -282,13 +300,6 @@
 //        [_webView removeObserver:self forKeyPath:@"title"];
     }
     [[NSNotificationCenter defaultCenter] removeObserver:self];
-}
-
-- (void)viewWillDisappear:(BOOL)animated {
-    [super viewWillDisappear:animated];
-    if (self.dismissBlock) {
-        self.dismissBlock();
-    }
 }
 
 //#pragma mark - || 懒加载

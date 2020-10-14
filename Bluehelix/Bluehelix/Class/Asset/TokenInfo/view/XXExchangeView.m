@@ -10,6 +10,7 @@
 #import "XXExchangeBtn.h"
 #import "XXChangeMapTokenView.h"
 #import <UIImageView+WebCache.h>
+#import "XXTokenModel.h"
 
 @interface XXExchangeView ()
 
@@ -18,6 +19,7 @@
 @property (nonatomic, strong) XXExchangeBtn * rightExchangeBtn;
 @property (nonatomic, strong) XXButton *switchBtn;
 @property (nonatomic, strong) UIView *amountView;
+@property (nonatomic, strong) UIView *lineView;
 @property (nonatomic, strong) XXLabel *rateNameLabel;
 @property (nonatomic, strong) XXButton *exchangeBtn;
 @property (nonatomic, strong) UIImageView *ratePointImageView;
@@ -45,6 +47,7 @@
     [self.backImageView addSubview:self.switchBtn];
     [self.backImageView addSubview:self.rightExchangeBtn];
     [self.backImageView addSubview:self.amountView];
+    [self.backImageView addSubview:self.lineView];
     [self.backImageView addSubview:self.rateNameLabel];
     [self.backImageView addSubview:self.rateDetailLabel];
     [self.backImageView addSubview:self.exchangeBtn];
@@ -54,8 +57,10 @@
 
 - (void)setMappingModel:(XXMappingModel *)mappingModel {
     _mappingModel = mappingModel;
-    [self.leftExchangeBtn.customImageView sd_setImageWithURL:[NSURL URLWithString:mappingModel.logo] placeholderImage:[UIImage imageNamed:@"placeholderToken"]];
-    [self.rightExchangeBtn.customImageView sd_setImageWithURL:[NSURL URLWithString:mappingModel.logo] placeholderImage:[UIImage imageNamed:@"placeholderToken"]];
+    XXTokenModel *leftToken = [[XXSqliteManager sharedSqlite] tokenBySymbol:mappingModel.target_symbol];
+    XXTokenModel *rightToken = [[XXSqliteManager sharedSqlite] tokenBySymbol:mappingModel.map_symbol];
+    [self.leftExchangeBtn.customImageView sd_setImageWithURL:[NSURL URLWithString:leftToken.logo] placeholderImage:[UIImage imageNamed:@"placeholderToken"]];
+    [self.rightExchangeBtn.customImageView sd_setImageWithURL:[NSURL URLWithString:rightToken.logo] placeholderImage:[UIImage imageNamed:@"placeholderToken"]];
     self.leftExchangeBtn.customLabel.text = [mappingModel.target_symbol uppercaseString];
     self.rightExchangeBtn.customLabel.text = [NSString stringWithFormat:@"%@",[mappingModel.map_symbol uppercaseString]];
         _rateDetailLabel.text = [NSString stringWithFormat:@"1 %@=1 %@",[mappingModel.target_symbol uppercaseString],[mappingModel.map_symbol uppercaseString]];    
@@ -92,7 +97,7 @@
 - (UIImageView *)backImageView {
     if (!_backImageView) {
         _backImageView = [[UIImageView alloc] initWithFrame:CGRectMake(K375(7), 5, kScreen_Width - K375(15), K375(304))];
-        _backImageView.image = [UIImage imageNamed:@"exchangeBack"];
+        _backImageView.image = [UIImage blackImageName:@"exchangeBack"];
         _backImageView.userInteractionEnabled = YES;
     }
     return _backImageView;
@@ -121,6 +126,7 @@
 - (XXExchangeBtn *)rightExchangeBtn {
     if (!_rightExchangeBtn) {
         _rightExchangeBtn = [[XXExchangeBtn alloc] initWithFrame:CGRectMake(CGRectGetMaxX(self.switchBtn.frame), K375(36), (self.backImageView.width - K375(88) - K375(30))/2, K375(24))];
+        _rightExchangeBtn.arrowImageView.hidden = YES;
     }
     return _rightExchangeBtn;
 }
@@ -158,6 +164,27 @@
 //    return _rightField;
 //}
 
+- (UIView *)lineView {
+    if (!_lineView) {
+        _lineView = [[UIView alloc] initWithFrame:CGRectMake(K375(8) + K375(15), K375(160), self.backImageView.width - K375(46), 1)];
+        CAShapeLayer *shapeLayer = [CAShapeLayer layer];
+        [shapeLayer setBounds:_lineView.bounds];
+        [shapeLayer setPosition:CGPointMake(CGRectGetWidth(_lineView.frame) / 2, CGRectGetHeight(_lineView.frame))];
+        [shapeLayer setFillColor:[UIColor clearColor].CGColor];
+        [shapeLayer setStrokeColor:[kGray300 CGColor]];
+        [shapeLayer setLineWidth:CGRectGetHeight(_lineView.frame)];
+        [shapeLayer setLineJoin:kCALineJoinRound];
+        [shapeLayer setLineDashPattern:[NSArray arrayWithObjects:[NSNumber numberWithInt:4], [NSNumber numberWithInt:2], nil]];
+        CGMutablePathRef path = CGPathCreateMutable();
+        CGPathMoveToPoint(path, NULL, 0, 0);
+        CGPathAddLineToPoint(path, NULL,CGRectGetWidth(_lineView.frame), 0);
+        [shapeLayer setPath:path];
+        CGPathRelease(path);
+        [_lineView.layer addSublayer:shapeLayer];
+    }
+    return _lineView;
+}
+
 - (XXLabel *)rateNameLabel {
     if (!_rateNameLabel) {
         _rateNameLabel = [XXLabel labelWithFrame:CGRectMake(K375(16) + K375(15), K375(186), 0, 20) font:kFont15 textColor:kGray700];
@@ -186,7 +213,7 @@
 - (XXButton *)exchangeBtn {
     if (!_exchangeBtn) {
         MJWeakSelf
-        _exchangeBtn = [XXButton buttonWithFrame:CGRectMake(K375(8) + K375(15), self.backImageView.height - K375(72), self.backImageView.width - K375(16) - K375(30), K375(48)) title:LocalizedString(@"Exchange") font:kFont17 titleColor:kWhiteColor block:^(UIButton *button) {
+        _exchangeBtn = [XXButton buttonWithFrame:CGRectMake(K375(8) + K375(15), self.backImageView.height - K375(72), self.backImageView.width - K375(16) - K375(30), K375(48)) title:LocalizedString(@"Exchange") font:kFont17 titleColor:[UIColor whiteColor] block:^(UIButton *button) {
             if (weakSelf.sureBlock) {
                 weakSelf.sureBlock();
             }

@@ -14,6 +14,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @property (nonatomic, strong) UIImageView *customImageView;
 @property (nonatomic, strong) UILabel *customLabel;
+@property (nonatomic, strong) UIImageView *arrowImageView;
 
 @end
 

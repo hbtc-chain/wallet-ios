@@ -7,6 +7,8 @@
 //
 
 #import "XXChainCell.h"
+#import "XXTokenModel.h"
+#import <UIImageView+WebCache.h>
 
 @interface XXChainCell ()
 
@@ -44,11 +46,8 @@
 }
 
 - (void)configData:(NSString *)symbol {
-    if ([@[@"eth",@"btc"] containsObject:symbol]) {
-        [self.iconView setImage:[UIImage imageNamed:symbol]];
-    } else {
-        [self.iconView setImage:[UIImage imageNamed:@"placeholderToken"]];
-    }
+    XXTokenModel *token = [[XXSqliteManager sharedSqlite] tokenBySymbol:symbol];
+    [self.iconView sd_setImageWithURL:[NSURL URLWithString:token.logo] placeholderImage:[UIImage imageNamed:@"placeholderToken"]];
     self.coinNameLabel.text = [symbol uppercaseString];
     self.priceLabel.text = [[RatesManager shareRatesManager] getPriceFromToken:symbol];
 }

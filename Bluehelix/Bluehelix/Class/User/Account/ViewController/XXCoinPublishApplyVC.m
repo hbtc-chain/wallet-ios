@@ -55,12 +55,7 @@
             [alert showAlert];
             return;
         }
-        if (self.coinPublishView.nameView.textField.text) {
-            Alert *alert = [[Alert alloc] initWithTitle:LocalizedString(@"CompleteInfomation") duration:kAlertDuration completion:^{
-            }];
-            [alert showAlert];
-            return;
-        }
+
         MJWeakSelf
         [XXPasswordView showWithSureBtnBlock:^(NSString * _Nonnull text) {
             weakSelf.text = text;

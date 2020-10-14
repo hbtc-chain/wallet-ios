@@ -90,7 +90,7 @@
     if (!_backView) {
         _backView = [[UIView alloc] initWithFrame:CGRectMake(16, 0, kScreen_Width - 32, self.height)];
         _backView.layer.cornerRadius = 10;
-        _backView.backgroundColor = [UIColor whiteColor];
+        _backView.backgroundColor = kWhite100;
         _backView.layer.shadowColor = [kShadowColor CGColor];
         _backView.layer.shadowOffset = CGSizeMake(0, 0);
         _backView.layer.shadowOpacity = 1.0;

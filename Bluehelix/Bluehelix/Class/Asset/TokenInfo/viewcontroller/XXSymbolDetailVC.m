@@ -215,13 +215,9 @@
     MJWeakSelf
     [XYHPickerView showPickerViewWithNamesArray:@[LocalizedString(@"Exchange"),LocalizedString(@"TradesTabbar")] selectIndex:100 Block:^(NSString *title, NSInteger index) {
         if (index == 0) {
-            if (!weakSelf.tokenModel.is_native) {
-                [weakSelf exchangeAction];
-            }
+            [weakSelf exchangeAction];
         } else if (index == 1) {
-            if (!weakSelf.tokenModel.is_native) {
-                [weakSelf tradeAction];
-            }
+            [weakSelf tradeAction];
         } else {}
     }];
 }
@@ -229,6 +225,7 @@
 // 兑换
 - (void)exchangeAction {
     XXExchangeVC *exchangeVC = [[XXExchangeVC alloc] init];
+    exchangeVC.swapToken = self.tokenModel.symbol;
     [self.navigationController pushViewController:exchangeVC animated:YES];
 }
 

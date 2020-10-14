@@ -198,7 +198,8 @@ typedef NS_ENUM(NSUInteger, NetworkMethod) {
 #define kBuglyID @"bb0f612e68"
 
 #define kDomain @""
-#define kServerUrl @"http://hbtc.yym.plus"
+//#define kServerUrl @"http://hbtc.yym.plus"
+#define kServerUrl @"http://explorer.hbtcchain.io"
 //#define kServerUrl @"https://explorer.hbtc.com"
 #define kMarketUrl @"https://app.hbtc.com/"
 #define kSocketQuoteUrl @"wss://ws.hbtc.com/ws/quote/v1"

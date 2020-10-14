@@ -1,0 +1,19 @@
+default_platform(:ios)
+scheme="Bluehelix" #工程名字
+path='Bluehelix/AppResource/Info.plist' #默认已经进入工程fastlane目录 否则无法启动fastlane
+
+
+lane :buildAutoIpa do
+  version = get_version_number(xcodeproj: ENV['XCODEPROJ_NAME'], target:scheme)
+  name = get_info_plist_value(path:path,key:"CFBundleDisplayName")
+  output_name = "HBTC Wallet_V#{version}.ipa"
+    build_ios_app(
+      scheme: scheme,
+      export_method: 'development',
+      output_directory: "./build",
+      output_name: output_name,
+      )
+end
+
+
+

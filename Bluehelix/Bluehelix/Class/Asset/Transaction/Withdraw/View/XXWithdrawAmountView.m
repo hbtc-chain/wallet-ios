@@ -25,9 +25,9 @@
         [self addSubview:self.banView];
         
         [self.banView addSubview:self.allButton];
-
+        
         [self.banView addSubview:self.textField];
-                        
+        
     }
     return self;
 }
@@ -41,11 +41,15 @@
 
 #pragma mark - 2. 全部按钮点击事件
 - (void)allButtonClick:(UIButton *)sender {
-    NSDecimalNumber *availableDecimal = [NSDecimalNumber decimalNumberWithString:self.currentlyAvailable];
-    NSDecimalNumber *withdrawFeeDecimal = [NSDecimalNumber decimalNumberWithString:self.tokenModel.withdrawal_fee];
-    NSDecimalNumber *resultDecimal = [availableDecimal decimalNumberBySubtracting:withdrawFeeDecimal];
-    if (resultDecimal.doubleValue > 0) {
-        self.textField.text = kAmountTrim(resultDecimal.stringValue);
+    if ([self.tokenModel.chain isEqualToString:self.tokenModel.symbol]) {
+        NSDecimalNumber *availableDecimal = [NSDecimalNumber decimalNumberWithString:self.currentlyAvailable];
+        NSDecimalNumber *withdrawFeeDecimal = [NSDecimalNumber decimalNumberWithString:self.tokenModel.withdrawal_fee];
+        NSDecimalNumber *resultDecimal = [availableDecimal decimalNumberBySubtracting:withdrawFeeDecimal];
+        if (resultDecimal.doubleValue > 0) {
+            self.textField.text = kAmountTrim(resultDecimal.stringValue);
+        } else {
+            self.textField.text = self.currentlyAvailable;
+        }
     } else {
         self.textField.text = self.currentlyAvailable;
     }

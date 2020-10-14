@@ -58,9 +58,16 @@
             }
             [self pushNameVC:account];
         } else {
-            Alert *alert = [[Alert alloc] initWithTitle:LocalizedString(@"KeystoreOutOfOrder") duration:kAlertDuration completion:^{
-            }];
-            [alert showAlert];
+            NSString *errorMsg = NSError.userInfo[@"reason"];
+            if (!IsEmpty(errorMsg)) {
+                Alert *alert = [[Alert alloc] initWithTitle:errorMsg duration:kAlertDuration completion:^{
+                }];
+                [alert showAlert];
+            } else {
+                Alert *alert = [[Alert alloc] initWithTitle:LocalizedString(@"KeystoreOutOfOrder") duration:kAlertDuration completion:^{
+                }];
+                [alert showAlert];
+            }
         }
     }];
 }

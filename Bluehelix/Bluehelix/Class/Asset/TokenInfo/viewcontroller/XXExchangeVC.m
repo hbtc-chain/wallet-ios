@@ -29,7 +29,6 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     self.titleLabel.text = LocalizedString(@"Exchange");
-    self.swapToken = @"btc";
     [self.view addSubview:self.backView];
     XXMappingModel *model = [[XXSqliteManager sharedSqlite] mappingModelBySymbol:self.swapToken];
     if (model) {

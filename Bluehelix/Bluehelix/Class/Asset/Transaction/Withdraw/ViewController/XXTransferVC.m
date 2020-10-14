@@ -182,8 +182,15 @@
             [alert showAlert];
             return;
         }
-        if (self.tokenModel.amount.doubleValue < self.withdrawView.chainFeeView.textField.text.doubleValue) {
+        XXTokenModel *chainFeeTokenModel = [[XXAssetSingleManager sharedManager] assetTokenBySymbol:self.withdrawFeeModel.symbol];
+        if (chainFeeTokenModel.amount.doubleValue < self.withdrawView.chainFeeView.textField.text.doubleValue) {
             Alert *alert = [[Alert alloc] initWithTitle:LocalizedString(@"ChainFeeNotEnough") duration:kAlertDuration completion:^{
+            }];
+            [alert showAlert];
+            return;
+        }
+        if (self.withdrawView.chainFeeView.textField.text.doubleValue < self.tokenModel.withdrawal_fee.doubleValue) {
+            Alert *alert = [[Alert alloc] initWithTitle:[NSString stringWithFormat:@"%@%@%@",LocalizedString(@"WithdrawChainFeeLess"),self.tokenModel.withdrawal_fee,[self.withdrawFeeModel.name uppercaseString]] duration:kAlertDuration completion:^{
             }];
             [alert showAlert];
             return;

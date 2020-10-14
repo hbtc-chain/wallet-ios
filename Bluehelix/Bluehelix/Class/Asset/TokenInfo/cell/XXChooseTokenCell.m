@@ -62,7 +62,7 @@
 - (void)configData:(XXMappingModel *)model {
     self.mapModel = model;
     [self.iconView sd_setImageWithURL:[NSURL URLWithString:model.logo] placeholderImage:[UIImage imageNamed:@"placeholderToken"]];
-    self.coinNameLabel.text = [model.name uppercaseString];
+    self.coinNameLabel.text = [NSString stringWithFormat:@"%@->%@",[model.name uppercaseString],[model.map_symbol uppercaseString]];
     self.amountLabel.text = [NSString stringWithFormat:@"%@: %@",LocalizedString(@"Balance"),kAmountTrim(model.amount)];
 }
 

@@ -64,4 +64,6 @@
 + (UIImage *)getImageViewWithView:(UIView *)view;
 
 + (UIImage *)composeImg:(UIImage *)maxImage minImage:(UIImage *)minImage;
+
++ (UIImage *)blackImageName:(NSString *)name;
 @end

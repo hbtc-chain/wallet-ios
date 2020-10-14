@@ -58,7 +58,7 @@
 
 - (UIView *)mainView {
     if (_mainView == nil) {
-        _mainView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, kScreen_Width, 500)];
+        _mainView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, kScreen_Width, 620)];
         _mainView.backgroundColor = kWhiteColor;
     }
     return _mainView;
@@ -114,7 +114,7 @@
 - (XXWithdrawSpeedView *)speedView {
     if (_speedView == nil) {
         _speedView = [[XXWithdrawSpeedView alloc] initWithFrame:CGRectMake(0, CGRectGetMaxY(self.feeView.frame) + 15, kScreen_Width, 72)];
-        _speedView.nameLabel.text = LocalizedString(@"Speed");
+        _speedView.nameLabel.text = LocalizedString(@"TransferSpeed");
          [_speedView.slider addTarget:self action:@selector(sliderValueChanged:) forControlEvents:UIControlEventValueChanged];
     }
     return _speedView;

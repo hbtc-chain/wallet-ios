@@ -139,7 +139,7 @@
 - (XXWithdrawSpeedView *)speedView {
     if (_speedView == nil) {
         _speedView = [[XXWithdrawSpeedView alloc] initWithFrame:CGRectMake(0, CGRectGetMaxY(self.chainFeeView.frame) + 15, kScreen_Width, 72)];
-        _speedView.nameLabel.text = LocalizedString(@"CashWithdrawal");
+        _speedView.nameLabel.text = LocalizedString(@"TransferSpeed");
         [_speedView.slider addTarget:self action:@selector(sliderValueChanged:) forControlEvents:UIControlEventValueChanged];
     }
     return _speedView;

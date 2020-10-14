@@ -18,6 +18,7 @@
         self.backgroundColor = kWhiteColor;
         [self addSubview:self.customImageView];
         [self addSubview:self.customLabel];
+        [self addSubview:self.arrowImageView];
     }
     return self;
 }
@@ -31,12 +32,20 @@
 
 - (UILabel *)customLabel {
     if (!_customLabel) {
-        _customLabel = [[UILabel alloc] initWithFrame:CGRectMake(CGRectGetMaxX(self.customImageView.frame) + 8, 0, self.width - self.customImageView.width - 8, self.height)];
+        _customLabel = [[UILabel alloc] initWithFrame:CGRectMake(CGRectGetMaxX(self.customImageView.frame) + 8, 0, self.width - self.customImageView.width - 34, self.height)];
         _customLabel.textAlignment = NSTextAlignmentLeft;
         _customLabel.font = kFont17;
         _customLabel.textColor = kGray900;
     }
     return _customLabel;
+}
+
+- (UIImageView *)arrowImageView {
+    if (!_arrowImageView) {
+        _arrowImageView = [[UIImageView alloc] initWithFrame:CGRectMake(self.width - 26, (self.height - 16)/2, 16, 16)];
+        _arrowImageView.image = [UIImage imageNamed:@"arrowdownSmall"];
+    }
+    return _arrowImageView;
 }
 
 @end

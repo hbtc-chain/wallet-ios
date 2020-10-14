@@ -345,7 +345,7 @@
 "TotalPublishAmount" = "总发行量";
 "Precision" = "精度";
 "PublishTokenName" = "新发币种名称";
-"EnterPublishTokenName" = "请输入新币种名称";
+"EnterPublishTokenName" = "请输入2-16位小写字母及数字以字母开头的名称";
 "LeastPrecision" = "最小精度不能超过18位";
 "EnterTotalPublishAmount" = "请输入总发行数量";
 "TransferFee" = "交易手续费";
@@ -518,3 +518,4 @@
 "Balance" = "余额";
 "MsgLimitSwap" = "现价单兑换";
 "ChainTip" = "提示：充值非主链代币需要HBTC Chain账户拥有一定的对应主链代币作为归集手续费才可以入账。";
+"WithdrawChainFeeLess" = "跨链手续费不能小于";

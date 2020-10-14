@@ -80,6 +80,7 @@
     if (_chainView == nil) {
         _chainView = [[XXWithdrawChainView alloc] initWithFrame:CGRectMake(0, kNavHeight, kScreen_Width, kScreen_Height - kNavHeight - 90)];
         _chainView.feeView.textField.text = kMinFee;
+        _chainView.speedView.nameLabel.text = LocalizedString(@"TransferSpeed");
     }
     return _chainView;
 }

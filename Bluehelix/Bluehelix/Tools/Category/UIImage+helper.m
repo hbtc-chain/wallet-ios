@@ -52,6 +52,19 @@
 }
 
 /**
+ *  图标
+ *
+ *  @param name 图标名称
+ *
+ *  @return 改变颜色后的图片
+ */
+
++ (UIImage *)blackImageName:(NSString *)name {
+    UIImage *image = [[UIImage imageNamed:name] imageWithColor:kWhiteColor];
+    return image;
+}
+
+/**
  *  字体色图标
  *
  *  @param name 图标名称

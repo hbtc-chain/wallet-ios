@@ -417,7 +417,7 @@ static NSDateFormatter *TimeFormatter = nil;
             [macCheck appendData:cipherText];
             
             if (![[macCheck KECCAK256] isEqual:mac]) {
-                sendError(kAccountErrorWrongPassword, @"Wrong Password");
+                sendError(kAccountErrorWrongPassword, LocalizedString(@"PasswordWrong"));
                 return;
             }
         }
