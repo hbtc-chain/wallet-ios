@@ -183,6 +183,14 @@ static XXUserData *_sharedUserData = nil;
     return [self getValueForKey:@"address"];
 }
 
+- (void)setTokenString:(NSString *)tokenString {
+    [self saveValeu:tokenString forKey:@"tokenStringKey"];
+}
+
+- (NSString *)tokenString {
+    return [self getValueForKey:@"tokenStringKey"];
+}
+
 // 网络状态
 - (void)setNetWorkStatus:(NSString *)netWorkStatus {
     [self saveValeu:netWorkStatus forKey:@"netWorkStatus"];

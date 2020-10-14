@@ -36,6 +36,7 @@
     KUser.shouldVerify = YES;
     [self AFNReachability];
     [[XXSqliteManager sharedSqlite] requestTokens];
+    [[XXSqliteManager sharedSqlite] requestMapping];
     if (!KUser.isSettedNightType) {
         KUser.isNightType = KSystem.isDarkStyle;
     }
@@ -57,7 +58,7 @@
     }
     [self.window makeKeyAndVisible];
     [self.splashScreen showSplashScreen];
-    [KMarket readCachedDataOfMarket];
+//    [KMarket readCachedDataOfMarket];
     return YES;
 }
 

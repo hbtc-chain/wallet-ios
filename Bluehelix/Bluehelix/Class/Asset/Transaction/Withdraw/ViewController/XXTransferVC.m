@@ -70,7 +70,7 @@
 
 - (void)setupUI {
     if (self.InnerChain) {
-        self.titleLabel.text = [NSString stringWithFormat:@"%@ %@",[self.tokenModel.symbol uppercaseString],LocalizedString(@"Transfer")];
+        self.titleLabel.text = [NSString stringWithFormat:@"%@ %@",[self.tokenModel.name uppercaseString],LocalizedString(@"Transfer")];
         [self.view addSubview:self.transferView];
         if (self.tokenModel.amount.floatValue) {
             self.transferView.amountView.currentlyAvailable = kAmountTrim(self.tokenModel.amount);
@@ -82,7 +82,7 @@
         self.transferView.speedView.slider.minimumValue = [kSliderMinFee floatValue];
         self.transferView.speedView.slider.value = [kMinFee doubleValue];
     } else {
-        self.titleLabel.text = [NSString stringWithFormat:@"%@ %@",[self.tokenModel.symbol uppercaseString],LocalizedString(@"Withdraw")];
+        self.titleLabel.text = [NSString stringWithFormat:@"%@ %@",[self.tokenModel.name uppercaseString],LocalizedString(@"Withdraw")];
         [self.view addSubview:self.withdrawView];
         if (self.tokenModel.amount.floatValue) {
             self.withdrawView.amountView.currentlyAvailable = kAmountTrim(self.tokenModel.amount);
@@ -92,7 +92,7 @@
         self.withdrawView.amountView.tokenModel = self.tokenModel;
         self.withdrawView.feeView.unitLabel.text = [kMainToken uppercaseString];
         self.withdrawFeeModel = [[XXSqliteManager sharedSqlite] withdrawFeeToken:self.tokenModel];
-        self.withdrawView.chainFeeView.unitLabel.text = [self.withdrawFeeModel.symbol uppercaseString];
+        self.withdrawView.chainFeeView.unitLabel.text = [self.withdrawFeeModel.name uppercaseString];
         self.withdrawView.chainFeeView.textField.text = self.tokenModel.withdrawal_fee;
         self.withdrawView.feeView.textField.text = kMinFee;
         self.withdrawView.speedView.slider.maximumValue = [kSliderMaxFee floatValue];

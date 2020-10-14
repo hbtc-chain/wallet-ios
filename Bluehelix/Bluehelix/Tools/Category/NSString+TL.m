@@ -13,7 +13,7 @@
 @implementation NSString (TL)
 
 - (NSString *)trimmingCharacters{
-
+    
     return [self stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
 }
 
@@ -125,7 +125,7 @@
 }
 
 + (NSString *)encryptAES:(NSString *)content key:(NSString *)key {
-
+    
     NSString * kInitVector = @"16-Bytes--String";
     size_t const kKeySize = kCCKeySizeAES128;
     NSData *contentData = [content dataUsingEncoding:NSUTF8StringEncoding];
@@ -143,7 +143,7 @@
     
     NSData *initVector = [kInitVector dataUsingEncoding:NSUTF8StringEncoding];
     
-      // 系统默认使用 CBC，然后指明使用 PKCS7Padding
+    // 系统默认使用 CBC，然后指明使用 PKCS7Padding
     CCCryptorStatus cryptStatus = CCCrypt(kCCEncrypt,
                                           kCCAlgorithmAES,
                                           kCCOptionPKCS7Padding,
@@ -205,18 +205,18 @@
 /** 合并不同字体颜色的字符串
  *
  *  items: [
-         {
-         @"string":@"第一截",
-         @"color":[UIColor whiteColor],
-         @"font":[UIFont systemFontOfSize:12]
-         },
+ {
+ @"string":@"第一截",
+ @"color":[UIColor whiteColor],
+ @"font":[UIFont systemFontOfSize:12]
+ },
  
-         {
-         @"string":@"第二截",
-         @"color":[UIColor redColor],
-         @"font":[UIFont systemFontOfSize:15]
-         },
-     ]
+ {
+ @"string":@"第二截",
+ @"color":[UIColor redColor],
+ @"font":[UIFont systemFontOfSize:15]
+ },
+ ]
  */
 + (NSMutableAttributedString *)mergeStrings:(NSMutableArray *)items {
     
@@ -241,7 +241,7 @@
 
 /** 升序 */
 + (NSArray *)sortRiseArray:(NSArray *)itemsArray {
-  
+    
     if (itemsArray.count < 2) {
         return itemsArray;
     }
@@ -366,10 +366,10 @@
 
 /** 获取交割时间 */
 + (NSString *)getDeliveryTime:(long)timestamp {
-
+    
     NSString *timeString = LocalizedString(@"Delivered");
     long deliveryTime = timestamp;
-
+    
     NSDate* dat = [NSDate dateWithTimeIntervalSinceNow:0];
     long currentTime = [dat timeIntervalSince1970];
     long time = deliveryTime - currentTime;
@@ -462,7 +462,7 @@
     return string;
 }
 - (Boolean)private_isNumber{
-   
+    
     NSPredicate *predicate = [NSPredicate predicateWithFormat:@"SELF MATCHES %@",@"^[-0-9.]*$"];
     if ([predicate evaluateWithObject:self]) {
         return YES;
@@ -478,20 +478,13 @@
     NSArray *amountArr = [amount componentsSeparatedByString:@"."];
     if (amountArr.count == 2) {
         NSString *amount0 = [amountArr firstObject];
-        NSDecimalNumber *amountDecimal0 = [NSDecimalNumber decimalNumberWithString:amount0];
-        if (amount0.length > 12) {
-            return [amountDecimal0 stringValue];
-        } else if (amount.length > 12) {
-            if (amount0.length == 11) {
-                return amount0;
-            } else {
-                NSString *trimStr = [amount substringToIndex:12];
-                NSDecimalNumber *trimDecimal = [NSDecimalNumber decimalNumberWithString:trimStr];
-                return [trimDecimal stringValue];
-            }
-        } else {
-            return [amountDecimal stringValue];
+        NSString *amount1 = [amountArr lastObject];
+        if (amount1.length > 4) {
+            NSString *trimStr = [amount substringToIndex:amount0.length + 5];
+            NSDecimalNumber *trimDecimal = [NSDecimalNumber decimalNumberWithString:trimStr];
+            return [trimDecimal stringValue];
         }
+        return [amountDecimal stringValue];
     } else {
         return [amountDecimal stringValue];
     }
@@ -502,7 +495,7 @@
         return @"";
     }
     if (address.length > 20) {
-       return [address stringByReplacingCharactersInRange:NSMakeRange(10, address.length - 20) withString:@"***"];
+        return [address stringByReplacingCharactersInRange:NSMakeRange(10, address.length - 20) withString:@"***"];
     } else {
         return address;
     }
@@ -513,7 +506,7 @@
         return @"";
     }
     if (address.length > 14) {
-       return [address stringByReplacingCharactersInRange:NSMakeRange(7, address.length - 14) withString:@"***"];
+        return [address stringByReplacingCharactersInRange:NSMakeRange(7, address.length - 14) withString:@"***"];
     } else {
         return address;
     }

@@ -263,6 +263,9 @@
 		EA8994D32501455E007B4A19 /* XXChainHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = EA8994D22501455E007B4A19 /* XXChainHeaderView.m */; };
 		EA8994D625022061007B4A19 /* XYHPickerView.m in Sources */ = {isa = PBXBuildFile; fileRef = EA8994D425022061007B4A19 /* XYHPickerView.m */; };
 		EA8994D925022A92007B4A19 /* XXExchangeVC.m in Sources */ = {isa = PBXBuildFile; fileRef = EA8994D825022A92007B4A19 /* XXExchangeVC.m */; };
+		EA8CE93E2532E63A007E3591 /* XXMappingModel.m in Sources */ = {isa = PBXBuildFile; fileRef = EA8CE93D2532E63A007E3591 /* XXMappingModel.m */; };
+		EA8CE941253436A0007E3591 /* XXChangeMapTokenView.m in Sources */ = {isa = PBXBuildFile; fileRef = EA8CE940253436A0007E3591 /* XXChangeMapTokenView.m */; };
+		EA8CE94425343FAA007E3591 /* XXChooseTokenCell.m in Sources */ = {isa = PBXBuildFile; fileRef = EA8CE94325343FAA007E3591 /* XXChooseTokenCell.m */; };
 		EA8F8C88240FA9F200D26E10 /* Icon.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EA8F8C86240FA9F200D26E10 /* Icon.xcassets */; };
 		EA92EDBB2448086F00B194DA /* XXMsgRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = EA92EDBA2448086F00B194DA /* XXMsgRequest.m */; };
 		EA92EDBE244809E800B194DA /* XXMsg.m in Sources */ = {isa = PBXBuildFile; fileRef = EA92EDBD244809E800B194DA /* XXMsg.m */; };
@@ -997,6 +1000,12 @@
 		EA8994D525022061007B4A19 /* XYHPickerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XYHPickerView.h; sourceTree = "<group>"; };
 		EA8994D725022A92007B4A19 /* XXExchangeVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = XXExchangeVC.h; sourceTree = "<group>"; };
 		EA8994D825022A92007B4A19 /* XXExchangeVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = XXExchangeVC.m; sourceTree = "<group>"; };
+		EA8CE93C2532E63A007E3591 /* XXMappingModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = XXMappingModel.h; sourceTree = "<group>"; };
+		EA8CE93D2532E63A007E3591 /* XXMappingModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = XXMappingModel.m; sourceTree = "<group>"; };
+		EA8CE93F253436A0007E3591 /* XXChangeMapTokenView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = XXChangeMapTokenView.h; sourceTree = "<group>"; };
+		EA8CE940253436A0007E3591 /* XXChangeMapTokenView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = XXChangeMapTokenView.m; sourceTree = "<group>"; };
+		EA8CE94225343FAA007E3591 /* XXChooseTokenCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = XXChooseTokenCell.h; sourceTree = "<group>"; };
+		EA8CE94325343FAA007E3591 /* XXChooseTokenCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = XXChooseTokenCell.m; sourceTree = "<group>"; };
 		EA8F8C84240FA9F200D26E10 /* XXFontHeader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XXFontHeader.h; sourceTree = "<group>"; };
 		EA8F8C85240FA9F200D26E10 /* XXColorHeader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XXColorHeader.h; sourceTree = "<group>"; };
 		EA8F8C86240FA9F200D26E10 /* Icon.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Icon.xcassets; sourceTree = "<group>"; };
@@ -2002,6 +2011,8 @@
 				EA95370224558CC40060D1FC /* XXMsgDelegateModel.m */,
 				EA953704245590B90060D1FC /* XXCoinModel.h */,
 				EA953705245590B90060D1FC /* XXCoinModel.m */,
+				EA8CE93C2532E63A007E3591 /* XXMappingModel.h */,
+				EA8CE93D2532E63A007E3591 /* XXMappingModel.m */,
 			);
 			path = model;
 			sourceTree = "<group>";
@@ -3169,6 +3180,8 @@
 			children = (
 				EABD71712449F481008AA188 /* XXTransactionCell.h */,
 				EABD71722449F481008AA188 /* XXTransactionCell.m */,
+				EA8CE94225343FAA007E3591 /* XXChooseTokenCell.h */,
+				EA8CE94325343FAA007E3591 /* XXChooseTokenCell.m */,
 			);
 			path = cell;
 			sourceTree = "<group>";
@@ -3192,6 +3205,8 @@
 				EA71E1512502534500B52558 /* XXExchangeBtn.m */,
 				EA71E1532504955300B52558 /* XXChainAddressView.h */,
 				EA71E1542504955300B52558 /* XXChainAddressView.m */,
+				EA8CE93F253436A0007E3591 /* XXChangeMapTokenView.h */,
+				EA8CE940253436A0007E3591 /* XXChangeMapTokenView.m */,
 			);
 			path = view;
 			sourceTree = "<group>";
@@ -3758,6 +3773,7 @@
 				EABD1BA3241BB25900B1A03A /* BlockInfo.m in Sources */,
 				F30EAF5F20D26536005ADD5C /* UIColor+helper.m in Sources */,
 				EA45BB0D24DE76BF00132984 /* XXBitcoinDetailVC.m in Sources */,
+				EA8CE941253436A0007E3591 /* XXChangeMapTokenView.m in Sources */,
 				EA45BB8124DF999F00132984 /* Y_KLineView.m in Sources */,
 				EAE286322473C28F006D9F24 /* XXCoinPublishApplyView.m in Sources */,
 				EA45BB2424DE76BF00132984 /* XXKlineDepthActionView.m in Sources */,
@@ -3990,6 +4006,7 @@
 				EAA8DED0244D81CE00161698 /* XXUserHomeCell.m in Sources */,
 				EA45BA6D24DE76BE00132984 /* XXSwitchPairsCell.m in Sources */,
 				EA9D743D24F91DD100B53997 /* MJRefreshConfig.m in Sources */,
+				EA8CE93E2532E63A007E3591 /* XXMappingModel.m in Sources */,
 				F30AC1B320CCC642000652BB /* main.m in Sources */,
 				EA45BB8E24DF999F00132984 /* Y_MALine.m in Sources */,
 				EA26B3542476C53500EAF205 /* XXMessageCenterVC.m in Sources */,
@@ -4088,6 +4105,7 @@
 				EA9D744724F91DD100B53997 /* MJRefreshAutoNormalFooter.m in Sources */,
 				EA45BBC424E185C200132984 /* XXIndexModel.m in Sources */,
 				EA45BB8524DF999F00132984 /* Y_KLineAccessory.m in Sources */,
+				EA8CE94425343FAA007E3591 /* XXChooseTokenCell.m in Sources */,
 				EAA8DED1244D81CE00161698 /* XXAccountCell.m in Sources */,
 				EAE2862C2472D4EC006D9F24 /* XXUserHeaderItemView.m in Sources */,
 				F30EAF5B20D26536005ADD5C /* UITableViewCell+Extension.m in Sources */,
@@ -4243,7 +4261,7 @@
 				CODE_SIGN_ENTITLEMENTS = "";
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 2;
+				CURRENT_PROJECT_VERSION = 1;
 				DEFINES_MODULE = NO;
 				DEVELOPMENT_TEAM = 768MYA9JJQ;
 				ENABLE_BITCODE = NO;
@@ -4261,7 +4279,7 @@
 				INFOPLIST_FILE = "$(SRCROOT)/Bluehelix/AppResource/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				MARKETING_VERSION = 0.9;
+				MARKETING_VERSION = 1.0.1;
 				OTHER_LDFLAGS = (
 					"$(inherited)",
 					"-ObjC",
@@ -4287,7 +4305,7 @@
 				CODE_SIGN_ENTITLEMENTS = "";
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 2;
+				CURRENT_PROJECT_VERSION = 1;
 				DEFINES_MODULE = NO;
 				DEVELOPMENT_TEAM = 768MYA9JJQ;
 				ENABLE_BITCODE = NO;
@@ -4305,7 +4323,7 @@
 				INFOPLIST_FILE = "$(SRCROOT)/Bluehelix/AppResource/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				MARKETING_VERSION = 0.9;
+				MARKETING_VERSION = 1.0.1;
 				OTHER_LDFLAGS = (
 					"$(inherited)",
 					"-ObjC",

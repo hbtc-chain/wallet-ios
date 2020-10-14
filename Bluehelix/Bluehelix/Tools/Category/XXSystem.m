@@ -24,17 +24,17 @@ singleton_implementation(XXSystem)
     if (self) {
         
         // 登录通知
-        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(reloadRequestData) name:Login_In_NotificationName object:nil];
-        
-        // 登出通知
-        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(requestAppConfig) name:Login_Out_NotificationName object:nil];
+//        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(reloadRequestData) name:Login_In_NotificationName object:nil];
+//
+//        // 登出通知
+//        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(requestAppConfig) name:Login_Out_NotificationName object:nil];
     }
     return self;
 }
 
 #pragma mark - 0. 收到登录通知
 - (void)reloadRequestData {
-    [self requestAppConfig];
+//    [self requestAppConfig];
 }
 
 #pragma mark - 1. 获取是否夜色模式
@@ -117,19 +117,19 @@ singleton_implementation(XXSystem)
 - (void)requestAllConfigAndOpenSocket {
     
     // 1. 打开行情长连接
-    [KQuoteSocket openWebSocket];
-    
-    // 2. 判断是否登录打开用户长连接
-    [KUserSocket openWebSocket];
+//    [KQuoteSocket openWebSocket];
+//
+//    // 2. 判断是否登录打开用户长连接
+//    [KUserSocket openWebSocket];
 
     // 3. 加载汇率数据
     [[RatesManager shareRatesManager] loadDataOfRates];
     
     // 4. 加载App-Config
-    [self requestAppConfig];
+//    [self requestAppConfig];
     
     // 5. 加载自选列表
-    [KMarket loadDataOfFavoriteSymbols];
+//    [KMarket loadDataOfFavoriteSymbols];
 
 }
 

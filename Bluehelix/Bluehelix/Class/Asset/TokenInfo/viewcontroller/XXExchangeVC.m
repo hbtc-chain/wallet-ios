@@ -21,8 +21,6 @@
 
 @property (nonatomic, copy) NSString *text;
 
-@property (nonatomic, copy) NSString *swapToken;
-
 @end
 
 @implementation XXExchangeVC
@@ -33,7 +31,12 @@
     self.titleLabel.text = LocalizedString(@"Exchange");
     self.swapToken = @"btc";
     [self.view addSubview:self.backView];
-    [self.backView setToken:self.swapToken];
+    XXMappingModel *model = [[XXSqliteManager sharedSqlite] mappingModelBySymbol:self.swapToken];
+    if (model) {
+        [self.backView setMappingModel:model];
+    } else {
+        [self.backView setMappingModel:[XXSqliteManager sharedSqlite].mappingTokens.firstObject];
+    }
 }
 
 - (void)swapVerify {
@@ -52,12 +55,12 @@
 }
 
 - (void)requestSwap {
-    XXTokenModel *tokenModel = [[XXSqliteManager sharedSqlite] tokenBySymbol:@"btc"];
+    XXTokenModel *tokenModel = [[XXSqliteManager sharedSqlite] tokenBySymbol:self.backView.mappingModel.target_symbol];
     NSDecimalNumber *amountDecimal = [NSDecimalNumber decimalNumberWithString:self.backView.leftField.text];
     NSDecimalNumber *feeAmountDecimal = [NSDecimalNumber decimalNumberWithString:kMinFee];
     NSString *amount = [[amountDecimal decimalNumberByMultiplyingBy:kPrecisionDecimalPower(tokenModel.decimals)] stringValue];
     NSString *feeAmount = [[feeAmountDecimal decimalNumberByMultiplyingBy:kPrecisionDecimalPower(tokenModel.decimals)] stringValue];
-    XXMsg *model = [[XXMsg alloc] initWithfrom:KUser.address to:@"cbtc" amount:amount denom:self.swapToken feeAmount:feeAmount feeGas:@"" feeDenom:kMainToken memo:@"" type:kMsgMappingSwap withdrawal_fee:@"" text:self.text];
+    XXMsg *model = [[XXMsg alloc] initWithfrom:KUser.address to:self.backView.mappingModel.issue_symbol amount:amount denom:self.backView.mappingModel.target_symbol feeAmount:feeAmount feeGas:@"" feeDenom:kMainToken memo:@"" type:kMsgMappingSwap withdrawal_fee:@"" text:self.text];
     _msgRequest = [[XXMsgRequest alloc] init];
     MJWeakSelf
     [MBProgressHUD showActivityMessageInView:@""];
@@ -75,12 +78,7 @@
     if (!_backView) {
         MJWeakSelf
         _backView = [[XXExchangeView alloc] initWithFrame:CGRectMake(0, kNavHeight, kScreen_Width, kScreen_Height - kNavHeight)];
-        _backView.sureBlock = ^(BOOL mainTokenFlag) {
-            if (mainTokenFlag) {
-                weakSelf.swapToken = @"btc";
-            } else {
-                weakSelf.swapToken = @"cbtc";
-            }
+        _backView.sureBlock = ^{
             [weakSelf swapVerify];
         };
     }

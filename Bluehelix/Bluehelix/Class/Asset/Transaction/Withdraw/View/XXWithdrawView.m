@@ -106,7 +106,7 @@
 /** 提币数量 */
 - (XXWithdrawAmountView *)amountView {
     if (_amountView == nil) {
-        _amountView = [[XXWithdrawAmountView alloc] initWithFrame:CGRectMake(0, CGRectGetMaxY(self.memoView.frame) + 15, kScreen_Width, 88)];
+        _amountView = [[XXWithdrawAmountView alloc] initWithFrame:CGRectMake(0, CGRectGetMaxY(self.addressView.frame) + 15, kScreen_Width, 88)];
         _amountView.userInteractionEnabled = YES;
         _amountView.nameLabel.text = LocalizedString(@"WithdrawAmount");
         _amountView.textField.placeholder = LocalizedString(@"PleaseEnterAmount");
@@ -117,7 +117,7 @@
 /** 交易手续费 */
 - (XXWithdrawFeeView *)feeView {
     if (_feeView == nil) {
-        _feeView = [[XXWithdrawFeeView alloc] initWithFrame:CGRectMake(0, CGRectGetMaxY(self.addressView.frame) + 15, kScreen_Width, 88)];
+        _feeView = [[XXWithdrawFeeView alloc] initWithFrame:CGRectMake(0, CGRectGetMaxY(self.amountView.frame) + 15, kScreen_Width, 88)];
         _feeView.textField.placeholder = LocalizedString(@"PleaseEnterFee");
         _feeView.nameLabel.text = LocalizedString(@"TransferFee");
         _feeView.textField.enabled = NO;

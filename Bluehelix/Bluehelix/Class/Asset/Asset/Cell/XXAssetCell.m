@@ -81,8 +81,8 @@
 - (void)configData:(XXTokenModel *)model {
     self.tokenModel = model;
     [self.iconView sd_setImageWithURL:[NSURL URLWithString:model.logo] placeholderImage:[UIImage imageNamed:@"placeholderToken"]];
-    self.coinNameLabel.text = [model.symbol uppercaseString];
-    self.coinNameLabel.width = [NSString widthWithText:[model.symbol uppercaseString] font:kFontBold(17)];
+    self.coinNameLabel.text = [model.name uppercaseString];
+    self.coinNameLabel.width = [NSString widthWithText:[model.name uppercaseString] font:kFontBold(17)];
     if (KUser.isHideAsset) {
         self.moneyLabel.text = kHideAssetText;
         self.amountLabel.text = kHideAssetText;

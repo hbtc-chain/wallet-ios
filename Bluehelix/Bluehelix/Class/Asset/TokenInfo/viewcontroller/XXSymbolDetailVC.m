@@ -76,9 +76,9 @@
 
 /// 资产请求回来 刷新header
 - (void)refreshHeader {
-    self.assetModel = [XXAssetSingleManager sharedManager].assetModel;
+    self.assetModel = [[XXAssetModel alloc] init];
     [self.tableView.mj_header endRefreshing];
-    for (XXTokenModel *tokenModel in self.assetModel.assets) {
+    for (XXTokenModel *tokenModel in [XXAssetSingleManager sharedManager].assetModel.assets) {
         if ([tokenModel.symbol isEqualToString:self.tokenModel.symbol]) {
             self.assetModel.amount = kAmountTrim(tokenModel.amount);
             self.assetModel.symbol = self.tokenModel.symbol;
@@ -92,7 +92,7 @@
 }
 
 - (void)buildUI {
-    self.titleLabel.text = [self.tokenModel.symbol uppercaseString];
+    self.titleLabel.text = [self.tokenModel.name uppercaseString];
     [self.view addSubview:self.tableView];
     [self.view addSubview:self.footerView];
     if ([self.tokenModel.symbol isEqualToString:kMainToken]) {
@@ -114,7 +114,6 @@
         [weakSelf.tableView.mj_header endRefreshing];
         [weakSelf.tableView.mj_footer endRefreshing];
         if (code == 0) {
-            NSLog(@"%@",data);
             NSArray *tempArr = [data objectForKey:@"items"];
             if (self.page == 1) {
                 weakSelf.txs = [NSMutableArray arrayWithArray:tempArr];;
@@ -178,7 +177,11 @@
     if ([self.tokenModel.symbol isEqualToString:kMainToken]) {
         [self requestDelegations:YES];
     } else {
-        [self chainAction];
+        if (self.tokenModel.is_native) {
+            [self exchangeAndTradeAction];
+        } else {
+            [self chainAction];
+        }
     }
 }
 
@@ -238,16 +241,10 @@
 
 /// 跨链转出
 - (void)chainOutAction {
-//    if (IsEmpty([[XXAssetSingleManager sharedManager] externalAddressBySymbol:self.tokenModel.symbol])) { //判断是否存在外链地址
-//        XXWithdrawChainVC *chain = [[XXWithdrawChainVC alloc] init];
-//        chain.tokenModel = self.tokenModel;
-//        [self.navigationController pushViewController:chain animated:YES];
-//    } else {
         XXTransferVC *transferVC = [[XXTransferVC alloc] init];
         transferVC.tokenModel = self.tokenModel;
         transferVC.InnerChain = NO;
         [self.navigationController pushViewController:transferVC animated:YES];
-//    }
 }
 
 /// 跨链收款
@@ -388,7 +385,7 @@
         cell = [[XXTransactionCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"XXTransactionCell"];
     }
     NSDictionary *dic = self.txs[indexPath.row];
-    [cell configData:dic];
+    [cell configData:dic symbol:self.tokenModel.symbol];
     cell.backgroundColor = kWhiteColor;
     return cell;
 }

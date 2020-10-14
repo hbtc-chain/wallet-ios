@@ -36,13 +36,9 @@ static XXAssetSingleManager *_assetManager;
     NSString *path = [NSString stringWithFormat:@"/api/v1/cus/%@",KUser.address];
     [HttpManager getWithPath:path params:nil andBlock:^(id data, NSString *msg, NSInteger code) {
         if (code == 0) {
-            NSLog(@"%@",data);
             weakSelf.assetModel = [XXAssetModel mj_objectWithKeyValues:data];
         }
         [[NSNotificationCenter defaultCenter] postNotification:[NSNotification notificationWithName:kNotificationAssetRefresh object:nil userInfo:nil]];
-//        if (weakSelf.assetChangeBlock) {
-//            weakSelf.assetChangeBlock();
-//        }
     }];
 }
 

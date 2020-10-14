@@ -94,7 +94,7 @@
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    XXAccountCell *cell = [tableView dequeueReusableCellWithIdentifier:@"XXUserHomeCell"];
+    XXAccountCell *cell = [tableView dequeueReusableCellWithIdentifier:@"XXAccountCell"];
     if (!cell) {
         cell = [[XXAccountCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"XXAccountCell"];
     }

@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import "XXFloadtTextField.h"
+#import "XXMappingModel.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
@@ -15,8 +16,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 @property (nonatomic, strong) XXFloadtTextField *leftField;
 
-@property (nonatomic, copy) NSString *token;
-@property (nonatomic, copy) void (^sureBlock)(BOOL mainTokenFlag);
+@property (nonatomic, strong) XXMappingModel *mappingModel;
+@property (nonatomic, copy) void (^sureBlock)(void);
 
 @end
 

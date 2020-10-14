@@ -97,6 +97,7 @@
 - (XXLabel *)amountLabel {
     if (!_amountLabel) {
         _amountLabel = [XXLabel labelWithFrame:CGRectMake(K375(16), CGRectGetMaxY(self.tipLabel.frame), self.backView.width - K375(32), 40) font:kNumberFontBold(26) textColor:kGray900];
+        _amountLabel.text = @"";
     }
     return _amountLabel;
 }
@@ -104,7 +105,12 @@
 - (XXLabel *)assetLabel {
     if (!_assetLabel) {
         _assetLabel = [XXLabel labelWithFrame:CGRectMake(K375(16), CGRectGetMaxY(self.amountLabel.frame), self.backView.width - K375(32), 16) font:kFont15 textColor:kGray500];
+        _assetLabel.text = @"";
     }
     return _assetLabel;
+}
+
+- (void)dealloc {
+    NSLog(@"%@😁销毁",NSStringFromClass([self class]));
 }
 @end

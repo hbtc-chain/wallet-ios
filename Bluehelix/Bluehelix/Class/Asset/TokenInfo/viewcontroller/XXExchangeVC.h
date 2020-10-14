@@ -13,6 +13,9 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface XXExchangeVC : BaseViewController
 
+/// 映射token
+@property (nonatomic, copy) NSString *swapToken;
+
 @end
 
 NS_ASSUME_NONNULL_END

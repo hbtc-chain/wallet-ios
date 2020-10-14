@@ -484,7 +484,7 @@
 
 //
 "DelegateAndRelieve" = "委托/解委托";
-"Exchange" = "兑换";
+"Exchange" = "映射兑换";
 "Rate" = "汇率";
 "ExchangePlaceholder" = "请输入兑换数量";
 "ClickCopyAddress" = "点击复制地址";
@@ -500,8 +500,8 @@
 "PayToken" = "支付币种";
 "MsgAddLiquidity" = "添加流动性";
 "MsgRemoveLiquidity" = "移除流动性";
-"MsgSwapExactIn" = "兑换输入确定";
-"MsgSwapExactOut" = "兑换输出确定";
+"MsgSwapExactIn" = "兑换";
+"MsgSwapExactOut" = "兑换";
 "Refresh" = "刷新";
 "EnterMemo" = "填写MEMO或者TAG";
 "MemoTip" = "填写MEMO或者TAG";
@@ -514,3 +514,7 @@
 "ChainTitle" = "HBTC Chain地址";
 "WithdrawChainTitle" = "跨链充值地址";
 "ClickWithdrawChainAddress" = "点击生成跨链地址";
+"ChooseToken" = "选择币种";
+"Balance" = "余额";
+"MsgLimitSwap" = "现价单兑换";
+"ChainTip" = "提示：充值非主链代币需要HBTC Chain账户拥有一定的对应主链代币作为归集手续费才可以入账。";

@@ -41,7 +41,7 @@ static dispatch_once_t onceToken;
     }
     
     aPath = [aPath stringByAddingPercentEncodingWithAllowedCharacters:[NSCharacterSet URLQueryAllowedCharacterSet]];
-    NSLog(@"\n===========数据请求===========\nmethod:%@\naPath:%@\nparams%@", kNetworkMethodName[method], aPath, params);
+//    NSLog(@"\n===========数据请求===========\nmethod:%@\naPath:%@\nparams%@", kNetworkMethodName[method], aPath, params);
     [self.requestSerializer setTimeoutInterval:15];
             
     //发起请求

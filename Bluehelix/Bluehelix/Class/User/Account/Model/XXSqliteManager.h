@@ -8,8 +8,10 @@
 
 #import <Foundation/Foundation.h>
 #import "FMDB.h"
+
 @class XXAccountModel;
 @class XXTokenModel;
+@class XXMappingModel;
 
 NS_ASSUME_NONNULL_BEGIN
 
@@ -45,6 +47,20 @@ NS_ASSUME_NONNULL_BEGIN
 /// 查询symbol对应的tokenModel
 /// @param symbol 币名
 - (XXTokenModel *)tokenBySymbol:(NSString *)symbol;
+
+//mapping 兑换
+- (void)requestMapping;
+
+- (XXMappingModel *)mappingModelBySymbol:(NSString *)symbol;
+
+/// 是否存在这个币的映射
+/// @param symbol 币id
+- (BOOL)existMapModel:(NSString *)symbol;
+@property (nonatomic, copy) NSMutableArray *mappingTokens;
+
+/// 根据交易类型 返回文案
+/// @param type 交易类型
+- (NSString *)signType:(NSString *)type;
 @end
 
 NS_ASSUME_NONNULL_END

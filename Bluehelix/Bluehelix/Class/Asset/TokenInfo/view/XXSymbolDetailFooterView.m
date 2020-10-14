@@ -42,11 +42,21 @@
         titleArr = @[LocalizedString(@"ReceiveMoney"),LocalizedString(@"Transfer"),LocalizedString(@"WithdrawMoney"),LocalizedString(@"DelegateAndRelieve")];
     } else {
         if (self.tokenModel.is_native) {
-            imageArr = kIsNight ? @[@"receiveMoney_Night",@"payMoney_Night"] : @[@"receiveMoney",@"payMoney"];
-            titleArr = @[LocalizedString(@"ReceiveMoney"),LocalizedString(@"Transfer")];
+            if ([[XXSqliteManager sharedSqlite] existMapModel:self.tokenModel.symbol]) {
+                imageArr = kIsNight ? @[@"receiveMoney_Night",@"payMoney_Night",@"chainPayMoney_Night"] : @[@"receiveMoney",@"payMoney",@"chainReceiveMoney"];
+                titleArr = @[LocalizedString(@"ReceiveMoney"),LocalizedString(@"Transfer"),LocalizedString(@"Exchange")];
+            } else {
+                imageArr = kIsNight ? @[@"receiveMoney_Night",@"payMoney_Night"] : @[@"receiveMoney",@"payMoney"];
+                titleArr = @[LocalizedString(@"ReceiveMoney"),LocalizedString(@"Transfer")];
+            }
         } else {
-            imageArr = kIsNight ? @[@"receiveMoney_Night",@"payMoney_Night",@"chainReceiveMoney_Night",@"chainPayMoney_Night"] : @[@"receiveMoney",@"payMoney",@"chainInOut",@"chainReceiveMoney"];
-            titleArr = @[LocalizedString(@"ReceiveMoney"),LocalizedString(@"Transfer"),LocalizedString(@"ChainDepositTip2"),LocalizedString(@"Exchange")];
+            if ([[XXSqliteManager sharedSqlite] existMapModel:self.tokenModel.symbol]) {
+                imageArr = kIsNight ? @[@"receiveMoney_Night",@"payMoney_Night",@"chainReceiveMoney_Night",@"chainPayMoney_Night"] : @[@"receiveMoney",@"payMoney",@"chainInOut",@"chainReceiveMoney"];
+                titleArr = @[LocalizedString(@"ReceiveMoney"),LocalizedString(@"Transfer"),LocalizedString(@"ChainDepositTip2"),LocalizedString(@"Exchange")];
+            } else {
+                imageArr = kIsNight ? @[@"receiveMoney_Night",@"payMoney_Night",@"chainReceiveMoney_Night",@"chainPayMoney_Night"] : @[@"receiveMoney",@"payMoney",@"chainInOut"];
+                titleArr = @[LocalizedString(@"ReceiveMoney"),LocalizedString(@"Transfer"),LocalizedString(@"ChainDepositTip2")];
+            }
         }
     }
     CGFloat btnWidth = (kScreen_Width - K375(15))/titleArr.count;
@@ -57,7 +67,7 @@
         }];
         itemButton.tag = 100 + i;
         [self addSubview:itemButton];
-
+        
         CGFloat shadowViewWidth = 48;
         if (i > 1) {
             shadowViewWidth = shadowViewWidth*4/3;
@@ -71,7 +81,7 @@
         shadowView.layer.shadowRadius = 6.0f;
         shadowView.userInteractionEnabled = NO;
         [itemButton addSubview:shadowView];
-
+        
         UIImageView *iconImageView = [[UIImageView alloc] initWithFrame:CGRectMake((shadowView.width - 24)/2.0, (shadowView.height - 24)/2.0, 24, 24)];
         iconImageView.backgroundColor = kBackgroundLeverSecond;
         iconImageView.image = [UIImage imageNamed:imageArr[i]];
@@ -83,7 +93,7 @@
             arrowImageView.image = [UIImage imageNamed:@"arrowdown"];
             [shadowView addSubview:arrowImageView];
         }
-
+        
         XXLabel *nameLabel = [XXLabel labelWithFrame:CGRectMake(0, CGRectGetMaxY(shadowView.frame), itemButton.width, 42) text:titleArr[i] font:kFont12 textColor:kGray900 alignment:NSTextAlignmentCenter];
         nameLabel.numberOfLines = 0;
         [itemButton addSubview:nameLabel];

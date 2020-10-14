@@ -69,7 +69,7 @@
     if (searchStr.length) {
         [self.showArray removeAllObjects];
         for (XXTokenModel *model in self.tokenList) {
-            if ([model.symbol containsString:searchStr]) {
+            if ([model.name containsString:searchStr]) {
                 [self.showArray addObject:model];
             }
         }

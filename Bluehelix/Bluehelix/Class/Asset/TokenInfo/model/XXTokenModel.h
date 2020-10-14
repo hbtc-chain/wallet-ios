@@ -12,8 +12,9 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface XXTokenModel : NSObject
 
+@property (nonatomic, strong) NSString *name; //币名
 @property (nonatomic, strong) NSString *chain; //所属链名
-@property (nonatomic, strong) NSString *symbol; //币名
+@property (nonatomic, strong) NSString *symbol; //币id
 @property (nonatomic, strong) NSString *amount; //数量
 @property (nonatomic, strong) NSString *enable_sendtx;
 @property (nonatomic, strong) NSString *external_address; //外链地址

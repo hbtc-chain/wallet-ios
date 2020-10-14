@@ -8,6 +8,7 @@
 
 #import "XXSqliteManager.h"
 #import "XXTokenModel.h"
+#import "XXMappingModel.h"
 
 @implementation XXSqliteManager
 
@@ -45,13 +46,13 @@ static XXSqliteManager *_sqliteManager;
 #pragma mark 币
 - (BOOL)existsTokens {
     [self.myFmdb open];
-    BOOL result = [self.myFmdb executeUpdate:@"create table if not exists tokens(ID INTEGER PRIMARY KEY AUTOINCREMENT,symbol TEXT,chain TEXT,decimals INTEGER,is_native BOOLEAN,withdrawal_fee TEXT,logo TEXT,is_withdrawal_enabled BOOLEAN)"];
+    BOOL result = [self.myFmdb executeUpdate:@"create table if not exists tokens(ID INTEGER PRIMARY KEY AUTOINCREMENT,name TEXT,symbol TEXT,chain TEXT,decimals INTEGER,is_native BOOLEAN,withdrawal_fee TEXT,logo TEXT,is_withdrawal_enabled BOOLEAN)"];
     return result;
 }
 
 
 - (void)insertTokens:(NSArray *)tokens {
-    if (![self.myFmdb columnExists:@"withdrawal_fee" inTableWithName:@"tokens"]) {
+    if (![self.myFmdb columnExists:@"name" inTableWithName:@"tokens"]) {
         [self.myFmdb executeUpdate:@"drop table if exists tokens"];
     }
     BOOL existsTable = [self existsTokens];
@@ -61,6 +62,7 @@ static XXSqliteManager *_sqliteManager;
     [self.myFmdb executeUpdate:@"delete from 'tokens'"];
     for (XXTokenModel *model  in tokens) {
         NSMutableArray *argumentsArr = [[NSMutableArray alloc] init];
+        [argumentsArr addObject:model.name];
         [argumentsArr addObject:model.symbol];
         [argumentsArr addObject:[NSNumber numberWithInt:model.decimals]];
         [argumentsArr addObject:[NSNumber numberWithInt:model.is_native]];
@@ -68,15 +70,16 @@ static XXSqliteManager *_sqliteManager;
         [argumentsArr addObject:model.logo];
         [argumentsArr addObject:model.chain];
         [argumentsArr addObject:[NSNumber numberWithInt:model.is_withdrawal_enabled]];
-        if (argumentsArr.count != 7) {
+        if (argumentsArr.count != 8) {
             return;
         }
-        [self.myFmdb executeUpdate:@"insert into 'tokens'(symbol,decimals,is_native,withdrawal_fee,logo,chain,is_withdrawal_enabled) values(?,?,?,?,?,?,?)" withArgumentsInArray:argumentsArr];
+        [self.myFmdb executeUpdate:@"insert into 'tokens'(name,symbol,decimals,is_native,withdrawal_fee,logo,chain,is_withdrawal_enabled) values(?,?,?,?,?,?,?,?)" withArgumentsInArray:argumentsArr];
     }
 }
 
 - (XXTokenModel *)tokenModel:(FMResultSet *)set {
     XXTokenModel *model = [[XXTokenModel alloc] init];
+    model.name = [set stringForColumn:@"name"];
     model.symbol = [set stringForColumn:@"symbol"];
     model.decimals = [set intForColumn:@"decimals"];
     model.is_native = [set boolForColumn:@"is_native"];
@@ -120,17 +123,17 @@ static XXSqliteManager *_sqliteManager;
     if ([token.symbol isEqualToString:token.chain]) {
         return token;
     } else {
-         BOOL existsTable = [self existsTokens];
-           if (!existsTable) {
-               return nil;
-           }
-           FMResultSet *set = [self.myFmdb executeQuery:@"select * from tokens where symbol = ? limit 1",token.chain];
-           NSMutableArray *resultArr = [NSMutableArray array];
-           while ([set next]) {
-               XXTokenModel *model = [self tokenModel:set];
-               [resultArr addObject:model];
-           }
-           return [resultArr firstObject];
+        BOOL existsTable = [self existsTokens];
+        if (!existsTable) {
+            return nil;
+        }
+        FMResultSet *set = [self.myFmdb executeQuery:@"select * from tokens where symbol = ? limit 1",token.chain];
+        NSMutableArray *resultArr = [NSMutableArray array];
+        while ([set next]) {
+            XXTokenModel *model = [self tokenModel:set];
+            [resultArr addObject:model];
+        }
+        return [resultArr firstObject];
     }
 }
 
@@ -143,8 +146,8 @@ static XXSqliteManager *_sqliteManager;
     FMResultSet *set = [self.myFmdb executeQuery:sql];
     NSMutableArray *resultArr = [NSMutableArray array];
     while ([set next]) {
-       XXTokenModel *model = [self tokenModel:set];
-    [resultArr addObject:model];
+        XXTokenModel *model = [self tokenModel:set];
+        [resultArr addObject:model];
     }
     NSString *result = @"";
     for (XXTokenModel *token in resultArr) {
@@ -202,9 +205,9 @@ static XXSqliteManager *_sqliteManager;
     [argumentsArr addObject:model.mnemonicPhrase];
     [argumentsArr addObject:model.symbols];
     [argumentsArr addObject:model.keystore];
-//    BOOL result = [self.myFmdb executeUpdate:@"insert into 'account'(address,userName,password,backupFlag,publicKey,privateKey,mnemonicPhrase,symbols,keystore) values(?,?,?,?,?,?,?,?,?)" withArgumentsInArray:@[model.address,model.userName,model.password,[NSString stringWithFormat:@"%d",model.backupFlag],model.publicKey,model.privateKey,model.mnemonicPhrase,model.symbols,model.keystore]];
+    //    BOOL result = [self.myFmdb executeUpdate:@"insert into 'account'(address,userName,password,backupFlag,publicKey,privateKey,mnemonicPhrase,symbols,keystore) values(?,?,?,?,?,?,?,?,?)" withArgumentsInArray:@[model.address,model.userName,model.password,[NSString stringWithFormat:@"%d",model.backupFlag],model.publicKey,model.privateKey,model.mnemonicPhrase,model.symbols,model.keystore]];
     BOOL result = [self.myFmdb executeUpdate:@"insert into 'account'(address,userName,password,backupFlag,publicKey,privateKey,mnemonicPhrase,symbols,keystore) values(?,?,?,?,?,?,?,?,?)" withArgumentsInArray:argumentsArr];
-
+    
     return result;
 }
 
@@ -286,6 +289,86 @@ static XXSqliteManager *_sqliteManager;
         }
         NSString *result = [symbols componentsJoinedByString:@","];
         [self updateAccountColumn:@"symbols" value:result];
+    }
+}
+
+#pragma mark -mappingToken
+- (void)requestMapping {
+    MJWeakSelf
+    [HttpManager getWithPath:@"/api/v1/mappings" params:nil andBlock:^(id data, NSString *msg, NSInteger code) {
+        if (code == 0) {
+            NSString *tokensString = [data[@"items"] mj_JSONString];
+            NSString *localString = [XXUserData sharedUserData].tokenString;
+            if (!IsEmpty(tokensString) && ![localString isEqualToString:tokensString]) {
+                [XXUserData sharedUserData].tokenString = tokensString;
+            }
+            NSArray *mappings = [XXMappingModel mj_objectArrayWithKeyValuesArray:[XXUserData sharedUserData].tokenString];
+            NSMutableArray *resultArray = [[NSMutableArray alloc] initWithArray:mappings];
+            for (XXMappingModel *map in mappings) {
+                map.map_symbol = map.issue_symbol;
+                XXMappingModel *mapModel = [[XXMappingModel alloc] initWithMap:map];
+                [resultArray addObject:mapModel];
+            }
+            weakSelf.mappingTokens = resultArray;
+        }
+    }];
+}
+
+- (XXMappingModel *)mappingModelBySymbol:(NSString *)symbol {
+    for (XXMappingModel *map in self.mappingTokens) {
+        if ([map.target_symbol isEqualToString:symbol]) {
+            return map;
+        }
+    }
+    return nil;
+}
+
+- (BOOL)existMapModel:(NSString *)symbol {
+    for (XXMappingModel *map in self.mappingTokens) {
+        if ([map.target_symbol isEqualToString:symbol]) {
+            return YES;
+        }
+    }
+    return NO;
+}
+
+- (NSString *)signType:(NSString *)type {
+    if ([type isEqualToString:kMsgSend]) { //转账
+        return LocalizedString(@"Transfer");
+    } else if ([type isEqualToString:kMsgDelegate]) { //委托
+        return LocalizedString(@"Delegate");
+    } else if ([type isEqualToString:kMsgUndelegate]) { //解委托
+        return LocalizedString(@"CancelDelegate");
+    } else if ([type isEqualToString:kMsgKeyGen]) { // 跨链地址生成
+        return LocalizedString(@"ChainAddress");
+    } else if ([type isEqualToString:kMsgDeposit]) { // 跨链充值
+        return LocalizedString(@"ChainDeposit");
+    } else if ([type isEqualToString:kMsgWithdrawal]) { // 跨链提币
+        return LocalizedString(@"ChainWithdrawal");
+    } else if ([type isEqualToString:kMsgWithdrawalDelegationReward]) { //提取收益
+        return LocalizedString(@"WithdrawMoney");
+    } else if ([type isEqualToString:kMsgPledge]) { //质押
+        return LocalizedString(@"ProposalNavgationTitlePledge");
+    }  else if ([type isEqualToString:kMsgVote]) { // 投票
+        return LocalizedString(@"ProposalNavgationTitleVote");
+    }  else if ([type isEqualToString:kMsgCreateProposal]) { //发起提案
+        return LocalizedString(@"VotingProposal");
+    } else if ([type isEqualToString:kMsgMappingSwap]) { //映射
+        return LocalizedString(@"Exchange");
+    } else if ([type isEqualToString:kMsgSwapExactIn]) { //兑换输入
+        return LocalizedString(@"MsgSwapExactIn");
+    } else if ([type isEqualToString:kMsgSwapExactOut]) { //兑换输出
+        return LocalizedString(@"MsgSwapExactOut");
+    } else if ([type isEqualToString:kMsgAddLiquidity]) { //添加流动性
+        return LocalizedString(@"MsgAddLiquidity");
+    } else if ([type isEqualToString:kMsgRemoveLiquidity]) { //移除流动性
+        return LocalizedString(@"MsgRemoveLiquidity");
+    } else if ([type isEqualToString:kMsgLimitSwap]) { //现价单兑换
+        return LocalizedString(@"MsgLimitSwap");
+    } else if ([type isEqualToString:kMsgCancelLimitSwap]) { //撤单
+        return LocalizedString(@"MsgCancelLimitSwap");
+    } else {
+        return LocalizedString(@"ChainOtherType");
     }
 }
 @end

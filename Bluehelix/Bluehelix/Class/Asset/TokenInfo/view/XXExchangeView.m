@@ -8,6 +8,8 @@
 
 #import "XXExchangeView.h"
 #import "XXExchangeBtn.h"
+#import "XXChangeMapTokenView.h"
+#import <UIImageView+WebCache.h>
 
 @interface XXExchangeView ()
 
@@ -50,14 +52,13 @@
     [self.amountView addSubview:self.leftField];
 }
 
-- (void)setToken:(NSString *)token {
-    _token = token;
-    self.leftExchangeBtn.customLabel.text = [_token uppercaseString];
-    self.rightExchangeBtn.customLabel.text = [NSString stringWithFormat:@"c%@",[_token uppercaseString]];
-    NSString *cToken = [NSString stringWithFormat:@"c%@",[_token uppercaseString]];
-    _rateDetailLabel.text = [NSString stringWithFormat:@"1 %@=1 %@",[_token uppercaseString],cToken];
-    [self.leftExchangeBtn.customImageView setImage:[UIImage imageNamed:_token]];
-    [self.rightExchangeBtn.customImageView setImage:[UIImage imageNamed:_token]];
+- (void)setMappingModel:(XXMappingModel *)mappingModel {
+    _mappingModel = mappingModel;
+    [self.leftExchangeBtn.customImageView sd_setImageWithURL:[NSURL URLWithString:mappingModel.logo] placeholderImage:[UIImage imageNamed:@"placeholderToken"]];
+    [self.rightExchangeBtn.customImageView sd_setImageWithURL:[NSURL URLWithString:mappingModel.logo] placeholderImage:[UIImage imageNamed:@"placeholderToken"]];
+    self.leftExchangeBtn.customLabel.text = [mappingModel.target_symbol uppercaseString];
+    self.rightExchangeBtn.customLabel.text = [NSString stringWithFormat:@"%@",[mappingModel.map_symbol uppercaseString]];
+        _rateDetailLabel.text = [NSString stringWithFormat:@"1 %@=1 %@",[mappingModel.target_symbol uppercaseString],[mappingModel.map_symbol uppercaseString]];    
 }
 
 - (void)textFieldChanged:(XXFloadtTextField *)textField {
@@ -67,16 +68,24 @@
 // 交换
 - (void)exchangeAction {
     self.mainTokenFlag = !self.mainTokenFlag;
-    [UIView animateWithDuration:0.3 animations:^{
-        if (self.mainTokenFlag) {
-            self.leftExchangeBtn.left = K375(16) + K375(15);
-            self.rightExchangeBtn.left = CGRectGetMaxX(self.switchBtn.frame);
-        } else {
-            self.leftExchangeBtn.left = CGRectGetMaxX(self.switchBtn.frame);
-            self.rightExchangeBtn.left = K375(16) + K375(15);
-        }
-    } completion:^(BOOL finished) {
-        
+    self.mappingModel = [[XXSqliteManager sharedSqlite] mappingModelBySymbol:self.mappingModel.map_symbol];
+//    [UIView animateWithDuration:0.3 animations:^{
+//        if (self.mainTokenFlag) {
+//            self.leftExchangeBtn.left = K375(16) + K375(15);
+//            self.rightExchangeBtn.left = CGRectGetMaxX(self.switchBtn.frame);
+//        } else {
+//            self.leftExchangeBtn.left = CGRectGetMaxX(self.switchBtn.frame);
+//            self.rightExchangeBtn.left = K375(16) + K375(15);
+//        }
+//    } completion:^(BOOL finished) {
+//        self.mappingModel = [[XXSqliteManager sharedSqlite] mappingModelBySymbol:self.mappingModel.issue_symbol];
+//    }];
+}
+
+- (void)leftAction {
+    MJWeakSelf
+    [XXChangeMapTokenView showWithSureBlock:^(XXMappingModel * _Nonnull model) {
+        weakSelf.mappingModel = model;
     }];
 }
 
@@ -92,6 +101,7 @@
 - (XXExchangeBtn *)leftExchangeBtn {
     if (!_leftExchangeBtn) {
         _leftExchangeBtn = [[XXExchangeBtn alloc] initWithFrame:CGRectMake(K375(16) + K375(15), K375(36), (self.backImageView.width - K375(88) - K375(30))/2, K375(24))];
+        [_leftExchangeBtn addTarget:self action:@selector(leftAction) forControlEvents:UIControlEventTouchUpInside];
     }
     return _leftExchangeBtn;
 }
@@ -178,7 +188,7 @@
         MJWeakSelf
         _exchangeBtn = [XXButton buttonWithFrame:CGRectMake(K375(8) + K375(15), self.backImageView.height - K375(72), self.backImageView.width - K375(16) - K375(30), K375(48)) title:LocalizedString(@"Exchange") font:kFont17 titleColor:kWhiteColor block:^(UIButton *button) {
             if (weakSelf.sureBlock) {
-                weakSelf.sureBlock(weakSelf.mainTokenFlag);
+                weakSelf.sureBlock();
             }
         }];
         [_exchangeBtn setBackgroundColor:kPrimaryMain];

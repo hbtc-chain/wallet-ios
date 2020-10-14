@@ -16,6 +16,8 @@
 @interface XXDepositCoinVC ()
 
 @property (nonatomic, strong) UIScrollView *scrollView;
+@property (nonatomic, strong) UIView *tipView;
+@property (nonatomic, strong) XXLabel *tipLabel;
 @property (nonatomic, strong) UIImageView *topBackImageView;
 @property (nonatomic, strong) UIImageView *bottomImageView;
 @property (nonatomic, strong) UIImageView *codeImageView;
@@ -73,6 +75,10 @@
     self.titleLabel.textColor = [UIColor whiteColor];
     self.leftButton.imageView.image = [UIImage imageNamed:@"white_back"];
     [self.view addSubview:self.scrollView];
+    if (!self.InnerChain) {
+        [self.scrollView addSubview:self.tipView];
+        [self.tipView addSubview:self.tipLabel];
+    }
     [self.scrollView addSubview:self.topBackImageView];
     [self.scrollView addSubview:self.bottomImageView];
     [self.topBackImageView addSubview:self.codeImageView];
@@ -110,9 +116,31 @@
     return _scrollView;
 }
 
+- (UIView *)tipView {
+    if (!_tipView) {
+        _tipView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, kScreen_Width, 48)];
+        _tipView.backgroundColor = KRGBA(88, 78, 70, 100);
+    }
+    return _tipView;
+}
+
+- (XXLabel *)tipLabel {
+    if (!_tipLabel) {
+        _tipLabel = [XXLabel labelWithFrame:CGRectMake(24, 3, kScreen_Width - 48, 0) text:LocalizedString(@"ChainTip") font:kFont13 textColor:KRGBA(253, 126, 36, 100) alignment:NSTextAlignmentLeft];
+        _tipLabel.numberOfLines = 0;
+        [_tipLabel sizeToFit];
+        _tipView.frame = CGRectMake(0, 0, kScreen_Width, _tipLabel.frame.size.height + 6);
+    }
+    return _tipLabel;
+}
+
 - (UIImageView *)topBackImageView {
     if (!_topBackImageView) {
-        _topBackImageView = [[UIImageView alloc] initWithFrame:CGRectMake(K375(24), K375(32), kScreen_Width-K375(48), kScreen_Width-K375(48))];
+        CGFloat Y = K375(32);
+        if (!self.InnerChain) {
+            Y += CGRectGetMaxY(self.tipView.frame);
+        }
+        _topBackImageView = [[UIImageView alloc] initWithFrame:CGRectMake(K375(24), Y, kScreen_Width-K375(48), kScreen_Width-K375(48))];
         _topBackImageView.image = [UIImage imageNamed:@"depositTopBack"];
     }
     return _topBackImageView;
