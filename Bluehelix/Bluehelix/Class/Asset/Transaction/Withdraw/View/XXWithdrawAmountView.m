@@ -46,7 +46,7 @@
         NSDecimalNumber *withdrawFeeDecimal = [NSDecimalNumber decimalNumberWithString:self.tokenModel.withdrawal_fee];
         NSDecimalNumber *resultDecimal = [availableDecimal decimalNumberBySubtracting:withdrawFeeDecimal];
         if (resultDecimal.doubleValue > 0) {
-            self.textField.text = kAmountTrim(resultDecimal.stringValue);
+            self.textField.text = kAmountLongTrim(resultDecimal.stringValue);
         } else {
             self.textField.text = self.currentlyAvailable;
         }
@@ -108,7 +108,9 @@
         NSString *titleString = LocalizedString(@"WithdrawAll");
         CGFloat btnWidth = [NSString widthWithText:titleString font:kFont14] + 16;
         _allButton = [XXButton buttonWithFrame:CGRectMake(self.banView.width - btnWidth, 0, btnWidth, self.banView.height) title:titleString font:kFont15 titleColor:kPrimaryMain block:^(UIButton *button) {
-            [weakSelf allButtonClick:button];
+            if (weakSelf.allButtonActionBlock) {
+                weakSelf.allButtonActionBlock();
+            }
         }];
     }
     return _allButton;

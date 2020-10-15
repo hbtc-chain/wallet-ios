@@ -74,7 +74,7 @@
     NSString *precision = self.coinPublishView.precisionView.textField.text; //精度
     XXTokenModel *mainToken = [[XXSqliteManager sharedSqlite] tokenBySymbol:kMainToken];
     NSString *toAddress = self.coinPublishView.addressView.textField.text;
-    NSString *symbol = self.coinPublishView.nameView.textField.text;
+    NSString *symbol = [self.coinPublishView.nameView.textField.text lowercaseString];
     NSDecimalNumber *amountDecimal = [NSDecimalNumber decimalNumberWithString:self.coinPublishView.amountView.textField.text]; //数量
     NSString *amount = [[amountDecimal decimalNumberByMultiplyingBy:kPrecisionDecimalPower(precision.intValue)] stringValue];
     NSDecimalNumber *feeAmountDecimal = [NSDecimalNumber decimalNumberWithString:self.coinPublishView.feeView.textField.text]; //手续费
@@ -119,7 +119,7 @@
 - (XXButton *)applyButton {
     if (_applyButton == nil) {
         MJWeakSelf
-        _applyButton = [XXButton buttonWithFrame:CGRectMake(KSpacing, kScreen_Height - 80, kScreen_Width - KSpacing*2, 42) title:LocalizedString(@"Apply") font:kFontBold14 titleColor:kMainTextColor block:^(UIButton *button) {
+        _applyButton = [XXButton buttonWithFrame:CGRectMake(KSpacing, kScreen_Height - 80, kScreen_Width - KSpacing*2, 42) title:LocalizedString(@"Apply") font:kFontBold14 titleColor:[UIColor whiteColor] block:^(UIButton *button) {
             [weakSelf apply];
         }];
         _applyButton.backgroundColor = kPrimaryMain;

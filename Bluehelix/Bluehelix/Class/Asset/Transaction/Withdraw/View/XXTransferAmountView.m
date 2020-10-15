@@ -45,7 +45,7 @@
     double availableAmount = self.currentlyAvailable.doubleValue - kMinFee.doubleValue;
     if (availableAmount > 0) {
         NSString *amount = [NSString stringWithFormat:@"%f",availableAmount];
-        self.textField.text = kAmountTrim(amount);
+        self.textField.text = kAmountLongTrim(amount);
     } else {
         self.textField.text = self.currentlyAvailable;
     }
@@ -106,9 +106,8 @@
         NSString *titleString = LocalizedString(@"TransferAll");
         CGFloat btnWidth = [NSString widthWithText:titleString font:kFont14] + 16;
         _allButton = [XXButton buttonWithFrame:CGRectMake(self.banView.width - btnWidth, 0, btnWidth, self.banView.height) title:titleString font:kFont15 titleColor:kPrimaryMain block:^(UIButton *button) {
-            [weakSelf allButtonClick:button];
-            if (self.allButtonActionBlock) {
-                self.allButtonActionBlock();
+            if (weakSelf.allButtonActionBlock) {
+                weakSelf.allButtonActionBlock();
             }
         }];
     }

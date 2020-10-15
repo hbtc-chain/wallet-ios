@@ -80,7 +80,7 @@
     [self.tableView.mj_header endRefreshing];
     for (XXTokenModel *tokenModel in [XXAssetSingleManager sharedManager].assetModel.assets) {
         if ([tokenModel.symbol isEqualToString:self.tokenModel.symbol]) {
-            self.assetModel.amount = kAmountTrim(tokenModel.amount);
+            self.assetModel.amount = kAmountLongTrim(tokenModel.amount);
             self.assetModel.symbol = self.tokenModel.symbol;
         }
     }

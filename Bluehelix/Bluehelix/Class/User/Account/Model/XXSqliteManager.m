@@ -363,7 +363,7 @@ static XXSqliteManager *_sqliteManager;
         return LocalizedString(@"MsgAddLiquidity");
     } else if ([type isEqualToString:kMsgRemoveLiquidity]) { //移除流动性
         return LocalizedString(@"MsgRemoveLiquidity");
-    } else if ([type isEqualToString:kMsgLimitSwap]) { //现价单兑换
+    } else if ([type isEqualToString:kMsgLimitSwap]) { //限价单兑换
         return LocalizedString(@"MsgLimitSwap");
     } else if ([type isEqualToString:kMsgCancelLimitSwap]) { //撤单
         return LocalizedString(@"MsgCancelLimitSwap");

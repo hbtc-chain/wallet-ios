@@ -127,7 +127,7 @@
     for (XXTokenModel *assetsToken in self.assetModel.assets) {
         for (XXTokenModel *token in self.showArray) {
             if ([assetsToken.symbol isEqualToString:token.symbol]) {
-                token.amount = kAmountTrim(assetsToken.amount);
+                token.amount = kAmountLongTrim(assetsToken.amount);
             }
         }
     }

@@ -97,7 +97,7 @@
 - (UIImageView *)backImageView {
     if (!_backImageView) {
         _backImageView = [[UIImageView alloc] initWithFrame:CGRectMake(K375(7), 5, kScreen_Width - K375(15), K375(304))];
-        _backImageView.image = [UIImage blackImageName:@"exchangeBack"];
+        _backImageView.image = kIsNight ? [UIImage imageNamed:@"exchangeBackNight"] : [UIImage imageNamed:@"exchangeBack"];
         _backImageView.userInteractionEnabled = YES;
     }
     return _backImageView;

@@ -59,7 +59,7 @@
     for (XXTokenModel *assetsToken in [XXAssetSingleManager sharedManager].assetModel.assets) {
         for (XXMappingModel *token in sqliteArray) {
             if ([assetsToken.symbol isEqualToString:token.target_symbol]) {
-                token.amount = kAmountTrim(assetsToken.amount);
+                token.amount = kAmountLongTrim(assetsToken.amount);
             }
         }
     }

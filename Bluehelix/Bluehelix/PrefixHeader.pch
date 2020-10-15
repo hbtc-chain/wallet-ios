@@ -228,7 +228,7 @@ typedef NS_ENUM(NSUInteger, NetworkMethod) {
 #define kMsgMappingSwap @"hbtcchain/mapping/MsgMappingSwap" //映射
 #define kMsgAddLiquidity @"hbtcchain/openswap/MsgAddLiquidity" //添加流动性
 #define kMsgRemoveLiquidity @"hbtcchain/openswap/MsgRemoveLiquidity" //移除流动性
-#define kMsgLimitSwap @"hbtcchain/openswap/MsgLimitSwap" //现价单兑换
+#define kMsgLimitSwap @"hbtcchain/openswap/MsgLimitSwap" //限价单兑换
 #define kMsgCancelLimitSwap @"hbtcchain/openswap/MsgCancelLimitSwap" //撤单
 #define kMsgSwapExactOut @"hbtcchain/openswap/MsgSwapExactOut" //兑换（输出确定）
 #define kMsgSwapExactIn @"hbtcchain/openswap/MsgSwapExactIn" //兑换（输入确定）
@@ -240,7 +240,8 @@ typedef NS_ENUM(NSUInteger, NetworkMethod) {
 #define kPrecisionDecimal [NSDecimalNumber decimalNumberWithString:@"1000000000000000000"]
 #define kPrecisionDecimal_U [NSDecimalNumber decimalNumberWithString:@"0.000001"]
 #define kPrecisionDecimalPower(power) [[NSDecimalNumber decimalNumberWithString:@"10"] decimalNumberByRaisingToPower:(power)]
-#define kAmountTrim(amount) [NSString amountTrim:(amount)]
+#define kAmountShortTrim(amount) [NSString amountShortTrim:(amount)]
+#define kAmountLongTrim(amount) [NSString amountLongTrim:(amount)]
 #define kAddressReplace(address) [NSString addressReplace:(address)]
 
 #define kScreen_Height [UIScreen mainScreen].bounds.size.height

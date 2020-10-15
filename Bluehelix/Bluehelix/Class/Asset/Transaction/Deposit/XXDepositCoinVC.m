@@ -61,8 +61,8 @@
         tip5 = LocalizedString(@"ChainDepositTip5");
     }
     NSMutableAttributedString *attributedString = [[NSMutableAttributedString alloc] initWithString:[NSString stringWithFormat:@"%@%@%@%@%@",tip1,tip2,tip3,tip4,tip5]];
-    [attributedString addAttribute:NSFontAttributeName value:kFont15 range:NSMakeRange(0, attributedString.length)];
-    [attributedString addAttribute:NSParagraphStyleAttributeName value:paraStyle range:NSMakeRange(0, attributedString.length)];
+//    [attributedString addAttribute:NSFontAttributeName value:kFont15 range:NSMakeRange(0, attributedString.length)];
+//    [attributedString addAttribute:NSParagraphStyleAttributeName value:paraStyle range:NSMakeRange(0, attributedString.length)];
     [attributedString addAttribute:NSForegroundColorAttributeName value:kGray700 range:NSMakeRange(0, attributedString.length)];
     [attributedString addAttribute:NSForegroundColorAttributeName value:kPriceFall range:NSMakeRange(tip1.length, tip2.length)];
     [attributedString addAttribute:NSForegroundColorAttributeName value:kPriceFall range:NSMakeRange(tip1.length + tip2.length + tip3.length, tip4.length)];

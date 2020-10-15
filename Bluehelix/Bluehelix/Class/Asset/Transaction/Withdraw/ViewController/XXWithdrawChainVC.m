@@ -89,7 +89,7 @@
 - (XXButton *)withdrawButton {
     if (_withdrawButton == nil) {
         MJWeakSelf
-        _withdrawButton = [XXButton buttonWithFrame:CGRectMake(KSpacing, kScreen_Height - 80, kScreen_Width - KSpacing*2, 42) title:LocalizedString(@"WithdrawChainAddress") font:kFontBold14 titleColor:kMainTextColor block:^(UIButton *button) {
+        _withdrawButton = [XXButton buttonWithFrame:CGRectMake(KSpacing, kScreen_Height - 80, kScreen_Width - KSpacing*2, 42) title:LocalizedString(@"WithdrawChainAddress") font:kFontBold14 titleColor:[UIColor whiteColor] block:^(UIButton *button) {
             [weakSelf withdrawButtonClick];
         }];
         _withdrawButton.backgroundColor = kPrimaryMain;

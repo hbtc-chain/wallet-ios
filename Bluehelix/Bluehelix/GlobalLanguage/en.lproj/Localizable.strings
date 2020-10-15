@@ -33,7 +33,7 @@
 "BackupTipContent"="Remember and keep these 12 words safe, if lost, your assets will not be recovered";
 "NextStep" = "Next step";
 "SetName" = "Set name";
-"SetNameTip" = "You are creating a custodian unit for your BlueHelix wallet and will have a cross-chain wallet";
+"SetNameTip" = "You are creating a account for your BlueHelix wallet and will have a cross-chain wallet";
 "SetPassword" = "Set password";
 "SetPasswordTip" = "·The security code is an important credential to protect the wallet's private key and operate assets\n·BlueHelix wallet does not cache, upload, store your passwords\n·Be sure to keep your password safe";
 "RepeatPassword" = "Repeat password";
@@ -58,7 +58,7 @@
 "ImportSecurity" = "Import private key";
 "ImportMnemonicPhraseTip" = "Please type the mnemonic words in sequence in the input box below, separate by spaces";
 "ImportSecurityTip" = "Please enter your private key in the input box below, and notice the cases";
-"AccountManage" = "custodian unit";
+"AccountManage" = "account";
 "TwoPasswordInconsistent" = "Passwords does not match!";
 "AccountNameRuleAlert" = "Please enter 1-20 characters";
 "IAgreeTo" = "I have read and accept";
@@ -112,7 +112,7 @@
 "SearchPairs" = "Search";
 "ReceiveMoney" = "Receipt";
 "CopyAddress" = "Copy address";
-"WalletAddress" = "Custodian unit address";
+"WalletAddress" = "account address";
 "CopySuccessfully" = "copied";
 "CopyFailed" = "Failed to copy";
 "HoldAsset" = "Current holdings";
@@ -150,22 +150,22 @@
 "QRCode"="QR code";
 "Album"="Album";
 "QRCodeAlertKey"="Place the QR code in the box and it will be scanned automatically";
-"WithdrawTip" = "·You are withdrawing tokens across chains in your custodian unit\n·Be sure to use the cross-chain token withdrawal channel\n·Please do confirm that the token withdrawal address is its original public chain address";
+"WithdrawTip" = "·You are withdrawing tokens across chains in your account\n·Be sure to use the cross-chain token withdrawal channel\n·Please do confirm that the token withdrawal address is its original public chain address";
 "ChainFee" = "Cross-chain gas fee";
 
 //收款地址
-"ShowAddress" = "I understand the risks, show the address";
+"ShowAddress" = "Show the address";
 "Tip" = "Tip";
-"ChainDepositTip1" = "·You are running a custodian unit";
-"ChainDepositTip2" = "Cross-chain";
-"ChainDepositTip3" = "Deposit\n·Please remind the sender to make sure to use";
-"ChainDepositTip4" = "Orignal wallet";
+"ChainDepositTip1" = "·You are running a account ";
+"ChainDepositTip2" = "Cross-chain ";
+"ChainDepositTip3" = "Deposit\n·Please remind the sender to make sure to use ";
+"ChainDepositTip4" = "Orignal wallet ";
 "ChainDepositTip5" = "Withdraw";
-"DepositTip1" = "·You are running a custodian unit";
-"DepositTip2" = "In the chain";
-"DepositTip3" = "Deposit\n·Please remind the sender to make sure to use";
+"DepositTip1" = "·You are running a account ";
+"DepositTip2" = "In the chain ";
+"DepositTip3" = "Deposit\n·Please remind the sender to make sure to use ";
 "DepositTip4" = "non-cross-chain";
-"DepositTip5" = "’s withdrawal channel";
+"DepositTip5" = "'s withdrawal channel";
 
 //币种详情
 "ReceiveMoney" = "Receipt of payment";
@@ -310,7 +310,7 @@
 "ContactMail" = "Hbcwallet@hbtc.com";
 "CopyMail" = "Copy";
 "ModifyUserName" = "Modify name";
-"KeystoreSetNameTip" = "You are importing the custodian unit of the HBTC wallet and will have a cross-chain wallet";
+"KeystoreSetNameTip" = "You are importing the account of the HBTC wallet and will have a cross-chain wallet";
 "ImportKeystoreTip" = "·Copy and paste HBTC wallet Keystore file contents \n· paste into the “Keystore” input box below";
 "KeystoreOutOfOrder" = "The Keystore you entered does not follow the rules";
 "MnemonicPhraseRepetition" =  "Mnemonic repetition";
@@ -514,5 +514,5 @@
 "ClickWithdrawChainAddress" = "点击生成跨链地址";
 "ChooseToken" = "选择币种";
 "Balance" = "余额";
-"MsgLimitSwap" = "现价单兑换";
+"MsgLimitSwap" = "限价单兑换";
 "ChainTip" = "提示：充值非主链代币需要HBTC Chain账户拥有一定的对应主链代币作为归集手续费才可以入账。";

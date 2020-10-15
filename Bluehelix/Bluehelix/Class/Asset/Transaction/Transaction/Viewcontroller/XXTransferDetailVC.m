@@ -120,7 +120,7 @@
     NSString *amountStr = [[amountDecimal decimalNumberByDividingBy:kPrecisionDecimalPower(token.decimals)] stringValue];
     XXTransactionSectionModel *sectionModel = [[XXTransactionSectionModel alloc] init];
     sectionModel.name = LocalizedString(@"ChainWithdrawal");
-    sectionModel.value = [NSString stringWithFormat:@"-%@",kAmountTrim(amountStr)];
+    sectionModel.value = [NSString stringWithFormat:@"-%@",kAmountShortTrim(amountStr)];
     [self.sectionArray addObject:sectionModel];
     NSMutableArray *cellData = [NSMutableArray array];
     XXTransactionCellModel *cellModel = [[XXTransactionCellModel alloc] init];
@@ -143,7 +143,7 @@
     NSString *amountStr = [[amountDecimal decimalNumberByDividingBy:kPrecisionDecimalPower(token.decimals)] stringValue];
     XXTransactionSectionModel *sectionModel = [[XXTransactionSectionModel alloc] init];
     sectionModel.name = LocalizedString(@"ChainDeposit");
-    sectionModel.value = [NSString stringWithFormat:@"%@",kAmountTrim(amountStr)];
+    sectionModel.value = [NSString stringWithFormat:@"%@",kAmountShortTrim(amountStr)];
     [self.sectionArray addObject:sectionModel];
     NSMutableArray *cellData = [NSMutableArray array];
     XXTransactionCellModel *cellModel = [[XXTransactionCellModel alloc] init];
@@ -167,7 +167,7 @@
     NSString *amountStr = [[amountDecimal decimalNumberByDividingBy:kPrecisionDecimalPower(token.decimals)] stringValue];
     XXTransactionSectionModel *sectionModel = [[XXTransactionSectionModel alloc] init];
     sectionModel.name = LocalizedString(@"Delegate");
-    sectionModel.value = [NSString stringWithFormat:@"-%@ %@",kAmountTrim(amountStr),[coin.denom uppercaseString]];
+    sectionModel.value = [NSString stringWithFormat:@"-%@ %@",kAmountShortTrim(amountStr),[coin.denom uppercaseString]];
     [self.sectionArray addObject:sectionModel];
     NSMutableArray *cellData = [NSMutableArray array];
     XXTransactionCellModel *cellModel = [[XXTransactionCellModel alloc] init];
@@ -191,7 +191,7 @@
     NSString *amountStr = [[amountDecimal decimalNumberByDividingBy:kPrecisionDecimalPower(token.decimals)] stringValue];
     XXTransactionSectionModel *sectionModel = [[XXTransactionSectionModel alloc] init];
     sectionModel.name = LocalizedString(@"CancelDelegate");
-    sectionModel.value = [NSString stringWithFormat:@"%@ %@",kAmountTrim(amountStr),[coin.denom uppercaseString]];
+    sectionModel.value = [NSString stringWithFormat:@"%@ %@",kAmountShortTrim(amountStr),[coin.denom uppercaseString]];
     [self.sectionArray addObject:sectionModel];
     NSMutableArray *cellData = [NSMutableArray array];
     XXTransactionCellModel *cellModel = [[XXTransactionCellModel alloc] init];
@@ -215,7 +215,7 @@
     NSString *amountStr = [[amountDecimal decimalNumberByDividingBy:kPrecisionDecimalPower(token.decimals)] stringValue];
     XXTransactionSectionModel *sectionModel = [[XXTransactionSectionModel alloc] init];
     sectionModel.name = LocalizedString(@"WithdrawMoney");
-    sectionModel.value = [NSString stringWithFormat:@"%@ %@",kAmountTrim(amountStr),[coin.denom uppercaseString]];
+    sectionModel.value = [NSString stringWithFormat:@"%@ %@",kAmountShortTrim(amountStr),[coin.denom uppercaseString]];
     [self.sectionArray addObject:sectionModel];
     NSMutableArray *cellData = [NSMutableArray array];
     XXTransactionCellModel *cellModel = [[XXTransactionCellModel alloc] init];
@@ -239,7 +239,7 @@
     NSString *amountStr = [[amountDecimal decimalNumberByDividingBy:kPrecisionDecimalPower(token.decimals)] stringValue];
     XXTransactionSectionModel *sectionModel = [[XXTransactionSectionModel alloc] init];
     sectionModel.name = LocalizedString(@"ProposalNavgationTitlePledge");
-    sectionModel.value = [NSString stringWithFormat:@"-%@ %@",kAmountTrim(amountStr),[coin.denom uppercaseString]];
+    sectionModel.value = [NSString stringWithFormat:@"-%@ %@",kAmountShortTrim(amountStr),[coin.denom uppercaseString]];
     [self.sectionArray addObject:sectionModel];
     NSMutableArray *cellData = [NSMutableArray array];
     XXTransactionCellModel *cellModel = [[XXTransactionCellModel alloc] init];
@@ -262,7 +262,7 @@
     NSString *amountStr = [[amountDecimal decimalNumberByDividingBy:kPrecisionDecimalPower(token.decimals)] stringValue];
     XXTransactionSectionModel *sectionModel = [[XXTransactionSectionModel alloc] init];
     sectionModel.name = LocalizedString(@"VotingProposal");
-    sectionModel.value = [NSString stringWithFormat:@"-%@ %@",kAmountTrim(amountStr),[coin.denom uppercaseString]];
+    sectionModel.value = [NSString stringWithFormat:@"-%@ %@",kAmountShortTrim(amountStr),[coin.denom uppercaseString]];
     [self.sectionArray addObject:sectionModel];
     NSMutableArray *cellData = [NSMutableArray array];
     XXTransactionCellModel *cellModel = [[XXTransactionCellModel alloc] init];

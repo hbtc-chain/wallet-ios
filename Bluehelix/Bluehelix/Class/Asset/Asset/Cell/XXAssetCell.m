@@ -88,7 +88,7 @@
         self.amountLabel.text = kHideAssetText;
     } else {
         self.moneyLabel.text = [[RatesManager shareRatesManager] getTwoRatesWithToken:model.symbol priceValue:model.amount.doubleValue];
-        self.amountLabel.text = kAmountTrim(model.amount);
+        self.amountLabel.text = kAmountShortTrim(model.amount);
     }
     [self configTypeLabel:model];
        self.priceLabel.text = [[RatesManager shareRatesManager] getPriceFromToken:model.symbol];

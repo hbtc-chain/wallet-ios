@@ -49,19 +49,19 @@
 - (void)refreshAsset {
     for (XXTokenModel *tokenModel in [XXAssetSingleManager sharedManager].assetModel.assets) {
         if ([tokenModel.symbol isEqualToString:self.tokenModel.symbol]) {
-            self.tokenModel.amount = kAmountTrim(tokenModel.amount);
+            self.tokenModel.amount = kAmountLongTrim(tokenModel.amount);
             self.tokenModel.symbol = self.tokenModel.symbol;
         }
     }
     if (self.InnerChain) {
         if (self.tokenModel.amount.floatValue) {
-            self.transferView.amountView.currentlyAvailable = kAmountTrim(self.tokenModel.amount);
+            self.transferView.amountView.currentlyAvailable = kAmountLongTrim(self.tokenModel.amount);
         } else {
             self.transferView.amountView.currentlyAvailable = @"0";
         }
     } else {
         if (self.tokenModel.amount.floatValue) {
-            self.withdrawView.amountView.currentlyAvailable = kAmountTrim(self.tokenModel.amount);
+            self.withdrawView.amountView.currentlyAvailable = kAmountLongTrim(self.tokenModel.amount);
         } else {
             self.withdrawView.amountView.currentlyAvailable = @"0";
         }
@@ -73,7 +73,7 @@
         self.titleLabel.text = [NSString stringWithFormat:@"%@ %@",[self.tokenModel.name uppercaseString],LocalizedString(@"Transfer")];
         [self.view addSubview:self.transferView];
         if (self.tokenModel.amount.floatValue) {
-            self.transferView.amountView.currentlyAvailable = kAmountTrim(self.tokenModel.amount);
+            self.transferView.amountView.currentlyAvailable = kAmountLongTrim(self.tokenModel.amount);
         } else {
             self.transferView.amountView.currentlyAvailable = @"0";
         }
@@ -82,10 +82,11 @@
         self.transferView.speedView.slider.minimumValue = [kSliderMinFee floatValue];
         self.transferView.speedView.slider.value = [kMinFee doubleValue];
     } else {
+        [self requestTokens];
         self.titleLabel.text = [NSString stringWithFormat:@"%@ %@",[self.tokenModel.name uppercaseString],LocalizedString(@"Withdraw")];
         [self.view addSubview:self.withdrawView];
         if (self.tokenModel.amount.floatValue) {
-            self.withdrawView.amountView.currentlyAvailable = kAmountTrim(self.tokenModel.amount);
+            self.withdrawView.amountView.currentlyAvailable = kAmountLongTrim(self.tokenModel.amount);
         } else {
             self.withdrawView.amountView.currentlyAvailable = @"0";
         }
@@ -102,6 +103,19 @@
     [self.view addSubview:self.withdrawButton];
 }
 
+/// 提币手续费withdraw_fee会有更新 需要每次进来保持最新的
+- (void)requestTokens {
+    MJWeakSelf
+        [HttpManager getWithPath:@"/api/v1/tokens" params:nil andBlock:^(id data, NSString *msg, NSInteger code) {
+            if (code == 0) {
+                NSArray *tokens = [XXTokenModel mj_objectArrayWithKeyValuesArray:data[@"items"]];
+                [[XXSqliteManager sharedSqlite] insertTokens:tokens];
+                weakSelf.withdrawFeeModel = [[XXSqliteManager sharedSqlite] withdrawFeeToken:weakSelf.tokenModel];
+                weakSelf.withdrawView.chainFeeView.textField.text = weakSelf.tokenModel.withdrawal_fee;
+            }
+        }];
+}
+
 - (void)withdrawButtonClick {
     if (self.InnerChain) {
         [self transferVerify];
@@ -111,25 +125,34 @@
 }
 
 - (void)transferVerify {
-    NSString *address = self.transferView.addressView.textField.text;
+//    NSString *address = self.transferView.addressView.textField.text;
     if (self.transferView.addressView.textField.text.length && self.transferView.amountView.textField.text.length && self.transferView.feeView.textField.text.length) {
-        NSString *pre = [address substringToIndex:3];
-        if (![pre isEqualToString:@"HBC"]) {
-            Alert *alert = [[Alert alloc] initWithTitle:LocalizedString(@"AddressWrong") duration:kAlertDuration completion:^{
-            }];
-            [alert showAlert];
-            return;
+        //        NSString *pre = [address substringToIndex:3];
+        //        if (![pre isEqualToString:@"HBC"]) {
+        //            Alert *alert = [[Alert alloc] initWithTitle:LocalizedString(@"AddressWrong") duration:kAlertDuration completion:^{
+        //            }];
+        //            [alert showAlert];
+        //            return;
+        //        }
+        NSString *availableAmount;
+        if ([self.tokenModel.symbol isEqualToString:kMainToken]) {
+            NSDecimalNumber *amountDecimal = [NSDecimalNumber decimalNumberWithString:self.tokenModel.amount];
+            NSDecimalNumber *feeAmountDecimal = [NSDecimalNumber decimalNumberWithString:self.transferView.feeView.textField.text];
+            availableAmount = [[amountDecimal decimalNumberBySubtracting:feeAmountDecimal] stringValue];
+            if (availableAmount.doubleValue < 0) {
+                availableAmount = kAmountLongTrim(amountDecimal.stringValue);
+            }
+        } else {
+            availableAmount = self.tokenModel.amount;
         }
-        NSDecimalNumber *amountDecimal = [NSDecimalNumber decimalNumberWithString:self.tokenModel.amount];
-        NSDecimalNumber *feeAmountDecimal = [NSDecimalNumber decimalNumberWithString:self.transferView.feeView.textField.text];
-        NSString *availableAmount = [[amountDecimal decimalNumberBySubtracting:feeAmountDecimal] stringValue];
         if (self.transferView.amountView.textField.text.doubleValue > availableAmount.doubleValue) {
             Alert *alert = [[Alert alloc] initWithTitle:LocalizedString(@"TransferErrorTip") duration:kAlertDuration completion:^{
             }];
             [alert showAlert];
             return;
         }
-        if (self.tokenModel.amount.doubleValue < self.transferView.feeView.textField.text.doubleValue) {
+        XXTokenModel *mainToken = [[XXAssetSingleManager sharedManager] assetTokenBySymbol:kMainToken];
+        if (mainToken.amount.doubleValue < self.transferView.feeView.textField.text.doubleValue) {
             Alert *alert = [[Alert alloc] initWithTitle:LocalizedString(@"FeeNotEnough") duration:kAlertDuration completion:^{
             }];
             [alert showAlert];
@@ -150,14 +173,15 @@
 
 /// 请求转账
 - (void)requestTransfer {
+    XXTokenModel *mainToken = [[XXSqliteManager sharedSqlite] tokenBySymbol:kMainToken];
     NSDecimalNumber *amountDecimal = [NSDecimalNumber decimalNumberWithString:self.transferView.amountView.textField.text];
     NSDecimalNumber *feeAmountDecimal = [NSDecimalNumber decimalNumberWithString:self.transferView.feeView.textField.text];
     NSString *toAddress = self.transferView.addressView.textField.text;
     NSString *amount = [[amountDecimal decimalNumberByMultiplyingBy:kPrecisionDecimalPower(self.tokenModel.decimals)] stringValue];
-    NSString *feeAmount = [[feeAmountDecimal decimalNumberByMultiplyingBy:kPrecisionDecimalPower(self.tokenModel.decimals)] stringValue];
+    NSString *feeAmount = [[feeAmountDecimal decimalNumberByMultiplyingBy:kPrecisionDecimalPower(mainToken.decimals)] stringValue];
     
     [MBProgressHUD showActivityMessageInView:@""];
-    XXMsg *model = [[XXMsg alloc] initWithfrom:KUser.address to:toAddress amount:amount denom:self.tokenModel.symbol feeAmount:feeAmount feeGas:@"" feeDenom:self.tokenModel.symbol memo:self.transferView.memoView.textField.text type:kMsgSend withdrawal_fee:@"" text:self.text];
+    XXMsg *model = [[XXMsg alloc] initWithfrom:KUser.address to:toAddress amount:amount denom:self.tokenModel.symbol feeAmount:feeAmount feeGas:@"" feeDenom:kMainToken memo:@"" type:kMsgSend withdrawal_fee:@"" text:self.text];
     _msgRequest = [[XXMsgRequest alloc] init];
     MJWeakSelf
     _msgRequest.msgSendSuccessBlock = ^{
@@ -173,10 +197,10 @@
 /// 提币
 - (void)withdrawVerify {
     if (self.withdrawView.addressView.textField.text.length && self.withdrawView.amountView.textField.text.length && self.withdrawView.feeView.textField.text.length) {
-        NSDecimalNumber *amountDecimal = [NSDecimalNumber decimalNumberWithString:self.tokenModel.amount];
-        NSDecimalNumber *feeAmountDecimal = [NSDecimalNumber decimalNumberWithString:self.withdrawView.chainFeeView.textField.text];
-        NSString *availableAmount = [[amountDecimal decimalNumberBySubtracting:feeAmountDecimal] stringValue];
-        if (self.withdrawView.amountView.textField.text.doubleValue > availableAmount.doubleValue) {
+//        NSDecimalNumber *amountDecimal = [NSDecimalNumber decimalNumberWithString:self.tokenModel.amount];
+//        NSDecimalNumber *feeAmountDecimal = [NSDecimalNumber decimalNumberWithString:self.withdrawView.chainFeeView.textField.text];
+//        NSString *availableAmount = [[amountDecimal decimalNumberBySubtracting:feeAmountDecimal] stringValue];
+        if (self.withdrawView.amountView.textField.text.doubleValue > self.tokenModel.amount.doubleValue) {
             Alert *alert = [[Alert alloc] initWithTitle:LocalizedString(@"WithdrawErrorTip") duration:kAlertDuration completion:^{
             }];
             [alert showAlert];
@@ -220,7 +244,7 @@
     NSString *chainFeeAmount = [[chainFeeDecimal decimalNumberByMultiplyingBy:kPrecisionDecimalPower(self.withdrawFeeModel.decimals)] stringValue];
     
     [MBProgressHUD showActivityMessageInView:@""];
-    XXMsg *model = [[XXMsg alloc] initWithfrom:KUser.address to:toAddress amount:amount denom:self.tokenModel.symbol feeAmount:feeAmount feeGas:@"" feeDenom:kMainToken memo:self.withdrawView.memoView.textField.text type:kMsgWithdrawal withdrawal_fee:chainFeeAmount text:self.text];
+    XXMsg *model = [[XXMsg alloc] initWithfrom:KUser.address to:toAddress amount:amount denom:self.tokenModel.symbol feeAmount:feeAmount feeGas:@"" feeDenom:kMainToken memo:@"" type:kMsgWithdrawal withdrawal_fee:chainFeeAmount text:self.text];
     _msgRequest = [[XXMsgRequest alloc] init];
     MJWeakSelf
     _msgRequest.msgSendSuccessBlock = ^{
@@ -238,6 +262,21 @@
 - (XXWithdrawView *)withdrawView {
     if (_withdrawView == nil) {
         _withdrawView = [[XXWithdrawView alloc] initWithFrame:CGRectMake(0, kNavHeight, kScreen_Width, kScreen_Height - kNavHeight - 90)];
+        MJWeakSelf
+        _withdrawView.amountView.allButtonActionBlock = ^{
+            NSDecimalNumber *availableDecimal = [NSDecimalNumber decimalNumberWithString:weakSelf.tokenModel.amount];
+            if ([weakSelf.tokenModel.chain isEqualToString:weakSelf.tokenModel.symbol]) {
+                NSDecimalNumber *withdrawFeeDecimal = [NSDecimalNumber decimalNumberWithString:weakSelf.tokenModel.withdrawal_fee];
+                NSDecimalNumber *resultDecimal = [availableDecimal decimalNumberBySubtracting:withdrawFeeDecimal];
+                if (resultDecimal.doubleValue > 0) {
+                    weakSelf.withdrawView.amountView.textField.text = kAmountLongTrim(resultDecimal.stringValue);
+                } else {
+                    weakSelf.withdrawView.amountView.textField.text = kAmountLongTrim(availableDecimal.stringValue);
+                }
+            } else {
+                weakSelf.withdrawView.amountView.textField.text = kAmountLongTrim(availableDecimal.stringValue);
+            }
+        };
     }
     return _withdrawView;
 }
@@ -245,6 +284,21 @@
 - (XXTransferView *)transferView {
     if (_transferView == nil) {
         _transferView = [[XXTransferView alloc] initWithFrame:CGRectMake(0, kNavHeight, kScreen_Width, kScreen_Height - kNavHeight - 90)];
+        MJWeakSelf
+        _transferView.amountView.allButtonActionBlock = ^{
+            NSDecimalNumber *availableDecimal = [NSDecimalNumber decimalNumberWithString:weakSelf.tokenModel.amount];
+            if ([weakSelf.tokenModel.symbol isEqualToString:kMainToken]) {
+                NSDecimalNumber *feeDecimal = [NSDecimalNumber decimalNumberWithString:weakSelf.transferView.feeView.textField.text];
+                NSDecimalNumber *resultDecimal = [availableDecimal decimalNumberBySubtracting:feeDecimal];
+                if (resultDecimal.doubleValue > 0) {
+                    weakSelf.transferView.amountView.textField.text = kAmountLongTrim(resultDecimal.stringValue);
+                } else {
+                    weakSelf.transferView.amountView.textField.text = kAmountLongTrim(availableDecimal.stringValue);
+                }
+            } else {
+                weakSelf.transferView.amountView.textField.text = kAmountLongTrim(availableDecimal.stringValue);
+            }
+        };
     }
     return _transferView;
 }
@@ -253,7 +307,7 @@
 - (XXButton *)withdrawButton {
     if (_withdrawButton == nil) {
         MJWeakSelf
-        _withdrawButton = [XXButton buttonWithFrame:CGRectMake(KSpacing, kScreen_Height - 80, kScreen_Width - KSpacing*2, 42) title:@"" font:kFontBold14 titleColor:kMainTextColor block:^(UIButton *button) {
+        _withdrawButton = [XXButton buttonWithFrame:CGRectMake(KSpacing, kScreen_Height - 80, kScreen_Width - KSpacing*2, 42) title:@"" font:kFontBold14 titleColor:[UIColor whiteColor] block:^(UIButton *button) {
             [weakSelf withdrawButtonClick];
         }];
         _withdrawButton.backgroundColor = kPrimaryMain;

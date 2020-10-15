@@ -113,7 +113,11 @@
 
 /// 数量展示
 /// @param amount 数量
-+ (NSString *)amountTrim:(NSString *)amount;
++ (NSString *)amountShortTrim:(NSString *)amount;
+
+/// 数量展示
+/// @param amount 数量
++ (NSString *)amountLongTrim:(NSString *)amount;
 
 /// 地址隐藏中间部分
 /// @param address 地址

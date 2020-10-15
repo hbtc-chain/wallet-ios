@@ -66,12 +66,12 @@
 }
 
 - (void)setAssetModel:(XXAssetModel *)assetModel {
-    self.amountLabel.text = kAmountTrim(assetModel.amount);
+    self.amountLabel.text = kAmountShortTrim(assetModel.amount);
     self.assetLabel.text = [[RatesManager shareRatesManager] getRatesWithToken:assetModel.symbol priceValue:assetModel.amount.doubleValue];
-    self.valueLabel1.text = kAmountTrim(assetModel.amount);
-    self.valueLabel2.text = kAmountTrim(assetModel.bonded);
-    self.valueLabel3.text = kAmountTrim(assetModel.unbonding);
-    self.valueLabel4.text = kAmountTrim(assetModel.claimed_reward);
+    self.valueLabel1.text = kAmountShortTrim(assetModel.amount);
+    self.valueLabel2.text = kAmountShortTrim(assetModel.bonded);
+    self.valueLabel3.text = kAmountShortTrim(assetModel.unbonding);
+    self.valueLabel4.text = kAmountShortTrim(assetModel.claimed_reward);
 }
 
 - (UIView *)backView {

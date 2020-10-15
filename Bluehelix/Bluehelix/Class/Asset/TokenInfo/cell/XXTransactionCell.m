@@ -66,7 +66,7 @@
     if (balance_flows && balance_flows.count > 0) {
         for (NSDictionary *b in balance_flows) {
             if ([b[@"address"] isEqualToString:KUser.address] && [b[@"symbol"] isEqualToString:symbol]) {
-                self.amountLabel.text = [NSString stringWithFormat:@"%@ %@",kAmountTrim(b[@"amount"]),[b[@"symbol"] uppercaseString]];
+                self.amountLabel.text = [NSString stringWithFormat:@"%@ %@",kAmountShortTrim(b[@"amount"]),[b[@"symbol"] uppercaseString]];
             }
         }
     }

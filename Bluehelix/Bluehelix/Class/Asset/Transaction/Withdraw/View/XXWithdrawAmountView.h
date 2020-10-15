@@ -38,7 +38,10 @@ NS_ASSUME_NONNULL_BEGIN
 @property (strong, nonatomic) void(^textFieldBoock)(void);
 
 /** token */
-@property (strong, nonatomic) XXTokenModel *tokenModel;;
+@property (strong, nonatomic) XXTokenModel *tokenModel;
+
+/** 所有按钮回调 */
+@property (copy, nonatomic) void(^allButtonActionBlock)(void);
 @end
 
 NS_ASSUME_NONNULL_END
