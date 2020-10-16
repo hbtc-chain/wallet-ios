@@ -87,6 +87,9 @@
     [self.bottomImageView addSubview:self.copyAddressBtn];
     [self.topBackImageView addSubview:self.symbolLabel];
     [self.topBackImageView addSubview:self.addressLabel];
+    if (!self.InnerChain) {
+        self.symbolLabel.text = [NSString stringWithFormat:@"%@",LocalizedString(@"CrossChainAddress")];
+    }
     [self configChainColor];
 }
 

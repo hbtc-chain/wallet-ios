@@ -15,9 +15,9 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, copy) void (^sureBtnBlock)(void);
 @property (nonatomic, copy) void (^cancelBtnBlock)(void);
 
-+ (void)showWithUpdateVersionContent:(NSString *)content withSureBtnBlock:(void (^)(void))sureBtnBlock; //强制升级
++ (void)showWithUpdateVersionContent:(NSString *)content versionNum:(NSString *)version withSureBtnBlock:(void (^)(void))sureBtnBlock; //强制升级
 
-+ (void)showWithUpdateVersionContent:(NSString *)content withSureBtnBlock:(void (^)(void))sureBtnBlock withCancelBtnBlock:(void (^)(void))cancelBtnBlock; //升级
++ (void)showWithUpdateVersionContent:(NSString *)content versionNum:(NSString *)version withSureBtnBlock:(void (^)(void))sureBtnBlock withCancelBtnBlock:(void (^)(void))cancelBtnBlock; //升级
 
 + (void)dismiss;
 

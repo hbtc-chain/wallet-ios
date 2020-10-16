@@ -70,16 +70,36 @@
             }
         }
     }
-    if ([dic[@"success"] intValue]) {
-        self.stateLabel.text = LocalizedString(@"Success");
-        self.stateLabel.textColor = kGreen100;
-        self.stateLabel.backgroundColor = [kGreen100 colorWithAlphaComponent:0.2];
-        self.stateLabel.frame = CGRectMake(CGRectGetMaxX(self.typeLabel.frame) +5, 24, [NSString widthWithText:LocalizedString(@"Success") font:kFont10] + 8, 16);
+    if ([type isEqualToString:kMsgWithdrawal] || [type isEqualToString:kMsgDeposit]) {
+        NSNumber *ibc_status = dic[@"ibc_status"];
+        if (ibc_status.intValue == 4) {
+            self.stateLabel.text = LocalizedString(@"Success");
+            self.stateLabel.textColor = kGreen100;
+            self.stateLabel.backgroundColor = [kGreen100 colorWithAlphaComponent:0.2];
+            self.stateLabel.frame = CGRectMake(CGRectGetMaxX(self.typeLabel.frame) +5, 24, [NSString widthWithText:LocalizedString(@"Success") font:kFont10] + 8, 16);
+        } else if(ibc_status.intValue == 3) {
+            self.stateLabel.text = LocalizedString(@"Failed");
+            self.stateLabel.textColor = kRed100;
+            self.stateLabel.backgroundColor = [kRed100 colorWithAlphaComponent:0.2];
+            self.stateLabel.frame = CGRectMake(CGRectGetMaxX(self.typeLabel.frame) +5, 24, [NSString widthWithText:LocalizedString(@"Failed") font:kFont10] + 8, 16);
+        } else {
+            self.stateLabel.text = LocalizedString(@"StatusDeal");
+            self.stateLabel.textColor = KRGBA(252, 126, 36, 100);;
+            self.stateLabel.backgroundColor = KRGBA(254, 228, 203, 100);
+            self.stateLabel.frame = CGRectMake(CGRectGetMaxX(self.typeLabel.frame) +5, 24, [NSString widthWithText:LocalizedString(@"StatusDeal") font:kFont10] + 8, 16);
+        }
     } else {
-        self.stateLabel.text = LocalizedString(@"Failed");
-        self.stateLabel.textColor = kRed100;
-        self.stateLabel.backgroundColor = [kRed100 colorWithAlphaComponent:0.2];
-        self.stateLabel.frame = CGRectMake(CGRectGetMaxX(self.typeLabel.frame) +5, 24, [NSString widthWithText:LocalizedString(@"Failed") font:kFont10] + 8, 16);
+        if ([dic[@"success"] intValue]) {
+            self.stateLabel.text = LocalizedString(@"Success");
+            self.stateLabel.textColor = kGreen100;
+            self.stateLabel.backgroundColor = [kGreen100 colorWithAlphaComponent:0.2];
+            self.stateLabel.frame = CGRectMake(CGRectGetMaxX(self.typeLabel.frame) +5, 24, [NSString widthWithText:LocalizedString(@"Success") font:kFont10] + 8, 16);
+        } else {
+            self.stateLabel.text = LocalizedString(@"Failed");
+            self.stateLabel.textColor = kRed100;
+            self.stateLabel.backgroundColor = [kRed100 colorWithAlphaComponent:0.2];
+            self.stateLabel.frame = CGRectMake(CGRectGetMaxX(self.typeLabel.frame) +5, 24, [NSString widthWithText:LocalizedString(@"Failed") font:kFont10] + 8, 16);
+        }
     }
 }
 

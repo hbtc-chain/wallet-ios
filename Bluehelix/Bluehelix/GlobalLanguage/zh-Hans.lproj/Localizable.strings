@@ -523,3 +523,8 @@
 "NeedPassword" = "每次操作都需要密码";
 "NoNeedPassword" = "30分钟内免密码输入";
 "NeedPasswordDefault" = "每次操作都需要密码(默认)";
+"NativeTokenList" = "原生代币列表";
+"CrossChainTokenList" = "跨链代币列表";
+"UpdateContentName" = "更新内容";
+"StatusDeal" = "处理中";
+"CrossChainAddress" = "跨链托管地址";

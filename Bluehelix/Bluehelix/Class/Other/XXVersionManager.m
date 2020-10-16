@@ -26,23 +26,24 @@
             BOOL needUpdate = [data[@"need_update"] boolValue];
             NSString *downloadUrl = data[@"download_url"];
             NSString *content = KString(data[@"new_features"]);
+            NSString *apkVersion = data[@"apk_version"];
             if (needForceUpdate) {
-                [self needForceUpdateWithDownloadUrl:downloadUrl content:content];
+                [self needForceUpdateWithDownloadUrl:downloadUrl versionNum:apkVersion content:content];
             } else if (needUpdate) {
-                [self needUpdateWithDownloadUrl:downloadUrl content:content];
+                [self needUpdateWithDownloadUrl:downloadUrl versionNum:apkVersion content:content];
             }
         }
     }];
 }
 
-+ (void)needForceUpdateWithDownloadUrl:(NSString *)downloadUrl content:(NSString *)content {
-    [XXUpdateVersionView showWithUpdateVersionContent:content withSureBtnBlock:^{
++ (void)needForceUpdateWithDownloadUrl:(NSString *)downloadUrl versionNum:(NSString *)version content:(NSString *)content {
+    [XXUpdateVersionView showWithUpdateVersionContent:content versionNum:version withSureBtnBlock:^{
         [[UIApplication sharedApplication] openURL:[NSURL URLWithString:downloadUrl]];
     }];
 }
 
-+ (void)needUpdateWithDownloadUrl:(NSString *)downloadUrl content:(NSString *)content  {
-    [XXUpdateVersionView showWithUpdateVersionContent:content withSureBtnBlock:^{
++ (void)needUpdateWithDownloadUrl:(NSString *)downloadUrl versionNum:(NSString *)version content:(NSString *)content  {
+    [XXUpdateVersionView showWithUpdateVersionContent:content versionNum:version withSureBtnBlock:^{
         [[UIApplication sharedApplication] openURL:[NSURL URLWithString:downloadUrl]];
     } withCancelBtnBlock:^{
         

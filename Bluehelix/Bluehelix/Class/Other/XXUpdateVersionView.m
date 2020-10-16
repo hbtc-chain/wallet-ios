@@ -15,6 +15,8 @@
 @property (nonatomic, strong) UIImageView *rocketImageView;
 @property (nonatomic, strong) UIButton *dismissBtn;
 @property (nonatomic, strong) UILabel *titleLabel;
+@property (nonatomic, strong) UILabel *nameLabel;
+@property (nonatomic, strong) UILabel *versionNumberLabel;
 @property (nonatomic, strong) XYHNumbersLabel *contentLabel;
 @property (nonatomic, strong) UIButton *updateBtn;
 @property (nonatomic, strong) UIButton *cancelBtn;
@@ -32,13 +34,16 @@
     return self;
 }
 
-- (void)buildUIWithContent:(NSString *)content forceUpdate:(BOOL)forceFlag {
+- (void)buildUIWithContent:(NSString *)content versionNum:(NSString *)version forceUpdate:(BOOL)forceFlag {
     [self addSubview:self.backView];
     [self addSubview:self.versionView];
     [self.versionView addSubview:self.rocketImageView];
 //    [self.versionView addSubview:self.dismissBtn];
     [self.versionView addSubview:self.titleLabel];
+    [self.versionView addSubview:self.versionNumberLabel];
+    [self.versionView addSubview:self.nameLabel];
     [self.versionView addSubview:self.contentLabel];
+    self.versionNumberLabel.text = version;
     [self.contentLabel setText:content];
     self.versionView.frame = CGRectMake(K375(24), (self.height - 280 -self.contentLabel.height)/2, kScreen_Width - K375(48), 280 + self.contentLabel.height);
     [self.versionView addSubview:self.updateBtn];
@@ -52,10 +57,10 @@
     }
 }
 
-+ (void)showWithUpdateVersionContent:(NSString *)content withSureBtnBlock:(void (^)(void))sureBtnBlock withCancelBtnBlock:(void (^)(void))cancelBtnBlock {
++ (void)showWithUpdateVersionContent:(NSString *)content versionNum:(NSString *)version withSureBtnBlock:(void (^)(void))sureBtnBlock withCancelBtnBlock:(void (^)(void))cancelBtnBlock {
     
     XXUpdateVersionView *versionAlert = [[XXUpdateVersionView alloc] initWithFrame:CGRectMake(0, 0, kScreen_Width, kScreen_Height)];
-    [versionAlert buildUIWithContent:content forceUpdate:NO];
+    [versionAlert buildUIWithContent:content versionNum:version forceUpdate:NO];
     [KWindow addSubview:versionAlert];
     
     versionAlert.sureBtnBlock = sureBtnBlock;
@@ -74,9 +79,9 @@
     }];
 }
 
-+ (void)showWithUpdateVersionContent:(NSString *)content withSureBtnBlock:(void (^)(void))sureBtnBlock {
++ (void)showWithUpdateVersionContent:(NSString *)content versionNum:(NSString *)version withSureBtnBlock:(void (^)(void))sureBtnBlock {
     XXUpdateVersionView *versionAlert = [[XXUpdateVersionView alloc] initWithFrame:CGRectMake(0, 0, kScreen_Width, kScreen_Height)];
-    [versionAlert buildUIWithContent:content forceUpdate:YES];
+    [versionAlert buildUIWithContent:content versionNum:version forceUpdate:YES];
     [KWindow addSubview:versionAlert];
     versionAlert.sureBtnBlock = sureBtnBlock;
     
@@ -92,7 +97,6 @@
         }];
     }];
 }
-
 
 + (void)dismiss {
     XXUpdateVersionView *view = (XXUpdateVersionView *)[self currentView];
@@ -152,36 +156,46 @@
 
 - (UIImageView *)rocketImageView {
     if (_rocketImageView == nil) {
-        _rocketImageView = [[UIImageView alloc] initWithFrame:CGRectMake(0, -26, self.versionView.width, K375(194))];
+        _rocketImageView = [[UIImageView alloc] initWithFrame:CGRectMake(0, -26, self.versionView.width, 194)];
         _rocketImageView.image = [UIImage imageNamed:@"updateVersion"];
     }
     return _rocketImageView;
 }
 
-//- (UIButton *)dismissBtn {
-//    if (_dismissBtn == nil ) {
-//        _dismissBtn = [[UIButton alloc] initWithFrame:CGRectMake(kScreen_Width - K375(30) - K375(50), 0, K375(50), K375(50))];
-//        [_dismissBtn setImage:[UIImage imageNamed:@"versionUpdateDismiss"] forState:UIControlStateNormal];
-//        [_dismissBtn addTarget:self action:@selector(cancelAction) forControlEvents:UIControlEventTouchUpInside];
-//    }
-//    return _dismissBtn;
-//}
-
 - (UILabel *)titleLabel {
     if (_titleLabel == nil) {
-        _titleLabel = [[UILabel alloc] initWithFrame:CGRectMake(K375(24), K375(164), kScreen_Width - K375(80), 24)];
+        _titleLabel = [[UILabel alloc] initWithFrame:CGRectMake(K375(24), K375(44), kScreen_Width - K375(80), 48)];
         _titleLabel.text = LocalizedString(@"UpgradeAPP");
-        _titleLabel.font = kFontBold18;
-        _titleLabel.textColor = [UIColor blackColor];
+        _titleLabel.font = kFontBold(32);
+        _titleLabel.textColor = [UIColor whiteColor];
     }
     return _titleLabel;
 }
 
+- (UILabel *)versionNumberLabel {
+    if (_versionNumberLabel == nil) {
+        _versionNumberLabel = [[UILabel alloc] initWithFrame:CGRectMake(K375(24), CGRectGetMaxY(self.titleLabel.frame), kScreen_Width - K375(80), 16)];
+        _versionNumberLabel.font = kFont13;
+        _versionNumberLabel.textColor = [UIColor whiteColor];
+    }
+    return _versionNumberLabel;
+}
+
+- (UILabel *)nameLabel {
+    if (_nameLabel == nil) {
+        _nameLabel = [[UILabel alloc] initWithFrame:CGRectMake(K375(24), 168, kScreen_Width - K375(80), 24)];
+        _nameLabel.text = LocalizedString(@"UpdateContentName");
+        _nameLabel.font = kFont17;
+        _nameLabel.textColor = [UIColor blackColor];
+    }
+    return _nameLabel;
+}
+
 - (XYHNumbersLabel *)contentLabel {
     if (_contentLabel ==nil) {
-        _contentLabel = [[XYHNumbersLabel alloc] initWithFrame:CGRectMake(K375(24), CGRectGetMaxY(self.titleLabel.frame) + 6, self.versionView.width - K375(48), 10) font:kFont14];
+        _contentLabel = [[XYHNumbersLabel alloc] initWithFrame:CGRectMake(K375(24), 200, self.versionView.width - K375(48), 10) font:kFont14];
         _contentLabel.textAlignment = NSTextAlignmentLeft;
-        _contentLabel.textColor = [UIColor blackColor];
+        _contentLabel.textColor = kGray700;
     }
     return _contentLabel;
 }
@@ -194,7 +208,7 @@
         [_updateBtn.titleLabel setFont:kFontBold17];
         [_updateBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
         [_updateBtn addTarget:self action:@selector(updateAction) forControlEvents:UIControlEventTouchUpInside];
-        _updateBtn.layer.cornerRadius = 4;
+        _updateBtn.layer.cornerRadius = 20;
         _updateBtn.layer.masksToBounds = YES;
     }
     return _updateBtn;
@@ -204,11 +218,11 @@
     if (_cancelBtn == nil) {
         _cancelBtn = [[UIButton alloc] initWithFrame:CGRectMake(K375(16), self.versionView.height - 60, (self.versionView.width - K375(40))/2, 44)];
         [_cancelBtn setTitle:LocalizedString(@"Cancel") forState:UIControlStateNormal];
-        [_cancelBtn setBackgroundColor:KRGBA(244, 244, 245, 100)];
+        [_cancelBtn setBackgroundColor:kGray200];
         [_cancelBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
         [_cancelBtn.titleLabel setFont:kFontBold17];
         [_cancelBtn addTarget:self action:@selector(cancelAction) forControlEvents:UIControlEventTouchUpInside];
-        _cancelBtn.layer.cornerRadius = 4;
+        _cancelBtn.layer.cornerRadius = 20;
         _cancelBtn.layer.masksToBounds = YES;
     }
     return _cancelBtn;

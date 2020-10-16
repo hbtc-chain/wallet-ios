@@ -7,12 +7,13 @@
 //
 
 #import <UIKit/UIKit.h>
+@class XXChainModel;
 
 NS_ASSUME_NONNULL_BEGIN
 
 @interface XXChainCell : UITableViewCell
 
-- (void)configData:(NSString *)symbol;
+- (void)configData:(XXChainModel *)model;
 
 @end
 

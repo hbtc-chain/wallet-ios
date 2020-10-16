@@ -23,6 +23,7 @@
 #import "SecurityHelper.h"
 #import "XXVersionManager.h"
 #import "XXAssetSingleManager.h"
+#import "XXChainModel.h"
 
 @interface XXChainAssertVC ()<UITableViewDataSource, UITableViewDelegate>
 
@@ -113,8 +114,8 @@
     if (!cell) {
         cell = [[XXChainCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"XXAssetCell"];
     }
-    NSString *symbol = self.chainArray[indexPath.row];
-    [cell configData:symbol];
+    XXChainModel *model = self.chainArray[indexPath.row];
+    [cell configData:model];
     cell.backgroundColor = kWhiteColor;
     return cell;
 }
@@ -122,7 +123,8 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     XXChainDetailVC *detailVC = [[XXChainDetailVC alloc] init];
-    detailVC.chainName = self.chainArray[indexPath.row];
+    XXChainModel *model = self.chainArray[indexPath.row];
+    detailVC.chainName = model.symbol;
     [self.navigationController pushViewController:detailVC animated:YES];
 }
 
@@ -179,7 +181,11 @@
 
 - (NSMutableArray *)chainArray {
     if (!_chainArray) {
-        _chainArray = [[NSMutableArray alloc] initWithObjects:@"hbc",@"btc",@"eth",@"trx", nil];
+        XXChainModel *hbcModel = [[XXChainModel alloc] initWithSymbol:@"hbc" detailName:@"HBTC Chain" typeName:LocalizedString(@"NativeTokenList")];
+        XXChainModel *btcModel = [[XXChainModel alloc] initWithSymbol:@"btc" detailName:@"Bitcoin" typeName:LocalizedString(@"CrossChainTokenList")];
+        XXChainModel *ethModel = [[XXChainModel alloc] initWithSymbol:@"eth" detailName:@"Ethereum" typeName:LocalizedString(@"CrossChainTokenList")];
+        XXChainModel *trxModel = [[XXChainModel alloc] initWithSymbol:@"trx" detailName:@"Tron" typeName:LocalizedString(@"CrossChainTokenList")];
+        _chainArray = [[NSMutableArray alloc] initWithObjects:hbcModel,btcModel,ethModel,trxModel, nil];
     }
     return _chainArray;
 }

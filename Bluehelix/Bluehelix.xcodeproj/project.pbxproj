@@ -331,6 +331,7 @@
 		EAAA89742520B7A200A4AB5B /* XXTransferMemoView.m in Sources */ = {isa = PBXBuildFile; fileRef = EAAA89732520B7A200A4AB5B /* XXTransferMemoView.m */; };
 		EAAA89772521CD0A00A4AB5B /* XXAssetSingleManager.m in Sources */ = {isa = PBXBuildFile; fileRef = EAAA89762521CD0A00A4AB5B /* XXAssetSingleManager.m */; };
 		EAAFCC242539423E0071B6E6 /* XXPasswordSettingVC.m in Sources */ = {isa = PBXBuildFile; fileRef = EAAFCC232539423E0071B6E6 /* XXPasswordSettingVC.m */; };
+		EAAFCC27253978BA0071B6E6 /* XXChainModel.m in Sources */ = {isa = PBXBuildFile; fileRef = EAAFCC26253978BA0071B6E6 /* XXChainModel.m */; };
 		EAB356302438369200D750D6 /* FMDatabaseQueue.m in Sources */ = {isa = PBXBuildFile; fileRef = EAB356262438369200D750D6 /* FMDatabaseQueue.m */; };
 		EAB356312438369200D750D6 /* FMDatabaseAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = EAB356292438369200D750D6 /* FMDatabaseAdditions.m */; };
 		EAB356322438369200D750D6 /* FMDatabase.m in Sources */ = {isa = PBXBuildFile; fileRef = EAB3562A2438369200D750D6 /* FMDatabase.m */; };
@@ -1131,6 +1132,8 @@
 		EAAA89762521CD0A00A4AB5B /* XXAssetSingleManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = XXAssetSingleManager.m; sourceTree = "<group>"; };
 		EAAFCC222539423E0071B6E6 /* XXPasswordSettingVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = XXPasswordSettingVC.h; sourceTree = "<group>"; };
 		EAAFCC232539423E0071B6E6 /* XXPasswordSettingVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = XXPasswordSettingVC.m; sourceTree = "<group>"; };
+		EAAFCC25253978BA0071B6E6 /* XXChainModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = XXChainModel.h; sourceTree = "<group>"; };
+		EAAFCC26253978BA0071B6E6 /* XXChainModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = XXChainModel.m; sourceTree = "<group>"; };
 		EAB356252438369200D750D6 /* FMDatabase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FMDatabase.h; sourceTree = "<group>"; };
 		EAB356262438369200D750D6 /* FMDatabaseQueue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FMDatabaseQueue.m; sourceTree = "<group>"; };
 		EAB356272438369200D750D6 /* FMResultSet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FMResultSet.h; sourceTree = "<group>"; };
@@ -1918,6 +1921,8 @@
 				EA3E590E24441D160080B98F /* XXAssetModel.m */,
 				EA3E590D24441D160080B98F /* XXAccountModel.h */,
 				EA3E590F24441D160080B98F /* XXAccountModel.m */,
+				EAAFCC25253978BA0071B6E6 /* XXChainModel.h */,
+				EAAFCC26253978BA0071B6E6 /* XXChainModel.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -3955,6 +3960,7 @@
 				EA677242246AA96C008C931A /* XXChooseLoginAccountView.m in Sources */,
 				EABD1B93241BB25900B1A03A /* scrypt_sha256.c in Sources */,
 				EA04ABAE242D015B004403FF /* IQKeyboardManager.m in Sources */,
+				EAAFCC27253978BA0071B6E6 /* XXChainModel.m in Sources */,
 				EABD1BA9241BB25900B1A03A /* RegEx.m in Sources */,
 				EA877F0024C6E4180049545A /* XXImportMnemonicWordsVC.m in Sources */,
 				EA04ABB4242D015B004403FF /* IQKeyboardReturnKeyHandler.m in Sources */,
@@ -4267,7 +4273,7 @@
 				CODE_SIGN_ENTITLEMENTS = "";
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 2;
+				CURRENT_PROJECT_VERSION = 3;
 				DEFINES_MODULE = NO;
 				DEVELOPMENT_TEAM = L2J536XCKC;
 				ENABLE_BITCODE = NO;
@@ -4311,7 +4317,7 @@
 				CODE_SIGN_ENTITLEMENTS = "";
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 2;
+				CURRENT_PROJECT_VERSION = 3;
 				DEFINES_MODULE = NO;
 				DEVELOPMENT_TEAM = L2J536XCKC;
 				ENABLE_BITCODE = NO;
