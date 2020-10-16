@@ -938,54 +938,6 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "CCD41F82-C12D-4EAC-B0CA-FBE2C3939310"
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "Bluehelix/Class/User/Account/ViewController/XXCoinPublishApplyVC.m"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "65"
-            endingLineNumber = "65"
-            landmarkName = "-apply"
-            landmarkType = "7">
-            <Locations>
-               <Location
-                  uuid = "CCD41F82-C12D-4EAC-B0CA-FBE2C3939310 - 170583c64e60fbdf"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "-[XXCoinPublishApplyVC apply]"
-                  moduleName = "HBTC Wallet"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/yuanzhen/wallet-ios/Bluehelix/Bluehelix/Class/User/Account/ViewController/XXCoinPublishApplyVC.m"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "65"
-                  endingLineNumber = "65"
-                  offsetFromSymbolStart = "2144">
-               </Location>
-               <Location
-                  uuid = "CCD41F82-C12D-4EAC-B0CA-FBE2C3939310 - 134e3877108be70f"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "__29-[XXCoinPublishApplyVC apply]_block_invoke.79"
-                  moduleName = "HBTC Wallet"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/yuanzhen/wallet-ios/Bluehelix/Bluehelix/Class/User/Account/ViewController/XXCoinPublishApplyVC.m"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "66"
-                  endingLineNumber = "66"
-                  offsetFromSymbolStart = "12">
-               </Location>
-            </Locations>
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
             uuid = "F5DEDDAA-F007-4375-8E51-0BB0471DDC22"
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
@@ -1009,8 +961,8 @@
             filePath = "Bluehelix/Class/Asset/Transaction/Withdraw/ViewController/XXWithdrawChainVC.m"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "65"
-            endingLineNumber = "65"
+            startingLineNumber = "69"
+            endingLineNumber = "69"
             landmarkName = "-requestWithdrawVerify:"
             landmarkType = "7">
          </BreakpointContent>
@@ -1025,8 +977,8 @@
             filePath = "Bluehelix/Class/Asset/Transaction/Withdraw/ViewController/XXWithdrawChainVC.m"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "68"
-            endingLineNumber = "68"
+            startingLineNumber = "72"
+            endingLineNumber = "72"
             landmarkName = "-requestWithdrawVerify:"
             landmarkType = "7">
             <Locations>
@@ -1041,9 +993,9 @@
                   urlString = "file:///Users/yuanzhen/wallet-ios/Bluehelix/Bluehelix/Class/Asset/Transaction/Withdraw/ViewController/XXWithdrawChainVC.m"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "68"
-                  endingLineNumber = "68"
-                  offsetFromSymbolStart = "968">
+                  startingLineNumber = "72"
+                  endingLineNumber = "72"
+                  offsetFromSymbolStart = "1150">
                </Location>
                <Location
                   uuid = "AD7E84B5-7BDD-4B23-869D-DBA19EC53978 - b48f707b13785a4b"
@@ -1056,9 +1008,9 @@
                   urlString = "file:///Users/yuanzhen/wallet-ios/Bluehelix/Bluehelix/Class/Asset/Transaction/Withdraw/ViewController/XXWithdrawChainVC.m"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "69"
-                  endingLineNumber = "69"
-                  offsetFromSymbolStart = "36">
+                  startingLineNumber = "73"
+                  endingLineNumber = "73"
+                  offsetFromSymbolStart = "16">
                </Location>
             </Locations>
          </BreakpointContent>
@@ -1073,8 +1025,8 @@
             filePath = "Bluehelix/Class/Asset/Transaction/Withdraw/ViewController/XXWithdrawChainVC.m"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "72"
-            endingLineNumber = "72"
+            startingLineNumber = "76"
+            endingLineNumber = "76"
             landmarkName = "-requestWithdrawVerify:"
             landmarkType = "7">
             <Locations>
@@ -1089,58 +1041,26 @@
                   urlString = "file:///Users/yuanzhen/wallet-ios/Bluehelix/Bluehelix/Class/Asset/Transaction/Withdraw/ViewController/XXWithdrawChainVC.m"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "72"
-                  endingLineNumber = "72"
-                  offsetFromSymbolStart = "1096">
+                  startingLineNumber = "76"
+                  endingLineNumber = "76"
+                  offsetFromSymbolStart = "1271">
                </Location>
                <Location
-                  uuid = "BE004A96-8948-4E74-BFA6-AF2AA5E66CA3 - 1b840d3d0f719b80"
+                  uuid = "BE004A96-8948-4E74-BFA6-AF2AA5E66CA3 - 1b840d3d0f719b84"
                   shouldBeEnabled = "Yes"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
-                  symbolName = "__43-[XXWithdrawChainVC requestWithdrawVerify:]_block_invoke.115"
+                  symbolName = "__43-[XXWithdrawChainVC requestWithdrawVerify:]_block_invoke.117"
                   moduleName = "HBTC Wallet"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/yuanzhen/wallet-ios/Bluehelix/Bluehelix/Class/Asset/Transaction/Withdraw/ViewController/XXWithdrawChainVC.m"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "73"
-                  endingLineNumber = "73"
-                  offsetFromSymbolStart = "64">
+                  startingLineNumber = "77"
+                  endingLineNumber = "77"
+                  offsetFromSymbolStart = "44">
                </Location>
             </Locations>
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "CBAB6B29-04AB-4940-9356-836233758D5E"
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "Bluehelix/Class/Request/XXMsgRequest.m"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "43"
-            endingLineNumber = "43"
-            landmarkName = "-send"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "24A33369-6F1E-484C-8E68-C552ED9FB3F1"
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "Bluehelix/Class/Request/XXMsgRequest.m"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "89"
-            endingLineNumber = "89"
-            landmarkName = "-signData:"
-            landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -1204,6 +1124,22 @@
             startingLineNumber = "135"
             endingLineNumber = "135"
             landmarkName = "+getSpaceLabelHeight:withFont:withWidth:"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "14034EAE-E160-4B5E-92A0-72FE24C7E06F"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Bluehelix/Class/User/Setting/ViewController/XXPasswordSettingVC.m"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "92"
+            endingLineNumber = "92"
+            landmarkName = "-tableView:cellForRowAtIndexPath:"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

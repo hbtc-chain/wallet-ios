@@ -40,11 +40,16 @@
 
 - (void)swapVerify {
     if (!IsEmpty(self.backView.leftField.text)) {
-        MJWeakSelf
-        [XXPasswordView showWithSureBtnBlock:^(NSString * _Nonnull text) {
-            weakSelf.text = text;
-            [weakSelf requestSwap];
-        }];
+        if (kIsQuickTextOpen) {
+            self.text = kText;
+            [self requestSwap];
+        } else {
+            MJWeakSelf
+            [XXPasswordView showWithSureBtnBlock:^(NSString * _Nonnull text) {
+                weakSelf.text = text;
+                [weakSelf requestSwap];
+            }];
+        }
     } else {
         Alert *alert = [[Alert alloc] initWithTitle:LocalizedString(@"CompleteInfomation") duration:kAlertDuration completion:^{
         }];
@@ -85,13 +90,13 @@
 }
 
 /*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
+ #pragma mark - Navigation
+ 
+ // In a storyboard-based application, you will often want to do a little preparation before navigation
+ - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+ // Get the new view controller using [segue destinationViewController].
+ // Pass the selected object to the new view controller.
+ }
+ */
 
 @end

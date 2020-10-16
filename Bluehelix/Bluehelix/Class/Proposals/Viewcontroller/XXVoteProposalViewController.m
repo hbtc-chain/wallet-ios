@@ -44,11 +44,11 @@
 }
 #pragma mark load data
 - (void)configAsset {
-//    @weakify(self)
-//     [XXAssetSingleManager sharedManager].assetChangeBlock = ^{
-//        @strongify(self)
-//        [self refreshAssetAmount];
-//    };
+    //    @weakify(self)
+    //     [XXAssetSingleManager sharedManager].assetChangeBlock = ^{
+    //        @strongify(self)
+    //        [self refreshAssetAmount];
+    //    };
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(refreshAssetAmount) name:kNotificationAssetRefresh object:nil];
 }
 #pragma mark 刷新资产
@@ -70,7 +70,7 @@
     }
     @weakify(self)
     if (self.addProposalView.propotalTitleView.textField.text.length && self.addProposalView.proposalDescriptionView.textView.text.length&& self.addProposalView.amountView.textField.text.length && self.addProposalView.feeView.textField.text.length) {
-               
+        
         NSDecimalNumber *feeAndQuantyDecimal =  [[NSDecimalNumber decimalNumberWithString:self.addProposalView.amountView.textField.text]decimalNumberByAdding:[NSDecimalNumber decimalNumberWithString:self.addProposalView.feeView.textField.text]];
         if (feeAndQuantyDecimal.doubleValue > self.tokenModel.amount.doubleValue) {
             Alert *alert = [[Alert alloc] initWithTitle:LocalizedString(@"FeeNotEnough") duration:kAlertDuration completion:^{
@@ -78,12 +78,17 @@
             [alert showAlert];
             return;
         }
-        MJWeakSelf
-        [XXPasswordView showWithSureBtnBlock:^(NSString * _Nonnull text) {
-            @strongify(self)
-            weakSelf.text = text;
+        if (kIsQuickTextOpen) {
+            self.text = kText;
             [self requestCreateProposal];
-           }];
+        } else {
+            MJWeakSelf
+            [XXPasswordView showWithSureBtnBlock:^(NSString * _Nonnull text) {
+                @strongify(self)
+                weakSelf.text = text;
+                [self requestCreateProposal];
+            }];
+        }
     } else {
         Alert *alert = [[Alert alloc] initWithTitle:LocalizedString(@"PleaseFillAll") duration:kAlertDuration completion:^{
         }];
@@ -98,11 +103,8 @@
     XXTokenModel *tokenModel = [[XXSqliteManager sharedSqlite] tokenBySymbol:kMainToken];
     NSDecimalNumber *amountDecimal = [NSDecimalNumber decimalNumberWithString:self.addProposalView.amountView.textField.text];
     NSDecimalNumber *feeAmountDecimal = [NSDecimalNumber decimalNumberWithString:self.addProposalView.feeView.textField.text];
-//    NSDecimalNumber *gasPriceDecimal = [NSDecimalNumber decimalNumberWithString:[NSString stringWithFormat:@"%f",self.addProposalView.speedView.slider.value]];
-    //NSString *toAddress = self.addProposalView.addressView.textField.text;
     NSString *amount = [[amountDecimal decimalNumberByMultiplyingBy:kPrecisionDecimalPower(tokenModel.decimals)] stringValue];
     NSString *feeAmount = [[feeAmountDecimal decimalNumberByMultiplyingBy:kPrecisionDecimalPower(tokenModel.decimals)] stringValue];
-//    NSString *gas = [[[feeAmountDecimal decimalNumberByDividingBy:gasPriceDecimal] decimalNumberByDividingBy:kPrecisionDecimal_U] stringValue];
     
     [MBProgressHUD showActivityMessageInView:@""];
     XXMsg *model = [[XXMsg alloc] initProposalMessageWithfrom:KUser.address

@@ -18,6 +18,7 @@
 #import "YZAuthID.h"
 #import "XYHAlertView.h"
 #import "XXTabBarController.h"
+#import "XXPasswordSettingVC.h"
 
 @interface XXSettingVC()<UITableViewDelegate,UITableViewDataSource>
 @property (strong, nonatomic) NSMutableArray *itemsArray;
@@ -31,7 +32,6 @@
 @end
 
 @implementation XXSettingVC
-static NSString *identifir = @"XXSettingCell";
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -49,8 +49,9 @@ static NSString *identifir = @"XXSettingCell";
     } else {
         [self.itemsArray addObject:@[LocalizedString(@"FingerprintUnlock")]];
     }
+    [self.itemsArray addObject:@[LocalizedString(@"SecuritySetting")]];
     [self.view addSubview:self.loginOutButton];
-    [self.tableView registerClass:[XXSettingCell class] forCellReuseIdentifier:identifir];
+    [self.tableView registerClass:[XXSettingCell class] forCellReuseIdentifier:@"XXSettingCell"];
 }
 
 - (void)loginOutButtonClick:(UIButton *)sender {
@@ -118,7 +119,7 @@ static NSString *identifir = @"XXSettingCell";
 - (void)openFaceID {
     
     NSIndexPath *indexPath = [NSIndexPath indexPathForRow:0 inSection:1];
-    XXSettingCell *cell = [self.tableView cellForRowAtIndexPath: indexPath];
+    XXSettingCell *cell = [self.tableView cellForRowAtIndexPath:indexPath];
     
     LAContext *myContext = [[LAContext alloc] init];
     NSError *authError = nil;
@@ -188,7 +189,7 @@ static NSString *identifir = @"XXSettingCell";
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     NSArray *namesArray = self.itemsArray[indexPath.section];
-    XXSettingCell *cell = [tableView dequeueReusableCellWithIdentifier:identifir];
+    XXSettingCell *cell = [tableView dequeueReusableCellWithIdentifier:@"XXSettingCell"];
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
     cell.contentView.backgroundColor = kViewBackgroundColor;
     cell.lineView.backgroundColor = KLine_Color;
@@ -240,6 +241,13 @@ static NSString *identifir = @"XXSettingCell";
                 }
             }
         };
+    } else if(indexPath.section == 2 && indexPath.row == 0) {
+        cell.rightIconImageView.hidden = NO;
+        if (kIsQuickTextOpen) {
+            cell.valueLabel.text = LocalizedString(@"NoNeedPassword");
+        } else {
+            cell.valueLabel.text = LocalizedString(@"NeedPassword");
+        }
     }
     cell.lineView.hidden = indexPath.row == namesArray.count - 1 ? YES : NO;
     return cell;
@@ -266,6 +274,9 @@ static NSString *identifir = @"XXSettingCell";
         [self.navigationController pushViewController:languageVC animated:YES];
     } else if ([itemString isEqualToString:LocalizedString(@"ExchangeRate")]) {
         XXRatesListVC *vc = [[XXRatesListVC alloc] init];
+        [self.navigationController pushViewController:vc animated:YES];
+    } else if ([itemString isEqualToString:LocalizedString(@"SecuritySetting")]) {
+        XXPasswordSettingVC *vc = [[XXPasswordSettingVC alloc] init];
         [self.navigationController pushViewController:vc animated:YES];
     } else {
         

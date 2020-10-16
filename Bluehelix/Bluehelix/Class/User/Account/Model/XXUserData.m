@@ -7,7 +7,11 @@
 //
 
 #import "XXUserData.h"
+@interface XXUserData()
 
+@property (nonatomic, strong) NSTimer *timer;
+
+@end
 
 @implementation XXUserData
 
@@ -63,6 +67,19 @@ static XXUserData *_sharedUserData = nil;
 
 - (BOOL)agreeService {
     return [[self getValueForKey:@"agreeService"] integerValue];
+}
+
+- (void)setIsQuickTextOpen:(BOOL)isQuickTextOpen {
+    _isQuickTextOpen = isQuickTextOpen;
+    if (_isQuickTextOpen == YES) {
+        [self performSelector:@selector(setQuickAction) withObject:nil afterDelay:1800];
+    } else {
+      [NSObject cancelPreviousPerformRequestsWithTarget:self selector:@selector(setQuickAction) object:nil];
+    }
+}
+
+- (void)setQuickAction {
+    [self setIsQuickTextOpen:NO];
 }
 
 // 临时用户名

@@ -330,6 +330,7 @@
 		EAAA897125207FFA00A4AB5B /* Bugly.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EAAA897025207FFA00A4AB5B /* Bugly.framework */; };
 		EAAA89742520B7A200A4AB5B /* XXTransferMemoView.m in Sources */ = {isa = PBXBuildFile; fileRef = EAAA89732520B7A200A4AB5B /* XXTransferMemoView.m */; };
 		EAAA89772521CD0A00A4AB5B /* XXAssetSingleManager.m in Sources */ = {isa = PBXBuildFile; fileRef = EAAA89762521CD0A00A4AB5B /* XXAssetSingleManager.m */; };
+		EAAFCC242539423E0071B6E6 /* XXPasswordSettingVC.m in Sources */ = {isa = PBXBuildFile; fileRef = EAAFCC232539423E0071B6E6 /* XXPasswordSettingVC.m */; };
 		EAB356302438369200D750D6 /* FMDatabaseQueue.m in Sources */ = {isa = PBXBuildFile; fileRef = EAB356262438369200D750D6 /* FMDatabaseQueue.m */; };
 		EAB356312438369200D750D6 /* FMDatabaseAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = EAB356292438369200D750D6 /* FMDatabaseAdditions.m */; };
 		EAB356322438369200D750D6 /* FMDatabase.m in Sources */ = {isa = PBXBuildFile; fileRef = EAB3562A2438369200D750D6 /* FMDatabase.m */; };
@@ -1128,6 +1129,8 @@
 		EAAA89732520B7A200A4AB5B /* XXTransferMemoView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XXTransferMemoView.m; sourceTree = "<group>"; };
 		EAAA89752521CD0A00A4AB5B /* XXAssetSingleManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = XXAssetSingleManager.h; sourceTree = "<group>"; };
 		EAAA89762521CD0A00A4AB5B /* XXAssetSingleManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = XXAssetSingleManager.m; sourceTree = "<group>"; };
+		EAAFCC222539423E0071B6E6 /* XXPasswordSettingVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = XXPasswordSettingVC.h; sourceTree = "<group>"; };
+		EAAFCC232539423E0071B6E6 /* XXPasswordSettingVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = XXPasswordSettingVC.m; sourceTree = "<group>"; };
 		EAB356252438369200D750D6 /* FMDatabase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FMDatabase.h; sourceTree = "<group>"; };
 		EAB356262438369200D750D6 /* FMDatabaseQueue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FMDatabaseQueue.m; sourceTree = "<group>"; };
 		EAB356272438369200D750D6 /* FMResultSet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FMResultSet.h; sourceTree = "<group>"; };
@@ -2851,6 +2854,8 @@
 				EAA8DEC9244D81C300161698 /* XXSettingVC.m */,
 				EAA8DED2244D99C900161698 /* XXRatesListVC.h */,
 				EAA8DED3244D99C900161698 /* XXRatesListVC.m */,
+				EAAFCC222539423E0071B6E6 /* XXPasswordSettingVC.h */,
+				EAAFCC232539423E0071B6E6 /* XXPasswordSettingVC.m */,
 			);
 			path = ViewController;
 			sourceTree = "<group>";
@@ -3988,6 +3993,7 @@
 				EA45BB0324DE76BF00132984 /* XXSymbolModel.m in Sources */,
 				EA9D744524F91DD100B53997 /* MJRefreshAutoStateFooter.m in Sources */,
 				EA45BB0B24DE76BF00132984 /* XXMarketSortButton.m in Sources */,
+				EAAFCC242539423E0071B6E6 /* XXPasswordSettingVC.m in Sources */,
 				EA45BB7D24DF999F00132984 /* KLineHistoryView.m in Sources */,
 				EABD1BA6241BB25900B1A03A /* SecureData.m in Sources */,
 				EAE28624247285C3006D9F24 /* XXBackupPrivateKeyView.m in Sources */,

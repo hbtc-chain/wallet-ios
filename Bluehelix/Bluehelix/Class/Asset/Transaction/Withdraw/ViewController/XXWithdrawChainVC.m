@@ -50,10 +50,14 @@
         [alert showAlert];
         return;
     }
-    MJWeakSelf
-    [XXPasswordView showWithSureBtnBlock:^(NSString * _Nonnull text) {
-        [weakSelf requestWithdrawVerify:text];
-    }];
+    if (kIsQuickTextOpen) {
+        [self requestWithdrawVerify:kText];
+    } else {
+        MJWeakSelf
+        [XXPasswordView showWithSureBtnBlock:^(NSString * _Nonnull text) {
+            [weakSelf requestWithdrawVerify:text];
+        }];
+    }
 }
 
 - (void)requestWithdrawVerify:(NSString *)text {

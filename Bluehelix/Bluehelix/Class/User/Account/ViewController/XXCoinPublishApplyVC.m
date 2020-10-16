@@ -38,12 +38,12 @@
 }
 
 - (void)setupUI {
-        [self.view addSubview:self.coinPublishView];
-        self.coinPublishView.feeView.unitLabel.text = [kMainToken uppercaseString];
-        self.coinPublishView.feeView.textField.text = kMinFee;
+    [self.view addSubview:self.coinPublishView];
+    self.coinPublishView.feeView.unitLabel.text = [kMainToken uppercaseString];
+    self.coinPublishView.feeView.textField.text = kMinFee;
     self.coinPublishView.speedView.slider.maximumValue = [kSliderMaxFee floatValue];
-           self.coinPublishView.speedView.slider.minimumValue = [kSliderMinFee floatValue];
-           self.coinPublishView.speedView.slider.value = [kMinFee doubleValue];
+    self.coinPublishView.speedView.slider.minimumValue = [kSliderMinFee floatValue];
+    self.coinPublishView.speedView.slider.value = [kMinFee doubleValue];
     [self.view addSubview:self.applyButton];
 }
 
@@ -55,12 +55,16 @@
             [alert showAlert];
             return;
         }
-
-        MJWeakSelf
-        [XXPasswordView showWithSureBtnBlock:^(NSString * _Nonnull text) {
-            weakSelf.text = text;
-            [weakSelf requestApply];
-           }];
+        if (kIsQuickTextOpen) {
+            self.text = kText;
+            [self requestApply];
+        } else {
+            MJWeakSelf
+            [XXPasswordView showWithSureBtnBlock:^(NSString * _Nonnull text) {
+                weakSelf.text = text;
+                [weakSelf requestApply];
+            }];
+        }
     } else {
         Alert *alert = [[Alert alloc] initWithTitle:LocalizedString(@"CompleteInfomation") duration:kAlertDuration completion:^{
         }];

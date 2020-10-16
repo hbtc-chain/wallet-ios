@@ -238,10 +238,10 @@
 
 /// 跨链转出
 - (void)chainOutAction {
-        XXTransferVC *transferVC = [[XXTransferVC alloc] init];
-        transferVC.tokenModel = self.tokenModel;
-        transferVC.InnerChain = NO;
-        [self.navigationController pushViewController:transferVC animated:YES];
+    XXTransferVC *transferVC = [[XXTransferVC alloc] init];
+    transferVC.tokenModel = self.tokenModel;
+    transferVC.InnerChain = NO;
+    [self.navigationController pushViewController:transferVC animated:YES];
 }
 
 /// 跨链收款
@@ -269,9 +269,13 @@
     NSString *content = NSLocalizedFormatString(LocalizedString(@"WithdrawMoneyContent"),sum.stringValue,kMinFee);
     MJWeakSelf
     [XXRewardView showWithTitle:LocalizedString(@"WithdrawMoney") icon:@"withdrawMoneyAlert" content:content sureBlock:^{
-        [XXPasswordView showWithSureBtnBlock:^(NSString * _Nonnull text) {
-            [weakSelf requestWithdrawBonus:text];
-        }];
+        if (kIsQuickTextOpen) {
+            [weakSelf requestWithdrawBonus:kText];
+        } else {
+            [XXPasswordView showWithSureBtnBlock:^(NSString * _Nonnull text) {
+                [weakSelf requestWithdrawBonus:text];
+            }];
+        }
     }];
 }
 
@@ -305,9 +309,13 @@
     NSString *content = NSLocalizedFormatString(LocalizedString(@"InMoneyContent"),sum.stringValue,kMinFee);
     MJWeakSelf
     [XXRewardView showWithTitle:LocalizedString(@"InMoney") icon:@"InMoneyAlert" content:content sureBlock:^{
-        [XXPasswordView showWithSureBtnBlock:^(NSString * _Nonnull text) {
-            [weakSelf requestDepositBonus:text];
-        }];
+        if (kIsQuickTextOpen) {
+            [weakSelf requestDepositBonus:kText];
+        } else {
+            [XXPasswordView showWithSureBtnBlock:^(NSString * _Nonnull text) {
+                [weakSelf requestDepositBonus:text];
+            }];
+        }
     }];
 }
 

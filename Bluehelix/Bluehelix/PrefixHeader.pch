@@ -233,6 +233,8 @@ typedef NS_ENUM(NSUInteger, NetworkMethod) {
 #define kMsgSwapExactOut @"hbtcchain/openswap/MsgSwapExactOut" //兑换（输出确定）
 #define kMsgSwapExactIn @"hbtcchain/openswap/MsgSwapExactIn" //兑换（输入确定）
 
+#define kIsQuickTextOpen [XXUserData sharedUserData].isQuickTextOpen
+#define kText [XXUserData sharedUserData].text
 #define kHideAssetText @"***"
 #define kPrecision 1000000000000000000 //精度是10的18次方
 #define kPrecision_U 0.000001 //10的负6次方

@@ -47,11 +47,11 @@
 }
 #pragma mark load data
 - (void)configAsset {
-//    @weakify(self)
-//     [XXAssetSingleManager sharedManager].assetChangeBlock = ^{
-//        @strongify(self)
-//        [self refreshPledgeAmount];
-//    };
+    //    @weakify(self)
+    //     [XXAssetSingleManager sharedManager].assetChangeBlock = ^{
+    //        @strongify(self)
+    //        [self refreshPledgeAmount];
+    //    };
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(refreshPledgeAmount) name:kNotificationAssetRefresh object:nil];
 }
 #pragma mark 刷新资产
@@ -75,11 +75,16 @@
             [alert showAlert];
             return;
         }
-        [XXPasswordView showWithSureBtnBlock:^(NSString * _Nonnull text) {
-            @strongify(self)
-            self.text = text;
+        if (kIsQuickTextOpen) {
+            self.text = kText;
             [self requestPledge];
-           }];
+        } else {
+            [XXPasswordView showWithSureBtnBlock:^(NSString * _Nonnull text) {
+                @strongify(self)
+                self.text = text;
+                [self requestPledge];
+            }];
+        }
     } else {
         Alert *alert = [[Alert alloc] initWithTitle:LocalizedString(@"PleaseFillAll") duration:kAlertDuration completion:^{
         }];
@@ -92,40 +97,40 @@
     XXTokenModel *tokenModel = [[XXSqliteManager sharedSqlite] tokenBySymbol:kMainToken];
     NSDecimalNumber *amountDecimal = [NSDecimalNumber decimalNumberWithString:self.pledgeView.amountView.textField.text];
     NSDecimalNumber *feeAmountDecimal = [NSDecimalNumber decimalNumberWithString:self.pledgeView.feeView.textField.text];
-//    NSDecimalNumber *gasPriceDecimal = [NSDecimalNumber decimalNumberWithString:[NSString stringWithFormat:@"%f",self.pledgeView.speedView.slider.value]];
-//    NSString *toAddress = self.pledgeView.addressView.textField.text;
+    //    NSDecimalNumber *gasPriceDecimal = [NSDecimalNumber decimalNumberWithString:[NSString stringWithFormat:@"%f",self.pledgeView.speedView.slider.value]];
+    //    NSString *toAddress = self.pledgeView.addressView.textField.text;
     NSString *amount = [[amountDecimal decimalNumberByMultiplyingBy:kPrecisionDecimalPower(tokenModel.decimals)] stringValue];
     NSString *feeAmount = [[feeAmountDecimal decimalNumberByMultiplyingBy:kPrecisionDecimalPower(tokenModel.decimals)] stringValue];
-//    NSString *gas = [[[feeAmountDecimal decimalNumberByDividingBy:gasPriceDecimal] decimalNumberByDividingBy:kPrecisionDecimal_U] stringValue];
+    //    NSString *gas = [[[feeAmountDecimal decimalNumberByDividingBy:gasPriceDecimal] decimalNumberByDividingBy:kPrecisionDecimal_U] stringValue];
     
     [MBProgressHUD showActivityMessageInView:@""];
     XXMsg *model = [[XXMsg alloc] initProposalMessageWithfrom:KUser.address
-                                                              to:@""
-                                                          amount:amount
-                                                           denom:tokenModel.symbol
-                                                       feeAmount:feeAmount
-                                                          feeGas:@""
-                                                        feeDenom:tokenModel.symbol
-                                                            memo:tokenModel.symbol
-                                                            type:kMsgPledge
-                                                    proposalType:@""
-                                                   proposalTitle:@""
-                                              proposalDescription:@""
-                                                    proposalId:self.proposalModel.proposalId
-                                                  proposalOption:@""
-                                                  withdrawal_fee:@""
-                                                            text:self.text];
-                    
-                    
+                                                           to:@""
+                                                       amount:amount
+                                                        denom:tokenModel.symbol
+                                                    feeAmount:feeAmount
+                                                       feeGas:@""
+                                                     feeDenom:tokenModel.symbol
+                                                         memo:tokenModel.symbol
+                                                         type:kMsgPledge
+                                                 proposalType:@""
+                                                proposalTitle:@""
+                                          proposalDescription:@""
+                                                   proposalId:self.proposalModel.proposalId
+                                               proposalOption:@""
+                                               withdrawal_fee:@""
+                                                         text:self.text];
+    
+    
     _msgRequest = [[XXMsgRequest alloc] init];
     [_msgRequest sendMsg:model];
     MJWeakSelf
     _msgRequest.msgSendSuccessBlock = ^{
         [MBProgressHUD hideHUD];
-         [weakSelf.navigationController popViewControllerAnimated:YES];
+        [weakSelf.navigationController popViewControllerAnimated:YES];
     };
-     _msgRequest.msgSendFaildBlock = ^(NSString * _Nonnull msg) {
-           [MBProgressHUD hideHUD];
+    _msgRequest.msgSendFaildBlock = ^(NSString * _Nonnull msg) {
+        [MBProgressHUD hideHUD];
     };
 }
 #pragma mark set/get
@@ -134,7 +139,7 @@
 - (XXPledgeView *)pledgeView {
     if (!_pledgeView ) {
         _pledgeView = [[XXPledgeView alloc] initWithFrame:CGRectMake(0, kNavHeight, kScreen_Width, kScreen_Height - kNavHeight - 64 - 8)];
-       // _delegateTransferView.delegateNodeType = self.delegateNodeType;
+        // _delegateTransferView.delegateNodeType = self.delegateNodeType;
     }
     return _pledgeView;
 }
@@ -149,7 +154,7 @@
         _transferButton.layer.cornerRadius = 3;
         _transferButton.layer.masksToBounds = YES;
         [_transferButton setTitle:LocalizedString(@"ProposalButtonTitlePledge") forState:UIControlStateNormal];
-
+        
     }
     return _transferButton;
 }

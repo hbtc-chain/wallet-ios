@@ -71,7 +71,7 @@
         self.titleLabel.text = self.navTitle;
     }
     [self.webView addObserver:self forKeyPath:@"estimatedProgress" options:NSKeyValueObservingOptionNew context:nil];
-//    [self.webView addObserver:self forKeyPath:@"title" options:NSKeyValueObservingOptionNew context:NULL];
+    //    [self.webView addObserver:self forKeyPath:@"title" options:NSKeyValueObservingOptionNew context:NULL];
 }
 
 - (void)initBridge {
@@ -103,10 +103,14 @@
 
 /// 弹出密码
 - (void)alertPassword:(id)data {
-    MJWeakSelf
-    [XXPasswordView showWithSureBtnBlock:^(NSString * _Nonnull text) {
-        [weakSelf requestWebTrade:text data:data];
-    }];
+    if (kIsQuickTextOpen) {
+        [self requestWebTrade:kText data:data];
+    } else {
+        MJWeakSelf
+        [XXPasswordView showWithSureBtnBlock:^(NSString * _Nonnull text) {
+            [weakSelf requestWebTrade:text data:data];
+        }];
+    }
 }
 
 - (void)requestWebTrade:(NSString *)text data:(id)data {
@@ -256,7 +260,7 @@
     
     if ([keyPath isEqualToString:@"estimatedProgress"]) { // 加载进度
         if(self.webView.estimatedProgress >=1.0f) {
-
+            
             [self.progressView setProgress:self.webView.estimatedProgress];
             [UIView animateWithDuration:0.25f animations:^{
                 [self.progressView setAlpha:0.0f];
@@ -268,11 +272,11 @@
             [self.progressView setProgress:self.webView.estimatedProgress animated:YES];
         }
     }
-//    else if ([keyPath isEqualToString:@"title"]) { // 标题
-//        if (!self.navTitle) {
-//            self.titleLabel.text = self.webView.title;
-//        }
-//    }
+    //    else if ([keyPath isEqualToString:@"title"]) { // 标题
+    //        if (!self.navTitle) {
+    //            self.titleLabel.text = self.webView.title;
+    //        }
+    //    }
 }
 
 #pragma mark - 7. 关闭按钮点击事件
@@ -297,7 +301,7 @@
 - (void)dealloc {
     if (_webView) {
         [_webView removeObserver:self forKeyPath:@"estimatedProgress"];
-//        [_webView removeObserver:self forKeyPath:@"title"];
+        //        [_webView removeObserver:self forKeyPath:@"title"];
     }
     [[NSNotificationCenter defaultCenter] removeObserver:self];
 }

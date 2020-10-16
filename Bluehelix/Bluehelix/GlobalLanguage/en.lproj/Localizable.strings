@@ -516,3 +516,5 @@
 "Balance" = "余额";
 "MsgLimitSwap" = "限价单兑换";
 "ChainTip" = "提示：充值非主链代币需要HBTC Chain账户拥有一定的对应主链代币作为归集手续费才可以入账。";
+"WithdrawChainFeeLess" = "跨链手续费不能小于";
+"SecuritySetting" = "安全设置";

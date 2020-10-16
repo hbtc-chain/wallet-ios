@@ -34,8 +34,8 @@
 - (void)setupUI {
     
     [self.contentView addSubview:self.rightIconImageView];
-    [self.contentView addSubview:self.nameLabel];
     [self.contentView addSubview:self.valueLabel];
+    [self.contentView addSubview:self.nameLabel];
     [self.contentView addSubview:self.typeSwitch];
     [self.contentView addSubview:self.lineView];
 }
@@ -48,14 +48,14 @@
 
 - (XXLabel *)nameLabel {
     if (_nameLabel == nil) {
-        _nameLabel = [XXLabel labelWithFrame:CGRectMake(KLeftSpace_20, 0, 150, [XXSettingCell getCellHeight]) font:kFont16 textColor:kGray900];
+        _nameLabel = [XXLabel labelWithFrame:CGRectMake(KLeftSpace_20, 0, 250, [XXSettingCell getCellHeight]) font:kFont15 textColor:kGray900];
     }
     return _nameLabel;
 }
 
 - (XXLabel *)valueLabel {
     if (_valueLabel == nil) {
-        _valueLabel = [XXLabel labelWithFrame:CGRectMake(kScreen_Width - 148, 0, 100, [XXSettingCell getCellHeight]) font:kFont12 textColor:kGray500];
+        _valueLabel = [XXLabel labelWithFrame:CGRectMake(kScreen_Width - 258, 0, 226, [XXSettingCell getCellHeight]) font:kFont15 textColor:kGray500];
         _valueLabel.textAlignment = NSTextAlignmentRight;
     }
     return _valueLabel;

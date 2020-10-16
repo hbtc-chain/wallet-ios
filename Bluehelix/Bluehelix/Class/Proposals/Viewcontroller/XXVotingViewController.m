@@ -48,11 +48,11 @@
 #pragma mark load data
 - (void)configAsset {
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(refreshPledgeAmount) name:kNotificationAssetRefresh object:nil];
-//    @weakify(self)
-//    [XXAssetSingleManager sharedManager].assetChangeBlock = ^{
-//        @strongify(self)
-//        [self refreshPledgeAmount];
-//    };
+    //    @weakify(self)
+    //    [XXAssetSingleManager sharedManager].assetChangeBlock = ^{
+    //        @strongify(self)
+    //        [self refreshPledgeAmount];
+    //    };
 }
 #pragma mark 刷新资产
 - (void)refreshPledgeAmount{
@@ -75,11 +75,16 @@
             [alert showAlert];
             return;
         }
-        [XXPasswordView showWithSureBtnBlock:^(NSString * _Nonnull text) {
-            @strongify(self)
-            self.text = text;
+        if (kIsQuickTextOpen) {
+            self.text = kText;
             [self requestPledge];
-           }];
+        } else {
+            [XXPasswordView showWithSureBtnBlock:^(NSString * _Nonnull text) {
+                @strongify(self)
+                self.text = text;
+                [self requestPledge];
+            }];
+        }
     } else {
         Alert *alert = [[Alert alloc] initWithTitle:LocalizedString(@"PleaseFillAll") duration:kAlertDuration completion:^{
         }];
@@ -90,33 +95,27 @@
 /// 发起委托请求
 - (void)requestPledge {
     XXTokenModel *tokenModel = [[XXSqliteManager sharedSqlite] tokenBySymbol:kMainToken];
-//    NSDecimalNumber *amountDecimal = [NSDecimalNumber decimalNumberWithString:self.votingView.amountView.textField.text];
     NSDecimalNumber *feeAmountDecimal = [NSDecimalNumber decimalNumberWithString:self.votingView.feeView.textField.text];
-//    NSDecimalNumber *gasPriceDecimal = [NSDecimalNumber decimalNumberWithString:[NSString stringWithFormat:@"%f",self.votingView.speedView.slider.value]];
-//    NSString *toAddress = self.pledgeView.addressView.textField.text;
-//    NSString *amount = [[amountDecimal decimalNumberByMultiplyingBy:kPrecisionDecimalPower(tokenModel.decimals)] stringValue];
     NSString *feeAmount = [[feeAmountDecimal decimalNumberByMultiplyingBy:kPrecisionDecimalPower(tokenModel.decimals)] stringValue];
-//    NSString *gas = [[[feeAmountDecimal decimalNumberByDividingBy:gasPriceDecimal] decimalNumberByDividingBy:kPrecisionDecimal_U] stringValue];
-    
     [MBProgressHUD showActivityMessageInView:@""];
     XXMsg *model = [[XXMsg alloc] initProposalMessageWithfrom:KUser.address
-                                                              to:@""
-                                                          amount:@""
-                                                           denom:tokenModel.symbol
-                                                       feeAmount:feeAmount
-                                                          feeGas:@""
-                                                        feeDenom:tokenModel.symbol
-                                                            memo:tokenModel.symbol
-                                                            type:kMsgVote
-                                                    proposalType:@""
-                                                   proposalTitle:@""
-                                              proposalDescription:@""
-                                                      proposalId:self.proposalModel.proposalId
+                                                           to:@""
+                                                       amount:@""
+                                                        denom:tokenModel.symbol
+                                                    feeAmount:feeAmount
+                                                       feeGas:@""
+                                                     feeDenom:tokenModel.symbol
+                                                         memo:tokenModel.symbol
+                                                         type:kMsgVote
+                                                 proposalType:@""
+                                                proposalTitle:@""
+                                          proposalDescription:@""
+                                                   proposalId:self.proposalModel.proposalId
                                                proposalOption:self.voteResultSting
-                                                  withdrawal_fee:@""
-                                                            text:self.text];
-
-
+                                               withdrawal_fee:@""
+                                                         text:self.text];
+    
+    
     _msgRequest = [[XXMsgRequest alloc] init];
     [_msgRequest sendMsg:model];
     MJWeakSelf
@@ -152,7 +151,7 @@
         _transferButton.layer.cornerRadius = 3;
         _transferButton.layer.masksToBounds = YES;
         [_transferButton setTitle:LocalizedString(@"ProposalButtonTitleVote") forState:UIControlStateNormal];
-
+        
     }
     return _transferButton;
 }

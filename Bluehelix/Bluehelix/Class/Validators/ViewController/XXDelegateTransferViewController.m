@@ -68,7 +68,7 @@
     self.delegateTransferView.speedView.slider.value = [kMinFee doubleValue];
 }
 - (void)loadDefaultData{
-        
+    
     switch (self.delegateNodeType) {
         case 0:
             self.delegateTransferView.addressView.textField.text = [NSString addressReplace:KString(_validatorModel.operator_address)];
@@ -93,7 +93,7 @@
             NSArray *listArray = [XXHadDelegateModel mj_objectArrayWithKeyValuesArray:data];
             [weakSelf refreshRelieveDelegate:listArray];
         } else {
-
+            
         }
     }];
 }
@@ -114,7 +114,7 @@
                 }
                 break;
             case XXDelegateNodeTypeTransfer:
-                 
+                
                 break;
             case XXDelegateNodeTypeRelieve:
                 if (self.delegateTransferView.amountView.textField.text.doubleValue > self.hadDelegateModel.bonded.doubleValue) {
@@ -131,29 +131,41 @@
                 }
                 break;
             default:
-                 
+                
                 break;
         }
-        
-        
-        MJWeakSelf
-        [XXPasswordView showWithSureBtnBlock:^(NSString * _Nonnull text) {
-            weakSelf.text = text;
+        if (kIsQuickTextOpen) {
+            self.text = kText;
             switch (self.delegateNodeType) {
                 case XXDelegateNodeTypeAdd:
-                    [weakSelf requestDelegate];
+                    [self requestDelegate];
                     break;
                 case XXDelegateNodeTypeTransfer:
-                     
                     break;
                 case XXDelegateNodeTypeRelieve:
-                    [weakSelf requestRelieveDelegate];
+                    [self requestRelieveDelegate];
                     break;
                 default:
-                     
                     break;
             }
-           }];
+        } else {
+            MJWeakSelf
+            [XXPasswordView showWithSureBtnBlock:^(NSString * _Nonnull text) {
+                weakSelf.text = text;
+                switch (self.delegateNodeType) {
+                    case XXDelegateNodeTypeAdd:
+                        [weakSelf requestDelegate];
+                        break;
+                    case XXDelegateNodeTypeTransfer:
+                        break;
+                    case XXDelegateNodeTypeRelieve:
+                        [weakSelf requestRelieveDelegate];
+                        break;
+                    default:
+                        break;
+                }
+            }];
+        }
     } else {
         Alert *alert = [[Alert alloc] initWithTitle:LocalizedString(@"PleaseFillAll") duration:kAlertDuration completion:^{
         }];
@@ -191,7 +203,7 @@
     NSString *toAddress = self.validatorModel.operator_address;
     NSString *amount = [[amountDecimal decimalNumberByMultiplyingBy:kPrecisionDecimalPower(tokenModel.decimals)] stringValue];
     NSString *feeAmount = [[feeAmountDecimal decimalNumberByMultiplyingBy:kPrecisionDecimalPower(tokenModel.decimals)] stringValue];
-
+    
     [MBProgressHUD showActivityMessageInView:@""];
     XXMsg *model = [[XXMsg alloc] initWithfrom:KUser.address to:toAddress amount:amount denom:tokenModel.symbol feeAmount:feeAmount feeGas:@"" feeDenom:tokenModel.symbol memo:@"" type:kMsgUndelegate withdrawal_fee:@"" text:self.text];
     _msgRequest = [[XXMsgRequest alloc] init];
@@ -252,17 +264,17 @@
         _transferButton.layer.masksToBounds = YES;
         switch (self.delegateNodeType) {
             case 0:
-                 [_transferButton setTitle:LocalizedString(@"Delegate") forState:UIControlStateNormal];
+                [_transferButton setTitle:LocalizedString(@"Delegate") forState:UIControlStateNormal];
                 break;
             case 1:
-                 [_transferButton setTitle:LocalizedString(@"TransferDelegate") forState:UIControlStateNormal];
+                [_transferButton setTitle:LocalizedString(@"TransferDelegate") forState:UIControlStateNormal];
                 break;
                 
             default:
-                 [_transferButton setTitle:LocalizedString(@"RelieveDelegate") forState:UIControlStateNormal];
+                [_transferButton setTitle:LocalizedString(@"RelieveDelegate") forState:UIControlStateNormal];
                 break;
         }
-
+        
     }
     return _transferButton;
 }

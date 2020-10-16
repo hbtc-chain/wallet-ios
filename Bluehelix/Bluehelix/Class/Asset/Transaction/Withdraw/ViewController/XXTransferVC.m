@@ -106,14 +106,14 @@
 /// 提币手续费withdraw_fee会有更新 需要每次进来保持最新的
 - (void)requestTokens {
     MJWeakSelf
-        [HttpManager getWithPath:@"/api/v1/tokens" params:nil andBlock:^(id data, NSString *msg, NSInteger code) {
-            if (code == 0) {
-                NSArray *tokens = [XXTokenModel mj_objectArrayWithKeyValuesArray:data[@"items"]];
-                [[XXSqliteManager sharedSqlite] insertTokens:tokens];
-                weakSelf.withdrawFeeModel = [[XXSqliteManager sharedSqlite] withdrawFeeToken:weakSelf.tokenModel];
-                weakSelf.withdrawView.chainFeeView.textField.text = weakSelf.tokenModel.withdrawal_fee;
-            }
-        }];
+    [HttpManager getWithPath:@"/api/v1/tokens" params:nil andBlock:^(id data, NSString *msg, NSInteger code) {
+        if (code == 0) {
+            NSArray *tokens = [XXTokenModel mj_objectArrayWithKeyValuesArray:data[@"items"]];
+            [[XXSqliteManager sharedSqlite] insertTokens:tokens];
+            weakSelf.withdrawFeeModel = [[XXSqliteManager sharedSqlite] withdrawFeeToken:weakSelf.tokenModel];
+            weakSelf.withdrawView.chainFeeView.textField.text = weakSelf.tokenModel.withdrawal_fee;
+        }
+    }];
 }
 
 - (void)withdrawButtonClick {
@@ -125,7 +125,7 @@
 }
 
 - (void)transferVerify {
-//    NSString *address = self.transferView.addressView.textField.text;
+    //    NSString *address = self.transferView.addressView.textField.text;
     if (self.transferView.addressView.textField.text.length && self.transferView.amountView.textField.text.length && self.transferView.feeView.textField.text.length) {
         //        NSString *pre = [address substringToIndex:3];
         //        if (![pre isEqualToString:@"HBC"]) {
@@ -158,11 +158,16 @@
             [alert showAlert];
             return;
         }
-        MJWeakSelf
-        [XXPasswordView showWithSureBtnBlock:^(NSString * _Nonnull text) {
-            weakSelf.text = text;
-            [weakSelf requestTransfer];
-        }];
+        if (kIsQuickTextOpen) {
+            self.text = kText;
+            [self requestTransfer];
+        } else {
+            MJWeakSelf
+            [XXPasswordView showWithSureBtnBlock:^(NSString * _Nonnull text) {
+                weakSelf.text = text;
+                [weakSelf requestTransfer];
+            }];
+        }
     } else {
         Alert *alert = [[Alert alloc] initWithTitle:LocalizedString(@"CompleteInfomation") duration:kAlertDuration completion:^{
         }];
@@ -197,9 +202,9 @@
 /// 提币
 - (void)withdrawVerify {
     if (self.withdrawView.addressView.textField.text.length && self.withdrawView.amountView.textField.text.length && self.withdrawView.feeView.textField.text.length) {
-//        NSDecimalNumber *amountDecimal = [NSDecimalNumber decimalNumberWithString:self.tokenModel.amount];
-//        NSDecimalNumber *feeAmountDecimal = [NSDecimalNumber decimalNumberWithString:self.withdrawView.chainFeeView.textField.text];
-//        NSString *availableAmount = [[amountDecimal decimalNumberBySubtracting:feeAmountDecimal] stringValue];
+        //        NSDecimalNumber *amountDecimal = [NSDecimalNumber decimalNumberWithString:self.tokenModel.amount];
+        //        NSDecimalNumber *feeAmountDecimal = [NSDecimalNumber decimalNumberWithString:self.withdrawView.chainFeeView.textField.text];
+        //        NSString *availableAmount = [[amountDecimal decimalNumberBySubtracting:feeAmountDecimal] stringValue];
         if (self.withdrawView.amountView.textField.text.doubleValue > self.tokenModel.amount.doubleValue) {
             Alert *alert = [[Alert alloc] initWithTitle:LocalizedString(@"WithdrawErrorTip") duration:kAlertDuration completion:^{
             }];
@@ -219,11 +224,16 @@
             [alert showAlert];
             return;
         }
-        MJWeakSelf
-        [XXPasswordView showWithSureBtnBlock:^(NSString * _Nonnull text) {
-            weakSelf.text = text;
-            [weakSelf requestWithdraw];
-        }];
+        if (kIsQuickTextOpen) {
+            self.text = kText;
+            [self requestTransfer];
+        } else {
+            MJWeakSelf
+            [XXPasswordView showWithSureBtnBlock:^(NSString * _Nonnull text) {
+                weakSelf.text = text;
+                [weakSelf requestWithdraw];
+            }];
+        }
     } else {
         Alert *alert = [[Alert alloc] initWithTitle:LocalizedString(@"CompleteInfomation") duration:kAlertDuration completion:^{
         }];
