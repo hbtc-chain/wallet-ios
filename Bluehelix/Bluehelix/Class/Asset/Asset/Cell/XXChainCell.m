@@ -111,7 +111,7 @@
 
 - (XXLabel *)detailNameLabel {
     if (_detailNameLabel == nil) {
-        _detailNameLabel = [XXLabel labelWithFrame:CGRectMake(self.coinNameLabel.left, CGRectGetMaxY(self.coinNameLabel.frame), 100, 16) font:kFont13 textColor:kGray300];
+        _detailNameLabel = [XXLabel labelWithFrame:CGRectMake(self.coinNameLabel.left, CGRectGetMaxY(self.coinNameLabel.frame), 150, 16) font:kFont13 textColor:kGray300];
     }
     return _detailNameLabel;
 }

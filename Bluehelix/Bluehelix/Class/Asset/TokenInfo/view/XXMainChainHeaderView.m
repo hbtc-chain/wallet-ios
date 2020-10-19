@@ -16,10 +16,12 @@
 
 @property (strong, nonatomic) UIView *backView;
 @property (strong, nonatomic) XXLabel *chainNameLabel;
-@property (strong, nonatomic) XXLabel *titleAddressLabel;
+@property (strong, nonatomic) XXLabel *testLabel;
+//@property (strong, nonatomic) XXLabel *titleAddressLabel;
 @property (strong, nonatomic) XXLabel *addressLabel;
 @property (strong, nonatomic) XXButton *copyButton;
 @property (strong, nonatomic) XXButton *codeBtn;
+@property (strong, nonatomic) XXButton *getTestCoinBtn;
 
 @end
 
@@ -38,11 +40,27 @@
     self.backgroundColor = kWhiteColor;
     [self addSubview:self.backView];
     [self.backView addSubview:self.chainNameLabel];
-    [self.backView addSubview:self.titleAddressLabel];
+    [self.backView addSubview:self.testLabel];
+//    [self.backView addSubview:self.titleAddressLabel];
     [self.backView addSubview:self.addressLabel];
     [self.backView addSubview:self.copyButton];
     [self.backView addSubview:self.codeBtn];
-    self.chainNameLabel.text = [kMainToken uppercaseString];
+    [self.backView addSubview:self.getTestCoinBtn];
+}
+
+- (void)requestGetTestCoin:(NSString *)denom {
+    NSString *path = [NSString stringWithFormat:@"%@%@%@%@",@"/api/v1/cus/",KUser.address,@"/send_test_token?denom=",denom];
+    [HttpManager getWithPath:path params:nil andBlock:^(id data, NSString *msg, NSInteger code) {
+        if (code == 0) {
+           Alert *alert = [[Alert alloc] initWithTitle:LocalizedString(@"GetTestCoinSuccess") duration:kAlertDuration completion:^{
+           }];
+           [alert showAlert];
+        } else {
+            Alert *alert = [[Alert alloc] initWithTitle:msg duration:kAlertDuration completion:^{
+            }];
+            [alert showAlert];
+        }
+    }];
 }
 
 - (UIView *)backView {
@@ -56,22 +74,31 @@
 
 - (XXLabel *)chainNameLabel {
     if (!_chainNameLabel) {
-        _chainNameLabel = [XXLabel labelWithFrame:CGRectMake(K375(16), K375(16), kScreen_Width, 32) font:kFont20 textColor:[UIColor whiteColor]];
+        _chainNameLabel = [XXLabel labelWithFrame:CGRectMake(K375(16), 16, 45, 42) font:kFont20 textColor:[UIColor whiteColor]];
+        _chainNameLabel.text = [kMainToken uppercaseString];
     }
     return _chainNameLabel;
 }
 
-- (XXLabel *)titleAddressLabel {
-    if (!_titleAddressLabel) {
-        _titleAddressLabel = [XXLabel labelWithFrame:CGRectMake(K375(16), CGRectGetMaxY(self.chainNameLabel.frame), self.backView.width - K375(32), 24) text:LocalizedString(@"ChainTitle") font:kFont13 textColor:[UIColor whiteColor]];
+- (XXLabel *)testLabel {
+    if (!_testLabel) {
+        _testLabel = [XXLabel labelWithFrame:CGRectMake(CGRectGetMaxX(self.chainNameLabel.frame), 20, 100, 32) font:kFont13 textColor:[UIColor whiteColor]];
+        _testLabel.text = @"(Testnet)";
     }
-    return _titleAddressLabel;
+    return _testLabel;
 }
+
+//- (XXLabel *)titleAddressLabel {
+//    if (!_titleAddressLabel) {
+//        _titleAddressLabel = [XXLabel labelWithFrame:CGRectMake(K375(16), CGRectGetMaxY(self.chainNameLabel.frame), self.backView.width - K375(32), 24) text:LocalizedString(@"ChainTitle") font:kFont13 textColor:[UIColor whiteColor]];
+//    }
+//    return _titleAddressLabel;
+//}
 
 - (XXLabel *)addressLabel {
     if (!_addressLabel) {
         CGFloat width = [NSString widthWithText:[NSString addressShortReplace:KUser.address] font:kFont13];
-        _addressLabel = [XXLabel labelWithFrame:CGRectMake(K375(16), CGRectGetMaxY(self.titleAddressLabel.frame), width, 24) font:kFont13 textColor:[UIColor whiteColor]];
+        _addressLabel = [XXLabel labelWithFrame:CGRectMake(K375(16), CGRectGetMaxY(self.chainNameLabel.frame) + 6, width, 24) font:kFont13 textColor:[UIColor whiteColor]];
         _addressLabel.text = [NSString addressShortReplace:KUser.address];
     }
     return _addressLabel;
@@ -79,26 +106,43 @@
 
 - (XXButton *)copyButton {
     if (_copyButton == nil) {
-        _copyButton = [XXButton buttonWithFrame:CGRectMake(self.backView.width - 80, self.addressLabel.top, 24, 24) block:^(UIButton *button) {
+        _copyButton = [XXButton buttonWithFrame:CGRectMake(CGRectGetMaxX(self.addressLabel.frame) + 10, self.addressLabel.top, 24, 24) block:^(UIButton *button) {
             UIPasteboard *pab = [UIPasteboard generalPasteboard];
             [pab setString:KUser.address];
             Alert *alert = [[Alert alloc] initWithTitle:LocalizedString(@"CopySuccessfully") duration:kAlertDuration completion:^{
             }];
             [alert showAlert];
         }];
-        [_copyButton setImage:[UIImage imageNamed:@"paste"] forState:UIControlStateNormal];
+        [_copyButton setImage:[UIImage imageNamed:@"copyCircle"] forState:UIControlStateNormal];
     }
     return _copyButton;
 }
 
 - (XXButton *)codeBtn {
     if (!_codeBtn) {
-        _codeBtn = [XXButton buttonWithFrame:CGRectMake( self.backView.width - 45, self.addressLabel.top, 24, 24) block:^(UIButton *button) {
+        _codeBtn = [XXButton buttonWithFrame:CGRectMake(CGRectGetMaxX(self.copyButton.frame) + 10, self.addressLabel.top, 24, 24) block:^(UIButton *button) {
             [XXChainAddressView showWithAddress:KUser.address];
         }];
-        [_codeBtn setImage:[UIImage imageNamed:@"chainCode"] forState:UIControlStateNormal];
+        [_codeBtn setImage:[UIImage imageNamed:@"codeCircle"] forState:UIControlStateNormal];
     }
     return _codeBtn;
+}
+
+- (XXButton *)getTestCoinBtn {
+    if (!_getTestCoinBtn) {
+        MJWeakSelf
+        _getTestCoinBtn = [XXButton buttonWithFrame:CGRectMake(CGRectGetMaxX(self.codeBtn.frame) + 16, self.addressLabel.top, 80, 26) block:^(UIButton *button) {
+            [weakSelf requestGetTestCoin:@"hbc"];
+            [weakSelf requestGetTestCoin:@"kiwi"];
+        }];
+        _getTestCoinBtn.layer.cornerRadius = 13;
+        [_getTestCoinBtn setTitle:LocalizedString(@"GetTestCoin") forState:UIControlStateNormal];
+        _getTestCoinBtn.backgroundColor = [UIColor whiteColor];
+        [_getTestCoinBtn setTitleColor:kPrimaryMain forState:UIControlStateNormal];
+        _getTestCoinBtn.titleLabel.font = kFont13;
+        [_getTestCoinBtn setContentHorizontalAlignment:UIControlContentHorizontalAlignmentCenter];
+    }
+    return _getTestCoinBtn;
 }
 
 @end

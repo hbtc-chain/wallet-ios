@@ -46,13 +46,13 @@ static XXSqliteManager *_sqliteManager;
 #pragma mark 币
 - (BOOL)existsTokens {
     [self.myFmdb open];
-    BOOL result = [self.myFmdb executeUpdate:@"create table if not exists tokens(ID INTEGER PRIMARY KEY AUTOINCREMENT,name TEXT,symbol TEXT,chain TEXT,decimals INTEGER,is_native BOOLEAN,withdrawal_fee TEXT,logo TEXT,is_withdrawal_enabled BOOLEAN)"];
+    BOOL result = [self.myFmdb executeUpdate:@"create table if not exists tokens(ID INTEGER PRIMARY KEY AUTOINCREMENT,deposit_threshold TEXT,name TEXT,symbol TEXT,chain TEXT,decimals INTEGER,is_native BOOLEAN,withdrawal_fee TEXT,logo TEXT,is_withdrawal_enabled BOOLEAN)"];
     return result;
 }
 
 
 - (void)insertTokens:(NSArray *)tokens {
-    if (![self.myFmdb columnExists:@"name" inTableWithName:@"tokens"]) {
+    if (![self.myFmdb columnExists:@"deposit_threshold" inTableWithName:@"tokens"]) {
         [self.myFmdb executeUpdate:@"drop table if exists tokens"];
     }
     BOOL existsTable = [self existsTokens];
@@ -62,6 +62,7 @@ static XXSqliteManager *_sqliteManager;
     [self.myFmdb executeUpdate:@"delete from 'tokens'"];
     for (XXTokenModel *model  in tokens) {
         NSMutableArray *argumentsArr = [[NSMutableArray alloc] init];
+        [argumentsArr addObject:model.deposit_threshold];
         [argumentsArr addObject:model.name];
         [argumentsArr addObject:model.symbol];
         [argumentsArr addObject:[NSNumber numberWithInt:model.decimals]];
@@ -70,15 +71,16 @@ static XXSqliteManager *_sqliteManager;
         [argumentsArr addObject:model.logo];
         [argumentsArr addObject:model.chain];
         [argumentsArr addObject:[NSNumber numberWithInt:model.is_withdrawal_enabled]];
-        if (argumentsArr.count != 8) {
+        if (argumentsArr.count != 9) {
             return;
         }
-        [self.myFmdb executeUpdate:@"insert into 'tokens'(name,symbol,decimals,is_native,withdrawal_fee,logo,chain,is_withdrawal_enabled) values(?,?,?,?,?,?,?,?)" withArgumentsInArray:argumentsArr];
+        [self.myFmdb executeUpdate:@"insert into 'tokens'(deposit_threshold,name,symbol,decimals,is_native,withdrawal_fee,logo,chain,is_withdrawal_enabled) values(?,?,?,?,?,?,?,?,?)" withArgumentsInArray:argumentsArr];
     }
 }
 
 - (XXTokenModel *)tokenModel:(FMResultSet *)set {
     XXTokenModel *model = [[XXTokenModel alloc] init];
+    model.deposit_threshold = [set stringForColumn:@"deposit_threshold"];
     model.name = [set stringForColumn:@"name"];
     model.symbol = [set stringForColumn:@"symbol"];
     model.decimals = [set intForColumn:@"decimals"];

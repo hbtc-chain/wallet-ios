@@ -12,6 +12,7 @@
 #import <UIImageView+WebCache.h>
 #import "XXDepositAlert.h"
 #import "XXAssetSingleManager.h"
+#import "XYHNumbersLabel.h"
 
 @interface XXDepositCoinVC ()
 
@@ -27,6 +28,7 @@
 @property (nonatomic, strong) UIView *symbolBackView;
 @property (nonatomic, strong) UIImageView *symbolImageView;
 @property (nonatomic, strong) NSString *showAddress;
+@property (nonatomic, strong) XYHNumbersLabel *tipContentLabel;
 
 @end
 
@@ -87,8 +89,9 @@
     [self.bottomImageView addSubview:self.copyAddressBtn];
     [self.topBackImageView addSubview:self.symbolLabel];
     [self.topBackImageView addSubview:self.addressLabel];
+    [self.scrollView addSubview:self.tipContentLabel];
     if (!self.InnerChain) {
-        self.symbolLabel.text = [NSString stringWithFormat:@"%@",LocalizedString(@"CrossChainAddress")];
+        self.symbolLabel.text = LocalizedString(@"CrossChainAddress");
     }
     [self configChainColor];
 }
@@ -122,14 +125,14 @@
 - (UIView *)tipView {
     if (!_tipView) {
         _tipView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, kScreen_Width, 48)];
-        _tipView.backgroundColor = KRGBA(88, 78, 70, 100);
+        _tipView.backgroundColor = KRGBA(52, 109, 116, 100);
     }
     return _tipView;
 }
 
 - (XXLabel *)tipLabel {
     if (!_tipLabel) {
-        _tipLabel = [XXLabel labelWithFrame:CGRectMake(24, 3, kScreen_Width - 48, 0) text:LocalizedString(@"ChainTip") font:kFont13 textColor:KRGBA(253, 126, 36, 100) alignment:NSTextAlignmentLeft];
+        _tipLabel = [XXLabel labelWithFrame:CGRectMake(24, 3, kScreen_Width - 48, 0) text:LocalizedString(@"ChainTip") font:kFont13 textColor:[UIColor whiteColor] alignment:NSTextAlignmentLeft];
         _tipLabel.numberOfLines = 0;
         [_tipLabel sizeToFit];
         _tipView.frame = CGRectMake(0, 0, kScreen_Width, _tipLabel.frame.size.height + 6);
@@ -218,6 +221,16 @@
         }];
     }
     return _copyAddressBtn;
+}
+
+- (XYHNumbersLabel *)tipContentLabel {
+    if (_tipContentLabel ==nil) {
+        _tipContentLabel = [[XYHNumbersLabel alloc] initWithFrame:CGRectMake(K375(24), CGRectGetMaxY(self.bottomImageView.frame) + K375(17), kScreen_Width - K375(48), 10) font:kFont12];
+        _tipContentLabel.textAlignment = NSTextAlignmentLeft;
+        _tipContentLabel.textColor = [UIColor whiteColor];
+        _tipContentLabel.text = NSLocalizedFormatString(LocalizedString(@"LeastPayAmount"),[NSString stringWithFormat:@"%@%@",self.tokenModel.deposit_threshold,[self.tokenModel.name uppercaseString]]);
+    }
+    return _tipContentLabel;
 }
 
 @end

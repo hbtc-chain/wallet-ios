@@ -14,6 +14,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 + (void)showWithAddress:(NSString *)address;
 
++ (void)showWithChain:(NSString *)chain;
+
 + (void)dismiss;
 
 @end

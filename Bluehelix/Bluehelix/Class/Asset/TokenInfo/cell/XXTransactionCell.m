@@ -84,7 +84,7 @@
             self.stateLabel.frame = CGRectMake(CGRectGetMaxX(self.typeLabel.frame) +5, 24, [NSString widthWithText:LocalizedString(@"Failed") font:kFont10] + 8, 16);
         } else {
             self.stateLabel.text = LocalizedString(@"StatusDeal");
-            self.stateLabel.textColor = KRGBA(252, 126, 36, 100);;
+            self.stateLabel.textColor = KRGBA(252, 126, 36, 100);
             self.stateLabel.backgroundColor = KRGBA(254, 228, 203, 100);
             self.stateLabel.frame = CGRectMake(CGRectGetMaxX(self.typeLabel.frame) +5, 24, [NSString widthWithText:LocalizedString(@"StatusDeal") font:kFont10] + 8, 16);
         }

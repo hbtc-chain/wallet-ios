@@ -142,7 +142,8 @@
         cell.valueLabel.hidden = NO;
         NSDictionary *info = [[NSBundle mainBundle] infoDictionary];
         NSString *version = [info objectForKey:@"CFBundleShortVersionString"];
-        cell.valueLabel.text = [NSString stringWithFormat:@"v%@",version];
+        NSString *buildVersion = [info objectForKey:@"CFBundleVersion"];
+        cell.valueLabel.text = [NSString stringWithFormat:@"v%@_%@",version,buildVersion];
     } else {
         cell.rightIconImageView.hidden = NO;
         cell.valueLabel.hidden = YES;

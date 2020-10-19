@@ -8,6 +8,8 @@
 
 #import "XXChainAddressView.h"
 #import "XCQrCodeTool.h"
+#import "XXTokenModel.h"
+#import "XXAssetSingleManager.h"
 
 @interface XXChainAddressView ()
 
@@ -19,7 +21,10 @@
 @property (nonatomic, strong) UIImageView *symbolImageView;
 @property (nonatomic, copy) NSString *address;
 @property (nonatomic, strong) XXButton *copyAddressBtn;
+@property (nonatomic, strong) XXLabel *nameLabel;
 @property (nonatomic, strong) XXLabel *addressLabel;
+@property (nonatomic, strong) XXLabel *tipLabel;
+@property (nonatomic, strong) NSString *chain;
 
 @end
 
@@ -40,10 +45,15 @@
     [self.contentView addSubview:self.dismissBtn];
     [self.contentView addSubview:self.symbolBackView];
     [self.symbolBackView addSubview:self.symbolImageView];
+    [self.contentView addSubview:self.nameLabel];
     [self.contentView addSubview:self.codeImageView];
     [self.contentView addSubview:self.addressLabel];
     [self.contentView addSubview:self.copyAddressBtn];
+    if (!IsEmpty(self.chain)) {
+        [self.contentView addSubview:self.tipLabel];
+    }
 }
+
 + (void)showWithAddress:(NSString *)address {
     
     XXChainAddressView *alert = [[XXChainAddressView alloc] initWithFrame:CGRectMake(0, 0, kScreen_Width, kScreen_Height)];
@@ -56,9 +66,28 @@
     alert.contentView.top = kScreen_Height;
     [UIView animateWithDuration:0.3 animations:^{
         alert.backView.alpha = 0.3;
-        alert.contentView.top = kScreen_Height - K375(400);
+        alert.contentView.top = kScreen_Height - K375(460);
     } completion:^(BOOL finished) {
-       
+        
+    }];
+}
+
++ (void)showWithChain:(NSString *)chain {
+    
+    XXChainAddressView *alert = [[XXChainAddressView alloc] initWithFrame:CGRectMake(0, 0, kScreen_Width, kScreen_Height)];
+    [KWindow addSubview:alert];
+    alert.address = [[XXAssetSingleManager sharedManager] externalAddressBySymbol:chain];
+    alert.chain = chain;
+    [alert buildUI];
+    
+    alert.contentView.alpha = 1;
+    alert.backView.alpha = 0;
+    alert.contentView.top = kScreen_Height;
+    [UIView animateWithDuration:0.3 animations:^{
+        alert.backView.alpha = 0.3;
+        alert.contentView.top = kScreen_Height - K375(460);
+    } completion:^(BOOL finished) {
+        
     }];
 }
 
@@ -105,7 +134,7 @@
 
 - (UIView *)contentView {
     if (_contentView == nil) {
-        _contentView = [[UIView alloc] initWithFrame:CGRectMake(0, kScreen_Height - K375(400), kScreen_Width, K375(400))];
+        _contentView = [[UIView alloc] initWithFrame:CGRectMake(0, kScreen_Height - K375(460), kScreen_Width, K375(460))];
         _contentView.backgroundColor = kWhiteColor;
         _contentView.layer.cornerRadius = 10;
     }
@@ -139,9 +168,21 @@
     return _symbolImageView;
 }
 
+- (XXLabel *)nameLabel {
+    if (!_nameLabel) {
+        _nameLabel = [XXLabel labelWithFrame:CGRectMake(0, K375(46), kScreen_Width, 32) text:@"" font:kFont20 textColor:kGray900 alignment:NSTextAlignmentCenter];
+        if (IsEmpty(_chain)) {
+            _nameLabel.text = [NSString stringWithFormat:@"%@ %@",@"HBTC",LocalizedString(@"WalletAddress")];
+        } else {
+            _nameLabel.text = LocalizedString(@"CrossChainAddress");
+        }
+    }
+    return _nameLabel;
+}
+
 - (UIImageView *)codeImageView {
     if (!_codeImageView) {
-        _codeImageView = [[UIImageView alloc] initWithFrame:CGRectMake(K375(100), K375(70), kScreen_Width - K375(200), kScreen_Width - K375(200))];
+        _codeImageView = [[UIImageView alloc] initWithFrame:CGRectMake(K375(100), K375(100), kScreen_Width - K375(200), kScreen_Width - K375(200))];
         _codeImageView.image = [XCQrCodeTool createQrCodeWithContent:self.address];
     }
     return _codeImageView;
@@ -158,7 +199,7 @@
 
 - (XXButton *)copyAddressBtn {
     if (!_copyAddressBtn) {
-        _copyAddressBtn = [XXButton buttonWithFrame:CGRectMake(K375(24), self.contentView.height - K375(88), kScreen_Width - K375(48), K375(56)) title:LocalizedString(@"ClickCopyAddress") font:kFontBold(17) titleColor:kPrimaryMain block:^(UIButton *button) {
+        _copyAddressBtn = [XXButton buttonWithFrame:CGRectMake(K375(24), self.contentView.height - K375(138), kScreen_Width - K375(48), K375(56)) title:LocalizedString(@"ClickCopyAddress") font:kFontBold(17) titleColor:kPrimaryMain block:^(UIButton *button) {
             if (KUser.address  > 0) {
                 UIPasteboard *pab = [UIPasteboard generalPasteboard];
                 [pab setString:self.address];
@@ -175,6 +216,22 @@
         _copyAddressBtn.layer.borderColor = [kPrimaryMain CGColor];
     }
     return _copyAddressBtn;
+}
+
+- (XXLabel *)tipLabel {
+    if (_tipLabel == nil) {
+        _tipLabel = [XXLabel labelWithFrame:CGRectMake(0, CGRectGetMaxY(self.copyAddressBtn.frame) + K375(24), kScreen_Width, 16) font:kFont13 textColor:kGray700];
+        ;
+        XXTokenModel *token = [[XXSqliteManager sharedSqlite] tokenBySymbol:self.chain];
+        NSString *tip1 = LocalizedString(@"LeastPayAmountTip");
+        NSString *tip2 = [NSString stringWithFormat:@"%@%@",token.deposit_threshold,[token.name uppercaseString]];
+        NSMutableAttributedString *attributedString = [[NSMutableAttributedString alloc] initWithString:[NSString stringWithFormat:@"%@%@",tip1,tip2]];
+        [attributedString addAttribute:NSForegroundColorAttributeName value:kGray700 range:NSMakeRange(0, attributedString.length)];
+        [attributedString addAttribute:NSForegroundColorAttributeName value:kPrimaryMain range:NSMakeRange(tip1.length, tip2.length)];
+        _tipLabel.attributedText = attributedString;
+        _tipLabel.textAlignment = NSTextAlignmentCenter;
+    }
+    return _tipLabel;
 }
 
 @end

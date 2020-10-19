@@ -181,7 +181,7 @@
 
 - (NSMutableArray *)chainArray {
     if (!_chainArray) {
-        XXChainModel *hbcModel = [[XXChainModel alloc] initWithSymbol:@"hbc" detailName:@"HBTC Chain" typeName:LocalizedString(@"NativeTokenList")];
+        XXChainModel *hbcModel = [[XXChainModel alloc] initWithSymbol:@"hbc" detailName:@"HBTC Chain Testnet" typeName:LocalizedString(@"NativeTokenList")];
         XXChainModel *btcModel = [[XXChainModel alloc] initWithSymbol:@"btc" detailName:@"Bitcoin" typeName:LocalizedString(@"CrossChainTokenList")];
         XXChainModel *ethModel = [[XXChainModel alloc] initWithSymbol:@"eth" detailName:@"Ethereum" typeName:LocalizedString(@"CrossChainTokenList")];
         XXChainModel *trxModel = [[XXChainModel alloc] initWithSymbol:@"trx" detailName:@"Tron" typeName:LocalizedString(@"CrossChainTokenList")];

@@ -144,7 +144,7 @@
             }];
             [alert showAlert];
         }];
-        [_copyButton setImage:[UIImage imageNamed:@"pasteBlack"] forState:UIControlStateNormal];
+        [_copyButton setImage:[UIImage imageNamed:@"ValidatorPaste"] forState:UIControlStateNormal];
     }
     return _copyButton;
 }
@@ -154,7 +154,7 @@
         _codeBtn = [XXButton buttonWithFrame:CGRectMake(self.backView.width - 45, self.addressLabel.top, 24, 24) block:^(UIButton *button) {
             [XXChainAddressView showWithAddress:KUser.address];
         }];
-        [_codeBtn setImage:[UIImage imageNamed:@"chainCodeBlack"] forState:UIControlStateNormal];
+        [_codeBtn setImage:[UIImage imageNamed:@"chainCodeBlue"] forState:UIControlStateNormal];
     }
     return _codeBtn;
 }
@@ -207,7 +207,7 @@
             }];
             [alert showAlert];
         }];
-        [_chainCopyButton setImage:[UIImage imageNamed:@"pasteBlack"] forState:UIControlStateNormal];
+        [_chainCopyButton setImage:[UIImage imageNamed:@"ValidatorPaste"] forState:UIControlStateNormal];
     }
     return _chainCopyButton;
 }
@@ -216,9 +216,9 @@
     if (!_chainCodeBtn) {
         MJWeakSelf
         _chainCodeBtn = [XXButton buttonWithFrame:CGRectMake(self.backView.width - 45, self.chainAddressLabel.top, 24, 24) block:^(UIButton *button) {
-            [XXChainAddressView showWithAddress:weakSelf.chainAddress];
+            [XXChainAddressView showWithChain:weakSelf.chain];
         }];
-        [_chainCodeBtn setImage:[UIImage imageNamed:@"chainCodeBlack"] forState:UIControlStateNormal];
+        [_chainCodeBtn setImage:[UIImage imageNamed:@"chainCodeBlue"] forState:UIControlStateNormal];
     }
     return _chainCodeBtn;
 }
