@@ -298,7 +298,8 @@
 }
 
 - (void)rightButtonClick:(UIButton *)sender {
-    [self.webView reload];
+    [self loadRequest];
+//    [self.webView reload];
 }
 
 #pragma mark - Dealloc
