@@ -255,6 +255,9 @@
 		EA71E1552504955300B52558 /* XXChainAddressView.m in Sources */ = {isa = PBXBuildFile; fileRef = EA71E1542504955300B52558 /* XXChainAddressView.m */; };
 		EA811AC42479144400C1038F /* XXMessageSegmentButton.m in Sources */ = {isa = PBXBuildFile; fileRef = EA811AC32479144400C1038F /* XXMessageSegmentButton.m */; };
 		EA811AC72479214100C1038F /* XXMessageSegmentView.m in Sources */ = {isa = PBXBuildFile; fileRef = EA811AC62479214100C1038F /* XXMessageSegmentView.m */; };
+		EA82664C253ED4F7006249B4 /* MBProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = EA826647253ED4F7006249B4 /* MBProgressHUD.m */; };
+		EA82664D253ED4F7006249B4 /* MBProgressHUD+JDragon.bundle in Resources */ = {isa = PBXBuildFile; fileRef = EA82664A253ED4F7006249B4 /* MBProgressHUD+JDragon.bundle */; };
+		EA82664E253ED4F7006249B4 /* MBProgressHUD+JDragon.m in Sources */ = {isa = PBXBuildFile; fileRef = EA82664B253ED4F7006249B4 /* MBProgressHUD+JDragon.m */; };
 		EA877EFD24C6D9220049545A /* XXMnemonicWordTextFieldView.m in Sources */ = {isa = PBXBuildFile; fileRef = EA877EFB24C6D9220049545A /* XXMnemonicWordTextFieldView.m */; };
 		EA877F0024C6E4180049545A /* XXImportMnemonicWordsVC.m in Sources */ = {isa = PBXBuildFile; fileRef = EA877EFE24C6E4180049545A /* XXImportMnemonicWordsVC.m */; };
 		EA8994CA2500AC51007B4A19 /* XXChainAssertVC.m in Sources */ = {isa = PBXBuildFile; fileRef = EA8994C92500AC51007B4A19 /* XXChainAssertVC.m */; };
@@ -986,6 +989,11 @@
 		EA811AC32479144400C1038F /* XXMessageSegmentButton.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = XXMessageSegmentButton.m; sourceTree = "<group>"; };
 		EA811AC52479214000C1038F /* XXMessageSegmentView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = XXMessageSegmentView.h; sourceTree = "<group>"; };
 		EA811AC62479214100C1038F /* XXMessageSegmentView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = XXMessageSegmentView.m; sourceTree = "<group>"; };
+		EA826647253ED4F7006249B4 /* MBProgressHUD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MBProgressHUD.m; sourceTree = "<group>"; };
+		EA826648253ED4F7006249B4 /* MBProgressHUD+JDragon.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "MBProgressHUD+JDragon.h"; sourceTree = "<group>"; };
+		EA826649253ED4F7006249B4 /* MBProgressHUD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MBProgressHUD.h; sourceTree = "<group>"; };
+		EA82664A253ED4F7006249B4 /* MBProgressHUD+JDragon.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = "MBProgressHUD+JDragon.bundle"; sourceTree = "<group>"; };
+		EA82664B253ED4F7006249B4 /* MBProgressHUD+JDragon.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "MBProgressHUD+JDragon.m"; sourceTree = "<group>"; };
 		EA877EFB24C6D9220049545A /* XXMnemonicWordTextFieldView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XXMnemonicWordTextFieldView.m; sourceTree = "<group>"; };
 		EA877EFC24C6D9220049545A /* XXMnemonicWordTextFieldView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XXMnemonicWordTextFieldView.h; sourceTree = "<group>"; };
 		EA877EFE24C6E4180049545A /* XXImportMnemonicWordsVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XXImportMnemonicWordsVC.m; sourceTree = "<group>"; };
@@ -2642,6 +2650,18 @@
 			path = FCUUID;
 			sourceTree = "<group>";
 		};
+		EA826646253ED4F7006249B4 /* MBProgress */ = {
+			isa = PBXGroup;
+			children = (
+				EA826647253ED4F7006249B4 /* MBProgressHUD.m */,
+				EA826648253ED4F7006249B4 /* MBProgressHUD+JDragon.h */,
+				EA826649253ED4F7006249B4 /* MBProgressHUD.h */,
+				EA82664A253ED4F7006249B4 /* MBProgressHUD+JDragon.bundle */,
+				EA82664B253ED4F7006249B4 /* MBProgressHUD+JDragon.m */,
+			);
+			path = MBProgress;
+			sourceTree = "<group>";
+		};
 		EA8F8C83240FA9F200D26E10 /* AppResource */ = {
 			isa = PBXGroup;
 			children = (
@@ -3485,6 +3505,7 @@
 		F3D9397520CCCB560055070B /* Tools */ = {
 			isa = PBXGroup;
 			children = (
+				EA826646253ED4F7006249B4 /* MBProgress */,
 				EAAA896F25207FFA00A4AB5B /* Bugly */,
 				EA066A202518CE1300DFB45C /* WebViewJavascriptBridge */,
 				EA9D745424F91FB900B53997 /* NJKWebViewProgress */,
@@ -3571,7 +3592,6 @@
 				F30AC19E20CCC641000652BB /* Resources */,
 				EA4F5E4E2174D08D0025B350 /* Embed Frameworks */,
 				EA4F5E4F2174D08D0025B350 /* Embed PlugIns */,
-				67293633071B649C540A0360 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -3642,30 +3662,13 @@
 				F30EAF5C20D26536005ADD5C /* README.textile in Resources */,
 				EA26B34D2476650200EAF205 /* LaunchScreen.storyboard in Resources */,
 				EA8F8C88240FA9F200D26E10 /* Icon.xcassets in Resources */,
+				EA82664D253ED4F7006249B4 /* MBProgressHUD+JDragon.bundle in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		67293633071B649C540A0360 /* [CP] Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-Bluehelix/Pods-Bluehelix-resources.sh",
-				"${PODS_ROOT}/MBProgressHUD+JDragon/MBProgressHUD+JDragon/MBProgressHUD+JDragon.bundle",
-			);
-			name = "[CP] Copy Pods Resources";
-			outputPaths = (
-				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/MBProgressHUD+JDragon.bundle",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Bluehelix/Pods-Bluehelix-resources.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
 		A862161BA73B7D5FEA430435 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -3946,6 +3949,7 @@
 				EABD1B9A241BB25900B1A03A /* JsonRpcProvider.m in Sources */,
 				EA45BBA724DFC42F00132984 /* XXTradeData.m in Sources */,
 				6C791E3E2456D02100F22CD0 /* XXVotingView.m in Sources */,
+				EA82664E253ED4F7006249B4 /* MBProgressHUD+JDragon.m in Sources */,
 				EABD1BB1241DFC3E00B1A03A /* XXTextFieldView.m in Sources */,
 				EABD1B8C241BB25900B1A03A /* aestab.c in Sources */,
 				EA15E95724163FDC00A3E14A /* XXStartWalletVC.m in Sources */,
@@ -4017,6 +4021,7 @@
 				EABD1B9B241BB25900B1A03A /* ApiProvider.m in Sources */,
 				EAA8DED0244D81CE00161698 /* XXUserHomeCell.m in Sources */,
 				EA45BA6D24DE76BE00132984 /* XXSwitchPairsCell.m in Sources */,
+				EA82664C253ED4F7006249B4 /* MBProgressHUD.m in Sources */,
 				EA9D743D24F91DD100B53997 /* MJRefreshConfig.m in Sources */,
 				EA8CE93E2532E63A007E3591 /* XXMappingModel.m in Sources */,
 				F30AC1B320CCC642000652BB /* main.m in Sources */,

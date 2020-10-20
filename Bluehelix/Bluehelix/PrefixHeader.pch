@@ -17,7 +17,7 @@
 #ifdef __OBJC__
 #import <UIKit/UIKit.h>
 #import <Foundation/Foundation.h>
-#import <MBProgressHUD+JDragon.h>
+#import "MBProgressHUD+JDragon.h"
 #import <MJExtension/MJExtension.h>
 #import "MJRefresh.h"
 #import <Masonry/Masonry.h>
@@ -102,7 +102,7 @@ typedef NS_ENUM(NSUInteger, NetworkMethod) {
 #define kBtnBorderRadius 6
 #define kBtnHeight 48
 #define kAlertDuration 2
-
+#define kAlertLongDuration 4
 //夜间模式 颜色
 #define kPrimaryMain kIsNight ? [UIColor colorWithHexString:@"#3375E0"] : [UIColor colorWithHexString:@"#3375E0"]
 #define kPrimaryLight kIsNight ? [UIColor colorWithHexString:@"#4299FF"] : [UIColor colorWithHexString:@"#4299FF"]

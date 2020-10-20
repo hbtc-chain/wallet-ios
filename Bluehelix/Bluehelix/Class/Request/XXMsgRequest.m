@@ -198,9 +198,14 @@
         if (self.msgSendFaildBlock) {
             self.msgSendFaildBlock(dataDic[@"error"]);
         }
-        Alert *alert = [[Alert alloc] initWithTitle:dataDic[@"error"] duration:kAlertDuration completion:^{
-        }];
-        [alert showAlert];
+//        Alert *alert = [[Alert alloc] initWithTitle:dataDic[@"error"] duration:kAlertLongDuration completion:^{
+//        }];
+//        [alert showAlert];
+//        NSString *errorString = dataDic[@"error"];
+//        if (!IsEmpty(errorString) && errorString[@""]) {
+//
+//        }
+        [MBProgressHUD showErrorMessage:dataDic[@"error"]];
     }];
 }
 

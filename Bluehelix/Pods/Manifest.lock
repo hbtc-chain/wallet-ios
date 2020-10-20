@@ -1,8 +1,5 @@
 PODS:
   - Masonry (1.0.2)
-  - MBProgressHUD (0.9.2)
-  - "MBProgressHUD+JDragon (0.0.5)":
-    - MBProgressHUD (~> 0.9.2)
   - MJExtension (3.0.17)
   - OpenSSL-Universal (1.0.2.19):
     - OpenSSL-Universal/Static (= 1.0.2.19)
@@ -14,7 +11,6 @@ PODS:
 
 DEPENDENCIES:
   - Masonry (~> 1.0.2)
-  - "MBProgressHUD+JDragon"
   - MJExtension (~> 3.0.13)
   - OpenSSL-Universal
   - SDWebImage (~> 4.0.0)
@@ -23,8 +19,6 @@ DEPENDENCIES:
 SPEC REPOS:
   https://github.com/CocoaPods/Specs.git:
     - Masonry
-    - MBProgressHUD
-    - "MBProgressHUD+JDragon"
     - MJExtension
     - OpenSSL-Universal
     - SDWebImage
@@ -33,13 +27,11 @@ SPEC REPOS:
 
 SPEC CHECKSUMS:
   Masonry: 7c429b56da9d4ee0bbb3ed77a5ea710d6a5df39e
-  MBProgressHUD: 1569cf7ace17a8bac47aabfbb8580a49690386d1
-  "MBProgressHUD+JDragon": 15bf7583612f0bb9f0bcea634ba5eb247b17d014
   MJExtension: 74ec83124a68891619fb7ba9c5c811bbf1691076
   OpenSSL-Universal: 8b48cc0d10c1b2923617dfe5c178aa9ed2689355
   SDWebImage: 76a6348bdc74eb5a55dd08a091ef298e56b55e41
   SocketRocket: d57c7159b83c3c6655745cd15302aa24b6bae531
 
-PODFILE CHECKSUM: e46182908975b674ea156530c3c852b1db37377a
+PODFILE CHECKSUM: 5987073975f365754f540f997ebf22567c56e693
 
 COCOAPODS: 1.9.3

@@ -39,6 +39,11 @@
     [self setupUI];
 }
 
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+    [self.tableView reloadData];
+}
+
 - (void)setupUI {
     [self.view addSubview:self.tableView];
     self.itemsArray = [NSMutableArray array];

@@ -6,7 +6,7 @@
 //  Copyright © 2017年 JDragon. All rights reserved.
 //
 
-#import <MBProgressHUD/MBProgressHUD.h>
+#import "MBProgressHUD.h"
 
 @interface MBProgressHUD (JDragon)
 
@@ -33,5 +33,9 @@
 
 
 + (void)hideHUD;
+
+#pragma mark - 自定义 ========== 【开始】
++ (void)showActivityInView:(UIView *)inView Message:(NSString*)message;
+#pragma mark - 自定义 ========== 【结束】
 
 @end

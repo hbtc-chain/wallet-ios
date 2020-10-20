@@ -14,8 +14,8 @@
 {
     UIView  *view = isWindow? (UIView*)[UIApplication sharedApplication].delegate.window:[self getCurrentUIVC].view;
     MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:view animated:YES];
-    hud.labelText=message?message:@"加载中.....";
-    hud.labelFont=[UIFont systemFontOfSize:15];
+    hud.detailsLabelText=message?message:LocalizedString(@"Loading");
+    hud.detailsLabelFont=[UIFont systemFontOfSize:15];
     hud.removeFromSuperViewOnHide = YES;
     hud.dimBackground = NO;
     return hud;
@@ -70,6 +70,31 @@
         [hud hide:YES afterDelay:aTimer];
     }
 }
+
+#pragma mark - 自定义 ========== 【开始】
++ (void)showActivityInView:(UIView *)inView Message:(NSString*)message {
+    [self showActivityInView:inView message:message timer:0];
+}
+
++ (void)showActivityInView:(UIView *)inView message:(NSString*)message timer:(int)aTimer
+{
+    MBProgressHUD *hud  =  [self createMBProgressHUDviewWithMessage:message InView:inView];
+    hud.mode = MBProgressHUDModeIndeterminate;
+    if (aTimer>0) {
+        [hud hide:YES afterDelay:aTimer];
+    }
+}
+
++ (MBProgressHUD*)createMBProgressHUDviewWithMessage:(NSString*)message InView:(UIView *)inView
+{
+    MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:inView animated:YES];
+    hud.detailsLabelText=message?message:LocalizedString(@"Loading");
+    hud.detailsLabelFont=[UIFont systemFontOfSize:15];
+    hud.removeFromSuperViewOnHide = YES;
+    hud.dimBackground = NO;
+    return hud;
+}
+#pragma mark - 自定义 ========== 【结束】
 #pragma mark-------------------- show Image----------------------------
 
 + (void)showSuccessMessage:(NSString *)Message
@@ -105,6 +130,7 @@
 {
     MBProgressHUD *hud  =  [self createMBProgressHUDviewWithMessage:message isWindiw:isWindow];
     hud.customView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:iconName]];
+    hud.userInteractionEnabled = NO;
     hud.mode = MBProgressHUDModeCustomView;
     [hud hide:YES afterDelay:2];
     
