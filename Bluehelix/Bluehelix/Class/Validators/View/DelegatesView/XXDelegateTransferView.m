@@ -8,6 +8,7 @@
 
 #import "XXDelegateTransferView.h"
 #import "XXTokenModel.h"
+#import "XXAssetSingleManager.h"
 
 @interface XXDelegateTransferView ()
 /**委托数据模型*/
@@ -45,13 +46,13 @@
     
     /**实际委托数量*/
     //[self.mainView addSubview:self.trueAmountView];
-
+    
     /** 手续费 */
     [self.mainView addSubview:self.feeView];
-
+    
     /** 加速视图 */
     [self.mainView addSubview:self.speedView];
-
+    
     /** 提示语视图 */
     [self.mainView addSubview:self.tipView];
 }
@@ -84,8 +85,8 @@
             self.feeView.textField.text = kMinFee;
             break;
         case XXDelegateNodeTypeRelieve:
-
-        break;
+            
+            break;
         default:
             
             break;
@@ -96,22 +97,32 @@
     self.amountView.subLabel.text = [NSString stringWithFormat:@"%@ %@ %@",LocalizedString(@"ValidatorAvilableRelieve"),hadDelegateModel.bonded,[kMainToken uppercaseString]];
     self.feeView.textField.text = kMinFee;
 }
-- (void)reloadTransferData{
-    NSDecimalNumber *amountDecimal = [NSDecimalNumber decimalNumberWithString:self.tokenModel.amount];
-    NSDecimalNumber *feeAmountDecimal = [NSDecimalNumber decimalNumberWithString:self.feeView.textField.text];
-    NSString *availableAmount = [[amountDecimal decimalNumberBySubtracting:feeAmountDecimal] stringValue];
+- (void)reloadTransferData {
+    NSString *availableAmountStr;
+    if (self.tokenModel.amount.doubleValue > 0) {
+        NSDecimalNumber *amountDecimal = [NSDecimalNumber decimalNumberWithString:self.tokenModel.amount];
+        NSDecimalNumber *feeAmountDecimal = [NSDecimalNumber decimalNumberWithString:self.feeView.textField.text];
+        NSDecimalNumber *availableDecimal = [amountDecimal decimalNumberBySubtracting:feeAmountDecimal];
+        if (availableDecimal.doubleValue > 0) {
+            availableAmountStr = kAmountLongTrim(availableDecimal.stringValue);
+        } else {
+            availableAmountStr = kAmountLongTrim(amountDecimal.stringValue);
+        }
+    } else {
+        availableAmountStr = @"0";
+    }
     switch (self.delegateNodeType) {
         case XXDelegateNodeTypeAdd:
-            self.amountView.textField.text = availableAmount;
+            self.amountView.textField.text = availableAmountStr;
             break;
         case XXDelegateNodeTypeTransfer:
-            self.amountView.textField.text = availableAmount;
+            self.amountView.textField.text = availableAmountStr;
             break;
         case XXDelegateNodeTypeRelieve:
             self.amountView.textField.text = [NSString stringWithFormat:@"%@",KString(self.hadDelegateModel.bonded)];
-                   
+            
             break;
-        break;
+            break;
         default:
             
             break;
@@ -128,18 +139,18 @@
             self.addressView.selectAddressButton.hidden = YES;
             break;
         case 1:
-             self.addressView.nameLabel.text =  LocalizedString(@"DelegateFrom");
-             self.amountView.nameLabel.text = [NSString stringWithFormat:@"%@%@",LocalizedString(@"TransferDelegate"),LocalizedString(@"ValidatorDelegateAmount")];
+            self.addressView.nameLabel.text =  LocalizedString(@"DelegateFrom");
+            self.amountView.nameLabel.text = [NSString stringWithFormat:@"%@%@",LocalizedString(@"TransferDelegate"),LocalizedString(@"ValidatorDelegateAmount")];
             self.addressView.selectAddressButton.hidden = NO;
             break;
             
         default:
-             self.addressView.nameLabel.text =  LocalizedString(@"DelegateRelieveTo");
+            self.addressView.nameLabel.text =  LocalizedString(@"DelegateRelieveTo");
             self.amountView.nameLabel.text = [NSString stringWithFormat:@"%@%@",LocalizedString(@"RelieveDelegate"),LocalizedString(@"ValidatorDelegateAmount")];
             self.addressView.selectAddressButton.hidden = YES;
             break;
     }
-
+    
 }
 
 -(void)sliderValueChanged:(UISlider *)slider {

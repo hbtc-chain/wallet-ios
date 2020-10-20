@@ -490,7 +490,7 @@
 "Reject" = "No";
 "ChangeAccount" = "Switch asset";
 "PayDetail" = "Payment details";
-"PayInfo" = "Payment information";
+"PayInfo" = "Payment info";
 "ReceiveAddress" = "Receipt address";
 "PayAddress" = "Payment address ";
 "Gas" = "Gasfee";
@@ -502,7 +502,7 @@
 "MsgSwapExactOut" = "Conversion";
 "Refresh" = "Regresh";
 "EnterMemo" = "Enter MEMO or TAG";
-"MemoTip" = "填Enter MEMO or TAG";
+"MemoTip" = "Enter MEMO or TAG";
 "TransferErrorTip" = "Transfer amount can't exceed available balance";
 "FeeNotEnough" = "Insufficient fee";
 "ChainFeeNotEnough" = "Insufficient cross-chain fee";
@@ -511,7 +511,7 @@
 "DelegateError" = "Delegate amount can't exceed available balance";
 "ChainTitle" = "HBTC Chain address";
 "WithdrawChainTitle" = "Cross-chain deposit address";
-"ClickWithdrawChainAddress" = "Click to generate cross-chain address";
+"ClickWithdrawChainAddress" = "Generate cross-chain address";
 "ChooseToken" = "Choose token";
 "Balance" = "Balance";
 "MsgLimitSwap" = "limit price conversion";
@@ -528,6 +528,6 @@
 "CrossChainAddress" = "Cross-chain custody address";
 "MsgCancelLimitSwap" = "Limit order cancellation";
 "ChainTXID" = "Out chain TXID";
-"LeastPayAmount" = "Tips:\n Minimum deposit amount%@";
+"LeastPayAmount" = "Tips:\n Minimum deposit amount %@";
 "LeastPayAmountTip" = "Tips:minimum deposit amount";
-"GetTestCoin" = "Obtain testnet token";
+"GetTestCoin" = "claim test coin";

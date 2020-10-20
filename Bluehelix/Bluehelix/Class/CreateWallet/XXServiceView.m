@@ -45,9 +45,14 @@
 //        [_webview loadRequest:request];
 
         //加载本地html
+        NSString *htmlPath;
+        NSString *language = [[LocalizeHelper sharedLocalSystem] getRequestHeaderLanguageCode];
+        if ([language isEqualToString:@"zh-cn"]) { // 中文
+            htmlPath = [[NSBundle mainBundle] pathForResource:@"service" ofType:@"html"];
+        } else {
+            htmlPath = [[NSBundle mainBundle] pathForResource:@"service_en" ofType:@"html"];
+        }
         NSURL * url = [NSURL fileURLWithPath:[[NSBundle mainBundle]bundlePath]];
-        
-        NSString *htmlPath = [[NSBundle mainBundle] pathForResource:@"service" ofType:@"html"];
         NSError *error = nil;
         NSString *html = [[NSString alloc] initWithContentsOfFile:htmlPath encoding:NSUTF8StringEncoding error:&error];
         if (error == nil) {

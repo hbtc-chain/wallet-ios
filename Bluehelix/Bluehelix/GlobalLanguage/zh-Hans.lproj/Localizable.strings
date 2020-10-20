@@ -530,7 +530,7 @@
 "CrossChainAddress" = "跨链托管地址";
 "MsgCancelLimitSwap" = "限价单取消";
 "ChainTXID" = "外链TXID";
-"LeastPayAmount" = "温馨提示:\n最小充值数量%@";
+"LeastPayAmount" = "温馨提示:\n最小充值数量 %@";
 "LeastPayAmountTip" = "温馨提示:最小充值数量";
 "GetTestCoin" = "领取测试币";
 "GetTestCoinSuccess" = "测试币领取成功";

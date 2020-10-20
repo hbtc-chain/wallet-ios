@@ -100,14 +100,30 @@
 #pragma mark privity
 - (void)transferVerify {
     if (self.delegateTransferView.addressView.textField.text.length && self.delegateTransferView.amountView.textField.text.length && self.delegateTransferView.feeView.textField.text.length) {
-        NSDecimalNumber *amountDecimal = [NSDecimalNumber decimalNumberWithString:self.tokenModel.amount];
-        NSDecimalNumber *feeAmountDecimal = [NSDecimalNumber decimalNumberWithString:self.delegateTransferView.feeView.textField.text];
-        NSString *availableAmount = [[amountDecimal decimalNumberBySubtracting:feeAmountDecimal] stringValue];
-        
+        XXTokenModel *mainToken = [[XXAssetSingleManager sharedManager] assetTokenBySymbol:kMainToken];
+        NSString *availableAmountStr;
+           if (mainToken.amount.doubleValue > 0) {
+               NSDecimalNumber *amountDecimal = [NSDecimalNumber decimalNumberWithString:mainToken.amount];
+               NSDecimalNumber *feeAmountDecimal = [NSDecimalNumber decimalNumberWithString:self.delegateTransferView.feeView.textField.text];
+               NSDecimalNumber *availableDecimal = [amountDecimal decimalNumberBySubtracting:feeAmountDecimal];
+               if (availableDecimal.doubleValue > 0) {
+                   availableAmountStr = kAmountLongTrim(availableDecimal.stringValue);
+               } else {
+                   availableAmountStr = kAmountLongTrim(amountDecimal.stringValue);
+               }
+           } else {
+               availableAmountStr = @"0";
+           }
         switch (self.delegateNodeType) {
             case XXDelegateNodeTypeAdd:
-                if (self.delegateTransferView.amountView.textField.text.doubleValue > availableAmount.doubleValue) {
+                if (self.delegateTransferView.amountView.textField.text.doubleValue > availableAmountStr.doubleValue) {
                     Alert *alert = [[Alert alloc] initWithTitle:LocalizedString(@"DelegateError") duration:kAlertDuration completion:^{
+                    }];
+                    [alert showAlert];
+                    return;
+                }
+                if (mainToken.amount.doubleValue < self.delegateTransferView.feeView.textField.text.doubleValue) {
+                    Alert *alert = [[Alert alloc] initWithTitle:LocalizedString(@"FeeNotEnough") duration:kAlertDuration completion:^{
                     }];
                     [alert showAlert];
                     return;
@@ -123,7 +139,7 @@
                     [alert showAlert];
                     return;
                 }
-                if (self.delegateTransferView.feeView.textField.text.doubleValue > amountDecimal.doubleValue) {
+                if (mainToken.amount.doubleValue < self.delegateTransferView.feeView.textField.text.doubleValue) {
                     Alert *alert = [[Alert alloc] initWithTitle:LocalizedString(@"FeeNotEnough") duration:kAlertDuration completion:^{
                     }];
                     [alert showAlert];

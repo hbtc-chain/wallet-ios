@@ -82,7 +82,7 @@
 
 - (XXLabel *)testLabel {
     if (!_testLabel) {
-        _testLabel = [XXLabel labelWithFrame:CGRectMake(CGRectGetMaxX(self.chainNameLabel.frame), 20, 100, 32) font:kFont13 textColor:[UIColor whiteColor]];
+        _testLabel = [XXLabel labelWithFrame:CGRectMake(CGRectGetMaxX(self.chainNameLabel.frame), 22, 100, 32) font:kFont13 textColor:[UIColor whiteColor]];
         _testLabel.text = @"(Testnet)";
     }
     return _testLabel;
@@ -131,7 +131,8 @@
 - (XXButton *)getTestCoinBtn {
     if (!_getTestCoinBtn) {
         MJWeakSelf
-        _getTestCoinBtn = [XXButton buttonWithFrame:CGRectMake(CGRectGetMaxX(self.codeBtn.frame) + 16, self.addressLabel.top, 80, 26) block:^(UIButton *button) {
+        CGFloat width = [NSString widthWithText:LocalizedString(@"GetTestCoin") font:kFont12] + 8;
+        _getTestCoinBtn = [XXButton buttonWithFrame:CGRectMake(CGRectGetMaxX(self.codeBtn.frame) + 16, self.addressLabel.top, width, 26) block:^(UIButton *button) {
             [weakSelf requestGetTestCoin:@"hbc"];
             [weakSelf requestGetTestCoin:@"kiwi"];
         }];
@@ -139,7 +140,7 @@
         [_getTestCoinBtn setTitle:LocalizedString(@"GetTestCoin") forState:UIControlStateNormal];
         _getTestCoinBtn.backgroundColor = [UIColor whiteColor];
         [_getTestCoinBtn setTitleColor:kPrimaryMain forState:UIControlStateNormal];
-        _getTestCoinBtn.titleLabel.font = kFont13;
+        _getTestCoinBtn.titleLabel.font = kFont12;
         [_getTestCoinBtn setContentHorizontalAlignment:UIControlContentHorizontalAlignmentCenter];
     }
     return _getTestCoinBtn;

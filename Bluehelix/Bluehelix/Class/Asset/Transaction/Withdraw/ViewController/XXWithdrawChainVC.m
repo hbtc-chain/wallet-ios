@@ -12,6 +12,7 @@
 #import "XXTokenModel.h"
 #import "XXPasswordView.h"
 #import "XXMsgRequest.h"
+#import "XXAssetSingleManager.h"
 
 @interface XXWithdrawChainVC ()
 
@@ -46,6 +47,13 @@
 - (void)withdrawButtonClick {
     if (self.chainView.feeView.textField.text.length <= 0) {
         Alert *alert = [[Alert alloc] initWithTitle:LocalizedString(@"PleaseEnterFee") duration:kAlertDuration completion:^{
+        }];
+        [alert showAlert];
+        return;
+    }
+    XXTokenModel *tokenModel = [[XXAssetSingleManager sharedManager] assetTokenBySymbol:kMainToken];
+    if (tokenModel.amount.doubleValue < self.chainView.feeView.textField.text.doubleValue) {
+        Alert *alert = [[Alert alloc] initWithTitle:LocalizedString(@"FeeNotEnough") duration:kAlertDuration completion:^{
         }];
         [alert showAlert];
         return;

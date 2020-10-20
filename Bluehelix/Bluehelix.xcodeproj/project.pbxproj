@@ -258,6 +258,7 @@
 		EA82664C253ED4F7006249B4 /* MBProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = EA826647253ED4F7006249B4 /* MBProgressHUD.m */; };
 		EA82664D253ED4F7006249B4 /* MBProgressHUD+JDragon.bundle in Resources */ = {isa = PBXBuildFile; fileRef = EA82664A253ED4F7006249B4 /* MBProgressHUD+JDragon.bundle */; };
 		EA82664E253ED4F7006249B4 /* MBProgressHUD+JDragon.m in Sources */ = {isa = PBXBuildFile; fileRef = EA82664B253ED4F7006249B4 /* MBProgressHUD+JDragon.m */; };
+		EA826652253EF041006249B4 /* service_en.html in Resources */ = {isa = PBXBuildFile; fileRef = EA826651253EF040006249B4 /* service_en.html */; };
 		EA877EFD24C6D9220049545A /* XXMnemonicWordTextFieldView.m in Sources */ = {isa = PBXBuildFile; fileRef = EA877EFB24C6D9220049545A /* XXMnemonicWordTextFieldView.m */; };
 		EA877F0024C6E4180049545A /* XXImportMnemonicWordsVC.m in Sources */ = {isa = PBXBuildFile; fileRef = EA877EFE24C6E4180049545A /* XXImportMnemonicWordsVC.m */; };
 		EA8994CA2500AC51007B4A19 /* XXChainAssertVC.m in Sources */ = {isa = PBXBuildFile; fileRef = EA8994C92500AC51007B4A19 /* XXChainAssertVC.m */; };
@@ -994,6 +995,7 @@
 		EA826649253ED4F7006249B4 /* MBProgressHUD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MBProgressHUD.h; sourceTree = "<group>"; };
 		EA82664A253ED4F7006249B4 /* MBProgressHUD+JDragon.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = "MBProgressHUD+JDragon.bundle"; sourceTree = "<group>"; };
 		EA82664B253ED4F7006249B4 /* MBProgressHUD+JDragon.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "MBProgressHUD+JDragon.m"; sourceTree = "<group>"; };
+		EA826651253EF040006249B4 /* service_en.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = service_en.html; sourceTree = "<group>"; };
 		EA877EFB24C6D9220049545A /* XXMnemonicWordTextFieldView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XXMnemonicWordTextFieldView.m; sourceTree = "<group>"; };
 		EA877EFC24C6D9220049545A /* XXMnemonicWordTextFieldView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XXMnemonicWordTextFieldView.h; sourceTree = "<group>"; };
 		EA877EFE24C6E4180049545A /* XXImportMnemonicWordsVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XXImportMnemonicWordsVC.m; sourceTree = "<group>"; };
@@ -2665,6 +2667,7 @@
 		EA8F8C83240FA9F200D26E10 /* AppResource */ = {
 			isa = PBXGroup;
 			children = (
+				EA826651253EF040006249B4 /* service_en.html */,
 				EAB9A3C62527309600607E11 /* service.html */,
 				EA3E594B24446A310080B98F /* Font */,
 				EA8F8C84240FA9F200D26E10 /* XXFontHeader.h */,
@@ -3653,6 +3656,7 @@
 				EA9D743E24F91DD100B53997 /* MJRefresh.bundle in Resources */,
 				EA9D743A24F91DD100B53997 /* LICENSE in Resources */,
 				EAE4047E211C1DB300FFD028 /* Localizable.strings in Resources */,
+				EA826652253EF041006249B4 /* service_en.html in Resources */,
 				EAB9A3C72527309600607E11 /* service.html in Resources */,
 				EABD1B8B241BB25900B1A03A /* secp256k1.table in Resources */,
 				EAE4047F211C1DB300FFD028 /* InfoPlist.strings in Resources */,
