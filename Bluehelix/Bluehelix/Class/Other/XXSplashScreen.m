@@ -43,7 +43,7 @@
     
     NSString *language = [[LocalizeHelper sharedLocalSystem] getRequestHeaderLanguageCode];
     UIImage *logoImage = [UIImage imageNamed:@"LaunchDefault"]; // 默认
-    if ([language isEqualToString:@"zh-CN"] && [UIImage imageNamed:@"LaunchZH-CN"]) { // 中文
+    if ([language isEqualToString:@"zh-cn"] && [UIImage imageNamed:@"LaunchZH-CN"]) { // 中文
         logoImage = [UIImage imageNamed:@"LaunchZH-CN"];
     } else if ([language isEqualToString:@"ko-kr"] && [UIImage imageNamed:@"LaunchKO-KR"]) { // 韩文
         logoImage = [UIImage imageNamed:@"LaunchKO-KR"];
