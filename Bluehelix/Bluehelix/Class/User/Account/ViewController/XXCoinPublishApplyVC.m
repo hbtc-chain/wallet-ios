@@ -12,6 +12,7 @@
 #import "XXMsgRequest.h"
 #import "XXPasswordView.h"
 #import "XXTokenModel.h"
+#import "XXAssetSingleManager.h"
 
 @interface XXCoinPublishApplyVC ()
 
@@ -51,6 +52,13 @@
     if(self.coinPublishView.addressView.textField.text.length && self.coinPublishView.nameView.textField.text.length && self.coinPublishView.amountView.textField.text.length && self.coinPublishView.precisionView.textField.text.length && self.coinPublishView.feeView.textField.text.length) {
         if (self.coinPublishView.precisionView.textField.text.intValue > 18) {
             Alert *alert = [[Alert alloc] initWithTitle:LocalizedString(@"LeastPrecision") duration:kAlertDuration completion:^{
+            }];
+            [alert showAlert];
+            return;
+        }
+        XXTokenModel *mainToken = [[XXAssetSingleManager sharedManager] assetTokenBySymbol:kMainToken];
+        if (mainToken.amount.doubleValue < self.coinPublishView.feeView.textField.text.doubleValue) {
+            Alert *alert = [[Alert alloc] initWithTitle:LocalizedString(@"FeeNotEnough") duration:kAlertDuration completion:^{
             }];
             [alert showAlert];
             return;
