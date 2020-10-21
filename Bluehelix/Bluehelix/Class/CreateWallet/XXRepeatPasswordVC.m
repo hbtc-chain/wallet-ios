@@ -99,6 +99,17 @@
         model.backupFlag = YES;
     }
     model.symbols = [NSString stringWithFormat:@"btc,eth,usdt,%@",kMainToken];
+    //判断是否重复导入
+    if (KUser.accounts) {
+        for (XXAccountModel *a in KUser.accounts) {
+            if ([a.address isEqualToString:model.address]) {
+                Alert *alert = [[Alert alloc] initWithTitle:LocalizedString(@"PrivateKeyRepetition") duration:kAlertDuration completion:^{
+                }];
+                [alert showAlert];
+                [[XXSqliteManager sharedSqlite] deleteAccountByAddress:model.address];
+            }
+        }
+    }
     [[XXSqliteManager sharedSqlite] insertAccount:model];
     KUser.address = model.address;
     [MBProgressHUD hideHUD];

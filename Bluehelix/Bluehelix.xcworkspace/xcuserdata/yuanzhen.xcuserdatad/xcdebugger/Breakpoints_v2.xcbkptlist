@@ -730,22 +730,6 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "85786244-F3E3-48DE-9777-DCB2C1B3B601"
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "Bluehelix/Class/MnemonicPhrase/ViewController/XXImportMnemonicWordsVC.m"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "184"
-            endingLineNumber = "184"
-            landmarkName = "-nextStepAction"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
             uuid = "389C2526-E8F5-4B74-A4E5-4B3CE4A4739B"
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
@@ -996,22 +980,6 @@
             startingLineNumber = "398"
             endingLineNumber = "398"
             landmarkName = "+decryptSecretStorageJSON:password:callback:"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "F060DA4F-4AE0-41DA-944D-B0776FC4DDED"
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "Bluehelix/ethers/src/Utilities/SecureData.m"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "251"
-            endingLineNumber = "251"
-            landmarkName = "-appendData:"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

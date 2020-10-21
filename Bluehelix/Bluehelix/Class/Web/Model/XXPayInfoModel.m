@@ -38,7 +38,7 @@
         } else if ([type isEqualToString:kMsgSwapExactOut]) { //兑换（输出确定）
             XXMsgSwapExact *model = [XXMsgSwapExact mj_objectWithKeyValues:value];
             self.titleArr = @[LocalizedString(@"PayInfo"),LocalizedString(@"PayToken"),LocalizedString(@"PayAddress"),LocalizedString(@"Gas")];
-            NSString *aTokenAmount = [self amountWithToken:[model.swap_path firstObject] amount:model.amount_in];
+            NSString *aTokenAmount = [self amountWithToken:[model.swap_path firstObject] amount:model.max_amount_in];
             [self.valueArr addObject:LocalizedString(@"MsgSwapExactOut")];
             [self.valueArr addObject:aTokenAmount];
             [self.valueArr addObject:model.from];

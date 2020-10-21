@@ -534,3 +534,4 @@
 "LeastPayAmountTip" = "温馨提示:最小充值数量";
 "GetTestCoin" = "领取测试币";
 "GetTestCoinSuccess" = "测试币领取成功";
+"TestNetCoinTip" = "测试网的HBC代币均为测试代币无任何价值!";

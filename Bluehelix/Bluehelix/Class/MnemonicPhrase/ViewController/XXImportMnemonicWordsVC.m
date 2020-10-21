@@ -175,16 +175,16 @@
     Account *account = [Account accountWithMnemonicPhrase:mnemonicPhrase];
     if (account) {
         //判断是否重复导入
-        if (KUser.accounts) {
-            for (XXAccountModel *model in KUser.accounts) {
-                if ([model.address isEqualToString:account.BHAddress]) {
-                    Alert *alert = [[Alert alloc] initWithTitle:LocalizedString(@"MnemonicPhraseRepetition") duration:kAlertDuration completion:^{
-                    }];
-                    [alert showAlert];
-                    return;
-                }
-            }
-        }
+//        if (KUser.accounts) {
+//            for (XXAccountModel *model in KUser.accounts) {
+//                if ([model.address isEqualToString:account.BHAddress]) {
+//                    Alert *alert = [[Alert alloc] initWithTitle:LocalizedString(@"MnemonicPhraseRepetition") duration:kAlertDuration completion:^{
+//                    }];
+//                    [alert showAlert];
+//                    return;
+//                }
+//            }
+//        }
         KUser.localPhraseString = mnemonicPhrase;
         KUser.localPrivateKey = @"";
         XXCreateWalletVC *createVC = [[XXCreateWalletVC alloc] init];
@@ -209,7 +209,7 @@
 
 - (UIView *)textBackView {
     if (!_textBackView) {
-        _textBackView = [[UIView alloc] initWithFrame:CGRectMake(K375(16), CGRectGetMaxY(self.tipLabel.frame) + 16, kScreen_Width - K375(32), K375(144))];
+        _textBackView = [[UIView alloc] initWithFrame:CGRectMake(K375(16), CGRectGetMaxY(self.tipLabel.frame) + 16, kScreen_Width - K375(32), K375(164))];
         _textBackView.backgroundColor = kGray50;
         _textBackView.layer.cornerRadius = kBtnBorderRadius;
         _textBackView.layer.masksToBounds = YES;

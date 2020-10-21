@@ -530,4 +530,6 @@
 "ChainTXID" = "Out chain TXID";
 "LeastPayAmount" = "Tips:\n Minimum deposit amount %@";
 "LeastPayAmountTip" = "Tips:minimum deposit amount";
-"GetTestCoin" = "claim test coin";
+"GetTestCoin" = "Claim test coin";
+"GetTestCoinSuccess" = "Claim test coin success";
+"TestNetCoinTip" = "HBC testing token which on the HBTC testnet and wallet is for testing purposes only,it doesn't have any true value.";

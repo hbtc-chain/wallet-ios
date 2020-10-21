@@ -24,6 +24,7 @@
 #import "XXVersionManager.h"
 #import "XXAssetSingleManager.h"
 #import "XXChainModel.h"
+#import "XXTestAssertTipView.h"
 
 @interface XXChainAssertVC ()<UITableViewDataSource, UITableViewDelegate>
 
@@ -34,6 +35,8 @@
 @property (nonatomic, strong) NSMutableArray *chainArray; //展示的链
 @property (nonatomic, strong) XXEmptyView *emptyView;
 @property (nonatomic, strong) XXFailureView *failureView; //无网络
+@property (nonatomic, strong) XXTestAssertTipView *testTipView;
+@property (nonatomic, assign) CGFloat tipHeight; //测试网提示view height;
 @end
 
 @implementation XXChainAssertVC
@@ -41,6 +44,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    self.tipHeight = [NSString heightWithText:LocalizedString(@"TestNetCoinTip") font:kFont13 width:kScreen_Width - K375(92)] + 14;
     [self setupUI];
     [XXVersionManager checkVersion];
     self.assetModel = [XXAssetSingleManager sharedManager].assetModel;
@@ -89,7 +93,7 @@
             return self.emptyView.height;
         }
     } else {
-        return 0;
+        return self.tipHeight;
     }
 }
 
@@ -102,7 +106,7 @@
         }
         return self.emptyView ;
     } else {
-        return [UIView new];
+        return self.testTipView;
     }
 }
 
@@ -170,7 +174,7 @@
 - (XXAssetHeaderView  *)headerView {
     if (!_headerView) {
         MJWeakSelf
-        _headerView = [[XXAssetHeaderView alloc] initWithFrame:CGRectMake(0, 0, kScreen_Width, K375(280))];
+        _headerView = [[XXAssetHeaderView alloc] initWithFrame:CGRectMake(0, 0, kScreen_Width, K375(260))];
         _headerView.actionBlock = ^{
             [weakSelf.headerView configData:weakSelf.assetModel];
             [[XXSqliteManager sharedSqlite] requestTokens];
@@ -207,6 +211,13 @@
         };
     }
     return _failureView;
+}
+
+- (XXTestAssertTipView *)testTipView {
+    if (!_testTipView) {
+        _testTipView = [[XXTestAssertTipView alloc] initWithFrame:CGRectMake(0, 0, kScreen_Width, _tipHeight)];
+    }
+    return _testTipView;
 }
 
 @end

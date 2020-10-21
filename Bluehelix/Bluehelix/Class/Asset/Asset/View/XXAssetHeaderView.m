@@ -101,7 +101,7 @@
 
 - (UIImageView *)backImageView {
     if (!_backImageView) {
-        _backImageView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, kScreen_Width, K375(224))];
+        _backImageView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, kScreen_Width, K375(204))];
         _backImageView.image = [UIImage imageNamed:@"assetHeaderBack"];
     }
     return _backImageView;
@@ -171,7 +171,7 @@
 
 - (UIImageView *)shadowImageView {
     if (!_shadowImageView) {
-        _shadowImageView = [[UIImageView alloc] initWithFrame:CGRectMake(K375(16), K375(135), kScreen_Width - K375(32), K375(140))];
+        _shadowImageView = [[UIImageView alloc] initWithFrame:CGRectMake(K375(16), K375(135), kScreen_Width - K375(32), K375(120))];
         _shadowImageView.image = [UIImage imageNamed:@"assetBack"];
         _shadowImageView.userInteractionEnabled = YES;
     }
