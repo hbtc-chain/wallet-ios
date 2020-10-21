@@ -60,10 +60,14 @@
 
 // 除以精度 返回原始数量
 - (NSString *)amountWithToken:(NSString *)token amount:(NSString *)amount {
-    XXTokenModel *token_a = [[XXSqliteManager sharedSqlite] tokenBySymbol:token];
-    NSDecimalNumber *aTokenAmountDecimal = [NSDecimalNumber decimalNumberWithString:amount];
-    NSString *aTokenAmountString = [[aTokenAmountDecimal decimalNumberByDividingBy:kPrecisionDecimalPower(token_a.decimals)] stringValue];
-    return [NSString stringWithFormat:@"%@ %@",aTokenAmountString, [token uppercaseString]];
+    if (IsEmpty(amount)) {
+        return @"0";
+    } else {
+        XXTokenModel *token_a = [[XXSqliteManager sharedSqlite] tokenBySymbol:token];
+        NSDecimalNumber *aTokenAmountDecimal = [NSDecimalNumber decimalNumberWithString:amount];
+        NSString *aTokenAmountString = [[aTokenAmountDecimal decimalNumberByDividingBy:kPrecisionDecimalPower(token_a.decimals)] stringValue];
+        return [NSString stringWithFormat:@"%@ %@",aTokenAmountString, [token uppercaseString]];
+    }
 }
 
 - (NSMutableArray *)valueArr {

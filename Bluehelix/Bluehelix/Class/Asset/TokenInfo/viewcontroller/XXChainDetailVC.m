@@ -157,6 +157,7 @@
             _tableView.contentInsetAdjustmentBehavior = UIScrollViewContentInsetAdjustmentNever;
         }
         _tableView.mj_header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
+            [[XXSqliteManager sharedSqlite] requestTokens];
             [weakSelf refreshAsset];
         }];
     }

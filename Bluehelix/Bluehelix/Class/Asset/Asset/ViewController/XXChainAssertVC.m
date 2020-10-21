@@ -173,6 +173,7 @@
         _headerView = [[XXAssetHeaderView alloc] initWithFrame:CGRectMake(0, 0, kScreen_Width, K375(280))];
         _headerView.actionBlock = ^{
             [weakSelf.headerView configData:weakSelf.assetModel];
+            [[XXSqliteManager sharedSqlite] requestTokens];
             [weakSelf.tableView reloadData];
         };
     }
