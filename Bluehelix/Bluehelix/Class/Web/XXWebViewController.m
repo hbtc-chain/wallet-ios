@@ -19,6 +19,7 @@
 #import "XXMsg.h"
 #import "XXPasswordView.h"
 #import "XXTokenModel.h"
+#import "UIButton+LLXLoading.h"
 
 @interface XXWebViewController () <WKUIDelegate, WKNavigationDelegate>
 
@@ -65,6 +66,9 @@
     self.leftButton.hidden = YES;
 //    [self.leftButton setImage:[UIImage imageNamed:@"icon_back_0"] forState:UIControlStateNormal];
     [self.rightButton setImage:[UIImage imageNamed:@"dapp_refresh"] forState:UIControlStateNormal];
+    [self.rightButton BindingBtnactionBlock:^(UIButton * _Nullable button) {
+        [self stopLoading:button];
+    }];
     [self.view addSubview:self.webView];
     [self.view addSubview:self.failureView];
     [self.view addSubview:self.progressView];
@@ -298,8 +302,14 @@
 }
 
 - (void)rightButtonClick:(UIButton *)sender {
-    [self loadRequest];
 //    [self.webView reload];
+}
+
+- (void)stopLoading:(UIButton *)sender {
+    [self loadRequest];
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1.0 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+        [sender stopLoadingWithImage:[UIImage imageNamed:@"dapp_refresh"]];
+    });
 }
 
 #pragma mark - Dealloc
@@ -330,7 +340,7 @@
         config.preferences.javaScriptEnabled = YES;
         config.preferences.javaScriptCanOpenWindowsAutomatically = YES;
         
-        _webView = [[WKWebView alloc] initWithFrame:CGRectMake(0, kNavHeight, kScreen_Width, kScreen_Height - kNavHeight - kTabbarHeight) configuration:config];
+        _webView = [[WKWebView alloc] initWithFrame:CGRectMake(0, kNavHeight+2, kScreen_Width, kScreen_Height - kNavHeight - kTabbarHeight - 2) configuration:config];
         _webView.backgroundColor = [UIColor whiteColor];
         _webView.UIDelegate = self;
         

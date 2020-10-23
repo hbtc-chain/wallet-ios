@@ -91,7 +91,11 @@
 
 - (XXWithdrawAddressView *)addressView {
     if (_addressView == nil) {
+        MJWeakSelf
         _addressView = [[XXWithdrawAddressView alloc] initWithFrame:CGRectMake(0, CGRectGetMaxY(self.tipLabel.frame), kScreen_Width, 88)];
+        _addressView.codeBlock = ^{
+            [weakSelf scanCodeGetAddress];
+        };
     }
     return _addressView;
 }

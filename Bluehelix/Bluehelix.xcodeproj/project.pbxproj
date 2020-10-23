@@ -260,6 +260,7 @@
 		EA82664E253ED4F7006249B4 /* MBProgressHUD+JDragon.m in Sources */ = {isa = PBXBuildFile; fileRef = EA82664B253ED4F7006249B4 /* MBProgressHUD+JDragon.m */; };
 		EA826652253EF041006249B4 /* service_en.html in Resources */ = {isa = PBXBuildFile; fileRef = EA826651253EF040006249B4 /* service_en.html */; };
 		EA826655254078D1006249B4 /* XXTestAssertTipView.m in Sources */ = {isa = PBXBuildFile; fileRef = EA826654254078D1006249B4 /* XXTestAssertTipView.m */; };
+		EA8266582541D7F6006249B4 /* UIButton+LLXLoading.m in Sources */ = {isa = PBXBuildFile; fileRef = EA8266562541D7F5006249B4 /* UIButton+LLXLoading.m */; };
 		EA877EFD24C6D9220049545A /* XXMnemonicWordTextFieldView.m in Sources */ = {isa = PBXBuildFile; fileRef = EA877EFB24C6D9220049545A /* XXMnemonicWordTextFieldView.m */; };
 		EA877F0024C6E4180049545A /* XXImportMnemonicWordsVC.m in Sources */ = {isa = PBXBuildFile; fileRef = EA877EFE24C6E4180049545A /* XXImportMnemonicWordsVC.m */; };
 		EA8994CA2500AC51007B4A19 /* XXChainAssertVC.m in Sources */ = {isa = PBXBuildFile; fileRef = EA8994C92500AC51007B4A19 /* XXChainAssertVC.m */; };
@@ -999,6 +1000,8 @@
 		EA826651253EF040006249B4 /* service_en.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = service_en.html; sourceTree = "<group>"; };
 		EA826653254078D1006249B4 /* XXTestAssertTipView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = XXTestAssertTipView.h; sourceTree = "<group>"; };
 		EA826654254078D1006249B4 /* XXTestAssertTipView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = XXTestAssertTipView.m; sourceTree = "<group>"; };
+		EA8266562541D7F5006249B4 /* UIButton+LLXLoading.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIButton+LLXLoading.m"; sourceTree = "<group>"; };
+		EA8266572541D7F6006249B4 /* UIButton+LLXLoading.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIButton+LLXLoading.h"; sourceTree = "<group>"; };
 		EA877EFB24C6D9220049545A /* XXMnemonicWordTextFieldView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XXMnemonicWordTextFieldView.m; sourceTree = "<group>"; };
 		EA877EFC24C6D9220049545A /* XXMnemonicWordTextFieldView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XXMnemonicWordTextFieldView.h; sourceTree = "<group>"; };
 		EA877EFE24C6E4180049545A /* XXImportMnemonicWordsVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XXImportMnemonicWordsVC.m; sourceTree = "<group>"; };
@@ -3544,6 +3547,8 @@
 		F3D9398920CCCB560055070B /* Category */ = {
 			isa = PBXGroup;
 			children = (
+				EA8266572541D7F6006249B4 /* UIButton+LLXLoading.h */,
+				EA8266562541D7F5006249B4 /* UIButton+LLXLoading.m */,
 				EAB35669243E402100D750D6 /* JSONKit.h */,
 				EAB35668243E402100D750D6 /* JSONKit.m */,
 				EA20EACA2429CB13004EBD7F /* XXSystem.h */,
@@ -4014,6 +4019,7 @@
 				EA9D744524F91DD100B53997 /* MJRefreshAutoStateFooter.m in Sources */,
 				EA45BB0B24DE76BF00132984 /* XXMarketSortButton.m in Sources */,
 				EAAFCC242539423E0071B6E6 /* XXPasswordSettingVC.m in Sources */,
+				EA8266582541D7F6006249B4 /* UIButton+LLXLoading.m in Sources */,
 				EA45BB7D24DF999F00132984 /* KLineHistoryView.m in Sources */,
 				EABD1BA6241BB25900B1A03A /* SecureData.m in Sources */,
 				EAE28624247285C3006D9F24 /* XXBackupPrivateKeyView.m in Sources */,
@@ -4288,7 +4294,7 @@
 				CODE_SIGN_ENTITLEMENTS = "";
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 6;
+				CURRENT_PROJECT_VERSION = 7;
 				DEFINES_MODULE = NO;
 				DEVELOPMENT_TEAM = L2J536XCKC;
 				ENABLE_BITCODE = NO;
@@ -4332,7 +4338,7 @@
 				CODE_SIGN_ENTITLEMENTS = "";
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 6;
+				CURRENT_PROJECT_VERSION = 7;
 				DEFINES_MODULE = NO;
 				DEVELOPMENT_TEAM = L2J536XCKC;
 				ENABLE_BITCODE = NO;

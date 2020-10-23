@@ -170,7 +170,6 @@
 "DepositTip5" = "的提币通道";
 
 //币种详情
-"ReceiveMoney" = "收款";
 "PayMoney" = "转出";
 "WithdrawMoney" = "提取收益";
 "InMoney" = "复投收益";
