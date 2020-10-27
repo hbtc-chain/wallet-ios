@@ -13,7 +13,7 @@
 
 @interface XXUserHeaderView ()
 
-@property (strong, nonatomic) XXLabel *icon;
+@property (strong, nonatomic) UIImageView *icon;
 @property (strong, nonatomic) UITextField *textField;
 @property (strong, nonatomic) XXLabel *addressLabel;
 @property (strong, nonatomic) XXButton *messageBtn;
@@ -40,23 +40,9 @@
         [self addSubview:self.copyButton];
         [self addSubview:self.leftItemView];
         [self addSubview:self.rightItemView];
-        [self configIcon];
     }
     return self;
 }
-
-//- (void)textFieldDidEndEditing:(UITextField *)textField {
-//    [[XXSqliteManager sharedSqlite] updateAccountColumn:@"userName" value:textField.text];
-//    CGFloat width = [NSString widthWithText:textField.text font:kFontBold(20)];
-//    self.textField.width = width > kScreen_Width - K375(48) - 80 ? kScreen_Width - K375(48) - 80 : width;
-//    self.editImageView.left = CGRectGetMaxX(self.textField.frame) + 8;
-//    self.editImageView.hidden = NO;
-//}
-//
-//- (void)textFieldDidBeginEditing:(UITextField *)textField {
-//    self.textField.width = kScreen_Width - K375(48) - 80;
-//    self.editImageView.hidden = YES;
-//}
 
 - (void)setUnreadNum:(NSNumber *)unReadNum {
     if (unReadNum.intValue > 0) {
@@ -96,9 +82,10 @@
     return _messageBtn;
 }
 
-- (XXLabel *)icon {
+- (UIImageView *)icon {
     if (!_icon) {
-        _icon = [XXLabel labelWithFrame:CGRectMake(K375(21), K375(76), 56, 56) text:@"" font:kFont14 textColor:[UIColor whiteColor] alignment:NSTextAlignmentCenter cornerRadius:28];
+        _icon = [[UIImageView alloc] initWithFrame:CGRectMake(K375(21), K375(76), 56, 56)];
+        _icon.image = [UIImage imageNamed:@"headImage"];
     }
     return _icon;
 }
@@ -181,16 +168,16 @@
     return _rightItemView;
 }
 
-- (void)configIcon{
-    NSArray *colorArr = @[@"#54E19E",@"#66A3FF",@"#38a1e6",@"#E2C97F",@"#7887C5",@"#68B38F",@"#8B58DF",@"#66D0D7",@"#BEC65D",@"#F4934D"];
-    if (!IsEmpty(KUser.currentAccount.userName)) {
-        NSString *lastNumStr =[KUser.currentAccount.userName substringFromIndex:[KUser.currentAccount.userName length] - 1];
-        int colorIndex = lastNumStr.intValue % 10;
-        self.icon.backgroundColor = [UIColor colorWithHexString:colorArr[colorIndex]];
-    }
-    if (!IsEmpty(KUser.currentAccount.userName)) {
-        self.icon.text = [KUser.currentAccount.userName substringToIndex:1];
-    }
-}
+//- (void)configIcon{
+//    NSArray *colorArr = @[@"#54E19E",@"#66A3FF",@"#38a1e6",@"#E2C97F",@"#7887C5",@"#68B38F",@"#8B58DF",@"#66D0D7",@"#BEC65D",@"#F4934D"];
+//    if (!IsEmpty(KUser.currentAccount.userName)) {
+//        NSString *lastNumStr =[KUser.currentAccount.userName substringFromIndex:[KUser.currentAccount.userName length] - 1];
+//        int colorIndex = lastNumStr.intValue % 10;
+//        self.icon.backgroundColor = [UIColor colorWithHexString:colorArr[colorIndex]];
+//    }
+//    if (!IsEmpty(KUser.currentAccount.userName)) {
+//        self.icon.text = [KUser.currentAccount.userName substringToIndex:1];
+//    }
+//}
 
 @end

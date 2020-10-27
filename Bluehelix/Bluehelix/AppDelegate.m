@@ -38,6 +38,7 @@
     [self AFNReachability];
     [[XXSqliteManager sharedSqlite] requestTokens];
     [[XXSqliteManager sharedSqlite] requestMapping];
+    [[XXSqliteManager sharedSqlite] requestChain];
     if (!KUser.isSettedNightType) {
         KUser.isNightType = KSystem.isDarkStyle;
     }

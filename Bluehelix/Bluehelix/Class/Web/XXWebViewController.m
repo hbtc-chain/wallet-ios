@@ -19,7 +19,7 @@
 #import "XXMsg.h"
 #import "XXPasswordView.h"
 #import "XXTokenModel.h"
-#import "UIButton+LLXLoading.h"
+//#import "UIButton+LLXLoading.h"
 
 @interface XXWebViewController () <WKUIDelegate, WKNavigationDelegate>
 
@@ -66,9 +66,9 @@
     self.leftButton.hidden = YES;
 //    [self.leftButton setImage:[UIImage imageNamed:@"icon_back_0"] forState:UIControlStateNormal];
     [self.rightButton setImage:[UIImage imageNamed:@"dapp_refresh"] forState:UIControlStateNormal];
-    [self.rightButton BindingBtnactionBlock:^(UIButton * _Nullable button) {
-        [self stopLoading:button];
-    }];
+//    [self.rightButton BindingBtnactionBlock:^(UIButton * _Nullable button) {
+//        [self stopLoading:button];
+//    }];
     [self.view addSubview:self.webView];
     [self.view addSubview:self.failureView];
     [self.view addSubview:self.progressView];
@@ -303,14 +303,14 @@
 
 - (void)rightButtonClick:(UIButton *)sender {
 //    [self.webView reload];
+    [self loadRequest];
 }
 
-- (void)stopLoading:(UIButton *)sender {
-    [self loadRequest];
-    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1.0 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-        [sender stopLoadingWithImage:[UIImage imageNamed:@"dapp_refresh"]];
-    });
-}
+//- (void)stopLoading:(UIButton *)sender {
+//    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1.0 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+//        [sender stopLoadingWithImage:[UIImage imageNamed:@"dapp_refresh"]];
+//    });
+//}
 
 #pragma mark - Dealloc
 - (void)dealloc {

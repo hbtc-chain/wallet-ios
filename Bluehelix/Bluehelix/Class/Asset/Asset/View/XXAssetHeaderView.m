@@ -66,7 +66,7 @@
             }
         }
         self.assetSymbolLabel.text = [RatesManager shareRatesManager].rateUnit;
-        self.totalAssetLabel.text = [NSString stringWithFormat:@"%.3f",totalAsset];
+        self.totalAssetLabel.text = [NSString stringWithFormat:@"%.2f",totalAsset];
         self.assetSymbolLabel.hidden = NO;
     }
 }
@@ -110,7 +110,8 @@
 - (XXLabel *)nameLabel {
     if (!_nameLabel) {
         _nameLabel = [XXLabel labelWithFrame:CGRectMake(K375(24), K375(64), kScreen_Width - K375(90), 40) font:kFontBold(30) textColor:[UIColor whiteColor]];
-        _nameLabel.text = LocalizedString(@"Asset");
+//        _nameLabel.text = LocalizedString(@"Asset");
+        _nameLabel.text = KUser.currentAccount.userName;
     }
     return _nameLabel;
 }

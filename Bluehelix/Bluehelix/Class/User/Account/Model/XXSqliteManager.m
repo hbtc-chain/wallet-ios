@@ -9,6 +9,7 @@
 #import "XXSqliteManager.h"
 #import "XXTokenModel.h"
 #import "XXMappingModel.h"
+#import "XXChainModel.h"
 
 @implementation XXSqliteManager
 
@@ -294,7 +295,7 @@ static XXSqliteManager *_sqliteManager;
     }
 }
 
-#pragma mark -mappingToken
+#pragma mark 兑换币对
 - (void)requestMapping {
     MJWeakSelf
     [HttpManager getWithPath:@"/api/v1/mappings" params:nil andBlock:^(id data, NSString *msg, NSInteger code) {
@@ -332,6 +333,28 @@ static XXSqliteManager *_sqliteManager;
         }
     }
     return NO;
+}
+
+#pragma mark 资产首页展示的链
+- (void)requestChain {
+    MJWeakSelf
+    [HttpManager getWithPath:@"/api/v1/chains" params:nil andBlock:^(id data, NSString *msg, NSInteger code) {
+        if (code == 0) {
+            NSString *chainString = [data mj_JSONString];
+            NSString *localString = [XXUserData sharedUserData].chainString;
+            if (!IsEmpty(chainString) && ![localString isEqualToString:chainString]) {
+                [XXUserData sharedUserData].chainString = chainString;
+            }
+            weakSelf.chain = [XXChainModel mj_objectArrayWithKeyValuesArray:[XXUserData sharedUserData].chainString];
+            for (XXChainModel *dic in weakSelf.chain) {
+                if ([dic.chain isEqualToString:kMainToken]) {
+                    dic.typeName = LocalizedString(@"NativeTokenList");
+                } else {
+                    dic.typeName =LocalizedString(@"CrossChainTokenList");
+                }
+            }
+        }
+    }];
 }
 
 - (NSString *)signType:(NSString *)type {

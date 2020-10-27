@@ -13,8 +13,8 @@
 - (XXChainModel *)initWithSymbol:(NSString *)symbol detailName:(NSString *)detailName typeName:(NSString *)typeName {
     self = [super init];
     if (self) {
-        _symbol = symbol;
-        _detailName = detailName;
+        _chain = symbol;
+        _full_name = detailName;
         _typeName = typeName;
     }
     return self;

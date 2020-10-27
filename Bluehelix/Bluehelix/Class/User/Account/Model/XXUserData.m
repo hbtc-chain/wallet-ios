@@ -208,6 +208,15 @@ static XXUserData *_sharedUserData = nil;
     return [self getValueForKey:@"tokenStringKey"];
 }
 
+- (void)setChainString:(NSString *)chainString {
+    [self saveValeu:chainString forKey:@"chainStringKey"];
+}
+
+- (NSString *)chainString {
+    return [self getValueForKey:@"chainStringKey"];
+}
+
+
 // 网络状态
 - (void)setNetWorkStatus:(NSString *)netWorkStatus {
     [self saveValeu:netWorkStatus forKey:@"netWorkStatus"];

@@ -128,7 +128,7 @@
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     XXChainDetailVC *detailVC = [[XXChainDetailVC alloc] init];
     XXChainModel *model = self.chainArray[indexPath.row];
-    detailVC.chainName = model.symbol;
+    detailVC.chainName = model.chain;
     [self.navigationController pushViewController:detailVC animated:YES];
 }
 
@@ -146,6 +146,7 @@
 
 /// 刷新资产
 - (void)refreshAsset {
+    [[XXSqliteManager sharedSqlite] requestChain];
     [self.tableView.mj_header endRefreshing];
     self.assetModel = [XXAssetSingleManager sharedManager].assetModel;
     [self reloadData];
@@ -186,11 +187,7 @@
 
 - (NSMutableArray *)chainArray {
     if (!_chainArray) {
-        XXChainModel *hbcModel = [[XXChainModel alloc] initWithSymbol:@"hbc" detailName:@"HBTC Chain Testnet" typeName:LocalizedString(@"NativeTokenList")];
-        XXChainModel *btcModel = [[XXChainModel alloc] initWithSymbol:@"btc" detailName:@"Bitcoin" typeName:LocalizedString(@"CrossChainTokenList")];
-        XXChainModel *ethModel = [[XXChainModel alloc] initWithSymbol:@"eth" detailName:@"Ethereum" typeName:LocalizedString(@"CrossChainTokenList")];
-        XXChainModel *trxModel = [[XXChainModel alloc] initWithSymbol:@"trx" detailName:@"Tron" typeName:LocalizedString(@"CrossChainTokenList")];
-        _chainArray = [[NSMutableArray alloc] initWithObjects:hbcModel,btcModel,ethModel,trxModel, nil];
+        _chainArray = [XXSqliteManager sharedSqlite].chain;
     }
     return _chainArray;
 }

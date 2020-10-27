@@ -61,6 +61,11 @@ NS_ASSUME_NONNULL_BEGIN
 /// 根据交易类型 返回文案
 /// @param type 交易类型
 - (NSString *)signType:(NSString *)type;
+
+// 链
+- (void)requestChain;
+
+@property (nonatomic, copy) NSMutableArray *chain;
 @end
 
 NS_ASSUME_NONNULL_END

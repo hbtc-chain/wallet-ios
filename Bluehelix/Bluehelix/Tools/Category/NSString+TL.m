@@ -521,8 +521,8 @@
     if (IsEmpty(address)) {
         return @"";
     }
-    if (address.length > 20) {
-        return [address stringByReplacingCharactersInRange:NSMakeRange(10, address.length - 20) withString:@"***"];
+    if (address.length > 16) {
+        return [address stringByReplacingCharactersInRange:NSMakeRange(8, address.length - 16) withString:@"***"];
     } else {
         return address;
     }
@@ -532,8 +532,8 @@
     if (IsEmpty(address)) {
         return @"";
     }
-    if (address.length > 14) {
-        return [address stringByReplacingCharactersInRange:NSMakeRange(7, address.length - 14) withString:@"***"];
+    if (address.length > 16) {
+        return [address stringByReplacingCharactersInRange:NSMakeRange(8, address.length - 16) withString:@"***"];
     } else {
         return address;
     }

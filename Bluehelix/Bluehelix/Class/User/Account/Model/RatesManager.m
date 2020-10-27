@@ -70,15 +70,15 @@ static RatesManager *_ratesManager;
            return @"--";
        }
     if ([KUser.ratesKey isEqualToString:@"cny"]) {
-           return [NSString stringWithFormat:@"≈¥%.3f", rates];
+           return [NSString stringWithFormat:@"≈¥%.2f", rates];
        } else if ([KUser.ratesKey isEqualToString:@"usd"]) {
-           return [NSString stringWithFormat:@"≈$%.3f", rates];
+           return [NSString stringWithFormat:@"≈$%.2f", rates];
        } else if ([KUser.ratesKey isEqualToString:@"krw"]) {
-           return [NSString stringWithFormat:@"≈₩%.3f", rates];
+           return [NSString stringWithFormat:@"≈₩%.2f", rates];
        } else if ([KUser.ratesKey isEqualToString:@"jpy"]) {
-           return [NSString stringWithFormat:@"≈¥%.3f", rates];
+           return [NSString stringWithFormat:@"≈¥%.2f", rates];
        } else if ([KUser.ratesKey isEqualToString:@"vnd"]) {
-           return [NSString stringWithFormat:@"≈₫%.3f", rates];
+           return [NSString stringWithFormat:@"≈₫%.2f", rates];
        } else {
            return @"--";
        }
@@ -103,15 +103,15 @@ static RatesManager *_ratesManager;
     }
     
     if ([KUser.ratesKey isEqualToString:@"cny"]) {
-        return [NSString stringWithFormat:@"≈¥%.3f",rates*priceValue];
+        return [NSString stringWithFormat:@"≈¥%.2f",rates*priceValue];
     } else if ([KUser.ratesKey isEqualToString:@"usd"]) {
-        return [NSString stringWithFormat:@"≈$%.3f",rates*priceValue];
+        return [NSString stringWithFormat:@"≈$%.2f",rates*priceValue];
     } else if ([KUser.ratesKey isEqualToString:@"krw"]) {
-        return [NSString stringWithFormat:@"≈₩%.3f",rates*priceValue];
+        return [NSString stringWithFormat:@"≈₩%.2f",rates*priceValue];
     } else if ([KUser.ratesKey isEqualToString:@"jpy"]) {
-        return [NSString stringWithFormat:@"≈¥%.3f",rates*priceValue];
+        return [NSString stringWithFormat:@"≈¥%.2f",rates*priceValue];
     } else if ([KUser.ratesKey isEqualToString:@"vnd"]) {
-        return [NSString stringWithFormat:@"≈₫%.3f",rates*priceValue];
+        return [NSString stringWithFormat:@"≈₫%.2f",rates*priceValue];
     } else {
         return @"--";
     }

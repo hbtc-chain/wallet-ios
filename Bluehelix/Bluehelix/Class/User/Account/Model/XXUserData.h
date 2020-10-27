@@ -34,6 +34,9 @@ NS_ASSUME_NONNULL_BEGIN
 /** 币币token列表 */
 @property (nonatomic, strong) NSString *tokenString;
 
+/// 链列表
+@property (nonatomic, strong) NSString *chainString;
+
 /** 面容锁是否开启 */
 @property (nonatomic, assign) BOOL isFaceIDLockOpen;
 /** 指纹锁是否开启 */

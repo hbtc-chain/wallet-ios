@@ -12,8 +12,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface XXChainModel : NSObject
 
-@property (nonatomic, copy) NSString *symbol;
-@property (nonatomic, copy) NSString *detailName;
+@property (nonatomic, copy) NSString *chain;
+@property (nonatomic, copy) NSString *full_name;
 @property (nonatomic, copy) NSString *typeName;
 
 - (XXChainModel *)initWithSymbol:(NSString *)symbol detailName:(NSString *)detailName typeName:(NSString *)typeName;

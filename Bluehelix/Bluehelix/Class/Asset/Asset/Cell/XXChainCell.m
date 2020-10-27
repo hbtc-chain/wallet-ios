@@ -56,20 +56,20 @@
 }
 
 - (void)configData:(XXChainModel *)model {
-    XXTokenModel *token = [[XXSqliteManager sharedSqlite] tokenBySymbol:model.symbol];
+    XXTokenModel *token = [[XXSqliteManager sharedSqlite] tokenBySymbol:model.chain];
     [self.iconView sd_setImageWithURL:[NSURL URLWithString:token.logo] placeholderImage:[UIImage imageNamed:@"placeholderToken"]];
     
-    self.coinNameLabel.text = [model.symbol uppercaseString];
-    CGFloat width = [NSString widthWithText:[model.symbol uppercaseString] font:kFontBold(17)];
+    self.coinNameLabel.text = [model.chain uppercaseString];
+    CGFloat width = [NSString widthWithText:[model.chain uppercaseString] font:kFontBold(17)];
     self.coinNameLabel.frame = CGRectMake(CGRectGetMaxX(self.iconView.frame) + 12, 16, width, 24);
     
     self.typeLabel.text = model.typeName;
     CGFloat typeWidth = [NSString widthWithText:model.typeName font:kFont10];
-    self.typeLabel.frame = CGRectMake(CGRectGetMaxX(self.coinNameLabel.frame) + 4, 16, typeWidth + 8, 16);
+    self.typeLabel.frame = CGRectMake(CGRectGetMaxX(self.coinNameLabel.frame) + 4, 20, typeWidth + 8, 16);
     
-    self.detailNameLabel.text = model.detailName;
-    self.moneyLabel.text = [[RatesManager shareRatesManager] getPriceFromToken:model.symbol];
-    [self configChainAssert:model.symbol];
+    self.detailNameLabel.text = model.full_name;
+    self.moneyLabel.text = [[RatesManager shareRatesManager] getPriceFromToken:model.chain];
+    [self configChainAssert:model.chain];
 }
 
 - (void)configChainAssert:(NSString *)chain {
@@ -83,7 +83,7 @@
             }
         }
     }
-    self.moneyLabel.text = [NSString stringWithFormat:@"≈%@%.3f",[RatesManager shareRatesManager].rateUnit,totalAsset];
+    self.moneyLabel.text = [NSString stringWithFormat:@"≈%@%.2f",[RatesManager shareRatesManager].rateUnit,totalAsset];
 }
 
 - (double)getRatesFromToken:(NSString *)token {
@@ -129,7 +129,7 @@
 
 - (XXLabel *)moneyLabel {
     if (_moneyLabel == nil) {
-        _moneyLabel = [XXLabel labelWithFrame:CGRectMake(CGRectGetMaxX(self.detailNameLabel.frame), CGRectGetMaxY(self.coinNameLabel.frame), kScreen_Width - CGRectGetMaxX(self.detailNameLabel.frame) - K375(16), 16) text:@"" font:kNumberFont(13) textColor:kGray500];
+        _moneyLabel = [XXLabel labelWithFrame:CGRectMake(CGRectGetMaxX(self.detailNameLabel.frame), [[self class] getCellHeight]/2 - 8, kScreen_Width - CGRectGetMaxX(self.detailNameLabel.frame) - K375(16), 16) text:@"" font:kNumberFont(13) textColor:kGray500];
         _moneyLabel.textAlignment = NSTextAlignmentRight;
     }
     return _moneyLabel;
