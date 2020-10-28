@@ -12,7 +12,7 @@
 "Proposal" = "Proposal";
 "Markets" = "Market";
 "TradesTabbar" = "Trade";
-"Me" = "Me";
+"Me" = "My";
 
 //创建钱包
 "Verify" = "Verify";
@@ -31,9 +31,9 @@
 "ScreenShotTip"="Screenshots may be collected by the third-party malware, which can result in loss of assets";
 "BackupTip"="Please be sure";
 "BackupTipContent"="Remember and keep these 12 words safe, if lost, your assets will not be recovered";
-"NextStep" = "Next step";
+"NextStep" = "Next";
 "SetName" = "Set name";
-"SetNameTip" = "You are creating a account for your BlueHelix wallet and will have a cross-chain wallet";
+"SetNameTip" = "You are now creating your HBTC Wallet account that provides you with cross-chain asset bridging.";
 "SetPassword" = "Set password";
 "SetPasswordTip" = "·The security code is an important credential to protect the wallet's private key and operate assets\n·BlueHelix wallet does not cache, upload, store your passwords\n·Be sure to keep your password safe";
 "RepeatPassword" = "Repeat password";
@@ -58,7 +58,7 @@
 "ImportSecurity" = "Import private key";
 "ImportMnemonicPhraseTip" = "Please type the mnemonic words in sequence in the input box below, separate by spaces";
 "ImportSecurityTip" = "Please enter your private key in the input box below, and notice the cases";
-"AccountManage" = "account";
+"AccountManage" = "Account";
 "TwoPasswordInconsistent" = "Passwords does not match!";
 "AccountNameRuleAlert" = "Please enter 1-20 characters";
 "IAgreeTo" = "I have read and accept";
@@ -88,19 +88,19 @@
 
 //我的
 "BackupMnemonicPhrase" = "Backup mnemonics";
-"ModifyPassword" = "Change security code";
+"ModifyPassword" = "Reset Password";
 "BindNotification" = "Notification of binding";
 "HelpCenter" = "Help Center";
 "TermsOfUse" = "Terms of use";
 "AboutUs" = "About us";
 "CopySuccessfully" = "copied";
 "Setting" = "Settings";
-"ExchangeRate" = "Currency Unit";
+"ExchangeRate" = "Currency";
 "Language" = "Language";
 "Version" = "Version";
 "NightMode" = "Night mode";
 "LogOut" = "Logout";
-"OldPassword" = "Enter the old password";
+"OldPassword" = "Enter the original password";
 "ChangePassword"="Change password";
 "NewPassword"="Enter the new password";
 "ConfirmNewPassword"="Confirm the new password";
@@ -145,7 +145,7 @@
 "TransferAll" = "All";
 "PleaseEnterFee" = "Please enter gas fee";
 "TransferAddress" = "Transfer address";
-"TransferSpeed" = "Accelerate transactions";
+"TransferSpeed" = "Accelerate Transaction";
 "TransferAmount" = "Transfer amount";
 "QRCode"="QR code";
 "Album"="Album";
@@ -292,8 +292,8 @@
 "FaceIdIsOn" = "Face ID is on";
 "SetTouchIDLogin" = "Set Touch ID Login";
 "SetFacialLogin" = "Set Facial Login";
-"CancelTouchIDLogin" = "If cancel, please go to Me - Setting - Touch ID Login";
-"CancelFacialLogin" = "If cancel, please go to Me - Setting - Facial Login";
+"CancelTouchIDLogin" = "If cancel, please go to My - Setting - Touch ID Login";
+"CancelFacialLogin" = "If cancel, please go to My - Setting - Facial Login";
 "ClickOnFingerPrintToUnlock" = "Click to unlock your Touch ID";
 "ClickToFaceIDUnlock" = "Click to unlock your Face ID";
 "QueDing" = "Confirm";
@@ -302,7 +302,7 @@
 
 //新增加的
 "MessageCenter" = "Notifications";
-"TransferNotification" = "Transaction Notice";
+"TransferNotification" = "Transaction History";
 "SystemMessage" = "System Messages";
 "Recharge" = "Recharge";
 "ContactUs" = "Contact us";
@@ -335,8 +335,8 @@
 "BackupCodeContent2" = "·Please be sure to use it in the surrounding environment without people or cameras\n·Once the QR code is acquired by others, it will cause irreparable asset loss";
 "CopyKeystore" = "Copy";
 "Speed" = "Accelerate";
-"CoinPublishApply" = "Issue Coin";
-"Apply" = "Apply";
+"CoinPublishApply" = "Issue Token";
+"Apply" = "Submit";
 "AssetAddress" = "Address";
 "TotalPublishAmount" = "Total supply";
 "Precision" = "Decimals";
@@ -348,121 +348,6 @@
 "NoValidatorTip" = "No validator";
 "FeeNotEnough" = "No balance";
 "NoProposalTip" = "No proposal";
-
-//行情
-"CoinQuote" = "Spot";
-"Favorites" = "Favorites";
-"Market" = "Market";
-"24HVolume" = "24H VOLUME";
-"LastPrice" = "LAST PRICE";
-"24HChange" = "24H CHANGE";
-"Vol"="Vol ";
-"ZhangDieFu" = "Change%";
-"ZhangDieE" = "Change";
-"24HVOL" = "24H VOL";
-"TotalPairs" = "Tickers";
-"AddFavorite" = "Mark Favorite";
-
-// 3. 币对详情
-"ShiJian" = "Time";
-"Open" = "Open";
-"Close" = "Close";
-"Volume"="Volume";
-"HighPrice"="H";
-"LowPrice"="L";
-"HIGH"="HIGH";
-"LOW"="LOW";
-"Candles"="Candles";
-"MainGraph"="Main";
-"AuxiliaryGraph"="Sub";
-"Time"="Time";
-"1min"="1min";
-"5min"="5min";
-"15min"="15min";
-"30min"="30min";
-"1hour"="1hour";
-"2hour"="2hour";
-"4hour"="4hour";
-"6hour"="6hour";
-"12hour"="12hour";
-"1day"="1day";
-"1week"="1week";
-"1mon"="1mon";
-"Hide"="Hide";
-"Depth"="Depth";
-"Fullscreen"="Full screen";
-"Index"="Index ";
-"OrderBook"="Order Book";
-"Book"="Open Orders";
-"Trades"="Trades";
-"Intro"="Intro";
-"Date"="Time";
-"Type"="Side";
-"Price"="Price";
-"Amount"="Amount";
-"BuyKey"="Buy";
-"SellKey"="Sell";
-"Buy"="Buy";
-"Sell"="Sell";
-"BUY"="BUY";
-"SELL"="SELL";
-"AddFavoritesSucceeded" = "Add Favorites Succeeded";
-"AddFavoritesFailed" = "Add Favorites Failed";
-"CancelFavoritesSucceeded" = "Cancel Favorites Succeeded";
-"CancelFavoritesFailed" = "Cancel Favorites Failed";
-
-// 4. 市场
-"Limit"="Limit";
-"MarketPrice"="Market";
-"TheBestMarketPrice"="The best market price";
-"Price"="Price";
-"Amount"="Amount";
-"Available"="Available";
-"MoneyAmount"="Amount";
-"PleaseEnterTheQuantity"="Please enter the quantity";
-"PleaseEnterTheAmount"="Please enter the amount";
-"PleaseEnterThePrice"="Please enter the price";
-"TheSellingQuantityCannotBeLessThan"="The selling quantity cannot be less than";
-"TheSellingQuantityCannotBeGreaterThan"="The selling quantity cannot be greater than";
-"ThePurchaseQuantityCannotBeLessThan"="The purchase quantity cannot be less than";
-"ThePurchaseQuantityCannotBeGreaterThan"="The purchase quantity cannot be greater than";
-"TheAmountCannotBeLessThan"="The amount cannot be less than";
-"TheAmountCannotBeGreaterThan"="The amount cannot be greater than";
-"TheQuantityCannotBeLessThan"="The quantity cannot be less than";
-"InsufficientBalance" = "Insufficient Available Balance";
-"PleaseEnterCorrectWithdrawalAmount" = "Please enter correct withdrawal amount ";
-"Default"="Default";
-"BuyOrder"="Buy Order";
-"SellOrder"="Sell Order";
-"Decimal"=" Decimal";
-"OpenOrder"="Open Order";
-"OrderHistory"="Order History";
-"CancelAllOrders"="Cancel all";
-"OrderSucceeded" = "Order Succeeded";
-"OrderTotal"="Amount";
-"OrderCanceled" = "Order Canceled";
-"AllOrderCommit" = "Cancel request has been submitted";
-"OrderAmount"="Amount";
-"TradingVolume"="Filled";
-"PARTIALLY_FILLED"="Partially Filled";
-"FILLED"="Filled";
-"CANCELD"="Canceled";
-"REJECTED" = "Rejected";
-"TransactionDetails"="Transaction Details";
-"ExecutedPrice"="Executed Price";
-"Total "="Total";
-"AveragePrice"="Avg. Price";
-"CoinPairs"="Symbol";
-"All"="All";
-"Coin"="Base";
-"BalanceCoin" = "Ticker";
-"ChargeCoin" = "Quote";
-"OrderStatus" = "Side";
-"Reset"="Reset";
-"Done"="Done";
-"QuestionsAlertTitle" = "Reminder";
-"Loading" = "Loading...";
-"NoRecord" = "No Record";
 
 // MJRefresh
 "MJRefreshHeaderIdleText" = "Pull down to refresh";
@@ -520,8 +405,8 @@
 "NeedPassword" = "Password required during each operation";
 "NoNeedPassword" = "No need to input password within 30 minute";
 "NeedPasswordDefault" = "Password confirmation required during each operation(by default)";
-"NativeTokenList" = "Original token list";
-"CrossChainTokenList" = "Cross-chain token list";
+"NativeTokenList" = "Native";
+"CrossChainTokenList" = "Cross-chain";
 "UpdateContentName" = "Updated Content";
 "StatusDeal" = "processing";
 "CrossChainAddress" = "Cross-chain custody address";
@@ -532,3 +417,4 @@
 "GetTestCoin" = "Claim test coin";
 "GetTestCoinSuccess" = "Claim test coin success";
 "TestNetCoinTip" = "HBC testing token which on the HBTC testnet and wallet is for testing purposes only,it doesn't have any true value.";
+"Loading" = "Loading...";
