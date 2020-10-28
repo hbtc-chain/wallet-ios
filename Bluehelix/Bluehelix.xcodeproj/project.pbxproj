@@ -635,6 +635,7 @@
 		EA3E5964244721DD0080B98F /* XXMsgWithdrawalModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = XXMsgWithdrawalModel.m; sourceTree = "<group>"; };
 		EA3E5966244723200080B98F /* XXMsgSendModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = XXMsgSendModel.h; sourceTree = "<group>"; };
 		EA3E5967244723200080B98F /* XXMsgSendModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = XXMsgSendModel.m; sourceTree = "<group>"; };
+		EA47E074254964EB00752CC0 /* Singleton.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Singleton.h; sourceTree = "<group>"; };
 		EA4F5E972179B5190025B350 /* AppDelegate+Category.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "AppDelegate+Category.h"; sourceTree = "<group>"; };
 		EA4F5E982179B5190025B350 /* AppDelegate+Category.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "AppDelegate+Category.m"; sourceTree = "<group>"; };
 		EA51B5EC2123DE5F0041FA72 /* BHChooseLanguageCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BHChooseLanguageCell.h; sourceTree = "<group>"; };
@@ -1294,6 +1295,7 @@
 			isa = PBXGroup;
 			children = (
 				7AC4D729234C808E00F5E5F8 /* XXKit.h */,
+				EA47E074254964EB00752CC0 /* Singleton.h */,
 				7AC4D71E234C808E00F5E5F8 /* XXFloadtTextField.h */,
 				7AC4D725234C808E00F5E5F8 /* XXFloadtTextField.m */,
 				7AC4D720234C808E00F5E5F8 /* XXLabel.h */,

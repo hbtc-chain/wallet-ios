@@ -7,7 +7,6 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "Singleton.h"
 NS_ASSUME_NONNULL_BEGIN
 @class XXAccountModel;
 @interface XXUserData : NSObject

@@ -21,6 +21,7 @@
 #import <MJExtension/MJExtension.h>
 #import "MJRefresh.h"
 #import <Masonry/Masonry.h>
+#import "Singleton.h"
 #import "XXNavigationController.h"
 #import "XXCategory.h"
 #import "XXFontHeader.h"
@@ -36,7 +37,6 @@
 #import "XXDecimalNumberHelper.h"
 #import "XXAccountModel.h"
 #import "RatesManager.h"
-#import "Singleton.h"
 #import "XXSegmentView.h"
 #import "XXFailureView.h"
 #import "XXAssetModel.h"
