@@ -8,7 +8,6 @@
 
 #import <Foundation/Foundation.h>
 #import "Singleton.h"
-#import "XXSymbolModel.h"
 NS_ASSUME_NONNULL_BEGIN
 @class XXAccountModel;
 @interface XXUserData : NSObject

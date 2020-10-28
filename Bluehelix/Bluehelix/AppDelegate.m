@@ -60,7 +60,6 @@
     }
     [self.window makeKeyAndVisible];
     [self.splashScreen showSplashScreen];
-//    [KMarket readCachedDataOfMarket];
     return YES;
 }
 

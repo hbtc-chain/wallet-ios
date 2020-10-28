@@ -37,15 +37,9 @@
 #import "XXAccountModel.h"
 #import "RatesManager.h"
 #import "Singleton.h"
-#import "XXTradeData.h" // 交易数据
-#import "XXMarketData.h" // 市场数据
 #import "XXSegmentView.h"
-#import "KSymbolDetailData.h"
-#import "YBPopupMenu.h"
 #import "XXFailureView.h"
-#import "XXUserSocket.h"
-#import "XXQuoteSocket.h"
-#import "NotificationManager.h" // 通知管理
+#import "XXAssetModel.h"
 #import "XXEmptyView.h"
 
 static inline BOOL IsEmpty(id thing) {

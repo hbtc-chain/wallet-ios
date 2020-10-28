@@ -90,12 +90,6 @@ singleton_implementation(XXSystem)
     
     [[NSNotificationCenter defaultCenter] postNotificationName:@"applicationWillResignActiveKey" object:nil];
     
-    // 1. 关闭行情长连接
-    [KQuoteSocket closeWebSocket];
-    
-    // 2. 关闭用户组长连接
-    [KUserSocket closeWebSocket];
-    
     // 4. 取消汇率刷新任务
     [[RatesManager shareRatesManager] cancelTimer];
     
@@ -106,8 +100,6 @@ singleton_implementation(XXSystem)
 - (void)applicationActive {
     
     KSystem.isActive = YES;
-    KQuoteSocket.isFirstOpen = YES;
-    
     [[NSNotificationCenter defaultCenter] postNotificationName:@"applicationDidBecomeActiveKey" object:nil];
     
     [self requestAllConfigAndOpenSocket];
@@ -177,9 +169,6 @@ singleton_implementation(XXSystem)
     if (![data[@"updated"] boolValue]) {
         return;
     }
-    
-    // 2. 币币、合约、期权、杠杆传递更新数据
-    [KMarket didReceiveConfigData:data];
     
     // 3. 九宫格、底部tabbar、homeLogo】数据
    
