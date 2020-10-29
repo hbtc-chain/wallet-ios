@@ -110,7 +110,7 @@
 //资产
 "HideSmallCurrency" = "Hide small currency";
 "SearchPairs" = "Search";
-"ReceiveMoney" = "Receipt";
+"ReceiveMoney" = "Receive";
 "CopyAddress" = "Copy address";
 "WalletAddress" = "account address";
 "CopySuccessfully" = "copied";
