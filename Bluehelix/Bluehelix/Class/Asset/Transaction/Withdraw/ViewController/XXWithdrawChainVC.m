@@ -77,7 +77,7 @@
     XXMsg *model = [[XXMsg alloc] initWithfrom:KUser.address to:KUser.address amount:@"" denom:self.tokenModel.symbol feeAmount:feeAmount feeGas:@"" feeDenom:kMainToken memo:@"" type:kMsgKeyGen withdrawal_fee:@"" text:text];
     _keyGenRequest = [[XXMsgRequest alloc] init];
     MJWeakSelf
-    _keyGenRequest.msgSendSuccessBlock = ^{
+    _keyGenRequest.msgSendSuccessBlock = ^(id  _Nonnull responseObject) {
         [MBProgressHUD hideHUD];
         [weakSelf.navigationController popViewControllerAnimated:YES];
     };

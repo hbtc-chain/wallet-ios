@@ -175,7 +175,7 @@
         NSLog(@"%@",responseObject);
         if (!IsEmpty(responseObject[@"txhash"]) && IsEmpty(responseObject[@"code"])) {
             if (self.msgSendSuccessBlock) {
-                self.msgSendSuccessBlock();
+                self.msgSendSuccessBlock(responseObject);
             }
         } else {
             NSString *raw_log = [responseObject objectForKey:@"raw_log"];

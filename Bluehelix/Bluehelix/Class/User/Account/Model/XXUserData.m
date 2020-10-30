@@ -82,14 +82,14 @@ static XXUserData *_sharedUserData = nil;
     [self setIsQuickTextOpen:NO];
 }
 
-// 临时用户名
-- (void)setLocalUserName:(NSString *)localUserName {
-    [self saveValeu:localUserName forKey:@"localUserName"];
-}
-
-- (NSString *)localUserName {
-    return [self getValueForKey:@"localUserName"];
-}
+//// 临时用户名
+//- (void)setLocalUserName:(NSString *)localUserName {
+//    [self saveValeu:localUserName forKey:@"localUserName"];
+//}
+//
+//- (NSString *)localUserName {
+//    return [self getValueForKey:@"localUserName"];
+//}
 
 - (void)setRatesKey:(NSString *)ratesKey {
     [self saveValeu:ratesKey forKey:@"ratesKey"];
@@ -119,62 +119,26 @@ static XXUserData *_sharedUserData = nil;
 }
 
 - (void)setIsFaceIDLockOpen:(BOOL)isFaceIDLockOpen {
-//    if (isFaceIDLockOpen) {
-//        KUser.shouldVerify = NO;
-//    }
-//    NSDictionary *userLockDic = [BHUserDefaults objectForKey:KUser.address];
-//    NSMutableDictionary *saveDic = [NSMutableDictionary dictionaryWithDictionary:userLockDic];
-//    [saveDic setObject:@(isFaceIDLockOpen) forKey:@"FaceIDLockOpen"];
-//    [BHUserDefaults setObject:saveDic forKey:KUser.address];
     [self saveValeu:@(isFaceIDLockOpen) forKey:@"FaceIDLockOpen"];
 }
 
 - (BOOL)isFaceIDLockOpen {
-//    NSDictionary *userLockDic = [BHUserDefaults objectForKey:KUser.address];
-//    if (!userLockDic) {
-//        return NO;
-//    } else {
-//        return [[userLockDic objectForKey:@"FaceIDLockOpen"] boolValue];
-//    }
     return [[self getValueForKey:@"FaceIDLockOpen"] boolValue];
 }
 
 - (BOOL)isTouchIDLockOpen {
-//    NSDictionary *userLockDic = [BHUserDefaults objectForKey:KUser.address];
-//    if (!userLockDic) {
-//        return NO;
-//    } else {
-//        return [[userLockDic objectForKey:@"TouchIDLockOpen"] boolValue];
-//    }
      return [[self getValueForKey:@"TouchIDLockOpen"] boolValue];
 }
 
 - (void)setIsTouchIDLockOpen:(BOOL)isTouchIDLockOpen {
-//    if (isTouchIDLockOpen) {
-//        KUser.shouldVerify = NO;
-//    }
-//    NSDictionary *userLockDic = [BHUserDefaults objectForKey:KUser.address];
-//    NSMutableDictionary *saveDic = [NSMutableDictionary dictionaryWithDictionary:userLockDic];
-//    [saveDic setObject:@(isTouchIDLockOpen) forKey:@"TouchIDLockOpen"];
-//    [BHUserDefaults setObject:saveDic forKey:KUser.address];
      [self saveValeu:@(isTouchIDLockOpen) forKey:@"TouchIDLockOpen"];
 }
 
 - (void)setHaveLogged:(BOOL)haveLogged {
-//    NSDictionary *userLockDic = [BHUserDefaults objectForKey:KUser.address];
-//    NSMutableDictionary *saveDic = [NSMutableDictionary dictionaryWithDictionary:userLockDic];
-//    [saveDic setObject:@(haveLogged) forKey:@"HaveLogged"];
-//    [BHUserDefaults setObject:saveDic forKey:KUser.address];
     [self saveValeu:@(haveLogged) forKey:@"HaveLogged"];
 }
 
 - (BOOL)haveLogged {
-//    NSDictionary *userLockDic = [BHUserDefaults objectForKey:KUser.address];
-//    if (!userLockDic) {
-//        return NO;
-//    } else {
-//        return [[userLockDic objectForKey:@"HaveLogged"] boolValue];
-//    }
      return [[self getValueForKey:@"HaveLogged"] boolValue];
 }
 
@@ -215,7 +179,6 @@ static XXUserData *_sharedUserData = nil;
 - (NSString *)chainString {
     return [self getValueForKey:@"chainStringKey"];
 }
-
 
 // 网络状态
 - (void)setNetWorkStatus:(NSString *)netWorkStatus {

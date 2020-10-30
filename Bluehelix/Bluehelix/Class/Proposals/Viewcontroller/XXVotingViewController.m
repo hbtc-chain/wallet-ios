@@ -119,7 +119,7 @@
     _msgRequest = [[XXMsgRequest alloc] init];
     [_msgRequest sendMsg:model];
     MJWeakSelf
-    _msgRequest.msgSendSuccessBlock = ^{
+    _msgRequest.msgSendSuccessBlock = ^(id  _Nonnull responseObject) {
         [MBProgressHUD hideHUD];
         [weakSelf.navigationController popViewControllerAnimated:YES];
     };
