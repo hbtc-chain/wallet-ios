@@ -19,8 +19,6 @@
 #import "XXChainAssertVC.h"
 #import "XXValidatorsHomeViewController.h"
 #import "XXProposalsListViewController.h"
-#import "XXQuoteVC.h"
-#import "XXTradeHomeVC.h"
 #import "XXWebViewController.h"
 
 @interface XXTabBarController ()
@@ -81,12 +79,6 @@
     webVC.navTitle = LocalizedString(@"TradesTabbar");
     XXNavigationController *nav1 = [[XXNavigationController alloc] initWithRootViewController:webVC];
     [controllers addObject:nav1];
-    
-//    XXNavigationController *nav1 = [[XXNavigationController alloc] initWithRootViewController:[[XXQuoteVC alloc] init]];
-//    [controllers addObject:nav1];
-//
-//    XXNavigationController *nav2 = [[XXNavigationController alloc] initWithRootViewController:[[XXTradeHomeVC alloc] init]];
-//    [controllers addObject:nav2];
     
     XXNavigationController *nav3 = [[XXNavigationController alloc] initWithRootViewController:[[XXUserHomeVC alloc] init]];
     [controllers addObject:nav3];

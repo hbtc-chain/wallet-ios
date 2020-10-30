@@ -83,6 +83,10 @@
     MJWeakSelf;
     self.bridge = [WKWebViewJavascriptBridge bridgeForWebView:self.webView];
     [WKWebViewJavascriptBridge enableLogging];
+    [self.bridge registerHandler:@"connect" handler:^(id data, WVJBResponseCallback responseCallback) {
+        NSDictionary *callBackDic = @{@"code":@200,@"msg":@"OK",@"data":@""};
+        responseCallback([callBackDic mj_JSONString]);
+    }];
     [self.bridge registerHandler:@"get_account" handler:^(id data, WVJBResponseCallback responseCallback) {
         NSDictionary *dataDic = @{@"address":KUser.address};
         NSDictionary *callBackDic = @{@"code":@200,@"msg":@"OK",@"data":dataDic};
@@ -129,9 +133,9 @@
     XXMsg *model = [[XXMsg alloc] initWithFeeAmount:feeAmount feeDenom:kMainToken msg:data memo:@"" text:text];
     _signRequest = [[XXMsgRequest alloc] init];
     MJWeakSelf
-    _signRequest.msgSendSuccessBlock = ^{
+    _signRequest.msgSendSuccessBlock = ^(id  _Nonnull responseObject) {
         if (weakSelf.responseCallback) {
-            NSDictionary *callBackDic = @{@"code":@200,@"msg":@"OK",@"data":@""};
+            NSDictionary *callBackDic = @{@"code":@200,@"msg":@"OK",@"data":responseObject};
             weakSelf.responseCallback([callBackDic mj_JSONString]);
             weakSelf.responseCallback = nil;
         }

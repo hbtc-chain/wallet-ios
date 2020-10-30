@@ -23,4 +23,3 @@ _instance = [[class alloc] init]; \
 \
 return _instance; \
 }
-

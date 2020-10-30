@@ -87,9 +87,6 @@
 - (Cancellable*)encryptSecretStorageJSON: (NSString*)password
                                 callback: (void (^)(NSString *json))callback;
 
-//+ (BOOL)isCrowdsaleJSON: (NSString*)json;
-//+ (instancetype)decryptCrowdsaleJSON: (NSString*)json password: (NSString*)password;
-
 
 @property (nonatomic, readonly) Address *address;
 
@@ -99,7 +96,7 @@
 @property (nonatomic, readonly) NSString *privateKeyString; //hexString
 @property (nonatomic, readonly) NSData *pubKey;
 
-@property (nonatomic, readonly) NSString *mnemonicPhrase; //助记符
+@property (nonatomic, readonly) NSString *mnemonicPhrase; //助记词
 @property (nonatomic, readonly) NSData *mnemonicData;
 
 
