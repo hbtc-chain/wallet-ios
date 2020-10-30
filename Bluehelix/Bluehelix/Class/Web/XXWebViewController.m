@@ -19,7 +19,6 @@
 #import "XXMsg.h"
 #import "XXPasswordView.h"
 #import "XXTokenModel.h"
-//#import "UIButton+LLXLoading.h"
 
 @interface XXWebViewController () <WKUIDelegate, WKNavigationDelegate>
 
@@ -63,12 +62,9 @@
     self.navView.backgroundColor = [UIColor whiteColor];
     self.view.backgroundColor = [UIColor whiteColor];
     self.titleLabel.textColor = [UIColor blackColor];
+    [self.leftButton setImage:[UIImage imageNamed:@"icon_back_0"] forState:UIControlStateNormal];
     self.leftButton.hidden = YES;
-//    [self.leftButton setImage:[UIImage imageNamed:@"icon_back_0"] forState:UIControlStateNormal];
     [self.rightButton setImage:[UIImage imageNamed:@"dapp_refresh"] forState:UIControlStateNormal];
-//    [self.rightButton BindingBtnactionBlock:^(UIButton * _Nullable button) {
-//        [self stopLoading:button];
-//    }];
     [self.view addSubview:self.webView];
     [self.view addSubview:self.failureView];
     [self.view addSubview:self.progressView];
@@ -153,15 +149,15 @@
 #pragma mark - 3. WKNavigationDelegate
 // 页面开始加载时调用
 - (void)webView:(WKWebView *)webView didStartProvisionalNavigation:(WKNavigation *)navigation{
-    
+    NSLog(@"didStartProvisionalNavigation");
 }
 // 当内容开始返回时调用
 - (void)webView:(WKWebView *)webView didCommitNavigation:(WKNavigation *)navigation{
-    
+    NSLog(@"didCommitNavigation");
 }
 // 页面加载完成之后调用
 - (void)webView:(WKWebView *)webView didFinishNavigation:(WKNavigation *)navigation{
-    
+     NSLog(@"didFinishNavigation");
 }
 // 页面加载失败时调用
 - (void)webView:(WKWebView *)webView didFailProvisionalNavigation:(WKNavigation *)navigation{
@@ -171,7 +167,7 @@
 }
 // 接收到服务器跳转请求之后调用
 - (void)webView:(WKWebView *)webView didReceiveServerRedirectForProvisionalNavigation:(WKNavigation *)navigation{
-    
+    NSLog(@"didReceiveServerRedirectForProvisionalNavigation");
 }
 // 在收到响应后，决定是否跳转
 - (void)webView:(WKWebView *)webView decidePolicyForNavigationResponse:(WKNavigationResponse *)navigationResponse decisionHandler:(void (^)(WKNavigationResponsePolicy))decisionHandler{
@@ -186,6 +182,7 @@
 - (void)webView:(WKWebView *)webView decidePolicyForNavigationAction:(WKNavigationAction *)navigationAction decisionHandler:(void (^)(WKNavigationActionPolicy))decisionHandler{
     
     NSLog(@"%@",navigationAction.request.URL.absoluteString);
+    self.leftButton.hidden = [navigationAction.request.URL.absoluteString containsString:kWebUrl];
     
     if ([navigationAction.request.URL.absoluteString hasPrefix:@"sms:"]
         || [navigationAction.request.URL.absoluteString hasPrefix:@"tel:"]
@@ -309,12 +306,6 @@
 //    [self.webView reload];
     [self loadRequest];
 }
-
-//- (void)stopLoading:(UIButton *)sender {
-//    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1.0 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-//        [sender stopLoadingWithImage:[UIImage imageNamed:@"dapp_refresh"]];
-//    });
-//}
 
 #pragma mark - Dealloc
 - (void)dealloc {

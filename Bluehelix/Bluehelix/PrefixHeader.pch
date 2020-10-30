@@ -196,7 +196,7 @@ typedef NS_ENUM(NSUInteger, NetworkMethod) {
 //#define kServerUrl @"https://explorer.hbtc.com"
 #define kMarketUrl @"https://app.hbtc.com/"
 #define kSocketQuoteUrl @"wss://ws.hbtc.com/ws/quote/v1"
-#define kWebUrl @"http://juswap.io/swap"
+#define kWebUrl @"https://juswap.io/swap"
 
 #define kChainId @"hbtc-testnet" //链名称
 #define kCu_number @"0"

@@ -125,15 +125,21 @@
 }
 
 - (void)transferVerify {
-    //    NSString *address = self.transferView.addressView.textField.text;
+        NSString *address = self.transferView.addressView.textField.text;
     if (self.transferView.addressView.textField.text.length && self.transferView.amountView.textField.text.length && self.transferView.feeView.textField.text.length) {
-        //        NSString *pre = [address substringToIndex:3];
-        //        if (![pre isEqualToString:@"HBC"]) {
-        //            Alert *alert = [[Alert alloc] initWithTitle:LocalizedString(@"AddressWrong") duration:kAlertDuration completion:^{
-        //            }];
-        //            [alert showAlert];
-        //            return;
-        //        }
+//                NSString *pre = [address substringToIndex:3];
+//                if (![pre isEqualToString:@"HBC"]) {
+//                    Alert *alert = [[Alert alloc] initWithTitle:LocalizedString(@"AddressWrong") duration:kAlertDuration completion:^{
+//                    }];
+//                    [alert showAlert];
+//                    return;
+//                }
+        if ([address isEqualToString:KUser.address]) {
+            Alert *alert = [[Alert alloc] initWithTitle:LocalizedString(@"TransferToSelf") duration:kAlertDuration completion:^{
+            }];
+            [alert showAlert];
+            return;
+        }
         NSString *availableAmount;
         if ([self.tokenModel.symbol isEqualToString:kMainToken]) {
             NSDecimalNumber *amountDecimal = [NSDecimalNumber decimalNumberWithString:self.tokenModel.amount];
@@ -202,9 +208,6 @@
 /// 提币
 - (void)withdrawVerify {
     if (self.withdrawView.addressView.textField.text.length && self.withdrawView.amountView.textField.text.length && self.withdrawView.feeView.textField.text.length) {
-        //        NSDecimalNumber *amountDecimal = [NSDecimalNumber decimalNumberWithString:self.tokenModel.amount];
-        //        NSDecimalNumber *feeAmountDecimal = [NSDecimalNumber decimalNumberWithString:self.withdrawView.chainFeeView.textField.text];
-        //        NSString *availableAmount = [[amountDecimal decimalNumberBySubtracting:feeAmountDecimal] stringValue];
         if (self.withdrawView.amountView.textField.text.doubleValue > self.tokenModel.amount.doubleValue) {
             Alert *alert = [[Alert alloc] initWithTitle:LocalizedString(@"WithdrawErrorTip") duration:kAlertDuration completion:^{
             }];
