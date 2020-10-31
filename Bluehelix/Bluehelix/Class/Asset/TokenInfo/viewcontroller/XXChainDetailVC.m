@@ -127,7 +127,7 @@
 
 /// 资产列表 构造数据
 - (void)reloadData {
-    NSArray *sqliteArray = [[XXSqliteManager sharedSqlite] tokens];
+    NSArray *sqliteArray = [[XXSqliteManager sharedSqlite] showTokens];
     [self.showArray removeAllObjects];
     for (XXTokenModel *sModel in sqliteArray) {
         if ([sModel.chain isEqualToString:self.chainName]) {
@@ -168,7 +168,7 @@
             _tableView.contentInsetAdjustmentBehavior = UIScrollViewContentInsetAdjustmentNever;
         }
         _tableView.mj_header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
-            [[XXSqliteManager sharedSqlite] requestTokens];
+            [[XXSqliteManager sharedSqlite] requestDefaultTokens];
             [weakSelf refreshAsset];
         }];
     }
