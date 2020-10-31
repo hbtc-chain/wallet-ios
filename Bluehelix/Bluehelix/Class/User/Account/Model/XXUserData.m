@@ -172,6 +172,14 @@ static XXUserData *_sharedUserData = nil;
     return [self getValueForKey:@"tokenStringKey"];
 }
 
+- (void)setDefaultTokens:(NSString *)defaultTokens {
+    [self saveValeu:defaultTokens forKey:@"defaultTokensKey"];
+}
+
+- (NSString *)defaultTokens {
+    return [self getValueForKey:@"defaultTokensKey"];
+}
+
 - (void)setChainString:(NSString *)chainString {
     [self saveValeu:chainString forKey:@"chainStringKey"];
 }

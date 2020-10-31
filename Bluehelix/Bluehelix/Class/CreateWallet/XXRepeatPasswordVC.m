@@ -98,7 +98,7 @@
         model.mnemonicPhrase = @"";
         model.backupFlag = YES;
     }
-    model.symbols = [NSString stringWithFormat:@"btc,eth,usdt,%@",kMainToken];
+    model.symbols = [[XXSqliteManager sharedSqlite] defaultTokenSymbols];
     //判断是否重复导入
     if (KUser.accounts) {
         for (XXAccountModel *a in KUser.accounts) {

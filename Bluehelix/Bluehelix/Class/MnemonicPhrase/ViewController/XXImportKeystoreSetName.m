@@ -63,7 +63,7 @@
     self.account.userName = self.textFieldView.textField.text;
     self.account.mnemonicPhrase = @"";
     self.account.backupFlag = YES; //keystore导入不需要备份助记词
-    self.account.symbols = [NSString stringWithFormat:@"btc,eth,usdt,%@",kMainToken];
+    self.account.symbols = [[XXSqliteManager sharedSqlite] defaultTokenSymbols];
     [[XXSqliteManager sharedSqlite] insertAccount:self.account];
     KUser.address = self.account.address;
     Alert *alert = [[Alert alloc] initWithTitle:LocalizedString(@"ImportSuccess") duration:kAlertDuration completion:^{

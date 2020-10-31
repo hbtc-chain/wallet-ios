@@ -23,12 +23,17 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, copy)  NSString *sqlitePath;
 
 + (XXSqliteManager *)sharedSqlite;
-- (void)requestTokens;
+//- (void)requestTokens;
+- (void)requestDefaultTokens; //请求默认tokens
+
 // 币
 - (void)insertTokens:(NSArray *)tokens;
+- (void)insertToken:(XXTokenModel *)token;
 - (NSArray *)tokens; //所有的币
 - (NSArray *)showTokens; //用户添加的币
 - (NSString *)tokensListString; //所有的币 字符串,隔开
+- (NSString *)defaultTokenSymbols; //默认需要添加的symbols
+@property (nonatomic, copy) NSMutableArray *defaultTokens; //默认tokens
 
 // 账户
 - (NSArray *)accounts;
@@ -65,7 +70,7 @@ NS_ASSUME_NONNULL_BEGIN
 // 链
 - (void)requestChain;
 
-@property (nonatomic, copy) NSMutableArray *chain;
+@property (nonatomic, copy) NSMutableArray *chain; //链列表
 @end
 
 NS_ASSUME_NONNULL_END

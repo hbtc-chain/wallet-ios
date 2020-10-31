@@ -32,6 +32,9 @@ NS_ASSUME_NONNULL_BEGIN
 /** 币币token列表 */
 @property (nonatomic, strong) NSString *tokenString;
 
+/** default tokens */
+@property (nonatomic, strong) NSString *defaultTokens;
+
 /// 链列表
 @property (nonatomic, strong) NSString *chainString;
 
