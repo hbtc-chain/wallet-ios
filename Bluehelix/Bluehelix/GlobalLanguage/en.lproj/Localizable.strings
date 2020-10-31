@@ -419,3 +419,4 @@
 "TestNetCoinTip" = "HBC testing token which on the HBTC testnet and wallet is for testing purposes only,it doesn't have any true value.";
 "Loading" = "Loading...";
 "TransferToSelf" = "You can't transfer to yourself";
+"AddToken" = "Add";

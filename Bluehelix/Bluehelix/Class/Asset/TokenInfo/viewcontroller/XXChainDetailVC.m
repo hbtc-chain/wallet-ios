@@ -19,6 +19,8 @@
 #import "XXChainHeaderView.h"
 #import "XXAssetSingleManager.h"
 #import "XXMainChainHeaderView.h"
+#import "XXAssetSearchHeaderView.h"
+#import "XXAddNewAssetVC.h"
 
 @interface XXChainDetailVC ()<UITableViewDataSource, UITableViewDelegate>
 
@@ -30,6 +32,9 @@
 @property (nonatomic, strong) NSMutableArray *showArray; //展示的币
 @property (nonatomic, strong) XXEmptyView *emptyView;
 @property (nonatomic, strong) XXFailureView *failureView; //无网络
+@property (nonatomic, strong) XXAssetSearchHeaderView *searchView;
+@property (nonatomic, strong) UIView *sectionHeader;
+
 @end
 
 @implementation XXChainDetailVC
@@ -44,6 +49,7 @@
 
 - (void)setupUI {
     self.titleLabel.text = [self.chainName uppercaseString];
+    [self.rightButton setTitle:LocalizedString(@"AddToken") forState:UIControlStateNormal];
     [self.view addSubview:self.tableView];
     self.tableView.separatorColor = KLine_Color;
     if ([self.chainName isEqualToString:kMainToken]) {
@@ -51,6 +57,11 @@
     } else {
         self.tableView.tableHeaderView = self.headerView;
     }
+}
+
+- (void)rightButtonClick:(UIButton *)sender {
+    XXAddNewAssetVC *addVC = [[XXAddNewAssetVC alloc] init];
+    [self.navigationController pushViewController:addVC animated:YES];
 }
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
@@ -69,7 +80,7 @@
             return self.emptyView.height;
         }
     } else {
-        return 0;
+        return 64;
     }
 }
 
@@ -82,7 +93,7 @@
         }
         return self.emptyView ;
     } else {
-        return [UIView new];
+        return self.sectionHeader;
     }
 }
 
@@ -204,4 +215,20 @@
     return _failureView;
 }
 
+- (XXAssetSearchHeaderView  *)searchView {
+    if (!_searchView) {
+        _searchView = [[XXAssetSearchHeaderView alloc] initWithFrame:CGRectMake(0, 16, kScreen_Width, 32)];
+        [_searchView.searchTextField addTarget:self action:@selector(textFieldValueChange:) forControlEvents:UIControlEventEditingChanged];
+    }
+    return _searchView;
+}
+
+- (UIView *)sectionHeader {
+    if (!_sectionHeader) {
+        _sectionHeader = [[UIView alloc] initWithFrame:CGRectMake(0, 0, kScreen_Width, 64)];
+        _sectionHeader.backgroundColor = kWhiteColor;
+        [_sectionHeader addSubview:self.searchView];
+    }
+    return _sectionHeader;
+}
 @end
