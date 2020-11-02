@@ -50,6 +50,22 @@ static XXSqliteManager *_sqliteManager;
     return symbols;
 }
 
+#pragma mark verified tokens
+- (void)requestVerifiedTokens {
+    MJWeakSelf
+    [HttpManager getWithPath:@"/api/v1/verified_tokens" params:nil andBlock:^(id data, NSString *msg, NSInteger code) {
+        if (code == 0) {
+            NSString *verifiedString = [data mj_JSONString];
+            NSString *localString = [XXUserData sharedUserData].verifiedTokens;
+            if (!IsEmpty(verifiedString) && ![localString isEqualToString:verifiedString]) {
+                [XXUserData sharedUserData].verifiedTokens = verifiedString;
+            }
+            weakSelf.verifiedTokens = [XXTokenModel mj_objectArrayWithKeyValuesArray:[XXUserData sharedUserData].verifiedTokens];
+            [weakSelf insertTokens:weakSelf.verifiedTokens];
+        }
+    }];
+}
+
 - (NSString *)sqlitePath {
     NSString *path = [NSString stringWithFormat:@"%@/Documents/wallet.db", NSHomeDirectory()];
     NSLog(@"path = %@",path);

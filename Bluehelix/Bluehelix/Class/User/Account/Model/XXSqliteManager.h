@@ -25,6 +25,7 @@ NS_ASSUME_NONNULL_BEGIN
 + (XXSqliteManager *)sharedSqlite;
 //- (void)requestTokens;
 - (void)requestDefaultTokens; //请求默认tokens
+- (void)requestVerifiedTokens; //请求搜索时推荐tokens
 
 // 币
 - (void)insertTokens:(NSArray *)tokens;
@@ -34,6 +35,7 @@ NS_ASSUME_NONNULL_BEGIN
 - (NSString *)tokensListString; //所有的币 字符串,隔开
 - (NSString *)defaultTokenSymbols; //默认需要添加的symbols
 @property (nonatomic, copy) NSMutableArray *defaultTokens; //默认tokens
+@property (nonatomic, copy) NSMutableArray *verifiedTokens; //搜索推荐tokens
 
 // 账户
 - (NSArray *)accounts;

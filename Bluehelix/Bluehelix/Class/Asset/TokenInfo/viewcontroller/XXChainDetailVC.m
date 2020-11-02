@@ -80,7 +80,7 @@
             return self.emptyView.height;
         }
     } else {
-        return 64;
+        return 0;
     }
 }
 
@@ -225,9 +225,9 @@
 
 - (UIView *)sectionHeader {
     if (!_sectionHeader) {
-        _sectionHeader = [[UIView alloc] initWithFrame:CGRectMake(0, 0, kScreen_Width, 64)];
+        _sectionHeader = [[UIView alloc] initWithFrame:CGRectMake(0, 0, kScreen_Width, 0)];
         _sectionHeader.backgroundColor = kWhiteColor;
-        [_sectionHeader addSubview:self.searchView];
+//        [_sectionHeader addSubview:self.searchView];
     }
     return _sectionHeader;
 }

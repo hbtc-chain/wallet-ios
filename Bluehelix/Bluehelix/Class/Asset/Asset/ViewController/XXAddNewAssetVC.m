@@ -16,7 +16,7 @@
 @interface XXAddNewAssetVC () <UITableViewDelegate,UITableViewDataSource>
 
 @property (nonatomic, strong) UITableView *tableView;
-@property (nonatomic, strong) NSArray *tokenList; //资产币列表
+@property (nonatomic, strong) NSArray *tokenList;
 @property (nonatomic, strong) XXAssetSearchHeaderView *headerView;
 @property (nonatomic, strong) NSMutableArray *showArray; //展示的列表
 @property (nonatomic, strong) XXFailureView *failureView; //无网络
@@ -44,54 +44,46 @@
 - (void)requestTokenList {
     MJWeakSelf
     [MBProgressHUD showActivityMessageInView:@""];
-    NSMutableDictionary *param = [NSMutableDictionary dictionary];
-    param[@"page"] = @"1";
-    param[@"size"] = @"2000";
-    [HttpManager getWithPath:@"/api/v1/tokens" params:param andBlock:^(id data, NSString *msg, NSInteger code) {
+    [HttpManager getWithPath:@"/api/v1/verified_tokens" params:nil andBlock:^(id data, NSString *msg, NSInteger code) {
         [MBProgressHUD hideHUD];
         if (code == 0) {
-            NSLog(@"%@",data);
-            weakSelf.tokenList = [XXTokenModel mj_objectArrayWithKeyValuesArray:data[@"items"]];
-            weakSelf.showArray = [NSMutableArray arrayWithArray:weakSelf.tokenList];
-            [[XXSqliteManager sharedSqlite] insertTokens:weakSelf.tokenList];
+            NSString *verifiedString = [data mj_JSONString];
+            NSString *localString = [XXUserData sharedUserData].verifiedTokens;
+            if (!IsEmpty(verifiedString) && ![localString isEqualToString:verifiedString]) {
+                [XXUserData sharedUserData].verifiedTokens = verifiedString;
+            }
+            weakSelf.tokenList = [XXTokenModel mj_objectArrayWithKeyValuesArray:[XXUserData sharedUserData].verifiedTokens];
             [weakSelf.tableView reloadData];
-        } else {
-            Alert *alert = [[Alert alloc] initWithTitle:msg duration:kAlertDuration completion:^{
-            }];
-            [alert showAlert];
         }
     }];
 }
 
-- (void)reloadData {
-    NSString *searchStr = self.headerView.searchTextField.text;
-    
-    if (searchStr.length) {
-        [self.showArray removeAllObjects];
-        for (XXTokenModel *model in self.tokenList) {
-            if ([model.name containsString:searchStr]) {
-                [self.showArray addObject:model];
-            }
-        }
-    } else {
-        self.showArray = [NSMutableArray arrayWithArray:self.tokenList];
-    }
-    [self.tableView reloadData];
-}
+//- (void)reloadData {
+//    _showArray = [NSMutableArray array];
+//    if (!IsEmpty(KUser.currentAccount.symbols)) {
+//        NSArray *symbols = [KUser.currentAccount.symbols componentsSeparatedByString:@","];
+//        for (XXTokenModel *model in self.tokenList) {
+//            if ([symbols containsObject:model.symbol]) {
+//                [_showArray addObject:model];
+//            }
+//        }
+//    }
+//    [self.tableView reloadData];
+//}
 
 - (void)textFieldValueChange:(UITextField *)textField {
-    [self reloadData];
+//    [self reloadData];
 }
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
     return 1;
 }
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return self.showArray.count;
+    return self.tokenList.count;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
-    if (self.showArray.count == 0) {
+    if (self.tokenList.count == 0) {
         if ([KUser.netWorkStatus isEqualToString:@"notReachable"]) {
             return self.failureView.height;
         } else {
@@ -103,7 +95,7 @@
 }
 
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
-    if (self.showArray.count == 0) {
+    if (self.tokenList.count == 0) {
         if ([KUser.netWorkStatus isEqualToString:@"notReachable"]) {
             return self.failureView;
         } else {
@@ -123,7 +115,7 @@
     if (!cell) {
         cell = [[XXAddAssetCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"XXAddAssetCell"];
     }
-    XXTokenModel *model = self.showArray[indexPath.row];
+    XXTokenModel *model = self.tokenList[indexPath.row];
     [cell configData:model];
     cell.backgroundColor = kWhiteColor;
     return cell;
