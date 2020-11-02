@@ -422,4 +422,5 @@
 "TestNetCoinTip" = "测试网的HBC代币均为测试代币无任何价值!";
 "Loading" = "加载中...";
 "TransferToSelf" = "不能转账给自己";
-"AddToken" = "添加";
+"AddToken" = "添加币种";
+"MoreTokenSearch" = "更多币种请输入名称检索";

@@ -36,7 +36,7 @@
     [self registerWebViewUserAgent];
     KUser.shouldVerify = YES;
     [self AFNReachability];
-    [[XXSqliteManager sharedSqlite] requestTokens];
+    [[XXSqliteManager sharedSqlite] requestDefaultTokens];
     [[XXSqliteManager sharedSqlite] requestMapping];
     [[XXSqliteManager sharedSqlite] requestChain];
     if (!KUser.isSettedNightType) {
@@ -44,15 +44,15 @@
     }
     KWindow.backgroundColor = [UIColor whiteColor];
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
-    self.window.rootViewController = [[XXTabBarController alloc] init];
     if (KUser.address) {
-        if (KUser.isFaceIDLockOpen || KUser.isTouchIDLockOpen) {
-            self.window.rootViewController = [[BHFaceIDLockVC alloc] init];
-        } else {
-            XXLoginVC *loginVC = [[XXLoginVC alloc] init];
-            XXNavigationController *loginNav = [[XXNavigationController alloc] initWithRootViewController:loginVC];
-            self.window.rootViewController = loginNav;
-        }
+        self.window.rootViewController = [[XXTabBarController alloc] init];
+//        if (KUser.isFaceIDLockOpen || KUser.isTouchIDLockOpen) {
+//            self.window.rootViewController = [[BHFaceIDLockVC alloc] init];
+//        } else {
+//            XXLoginVC *loginVC = [[XXLoginVC alloc] init];
+//            XXNavigationController *loginNav = [[XXNavigationController alloc] initWithRootViewController:loginVC];
+//            self.window.rootViewController = loginNav;
+//        }
     } else {
         XXStartWalletVC *startVC = [[XXStartWalletVC alloc] init];
         XXNavigationController *startNav = [[XXNavigationController alloc] initWithRootViewController:startVC];

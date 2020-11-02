@@ -417,4 +417,5 @@
 "TestNetCoinTip" = "The HBC Testnet tokens are for testing purposes only with no monetary value";
 "Loading" = "Loading...";
 "TransferToSelf" = "You can't transfer to yourself";
-"AddToken" = "Add";
+"AddToken" = "Add Token";
+"MoreTokenSearch" = "For more currencies, please enter the name search";

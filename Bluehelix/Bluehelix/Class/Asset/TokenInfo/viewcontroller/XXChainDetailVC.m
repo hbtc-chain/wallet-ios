@@ -50,6 +50,8 @@
 - (void)setupUI {
     self.titleLabel.text = [self.chainName uppercaseString];
     [self.rightButton setTitle:LocalizedString(@"AddToken") forState:UIControlStateNormal];
+    self.rightButton.frame = CGRectMake(kScreen_Width - 160, self.leftButton.top, 145, self.leftButton.height);
+    [self.rightButton setContentHorizontalAlignment:UIControlContentHorizontalAlignmentRight ];
     [self.view addSubview:self.tableView];
     self.tableView.separatorColor = KLine_Color;
     if ([self.chainName isEqualToString:kMainToken]) {
@@ -61,6 +63,7 @@
 
 - (void)rightButtonClick:(UIButton *)sender {
     XXAddNewAssetVC *addVC = [[XXAddNewAssetVC alloc] init];
+    addVC.chain = self.chainName;
     [self.navigationController pushViewController:addVC animated:YES];
 }
 
@@ -80,7 +83,7 @@
             return self.emptyView.height;
         }
     } else {
-        return 64;
+        return 0;
     }
 }
 
@@ -127,7 +130,7 @@
 
 /// 资产列表 构造数据
 - (void)reloadData {
-    NSArray *sqliteArray = [[XXSqliteManager sharedSqlite] tokens];
+    NSArray *sqliteArray = [[XXSqliteManager sharedSqlite] showTokens];
     [self.showArray removeAllObjects];
     for (XXTokenModel *sModel in sqliteArray) {
         if ([sModel.chain isEqualToString:self.chainName]) {
@@ -168,7 +171,7 @@
             _tableView.contentInsetAdjustmentBehavior = UIScrollViewContentInsetAdjustmentNever;
         }
         _tableView.mj_header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
-            [[XXSqliteManager sharedSqlite] requestTokens];
+            [[XXSqliteManager sharedSqlite] requestDefaultTokens];
             [weakSelf refreshAsset];
         }];
     }
@@ -225,9 +228,9 @@
 
 - (UIView *)sectionHeader {
     if (!_sectionHeader) {
-        _sectionHeader = [[UIView alloc] initWithFrame:CGRectMake(0, 0, kScreen_Width, 64)];
+        _sectionHeader = [[UIView alloc] initWithFrame:CGRectMake(0, 0, kScreen_Width, 0)];
         _sectionHeader.backgroundColor = kWhiteColor;
-        [_sectionHeader addSubview:self.searchView];
+//        [_sectionHeader addSubview:self.searchView];
     }
     return _sectionHeader;
 }

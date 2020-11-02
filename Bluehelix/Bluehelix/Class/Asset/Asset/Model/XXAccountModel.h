@@ -12,7 +12,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface XXAccountModel : NSObject
 
-@property (nonatomic, strong) NSString *address; //bht地址
+@property (nonatomic, strong) NSString *address; //地址
 @property (nonatomic, strong) NSString *symbols; //保存的币种
 @property (nonatomic, strong) NSString *privateKey; //私钥
 @property (nonatomic, strong) NSString *keystore; //Keystore

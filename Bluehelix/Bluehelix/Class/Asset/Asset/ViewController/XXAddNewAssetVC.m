@@ -13,12 +13,11 @@
 #import "XXFailureView.h"
 #import "XXEmptyView.h"
 
-@interface XXAddNewAssetVC () <UITableViewDelegate,UITableViewDataSource>
+@interface XXAddNewAssetVC () <UITableViewDelegate, UITableViewDataSource, UITextFieldDelegate>
 
 @property (nonatomic, strong) UITableView *tableView;
-@property (nonatomic, strong) NSArray *tokenList; //资产币列表
+@property (nonatomic, strong) NSMutableArray *tokenList;
 @property (nonatomic, strong) XXAssetSearchHeaderView *headerView;
-@property (nonatomic, strong) NSMutableArray *showArray; //展示的列表
 @property (nonatomic, strong) XXFailureView *failureView; //无网络
 @property (nonatomic, strong) XXEmptyView *emptyView;
 
@@ -40,58 +39,79 @@
     self.tableView.tableHeaderView = self.headerView;
 }
 
-/// 请求币列表
-- (void)requestTokenList {
-    MJWeakSelf
-    [MBProgressHUD showActivityMessageInView:@""];
-    NSMutableDictionary *param = [NSMutableDictionary dictionary];
-    param[@"page"] = @"1";
-    param[@"size"] = @"2000";
-    [HttpManager getWithPath:@"/api/v1/tokens" params:param andBlock:^(id data, NSString *msg, NSInteger code) {
-        [MBProgressHUD hideHUD];
-        if (code == 0) {
-            NSLog(@"%@",data);
-            weakSelf.tokenList = [XXTokenModel mj_objectArrayWithKeyValuesArray:data[@"items"]];
-            weakSelf.showArray = [NSMutableArray arrayWithArray:weakSelf.tokenList];
-            [[XXSqliteManager sharedSqlite] insertTokens:weakSelf.tokenList];
-            [weakSelf.tableView reloadData];
-        } else {
-            Alert *alert = [[Alert alloc] initWithTitle:msg duration:kAlertDuration completion:^{
-            }];
-            [alert showAlert];
-        }
-    }];
-}
-
 - (void)reloadData {
-    NSString *searchStr = self.headerView.searchTextField.text;
-    
-    if (searchStr.length) {
-        [self.showArray removeAllObjects];
-        for (XXTokenModel *model in self.tokenList) {
-            if ([model.name containsString:searchStr]) {
-                [self.showArray addObject:model];
-            }
+    NSArray *tokens = [XXTokenModel mj_objectArrayWithKeyValuesArray:[XXUserData sharedUserData].verifiedTokens];
+    [self.tokenList removeAllObjects];
+    for (XXTokenModel *model in tokens) {
+        if ([model.chain isEqualToString:self.chain]) {
+            [self.tokenList addObject:model];
         }
-    } else {
-        self.showArray = [NSMutableArray arrayWithArray:self.tokenList];
     }
     [self.tableView reloadData];
 }
 
-- (void)textFieldValueChange:(UITextField *)textField {
-    [self reloadData];
+#pragma mark request
+/// 请求推荐列表
+- (void)requestTokenList {
+    MJWeakSelf
+    [MBProgressHUD showActivityMessageInView:@""];
+    [HttpManager getWithPath:@"/api/v1/verified_tokens" params:nil andBlock:^(id data, NSString *msg, NSInteger code) {
+        [MBProgressHUD hideHUD];
+        [weakSelf.tableView.mj_header endRefreshing];
+        if (code == 0) {
+            NSString *verifiedString = [data mj_JSONString];
+            NSString *localString = [XXUserData sharedUserData].verifiedTokens;
+            if (!IsEmpty(verifiedString) && ![localString isEqualToString:verifiedString]) {
+                [XXUserData sharedUserData].verifiedTokens = verifiedString;
+            }
+            [weakSelf reloadData];
+        }
+    }];
 }
 
+/// 搜索币
+- (void)requestSearchToken:(NSString *)text {
+    MJWeakSelf
+    NSMutableDictionary *dic = [NSMutableDictionary dictionary];
+    dic[@"token"] = text;
+    dic[@"chain"] = self.chain;
+    [MBProgressHUD showActivityMessageInView:@""];
+    [HttpManager getWithPath:@"/api/v1/search_tokens" params:dic andBlock:^(id data, NSString *msg, NSInteger code) {
+        [MBProgressHUD hideHUD];
+        [weakSelf.tableView.mj_header endRefreshing];
+        if (code == 0) {
+            weakSelf.tokenList = [XXTokenModel mj_objectArrayWithKeyValuesArray:data];
+            [[XXSqliteManager sharedSqlite] insertTokens:weakSelf.tokenList];
+            [weakSelf.tableView reloadData];
+        }
+    }];
+}
+
+#pragma mark textField delegate
+- (void)textFieldDidEndEditing:(UITextField *)textField reason:(UITextFieldDidEndEditingReason)reason {
+    if (reason == UITextFieldDidEndEditingReasonCommitted && !IsEmpty(textField.text)) {
+        [self requestSearchToken:textField.text];
+    } else {
+        [self reloadData];
+    }
+}
+
+- (void)textFieldValueChange:(UITextField *)textField {
+    if (IsEmpty(textField.text)) {
+        [self reloadData];
+    }
+}
+
+#pragma mark tableView delegate
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
     return 1;
 }
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return self.showArray.count;
+    return self.tokenList.count;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
-    if (self.showArray.count == 0) {
+    if (self.tokenList.count == 0) {
         if ([KUser.netWorkStatus isEqualToString:@"notReachable"]) {
             return self.failureView.height;
         } else {
@@ -103,7 +123,7 @@
 }
 
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
-    if (self.showArray.count == 0) {
+    if (self.tokenList.count == 0) {
         if ([KUser.netWorkStatus isEqualToString:@"notReachable"]) {
             return self.failureView;
         } else {
@@ -123,7 +143,7 @@
     if (!cell) {
         cell = [[XXAddAssetCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"XXAddAssetCell"];
     }
-    XXTokenModel *model = self.showArray[indexPath.row];
+    XXTokenModel *model = self.tokenList[indexPath.row];
     [cell configData:model];
     cell.backgroundColor = kWhiteColor;
     return cell;
@@ -134,8 +154,10 @@
     
 }
 
+#pragma mark property
 - (UITableView *)tableView {
     if (_tableView == nil) {
+        MJWeakSelf
         _tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, kNavHeight, kScreen_Width, kScreen_Height - kNavHeight) style:UITableViewStylePlain];
         _tableView.dataSource = self;
         _tableView.delegate = self;
@@ -145,6 +167,13 @@
         if (@available(iOS 11.0, *)) {
             _tableView.contentInsetAdjustmentBehavior = UIScrollViewContentInsetAdjustmentNever;
         }
+        _tableView.mj_header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
+            if (!IsEmpty(weakSelf.headerView.searchTextField.text)) {
+                [weakSelf requestSearchToken:weakSelf.headerView.searchTextField.text];
+            } else {
+                [weakSelf requestTokenList];
+            }
+        }];
     }
     return _tableView;
 }
@@ -152,7 +181,9 @@
 - (XXAssetSearchHeaderView  *)headerView {
     if (!_headerView) {
         _headerView = [[XXAssetSearchHeaderView alloc] initWithFrame:CGRectMake(K375(16), 0, kScreen_Width - K375(32), 32 + 16)];
+        _headerView.searchTextField.delegate = self;
         [_headerView.searchTextField addTarget:self action:@selector(textFieldValueChange:) forControlEvents:UIControlEventEditingChanged];
+
     }
     return _headerView;
 }
@@ -173,6 +204,13 @@
         };
     }
     return _failureView;
+}
+
+- (NSMutableArray *)tokenList {
+    if (!_tokenList) {
+        _tokenList = [[NSMutableArray alloc] init];
+    }
+    return _tokenList;
 }
 
 @end
