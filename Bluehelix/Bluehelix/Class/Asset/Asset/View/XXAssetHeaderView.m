@@ -158,18 +158,6 @@
     return _hidenAssetsButton;
 }
 
-//- (XXButton *)menuBtn {
-//    if (!_menuBtn) {
-//        MJWeakSelf
-//        _menuBtn = [XXButton buttonWithFrame:CGRectMake(kScreen_Width - 60, K375(64), 40, 40) block:^(UIButton *button) {
-//            XXAddNewAssetVC *addVC = [[XXAddNewAssetVC alloc] init];
-//            [weakSelf.viewController.navigationController pushViewController:addVC animated:YES];
-//        }];
-//        [_menuBtn setImage:[UIImage imageNamed:@"menu"] forState:UIControlStateNormal];
-//    }
-//    return _menuBtn;
-//}
-
 - (UIImageView *)shadowImageView {
     if (!_shadowImageView) {
         _shadowImageView = [[UIImageView alloc] initWithFrame:CGRectMake(K375(16), K375(135), kScreen_Width - K375(32), K375(120))];

@@ -50,6 +50,8 @@
 - (void)setupUI {
     self.titleLabel.text = [self.chainName uppercaseString];
     [self.rightButton setTitle:LocalizedString(@"AddToken") forState:UIControlStateNormal];
+    self.rightButton.frame = CGRectMake(kScreen_Width - 160, self.leftButton.top, 145, self.leftButton.height);
+    [self.rightButton setContentHorizontalAlignment:UIControlContentHorizontalAlignmentRight ];
     [self.view addSubview:self.tableView];
     self.tableView.separatorColor = KLine_Color;
     if ([self.chainName isEqualToString:kMainToken]) {
@@ -61,6 +63,7 @@
 
 - (void)rightButtonClick:(UIButton *)sender {
     XXAddNewAssetVC *addVC = [[XXAddNewAssetVC alloc] init];
+    addVC.chain = self.chainName;
     [self.navigationController pushViewController:addVC animated:YES];
 }
 

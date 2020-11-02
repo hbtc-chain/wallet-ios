@@ -13,6 +13,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface XXAddNewAssetVC : BaseViewController
 
+@property (nonatomic, copy) NSString *chain;
+
 @end
 
 NS_ASSUME_NONNULL_END
