@@ -418,4 +418,4 @@
 "Loading" = "Loading...";
 "TransferToSelf" = "You can't transfer to yourself";
 "AddToken" = "Add Token";
-"MoreTokenSearch" = "For more currencies, please enter the name search";
+"MoreTokenSearch" = "Enter the name to search more coins";

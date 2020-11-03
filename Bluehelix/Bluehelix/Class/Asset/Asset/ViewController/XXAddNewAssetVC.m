@@ -181,6 +181,7 @@
 - (XXAssetSearchHeaderView  *)headerView {
     if (!_headerView) {
         _headerView = [[XXAssetSearchHeaderView alloc] initWithFrame:CGRectMake(K375(16), 0, kScreen_Width - K375(32), 32 + 16)];
+        _headerView.searchTextField.placeholder = LocalizedString(@"MoreTokenSearch");
         _headerView.searchTextField.delegate = self;
         [_headerView.searchTextField addTarget:self action:@selector(textFieldValueChange:) forControlEvents:UIControlEventEditingChanged];
 

@@ -68,7 +68,6 @@
         return;
     }
     [MBProgressHUD showActivityMessageInView:nil];
-    NSLog(@"%@   %@",KUser.localPrivateKey,KUser.localPhraseString);
     if (!IsEmpty(KUser.localPhraseString)) { //通过助记词导入创建
         self.account = [Account accountWithMnemonicPhrase:KUser.localPhraseString];
     } else if (!IsEmpty(KUser.localPrivateKey)) { //通过私钥导入创建
@@ -116,14 +115,14 @@
     if (model.backupFlag) { //导入的不需要备份助记词
         Alert *alert = [[Alert alloc] initWithTitle:LocalizedString(@"ImportSuccess") duration:kAlertDuration completion:^{
             KWindow.rootViewController = [[XXTabBarController alloc] init];
-            [self showBiometricAlert];
+//            [self showBiometricAlert];
         }];
         [alert showAlert];
     } else {
         XXCreateWalletSuccessVC *successVC = [[XXCreateWalletSuccessVC alloc] init];
         successVC.text = KUser.localPassword;
         [self.navigationController pushViewController:successVC animated:YES];
-        [self showBiometricAlert];
+//        [self showBiometricAlert];
     }
     KUser.localPassword = @"";
     KUser.localUserName = @"";

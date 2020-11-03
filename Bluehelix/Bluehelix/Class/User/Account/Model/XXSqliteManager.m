@@ -18,6 +18,7 @@ static XXSqliteManager *_sqliteManager;
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
         _sqliteManager = [[XXSqliteManager alloc] init];
+        _sqliteManager.defaultTokens = [XXTokenModel mj_objectArrayWithKeyValuesArray:[XXUserData sharedUserData].defaultTokens];
     });
     return _sqliteManager;
 }
@@ -28,8 +29,14 @@ static XXSqliteManager *_sqliteManager;
     [HttpManager getWithPath:@"/api/v1/default_tokens" params:nil andBlock:^(id data, NSString *msg, NSInteger code) {
         if (code == 0) {
             NSString *defaultTokens = [data mj_JSONString];
-            NSString *localString = [XXUserData sharedUserData].tokenString;
+            NSString *localString = [XXUserData sharedUserData].defaultTokens;
             if (!IsEmpty(defaultTokens) && ![localString isEqualToString:defaultTokens]) {
+                NSArray *newDefaultTokens = [XXTokenModel mj_objectArrayWithKeyValuesArray:defaultTokens];
+                for (XXTokenModel *token in newDefaultTokens) {
+                    if (![self.defaultTokenSymbols containsString:token.symbol]) {
+                        [self insertSymbolForEveryAccount:token.symbol];
+                    }
+                }
                 [XXUserData sharedUserData].defaultTokens = defaultTokens;
             }
             weakSelf.defaultTokens = [XXTokenModel mj_objectArrayWithKeyValuesArray:[XXUserData sharedUserData].defaultTokens];
@@ -347,6 +354,17 @@ static XXSqliteManager *_sqliteManager;
     } else {
         NSString *symbols = [NSString stringWithFormat:@"%@,%@",model.symbols,symbol];
         [self updateAccountColumn:@"symbols" value:symbols];
+    }
+}
+
+- (void)insertSymbolForEveryAccount:(NSString *)symbol {
+    for (XXAccountModel *model in [self accounts]) {
+        if (IsEmpty(model.symbols)) {
+            [self updateAccountColumn:@"symbols" value:symbol];
+        } else {
+            NSString *symbols = [NSString stringWithFormat:@"%@,%@",model.symbols,symbol];
+            [self updateAccountColumn:@"symbols" value:symbols];
+        }
     }
 }
 
