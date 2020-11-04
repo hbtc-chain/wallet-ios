@@ -82,7 +82,7 @@
 
 - (XXLabel *)testLabel {
     if (!_testLabel) {
-        _testLabel = [XXLabel labelWithFrame:CGRectMake(CGRectGetMaxX(self.chainNameLabel.frame), 22, 100, 32) font:kFont13 textColor:[UIColor whiteColor]];
+        _testLabel = [XXLabel labelWithFrame:CGRectMake(CGRectGetMaxX(self.chainNameLabel.frame), 22, 80, 32) font:kFont13 textColor:[UIColor whiteColor]];
         _testLabel.text = @"(Testnet)";
     }
     return _testLabel;
@@ -132,7 +132,13 @@
     if (!_getTestCoinBtn) {
         MJWeakSelf
         CGFloat width = [NSString widthWithText:LocalizedString(@"GetTestCoin") font:kFont12] + 8;
-        _getTestCoinBtn = [XXButton buttonWithFrame:CGRectMake(CGRectGetMaxX(self.codeBtn.frame) + 16, self.addressLabel.top, width, 26) block:^(UIButton *button) {
+        CGFloat top = self.addressLabel.top;
+        CGFloat left = CGRectGetMaxX(self.codeBtn.frame) + 16;
+        if (width + CGRectGetMaxX(self.codeBtn.frame) + 32 > self.backView.width) {
+            top = self.testLabel.top + 3;
+            left = CGRectGetMaxX(self.testLabel.frame);
+        }
+        _getTestCoinBtn = [XXButton buttonWithFrame:CGRectMake(left, top, width, 26) block:^(UIButton *button) {
             [weakSelf requestGetTestCoin:@"hbc"];
             [weakSelf requestGetTestCoin:@"kiwi"];
         }];

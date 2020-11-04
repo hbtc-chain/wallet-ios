@@ -56,6 +56,7 @@
 }
 
 - (void)configData:(XXChainModel *)model {
+    NSString *type = [model.chain isEqualToString:kMainToken] ? LocalizedString(@"NativeTokenList") : LocalizedString(@"CrossChainTokenList");
     XXTokenModel *token = [[XXSqliteManager sharedSqlite] tokenBySymbol:model.chain];
     [self.iconView sd_setImageWithURL:[NSURL URLWithString:token.logo] placeholderImage:[UIImage imageNamed:@"placeholderToken"]];
     
@@ -63,8 +64,8 @@
     CGFloat width = [NSString widthWithText:[model.chain uppercaseString] font:kFontBold(17)];
     self.coinNameLabel.frame = CGRectMake(CGRectGetMaxX(self.iconView.frame) + 12, 16, width, 24);
     
-    self.typeLabel.text = model.typeName;
-    CGFloat typeWidth = [NSString widthWithText:model.typeName font:kFont10];
+    self.typeLabel.text = type;
+    CGFloat typeWidth = [NSString widthWithText:type font:kFont10];
     self.typeLabel.frame = CGRectMake(CGRectGetMaxX(self.coinNameLabel.frame) + 4, 20, typeWidth + 8, 16);
     
     self.detailNameLabel.text = model.full_name;

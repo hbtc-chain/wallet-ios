@@ -20,6 +20,7 @@
 @property (nonatomic, strong) XXAssetSearchHeaderView *headerView;
 @property (nonatomic, strong) XXFailureView *failureView; //无网络
 @property (nonatomic, strong) XXEmptyView *emptyView;
+@property (nonatomic, strong) NSMutableArray *symbols;
 
 @end
 
@@ -37,14 +38,22 @@
     [self.view addSubview:self.tableView];
     self.tableView.separatorColor = KLine_Color;
     self.tableView.tableHeaderView = self.headerView;
+    [self reloadData];
 }
 
 - (void)reloadData {
     NSArray *tokens = [XXTokenModel mj_objectArrayWithKeyValuesArray:[XXUserData sharedUserData].verifiedTokens];
     [self.tokenList removeAllObjects];
+    [self.symbols removeAllObjects];
     for (XXTokenModel *model in tokens) {
         if ([model.chain isEqualToString:self.chain]) {
             [self.tokenList addObject:model];
+            [self.symbols addObject:model.symbol];
+        }
+    }
+    for (XXTokenModel *token in [[XXSqliteManager sharedSqlite] showTokens]) {
+        if ([token.chain isEqualToString:self.chain] && ![self.symbols containsObject:token.symbol]) {
+            [self.tokenList addObject:token];
         }
     }
     [self.tableView reloadData];
@@ -212,6 +221,13 @@
         _tokenList = [[NSMutableArray alloc] init];
     }
     return _tokenList;
+}
+
+- (NSMutableArray *)symbols {
+    if (!_symbols) {
+        _symbols = [[NSMutableArray alloc] init];
+    }
+    return _symbols;
 }
 
 @end

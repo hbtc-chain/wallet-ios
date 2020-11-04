@@ -78,8 +78,11 @@
     self.leftButton.imageView.image = [UIImage imageNamed:@"white_back"];
     [self.view addSubview:self.scrollView];
     if (!self.InnerChain) {
+        self.showAddress = [[XXAssetSingleManager sharedManager] externalAddressBySymbol:self.tokenModel.symbol];
         [self.scrollView addSubview:self.tipView];
         [self.tipView addSubview:self.tipLabel];
+    } else {
+        self.showAddress = KUser.address;
     }
     [self.scrollView addSubview:self.topBackImageView];
     [self.scrollView addSubview:self.bottomImageView];

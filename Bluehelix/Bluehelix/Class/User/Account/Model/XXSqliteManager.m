@@ -19,6 +19,8 @@ static XXSqliteManager *_sqliteManager;
     dispatch_once(&onceToken, ^{
         _sqliteManager = [[XXSqliteManager alloc] init];
         _sqliteManager.defaultTokens = [XXTokenModel mj_objectArrayWithKeyValuesArray:[XXUserData sharedUserData].defaultTokens];
+        _sqliteManager.chain = [XXChainModel mj_objectArrayWithKeyValuesArray:[XXUserData sharedUserData].chainString];
+        _sqliteManager.verifiedTokens = [XXTokenModel mj_objectArrayWithKeyValuesArray:[XXUserData sharedUserData].verifiedTokens];
     });
     return _sqliteManager;
 }
@@ -41,6 +43,8 @@ static XXSqliteManager *_sqliteManager;
             }
             weakSelf.defaultTokens = [XXTokenModel mj_objectArrayWithKeyValuesArray:[XXUserData sharedUserData].defaultTokens];
             [weakSelf insertTokens:weakSelf.defaultTokens];
+        } else {
+            [self performSelector:@selector(requestDefaultTokens) withObject:nil afterDelay:3];
         }
     }];
 }
@@ -431,13 +435,6 @@ static XXSqliteManager *_sqliteManager;
                 [XXUserData sharedUserData].chainString = chainString;
             }
             weakSelf.chain = [XXChainModel mj_objectArrayWithKeyValuesArray:[XXUserData sharedUserData].chainString];
-            for (XXChainModel *dic in weakSelf.chain) {
-                if ([dic.chain isEqualToString:kMainToken]) {
-                    dic.typeName = LocalizedString(@"NativeTokenList");
-                } else {
-                    dic.typeName =LocalizedString(@"CrossChainTokenList");
-                }
-            }
         }
     }];
 }
