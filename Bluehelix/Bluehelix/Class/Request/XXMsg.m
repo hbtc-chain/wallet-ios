@@ -226,7 +226,7 @@ proposalDescription:(NSString *)proposalDescription
     } else if ([_type isEqualToString:kMsgNewToken]) {
         NSMutableDictionary *value = [NSMutableDictionary dictionary];
         value[@"from"] = KUser.address;
-        value[@"to"] = KUser.address;
+        value[@"to"] = _toAddress;
         value[@"symbol"] = _denom;
         value[@"decimals"] = _decimals;
         value[@"total_supply"] = _amount;

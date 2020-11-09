@@ -309,7 +309,7 @@
 "SystemMessage" = "系统消息";
 "Recharge" = "充值";
 "ContactUs" = "联系我们";
-"ContactMail" = "Hbcwallet@hbtc.com";
+"ContactMail" = "hbtcwallet@hbtc.com";
 "CopyMail" = "复制邮箱";
 "ModifyUserName" = "修改名称";
 "KeystoreSetNameTip" = "您正在导入HBTC钱包的账户，并将拥有一份跨链钱包";

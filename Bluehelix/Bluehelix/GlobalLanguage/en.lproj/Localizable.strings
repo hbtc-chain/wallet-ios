@@ -306,7 +306,7 @@
 "SystemMessage" = "System Messages";
 "Recharge" = "Deposit";
 "ContactUs" = "Contact us";
-"ContactMail" = "Hbcwallet@hbtc.com";
+"ContactMail" = "hbtcwallet@hbtc.com";
 "CopyMail" = "Copy";
 "ModifyUserName" = "Edit username";
 "KeystoreSetNameTip" = "You are now importing your HBTC Wallet account that provides you with cross-chain wallet address";
