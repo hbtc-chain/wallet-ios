@@ -29,6 +29,9 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, strong) NSString *ratesKey; //汇率
 @property (nonatomic, strong) NSString *netWorkStatus; //网络状态
 
+@property (nonatomic, strong) NSString *fee; //手续费
+@property (nonatomic, strong) NSString *gas; //气
+
 /** 币币token列表 */
 @property (nonatomic, strong) NSString *tokenString;
 

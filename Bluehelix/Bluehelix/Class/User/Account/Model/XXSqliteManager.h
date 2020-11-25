@@ -72,6 +72,9 @@ NS_ASSUME_NONNULL_BEGIN
 // 链
 - (void)requestChain;
 
+/// 请求手续费
+- (void)requestFee;
+
 @property (nonatomic, copy) NSMutableArray *chain; //链列表
 @end
 

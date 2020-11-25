@@ -82,15 +82,6 @@ static XXUserData *_sharedUserData = nil;
     [self setIsQuickTextOpen:NO];
 }
 
-//// 临时用户名
-//- (void)setLocalUserName:(NSString *)localUserName {
-//    [self saveValeu:localUserName forKey:@"localUserName"];
-//}
-//
-//- (NSString *)localUserName {
-//    return [self getValueForKey:@"localUserName"];
-//}
-
 - (void)setRatesKey:(NSString *)ratesKey {
     [self saveValeu:ratesKey forKey:@"ratesKey"];
 }
@@ -162,6 +153,22 @@ static XXUserData *_sharedUserData = nil;
 
 - (NSString *)address {
     return [self getValueForKey:@"address"];
+}
+
+- (void)setFee:(NSString *)fee {
+    [self saveValeu:fee forKey:@"fee"];
+}
+
+- (NSString *)fee {
+    return [self getValueForKey:@"fee"];
+}
+
+- (void)setGas:(NSString *)gas {
+    [self saveValeu:gas forKey:@"gas"];
+}
+
+- (NSString *)gas {
+    return [self getValueForKey:@"gas"];
 }
 
 - (void)setTokenString:(NSString *)tokenString {

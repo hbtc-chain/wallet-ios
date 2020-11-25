@@ -439,6 +439,16 @@ static XXSqliteManager *_sqliteManager;
     }];
 }
 
+#pragma mark 手续费
+- (void)requestFee {
+    [HttpManager getWithPath:@"/api/v1/default_fee" params:nil andBlock:^(id data, NSString *msg, NSInteger code) {
+        if (code == 0) {
+            [XXUserData sharedUserData].fee = data[@"fee"];
+            [XXUserData sharedUserData].gas = data[@"gas"];
+        }
+    }];
+}
+
 - (NSString *)signType:(NSString *)type {
     if ([type isEqualToString:kMsgSend]) { //转账
         return LocalizedString(@"Transfer");

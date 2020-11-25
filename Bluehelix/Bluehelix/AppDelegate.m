@@ -39,6 +39,7 @@
     [[XXSqliteManager sharedSqlite] requestChain];
     [[XXSqliteManager sharedSqlite] requestDefaultTokens];
     [[XXSqliteManager sharedSqlite] requestMapping];
+    [[XXSqliteManager sharedSqlite] requestFee];
     if (!KUser.isSettedNightType) {
         KUser.isNightType = KSystem.isDarkStyle;
     }
