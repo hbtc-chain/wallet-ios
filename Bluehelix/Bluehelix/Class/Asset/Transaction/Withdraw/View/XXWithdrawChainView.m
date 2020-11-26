@@ -24,18 +24,18 @@
 
 #pragma mark - 1. 初始化UI
 - (void)setupUI {
-    self.contentSize = CGSizeMake(0, 500);
+//    self.contentSize = CGSizeMake(0, 108);
     // 提币主视图
     [self addSubview:self.mainView];
     
     /** 手续费 */
     [self.mainView addSubview:self.feeView];
 
-    /** 提币加速视图 */
-    [self.mainView addSubview:self.speedView];
-
-    /** 提示语视图 */
-    [self.mainView addSubview:self.tipView];
+//    /** 提币加速视图 */
+//    [self.mainView addSubview:self.speedView];
+//
+//    /** 提示语视图 */
+//    [self.mainView addSubview:self.tipView];
 }
 
 -(void)sliderValueChanged:(UISlider *)slider {
@@ -45,7 +45,7 @@
 /** 地址视图 */
 - (UIView *)mainView {
     if (_mainView == nil) {
-        _mainView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, kScreen_Width, 500)];
+        _mainView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, kScreen_Width, self.height)];
         _mainView.backgroundColor = kWhiteColor;
     }
     return _mainView;

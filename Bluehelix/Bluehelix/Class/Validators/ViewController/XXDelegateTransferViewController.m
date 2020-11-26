@@ -62,10 +62,7 @@
     }
     [self.view addSubview:self.delegateTransferView];
     [self.view addSubview:self.transferButton];
-    self.delegateTransferView.feeView.textField.text = kMinFee;
-    self.delegateTransferView.speedView.slider.maximumValue = [kSliderMaxFee floatValue];
-    self.delegateTransferView.speedView.slider.minimumValue = [kSliderMinFee floatValue];
-    self.delegateTransferView.speedView.slider.value = [kMinFee doubleValue];
+    self.delegateTransferView.feeView.textField.text = [XXUserData sharedUserData].showFee;
 }
 - (void)loadDefaultData{
     
@@ -193,10 +190,9 @@
 - (void)requestDelegate {
     XXTokenModel *tokenModel = [[XXSqliteManager sharedSqlite] tokenBySymbol:kMainToken];
     NSDecimalNumber *amountDecimal = [NSDecimalNumber decimalNumberWithString:self.delegateTransferView.amountView.textField.text];
-    NSDecimalNumber *feeAmountDecimal = [NSDecimalNumber decimalNumberWithString:self.delegateTransferView.feeView.textField.text];
     NSString *toAddress = KString(self.validatorModel.operator_address);
     NSString *amount = [[amountDecimal decimalNumberByMultiplyingBy:kPrecisionDecimalPower(tokenModel.decimals)] stringValue];
-    NSString *feeAmount = [[feeAmountDecimal decimalNumberByMultiplyingBy:kPrecisionDecimalPower(tokenModel.decimals)] stringValue];
+    NSString *feeAmount = [XXUserData sharedUserData].fee;
     
     [MBProgressHUD showActivityMessageInView:@""];
     XXMsg *model = [[XXMsg alloc] initWithfrom:KUser.address to:toAddress amount:amount denom:tokenModel.symbol feeAmount:feeAmount feeGas:@"" feeDenom:tokenModel.symbol memo:@"" type:kMsgDelegate withdrawal_fee:@"" text:self.text];
@@ -215,10 +211,9 @@
 - (void)requestRelieveDelegate {
     XXTokenModel *tokenModel = [[XXSqliteManager sharedSqlite] tokenBySymbol:kMainToken];
     NSDecimalNumber *amountDecimal = [NSDecimalNumber decimalNumberWithString:self.delegateTransferView.amountView.textField.text];
-    NSDecimalNumber *feeAmountDecimal = [NSDecimalNumber decimalNumberWithString:self.delegateTransferView.feeView.textField.text];
     NSString *toAddress = self.validatorModel.operator_address;
     NSString *amount = [[amountDecimal decimalNumberByMultiplyingBy:kPrecisionDecimalPower(tokenModel.decimals)] stringValue];
-    NSString *feeAmount = [[feeAmountDecimal decimalNumberByMultiplyingBy:kPrecisionDecimalPower(tokenModel.decimals)] stringValue];
+    NSString *feeAmount = [XXUserData sharedUserData].fee;
     
     [MBProgressHUD showActivityMessageInView:@""];
     XXMsg *model = [[XXMsg alloc] initWithfrom:KUser.address to:toAddress amount:amount denom:tokenModel.symbol feeAmount:feeAmount feeGas:@"" feeDenom:tokenModel.symbol memo:@"" type:kMsgUndelegate withdrawal_fee:@"" text:self.text];

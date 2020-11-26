@@ -160,7 +160,16 @@ static XXUserData *_sharedUserData = nil;
 }
 
 - (NSString *)fee {
-    return [self getValueForKey:@"fee"];
+    if (IsEmpty([self getValueForKey:@"fee"])) {
+        return @"2000000000000000";
+    } else {
+        return [self getValueForKey:@"fee"];
+    }
+}
+
+- (NSString *)showFee {
+    NSDecimalNumber *feeDecimal =  [NSDecimalNumber decimalNumberWithString:self.fee];
+    return [[feeDecimal decimalNumberByDividingBy:kPrecisionDecimal] stringValue];
 }
 
 - (void)setGas:(NSString *)gas {
@@ -168,7 +177,11 @@ static XXUserData *_sharedUserData = nil;
 }
 
 - (NSString *)gas {
-    return [self getValueForKey:@"gas"];
+    if (IsEmpty([self getValueForKey:@"gas"])) {
+        return @"2000000";
+    } else {
+        return [self getValueForKey:@"gas"];
+    }
 }
 
 - (void)setTokenString:(NSString *)tokenString {

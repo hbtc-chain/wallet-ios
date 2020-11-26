@@ -44,14 +44,8 @@
     /** 委托数量 */
     [self.mainView addSubview:self.amountView];
     
-    /**实际委托数量*/
-    //[self.mainView addSubview:self.trueAmountView];
-    
     /** 手续费 */
     [self.mainView addSubview:self.feeView];
-    
-    /** 加速视图 */
-    [self.mainView addSubview:self.speedView];
     
     /** 提示语视图 */
     [self.mainView addSubview:self.tipView];
@@ -78,11 +72,11 @@
     switch (self.delegateNodeType) {
         case XXDelegateNodeTypeAdd:
             self.amountView.subLabel.text = [NSString stringWithFormat:@"%@ %@ %@",LocalizedString(@"ValidatorAvilable"),self.tokenModel.amount,[kMainToken uppercaseString]];
-            self.feeView.textField.text = kMinFee;
+            self.feeView.textField.text = [XXUserData sharedUserData].showFee;
             break;
         case XXDelegateNodeTypeTransfer:
             self.amountView.subLabel.text = [NSString stringWithFormat:@"%@ %@ %@",LocalizedString(@"ValidatorAvilableTransfer"),self.tokenModel.amount,[kMainToken uppercaseString]];
-            self.feeView.textField.text = kMinFee;
+            self.feeView.textField.text = [XXUserData sharedUserData].showFee;
             break;
         case XXDelegateNodeTypeRelieve:
             
@@ -196,16 +190,6 @@
     }
     return _amountView;
 }
-///** 实际委托数量 */
-//- (XXWithdrawFeeView *)trueAmountView {
-//    if (_trueAmountView == nil) {
-//        _trueAmountView = [[XXWithdrawFeeView alloc] initWithFrame:CGRectMake(0, CGRectGetMaxY(self.amountView.frame), kScreen_Width, 96)];
-//        _trueAmountView.nameLabel.text = LocalizedString(@"DelegateTrueAmount");
-//        _trueAmountView.textField.enabled = NO;
-//        _trueAmountView.unitLabel.text = [kMainToken uppercaseString];
-//    }
-//    return _trueAmountView;
-//}
 
 /** 手续费 */
 - (XXWithdrawFeeView *)feeView {
@@ -218,20 +202,10 @@
     return _feeView;
 }
 
-/** 提币加速视图 */
-- (XXWithdrawSpeedView *)speedView {
-    if (_speedView == nil) {
-        _speedView = [[XXWithdrawSpeedView alloc] initWithFrame:CGRectMake(0, CGRectGetMaxY(self.feeView.frame), kScreen_Width, 72)];
-        _speedView.nameLabel.text = LocalizedString(@"TransferSpeed");
-        [_speedView.slider addTarget:self action:@selector(sliderValueChanged:) forControlEvents:UIControlEventValueChanged];
-    }
-    return _speedView;
-}
-
 /** 提示语视图 */
 - (XXWithdrawTipView *)tipView {
     if (_tipView == nil) {
-        _tipView = [[XXWithdrawTipView alloc] initWithFrame:CGRectMake(0, CGRectGetMaxY(self.speedView.frame), kScreen_Width, 10)];
+        _tipView = [[XXWithdrawTipView alloc] initWithFrame:CGRectMake(0, CGRectGetMaxY(self.feeView.frame), kScreen_Width, 10)];
     }
     return _tipView;
 }

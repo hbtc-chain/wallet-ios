@@ -38,9 +38,6 @@
     self.titleLabel.text = LocalizedString(@"WithdrawChainAddress");
     [self.view addSubview:self.chainView];
     self.chainView.feeView.unitLabel.text = [kMainToken uppercaseString];
-    self.chainView.speedView.slider.maximumValue = [kSliderMaxFee floatValue];
-    self.chainView.speedView.slider.minimumValue = [kSliderMinFee floatValue];
-    self.chainView.speedView.slider.value = [kMinFee doubleValue];
     [self.view addSubview:self.withdrawButton];
 }
 
@@ -69,10 +66,7 @@
 }
 
 - (void)requestWithdrawVerify:(NSString *)text {
-    XXTokenModel *mainToken = [[XXSqliteManager sharedSqlite] tokenBySymbol:kMainToken];
-    NSDecimalNumber *feeAmountDecimal = [NSDecimalNumber decimalNumberWithString:self.chainView.feeView.textField.text];
-    NSString *feeAmount = [[feeAmountDecimal decimalNumberByMultiplyingBy:kPrecisionDecimalPower(mainToken.decimals)] stringValue];
-    
+    NSString *feeAmount = [XXUserData sharedUserData].fee;
     [MBProgressHUD showActivityMessageInView:@""];
     XXMsg *model = [[XXMsg alloc] initWithfrom:KUser.address to:KUser.address amount:@"" denom:self.tokenModel.symbol feeAmount:feeAmount feeGas:@"" feeDenom:kMainToken memo:@"" type:kMsgKeyGen withdrawal_fee:@"" text:text];
     _keyGenRequest = [[XXMsgRequest alloc] init];
@@ -90,9 +84,8 @@
 /** 提币视图 */
 - (XXWithdrawChainView *)chainView {
     if (_chainView == nil) {
-        _chainView = [[XXWithdrawChainView alloc] initWithFrame:CGRectMake(0, kNavHeight, kScreen_Width, kScreen_Height - kNavHeight - 90)];
-        _chainView.feeView.textField.text = kMinFee;
-        _chainView.speedView.nameLabel.text = LocalizedString(@"TransferSpeed");
+        _chainView = [[XXWithdrawChainView alloc] initWithFrame:CGRectMake(0, kNavHeight, kScreen_Width, 108)];
+        _chainView.feeView.textField.text = [XXUserData sharedUserData].showFee;
     }
     return _chainView;
 }
@@ -101,7 +94,7 @@
 - (XXButton *)withdrawButton {
     if (_withdrawButton == nil) {
         MJWeakSelf
-        _withdrawButton = [XXButton buttonWithFrame:CGRectMake(KSpacing, kScreen_Height - 80, kScreen_Width - KSpacing*2, 42) title:LocalizedString(@"WithdrawChainAddress") font:kFontBold14 titleColor:[UIColor whiteColor] block:^(UIButton *button) {
+        _withdrawButton = [XXButton buttonWithFrame:CGRectMake(KSpacing, CGRectGetMaxY(self.chainView.frame) + 30, kScreen_Width - KSpacing*2, 48) title:LocalizedString(@"WithdrawChainAddress") font:kFontBold14 titleColor:[UIColor whiteColor] block:^(UIButton *button) {
             [weakSelf withdrawButtonClick];
         }];
         _withdrawButton.backgroundColor = kPrimaryMain;

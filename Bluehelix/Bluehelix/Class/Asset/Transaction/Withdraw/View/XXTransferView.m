@@ -38,7 +38,7 @@
     [self.mainView addSubview:self.feeView];
 
     /** 提币加速视图 */
-    [self.mainView addSubview:self.speedView];
+//    [self.mainView addSubview:self.speedView];
 
     /** 提示语视图 */
     [self.mainView addSubview:self.tipView];
@@ -120,7 +120,7 @@
 /** 提示语视图 */
 - (XXWithdrawTipView *)tipView {
     if (_tipView == nil) {
-        _tipView = [[XXWithdrawTipView alloc] initWithFrame:CGRectMake(0, CGRectGetMaxY(self.speedView.frame), kScreen_Width, 10)];
+        _tipView = [[XXWithdrawTipView alloc] initWithFrame:CGRectMake(0, CGRectGetMaxY(self.feeView.frame) + 15, kScreen_Width, 10)];
     }
     return _tipView;
 }

@@ -77,10 +77,7 @@
         } else {
             self.transferView.amountView.currentlyAvailable = @"0";
         }
-        self.transferView.feeView.textField.text = kMinFee;
-        self.transferView.speedView.slider.maximumValue = [kSliderMaxFee floatValue];
-        self.transferView.speedView.slider.minimumValue = [kSliderMinFee floatValue];
-        self.transferView.speedView.slider.value = [kMinFee doubleValue];
+        self.transferView.feeView.textField.text = [XXUserData sharedUserData].showFee;
     } else {
         [self requestTokens];
         self.titleLabel.text = [NSString stringWithFormat:@"%@ %@",[self.tokenModel.name uppercaseString],LocalizedString(@"Withdraw")];
@@ -95,10 +92,7 @@
         self.withdrawFeeModel = [[XXSqliteManager sharedSqlite] withdrawFeeToken:self.tokenModel];
         self.withdrawView.chainFeeView.unitLabel.text = [self.withdrawFeeModel.name uppercaseString];
         self.withdrawView.chainFeeView.textField.text = self.tokenModel.withdrawal_fee;
-        self.withdrawView.feeView.textField.text = kMinFee;
-        self.withdrawView.speedView.slider.maximumValue = [kSliderMaxFee floatValue];
-        self.withdrawView.speedView.slider.minimumValue = [kSliderMinFee floatValue];
-        self.withdrawView.speedView.slider.value = [kMinFee doubleValue];
+        self.withdrawView.feeView.textField.text = [XXUserData sharedUserData].showFee;
     }
     [self.view addSubview:self.withdrawButton];
 }
@@ -184,12 +178,10 @@
 
 /// 请求转账
 - (void)requestTransfer {
-    XXTokenModel *mainToken = [[XXSqliteManager sharedSqlite] tokenBySymbol:kMainToken];
     NSDecimalNumber *amountDecimal = [NSDecimalNumber decimalNumberWithString:self.transferView.amountView.textField.text];
-    NSDecimalNumber *feeAmountDecimal = [NSDecimalNumber decimalNumberWithString:self.transferView.feeView.textField.text];
     NSString *toAddress = self.transferView.addressView.textField.text;
     NSString *amount = [[amountDecimal decimalNumberByMultiplyingBy:kPrecisionDecimalPower(self.tokenModel.decimals)] stringValue];
-    NSString *feeAmount = [[feeAmountDecimal decimalNumberByMultiplyingBy:kPrecisionDecimalPower(mainToken.decimals)] stringValue];
+    NSString *feeAmount = [XXUserData sharedUserData].fee;
     
     [MBProgressHUD showActivityMessageInView:@""];
     XXMsg *model = [[XXMsg alloc] initWithfrom:KUser.address to:toAddress amount:amount denom:self.tokenModel.symbol feeAmount:feeAmount feeGas:@"" feeDenom:kMainToken memo:@"" type:kMsgSend withdrawal_fee:@"" text:self.text];
@@ -247,13 +239,11 @@
 
 /// 请求提币
 - (void)requestWithdraw {
-    XXTokenModel *mainToken = [[XXSqliteManager sharedSqlite] tokenBySymbol:kMainToken];
     NSDecimalNumber *amountDecimal = [NSDecimalNumber decimalNumberWithString:self.withdrawView.amountView.textField.text]; //数量
-    NSDecimalNumber *feeAmountDecimal = [NSDecimalNumber decimalNumberWithString:self.withdrawView.feeView.textField.text]; //交易手续费
     NSDecimalNumber *chainFeeDecimal = [NSDecimalNumber decimalNumberWithString:self.withdrawView.chainFeeView.textField.text]; //跨链手续费
     NSString *toAddress = self.withdrawView.addressView.textField.text;
     NSString *amount = [[amountDecimal decimalNumberByMultiplyingBy:kPrecisionDecimalPower(self.tokenModel.decimals)] stringValue];
-    NSString *feeAmount = [[feeAmountDecimal decimalNumberByMultiplyingBy:kPrecisionDecimalPower(mainToken.decimals)] stringValue];
+    NSString *feeAmount = [XXUserData sharedUserData].fee;
     NSString *chainFeeAmount = [[chainFeeDecimal decimalNumberByMultiplyingBy:kPrecisionDecimalPower(self.withdrawFeeModel.decimals)] stringValue];
     
     [MBProgressHUD showActivityMessageInView:@""];

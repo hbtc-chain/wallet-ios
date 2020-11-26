@@ -39,8 +39,8 @@ NS_ASSUME_NONNULL_BEGIN
 /** 跨链手续费 */
 @property (strong, nonatomic) XXWithdrawFeeView *chainFeeView;
 
-/** 提币加速视图 */
-@property (strong, nonatomic) XXWithdrawSpeedView *speedView;
+///** 提币加速视图 */
+//@property (strong, nonatomic) XXWithdrawSpeedView *speedView;
 
 /** 提示语视图 */
 @property (strong, nonatomic) XXWithdrawTipView *tipView;
