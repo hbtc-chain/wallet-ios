@@ -419,3 +419,4 @@
 "TransferToSelf" = "You can't transfer to yourself";
 "AddToken" = "Add Token";
 "MoreTokenSearch" = "Enter the name to search more coins";
+"PleaseInputPassword" = "请输入安全密码";

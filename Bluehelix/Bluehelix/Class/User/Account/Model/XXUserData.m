@@ -7,11 +7,9 @@
 //
 
 #import "XXUserData.h"
-@interface XXUserData()
+#import "AESCrypt.h"
 
-@property (nonatomic, strong) NSTimer *timer;
-
-@end
+static NSString *salt = @"XX";
 
 @implementation XXUserData
 
@@ -26,7 +24,7 @@ static XXUserData *_sharedUserData = nil;
 
 // 夜间模式
 - (void)setIsNightType:(BOOL)isNightType {
-    [self saveValeu:@(isNightType) forKey:@"isNightType"];
+    [self saveValue:@(isNightType) forKey:@"isNightType"];
 }
 
 - (BOOL)isNightType {
@@ -35,7 +33,7 @@ static XXUserData *_sharedUserData = nil;
 
 // 手动设置夜间模式 非系统默认
 - (void)setIsSettedNightType:(BOOL)isSettedNightType {
-    [self saveValeu:@(isSettedNightType) forKey:@"isSettedNightTypeKey"];
+    [self saveValue:@(isSettedNightType) forKey:@"isSettedNightTypeKey"];
 }
 
 - (BOOL)isSettedNightType {
@@ -44,7 +42,7 @@ static XXUserData *_sharedUserData = nil;
 
 // 隐藏小额币种
 - (void)setIsHideSmallCoin:(BOOL)isHideSmallCoin {
-    [self saveValeu:@(isHideSmallCoin) forKey:@"isHideSmallCoin"];
+    [self saveValue:@(isHideSmallCoin) forKey:@"isHideSmallCoin"];
 }
 
 - (BOOL)isHideSmallCoin {
@@ -53,7 +51,7 @@ static XXUserData *_sharedUserData = nil;
 
 // 是否隐藏资产
 - (void)setIsHideAsset:(BOOL)isHideAsset {
-    [self saveValeu:@(isHideAsset) forKey:@"isHideAsset"];
+    [self saveValue:@(isHideAsset) forKey:@"isHideAsset"];
 }
 
 - (BOOL)isHideAsset {
@@ -62,28 +60,71 @@ static XXUserData *_sharedUserData = nil;
 
 // 是否阅读协议
 - (void)setAgreeService:(BOOL)agreeService {
-    [self saveValeu:@(agreeService) forKey:@"agreeService"];
+    [self saveValue:@(agreeService) forKey:@"agreeService"];
 }
 
 - (BOOL)agreeService {
     return [[self getValueForKey:@"agreeService"] integerValue];
 }
 
+/// 是否开启免密码
 - (void)setIsQuickTextOpen:(BOOL)isQuickTextOpen {
-    _isQuickTextOpen = isQuickTextOpen;
-    if (_isQuickTextOpen == YES) {
-        [self performSelector:@selector(setQuickAction) withObject:nil afterDelay:1800];
+    [self saveValue:@(isQuickTextOpen) forKey:@"isQuickTextOpen"];
+}
+
+- (BOOL)isQuickTextOpen {
+    return [[self getValueForKey:@"isQuickTextOpen"] integerValue];
+}
+
+/// 最近一次免密码时间
+- (void)setLastPasswordTime:(NSString *)lastPasswordTime {
+    [self saveValue:lastPasswordTime forKey:@"lastPasswordTime"];
+}
+
+- (NSString *)lastPasswordTime {
+    return [self getValueForKey:@"lastPasswordTime"];
+}
+
+/// 是否需要弹出密码框输入密码
+- (BOOL)showPassword {
+    if (!self.isQuickTextOpen) { //没有打开免密码
+        return YES;
+    }
+    if (IsEmpty(self.text)) { //没有保存密码
+        return YES;
+    }
+    if (self.lastPasswordTime) {
+        // 判断当前时间 - 记录时间 > 30分钟
+        long long lastTime = [self.lastPasswordTime longLongValue];
+        long long currentTime = [[NSDate date] timeIntervalSince1970];
+        if (currentTime - lastTime > 1800) {
+            self.isQuickTextOpen = NO;
+            return YES;
+        } else {
+            return NO;
+        }
     } else {
-      [NSObject cancelPreviousPerformRequestsWithTarget:self selector:@selector(setQuickAction) object:nil];
+        return YES;
+    }
+    return YES;
+}
+
+// 加密后密码
+- (NSString *)text  {
+    NSString * pwd = [self getValueForKey:@"text"];
+    if (IsEmpty(pwd)) {
+        return @"";
+    } else {
+        return [AESCrypt decrypt:pwd password:salt];
     }
 }
 
-- (void)setQuickAction {
-    [self setIsQuickTextOpen:NO];
+- (void)setText:(NSString *)text {
+    [self saveValue:[AESCrypt encrypt:text password:salt] forKey:@"text"];
 }
 
 - (void)setRatesKey:(NSString *)ratesKey {
-    [self saveValeu:ratesKey forKey:@"ratesKey"];
+    [self saveValue:ratesKey forKey:@"ratesKey"];
 }
 
 - (NSString *)ratesKey {
@@ -110,7 +151,7 @@ static XXUserData *_sharedUserData = nil;
 }
 
 - (void)setIsFaceIDLockOpen:(BOOL)isFaceIDLockOpen {
-    [self saveValeu:@(isFaceIDLockOpen) forKey:@"FaceIDLockOpen"];
+    [self saveValue:@(isFaceIDLockOpen) forKey:@"FaceIDLockOpen"];
 }
 
 - (BOOL)isFaceIDLockOpen {
@@ -122,11 +163,11 @@ static XXUserData *_sharedUserData = nil;
 }
 
 - (void)setIsTouchIDLockOpen:(BOOL)isTouchIDLockOpen {
-     [self saveValeu:@(isTouchIDLockOpen) forKey:@"TouchIDLockOpen"];
+     [self saveValue:@(isTouchIDLockOpen) forKey:@"TouchIDLockOpen"];
 }
 
 - (void)setHaveLogged:(BOOL)haveLogged {
-    [self saveValeu:@(haveLogged) forKey:@"HaveLogged"];
+    [self saveValue:@(haveLogged) forKey:@"HaveLogged"];
 }
 
 - (BOOL)haveLogged {
@@ -138,7 +179,7 @@ static XXUserData *_sharedUserData = nil;
 }
 
 - (void)setShouldVerify:(BOOL)shouldVerify {
-    [self saveValeu:@(shouldVerify) forKey:@"BHShouldVerify"];
+    [self saveValue:@(shouldVerify) forKey:@"BHShouldVerify"];
 }
 
 // 当前账户
@@ -148,7 +189,7 @@ static XXUserData *_sharedUserData = nil;
 
 // 当前账户地址
 - (void)setAddress:(NSString *)address {
-    [self saveValeu:address forKey:@"address"];
+    [self saveValue:address forKey:@"address"];
 }
 
 - (NSString *)address {
@@ -156,7 +197,7 @@ static XXUserData *_sharedUserData = nil;
 }
 
 - (void)setFee:(NSString *)fee {
-    [self saveValeu:fee forKey:@"fee"];
+    [self saveValue:fee forKey:@"fee"];
 }
 
 - (NSString *)fee {
@@ -173,7 +214,7 @@ static XXUserData *_sharedUserData = nil;
 }
 
 - (void)setGas:(NSString *)gas {
-    [self saveValeu:gas forKey:@"gas"];
+    [self saveValue:gas forKey:@"gas"];
 }
 
 - (NSString *)gas {
@@ -185,7 +226,7 @@ static XXUserData *_sharedUserData = nil;
 }
 
 - (void)setTokenString:(NSString *)tokenString {
-    [self saveValeu:tokenString forKey:@"tokenStringKey"];
+    [self saveValue:tokenString forKey:@"tokenStringKey"];
 }
 
 - (NSString *)tokenString {
@@ -193,7 +234,7 @@ static XXUserData *_sharedUserData = nil;
 }
 
 - (void)setDefaultTokens:(NSString *)defaultTokens {
-    [self saveValeu:defaultTokens forKey:@"defaultTokensKey"];
+    [self saveValue:defaultTokens forKey:@"defaultTokensKey"];
 }
 
 - (NSString *)defaultTokens {
@@ -201,7 +242,7 @@ static XXUserData *_sharedUserData = nil;
 }
 
 - (void)setVerifiedTokens:(NSString *)verifiedTokens {
-    [self saveValeu:verifiedTokens forKey:@"verifiedTokensKey"];
+    [self saveValue:verifiedTokens forKey:@"verifiedTokensKey"];
 }
 
 - (NSString *)verifiedTokens {
@@ -209,7 +250,7 @@ static XXUserData *_sharedUserData = nil;
 }
 
 - (void)setChainString:(NSString *)chainString {
-    [self saveValeu:chainString forKey:@"chainStringKey"];
+    [self saveValue:chainString forKey:@"chainStringKey"];
 }
 
 - (NSString *)chainString {
@@ -218,7 +259,7 @@ static XXUserData *_sharedUserData = nil;
 
 // 网络状态
 - (void)setNetWorkStatus:(NSString *)netWorkStatus {
-    [self saveValeu:netWorkStatus forKey:@"netWorkStatus"];
+    [self saveValue:netWorkStatus forKey:@"netWorkStatus"];
 }
 
 - (NSString *)netWorkStatus {
@@ -235,7 +276,7 @@ static XXUserData *_sharedUserData = nil;
     return value;
 }
 
--(void)saveValeu:(id)value forKey:(NSString *)key{
+-(void)saveValue:(id)value forKey:(NSString *)key{
     [[NSUserDefaults standardUserDefaults] setObject:value forKey:key];
     [[NSUserDefaults standardUserDefaults] synchronize];
 }

@@ -17,7 +17,7 @@
 #import "WKWebViewJavascriptBridge.h"
 #import "XXMsgRequest.h"
 #import "XXMsg.h"
-#import "XXPasswordView.h"
+#import "XXPasswordAlertView.h"
 #import "XXTokenModel.h"
 
 @interface XXWebViewController () <WKUIDelegate, WKNavigationDelegate>
@@ -111,13 +111,13 @@
 
 /// 弹出密码
 - (void)alertPassword:(id)data {
-    if (kIsQuickTextOpen) {
-        [self requestWebTrade:kText data:data];
-    } else {
+    if (KUser.showPassword) {
         MJWeakSelf
-        [XXPasswordView showWithSureBtnBlock:^(NSString * _Nonnull text) {
+        [XXPasswordAlertView showWithSureBtnBlock:^(NSString * _Nonnull text) {
             [weakSelf requestWebTrade:text data:data];
         }];
+    } else {
+        [self requestWebTrade:kText data:data];
     }
 }
 

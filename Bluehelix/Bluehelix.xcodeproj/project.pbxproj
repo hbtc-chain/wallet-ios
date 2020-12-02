@@ -340,6 +340,8 @@
 		EAE4047F211C1DB300FFD028 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = EAE4047A211C1DB300FFD028 /* InfoPlist.strings */; };
 		EAE40482211C34A000FFD028 /* LocalizeHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = EAE40481211C34A000FFD028 /* LocalizeHelper.m */; };
 		EAE467EE244C7901006EACAF /* XXTransationSectionHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = EAE467ED244C7901006EACAF /* XXTransationSectionHeaderView.m */; };
+		EAF3244F25761AAF00B4E6B5 /* XXPasswordAlertView.m in Sources */ = {isa = PBXBuildFile; fileRef = EAF3244E25761AAF00B4E6B5 /* XXPasswordAlertView.m */; };
+		EAF32452257670A800B4E6B5 /* XXPasswordNumTextFieldView.m in Sources */ = {isa = PBXBuildFile; fileRef = EAF32451257670A700B4E6B5 /* XXPasswordNumTextFieldView.m */; };
 		F30AC1B320CCC642000652BB /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = F30AC1B220CCC642000652BB /* main.m */; };
 		F30EAF5720D26536005ADD5C /* colorModel.m in Sources */ = {isa = PBXBuildFile; fileRef = F30EAF3B20D26535005ADD5C /* colorModel.m */; };
 		F30EAF5A20D26536005ADD5C /* NSString+TL.m in Sources */ = {isa = PBXBuildFile; fileRef = F30EAF4320D26535005ADD5C /* NSString+TL.m */; };
@@ -1048,6 +1050,10 @@
 		EAE40484211C49F800FFD028 /* BHChooseLanguageVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BHChooseLanguageVC.m; sourceTree = "<group>"; };
 		EAE467EC244C7901006EACAF /* XXTransationSectionHeaderView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = XXTransationSectionHeaderView.h; sourceTree = "<group>"; };
 		EAE467ED244C7901006EACAF /* XXTransationSectionHeaderView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = XXTransationSectionHeaderView.m; sourceTree = "<group>"; };
+		EAF3244D25761AAF00B4E6B5 /* XXPasswordAlertView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = XXPasswordAlertView.h; sourceTree = "<group>"; };
+		EAF3244E25761AAF00B4E6B5 /* XXPasswordAlertView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = XXPasswordAlertView.m; sourceTree = "<group>"; };
+		EAF32450257670A700B4E6B5 /* XXPasswordNumTextFieldView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = XXPasswordNumTextFieldView.h; sourceTree = "<group>"; };
+		EAF32451257670A700B4E6B5 /* XXPasswordNumTextFieldView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = XXPasswordNumTextFieldView.m; sourceTree = "<group>"; };
 		F30AC1A020CCC641000652BB /* HBTC Wallet.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "HBTC Wallet.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		F30AC1AC20CCC642000652BB /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		F30AC1B220CCC642000652BB /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -2005,6 +2011,10 @@
 			children = (
 				EAA8DEAE244D7E7C00161698 /* XXPasswordView.h */,
 				EAA8DEA9244D7E7C00161698 /* XXPasswordView.m */,
+				EAF3244D25761AAF00B4E6B5 /* XXPasswordAlertView.h */,
+				EAF3244E25761AAF00B4E6B5 /* XXPasswordAlertView.m */,
+				EAF32450257670A700B4E6B5 /* XXPasswordNumTextFieldView.h */,
+				EAF32451257670A700B4E6B5 /* XXPasswordNumTextFieldView.m */,
 				EAA8DEAA244D7E7C00161698 /* XXAddressView.h */,
 				EAA8DEAD244D7E7C00161698 /* XXAddressView.m */,
 				EAA8DEAF244D7E7C00161698 /* XXUserHeaderView.h */,
@@ -2687,7 +2697,7 @@
 				TargetAttributes = {
 					F30AC19F20CCC641000652BB = {
 						CreatedOnToolsVersion = 9.4;
-						DevelopmentTeam = L2J536XCKC;
+						DevelopmentTeam = 768MYA9JJQ;
 						LastSwiftMigration = 1130;
 						ProvisioningStyle = Automatic;
 						SystemCapabilities = {
@@ -2778,6 +2788,7 @@
 				EA9D744224F91DD100B53997 /* MJRefreshBackGifFooter.m in Sources */,
 				EAE2864124742483006D9F24 /* SecurityHelper.m in Sources */,
 				EAE2864A24751640006D9F24 /* XYHAlertView.m in Sources */,
+				EAF32452257670A800B4E6B5 /* XXPasswordNumTextFieldView.m in Sources */,
 				EAE28618247285C3006D9F24 /* XXBackupPrivateKeyTipVC.m in Sources */,
 				EA9D744324F91DD100B53997 /* MJRefreshBackStateFooter.m in Sources */,
 				EABD1B84241BB25900B1A03A /* rand.c in Sources */,
@@ -2879,6 +2890,7 @@
 				EA826655254078D1006249B4 /* XXTestAssertTipView.m in Sources */,
 				6CC12CEE24445DF200917105 /* XXDecimalNumberHelper.m in Sources */,
 				EA2F95312423A02B0070AC62 /* XXLoginVC.m in Sources */,
+				EAF3244F25761AAF00B4E6B5 /* XXPasswordAlertView.m in Sources */,
 				EABD1B98241BB25900B1A03A /* Provider.m in Sources */,
 				EA9D3E3824545A1D0060778C /* SWCellScrollView.m in Sources */,
 				EABD1BA2241BB25900B1A03A /* Transaction.m in Sources */,
@@ -3246,9 +3258,9 @@
 				CODE_SIGN_ENTITLEMENTS = "";
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 12;
+				CURRENT_PROJECT_VERSION = 1;
 				DEFINES_MODULE = NO;
-				DEVELOPMENT_TEAM = L2J536XCKC;
+				DEVELOPMENT_TEAM = 768MYA9JJQ;
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -3264,12 +3276,12 @@
 				INFOPLIST_FILE = "$(SRCROOT)/Bluehelix/AppResource/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				MARKETING_VERSION = 1.0;
+				MARKETING_VERSION = 0.1;
 				OTHER_LDFLAGS = (
 					"$(inherited)",
 					"-ObjC",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.bluehelix.wallet.ios;
+				PRODUCT_BUNDLE_IDENTIFIER = com.bluehelix.wallet.main;
 				PRODUCT_NAME = "HBTC Wallet";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "Bluehelix/Tools/bech32/Bluehelix-Bridging-Header.h";
@@ -3290,9 +3302,9 @@
 				CODE_SIGN_ENTITLEMENTS = "";
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 12;
+				CURRENT_PROJECT_VERSION = 1;
 				DEFINES_MODULE = NO;
-				DEVELOPMENT_TEAM = L2J536XCKC;
+				DEVELOPMENT_TEAM = 768MYA9JJQ;
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -3308,12 +3320,12 @@
 				INFOPLIST_FILE = "$(SRCROOT)/Bluehelix/AppResource/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				MARKETING_VERSION = 1.0;
+				MARKETING_VERSION = 0.1;
 				OTHER_LDFLAGS = (
 					"$(inherited)",
 					"-ObjC",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.bluehelix.wallet.ios;
+				PRODUCT_BUNDLE_IDENTIFIER = com.bluehelix.wallet.main;
 				PRODUCT_NAME = "HBTC Wallet";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "Bluehelix/Tools/bech32/Bluehelix-Bridging-Header.h";

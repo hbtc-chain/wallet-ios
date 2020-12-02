@@ -424,3 +424,4 @@
 "TransferToSelf" = "不能转账给自己";
 "AddToken" = "添加币种";
 "MoreTokenSearch" = "更多币种请输入名称检索";
+"PleaseInputPassword" = "请输入安全密码";
