@@ -15,7 +15,6 @@
 - (instancetype)initWithReuseIdentifier:(NSString *)reuseIdentifier{
     if (self = [super initWithReuseIdentifier:reuseIdentifier]) {
         self.backgroundColor = kBackgroundLeverFirst;
-        [self addSubview:self.coverView];
         [self addSubview:self.searchBackgroundView];
         [self addSubview:self.validatorToolBar];
         [self addSubview:self.lineView];
@@ -44,11 +43,6 @@
         make.height.mas_equalTo(1);
         make.top.mas_equalTo(self.validatorToolBar.mas_bottom);
     }];
-    [self.coverView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.right.mas_equalTo(0);
-        make.top.mas_equalTo(0);
-        make.bottom.mas_equalTo(0);
-    }];
     [self.searchBackgroundView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.right.bottom.mas_equalTo(0);
         make.top.mas_equalTo(self.lineView.mas_bottom);
@@ -66,7 +60,7 @@
     MJWeakSelf
     if (!_validatorToolBar) {
         _validatorToolBar = [[XXValidatorToolBar alloc]initWithFrame:CGRectZero];
-        //_validatorToolBar.backgroundColor = kBackgroundLeverFirst;
+        _validatorToolBar.backgroundColor = kBackgroundLeverFirst;
         _validatorToolBar.itemsArray = [NSMutableArray arrayWithArray:@[LocalizedString(@"valid"),LocalizedString(@"invalid")]];
         _validatorToolBar.ToolbarSelectCallBack = ^(NSInteger index) {
             if (weakSelf.selectValidOrInvalidCallBack) {
@@ -76,13 +70,7 @@
     }
     return _validatorToolBar;
 }
-- (UIView *)coverView{
-    if (!_coverView) {
-        _coverView = [[UIView alloc]initWithFrame:CGRectZero];
-        _coverView.backgroundColor = [UIColor clearColor];
-    }
-    return _coverView;
-}
+
 - (UIView*)lineView{
     if (!_lineView) {
         _lineView = [[UIView alloc]initWithFrame:CGRectZero];

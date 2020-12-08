@@ -14,6 +14,14 @@
 #import "XXValidatorGripSectionHeader.h"
 #import "XXEmptyView.h"
 #import "XXFailureView.h"
+#import "XXValidatorHeaderView.h"
+#import "XXAssetSingleManager.h"
+#import "XXTokenModel.h"
+#import "XXRewardView.h"
+#import "XXPasswordView.h"
+#import "XXMsg.h"
+#import "XXMsgRequest.h"
+
 /**models*/
 #import "XXValidatorListModel.h"
 static NSString *KValidatorsListReuseCell = @"validatorsListReuseCell";
@@ -26,7 +34,7 @@ static NSString *KValidatorGripSectionHeader = @"XXValidatorGripSectionHeader";
 @property (nonatomic, strong) NSMutableArray *filtValidatorsDataArray;
 /**过滤数据源*/
 /**tableview header*/
-@property (nonatomic, strong) XXValidatorHeader *bigHeaderView;
+@property (nonatomic, strong) XXValidatorHeaderView *headerView;
 /**section header*/
 @property (nonatomic, strong) XXValidatorGripSectionHeader *sectionHeader;
 /**无数据空白页面*/
@@ -39,6 +47,11 @@ static NSString *KValidatorGripSectionHeader = @"XXValidatorGripSectionHeader";
 @property (nonatomic, assign) BOOL isFilting;
 /**是否数据请求失败*/
 @property (nonatomic, assign) BOOL isFailedNetworking;
+
+@property (nonatomic, strong) NSArray *delegations; //委托列表
+
+@property (nonatomic, strong) XXMsgRequest *msgRequest; //提取分红
+
 @end
 
 @implementation XXValidatorsHomeViewController
@@ -49,6 +62,9 @@ static NSString *KValidatorGripSectionHeader = @"XXValidatorGripSectionHeader";
     [self layoutViews];
     self.validOrInvalid = @"1";
     [self loadData];
+    [self refreshHeader];
+    [self requestDelegations];
+       [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(refreshHeader) name:kNotificationAssetRefresh object:nil];
 }
 - (void)viewWillDisappear:(BOOL)animated{
     [super viewWillDisappear:animated];
@@ -60,13 +76,9 @@ static NSString *KValidatorGripSectionHeader = @"XXValidatorGripSectionHeader";
 }
 #pragma mark UI
 - (void)setupUI{
-//    self.titleLabel.text = LocalizedString(@"ValidatorTitle");
-//    self.leftButton.hidden = YES;
-   // [self.rightButton setTitle:LocalizedString(@"ValidatorNewCreate") forState:UIControlStateNormal];
+    self.titleLabel.text = LocalizedString(@"DelegateAndRelieve");
     [self.view addSubview:self.validatorsListTableView];
-    self.validatorsListTableView.tableHeaderView = self.bigHeaderView;
-    [self.bigHeaderView bringSubviewToFront:self.validatorsListTableView];
-    
+    self.validatorsListTableView.tableHeaderView = self.headerView;
 }
 #pragma mark 数据
 - (void)loadData{
@@ -78,6 +90,7 @@ static NSString *KValidatorGripSectionHeader = @"XXValidatorGripSectionHeader";
     self.sectionHeader.searchView.searchTextField.text = @"";
     [self requestValidatorsList];
 }
+
 - (void)searchLoadData:(NSString*)inputSting{
     if (inputSting.length ==0) {
         self.isFilting = NO;
@@ -98,6 +111,18 @@ static NSString *KValidatorGripSectionHeader = @"XXValidatorGripSectionHeader";
     [self.validatorsListTableView reloadData];
 }
 
+/// 资产请求回来 刷新header
+- (void)refreshHeader {
+    XXAssetModel *assetModel = [[XXAssetModel alloc] init];
+    for (XXTokenModel *tokenModel in [XXAssetSingleManager sharedManager].assetModel.assets) {
+        if ([tokenModel.symbol isEqualToString:kMainToken]) {
+            assetModel.amount = kAmountLongTrim(tokenModel.amount);
+            assetModel.symbol = tokenModel.symbol;
+        }
+    }
+    self.headerView.assetModel = assetModel;
+}
+
 #pragma mark 请求
 /// 请求资产信息
 - (void)requestValidatorsList {
@@ -114,7 +139,7 @@ static NSString *KValidatorGripSectionHeader = @"XXValidatorGripSectionHeader";
         [weakSelf.validatorsListTableView.mj_header endRefreshing];
         [MBProgressHUD hideHUD];
         if (code == 0) {
-            NSLog(@"%@",data);
+//            NSLog(@"%@",data);
             NSArray *listArray = [XXValidatorListModel mj_objectArrayWithKeyValuesArray:data];
             [self.validatorsDataArray addObjectsFromArray:listArray];
             [self.filtValidatorsDataArray addObjectsFromArray:listArray];
@@ -127,22 +152,58 @@ static NSString *KValidatorGripSectionHeader = @"XXValidatorGripSectionHeader";
         }
     }];
 }
-#pragma mark UIScrollViewDelegate
-- (void)scrollViewDidScroll:(UIScrollView *)scrollView{
-    NSLog(@"%@",NSStringFromCGPoint(scrollView.contentOffset));
-    if (scrollView.contentOffset.y >35) {
-        self.titleLabel.text = LocalizedString(@"ValidatorTitle");
-        //section header 背景
-        if (scrollView.contentOffset.y >128) {
-            self.sectionHeader.coverView.backgroundColor = kBackgroundLeverFirst;
-        }else{
-            self.sectionHeader.coverView.backgroundColor = [UIColor clearColor];
+
+#pragma mark 请求委托地址列表
+- (void)requestDelegations {
+    MJWeakSelf
+    NSString *path = [NSString stringWithFormat:@"/api/v1/cus/%@/delegations",KUser.address];
+    [HttpManager getWithPath:path params:nil andBlock:^(id data, NSString *msg, NSInteger code) {
+        if (code == 0) {
+            weakSelf.headerView.delegations = data;
         }
-    }else{
-        self.sectionHeader.coverView.backgroundColor = [UIColor clearColor];
-        self.titleLabel.text = @"";
-    }
+    }];
 }
+
+/// 提取分红
+- (void)withdrawBonus {
+    NSDecimalNumber *sum = [NSDecimalNumber decimalNumberWithString:@"0"];
+    for (NSDictionary *dic in self.delegations) {
+        NSString *unclaimedReward = dic[@"unclaimed_reward"];
+        NSDecimalNumber *unclaimedRewardDecimal = [NSDecimalNumber decimalNumberWithString:unclaimedReward];
+        sum = [sum decimalNumberByAdding:unclaimedRewardDecimal];
+    }
+    NSString *content = NSLocalizedFormatString(LocalizedString(@"WithdrawMoneyContent"),sum.stringValue,kMinFee);
+    MJWeakSelf
+    [XXRewardView showWithTitle:LocalizedString(@"WithdrawMoney") icon:@"withdrawMoneyAlert" content:content sureBlock:^{
+        if (kShowPassword) {
+            [weakSelf requestWithdrawBonus:kText];
+        } else {
+            [XXPasswordView showWithSureBtnBlock:^(NSString * _Nonnull text) {
+                [weakSelf requestWithdrawBonus:text];
+            }];
+        }
+    }];
+}
+
+/// 发送提取分红请求
+- (void)requestWithdrawBonus:(NSString *)text {
+    XXMsg *model = [[XXMsg alloc] initWithfrom:@"" to:@"" amount:@"" denom:kMainToken feeAmount:@"2000000000000000000" feeGas:@"2000000" feeDenom:kMainToken memo:@"" type:kMsgWithdrawalDelegationReward withdrawal_fee:@"" text:text];
+    NSMutableArray *msgs = [NSMutableArray array];
+    for (NSDictionary *dic in self.delegations) {
+        NSMutableDictionary *value = [NSMutableDictionary dictionary];
+        value[@"delegator_address"] = KUser.address;
+        value[@"validator_address"] = dic[@"validator"];
+        
+        NSMutableDictionary *msg = [NSMutableDictionary dictionary];
+        msg[@"type"] = kMsgWithdrawalDelegationReward;
+        msg[@"value"] = value;
+        [msgs addObject:msg];
+    }
+    model.msgs = msgs;
+    _msgRequest = [[XXMsgRequest alloc] init];
+    [_msgRequest sendMsg:model];
+}
+
 #pragma mark UITableViewDelegate UITableViewDataSource
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
     return self.validatorsDataArray.count == 0 ? 2 : 1;
@@ -193,11 +254,11 @@ static NSString *KValidatorGripSectionHeader = @"XXValidatorGripSectionHeader";
     }
 
 }
-- (void)tableView:(UITableView *)tableView willDisplayHeaderView:(UIView *)view forSection:(NSInteger)section {
-    if ([view isKindOfClass:[UITableViewHeaderFooterView class]]) {
-        ((UITableViewHeaderFooterView *)view).backgroundView.backgroundColor = [UIColor clearColor];
-    }
-}
+//- (void)tableView:(UITableView *)tableView willDisplayHeaderView:(UIView *)view forSection:(NSInteger)section {
+//    if ([view isKindOfClass:[UITableViewHeaderFooterView class]]) {
+//        ((UITableViewHeaderFooterView *)view).backgroundView.backgroundColor = [UIColor clearColor];
+//    }
+//}
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
     return 120;
 }
@@ -250,11 +311,12 @@ static NSString *KValidatorGripSectionHeader = @"XXValidatorGripSectionHeader";
     }
     return _validatorsListTableView;
 }
-- (XXValidatorHeader*)bigHeaderView{
-    if (!_bigHeaderView) {
-        _bigHeaderView = [[XXValidatorHeader alloc]initWithFrame:CGRectMake(0, 0, kScreen_Width, 82)];
+
+- (XXValidatorHeaderView *)headerView {
+    if (!_headerView) {
+        _headerView = [[XXValidatorHeaderView alloc] initWithFrame:CGRectMake(0, 0, kScreen_Width, 220)];
     }
-    return _bigHeaderView;;
+    return _headerView;
 }
 - (XXEmptyView *)emptyView {
     if (_emptyView == nil) {

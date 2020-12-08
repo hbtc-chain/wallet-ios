@@ -63,7 +63,7 @@
             [alert showAlert];
             return;
         }
-        if (kIsQuickTextOpen) {
+        if (kShowPassword) {
             self.text = kText;
             [self requestApply];
         } else {

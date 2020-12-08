@@ -62,7 +62,6 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, assign) BOOL showPassword; //弹出密码框
 
 -(id)getValueForKey:(NSString*)key;
--(void)saveValeu:(id)value forKey:(NSString *)key;
 
 @end
 

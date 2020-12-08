@@ -109,20 +109,6 @@ static XXUserData *_sharedUserData = nil;
     return YES;
 }
 
-// 加密后密码
-- (NSString *)text  {
-    NSString * pwd = [self getValueForKey:@"text"];
-    if (IsEmpty(pwd)) {
-        return @"";
-    } else {
-        return [AESCrypt decrypt:pwd password:salt];
-    }
-}
-
-- (void)setText:(NSString *)text {
-    [self saveValue:[AESCrypt encrypt:text password:salt] forKey:@"text"];
-}
-
 - (void)setRatesKey:(NSString *)ratesKey {
     [self saveValue:ratesKey forKey:@"ratesKey"];
 }
@@ -189,7 +175,14 @@ static XXUserData *_sharedUserData = nil;
 
 // 当前账户地址
 - (void)setAddress:(NSString *)address {
-    [self saveValue:address forKey:@"address"];
+    if ([self.address isEqualToString:address]) {
+        return;
+    } else {
+        self.text = @"";
+        self.lastPasswordTime = @"";
+        self.isQuickTextOpen = NO;
+        [self saveValue:address forKey:@"address"];
+    }
 }
 
 - (NSString *)address {

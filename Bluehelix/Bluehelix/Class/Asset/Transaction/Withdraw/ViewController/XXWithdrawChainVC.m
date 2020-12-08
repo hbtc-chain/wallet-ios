@@ -16,10 +16,10 @@
 
 @interface XXWithdrawChainVC ()
 
-/** 跨链地址视图 */
+/** 生成跨链地址视图 */
 @property (strong, nonatomic) XXWithdrawChainView *chainView;
 
-/** 提币按钮 */
+/** 生成跨链地址按钮 */
 @property (strong, nonatomic) XXButton *withdrawButton;
 
 /// 跨链地址生成 请求
@@ -55,7 +55,7 @@
         [alert showAlert];
         return;
     }
-    if (kIsQuickTextOpen) {
+    if (kShowPassword) {
         [self requestWithdrawVerify:kText];
     } else {
         MJWeakSelf

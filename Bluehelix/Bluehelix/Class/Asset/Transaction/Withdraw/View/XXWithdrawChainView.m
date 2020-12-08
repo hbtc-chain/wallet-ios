@@ -24,18 +24,11 @@
 
 #pragma mark - 1. 初始化UI
 - (void)setupUI {
-//    self.contentSize = CGSizeMake(0, 108);
     // 提币主视图
     [self addSubview:self.mainView];
     
     /** 手续费 */
     [self.mainView addSubview:self.feeView];
-
-//    /** 提币加速视图 */
-//    [self.mainView addSubview:self.speedView];
-//
-//    /** 提示语视图 */
-//    [self.mainView addSubview:self.tipView];
 }
 
 -(void)sliderValueChanged:(UISlider *)slider {
@@ -59,23 +52,6 @@
         _feeView.textField.enabled = NO;
     }
     return _feeView;
-}
-
-/** 提币加速视图 */
-- (XXWithdrawSpeedView *)speedView {
-    if (_speedView == nil) {
-        _speedView = [[XXWithdrawSpeedView alloc] initWithFrame:CGRectMake(0, CGRectGetMaxY(self.feeView.frame) + 15, kScreen_Width, 72)];
-        [_speedView.slider addTarget:self action:@selector(sliderValueChanged:) forControlEvents:UIControlEventValueChanged];
-    }
-    return _speedView;
-}
-
-/** 提示语视图 */
-- (XXWithdrawTipView *)tipView {
-    if (_tipView == nil) {
-        _tipView = [[XXWithdrawTipView alloc] initWithFrame:CGRectMake(0, CGRectGetMaxY(self.speedView.frame), kScreen_Width, 10)];
-    }
-    return _tipView;
 }
 
 @end

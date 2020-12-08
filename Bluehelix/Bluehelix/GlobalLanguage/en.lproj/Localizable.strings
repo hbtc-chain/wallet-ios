@@ -410,7 +410,7 @@
 "CrossChainAddress" = "Cross-chain custody address";
 "MsgCancelLimitSwap" = "Limit order cancellation";
 "ChainTXID" = "Cross-chain TXID";
-"LeastPayAmount" = "Tips:\n Minimum deposit amount %@";
+"LeastPayAmount" = "Tips: Minimum deposit amount %@";
 "LeastPayAmountTip" = "Tips:minimum deposit amount";
 "GetTestCoin" = "Claim testnet tokens";
 "GetTestCoinSuccess" = "Claimed";

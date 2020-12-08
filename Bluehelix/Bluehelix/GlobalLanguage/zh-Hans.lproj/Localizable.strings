@@ -415,7 +415,7 @@
 "CrossChainAddress" = "跨链托管地址";
 "MsgCancelLimitSwap" = "限价单取消";
 "ChainTXID" = "外链TXID";
-"LeastPayAmount" = "温馨提示:\n最小充值数量 %@";
+"LeastPayAmount" = "温馨提示:最小充值数量 %@";
 "LeastPayAmountTip" = "温馨提示:最小充值数量";
 "GetTestCoin" = "领取测试币";
 "GetTestCoinSuccess" = "测试币领取成功";
@@ -425,3 +425,12 @@
 "AddToken" = "添加币种";
 "MoreTokenSearch" = "更多币种请输入名称检索";
 "PleaseInputPassword" = "请输入安全密码";
+"SetPasswordRuleTip" = "6位数字密码";
+"SetPasswordRuleTipAgain" = "再次输入6位数字密码";
+"AddWallet" = "添加钱包";
+"CreateWalletAccount" = "创建钱包账户";
+"FastExchange" = "闪兑";
+"GetEarnings" = "待领取收益";
+"SwitchToChainAddress" = "切换跨链托管地址 >";
+"SwitchToMainAddress" = "切换HBTC链地址 >";
+"SaveImage" = "保存图片";

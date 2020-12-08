@@ -71,6 +71,7 @@
 
 - (void)textFieldDidChange:(UITextField *)textField {
     [self reloadUI:textField.text];
+    self.text = textField.text;
     if (textField.text.length == 6) {
         if (self.finishBlock) {
             self.finishBlock(textField.text);

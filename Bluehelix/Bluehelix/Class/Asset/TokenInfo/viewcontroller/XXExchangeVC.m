@@ -40,7 +40,7 @@
 
 - (void)swapVerify {
     if (!IsEmpty(self.backView.leftField.text)) {
-        if (kIsQuickTextOpen) {
+        if (kShowPassword) {
             self.text = kText;
             [self requestSwap];
         } else {

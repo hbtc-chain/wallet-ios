@@ -175,7 +175,7 @@
 - (XXAssetHeaderView  *)headerView {
     if (!_headerView) {
         MJWeakSelf
-        _headerView = [[XXAssetHeaderView alloc] initWithFrame:CGRectMake(0, 0, kScreen_Width, K375(260))];
+        _headerView = [[XXAssetHeaderView alloc] initWithFrame:CGRectMake(0, 0, kScreen_Width, 305)];
         _headerView.actionBlock = ^{
             [weakSelf.headerView configData:weakSelf.assetModel];
             [[XXSqliteManager sharedSqlite] requestDefaultTokens];

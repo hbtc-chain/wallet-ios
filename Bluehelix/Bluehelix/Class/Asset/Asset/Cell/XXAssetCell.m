@@ -116,16 +116,14 @@
 
 - (void)swipeableTableViewCell:(SWTableViewCell *)cell didTriggerLeftUtilityButtonWithIndex:(NSInteger)index {
     XXDepositCoinVC *depositVC = [[XXDepositCoinVC alloc] init];
-    depositVC.tokenModel = self.tokenModel;
-    depositVC.InnerChain = YES;
+    depositVC.symbol = self.tokenModel.symbol;
     [self.viewController.navigationController pushViewController:depositVC animated:YES];
     [cell hideUtilityButtonsAnimated:YES];
 }
 
 - (void)swipeableTableViewCell:(SWTableViewCell *)cell didTriggerRightUtilityButtonWithIndex:(NSInteger)index {
     XXTransferVC *transferVC = [[XXTransferVC alloc] init];
-    transferVC.tokenModel = self.tokenModel;
-    transferVC.InnerChain = YES;
+    transferVC.symbol = self.tokenModel.symbol;
     [self.viewController.navigationController pushViewController:transferVC animated:YES];
     [cell hideUtilityButtonsAnimated:YES];
 }

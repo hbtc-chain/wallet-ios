@@ -21,12 +21,19 @@
 #import "XXMainChainHeaderView.h"
 #import "XXAssetSearchHeaderView.h"
 #import "XXAddNewAssetVC.h"
+#import "XXChainDetailFooterView.h"
+#import "XXTransferVC.h"
+#import "XXDepositCoinVC.h"
+#import "XXTabBarController.h"
+#import "XXExchangeVC.h"
+#import "XXWithdrawVC.h"
 
 @interface XXChainDetailVC ()<UITableViewDataSource, UITableViewDelegate>
 
 @property (nonatomic, strong) UITableView *tableView;
 @property (nonatomic, strong) XXChainHeaderView *headerView;
 @property (nonatomic, strong) XXMainChainHeaderView *mainHeaderView;
+@property (nonatomic, strong) XXChainDetailFooterView *footerView;
 @property (nonatomic, strong) XXAssetModel *assetModel; //资产数据
 @property (nonatomic, strong) NSArray *tokenList; //资产币列表
 @property (nonatomic, strong) NSMutableArray *showArray; //展示的币
@@ -47,12 +54,21 @@
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(refreshAsset) name:kNotificationAssetRefresh object:nil];
 }
 
+#pragma mark 刷新资产
+- (void)refreshAsset {
+    [self.tableView.mj_header endRefreshing];
+    self.assetModel = [XXAssetSingleManager sharedManager].assetModel;
+    [self reloadData];
+}
+
+#pragma mark UI
 - (void)setupUI {
     self.titleLabel.text = [self.chainName uppercaseString];
     [self.rightButton setTitle:LocalizedString(@"AddToken") forState:UIControlStateNormal];
     self.rightButton.frame = CGRectMake(kScreen_Width - 160, self.leftButton.top, 145, self.leftButton.height);
     [self.rightButton setContentHorizontalAlignment:UIControlContentHorizontalAlignmentRight ];
     [self.view addSubview:self.tableView];
+    [self.view addSubview:self.footerView];
     self.tableView.separatorColor = KLine_Color;
     if ([self.chainName isEqualToString:kMainToken]) {
         self.tableView.tableHeaderView = self.mainHeaderView;
@@ -61,12 +77,48 @@
     }
 }
 
+#pragma mark 右上角点击事件
 - (void)rightButtonClick:(UIButton *)sender {
     XXAddNewAssetVC *addVC = [[XXAddNewAssetVC alloc] init];
     addVC.chain = self.chainName;
     [self.navigationController pushViewController:addVC animated:YES];
 }
 
+#pragma mark 底部第一个按钮点击事件 收款或者充值
+- (void)firstAction {
+    XXDepositCoinVC *depositVC = [[XXDepositCoinVC alloc] init];
+    depositVC.symbol = self.chainName;
+    [self.navigationController pushViewController:depositVC animated:YES];
+}
+
+#pragma mark 底部第二个按钮点击事件 转账或者提币
+- (void)secondAction {
+    if ([self.chainName isEqualToString:kMainToken]) {
+        XXTransferVC *transferVC = [[XXTransferVC alloc] init];
+        transferVC.symbol = self.chainName;
+        [self.navigationController pushViewController:transferVC animated:YES];
+    } else {
+        XXWithdrawVC  *withdrawVC = [[XXWithdrawVC alloc] init];
+        withdrawVC.symbol = self.chainName;
+        [self.navigationController pushViewController:withdrawVC animated:YES];
+    }
+}
+
+#pragma mark 兑换
+- (void)exchangeAction {
+    XXExchangeVC *exchangeVC = [[XXExchangeVC alloc] init];
+    exchangeVC.swapToken = self.chainName;
+    [self.navigationController pushViewController:exchangeVC animated:YES];
+}
+
+#pragma mark 交易
+- (void)tradeAction {
+    [self.navigationController popToRootViewControllerAnimated:NO];
+    XXTabBarController *tabBarVC = (XXTabBarController *)KWindow.rootViewController;
+    [tabBarVC setIndex:1];
+}
+
+#pragma mark tableview delegate
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
     return 1;
 }
@@ -121,14 +173,13 @@
     [self.navigationController pushViewController:detailVC animated:YES];
 }
 
-/// 搜索
-/// @param textField  输入框
+#pragma mark 搜索 textField  输入框
 - (void)textFieldValueChange:(UITextField *)textField {
     textField.text = [textField.text trimmingCharacters];
     [self reloadData];
 }
 
-/// 资产列表 构造数据
+#pragma mark 资产列表 构造数据
 - (void)reloadData {
     NSArray *sqliteArray = [[XXSqliteManager sharedSqlite] showTokens];
     [self.showArray removeAllObjects];
@@ -151,17 +202,11 @@
     [self.tableView reloadData];
 }
 
-/// 刷新资产
-- (void)refreshAsset {
-    [self.tableView.mj_header endRefreshing];
-    self.assetModel = [XXAssetSingleManager sharedManager].assetModel;
-    [self reloadData];
-}
-
+#pragma mark 控件
 - (UITableView *)tableView {
     if (_tableView == nil) {
         MJWeakSelf
-        _tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, kNavHeight + 10, kScreen_Width, kScreen_Height - kTabbarHeight -10) style:UITableViewStylePlain];
+        _tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, kNavHeight + 10, kScreen_Width, kScreen_Height - kNavHeight - 104) style:UITableViewStylePlain];
         _tableView.dataSource = self;
         _tableView.delegate = self;
         _tableView.backgroundColor = kWhiteColor;
@@ -230,8 +275,29 @@
     if (!_sectionHeader) {
         _sectionHeader = [[UIView alloc] initWithFrame:CGRectMake(0, 0, kScreen_Width, 0)];
         _sectionHeader.backgroundColor = kWhiteColor;
-//        [_sectionHeader addSubview:self.searchView];
     }
     return _sectionHeader;
+}
+
+- (XXChainDetailFooterView *)footerView {
+    if (!_footerView) {
+        MJWeakSelf
+        _footerView = [[XXChainDetailFooterView alloc] initWithFrame:CGRectMake(0, kScreen_Height - 104, kScreen_Width, 104)];
+        _footerView.chain = self.chainName;
+        _footerView.actionBlock = ^(NSInteger index) {
+            if (index == 0) {
+                [weakSelf firstAction];
+            } else if(index == 1) {
+                [weakSelf secondAction];
+            } else if(index == 2) {
+                [weakSelf exchangeAction];
+            } else if(index == 3) {
+                [weakSelf tradeAction];
+            } else {
+                
+            }
+        };
+    }
+    return _footerView;
 }
 @end

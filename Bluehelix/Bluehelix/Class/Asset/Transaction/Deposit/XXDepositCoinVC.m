@@ -13,22 +13,31 @@
 #import "XXDepositAlert.h"
 #import "XXAssetSingleManager.h"
 #import "XYHNumbersLabel.h"
+#import "XXChooseTokenVC.h"
+#import "XXWithdrawChainVC.h"
 
 @interface XXDepositCoinVC ()
 
+@property (nonatomic, strong) XXTokenModel *tokenModel;
+@property (nonatomic, strong) XXButton *titleButton;
 @property (nonatomic, strong) UIScrollView *scrollView;
 @property (nonatomic, strong) UIView *tipView;
 @property (nonatomic, strong) XXLabel *tipLabel;
-@property (nonatomic, strong) UIImageView *topBackImageView;
-@property (nonatomic, strong) UIImageView *bottomImageView;
+@property (nonatomic, strong) UIView *backView;
 @property (nonatomic, strong) UIImageView *codeImageView;
 @property (nonatomic, strong) XXButton *copyAddressBtn;
 @property (nonatomic, strong) XXLabel *symbolLabel;
+@property (nonatomic, strong) XXLabel *addressTitleLabel;
+@property (nonatomic, strong) UIView *dashLineView;
+@property (nonatomic, strong) XXButton *saveImageBtn; //保存图片
+@property (nonatomic, strong) XXButton *changeChainBtn; //切换链地址
+@property (nonatomic, strong) UIView *lineView;
 @property (nonatomic, strong) XXLabel *addressLabel;
 @property (nonatomic, strong) UIView *symbolBackView;
 @property (nonatomic, strong) UIImageView *symbolImageView;
 @property (nonatomic, strong) NSString *showAddress;
-@property (nonatomic, strong) XYHNumbersLabel *tipContentLabel;
+@property (nonatomic, strong) UILabel *tipContentLabel;
+@property (nonatomic, strong) UIImageView *bottomLogo;
 
 @end
 
@@ -37,66 +46,78 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-//    [self showAlert];
+    self.tokenModel = [[XXSqliteManager sharedSqlite] tokenBySymbol:self.symbol];
     [self buildUI];
 }
 
-- (void)showAlert {
-    NSMutableAttributedString *message;
-    NSMutableParagraphStyle *paraStyle = [[NSMutableParagraphStyle alloc] init];
-    paraStyle.lineBreakMode =NSLineBreakByCharWrapping;
-    paraStyle.alignment = NSTextAlignmentLeft;
-    paraStyle.lineSpacing = UILabel_Line_Space;
-    NSString *tip1 = LocalizedString(@"DepositTip1");
-    NSString *tip2 = LocalizedString(@"DepositTip2");
-    NSString *tip3 = LocalizedString(@"DepositTip3");
-    NSString *tip4 = LocalizedString(@"DepositTip4");
-    NSString *tip5 = LocalizedString(@"DepositTip5");
-    if (self.InnerChain) {
-        self.showAddress = KUser.address;
-    } else {
-        self.showAddress = [[XXAssetSingleManager sharedManager] externalAddressBySymbol:self.tokenModel.symbol];
-        tip1 = LocalizedString(@"ChainDepositTip1");
-        tip2 = LocalizedString(@"ChainDepositTip2");
-        tip3 = LocalizedString(@"ChainDepositTip3");
-        tip4 = LocalizedString(@"ChainDepositTip4");
-        tip5 = LocalizedString(@"ChainDepositTip5");
-    }
-    NSMutableAttributedString *attributedString = [[NSMutableAttributedString alloc] initWithString:[NSString stringWithFormat:@"%@%@%@%@%@",tip1,tip2,tip3,tip4,tip5]];
-//    [attributedString addAttribute:NSFontAttributeName value:kFont15 range:NSMakeRange(0, attributedString.length)];
-//    [attributedString addAttribute:NSParagraphStyleAttributeName value:paraStyle range:NSMakeRange(0, attributedString.length)];
-    [attributedString addAttribute:NSForegroundColorAttributeName value:kGray700 range:NSMakeRange(0, attributedString.length)];
-    [attributedString addAttribute:NSForegroundColorAttributeName value:kPriceFall range:NSMakeRange(tip1.length, tip2.length)];
-    [attributedString addAttribute:NSForegroundColorAttributeName value:kPriceFall range:NSMakeRange(tip1.length + tip2.length + tip3.length, tip4.length)];
-    message = attributedString;
-    [XXDepositAlert showWithMessage:message];
-}
-
+#pragma mark UI
 - (void)buildUI {
-    self.titleLabel.text = LocalizedString(@"ReceiveMoney");
-    self.titleLabel.textColor = [UIColor whiteColor];
+    self.titleLabel.hidden = YES;
+    [self.navView addSubview:self.titleButton];
     self.leftButton.imageView.image = [UIImage imageNamed:@"white_back"];
     [self.view addSubview:self.scrollView];
-    if (!self.InnerChain) {
-        self.showAddress = [[XXAssetSingleManager sharedManager] externalAddressBySymbol:self.tokenModel.symbol];
-        [self.scrollView addSubview:self.tipView];
-        [self.tipView addSubview:self.tipLabel];
-    } else {
-        self.showAddress = KUser.address;
-    }
-    [self.scrollView addSubview:self.topBackImageView];
-    [self.scrollView addSubview:self.bottomImageView];
-    [self.topBackImageView addSubview:self.codeImageView];
-    [self.topBackImageView addSubview:self.symbolBackView];
+    [self.scrollView addSubview:self.backView];
+    [self.backView addSubview:self.symbolBackView];
     [self.symbolBackView addSubview:self.symbolImageView];
-    [self.bottomImageView addSubview:self.copyAddressBtn];
-    [self.topBackImageView addSubview:self.symbolLabel];
-    [self.topBackImageView addSubview:self.addressLabel];
+    [self.backView addSubview:self.symbolLabel];
+    [self.backView addSubview:self.codeImageView];
+    [self.backView addSubview:self.addressTitleLabel];
+    [self.backView addSubview:self.changeChainBtn];
+    [self.backView addSubview:self.addressLabel];
+    [self.backView addSubview:self.saveImageBtn];
+    [self.backView addSubview:self.lineView];
+    [self.backView addSubview:self.copyAddressBtn];
+    [self.backView addSubview:self.dashLineView];
     [self.scrollView addSubview:self.tipContentLabel];
-    if (!self.InnerChain) {
-        self.symbolLabel.text = LocalizedString(@"CrossChainAddress");
+    [self.scrollView addSubview:self.bottomLogo];
+    [self reloadUI];
+}
+
+#pragma mark 刷新UI
+- (void)reloadUI {
+    [self setTitle];
+    if (self.tokenModel.is_native) {
+        self.changeChainBtn.hidden = YES;
+        self.showAddress = KUser.address;
+        self.symbolLabel.text = [NSString stringWithFormat:@"%@ %@",@"HBTC",LocalizedString(@"WalletAddress")];
+        self.addressTitleLabel.text = [NSString stringWithFormat:@"%@ %@",@"HBTC",LocalizedString(@"WalletAddress")];
+        [_changeChainBtn setTitle:LocalizedString(@"SwitchToChainAddress") forState:UIControlStateNormal];
+    } else {
+        self.changeChainBtn.hidden = NO;
+        if (self.crossChainFlag) {
+            self.showAddress = [[XXAssetSingleManager sharedManager] externalAddressBySymbol:self.tokenModel.symbol];
+            self.symbolLabel.text = LocalizedString(@"CrossChainAddress");
+            self.addressTitleLabel.text = [NSString stringWithFormat:@"%@%@",[self.tokenModel.chain uppercaseString],LocalizedString(@"WalletAddress")];
+            [_changeChainBtn setTitle:LocalizedString(@"SwitchToMainAddress") forState:UIControlStateNormal];
+            if (IsEmpty(self.showAddress)) {
+                XXWithdrawChainVC *chainVC = [[XXWithdrawChainVC alloc] init];
+                chainVC.tokenModel = self.tokenModel;
+                [self.navigationController pushViewController:chainVC animated:YES];
+            }
+        } else {
+            self.showAddress = KUser.address;
+            self.symbolLabel.text = [NSString stringWithFormat:@"%@ %@",@"HBTC",LocalizedString(@"WalletAddress")];
+            self.addressTitleLabel.text = [NSString stringWithFormat:@"%@ %@",@"HBTC",LocalizedString(@"WalletAddress")];
+            [_changeChainBtn setTitle:LocalizedString(@"SwitchToChainAddress") forState:UIControlStateNormal];
+        }
     }
+    self.addressLabel.text = self.showAddress;
+    self.codeImageView.image = [XCQrCodeTool createQrCodeWithContent:self.showAddress];
+    [self.symbolImageView sd_setImageWithURL:[NSURL URLWithString:self.tokenModel.logo] placeholderImage:[UIImage imageNamed:@"placeholderToken"]];
+    self.tipContentLabel.text = NSLocalizedFormatString(LocalizedString(@"LeastPayAmount"),[NSString stringWithFormat:@"%@%@",self.tokenModel.deposit_threshold,[self.tokenModel.name uppercaseString]]);
     [self configChainColor];
+}
+
+#pragma mark 事件 切换symbol
+- (void)changeSymbol {
+    MJWeakSelf
+    XXChooseTokenVC *vc = [[XXChooseTokenVC alloc] init];
+    vc.changeSymbolBlock = ^(NSString * _Nonnull symbol) {
+        weakSelf.symbol = symbol;
+        weakSelf.tokenModel = [[XXSqliteManager sharedSqlite] tokenBySymbol:symbol];
+        [weakSelf reloadUI];
+    };
+    [self presentViewController:vc animated:YES completion:nil];
 }
 
 - (void)configChainColor {
@@ -104,7 +125,7 @@
     if ([self.tokenModel.symbol isEqualToString:kMainToken]) {
         chainColor = kPrimaryMain;
     } else {
-        if (!self.tokenModel.is_native && !self.InnerChain) {
+        if (!self.tokenModel.is_native && self.crossChainFlag) {
             chainColor = kGray;
         } else {
             chainColor = kGreen;
@@ -143,21 +164,22 @@
     return _tipLabel;
 }
 
-- (UIImageView *)topBackImageView {
-    if (!_topBackImageView) {
+- (UIView *)backView {
+    if (!_backView) {
         CGFloat Y = K375(32);
-        if (!self.InnerChain) {
+        if (self.crossChainFlag) {
             Y += CGRectGetMaxY(self.tipView.frame);
         }
-        _topBackImageView = [[UIImageView alloc] initWithFrame:CGRectMake(K375(24), Y, kScreen_Width-K375(48), kScreen_Width-K375(48))];
-        _topBackImageView.image = [UIImage imageNamed:@"depositTopBack"];
+        _backView = [[UIView alloc] initWithFrame:CGRectMake(K375(24), Y, kScreen_Width-K375(48), 400)];
+        _backView.backgroundColor = [UIColor whiteColor];
+        _backView.layer.cornerRadius = 8;
     }
-    return _topBackImageView;
+    return _backView;
 }
 
 - (UIView *)symbolBackView {
     if (!_symbolBackView) {
-        _symbolBackView = [[UIView alloc] initWithFrame:CGRectMake(self.topBackImageView.width/2 - K375(56)/2, -K375(28), K375(56), K375(56))];
+        _symbolBackView = [[UIView alloc] initWithFrame:CGRectMake(self.backView.width/2 - K375(56)/2, -K375(28), K375(56), K375(56))];
         _symbolBackView.backgroundColor = [UIColor whiteColor];
         _symbolBackView.layer.cornerRadius = _symbolBackView.width/2;
         _symbolBackView.layer.masksToBounds = YES;
@@ -168,49 +190,96 @@
 - (UIImageView *)symbolImageView {
     if (!_symbolImageView) {
         _symbolImageView = [[UIImageView alloc] initWithFrame:CGRectMake(self.symbolBackView.width/2-K375(52)/2, self.symbolBackView.height/2-K375(52)/2, K375(52), K375(52))];
-        [_symbolImageView sd_setImageWithURL:[NSURL URLWithString:self.tokenModel.logo] placeholderImage:[UIImage imageNamed:@"placeholderToken"]];
     }
     return _symbolImageView;
 }
 
-- (UIImageView *)bottomImageView {
-    if (!_bottomImageView) {
-        _bottomImageView = [[UIImageView alloc] initWithFrame:CGRectMake(K375(24), CGRectGetMaxY(self.topBackImageView.frame), kScreen_Width-K375(48), K375(72))];
-        _bottomImageView.image = [UIImage imageNamed:@"depositBottomBack"];
-        _bottomImageView.userInteractionEnabled = YES;
-    }
-    return _bottomImageView;
-}
-
-- (UIImageView *)codeImageView {
-    if (!_codeImageView) {
-        _codeImageView = [[UIImageView alloc] initWithFrame:CGRectMake(K375(73), K375(81), self.topBackImageView.width - K375(146), self.topBackImageView.width - K375(146))];
-        _codeImageView.image = [XCQrCodeTool createQrCodeWithContent:self.showAddress];
-    }
-    return _codeImageView;
-}
-
 - (XXLabel *)symbolLabel {
     if (!_symbolLabel) {
-        _symbolLabel = [XXLabel labelWithFrame:CGRectMake(0, K375(32), self.topBackImageView.width, 24) text:[NSString stringWithFormat:@"%@ %@",@"HBTC",LocalizedString(@"WalletAddress")] font:kFontBold18 textColor:kGray900NoChange];
+        _symbolLabel = [XXLabel labelWithFrame:CGRectMake(0, 32, self.backView.width, 16) text:@"" font:kFont12 textColor:kGray500];
     }
     _symbolLabel.textAlignment = NSTextAlignmentCenter;
     return _symbolLabel;
 }
 
+- (UIImageView *)codeImageView {
+    if (!_codeImageView) {
+        _codeImageView = [[UIImageView alloc] initWithFrame:CGRectMake((self.backView.width - 160)/2, 72, 160, 160)];
+    }
+    return _codeImageView;
+}
+
+- (XXLabel *)addressTitleLabel {
+    if (!_addressTitleLabel) {
+        _addressTitleLabel = [XXLabel labelWithFrame:CGRectMake(16, CGRectGetMaxY(self.codeImageView.frame) + 30, self.backView.width/2, 16) text:@"" font:kFont13 textColor:kGray700 alignment:NSTextAlignmentLeft];
+    }
+    return _addressTitleLabel;
+}
+
+- (XXButton *)changeChainBtn {
+    if (!_changeChainBtn) {
+        MJWeakSelf
+        _changeChainBtn = [XXButton buttonWithFrame:CGRectMake(self.backView.width/2, CGRectGetMaxY(self.codeImageView.frame) + 30, self.backView.width/2, 16) block:^(UIButton *button) {
+            weakSelf.crossChainFlag = !weakSelf.crossChainFlag;
+            [weakSelf reloadUI];
+        }];
+        [_changeChainBtn setTitleColor:kPrimaryMain forState:UIControlStateNormal];
+        [_changeChainBtn.titleLabel setFont:kFont13];
+    }
+    return _changeChainBtn;
+}
+
 - (XXLabel *)addressLabel {
     if (!_addressLabel) {
-        _addressLabel = [XXLabel labelWithFrame:CGRectMake(0, CGRectGetMaxY(self.codeImageView.frame), self.topBackImageView.width, self.topBackImageView.height - CGRectGetMaxY(self.codeImageView.frame)) text:@"" font:kFont(13) textColor:[UIColor colorWithHexString:@"#0A1825"]];
-        _addressLabel.textAlignment = NSTextAlignmentCenter;
+        _addressLabel = [XXLabel labelWithFrame:CGRectMake(16, CGRectGetMaxY(self.addressTitleLabel.frame), self.backView.width - 32, 40) text:@"" font:kFont(13) textColor:kGray300];
+        _addressLabel.textAlignment = NSTextAlignmentLeft;
         _addressLabel.text = self.showAddress;
     }
     return _addressLabel;
 }
 
+- (UIView *)dashLineView {
+    if (!_dashLineView) {
+        _dashLineView = [[UIView alloc] initWithFrame:CGRectMake(0, self.backView.height - 64, self.backView.width, 1)];
+        CAShapeLayer *shapeLayer = [CAShapeLayer layer];
+        [shapeLayer setBounds:_dashLineView.bounds];
+        [shapeLayer setPosition:CGPointMake(CGRectGetWidth(_dashLineView.frame) / 2, CGRectGetHeight(_dashLineView.frame))];
+        [shapeLayer setFillColor:[UIColor clearColor].CGColor];
+        [shapeLayer setStrokeColor:[kGray300 CGColor]];
+        [shapeLayer setLineWidth:CGRectGetHeight(_dashLineView.frame)];
+        [shapeLayer setLineJoin:kCALineJoinRound];
+        [shapeLayer setLineDashPattern:[NSArray arrayWithObjects:[NSNumber numberWithInt:4], [NSNumber numberWithInt:2], nil]];
+        CGMutablePathRef path = CGPathCreateMutable();
+        CGPathMoveToPoint(path, NULL, 0, 0);
+        CGPathAddLineToPoint(path, NULL,CGRectGetWidth(_dashLineView.frame), 0);
+        [shapeLayer setPath:path];
+        CGPathRelease(path);
+        [_dashLineView.layer addSublayer:shapeLayer];
+    }
+    return _dashLineView;
+}
+
+- (XXButton *)saveImageBtn {
+    if (!_saveImageBtn) {
+        _saveImageBtn = [XXButton buttonWithFrame:CGRectMake(0, self.backView.height - 64, self.backView.width/2, 64) title:LocalizedString(@"SaveImage") font:kFont17 titleColor:kPrimaryMain block:^(UIButton *button) {
+            
+        }];
+    }
+    return _saveImageBtn;
+}
+
+- (UIView *)lineView {
+    if (!_lineView) {
+        _lineView = [[UIView alloc] initWithFrame:CGRectMake(self.backView.width/2, self.backView.height - 44, 1, 24)];
+        _lineView.backgroundColor = KLine_Color;
+    }
+    return _lineView;
+}
+
 - (XXButton *)copyAddressBtn {
     if (!_copyAddressBtn) {
-        _copyAddressBtn = [XXButton buttonWithFrame:CGRectMake(5, 2, self.bottomImageView.width - 10, self.bottomImageView.height - 4) title:LocalizedString(@"CopyAddress") font:kFontBold(17) titleColor:kPrimaryMain block:^(UIButton *button) {
-            if (KUser.address  > 0) {
+        _copyAddressBtn = [XXButton buttonWithFrame:CGRectMake(self.backView.width/2, self.backView.height - 64, self.backView.width/2, 64) title:LocalizedString(@"CopyAddress") font:kFontBold(17) titleColor:kPrimaryMain block:^(UIButton *button) {
+            if (self.showAddress.length > 0) {
                 UIPasteboard *pab = [UIPasteboard generalPasteboard];
                 [pab setString:self.showAddress];
                 Alert *alert = [[Alert alloc] initWithTitle:LocalizedString(@"CopySuccessfully") duration:kAlertDuration completion:^{
@@ -226,14 +295,42 @@
     return _copyAddressBtn;
 }
 
-- (XYHNumbersLabel *)tipContentLabel {
+- (UILabel *)tipContentLabel {
     if (_tipContentLabel ==nil) {
-        _tipContentLabel = [[XYHNumbersLabel alloc] initWithFrame:CGRectMake(K375(24), CGRectGetMaxY(self.bottomImageView.frame) + K375(17), kScreen_Width - K375(48), 10) font:kFont12];
-        _tipContentLabel.textAlignment = NSTextAlignmentLeft;
+        _tipContentLabel = [[UILabel alloc] initWithFrame:CGRectMake(K375(24), CGRectGetMaxY(self.backView.frame) + 16, kScreen_Width - K375(48), 23)];
+        _tipContentLabel.font = kFont12;
+        _tipContentLabel.textAlignment = NSTextAlignmentCenter;
         _tipContentLabel.textColor = [UIColor whiteColor];
-        _tipContentLabel.text = NSLocalizedFormatString(LocalizedString(@"LeastPayAmount"),[NSString stringWithFormat:@"%@%@",self.tokenModel.deposit_threshold,[self.tokenModel.name uppercaseString]]);
     }
     return _tipContentLabel;
 }
 
+- (UIImageView *)bottomLogo {
+    if (!_bottomLogo) {
+        _bottomLogo = [[UIImageView alloc] initWithFrame:CGRectMake((kScreen_Width - 132)/2, CGRectGetMaxY(self.tipContentLabel.frame) + 60, 132, 16)];
+        _bottomLogo.image = [UIImage imageNamed:@"deposit_logo"];
+    }
+    return _bottomLogo;
+}
+
+- (XXButton *)titleButton {
+    if (_titleButton == nil) {
+        MJWeakSelf
+        _titleButton = [XXButton buttonWithFrame:CGRectMake(K375(64), kStatusBarHeight + 12, K375(247), kNavHeight - (kStatusBarHeight + 14)) block:^(UIButton *button) {
+            [weakSelf changeSymbol];
+        }];
+        [_titleButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+        [_titleButton setImage:[UIImage imageNamed:@"whiteArrowDown"] forState:UIControlStateNormal];
+        [self setTitle];
+    }
+    return _titleButton;
+}
+
+- (void)setTitle {
+    NSString *text = [NSString stringWithFormat:@"%@ %@",[self.tokenModel.name uppercaseString],LocalizedString(@"ReceiveMoney")];
+    CGFloat width = [NSString widthWithText:text font:kFontBold17];
+    [self.titleButton setTitle:text forState:UIControlStateNormal];
+    [self.titleButton setTitleEdgeInsets:UIEdgeInsetsMake(0, -self.titleButton.imageView.bounds.size.width -2, 0, self.titleButton.imageView.bounds.size.width +2)];
+    [self.titleButton setImageEdgeInsets:UIEdgeInsetsMake(0, width+2, 0, -width-2)];
+}
 @end

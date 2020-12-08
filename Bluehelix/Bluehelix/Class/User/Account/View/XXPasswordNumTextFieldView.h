@@ -12,6 +12,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface XXPasswordNumTextFieldView : UIView
 
+@property (nonatomic, copy) NSString *text;
 @property (nonatomic, copy) void(^finishBlock)(NSString *text);
 
 @end

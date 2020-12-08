@@ -248,7 +248,7 @@
         };
     } else if(indexPath.section == 2 && indexPath.row == 0) {
         cell.rightIconImageView.hidden = NO;
-        if (kIsQuickTextOpen) {
+        if (!kShowPassword) {
             cell.valueLabel.text = LocalizedString(@"NoNeedPassword");
         } else {
             cell.valueLabel.text = LocalizedString(@"NeedPassword");

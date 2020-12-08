@@ -147,7 +147,7 @@
                 
                 break;
         }
-        if (kIsQuickTextOpen) {
+        if (kShowPassword) {
             self.text = kText;
             switch (self.delegateNodeType) {
                 case XXDelegateNodeTypeAdd:

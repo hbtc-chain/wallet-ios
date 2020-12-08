@@ -15,7 +15,6 @@
 #import "XXTokenModel.h"
 #import "XXTransferDetailVC.h"
 #import "XXWithdrawChainVC.h"
-#import "XXMainSymbolHeaderView.h"
 #import "XXEmptyView.h"
 #import "XXRewardView.h"
 #import "XXMsg.h"
@@ -26,6 +25,7 @@
 #import "XXExchangeVC.h"
 #import "XXTabBarController.h"
 #import "XXAssetSingleManager.h"
+#import "XXWithdrawVC.h"
 
 @interface XXSymbolDetailVC ()<UITableViewDataSource, UITableViewDelegate>
 
@@ -33,7 +33,6 @@
 @property (nonatomic, strong) XXSymbolDetailFooterView *footerView;
 @property (nonatomic, strong) NSMutableArray *txs;
 @property (nonatomic, strong) XXAssetModel *assetModel;
-@property (nonatomic, strong) XXMainSymbolHeaderView *mainSymbolHeaderView; //主代币 有分红等信息
 @property (nonatomic, strong) XXSymbolDetailHeaderView *symbolDetailHeaderView; //其它币没有分红等信息
 @property (nonatomic, assign) int page;
 @property (nonatomic, assign) int pageSize;
@@ -56,6 +55,13 @@
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(refreshHeader) name:kNotificationAssetRefresh object:nil];
 }
 
+- (void)buildUI {
+    self.titleLabel.text = [self.tokenModel.name uppercaseString];
+    [self.view addSubview:self.tableView];
+    [self.view addSubview:self.footerView];
+    self.tableView.tableHeaderView = self.symbolDetailHeaderView;
+}
+
 - (void)viewDidAppear:(BOOL)animated {
     [super viewDidAppear:animated];
     self.timer = [NSTimer scheduledTimerWithTimeInterval:5 target:self selector:@selector(timerAction) userInfo:nil repeats:YES];
@@ -74,7 +80,7 @@
     [self requestHistory];
 }
 
-/// 资产请求回来 刷新header
+#pragma mark 网络请求 - 刷新资产
 - (void)refreshHeader {
     self.assetModel = [[XXAssetModel alloc] init];
     [self.tableView.mj_header endRefreshing];
@@ -84,25 +90,10 @@
             self.assetModel.symbol = self.tokenModel.symbol;
         }
     }
-    if ([self.tokenModel.symbol isEqualToString:kMainToken]) {
-        self.mainSymbolHeaderView.assetModel = self.assetModel;
-    } else {
-        self.symbolDetailHeaderView.assetModel = self.assetModel;
-    }
+    self.symbolDetailHeaderView.assetModel = self.assetModel;
 }
 
-- (void)buildUI {
-    self.titleLabel.text = [self.tokenModel.name uppercaseString];
-    [self.view addSubview:self.tableView];
-    [self.view addSubview:self.footerView];
-    if ([self.tokenModel.symbol isEqualToString:kMainToken]) {
-        self.tableView.tableHeaderView = self.mainSymbolHeaderView;
-    } else {
-        self.tableView.tableHeaderView = self.symbolDetailHeaderView;
-    }
-}
-
-/// 请求交易记录
+#pragma mark 网络请求 - 交易记录
 - (void)requestHistory {
     MJWeakSelf
     NSString *path = [NSString stringWithFormat:@"/api/v1/cus/%@/txs",KUser.address];
@@ -132,230 +123,49 @@
     }];
 }
 
-/// 请求委托地址列表
-- (void)requestDelegations:(BOOL)withdrawBonusFlag {
-    MJWeakSelf
-    NSString *path = [NSString stringWithFormat:@"/api/v1/cus/%@/delegations",KUser.address];
-    [HttpManager getWithPath:path params:nil andBlock:^(id data, NSString *msg, NSInteger code) {
-        if (code == 0) {
-            NSLog(@"%@",data);
-            weakSelf.delegations = data;
-            if (withdrawBonusFlag) {
-                [weakSelf withdrawBonus];
-            } else {
-                [weakSelf depositBonus];
-            }
-            
-        }
-    }];
-}
-
-// 委托
-- (void)pushDelegate {
-    XXValidatorsHomeViewController *vc = [[XXValidatorsHomeViewController alloc] init];
-    [self.navigationController pushViewController:vc animated:YES];
-}
-
-// 收款
-- (void)pushDepositVC {
+#pragma mark 底部第一个按钮点击事件 收款或者充值
+- (void)firstAction {
     XXDepositCoinVC *depositVC = [[XXDepositCoinVC alloc] init];
-    depositVC.tokenModel = self.tokenModel;
-    depositVC.InnerChain = YES;
+    depositVC.symbol = self.tokenModel.symbol;
     [self.navigationController pushViewController:depositVC animated:YES];
 }
 
-// 转账
-- (void)pushTransferVC {
-    XXTransferVC *transferVC = [[XXTransferVC alloc] init];
-    transferVC.tokenModel = self.tokenModel;
-    transferVC.InnerChain = YES;
-    [self.navigationController pushViewController:transferVC animated:YES];
-}
-
-/// 底部第三个按钮点击事件
-- (void)thirdBtnAction {
-    if ([self.tokenModel.symbol isEqualToString:kMainToken]) {
-        [self requestDelegations:YES];
+#pragma mark 底部第二个按钮点击事件 转账或者提币
+- (void)secondAction {
+    if (self.tokenModel.is_native) {
+        XXTransferVC *transferVC = [[XXTransferVC alloc] init];
+        transferVC.symbol = self.tokenModel.symbol;
+        [self.navigationController pushViewController:transferVC animated:YES];
     } else {
-        if (self.tokenModel.is_native) {
-            [self exchangeAndTradeAction];
-        } else {
-            [self chainAction];
-        }
+        XXWithdrawVC  *withdrawVC = [[XXWithdrawVC alloc] init];
+        withdrawVC.symbol = self.tokenModel.symbol;
+        [self.navigationController pushViewController:withdrawVC animated:YES];
     }
 }
 
-/// 底部第四个按钮点击事件
-- (void)forthBtnAction {
-    if ([self.tokenModel.symbol isEqualToString:kMainToken]) {
-        [self pushDelegate];
+#pragma mark 底部第三个按钮点击事件 闪兑或者交易
+- (void)thirdAction {
+    if ([[XXSqliteManager sharedSqlite] existMapModel:self.tokenModel.symbol]) {
+        [self exchangeAction];
     } else {
-        [self exchangeAndTradeAction];
+        [self tradeAction];
     }
 }
-
-// 跨链
-- (void)chainAction {
-    MJWeakSelf
-    [XYHPickerView showPickerViewWithNamesArray:@[LocalizedString(@"ChainReceiveMoney"),LocalizedString(@"ChainPayMoney")] selectIndex:100 Block:^(NSString *title, NSInteger index) {
-        if (index == 0) {
-            if (!weakSelf.tokenModel.is_native) {
-                [weakSelf chainInAction];
-            }
-        } else if (index == 1) {
-            if (!weakSelf.tokenModel.is_native) {
-                [weakSelf chainOutAction];
-            }
-        } else {}
-    }];
-}
-
-// 兑换 && 交易
-- (void)exchangeAndTradeAction {
-    MJWeakSelf
-    [XYHPickerView showPickerViewWithNamesArray:@[LocalizedString(@"Exchange"),LocalizedString(@"TradesTabbar")] selectIndex:100 Block:^(NSString *title, NSInteger index) {
-        if (index == 0) {
-            [weakSelf exchangeAction];
-        } else if (index == 1) {
-            [weakSelf tradeAction];
-        } else {}
-    }];
-}
-
-// 兑换
+#pragma mark 兑换
 - (void)exchangeAction {
     XXExchangeVC *exchangeVC = [[XXExchangeVC alloc] init];
     exchangeVC.swapToken = self.tokenModel.symbol;
     [self.navigationController pushViewController:exchangeVC animated:YES];
 }
 
-// 交易
+#pragma mark 交易
 - (void)tradeAction {
     [self.navigationController popToRootViewControllerAnimated:NO];
     XXTabBarController *tabBarVC = (XXTabBarController *)KWindow.rootViewController;
     [tabBarVC setIndex:1];
 }
 
-/// 跨链转出
-- (void)chainOutAction {
-    XXTransferVC *transferVC = [[XXTransferVC alloc] init];
-    transferVC.tokenModel = self.tokenModel;
-    transferVC.InnerChain = NO;
-    [self.navigationController pushViewController:transferVC animated:YES];
-}
-
-/// 跨链收款
-- (void)chainInAction {
-    if (IsEmpty([[XXAssetSingleManager sharedManager] externalAddressBySymbol:self.tokenModel.symbol])) { //判断是否存在外链地址
-        XXWithdrawChainVC *chain = [[XXWithdrawChainVC alloc] init];
-        chain.tokenModel = self.tokenModel;
-        [self.navigationController pushViewController:chain animated:YES];
-    } else {
-        XXDepositCoinVC *depositVC = [[XXDepositCoinVC alloc] init];
-        depositVC.tokenModel = self.tokenModel;
-        depositVC.InnerChain = NO;
-        [self.navigationController pushViewController:depositVC animated:YES];
-    }
-}
-
-/// 提取分红
-- (void)withdrawBonus {
-    NSDecimalNumber *sum = [NSDecimalNumber decimalNumberWithString:@"0"];
-    for (NSDictionary *dic in self.delegations) {
-        NSString *unclaimedReward = dic[@"unclaimed_reward"];
-        NSDecimalNumber *unclaimedRewardDecimal = [NSDecimalNumber decimalNumberWithString:unclaimedReward];
-        sum = [sum decimalNumberByAdding:unclaimedRewardDecimal];
-    }
-    NSString *content = NSLocalizedFormatString(LocalizedString(@"WithdrawMoneyContent"),sum.stringValue,kMinFee);
-    MJWeakSelf
-    [XXRewardView showWithTitle:LocalizedString(@"WithdrawMoney") icon:@"withdrawMoneyAlert" content:content sureBlock:^{
-        if (kIsQuickTextOpen) {
-            [weakSelf requestWithdrawBonus:kText];
-        } else {
-            [XXPasswordView showWithSureBtnBlock:^(NSString * _Nonnull text) {
-                [weakSelf requestWithdrawBonus:text];
-            }];
-        }
-    }];
-}
-
-/// 发送提取分红请求
-- (void)requestWithdrawBonus:(NSString *)text {
-    XXMsg *model = [[XXMsg alloc] initWithfrom:@"" to:@"" amount:@"" denom:kMainToken feeAmount:@"2000000000000000000" feeGas:@"2000000" feeDenom:kMainToken memo:@"" type:kMsgWithdrawalDelegationReward withdrawal_fee:@"" text:text];
-    NSMutableArray *msgs = [NSMutableArray array];
-    for (NSDictionary *dic in self.delegations) {
-        NSMutableDictionary *value = [NSMutableDictionary dictionary];
-        value[@"delegator_address"] = KUser.address;
-        value[@"validator_address"] = dic[@"validator"];
-        
-        NSMutableDictionary *msg = [NSMutableDictionary dictionary];
-        msg[@"type"] = kMsgWithdrawalDelegationReward;
-        msg[@"value"] = value;
-        [msgs addObject:msg];
-    }
-    model.msgs = msgs;
-    _msgRequest = [[XXMsgRequest alloc] init];
-    [_msgRequest sendMsg:model];
-}
-
-/// 复投分红
-- (void)depositBonus {
-    NSDecimalNumber *sum = [NSDecimalNumber decimalNumberWithString:@"0"];
-    for (NSDictionary *dic in self.delegations) {
-        NSString *unclaimedReward = dic[@"unclaimed_reward"];
-        NSDecimalNumber *unclaimedRewardDecimal = [NSDecimalNumber decimalNumberWithString:unclaimedReward];
-        sum = [sum decimalNumberByAdding:unclaimedRewardDecimal];
-    }
-    NSString *content = NSLocalizedFormatString(LocalizedString(@"InMoneyContent"),sum.stringValue,kMinFee);
-    MJWeakSelf
-    [XXRewardView showWithTitle:LocalizedString(@"InMoney") icon:@"InMoneyAlert" content:content sureBlock:^{
-        if (kIsQuickTextOpen) {
-            [weakSelf requestDepositBonus:kText];
-        } else {
-            [XXPasswordView showWithSureBtnBlock:^(NSString * _Nonnull text) {
-                [weakSelf requestDepositBonus:text];
-            }];
-        }
-    }];
-}
-
-/// 发送复投分红请求
-- (void)requestDepositBonus:(NSString *)text {
-    XXMsg *model = [[XXMsg alloc] initWithfrom:@"" to:@"" amount:@"" denom:kMainToken feeAmount:@"2000000000000000000" feeGas:@"2000000" feeDenom:kMainToken memo:@"" type:kMsgWithdrawalDelegationReward withdrawal_fee:@"" text:text];
-    NSMutableArray *msgs = [NSMutableArray array];
-    for (NSDictionary *dic in self.delegations) {
-        //提取
-        NSMutableDictionary *value = [NSMutableDictionary dictionary];
-        value[@"delegator_address"] = KUser.address;
-        value[@"validator_address"] = dic[@"validator"];
-        NSMutableDictionary *msg = [NSMutableDictionary dictionary];
-        msg[@"type"] = kMsgWithdrawalDelegationReward;
-        msg[@"value"] = value;
-        [msgs addObject:msg];
-        
-        //代理
-        NSDecimalNumber *unclaimedRewardDecimal = [NSDecimalNumber decimalNumberWithString:dic[@"unclaimed_reward"]];
-        XXTokenModel *tokenModel = [[XXSqliteManager sharedSqlite] tokenBySymbol:kMainToken];
-        NSString *amountStr = [[unclaimedRewardDecimal decimalNumberByMultiplyingBy:kPrecisionDecimalPower(tokenModel.decimals)] stringValue];
-        NSMutableDictionary *amount1 = [NSMutableDictionary dictionary];
-        amount1[@"amount"] = amountStr;
-        amount1[@"denom"] = kMainToken;
-        
-        NSMutableDictionary *value1 = [NSMutableDictionary dictionary];
-        value1[@"amount"] = amount1;
-        value1[@"delegator_address"] = KUser.address;
-        value1[@"validator_address"] = dic[@"validator"];
-        
-        NSMutableDictionary *msg1 = [NSMutableDictionary dictionary];
-        msg1[@"type"] = kMsgDelegate;
-        msg1[@"value"] = value1;
-        [msgs addObject:msg1];
-    }
-    model.msgs = msgs;
-    _msgRequest = [[XXMsgRequest alloc] init];
-    [_msgRequest sendMsg:model];
-}
-
+#pragma mark - tableview delegate
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
     return 1;
 }
@@ -403,6 +213,7 @@
     [self.navigationController pushViewController:detailVC animated:YES];
 }
 
+#pragma mark 控件
 - (UITableView *)tableView {
     if (_tableView == nil) {
         _tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, kNavHeight, kScreen_Width, kScreen_Height - kNavHeight - 104) style:UITableViewStylePlain];
@@ -431,27 +242,20 @@
     return _symbolDetailHeaderView;
 }
 
-- (XXMainSymbolHeaderView *)mainSymbolHeaderView {
-    if (!_mainSymbolHeaderView) {
-        _mainSymbolHeaderView = [[XXMainSymbolHeaderView alloc] initWithFrame:CGRectMake(0, 0, kScreen_Width, 248)];
-    }
-    return _mainSymbolHeaderView;
-}
-
 - (XXSymbolDetailFooterView *)footerView {
     if (!_footerView) {
         MJWeakSelf
-        _footerView = [[XXSymbolDetailFooterView alloc] initWithFrame:CGRectMake(0, kScreen_Height - 104, kScreen_Width, 104)];
+        _footerView = [[XXSymbolDetailFooterView alloc] initWithFrame:CGRectMake(0, kScreen_Height - 72, kScreen_Width, 72)];
         _footerView.tokenModel = self.tokenModel;
         _footerView.actionBlock = ^(NSInteger index) {
             if (index == 0) {
-                [weakSelf pushDepositVC];
+                [weakSelf firstAction];
             } else if(index == 1) {
-                [weakSelf pushTransferVC];
+                [weakSelf secondAction];
             } else if(index == 2) {
-                [weakSelf thirdBtnAction];
+                [weakSelf thirdAction];
             } else if(index == 3) {
-                [weakSelf forthBtnAction];
+                [weakSelf tradeAction];
             } else {
                 
             }

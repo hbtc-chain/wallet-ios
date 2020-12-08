@@ -41,7 +41,6 @@
     [self addSubview:self.backView];
     [self.backView addSubview:self.chainNameLabel];
     [self.backView addSubview:self.testLabel];
-//    [self.backView addSubview:self.titleAddressLabel];
     [self.backView addSubview:self.addressLabel];
     [self.backView addSubview:self.copyButton];
     [self.backView addSubview:self.codeBtn];
@@ -87,13 +86,6 @@
     }
     return _testLabel;
 }
-
-//- (XXLabel *)titleAddressLabel {
-//    if (!_titleAddressLabel) {
-//        _titleAddressLabel = [XXLabel labelWithFrame:CGRectMake(K375(16), CGRectGetMaxY(self.chainNameLabel.frame), self.backView.width - K375(32), 24) text:LocalizedString(@"ChainTitle") font:kFont13 textColor:[UIColor whiteColor]];
-//    }
-//    return _titleAddressLabel;
-//}
 
 - (XXLabel *)addressLabel {
     if (!_addressLabel) {

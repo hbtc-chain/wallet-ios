@@ -134,7 +134,7 @@
 
 - (UILabel *)titleLabel {
     if (_titleLabel == nil) {
-        _titleLabel = [[UILabel alloc] initWithFrame:CGRectMake(100, 18, kScreen_Width - 200, 26)];
+        _titleLabel = [[UILabel alloc] initWithFrame:CGRectMake(50, 18, kScreen_Width - 100, 26)];
         _titleLabel.text = LocalizedString(@"BackupSecurityTip");
         _titleLabel.font = kFontBold20;
         _titleLabel.textColor = kGray900;

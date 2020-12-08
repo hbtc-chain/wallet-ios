@@ -36,6 +36,7 @@
 - (void)viewDidDisappear:(BOOL)animated {
     [super viewDidDisappear:animated];
     if (![KUser.address isEqualToString:self.currentAddress]) {
+        KUser.isQuickTextOpen = NO;
         XXTabBarController *tabVC = [[XXTabBarController alloc] init];
         [tabVC setIndex:3];
         AppDelegate *delegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];

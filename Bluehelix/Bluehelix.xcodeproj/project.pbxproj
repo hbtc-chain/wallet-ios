@@ -342,6 +342,13 @@
 		EAE467EE244C7901006EACAF /* XXTransationSectionHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = EAE467ED244C7901006EACAF /* XXTransationSectionHeaderView.m */; };
 		EAF3244F25761AAF00B4E6B5 /* XXPasswordAlertView.m in Sources */ = {isa = PBXBuildFile; fileRef = EAF3244E25761AAF00B4E6B5 /* XXPasswordAlertView.m */; };
 		EAF32452257670A800B4E6B5 /* XXPasswordNumTextFieldView.m in Sources */ = {isa = PBXBuildFile; fileRef = EAF32451257670A700B4E6B5 /* XXPasswordNumTextFieldView.m */; };
+		EAF32455257795DC00B4E6B5 /* XXSetPasswordNumTextFieldView.m in Sources */ = {isa = PBXBuildFile; fileRef = EAF32454257795DB00B4E6B5 /* XXSetPasswordNumTextFieldView.m */; };
+		EAF324582578CFB400B4E6B5 /* XXAddWalletVC.m in Sources */ = {isa = PBXBuildFile; fileRef = EAF324572578CFB300B4E6B5 /* XXAddWalletVC.m */; };
+		EAF3245B257A20A700B4E6B5 /* XXValidatorHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = EAF3245A257A20A600B4E6B5 /* XXValidatorHeaderView.m */; };
+		EAF3245E257A678A00B4E6B5 /* XXChainDetailFooterView.m in Sources */ = {isa = PBXBuildFile; fileRef = EAF3245D257A678A00B4E6B5 /* XXChainDetailFooterView.m */; };
+		EAF32461257A77DD00B4E6B5 /* XXChooseTokenVC.m in Sources */ = {isa = PBXBuildFile; fileRef = EAF32460257A77DD00B4E6B5 /* XXChooseTokenVC.m */; };
+		EAF32464257B7C4000B4E6B5 /* XXChooseSymbolCell.m in Sources */ = {isa = PBXBuildFile; fileRef = EAF32463257B7C3F00B4E6B5 /* XXChooseSymbolCell.m */; };
+		EAF32467257CD3A400B4E6B5 /* XXWithdrawVC.m in Sources */ = {isa = PBXBuildFile; fileRef = EAF32466257CD3A300B4E6B5 /* XXWithdrawVC.m */; };
 		F30AC1B320CCC642000652BB /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = F30AC1B220CCC642000652BB /* main.m */; };
 		F30EAF5720D26536005ADD5C /* colorModel.m in Sources */ = {isa = PBXBuildFile; fileRef = F30EAF3B20D26535005ADD5C /* colorModel.m */; };
 		F30EAF5A20D26536005ADD5C /* NSString+TL.m in Sources */ = {isa = PBXBuildFile; fileRef = F30EAF4320D26535005ADD5C /* NSString+TL.m */; };
@@ -1054,6 +1061,20 @@
 		EAF3244E25761AAF00B4E6B5 /* XXPasswordAlertView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = XXPasswordAlertView.m; sourceTree = "<group>"; };
 		EAF32450257670A700B4E6B5 /* XXPasswordNumTextFieldView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = XXPasswordNumTextFieldView.h; sourceTree = "<group>"; };
 		EAF32451257670A700B4E6B5 /* XXPasswordNumTextFieldView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = XXPasswordNumTextFieldView.m; sourceTree = "<group>"; };
+		EAF32453257795DB00B4E6B5 /* XXSetPasswordNumTextFieldView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = XXSetPasswordNumTextFieldView.h; sourceTree = "<group>"; };
+		EAF32454257795DB00B4E6B5 /* XXSetPasswordNumTextFieldView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = XXSetPasswordNumTextFieldView.m; sourceTree = "<group>"; };
+		EAF324562578CFB300B4E6B5 /* XXAddWalletVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = XXAddWalletVC.h; sourceTree = "<group>"; };
+		EAF324572578CFB300B4E6B5 /* XXAddWalletVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = XXAddWalletVC.m; sourceTree = "<group>"; };
+		EAF32459257A20A600B4E6B5 /* XXValidatorHeaderView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = XXValidatorHeaderView.h; sourceTree = "<group>"; };
+		EAF3245A257A20A600B4E6B5 /* XXValidatorHeaderView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = XXValidatorHeaderView.m; sourceTree = "<group>"; };
+		EAF3245C257A678A00B4E6B5 /* XXChainDetailFooterView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = XXChainDetailFooterView.h; sourceTree = "<group>"; };
+		EAF3245D257A678A00B4E6B5 /* XXChainDetailFooterView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = XXChainDetailFooterView.m; sourceTree = "<group>"; };
+		EAF3245F257A77DD00B4E6B5 /* XXChooseTokenVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = XXChooseTokenVC.h; sourceTree = "<group>"; };
+		EAF32460257A77DD00B4E6B5 /* XXChooseTokenVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = XXChooseTokenVC.m; sourceTree = "<group>"; };
+		EAF32462257B7C3F00B4E6B5 /* XXChooseSymbolCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = XXChooseSymbolCell.h; sourceTree = "<group>"; };
+		EAF32463257B7C3F00B4E6B5 /* XXChooseSymbolCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = XXChooseSymbolCell.m; sourceTree = "<group>"; };
+		EAF32465257CD3A300B4E6B5 /* XXWithdrawVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = XXWithdrawVC.h; sourceTree = "<group>"; };
+		EAF32466257CD3A300B4E6B5 /* XXWithdrawVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = XXWithdrawVC.m; sourceTree = "<group>"; };
 		F30AC1A020CCC641000652BB /* HBTC Wallet.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "HBTC Wallet.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		F30AC1AC20CCC642000652BB /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		F30AC1B220CCC642000652BB /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -1272,6 +1293,8 @@
 				6CC12CF72444630400917105 /* XXValidatorCell.m */,
 				6CC12CF92444749D00917105 /* XXValidatorHeader.h */,
 				6CC12CFA2444749D00917105 /* XXValidatorHeader.m */,
+				EAF32459257A20A600B4E6B5 /* XXValidatorHeaderView.h */,
+				EAF3245A257A20A600B4E6B5 /* XXValidatorHeaderView.m */,
 				6CC12CFC24455BFA00917105 /* XXValidatorGripSectionHeader.h */,
 				6CC12CFD24455BFA00917105 /* XXValidatorGripSectionHeader.m */,
 				6CC12CFF24455C4B00917105 /* XXValidatorToolBar.h */,
@@ -1684,6 +1707,8 @@
 				EA3E593724441D950080B98F /* XXTransferVC.m */,
 				EA3E593624441D950080B98F /* XXWithdrawChainVC.h */,
 				EA3E593824441D950080B98F /* XXWithdrawChainVC.m */,
+				EAF32465257CD3A300B4E6B5 /* XXWithdrawVC.h */,
+				EAF32466257CD3A300B4E6B5 /* XXWithdrawVC.m */,
 			);
 			path = ViewController;
 			sourceTree = "<group>";
@@ -2015,6 +2040,8 @@
 				EAF3244E25761AAF00B4E6B5 /* XXPasswordAlertView.m */,
 				EAF32450257670A700B4E6B5 /* XXPasswordNumTextFieldView.h */,
 				EAF32451257670A700B4E6B5 /* XXPasswordNumTextFieldView.m */,
+				EAF32453257795DB00B4E6B5 /* XXSetPasswordNumTextFieldView.h */,
+				EAF32454257795DB00B4E6B5 /* XXSetPasswordNumTextFieldView.m */,
 				EAA8DEAA244D7E7C00161698 /* XXAddressView.h */,
 				EAA8DEAD244D7E7C00161698 /* XXAddressView.m */,
 				EAA8DEAF244D7E7C00161698 /* XXUserHeaderView.h */,
@@ -2298,6 +2325,8 @@
 				EABD71722449F481008AA188 /* XXTransactionCell.m */,
 				EA8CE94225343FAA007E3591 /* XXChooseTokenCell.h */,
 				EA8CE94325343FAA007E3591 /* XXChooseTokenCell.m */,
+				EAF32462257B7C3F00B4E6B5 /* XXChooseSymbolCell.h */,
+				EAF32463257B7C3F00B4E6B5 /* XXChooseSymbolCell.m */,
 			);
 			path = cell;
 			sourceTree = "<group>";
@@ -2309,6 +2338,8 @@
 				EABD717B2449F651008AA188 /* XXMainSymbolHeaderView.m */,
 				EABD717A2449F651008AA188 /* XXSymbolDetailFooterView.h */,
 				EABD717D2449F651008AA188 /* XXSymbolDetailFooterView.m */,
+				EAF3245C257A678A00B4E6B5 /* XXChainDetailFooterView.h */,
+				EAF3245D257A678A00B4E6B5 /* XXChainDetailFooterView.m */,
 				EABD71792449F650008AA188 /* XXSymbolDetailHeaderView.h */,
 				EABD717E2449F651008AA188 /* XXSymbolDetailHeaderView.m */,
 				EA8994D12501455E007B4A19 /* XXChainHeaderView.h */,
@@ -2336,6 +2367,8 @@
 				EA8994CC2500FDAA007B4A19 /* XXChainDetailVC.m */,
 				EA8994D725022A92007B4A19 /* XXExchangeVC.h */,
 				EA8994D825022A92007B4A19 /* XXExchangeVC.m */,
+				EAF3245F257A77DD00B4E6B5 /* XXChooseTokenVC.h */,
+				EAF32460257A77DD00B4E6B5 /* XXChooseTokenVC.m */,
 			);
 			path = viewcontroller;
 			sourceTree = "<group>";
@@ -2407,6 +2440,8 @@
 				EA15E95624163FDC00A3E14A /* XXStartWalletVC.m */,
 				EABD1BB9241E49EA00B1A03A /* XXImportWalletVC.h */,
 				EABD1BBA241E49EA00B1A03A /* XXImportWalletVC.m */,
+				EAF324562578CFB300B4E6B5 /* XXAddWalletVC.h */,
+				EAF324572578CFB300B4E6B5 /* XXAddWalletVC.m */,
 				EA2F952F2423A02B0070AC62 /* XXLoginVC.h */,
 				EA2F95302423A02B0070AC62 /* XXLoginVC.m */,
 				EAC83FA92465899600340C95 /* XXVersionManager.h */,
@@ -2823,10 +2858,12 @@
 				EAB356322438369200D750D6 /* FMDatabase.m in Sources */,
 				EA9D744924F91DD100B53997 /* MJRefreshStateHeader.m in Sources */,
 				EABD1B83241BB25900B1A03A /* sha2.c in Sources */,
+				EAF3245B257A20A700B4E6B5 /* XXValidatorHeaderView.m in Sources */,
 				EABD1B89241BB25900B1A03A /* bignum.c in Sources */,
 				EA3E594824445DAE0080B98F /* XXTransferAmountView.m in Sources */,
 				EAE2864224742483006D9F24 /* BHFaceIDLockVC.m in Sources */,
 				6C0D91BE2449A32B0043AF74 /* XXValidatorDetailInfoCell.m in Sources */,
+				EAF3245E257A678A00B4E6B5 /* XXChainDetailFooterView.m in Sources */,
 				EABD1B8E241BB25900B1A03A /* sha3.c in Sources */,
 				EA04ABAC242D015B004403FF /* IQUIView+IQKeyboardToolbar.m in Sources */,
 				F31F7A5020CF9693008B4403 /* XXTabBarController.m in Sources */,
@@ -2842,6 +2879,7 @@
 				EABD1B81241BB25900B1A03A /* aeskey.c in Sources */,
 				F30EAF6020D26536005ADD5C /* UILabel+Extension.m in Sources */,
 				EABD7195244B1AEA008AA188 /* XXTransferHeaderView.m in Sources */,
+				EAF32455257795DC00B4E6B5 /* XXSetPasswordNumTextFieldView.m in Sources */,
 				EA3E591C24441D160080B98F /* XXAssetHeaderView.m in Sources */,
 				EA3E591F24441D160080B98F /* XXAssetCell.m in Sources */,
 				EA6FA69A21258FD3006305B8 /* UICKeyChainStore.m in Sources */,
@@ -2925,6 +2963,7 @@
 				EAE2861C247285C3006D9F24 /* XXBackupPrivateKeyVC.m in Sources */,
 				7A3298152320EE9900196336 /* NSArray+Safe.m in Sources */,
 				7A3298752320EE9900196336 /* NSObject+Swizzling.m in Sources */,
+				EAF324582578CFB400B4E6B5 /* XXAddWalletVC.m in Sources */,
 				EA309EB4236F21410098DE28 /* AFURLRequestSerialization.m in Sources */,
 				EABD71782449F481008AA188 /* XXSymbolDetailVC.m in Sources */,
 				EA4F5E992179B5190025B350 /* AppDelegate+Category.m in Sources */,
@@ -2995,6 +3034,7 @@
 				EA04ABB4242D015B004403FF /* IQKeyboardReturnKeyHandler.m in Sources */,
 				EAAA89742520B7A200A4AB5B /* XXTransferMemoView.m in Sources */,
 				6CC12D0124455C4B00917105 /* XXValidatorToolBar.m in Sources */,
+				EAF32467257CD3A400B4E6B5 /* XXWithdrawVC.m in Sources */,
 				EAAA896B252032EE00A4AB5B /* XXMsgAddLiquidityModel.m in Sources */,
 				EABD1B96241BB25900B1A03A /* crypto_scrypt-sse.c in Sources */,
 				EAA8DEC1244D7E7C00161698 /* XXAddressView.m in Sources */,
@@ -3010,6 +3050,7 @@
 				EA9D743F24F91DD100B53997 /* UIScrollView+MJExtension.m in Sources */,
 				F38839362108B30600EAC95D /* XYHNumbersLabel.m in Sources */,
 				EA9D745324F91E5700B53997 /* XXWebViewController.m in Sources */,
+				EAF32461257A77DD00B4E6B5 /* XXChooseTokenVC.m in Sources */,
 				EABD1BB4241E21B300B1A03A /* XXCreateWalletSetPasswordVC.m in Sources */,
 				EAE40482211C34A000FFD028 /* LocalizeHelper.m in Sources */,
 				EABD1BB7241E2EAA00B1A03A /* XXRepeatPasswordVC.m in Sources */,
@@ -3076,6 +3117,7 @@
 				EAE2861B247285C3006D9F24 /* XXBackupMnemonicPhraseVC.m in Sources */,
 				EABD1B92241BB25900B1A03A /* mpi.c in Sources */,
 				EA04ABAD242D015B004403FF /* IQPreviousNextView.m in Sources */,
+				EAF32464257B7C4000B4E6B5 /* XXChooseSymbolCell.m in Sources */,
 				6C791E222455A53400F22CD0 /* XXProposalDetailHeader.m in Sources */,
 				EAB356332438369200D750D6 /* FMDatabasePool.m in Sources */,
 				EAAA896E25204BFA00A4AB5B /* XXMsgSwapExact.m in Sources */,
