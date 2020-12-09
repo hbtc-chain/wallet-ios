@@ -55,13 +55,14 @@
         make.bottom.mas_equalTo(-6);
     }];
 }
+
 #pragma mark lazy load
 - (XXValidatorToolBar*)validatorToolBar{
     MJWeakSelf
     if (!_validatorToolBar) {
         _validatorToolBar = [[XXValidatorToolBar alloc]initWithFrame:CGRectZero];
         _validatorToolBar.backgroundColor = kBackgroundLeverFirst;
-        _validatorToolBar.itemsArray = [NSMutableArray arrayWithArray:@[LocalizedString(@"valid"),LocalizedString(@"invalid")]];
+        _validatorToolBar.itemsArray = [NSMutableArray arrayWithArray:@[LocalizedString(@"KeyNode"),LocalizedString(@"ElectedNode"),LocalizedString(@"RunNode")]];
         _validatorToolBar.ToolbarSelectCallBack = ^(NSInteger index) {
             if (weakSelf.selectValidOrInvalidCallBack) {
                 weakSelf.selectValidOrInvalidCallBack(index);

@@ -24,6 +24,12 @@
 
 /**models*/
 #import "XXValidatorListModel.h"
+/**提案状态*/
+typedef NS_ENUM(NSInteger, XXValidatorType) {
+    XXValidatorTypeKeyNode = 0,//托管节点
+    XXValidatorTypeElectedNode = 1,//共识节点
+    XXValidatorTypeRunNode = 2,//竞选节点
+};
 static NSString *KValidatorsListReuseCell = @"validatorsListReuseCell";
 static NSString *KValidatorGripSectionHeader = @"XXValidatorGripSectionHeader";
 @interface XXValidatorsHomeViewController ()<UITableViewDelegate,UITableViewDataSource,UIScrollViewDelegate>
@@ -41,17 +47,12 @@ static NSString *KValidatorGripSectionHeader = @"XXValidatorGripSectionHeader";
 @property (nonatomic, strong) XXEmptyView *emptyView;
 /**无网络*/
 @property (nonatomic, strong) XXFailureView *failureView;
-/**有效或者无效*/
-@property (nonatomic, copy) NSString *validOrInvalid;
-/**是否在搜索*/
-@property (nonatomic, assign) BOOL isFilting;
 /**是否数据请求失败*/
 @property (nonatomic, assign) BOOL isFailedNetworking;
 
 @property (nonatomic, strong) NSArray *delegations; //委托列表
-
 @property (nonatomic, strong) XXMsgRequest *msgRequest; //提取分红
-
+@property (nonatomic, assign) XXValidatorType validatorType; //节点类型
 @end
 
 @implementation XXValidatorsHomeViewController
@@ -60,7 +61,7 @@ static NSString *KValidatorGripSectionHeader = @"XXValidatorGripSectionHeader";
     [super viewDidLoad];
     [self setupUI];
     [self layoutViews];
-    self.validOrInvalid = @"1";
+    self.validatorType = XXValidatorTypeKeyNode;
     [self loadData];
     [self refreshHeader];
     [self requestDelegations];
@@ -91,21 +92,49 @@ static NSString *KValidatorGripSectionHeader = @"XXValidatorGripSectionHeader";
     [self requestValidatorsList];
 }
 
+- (void)configData {
+    [self.filtValidatorsDataArray removeAllObjects];
+    [self.filtValidatorsDataArray addObjectsFromArray:[self getTypeArray]];
+    [self.validatorsListTableView reloadData];
+}
+
+- (NSMutableArray *)getTypeArray {
+    NSMutableArray *tempArray = [NSMutableArray array];
+    if (self.validatorType == XXValidatorTypeKeyNode) {
+        for (XXValidatorListModel*model in self.validatorsDataArray) {
+            if (model.is_key_node) {
+                [tempArray addObject:model];
+            }
+        }
+    }
+    if (self.validatorType == XXValidatorTypeElectedNode) {
+        for (XXValidatorListModel*model in self.validatorsDataArray) {
+            if (model.is_elected) {
+                [tempArray addObject:model];
+            }
+        }
+    }
+    if (self.validatorType == XXValidatorTypeRunNode) {
+        for (XXValidatorListModel*model in self.validatorsDataArray) {
+            if (!model.is_key_node && !model.is_elected) {
+                [tempArray addObject:model];
+            }
+        }
+    }
+    return tempArray;
+}
+
 - (void)searchLoadData:(NSString*)inputSting{
     if (inputSting.length ==0) {
-        self.isFilting = NO;
-        [self.filtValidatorsDataArray removeAllObjects];
-        [self.filtValidatorsDataArray addObjectsFromArray:self.validatorsDataArray];
-        [self.validatorsListTableView reloadData];
+        [self configData];
         return;
     }
     NSMutableArray *tempArray = [NSMutableArray array];
-    for (XXValidatorListModel*model in self.validatorsDataArray) {
+    for (XXValidatorListModel*model in [self getTypeArray]) {
         if ([[model.validatorDescription.moniker lowercaseString] containsString:[inputSting lowercaseString]]) {
             [tempArray addObject:model];
         }
     }
-    self.isFilting = YES;
     [self.filtValidatorsDataArray removeAllObjects];
     [self.filtValidatorsDataArray addObjectsFromArray:tempArray];
     [self.validatorsListTableView reloadData];
@@ -133,7 +162,7 @@ static NSString *KValidatorGripSectionHeader = @"XXValidatorGripSectionHeader";
         [MBProgressHUD showActivityMessageInView:@""];
     }
     NSMutableDictionary *dic = [NSMutableDictionary dictionary];
-    [dic setObject:self.validOrInvalid forKey:@"valid"];
+    [dic setObject:@"1" forKey:@"valid"];
     NSString *path = [NSString stringWithFormat:@"/api/v1/validators"];
     [HttpManager getWithPath:path params:dic andBlock:^(id data, NSString *msg, NSInteger code) {
         [weakSelf.validatorsListTableView.mj_header endRefreshing];
@@ -142,8 +171,7 @@ static NSString *KValidatorGripSectionHeader = @"XXValidatorGripSectionHeader";
 //            NSLog(@"%@",data);
             NSArray *listArray = [XXValidatorListModel mj_objectArrayWithKeyValuesArray:data];
             [self.validatorsDataArray addObjectsFromArray:listArray];
-            [self.filtValidatorsDataArray addObjectsFromArray:listArray];
-            [self.validatorsListTableView reloadData];
+            [self configData];
         } else {
             self.isFailedNetworking = YES;
             Alert *alert = [[Alert alloc] initWithTitle:msg duration:kAlertDuration completion:^{
@@ -206,10 +234,10 @@ static NSString *KValidatorGripSectionHeader = @"XXValidatorGripSectionHeader";
 
 #pragma mark UITableViewDelegate UITableViewDataSource
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-    return self.validatorsDataArray.count == 0 ? 2 : 1;
+    return self.filtValidatorsDataArray.count == 0 ? 2 : 1;
 }
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return self.isFilting ? self.filtValidatorsDataArray.count : self.validatorsDataArray.count;
+    return self.filtValidatorsDataArray.count;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
@@ -231,9 +259,8 @@ static NSString *KValidatorGripSectionHeader = @"XXValidatorGripSectionHeader";
         self.sectionHeader.backgroundColor = kBackgroundLeverFirst;
         self.sectionHeader.selectValidOrInvalidCallBack = ^(NSInteger index) {
             @strongify(self)
-            NSNumber *number = [NSNumber numberWithInteger:index];
-            self.validOrInvalid = number.integerValue == 1 ? @"0" : @"1";
-            [self loadData];
+            self.validatorType = index;
+            [self configData];
         };
         self.sectionHeader.textfieldValueChangeBlock = ^(NSString * _Nonnull textfiledText) {
             @strongify(self)
@@ -241,7 +268,7 @@ static NSString *KValidatorGripSectionHeader = @"XXValidatorGripSectionHeader";
         };
         return self.sectionHeader;
     }else {
-        if (self.validatorsDataArray.count == 0) {
+        if (self.filtValidatorsDataArray.count == 0) {
             if ([KUser.netWorkStatus isEqualToString:@"notReachable"] || self.isFailedNetworking) {
                 return self.failureView;
             } else {
@@ -254,11 +281,7 @@ static NSString *KValidatorGripSectionHeader = @"XXValidatorGripSectionHeader";
     }
 
 }
-//- (void)tableView:(UITableView *)tableView willDisplayHeaderView:(UIView *)view forSection:(NSInteger)section {
-//    if ([view isKindOfClass:[UITableViewHeaderFooterView class]]) {
-//        ((UITableViewHeaderFooterView *)view).backgroundView.backgroundColor = [UIColor clearColor];
-//    }
-//}
+
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
     return 120;
 }
@@ -269,8 +292,8 @@ static NSString *KValidatorGripSectionHeader = @"XXValidatorGripSectionHeader";
     }
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
     cell.backgroundColor = kBackgroundLeverFirst;
-    XXValidatorListModel *model = self.isFilting ? self.filtValidatorsDataArray[indexPath.row] : self.validatorsDataArray[indexPath.row];
-    cell.validOrInvalid = [self.validOrInvalid isEqualToString:@"1"] ? YES :NO;
+    XXValidatorListModel *model = self.filtValidatorsDataArray[indexPath.row];
+    cell.validOrInvalid = YES;
     [cell loadData:model];
     return cell;
 }
@@ -278,8 +301,8 @@ static NSString *KValidatorGripSectionHeader = @"XXValidatorGripSectionHeader";
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     XXValidatorDetailViewController *detailValidator = [[XXValidatorDetailViewController alloc]init];
-    detailValidator.validatorModel = self.isFilting ? self.filtValidatorsDataArray[indexPath.row] : self.validatorsDataArray[indexPath.row];
-    detailValidator.validOrInvalid = self.validOrInvalid;
+    detailValidator.validatorModel = self.filtValidatorsDataArray[indexPath.row];
+    detailValidator.validOrInvalid = @"1";
     [self.navigationController pushViewController:detailValidator animated:YES];
 }
 #pragma mark layout

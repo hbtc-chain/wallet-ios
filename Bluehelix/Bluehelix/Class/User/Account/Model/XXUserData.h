@@ -12,23 +12,22 @@ NS_ASSUME_NONNULL_BEGIN
 @interface XXUserData : NSObject
 
 + (XXUserData *)sharedUserData;
-@property (nonatomic, copy) NSString *localUserName;
-@property (nonatomic, copy) NSString *localPassword;
-@property (nonatomic, copy) NSString *localPhraseString; //临时助记词
-@property (nonatomic, copy) NSString *localPrivateKey; //临时私钥
+@property (nonatomic, assign) BOOL deleteFlag; //删除测试网数据
 @property (nonatomic, assign) BOOL agreeService;
 @property (nonatomic, assign) BOOL isNightType; //是否夜间模式
 @property (nonatomic, assign) BOOL isSettedNightType; //手动设置的夜间模式
 @property (nonatomic, assign) BOOL isHideSmallCoin; //是否隐藏小额币种
 @property (nonatomic, assign) BOOL isHideAsset; //是否隐藏资产
 @property (nonatomic, strong) NSArray *accounts;
-@property (nonatomic, copy) XXAccountModel *currentAccount; //当前用户
+@property (nonatomic, strong) XXAccountModel *currentAccount; //当前用户
+@property (nonatomic, copy) NSString *localUserName;
+@property (nonatomic, copy) NSString *localPassword;
+@property (nonatomic, copy) NSString *localPhraseString; //临时助记词
+@property (nonatomic, copy) NSString *localPrivateKey; //临时私钥
 @property (nonatomic, copy) NSString *rootID; //当前用户id
 @property (nonatomic, copy) NSString *address; //当前用户地址
-
 @property (nonatomic, copy) NSString *ratesKey; //汇率
 @property (nonatomic, copy) NSString *netWorkStatus; //网络状态
-
 @property (nonatomic, copy) NSString *fee; //手续费
 @property (nonatomic, copy) NSString *showFee; //展示的手续费
 @property (nonatomic, copy) NSString *gas; //气
@@ -62,7 +61,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, assign) BOOL showPassword; //弹出密码框
 
 -(id)getValueForKey:(NSString*)key;
-
+- (void)cleanTestData; //删除测试网数据
 @end
 
 NS_ASSUME_NONNULL_END

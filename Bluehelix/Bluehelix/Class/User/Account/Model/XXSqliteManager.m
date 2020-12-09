@@ -78,7 +78,7 @@ static XXSqliteManager *_sqliteManager;
 }
 
 - (NSString *)sqlitePath {
-    NSString *path = [NSString stringWithFormat:@"%@/Documents/wallet.db", NSHomeDirectory()];
+    NSString *path = [NSString stringWithFormat:@"%@/Documents/hbtcwallet.db", NSHomeDirectory()];
     NSLog(@"path = %@",path);
     return path;
 }

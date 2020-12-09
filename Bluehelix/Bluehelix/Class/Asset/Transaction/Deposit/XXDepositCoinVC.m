@@ -135,6 +135,18 @@
     self.scrollView.backgroundColor = chainColor;
 }
 
+- (void)savePhoto {
+    UIImageWriteToSavedPhotosAlbum(self.codeImageView.image, self, @selector(image:didFinishSavingWithError:contextInfo:), nil);
+}
+
+- (void)image:(UIImage *)image didFinishSavingWithError:(NSError *)error contextInfo:(void *)contextInfo{
+    if (!error) {
+        Alert *alert = [[Alert alloc] initWithTitle:LocalizedString(@"SavedToLibrary") duration:kAlertDuration completion:^{
+        }];
+        [alert showAlert];
+    }
+}
+
 - (UIScrollView *)scrollView {
     if (!_scrollView) {
         _scrollView = [[UIScrollView alloc] initWithFrame:CGRectMake(0, kNavHeight, kScreen_Width, kScreen_Height - kNavHeight)];
@@ -261,8 +273,9 @@
 
 - (XXButton *)saveImageBtn {
     if (!_saveImageBtn) {
+        MJWeakSelf
         _saveImageBtn = [XXButton buttonWithFrame:CGRectMake(0, self.backView.height - 64, self.backView.width/2, 64) title:LocalizedString(@"SaveImage") font:kFont17 titleColor:kPrimaryMain block:^(UIButton *button) {
-            
+            [weakSelf savePhoto];
         }];
     }
     return _saveImageBtn;
@@ -327,7 +340,8 @@
 }
 
 - (void)setTitle {
-    NSString *text = [NSString stringWithFormat:@"%@ %@",[self.tokenModel.name uppercaseString],LocalizedString(@"ReceiveMoney")];
+    NSString *name = self.crossChainFlag ? LocalizedString(@"Recharge") : LocalizedString(@"ReceiveMoney");
+    NSString *text = [NSString stringWithFormat:@"%@ %@",[self.tokenModel.name uppercaseString],name];
     CGFloat width = [NSString widthWithText:text font:kFontBold17];
     [self.titleButton setTitle:text forState:UIControlStateNormal];
     [self.titleButton setTitleEdgeInsets:UIEdgeInsetsMake(0, -self.titleButton.imageView.bounds.size.width -2, 0, self.titleButton.imageView.bounds.size.width +2)];

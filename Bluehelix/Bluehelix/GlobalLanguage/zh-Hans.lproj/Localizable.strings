@@ -434,3 +434,10 @@
 "SwitchToChainAddress" = "切换跨链托管地址 >";
 "SwitchToMainAddress" = "切换HBTC链地址 >";
 "SaveImage" = "保存图片";
+"KeyNode" = "托管节点";
+"ElectedNode" = "共识节点";
+"RunNode" = "竞选节点";
+"SavedToLibrary" = "已保存到相册";
+"TradeHistory" = "交易记录";
+"DeleteAccount" = "删除账户";
+"DeleteAccountTip" = "您确定删除当前账户吗？请在继续操作前，确认您是否已经拥有或备份导出该账户的原始秘钥、助记词、KeyStore";

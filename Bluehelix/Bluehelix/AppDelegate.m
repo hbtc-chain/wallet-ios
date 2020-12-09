@@ -31,7 +31,7 @@
 
 #pragma mark - 1. 程序开始
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
-    
+    [KUser cleanTestData];
     KUser.isQuickTextOpen = NO;
     [Bugly startWithAppId:kBuglyID];
     [self registerWebViewUserAgent];

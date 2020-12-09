@@ -92,6 +92,7 @@
         _oldPasswordView.placeholder = LocalizedString(@"OldPassword");
         _oldPasswordView.showLookBtn = YES;
         _oldPasswordView.textField.delegate = self;
+        _oldPasswordView.textField.keyboardType = UIKeyboardTypeNumberPad;
         [_oldPasswordView.textField addTarget:self action:@selector(textFiledValueChange:) forControlEvents:UIControlEventEditingChanged];
     }
     return _oldPasswordView;
@@ -103,6 +104,7 @@
         _passwordView.placeholder = LocalizedString(@"NewPassword");
         _passwordView.showLookBtn = YES;
         _passwordView.textField.delegate = self;
+        _passwordView.textField.keyboardType = UIKeyboardTypeNumberPad;
         [_passwordView.textField addTarget:self action:@selector(textFiledValueChange:) forControlEvents:UIControlEventEditingChanged];
     }
     return _passwordView;
@@ -114,6 +116,7 @@
         _okPasswordView.placeholder = LocalizedString(@"ConfirmNewPassword");
         _okPasswordView.showLookBtn = YES;
         _okPasswordView.textField.delegate = self;
+        _okPasswordView.textField.keyboardType = UIKeyboardTypeNumberPad;
         [_okPasswordView.textField addTarget:self action:@selector(textFiledValueChange:) forControlEvents:UIControlEventEditingChanged];
     }
     return _okPasswordView;

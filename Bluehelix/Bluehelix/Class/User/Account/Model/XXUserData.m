@@ -22,6 +22,32 @@ static XXUserData *_sharedUserData = nil;
     return _sharedUserData;
 }
 
+// 清空数据
+- (void)cleanAllData {
+    NSUserDefaults *defatluts = [NSUserDefaults standardUserDefaults];
+    NSDictionary *dics = [defatluts dictionaryRepresentation];
+    for(NSString *key in [dics allKeys]){
+        [defatluts removeObjectForKey:key];
+        [defatluts synchronize];
+    }
+}
+
+//删除测试网数据 TODO 新版本可去掉
+- (void)cleanTestData {
+    if (!self.deleteFlag) {
+        [self cleanAllData];
+        self.deleteFlag = YES;
+    }
+}
+
+- (void)setDeleteFlag:(BOOL)deleteFlag {
+    [self saveValue:@(deleteFlag) forKey:@"deleteFlag"];
+}
+
+- (BOOL)deleteFlag {
+    return [[self getValueForKey:@"deleteFlag"] boolValue];
+}
+
 // 夜间模式
 - (void)setIsNightType:(BOOL)isNightType {
     [self saveValue:@(isNightType) forKey:@"isNightType"];
@@ -145,11 +171,11 @@ static XXUserData *_sharedUserData = nil;
 }
 
 - (BOOL)isTouchIDLockOpen {
-     return [[self getValueForKey:@"TouchIDLockOpen"] boolValue];
+    return [[self getValueForKey:@"TouchIDLockOpen"] boolValue];
 }
 
 - (void)setIsTouchIDLockOpen:(BOOL)isTouchIDLockOpen {
-     [self saveValue:@(isTouchIDLockOpen) forKey:@"TouchIDLockOpen"];
+    [self saveValue:@(isTouchIDLockOpen) forKey:@"TouchIDLockOpen"];
 }
 
 - (void)setHaveLogged:(BOOL)haveLogged {
@@ -157,7 +183,7 @@ static XXUserData *_sharedUserData = nil;
 }
 
 - (BOOL)haveLogged {
-     return [[self getValueForKey:@"HaveLogged"] boolValue];
+    return [[self getValueForKey:@"HaveLogged"] boolValue];
 }
 
 - (BOOL)shouldVerify {
@@ -170,7 +196,7 @@ static XXUserData *_sharedUserData = nil;
 
 // 当前账户
 - (XXAccountModel *)currentAccount {
-   return [[XXSqliteManager sharedSqlite] accountByAddress:KUser.address];
+    return [[XXSqliteManager sharedSqlite] accountByAddress:KUser.address];
 }
 
 // 当前账户地址

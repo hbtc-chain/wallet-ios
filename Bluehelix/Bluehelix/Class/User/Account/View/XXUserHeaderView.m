@@ -7,7 +7,6 @@
 #import "XXAccountManageVC.h"
 #import "XXAccountBtn.h"
 #import "XXUserHeaderItemView.h"
-#import "XXCoinPublishApplyVC.h"
 #import "XXMessageCenterVC.h"
 #import "XXUserNameView.h"
 
@@ -144,11 +143,10 @@
     if (!_leftItemView) {
         _leftItemView = [[XXUserHeaderItemView alloc] initWithFrame:CGRectMake(K375(16), CGRectGetMaxY(self.addressLabel.frame) + 30, (kScreen_Width - K375(40))/2, 88)];
         _leftItemView.icon.image = [UIImage imageNamed:@"UserHeaderCoin"];
-        _leftItemView.nameLabel.text = LocalizedString(@"CoinPublishApply");
+        _leftItemView.nameLabel.text = LocalizedString(@"TradeHistory");
         MJWeakSelf
         _leftItemView.block = ^{
-            XXCoinPublishApplyVC *coinVC = [[XXCoinPublishApplyVC alloc] init];
-            [weakSelf.viewController.navigationController pushViewController:coinVC animated:YES];
+            
         };
     }
     return _leftItemView;
