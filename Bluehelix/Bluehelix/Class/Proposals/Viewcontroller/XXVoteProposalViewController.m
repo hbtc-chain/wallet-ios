@@ -79,15 +79,15 @@
             return;
         }
         if (kShowPassword) {
-            self.text = kText;
-            [self requestCreateProposal];
-        } else {
             MJWeakSelf
             [XXPasswordView showWithSureBtnBlock:^(NSString * _Nonnull text) {
                 @strongify(self)
                 weakSelf.text = text;
                 [self requestCreateProposal];
             }];
+        } else {
+            self.text = kText;
+            [self requestCreateProposal];
         }
     } else {
         Alert *alert = [[Alert alloc] initWithTitle:LocalizedString(@"PleaseFillAll") duration:kAlertDuration completion:^{

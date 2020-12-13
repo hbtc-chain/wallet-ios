@@ -56,12 +56,12 @@
         return;
     }
     if (kShowPassword) {
-        [self requestWithdrawVerify:kText];
-    } else {
         MJWeakSelf
         [XXPasswordView showWithSureBtnBlock:^(NSString * _Nonnull text) {
             [weakSelf requestWithdrawVerify:text];
         }];
+    } else {
+        [self requestWithdrawVerify:kText];
     }
 }
 

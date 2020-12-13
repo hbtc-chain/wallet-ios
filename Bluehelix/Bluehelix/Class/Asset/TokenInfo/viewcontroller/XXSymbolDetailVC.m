@@ -127,6 +127,7 @@
 - (void)firstAction {
     XXDepositCoinVC *depositVC = [[XXDepositCoinVC alloc] init];
     depositVC.symbol = self.tokenModel.symbol;
+    depositVC.crossChainFlag = self.tokenModel.is_native ? NO : YES;
     [self.navigationController pushViewController:depositVC animated:YES];
 }
 

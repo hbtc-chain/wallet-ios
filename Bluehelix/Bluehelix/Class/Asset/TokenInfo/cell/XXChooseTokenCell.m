@@ -59,10 +59,14 @@
     [self.contentView addSubview:self.lineView];
 }
 
-- (void)configData:(XXMappingModel *)model {
+- (void)configData:(XXMappingModel *)model symbol:(NSString *)targetSymbol{
     self.mapModel = model;
     [self.iconView sd_setImageWithURL:[NSURL URLWithString:model.logo] placeholderImage:[UIImage imageNamed:@"placeholderToken"]];
-    self.coinNameLabel.text = [NSString stringWithFormat:@"%@->%@",[model.name uppercaseString],[model.map_symbol uppercaseString]];
+    if (IsEmpty(targetSymbol)) {
+        self.coinNameLabel.text = [NSString stringWithFormat:@"%@",[model.name uppercaseString]];
+    } else {
+        self.coinNameLabel.text = [NSString stringWithFormat:@"%@",[model.map_symbol uppercaseString]];
+    }
     self.amountLabel.text = [NSString stringWithFormat:@"%@: %@",LocalizedString(@"Balance"),kAmountShortTrim(model.amount)];
 }
 

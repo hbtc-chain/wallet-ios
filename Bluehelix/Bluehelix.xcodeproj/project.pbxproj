@@ -164,6 +164,11 @@
 		EA8CE941253436A0007E3591 /* XXChangeMapTokenView.m in Sources */ = {isa = PBXBuildFile; fileRef = EA8CE940253436A0007E3591 /* XXChangeMapTokenView.m */; };
 		EA8CE94425343FAA007E3591 /* XXChooseTokenCell.m in Sources */ = {isa = PBXBuildFile; fileRef = EA8CE94325343FAA007E3591 /* XXChooseTokenCell.m */; };
 		EA8F8C88240FA9F200D26E10 /* Icon.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EA8F8C86240FA9F200D26E10 /* Icon.xcassets */; };
+		EA920D712585F0100077775D /* GYNoticeViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = EA920D6D2585F0100077775D /* GYNoticeViewCell.m */; };
+		EA920D722585F0100077775D /* GYRollingNoticeView.m in Sources */ = {isa = PBXBuildFile; fileRef = EA920D6E2585F0100077775D /* GYRollingNoticeView.m */; };
+		EA920D752585F05C0077775D /* XXNoticeView.m in Sources */ = {isa = PBXBuildFile; fileRef = EA920D742585F05C0077775D /* XXNoticeView.m */; };
+		EA920D7825861E950077775D /* XXChooseTokenHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = EA920D7725861E950077775D /* XXChooseTokenHeaderView.m */; };
+		EA920D7B258667CA0077775D /* XXWebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EA920D7A258667CA0077775D /* XXWebViewController.m */; };
 		EA92EDBB2448086F00B194DA /* XXMsgRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = EA92EDBA2448086F00B194DA /* XXMsgRequest.m */; };
 		EA92EDBE244809E800B194DA /* XXMsg.m in Sources */ = {isa = PBXBuildFile; fileRef = EA92EDBD244809E800B194DA /* XXMsg.m */; };
 		EA9537002455623B0060D1FC /* XXRewardView.m in Sources */ = {isa = PBXBuildFile; fileRef = EA9536FF2455623B0060D1FC /* XXRewardView.m */; };
@@ -200,7 +205,7 @@
 		EA9D744D24F91DD100B53997 /* MJRefreshBackFooter.m in Sources */ = {isa = PBXBuildFile; fileRef = EA9D743424F91DD100B53997 /* MJRefreshBackFooter.m */; };
 		EA9D744E24F91DD100B53997 /* MJRefreshAutoFooter.m in Sources */ = {isa = PBXBuildFile; fileRef = EA9D743524F91DD100B53997 /* MJRefreshAutoFooter.m */; };
 		EA9D744F24F91DD100B53997 /* MJRefreshComponent.m in Sources */ = {isa = PBXBuildFile; fileRef = EA9D743724F91DD100B53997 /* MJRefreshComponent.m */; };
-		EA9D745324F91E5700B53997 /* XXWebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EA9D745224F91E5700B53997 /* XXWebViewController.m */; };
+		EA9D745324F91E5700B53997 /* XXTradeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EA9D745224F91E5700B53997 /* XXTradeViewController.m */; };
 		EA9D745724F91FB900B53997 /* NJKWebViewProgressView.m in Sources */ = {isa = PBXBuildFile; fileRef = EA9D745624F91FB900B53997 /* NJKWebViewProgressView.m */; };
 		EAA8DEBA244D7E7C00161698 /* RatesManager.m in Sources */ = {isa = PBXBuildFile; fileRef = EAA8DE9F244D7E7C00161698 /* RatesManager.m */; };
 		EAA8DEBB244D7E7C00161698 /* XXUserData.m in Sources */ = {isa = PBXBuildFile; fileRef = EAA8DEA0244D7E7C00161698 /* XXUserData.m */; };
@@ -709,6 +714,16 @@
 		EA8F8C85240FA9F200D26E10 /* XXColorHeader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XXColorHeader.h; sourceTree = "<group>"; };
 		EA8F8C86240FA9F200D26E10 /* Icon.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Icon.xcassets; sourceTree = "<group>"; };
 		EA8F8C87240FA9F200D26E10 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		EA920D6D2585F0100077775D /* GYNoticeViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GYNoticeViewCell.m; sourceTree = "<group>"; };
+		EA920D6E2585F0100077775D /* GYRollingNoticeView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GYRollingNoticeView.m; sourceTree = "<group>"; };
+		EA920D6F2585F0100077775D /* GYRollingNoticeView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GYRollingNoticeView.h; sourceTree = "<group>"; };
+		EA920D702585F0100077775D /* GYNoticeViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GYNoticeViewCell.h; sourceTree = "<group>"; };
+		EA920D732585F05C0077775D /* XXNoticeView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = XXNoticeView.h; sourceTree = "<group>"; };
+		EA920D742585F05C0077775D /* XXNoticeView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = XXNoticeView.m; sourceTree = "<group>"; };
+		EA920D7625861E950077775D /* XXChooseTokenHeaderView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = XXChooseTokenHeaderView.h; sourceTree = "<group>"; };
+		EA920D7725861E950077775D /* XXChooseTokenHeaderView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = XXChooseTokenHeaderView.m; sourceTree = "<group>"; };
+		EA920D79258667CA0077775D /* XXWebViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = XXWebViewController.h; sourceTree = "<group>"; };
+		EA920D7A258667CA0077775D /* XXWebViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = XXWebViewController.m; sourceTree = "<group>"; };
 		EA92EDB92448086F00B194DA /* XXMsgRequest.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = XXMsgRequest.h; sourceTree = "<group>"; };
 		EA92EDBA2448086F00B194DA /* XXMsgRequest.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = XXMsgRequest.m; sourceTree = "<group>"; };
 		EA92EDBC244809E800B194DA /* XXMsg.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = XXMsg.h; sourceTree = "<group>"; };
@@ -780,8 +795,8 @@
 		EA9D743724F91DD100B53997 /* MJRefreshComponent.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MJRefreshComponent.m; sourceTree = "<group>"; };
 		EA9D743824F91DD100B53997 /* MJRefreshFooter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MJRefreshFooter.h; sourceTree = "<group>"; };
 		EA9D743924F91DD100B53997 /* MJRefreshBackFooter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MJRefreshBackFooter.h; sourceTree = "<group>"; };
-		EA9D745124F91E5700B53997 /* XXWebViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XXWebViewController.h; sourceTree = "<group>"; };
-		EA9D745224F91E5700B53997 /* XXWebViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XXWebViewController.m; sourceTree = "<group>"; };
+		EA9D745124F91E5700B53997 /* XXTradeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XXTradeViewController.h; sourceTree = "<group>"; };
+		EA9D745224F91E5700B53997 /* XXTradeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XXTradeViewController.m; sourceTree = "<group>"; };
 		EA9D745524F91FB900B53997 /* NJKWebViewProgressView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NJKWebViewProgressView.h; sourceTree = "<group>"; };
 		EA9D745624F91FB900B53997 /* NJKWebViewProgressView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NJKWebViewProgressView.m; sourceTree = "<group>"; };
 		EAA8DE9D244D7E7C00161698 /* XXSqliteManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XXSqliteManager.h; sourceTree = "<group>"; };
@@ -1630,6 +1645,8 @@
 				EA3E590624441D160080B98F /* XXAssetSearchHeaderView.m */,
 				EA826653254078D1006249B4 /* XXTestAssertTipView.h */,
 				EA826654254078D1006249B4 /* XXTestAssertTipView.m */,
+				EA920D732585F05C0077775D /* XXNoticeView.h */,
+				EA920D742585F05C0077775D /* XXNoticeView.m */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -1784,6 +1801,17 @@
 			path = AppResource;
 			sourceTree = "<group>";
 		};
+		EA920D6C2585F0100077775D /* GYRollingNoticeView */ = {
+			isa = PBXGroup;
+			children = (
+				EA920D702585F0100077775D /* GYNoticeViewCell.h */,
+				EA920D6D2585F0100077775D /* GYNoticeViewCell.m */,
+				EA920D6F2585F0100077775D /* GYRollingNoticeView.h */,
+				EA920D6E2585F0100077775D /* GYRollingNoticeView.m */,
+			);
+			path = GYRollingNoticeView;
+			sourceTree = "<group>";
+		};
 		EA964BA32414D34A00A941E5 /* Class */ = {
 			isa = PBXGroup;
 			children = (
@@ -1930,8 +1958,10 @@
 			children = (
 				EAAA896525202B1F00A4AB5B /* Model */,
 				EA36AC442509293100B3788A /* View */,
-				EA9D745124F91E5700B53997 /* XXWebViewController.h */,
-				EA9D745224F91E5700B53997 /* XXWebViewController.m */,
+				EA9D745124F91E5700B53997 /* XXTradeViewController.h */,
+				EA9D745224F91E5700B53997 /* XXTradeViewController.m */,
+				EA920D79258667CA0077775D /* XXWebViewController.h */,
+				EA920D7A258667CA0077775D /* XXWebViewController.m */,
 			);
 			path = Web;
 			sourceTree = "<group>";
@@ -2354,6 +2384,8 @@
 				EA71E1542504955300B52558 /* XXChainAddressView.m */,
 				EA8CE93F253436A0007E3591 /* XXChangeMapTokenView.h */,
 				EA8CE940253436A0007E3591 /* XXChangeMapTokenView.m */,
+				EA920D7625861E950077775D /* XXChooseTokenHeaderView.h */,
+				EA920D7725861E950077775D /* XXChooseTokenHeaderView.m */,
 			);
 			path = view;
 			sourceTree = "<group>";
@@ -2626,6 +2658,7 @@
 		F3D9397520CCCB560055070B /* Tools */ = {
 			isa = PBXGroup;
 			children = (
+				EA920D6C2585F0100077775D /* GYRollingNoticeView */,
 				EA826646253ED4F7006249B4 /* MBProgress */,
 				EAAA896F25207FFA00A4AB5B /* Bugly */,
 				EA066A202518CE1300DFB45C /* WebViewJavascriptBridge */,
@@ -2815,6 +2848,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				EA45BBC524E2B11B00132984 /* XXSegmentView.m in Sources */,
+				EA920D752585F05C0077775D /* XXNoticeView.m in Sources */,
 				EA9D744024F91DD100B53997 /* NSBundle+MJRefresh.m in Sources */,
 				EAA8DED5244D9B8F00161698 /* BHChooseLanguageVC.m in Sources */,
 				EAA8DED6244D9B8F00161698 /* BHChooseLanguageCell.m in Sources */,
@@ -2923,6 +2957,7 @@
 				EA26B350247670A500EAF205 /* XXSplashScreen.m in Sources */,
 				EA811AC42479144400C1038F /* XXMessageSegmentButton.m in Sources */,
 				EA9D744A24F91DD100B53997 /* MJRefreshGifHeader.m in Sources */,
+				EA920D7825861E950077775D /* XXChooseTokenHeaderView.m in Sources */,
 				EAB3566A243E402100D750D6 /* JSONKit.m in Sources */,
 				EAE467EE244C7901006EACAF /* XXTransationSectionHeaderView.m in Sources */,
 				EA826655254078D1006249B4 /* XXTestAssertTipView.m in Sources */,
@@ -2956,6 +2991,7 @@
 				EA71E1552504955300B52558 /* XXChainAddressView.m in Sources */,
 				EAA8DEBC244D7E7C00161698 /* XXAccountManageVC.m in Sources */,
 				EA6FA69721258EC5006305B8 /* FCUUID.m in Sources */,
+				EA920D7B258667CA0077775D /* XXWebViewController.m in Sources */,
 				EA3E593D24441D950080B98F /* XXWithdrawView.m in Sources */,
 				EABD1B94241BB25900B1A03A /* crypto_scrypt-nosse.c in Sources */,
 				EA8994D625022061007B4A19 /* XYHPickerView.m in Sources */,
@@ -3012,6 +3048,7 @@
 				EAA8DEC3244D7E7C00161698 /* XXAccountBtn.m in Sources */,
 				EA04ABB3242D015B004403FF /* IQUIViewController+Additions.m in Sources */,
 				6C791E1B245586B600F22CD0 /* XXPledgeViewController.m in Sources */,
+				EA920D722585F0100077775D /* GYRollingNoticeView.m in Sources */,
 				EABD1BAD241BB25900B1A03A /* Address.m in Sources */,
 				6C791E282455A5F400F22CD0 /* XXProposalDetailTableViewCell.m in Sources */,
 				EA35A5102422426900ADF621 /* Alert.m in Sources */,
@@ -3049,7 +3086,7 @@
 				6C791E122452D72F00F22CD0 /* XXAddProposalView.m in Sources */,
 				EA9D743F24F91DD100B53997 /* UIScrollView+MJExtension.m in Sources */,
 				F38839362108B30600EAC95D /* XYHNumbersLabel.m in Sources */,
-				EA9D745324F91E5700B53997 /* XXWebViewController.m in Sources */,
+				EA9D745324F91E5700B53997 /* XXTradeViewController.m in Sources */,
 				EAF32461257A77DD00B4E6B5 /* XXChooseTokenVC.m in Sources */,
 				EABD1BB4241E21B300B1A03A /* XXCreateWalletSetPasswordVC.m in Sources */,
 				EAE40482211C34A000FFD028 /* LocalizeHelper.m in Sources */,
@@ -3127,6 +3164,7 @@
 				EABD1B8A241BB25900B1A03A /* ripemd160.c in Sources */,
 				EAC68719214F931200701874 /* NullSafe.m in Sources */,
 				6C3E66FC244AD0700057B514 /* XXDelegateTransferView.m in Sources */,
+				EA920D712585F0100077775D /* GYNoticeViewCell.m in Sources */,
 				EAE285DC246E4BA4006D9F24 /* NS+BTCBase58.m in Sources */,
 				EAE28621247285C3006D9F24 /* XXImportKeystoreVC.m in Sources */,
 				EA811AC72479214100C1038F /* XXMessageSegmentView.m in Sources */,

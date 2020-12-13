@@ -76,14 +76,14 @@
             return;
         }
         if (kShowPassword) {
-            self.text = kText;
-            [self requestPledge];
-        } else {
             [XXPasswordView showWithSureBtnBlock:^(NSString * _Nonnull text) {
                 @strongify(self)
                 self.text = text;
                 [self requestPledge];
             }];
+        } else {
+            self.text = kText;
+            [self requestPledge];
         }
     } else {
         Alert *alert = [[Alert alloc] initWithTitle:LocalizedString(@"PleaseFillAll") duration:kAlertDuration completion:^{

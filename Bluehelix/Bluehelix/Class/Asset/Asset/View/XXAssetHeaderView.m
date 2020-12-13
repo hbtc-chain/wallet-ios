@@ -124,7 +124,7 @@
 - (XXLabel *)nameLabel {
     if (!_nameLabel) {
         _nameLabel = [XXLabel labelWithFrame:CGRectMake(K375(16), 44, kScreen_Width - K375(90), 24) font:kFontBold(20) textColor:[UIColor whiteColor]];
-        _nameLabel.text = [NSString stringWithFormat:@"%@",KUser.currentAccount.userName];
+        _nameLabel.text = [NSString stringWithFormat:@"Hello, %@",KUser.currentAccount.userName];
     }
     return _nameLabel;
 }
@@ -143,7 +143,7 @@
 - (XXButton *)codeBtn {
     if (!_codeBtn) {
         _codeBtn = [XXButton buttonWithFrame:CGRectMake(CGRectGetMaxX(self.addressLabel.frame) + 6, self.addressLabel.top, 16, 16) block:^(UIButton *button) {
-            [XXChainAddressView showWithAddress:KUser.address];
+            [XXChainAddressView showMainAccountAddress];
         }];
         [_codeBtn setImage:[UIImage imageNamed:@"codeCircle"] forState:UIControlStateNormal];
     }

@@ -32,14 +32,12 @@
 
 @property (nonatomic, strong) UITableView *tableView;
 @property (nonatomic, strong) XXChainHeaderView *headerView;
-@property (nonatomic, strong) XXMainChainHeaderView *mainHeaderView;
 @property (nonatomic, strong) XXChainDetailFooterView *footerView;
 @property (nonatomic, strong) XXAssetModel *assetModel; //资产数据
 @property (nonatomic, strong) NSArray *tokenList; //资产币列表
 @property (nonatomic, strong) NSMutableArray *showArray; //展示的币
 @property (nonatomic, strong) XXEmptyView *emptyView;
 @property (nonatomic, strong) XXFailureView *failureView; //无网络
-@property (nonatomic, strong) XXAssetSearchHeaderView *searchView;
 @property (nonatomic, strong) UIView *sectionHeader;
 
 @end
@@ -64,17 +62,10 @@
 #pragma mark UI
 - (void)setupUI {
     self.titleLabel.text = [self.chainName uppercaseString];
-    [self.rightButton setTitle:LocalizedString(@"AddToken") forState:UIControlStateNormal];
-    self.rightButton.frame = CGRectMake(kScreen_Width - 160, self.leftButton.top, 145, self.leftButton.height);
-    [self.rightButton setContentHorizontalAlignment:UIControlContentHorizontalAlignmentRight ];
     [self.view addSubview:self.tableView];
     [self.view addSubview:self.footerView];
     self.tableView.separatorColor = KLine_Color;
-    if ([self.chainName isEqualToString:kMainToken]) {
-        self.tableView.tableHeaderView = self.mainHeaderView;
-    } else {
-        self.tableView.tableHeaderView = self.headerView;
-    }
+    self.tableView.tableHeaderView = self.headerView;
 }
 
 #pragma mark 右上角点击事件
@@ -88,6 +79,7 @@
 - (void)firstAction {
     XXDepositCoinVC *depositVC = [[XXDepositCoinVC alloc] init];
     depositVC.symbol = self.chainName;
+    depositVC.crossChainFlag = YES;
     [self.navigationController pushViewController:depositVC animated:YES];
 }
 
@@ -173,12 +165,6 @@
     [self.navigationController pushViewController:detailVC animated:YES];
 }
 
-#pragma mark 搜索 textField  输入框
-- (void)textFieldValueChange:(UITextField *)textField {
-    textField.text = [textField.text trimmingCharacters];
-    [self reloadData];
-}
-
 #pragma mark 资产列表 构造数据
 - (void)reloadData {
     NSArray *sqliteArray = [[XXSqliteManager sharedSqlite] showTokens];
@@ -196,9 +182,7 @@
             }
         }
     }
-    if (![self.chainName isEqualToString:kMainToken]) {
-        self.headerView.chain = self.chainName;
-    }
+    self.headerView.chain = self.chainName;
     [self.tableView reloadData];
 }
 
@@ -225,17 +209,10 @@
 
 - (XXChainHeaderView *)headerView {
     if (!_headerView) {
-        _headerView = [[XXChainHeaderView alloc] initWithFrame:CGRectMake(0, 0, kScreen_Width, 190)];
+        _headerView = [[XXChainHeaderView alloc] initWithFrame:CGRectMake(0, 0, kScreen_Width, 132)];
         _headerView.chain = self.chainName;
     }
     return _headerView;
-}
-
-- (XXMainChainHeaderView *)mainHeaderView {
-    if (!_mainHeaderView) {
-        _mainHeaderView = [[XXMainChainHeaderView alloc] initWithFrame:CGRectMake(0, 0, kScreen_Width, 110)];
-    }
-    return _mainHeaderView;
 }
 
 - (NSMutableArray *)showArray {
@@ -261,14 +238,6 @@
         };
     }
     return _failureView;
-}
-
-- (XXAssetSearchHeaderView  *)searchView {
-    if (!_searchView) {
-        _searchView = [[XXAssetSearchHeaderView alloc] initWithFrame:CGRectMake(0, 16, kScreen_Width, 32)];
-        [_searchView.searchTextField addTarget:self action:@selector(textFieldValueChange:) forControlEvents:UIControlEventEditingChanged];
-    }
-    return _searchView;
 }
 
 - (UIView *)sectionHeader {

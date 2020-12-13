@@ -25,6 +25,7 @@
 @property (nonatomic, strong) XXLabel *tipLabel;
 @property (nonatomic, strong) UIView *backView;
 @property (nonatomic, strong) UIImageView *codeImageView;
+@property (nonatomic, strong) UIImageView *logoImageView;
 @property (nonatomic, strong) XXButton *copyAddressBtn;
 @property (nonatomic, strong) XXLabel *symbolLabel;
 @property (nonatomic, strong) XXLabel *addressTitleLabel;
@@ -48,6 +49,14 @@
     // Do any additional setup after loading the view.
     self.tokenModel = [[XXSqliteManager sharedSqlite] tokenBySymbol:self.symbol];
     [self buildUI];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(refreshAsset) name:kNotificationAssetRefresh object:nil];
+}
+
+#pragma mark 刷新资产
+- (void)refreshAsset {
+    if (self.crossChainFlag) {
+        self.addressLabel.text = [[XXAssetSingleManager sharedManager] externalAddressBySymbol:self.tokenModel.symbol];
+    }
 }
 
 #pragma mark UI
@@ -59,6 +68,7 @@
     [self.scrollView addSubview:self.backView];
     [self.backView addSubview:self.symbolBackView];
     [self.symbolBackView addSubview:self.symbolImageView];
+    [self.backView addSubview:self.logoImageView];
     [self.backView addSubview:self.symbolLabel];
     [self.backView addSubview:self.codeImageView];
     [self.backView addSubview:self.addressTitleLabel];
@@ -78,6 +88,7 @@
     [self setTitle];
     if (self.tokenModel.is_native) {
         self.changeChainBtn.hidden = YES;
+        self.logoImageView.hidden = YES;
         self.showAddress = KUser.address;
         self.symbolLabel.text = [NSString stringWithFormat:@"%@ %@",@"HBTC",LocalizedString(@"WalletAddress")];
         self.addressTitleLabel.text = [NSString stringWithFormat:@"%@ %@",@"HBTC",LocalizedString(@"WalletAddress")];
@@ -87,6 +98,7 @@
         if (self.crossChainFlag) {
             self.showAddress = [[XXAssetSingleManager sharedManager] externalAddressBySymbol:self.tokenModel.symbol];
             self.symbolLabel.text = LocalizedString(@"CrossChainAddress");
+            self.logoImageView.hidden = YES;
             self.addressTitleLabel.text = [NSString stringWithFormat:@"%@%@",[self.tokenModel.chain uppercaseString],LocalizedString(@"WalletAddress")];
             [_changeChainBtn setTitle:LocalizedString(@"SwitchToMainAddress") forState:UIControlStateNormal];
             if (IsEmpty(self.showAddress)) {
@@ -96,6 +108,7 @@
             }
         } else {
             self.showAddress = KUser.address;
+            self.logoImageView.hidden = NO;
             self.symbolLabel.text = [NSString stringWithFormat:@"%@ %@",@"HBTC",LocalizedString(@"WalletAddress")];
             self.addressTitleLabel.text = [NSString stringWithFormat:@"%@ %@",@"HBTC",LocalizedString(@"WalletAddress")];
             [_changeChainBtn setTitle:LocalizedString(@"SwitchToChainAddress") forState:UIControlStateNormal];
@@ -112,6 +125,7 @@
 - (void)changeSymbol {
     MJWeakSelf
     XXChooseTokenVC *vc = [[XXChooseTokenVC alloc] init];
+    vc.filterNativeChainFlag = self.crossChainFlag;
     vc.changeSymbolBlock = ^(NSString * _Nonnull symbol) {
         weakSelf.symbol = symbol;
         weakSelf.tokenModel = [[XXSqliteManager sharedSqlite] tokenBySymbol:symbol];
@@ -206,6 +220,14 @@
     return _symbolImageView;
 }
 
+- (UIImageView *)logoImageView {
+    if (!_logoImageView) {
+        _logoImageView = [[UIImageView alloc] initWithFrame:CGRectMake(CGRectGetMaxX(self.symbolBackView.frame) - 22, CGRectGetMaxY(self.symbolBackView.frame) - 22, 22, 22)];
+        _logoImageView.image = [UIImage imageNamed:@"hbcToken"];
+    }
+    return _logoImageView;
+}
+
 - (XXLabel *)symbolLabel {
     if (!_symbolLabel) {
         _symbolLabel = [XXLabel labelWithFrame:CGRectMake(0, 32, self.backView.width, 16) text:@"" font:kFont12 textColor:kGray500];
@@ -245,6 +267,7 @@
     if (!_addressLabel) {
         _addressLabel = [XXLabel labelWithFrame:CGRectMake(16, CGRectGetMaxY(self.addressTitleLabel.frame), self.backView.width - 32, 40) text:@"" font:kFont(13) textColor:kGray300];
         _addressLabel.textAlignment = NSTextAlignmentLeft;
+        _addressLabel.numberOfLines = 0;
         _addressLabel.text = self.showAddress;
     }
     return _addressLabel;
@@ -257,7 +280,7 @@
         [shapeLayer setBounds:_dashLineView.bounds];
         [shapeLayer setPosition:CGPointMake(CGRectGetWidth(_dashLineView.frame) / 2, CGRectGetHeight(_dashLineView.frame))];
         [shapeLayer setFillColor:[UIColor clearColor].CGColor];
-        [shapeLayer setStrokeColor:[kGray300 CGColor]];
+        [shapeLayer setStrokeColor:[[UIColor colorWithHexString:@"#E7ECF4"] CGColor]];
         [shapeLayer setLineWidth:CGRectGetHeight(_dashLineView.frame)];
         [shapeLayer setLineJoin:kCALineJoinRound];
         [shapeLayer setLineDashPattern:[NSArray arrayWithObjects:[NSNumber numberWithInt:4], [NSNumber numberWithInt:2], nil]];
@@ -274,7 +297,7 @@
 - (XXButton *)saveImageBtn {
     if (!_saveImageBtn) {
         MJWeakSelf
-        _saveImageBtn = [XXButton buttonWithFrame:CGRectMake(0, self.backView.height - 64, self.backView.width/2, 64) title:LocalizedString(@"SaveImage") font:kFont17 titleColor:kPrimaryMain block:^(UIButton *button) {
+        _saveImageBtn = [XXButton buttonWithFrame:CGRectMake(0, self.backView.height - 64, self.backView.width/2, 64) title:LocalizedString(@"SaveImage") font:kFontBold(17) titleColor:kPrimaryMain block:^(UIButton *button) {
             [weakSelf savePhoto];
         }];
     }
@@ -284,7 +307,7 @@
 - (UIView *)lineView {
     if (!_lineView) {
         _lineView = [[UIView alloc] initWithFrame:CGRectMake(self.backView.width/2, self.backView.height - 44, 1, 24)];
-        _lineView.backgroundColor = KLine_Color;
+        _lineView.backgroundColor = [UIColor colorWithHexString:@"#E7ECF4"];
     }
     return _lineView;
 }
@@ -320,7 +343,7 @@
 
 - (UIImageView *)bottomLogo {
     if (!_bottomLogo) {
-        _bottomLogo = [[UIImageView alloc] initWithFrame:CGRectMake((kScreen_Width - 132)/2, CGRectGetMaxY(self.tipContentLabel.frame) + 60, 132, 16)];
+        _bottomLogo = [[UIImageView alloc] initWithFrame:CGRectMake((kScreen_Width - 132)/2, self.scrollView.height - 56, 132, 16)];
         _bottomLogo.image = [UIImage imageNamed:@"deposit_logo"];
     }
     return _bottomLogo;

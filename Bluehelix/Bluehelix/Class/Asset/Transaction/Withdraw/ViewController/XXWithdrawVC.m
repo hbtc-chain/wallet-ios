@@ -75,6 +75,7 @@
         self.withdrawView.amountView.currentlyAvailable = @"0";
     }
     self.withdrawView.amountView.tokenModel = self.tokenModel;
+    self.withdrawView.amountView.tokenLabel.text = [self.tokenModel.name uppercaseString];
     self.withdrawView.feeView.unitLabel.text = [kMainToken uppercaseString];
     self.withdrawFeeModel = [[XXSqliteManager sharedSqlite] withdrawFeeToken:self.tokenModel];
     self.withdrawView.chainFeeView.unitLabel.text = [self.withdrawFeeModel.name uppercaseString];
@@ -87,6 +88,7 @@
 - (void)reloadUI {
     [self refreshAsset];
     self.withdrawView.amountView.tokenModel = self.tokenModel;
+    self.withdrawView.amountView.tokenLabel.text = [self.tokenModel.name uppercaseString];
     self.withdrawFeeModel = [[XXSqliteManager sharedSqlite] withdrawFeeToken:self.tokenModel];
     self.withdrawView.chainFeeView.unitLabel.text = [self.withdrawFeeModel.name uppercaseString];
     self.withdrawView.chainFeeView.textField.text = self.tokenModel.withdrawal_fee;
@@ -97,6 +99,7 @@
 - (void)changeSymbol {
     MJWeakSelf
     XXChooseTokenVC *vc = [[XXChooseTokenVC alloc] init];
+    vc.filterNativeChainFlag = YES;
     vc.changeSymbolBlock = ^(NSString * _Nonnull symbol) {
         weakSelf.symbol = symbol;
         weakSelf.tokenModel = [[XXSqliteManager sharedSqlite] tokenBySymbol:symbol];
@@ -128,14 +131,15 @@
             return;
         }
         if (kShowPassword) {
-            self.text = kText;
-            [self requestWithdraw];
-        } else {
             MJWeakSelf
             [XXPasswordView showWithSureBtnBlock:^(NSString * _Nonnull text) {
                 weakSelf.text = text;
                 [weakSelf requestWithdraw];
             }];
+        } else {
+            self.text = kText;
+            [self requestWithdraw];
+            
         }
     } else {
         Alert *alert = [[Alert alloc] initWithTitle:LocalizedString(@"CompleteInfomation") duration:kAlertDuration completion:^{

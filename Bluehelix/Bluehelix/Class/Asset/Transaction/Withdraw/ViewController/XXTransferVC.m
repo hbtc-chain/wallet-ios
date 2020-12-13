@@ -70,6 +70,7 @@
     } else {
         self.transferView.amountView.currentlyAvailable = @"0";
     }
+    self.transferView.amountView.tokenLabel.text = [self.tokenModel.name uppercaseString];
     self.transferView.feeView.textField.text = [XXUserData sharedUserData].showFee;
     [self.view addSubview:self.transferButton];
 }
@@ -77,6 +78,7 @@
 #pragma mark 更换token后 刷新
 - (void)reloadUI {
     [self refreshAsset];
+    self.transferView.amountView.tokenLabel.text = [self.tokenModel.name uppercaseString];
     [self setTitle];
 }
 
@@ -134,14 +136,14 @@
             return;
         }
         if (kShowPassword) {
-            self.text = kText;
-            [self requestTransfer];
-        } else {
             MJWeakSelf
             [XXPasswordView showWithSureBtnBlock:^(NSString * _Nonnull text) {
                 weakSelf.text = text;
                 [weakSelf requestTransfer];
             }];
+        } else {
+            self.text = kText;
+            [self requestTransfer];
         }
     } else {
         Alert *alert = [[Alert alloc] initWithTitle:LocalizedString(@"CompleteInfomation") duration:kAlertDuration completion:^{

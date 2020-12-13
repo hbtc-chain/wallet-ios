@@ -148,20 +148,6 @@
                 break;
         }
         if (kShowPassword) {
-            self.text = kText;
-            switch (self.delegateNodeType) {
-                case XXDelegateNodeTypeAdd:
-                    [self requestDelegate];
-                    break;
-                case XXDelegateNodeTypeTransfer:
-                    break;
-                case XXDelegateNodeTypeRelieve:
-                    [self requestRelieveDelegate];
-                    break;
-                default:
-                    break;
-            }
-        } else {
             MJWeakSelf
             [XXPasswordView showWithSureBtnBlock:^(NSString * _Nonnull text) {
                 weakSelf.text = text;
@@ -178,6 +164,20 @@
                         break;
                 }
             }];
+        } else {
+            self.text = kText;
+            switch (self.delegateNodeType) {
+                case XXDelegateNodeTypeAdd:
+                    [self requestDelegate];
+                    break;
+                case XXDelegateNodeTypeTransfer:
+                    break;
+                case XXDelegateNodeTypeRelieve:
+                    [self requestRelieveDelegate];
+                    break;
+                default:
+                    break;
+            }
         }
     } else {
         Alert *alert = [[Alert alloc] initWithTitle:LocalizedString(@"PleaseFillAll") duration:kAlertDuration completion:^{

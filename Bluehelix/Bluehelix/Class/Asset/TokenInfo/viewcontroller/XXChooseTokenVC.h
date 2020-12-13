@@ -13,6 +13,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface XXChooseTokenVC : BaseViewController
 
+@property (nonatomic, assign) BOOL filterNativeChainFlag; //过滤原生代币
 @property (nonatomic, copy) void (^changeSymbolBlock)(NSString *symbol);
 
 @end

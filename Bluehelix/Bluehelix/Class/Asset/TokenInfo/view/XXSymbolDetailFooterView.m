@@ -51,7 +51,7 @@
             itemButton.backgroundColor = kPrimaryMain;
             [itemButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
         } else {
-            itemButton.backgroundColor = [UIColor whiteColor];
+            itemButton.backgroundColor = kWhiteColor;
             [itemButton setTitleColor:kPrimaryMain forState:UIControlStateNormal];
             itemButton.layer.borderColor = [kPrimaryMain CGColor];
             itemButton.layer.borderWidth = 1;

@@ -7,11 +7,11 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "SWTableViewCell.h"
+//#import "SWTableViewCell.h"
 @class XXTokenModel;
 NS_ASSUME_NONNULL_BEGIN
 
-@interface XXAssetCell : SWTableViewCell
+@interface XXAssetCell : UITableViewCell
 
 - (void)configData:(XXTokenModel *)model;
 

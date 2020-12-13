@@ -12,7 +12,7 @@
 #import "XXTransferVC.h"
 #import "XXDepositCoinVC.h"
 
-@interface XXAssetCell () <SWTableViewCellDelegate>
+@interface XXAssetCell ()
 
 /// 图标
 @property (strong, nonatomic) UIImageView *iconView;
@@ -58,25 +58,25 @@
     [self.contentView addSubview:self.typeLabel];
     [self.contentView addSubview:self.amountLabel];
     [self.contentView addSubview:self.lineView];
-    self.leftUtilityButtons = [self leftButtons];
-    self.rightUtilityButtons = [self rightButtons];
-    self.delegate = self;
+//    self.leftUtilityButtons = [self leftButtons];
+//    self.rightUtilityButtons = [self rightButtons];
+//    self.delegate = self;
 }
 
-- (NSArray *)leftButtons
-{
-    NSMutableArray *leftUtilityButtons = [NSMutableArray new];
-    [leftUtilityButtons sw_addUtilityButtonWithColor:kPrimaryMain
-                                               title:LocalizedString(@"ReceiveMoney")];
-    return leftUtilityButtons;
-}
-
-- (NSArray *)rightButtons {
-    NSMutableArray *rightUtilityButtons = [NSMutableArray new];
-    [rightUtilityButtons sw_addUtilityButtonWithColor:kPrimaryMain
-                                               title:LocalizedString(@"Transfer")];
-    return rightUtilityButtons;
-}
+//- (NSArray *)leftButtons
+//{
+//    NSMutableArray *leftUtilityButtons = [NSMutableArray new];
+//    [leftUtilityButtons sw_addUtilityButtonWithColor:kPrimaryMain
+//                                               title:LocalizedString(@"ReceiveMoney")];
+//    return leftUtilityButtons;
+//}
+//
+//- (NSArray *)rightButtons {
+//    NSMutableArray *rightUtilityButtons = [NSMutableArray new];
+//    [rightUtilityButtons sw_addUtilityButtonWithColor:kPrimaryMain
+//                                               title:LocalizedString(@"Transfer")];
+//    return rightUtilityButtons;
+//}
 
 - (void)configData:(XXTokenModel *)model {
     self.tokenModel = model;
@@ -114,19 +114,19 @@
     }
 }
 
-- (void)swipeableTableViewCell:(SWTableViewCell *)cell didTriggerLeftUtilityButtonWithIndex:(NSInteger)index {
-    XXDepositCoinVC *depositVC = [[XXDepositCoinVC alloc] init];
-    depositVC.symbol = self.tokenModel.symbol;
-    [self.viewController.navigationController pushViewController:depositVC animated:YES];
-    [cell hideUtilityButtonsAnimated:YES];
-}
-
-- (void)swipeableTableViewCell:(SWTableViewCell *)cell didTriggerRightUtilityButtonWithIndex:(NSInteger)index {
-    XXTransferVC *transferVC = [[XXTransferVC alloc] init];
-    transferVC.symbol = self.tokenModel.symbol;
-    [self.viewController.navigationController pushViewController:transferVC animated:YES];
-    [cell hideUtilityButtonsAnimated:YES];
-}
+//- (void)swipeableTableViewCell:(SWTableViewCell *)cell didTriggerLeftUtilityButtonWithIndex:(NSInteger)index {
+//    XXDepositCoinVC *depositVC = [[XXDepositCoinVC alloc] init];
+//    depositVC.symbol = self.tokenModel.symbol;
+//    [self.viewController.navigationController pushViewController:depositVC animated:YES];
+//    [cell hideUtilityButtonsAnimated:YES];
+//}
+//
+//- (void)swipeableTableViewCell:(SWTableViewCell *)cell didTriggerRightUtilityButtonWithIndex:(NSInteger)index {
+//    XXTransferVC *transferVC = [[XXTransferVC alloc] init];
+//    transferVC.symbol = self.tokenModel.symbol;
+//    [self.viewController.navigationController pushViewController:transferVC animated:YES];
+//    [cell hideUtilityButtonsAnimated:YES];
+//}
 
 - (UIImageView *)iconView {
     if (_iconView == nil) {

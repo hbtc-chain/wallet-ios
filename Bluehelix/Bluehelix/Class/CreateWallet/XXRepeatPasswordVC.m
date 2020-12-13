@@ -46,7 +46,7 @@
 
 - (void)buildUI {
     self.titleLabel.text = LocalizedString(@"CreateWallet");
-    KUser.agreeService = NO;
+    KUser.agreeService = YES;
     [self.view addSubview:self.tipLabel];
     [self.view addSubview:self.stepTipLabel];
     [self.view addSubview:self.contentLabel];

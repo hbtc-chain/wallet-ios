@@ -18,13 +18,12 @@
 #import "XXSymbolDetailVC.h"
 #import "RatesManager.h"
 #import "XXEmptyView.h"
-#import "SWTableViewCell.h"
 #import "XXFailureView.h"
 #import "SecurityHelper.h"
 #import "XXVersionManager.h"
 #import "XXAssetSingleManager.h"
 #import "XXChainModel.h"
-#import "XXTestAssertTipView.h"
+#import "XXNoticeView.h"
 
 @interface XXChainAssertVC ()<UITableViewDataSource, UITableViewDelegate>
 
@@ -35,8 +34,8 @@
 @property (nonatomic, strong) NSMutableArray *chainArray; //展示的链
 @property (nonatomic, strong) XXEmptyView *emptyView;
 @property (nonatomic, strong) XXFailureView *failureView; //无网络
-@property (nonatomic, strong) XXTestAssertTipView *testTipView;
-@property (nonatomic, assign) CGFloat tipHeight; //测试网提示view height;
+@property (nonatomic, strong) XXNoticeView *noticeView;
+//@property (nonatomic, assign) CGFloat tipHeight; //测试网提示view height;
 @end
 
 @implementation XXChainAssertVC
@@ -44,7 +43,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-    self.tipHeight = [NSString heightWithText:LocalizedString(@"TestNetCoinTip") font:kFont13 width:kScreen_Width - K375(92)] + 14;
+    [self requestNotice];
     [self setupUI];
     [XXVersionManager checkVersion];
     self.assetModel = [XXAssetSingleManager sharedManager].assetModel;
@@ -78,6 +77,17 @@
     }
 }
 
+#pragma mark - 请求公告
+- (void)requestNotice {
+    MJWeakSelf
+    [HttpManager getWithPath:@"/api/v1/announcements" params:nil andBlock:^(id data, NSString *msg, NSInteger code) {
+        if (code == 0) {
+            NSLog(@"%@",data);
+            [weakSelf.noticeView reloadData:data];
+        }
+    }];
+}
+
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
     return 1;
 }
@@ -93,7 +103,7 @@
             return self.emptyView.height;
         }
     } else {
-        return self.tipHeight;
+        return 32;
     }
 }
 
@@ -106,7 +116,7 @@
         }
         return self.emptyView ;
     } else {
-        return self.testTipView;
+        return self.noticeView;
     }
 }
 
@@ -167,6 +177,7 @@
         }
         _tableView.mj_header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
             [weakSelf refreshAsset];
+            [weakSelf requestNotice];
         }];
     }
     return _tableView;
@@ -210,11 +221,11 @@
     return _failureView;
 }
 
-- (XXTestAssertTipView *)testTipView {
-    if (!_testTipView) {
-        _testTipView = [[XXTestAssertTipView alloc] initWithFrame:CGRectMake(0, 0, kScreen_Width, _tipHeight)];
+- (XXNoticeView *)noticeView {
+    if (!_noticeView) {
+        _noticeView = [[XXNoticeView alloc] initWithFrame:CGRectMake(0, 0, kScreen_Width, 46)];
     }
-    return _testTipView;
+    return _noticeView;
 }
 
 @end

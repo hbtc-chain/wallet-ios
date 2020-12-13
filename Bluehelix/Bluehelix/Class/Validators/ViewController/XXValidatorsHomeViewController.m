@@ -200,15 +200,21 @@ static NSString *KValidatorGripSectionHeader = @"XXValidatorGripSectionHeader";
         NSDecimalNumber *unclaimedRewardDecimal = [NSDecimalNumber decimalNumberWithString:unclaimedReward];
         sum = [sum decimalNumberByAdding:unclaimedRewardDecimal];
     }
+    if (sum.floatValue <= 0) {
+        Alert *alert = [[Alert alloc] initWithTitle:LocalizedString(@"NoReward") duration:kAlertDuration completion:^{
+        }];
+        [alert showAlert];
+        return;
+    }
     NSString *content = NSLocalizedFormatString(LocalizedString(@"WithdrawMoneyContent"),sum.stringValue,kMinFee);
     MJWeakSelf
     [XXRewardView showWithTitle:LocalizedString(@"WithdrawMoney") icon:@"withdrawMoneyAlert" content:content sureBlock:^{
         if (kShowPassword) {
-            [weakSelf requestWithdrawBonus:kText];
-        } else {
             [XXPasswordView showWithSureBtnBlock:^(NSString * _Nonnull text) {
                 [weakSelf requestWithdrawBonus:text];
             }];
+        } else {
+            [weakSelf requestWithdrawBonus:kText];
         }
     }];
 }
@@ -338,6 +344,10 @@ static NSString *KValidatorGripSectionHeader = @"XXValidatorGripSectionHeader";
 - (XXValidatorHeaderView *)headerView {
     if (!_headerView) {
         _headerView = [[XXValidatorHeaderView alloc] initWithFrame:CGRectMake(0, 0, kScreen_Width, 220)];
+        MJWeakSelf
+        _headerView.getRewardBlock = ^{
+            [weakSelf withdrawBonus];
+        };
     }
     return _headerView;
 }

@@ -84,6 +84,15 @@ static XXUserData *_sharedUserData = nil;
     return [[self getValueForKey:@"isHideAsset"] integerValue];
 }
 
+// 币种排序 降序
+- (void)setTokenSortDes:(BOOL)tokenSortDes {
+    [self saveValue:@(tokenSortDes) forKey:@"tokenSortDes"];
+}
+
+- (BOOL)tokenSortDes {
+    return [[self getValueForKey:@"tokenSortDes"] integerValue];
+}
+
 // 是否阅读协议
 - (void)setAgreeService:(BOOL)agreeService {
     [self saveValue:@(agreeService) forKey:@"agreeService"];

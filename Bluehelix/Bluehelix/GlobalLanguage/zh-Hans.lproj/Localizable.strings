@@ -369,7 +369,7 @@
 
 //
 "DelegateAndRelieve" = "委托/解委托";
-"Exchange" = "映射兑换";
+"Exchange" = "闪兑";
 "Rate" = "汇率";
 "ExchangePlaceholder" = "请输入兑换数量";
 "ClickCopyAddress" = "点击复制地址";
@@ -441,3 +441,10 @@
 "TradeHistory" = "交易记录";
 "DeleteAccount" = "删除账户";
 "DeleteAccountTip" = "您确定删除当前账户吗？请在继续操作前，确认您是否已经拥有或备份导出该账户的原始秘钥、助记词、KeyStore";
+"GetReward" = "领取收益";
+"NoReward" = "暂无收益";
+"ExchangeTo" = "兑换成";
+"Pay" = "支付";
+"All" = "全部";
+"CreateChainAddress" = "生成跨链充值地址";
+"TokenNameTitle" = "币种名称";

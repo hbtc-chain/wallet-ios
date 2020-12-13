@@ -12,7 +12,7 @@
 
 @property (nonatomic, strong) XXLabel *accountLabel; //账户名
 @property (nonatomic, strong) UIView *backView;
-//@property (nonatomic, strong) UIView *lineView;
+@property (nonatomic, strong) UIView *lineView;
 @property (nonatomic, strong) XXLabel *titleLabel1; //可用
 @property (nonatomic, strong) XXLabel *titleLabel2; //委托中
 @property (nonatomic, strong) XXLabel *titleLabel3; //赎回中
@@ -24,6 +24,7 @@
 @property (nonatomic, strong) XXLabel *valueLabel3; //赎回中
 @property (nonatomic, strong) XXLabel *valueLabel4; //已收益
 @property (nonatomic, strong) XXLabel *valueLabel5; //待领取收益
+@property (nonatomic, strong) XXButton *getRewardBtn; //领取收益
 @end
 
 @implementation XXValidatorHeaderView
@@ -51,6 +52,8 @@
     [self.backView addSubview:self.valueLabel3];
     [self.backView addSubview:self.valueLabel4];
     [self.backView addSubview:self.valueLabel5];
+    [self.backView addSubview:self.getRewardBtn];
+    [self.backView addSubview:self.lineView];
 }
 
 - (void)setAssetModel:(XXAssetModel *)assetModel {
@@ -165,17 +168,30 @@
 
 - (XXLabel *)valueLabel5 {
     if (!_valueLabel5) {
-        _valueLabel5 = [XXLabel labelWithFrame:CGRectMake(K375(16) + (self.backView.width - K375(32))/3, CGRectGetMaxY(self.titleLabel4.frame) + 2, (self.backView.width - K375(32))/3, 24) font:kFont15 textColor:kGray900];
-        _valueLabel5.textAlignment = NSTextAlignmentCenter;
+        _valueLabel5 = [XXLabel labelWithFrame:CGRectMake(K375(16) + (self.backView.width - K375(32))/4, CGRectGetMaxY(self.titleLabel4.frame) + 2, (self.backView.width - K375(32))/4 -5, 24) font:kFont15 textColor:kGray900];
+        _valueLabel5.textAlignment = NSTextAlignmentRight;
     }
     return _valueLabel5;
 }
 
-//- (UIView *)lineView {
-//    if (!_lineView) {
-//        _lineView = [[UIView alloc] initWithFrame:CGRectMake(16, 112, self.backView.width - 16, KLine_Height)];
-//        _lineView.backgroundColor = KLine_Color;
-//    }
-//    return _lineView;
-//}
+- (XXButton *)getRewardBtn {
+    if (!_getRewardBtn) {
+        MJWeakSelf
+        _getRewardBtn = [XXButton buttonWithFrame:CGRectMake(self.backView.width/2 +5, CGRectGetMaxY(self.titleLabel4.frame) + 2, (self.backView.width - K375(32))/4, 24) title:LocalizedString(@"GetReward") font:kFont15 titleColor:kPrimaryMain block:^(UIButton *button) {
+            if (weakSelf.getRewardBlock) {
+                weakSelf.getRewardBlock();
+            }
+        }];
+        [_getRewardBtn setContentHorizontalAlignment:UIControlContentHorizontalAlignmentLeft];
+    }
+    return _getRewardBtn;
+}
+
+- (UIView *)lineView {
+    if (!_lineView) {
+        _lineView = [[UIView alloc] initWithFrame:CGRectMake(self.backView.width/2, CGRectGetMaxY(self.titleLabel4.frame) + 2, 1, 24)];
+        _lineView.backgroundColor = KLine_Color;
+    }
+    return _lineView;
+}
 @end

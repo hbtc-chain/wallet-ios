@@ -10,7 +10,7 @@
 #import "XCQrCodeTool.h"
 #import "XXTokenModel.h"
 #import "XXAssetSingleManager.h"
-
+#import <UIImageView+WebCache.h>
 @interface XXChainAddressView ()
 
 @property (nonatomic, strong) UIView *backView;
@@ -19,13 +19,13 @@
 @property (nonatomic, strong) UIImageView *codeImageView;
 @property (nonatomic, strong) UIView *symbolBackView;
 @property (nonatomic, strong) UIImageView *symbolImageView;
-@property (nonatomic, copy) NSString *address;
 @property (nonatomic, strong) XXButton *copyAddressBtn;
 @property (nonatomic, strong) XXLabel *nameLabel;
 @property (nonatomic, strong) XXLabel *addressLabel;
 @property (nonatomic, strong) XXLabel *tipLabel;
 @property (nonatomic, strong) NSString *chain;
-
+@property (nonatomic, copy) NSString *address;
+@property (nonatomic, strong) XXTokenModel *token;
 @end
 
 @implementation XXChainAddressView
@@ -50,15 +50,20 @@
     [self.contentView addSubview:self.addressLabel];
     [self.contentView addSubview:self.copyAddressBtn];
     if (!IsEmpty(self.chain)) {
+        XXTokenModel *token = [[XXSqliteManager sharedSqlite] tokenBySymbol:self.chain];
         [self.contentView addSubview:self.tipLabel];
+        [self.symbolImageView sd_setImageWithURL:[NSURL URLWithString:token.logo] placeholderImage:[UIImage imageNamed:@"placeholderToken"]];
+    } else {
+        XXTokenModel *token = [[XXSqliteManager sharedSqlite] tokenBySymbol:kMainToken];
+        [self.symbolImageView sd_setImageWithURL:[NSURL URLWithString:token.logo] placeholderImage:[UIImage imageNamed:@"placeholderToken"]];
     }
 }
 
-+ (void)showWithAddress:(NSString *)address {
++ (void)showMainAccountAddress {
     
     XXChainAddressView *alert = [[XXChainAddressView alloc] initWithFrame:CGRectMake(0, 0, kScreen_Width, kScreen_Height)];
     [KWindow addSubview:alert];
-    alert.address = address;
+    alert.address = KUser.address;
     [alert buildUI];
     
     alert.contentView.alpha = 1;

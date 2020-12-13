@@ -39,16 +39,16 @@
 }
 
 - (void)swapVerify {
-    if (!IsEmpty(self.backView.leftField.text)) {
+    if (!IsEmpty(self.backView.topField.text)) {
         if (kShowPassword) {
-            self.text = kText;
-            [self requestSwap];
-        } else {
             MJWeakSelf
             [XXPasswordView showWithSureBtnBlock:^(NSString * _Nonnull text) {
                 weakSelf.text = text;
                 [weakSelf requestSwap];
             }];
+        } else {
+            self.text = kText;
+            [self requestSwap];
         }
     } else {
         Alert *alert = [[Alert alloc] initWithTitle:LocalizedString(@"CompleteInfomation") duration:kAlertDuration completion:^{
@@ -60,7 +60,7 @@
 
 - (void)requestSwap {
     XXTokenModel *tokenModel = [[XXSqliteManager sharedSqlite] tokenBySymbol:self.backView.mappingModel.target_symbol];
-    NSDecimalNumber *amountDecimal = [NSDecimalNumber decimalNumberWithString:self.backView.leftField.text];
+    NSDecimalNumber *amountDecimal = [NSDecimalNumber decimalNumberWithString:self.backView.topField.text];
     NSDecimalNumber *feeAmountDecimal = [NSDecimalNumber decimalNumberWithString:kMinFee];
     NSString *amount = [[amountDecimal decimalNumberByMultiplyingBy:kPrecisionDecimalPower(tokenModel.decimals)] stringValue];
     NSString *feeAmount = [[feeAmountDecimal decimalNumberByMultiplyingBy:kPrecisionDecimalPower(tokenModel.decimals)] stringValue];

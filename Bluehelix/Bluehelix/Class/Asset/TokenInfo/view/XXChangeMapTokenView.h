@@ -18,6 +18,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 + (void)showWithSureBlock:(void (^)(XXMappingModel *model))sureBlock;
 
++ (void)showWithTargetSymbol:(NSString *)symbol sureBlock:(void (^)(XXMappingModel *model))sureBlock;
+
 + (void)dismiss;
 
 @end

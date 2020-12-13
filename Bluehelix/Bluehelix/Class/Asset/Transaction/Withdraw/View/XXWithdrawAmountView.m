@@ -9,25 +9,26 @@
 #import "XXWithdrawAmountView.h"
 #import "XXTokenModel.h"
 
+@interface XXWithdrawAmountView ()
+
+@property (nonatomic, strong) UIView *lineView;
+
+@end
+
 @implementation XXWithdrawAmountView
 
 - (instancetype)initWithFrame:(CGRect)frame
 {
     self = [super initWithFrame:frame];
     if (self) {
-        
         self.backgroundColor = kWhiteColor;
-        
         [self addSubview:self.nameLabel];
-        
         [self addSubview:self.subLabel];
-        
         [self addSubview:self.banView];
-        
         [self.banView addSubview:self.allButton];
-        
+        [self.banView addSubview:self.tokenLabel];
+        [self.banView addSubview:self.lineView];
         [self.banView addSubview:self.textField];
-        
     }
     return self;
 }
@@ -105,15 +106,30 @@
 - (XXButton *)allButton {
     if (_allButton == nil) {
         MJWeakSelf
-        NSString *titleString = LocalizedString(@"WithdrawAll");
-        CGFloat btnWidth = [NSString widthWithText:titleString font:kFont14] + 16;
-        _allButton = [XXButton buttonWithFrame:CGRectMake(self.banView.width - btnWidth, 0, btnWidth, self.banView.height) title:titleString font:kFont15 titleColor:kPrimaryMain block:^(UIButton *button) {
+        NSString *titleString = LocalizedString(@"All");
+        CGFloat btnWidth = [NSString widthWithText:titleString font:kFont14];
+        _allButton = [XXButton buttonWithFrame:CGRectMake(self.banView.width - btnWidth - 12, 0, btnWidth, self.banView.height) title:titleString font:kFont14 titleColor:kPrimaryMain block:^(UIButton *button) {
             if (weakSelf.allButtonActionBlock) {
                 weakSelf.allButtonActionBlock();
             }
         }];
     }
     return _allButton;
+}
+
+- (UIView *)lineView {
+    if (_lineView == nil) {
+        _lineView = [[UIView alloc] initWithFrame:CGRectMake(self.banView.width - self.allButton.width - 22, (self.banView.height - 16)/2, 1, 16)];
+        _lineView.backgroundColor = KLine_Color;
+    }
+    return _lineView;
+}
+
+- (XXLabel *)tokenLabel {
+    if (_tokenLabel == nil) {
+        _tokenLabel = [XXLabel labelWithFrame:CGRectMake(self.banView.width - self.allButton.width - 32 - 80, 0, 80, self.banView.height) text:@"" font:kFont14 textColor:kGray500 alignment:NSTextAlignmentRight];
+    }
+    return _tokenLabel;
 }
 
 /** 输入框 */

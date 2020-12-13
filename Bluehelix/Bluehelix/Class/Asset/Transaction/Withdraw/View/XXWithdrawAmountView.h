@@ -19,6 +19,9 @@ NS_ASSUME_NONNULL_BEGIN
 /** 字标签 */
 @property (strong, nonatomic) XXLabel *subLabel;
 
+/** 币种标签 */
+@property (strong, nonatomic) XXLabel *tokenLabel;
+
 /** 背景图 */
 @property (strong, nonatomic) UIView *banView;
 

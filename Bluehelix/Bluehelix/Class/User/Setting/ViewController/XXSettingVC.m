@@ -248,10 +248,10 @@
         };
     } else if(indexPath.section == 2 && indexPath.row == 0) {
         cell.rightIconImageView.hidden = NO;
-        if (!kShowPassword) {
-            cell.valueLabel.text = LocalizedString(@"NoNeedPassword");
-        } else {
+        if (kShowPassword) {
             cell.valueLabel.text = LocalizedString(@"NeedPassword");
+        } else {
+            cell.valueLabel.text = LocalizedString(@"NoNeedPassword");
         }
     }
     cell.lineView.hidden = indexPath.row == namesArray.count - 1 ? YES : NO;

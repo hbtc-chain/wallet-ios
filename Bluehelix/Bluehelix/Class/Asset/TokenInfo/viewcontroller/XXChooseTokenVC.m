@@ -13,13 +13,13 @@
 #import "XXFailureView.h"
 #import "XXEmptyView.h"
 #import "XXChooseSymbolCell.h"
+#import "XXChooseTokenHeaderView.h"
 
 @interface XXChooseTokenVC () <UITableViewDelegate, UITableViewDataSource, UITextFieldDelegate>
 
 @property (nonatomic, strong) UITableView *tableView;
 @property (nonatomic, strong) NSMutableArray *tokenList;
-@property (nonatomic, strong) XXAssetSearchHeaderView *headerView;
-@property (nonatomic, strong) XXFailureView *failureView; //无网络
+@property (nonatomic, strong) XXChooseTokenHeaderView *headerView;
 @property (nonatomic, strong) XXEmptyView *emptyView;
 @property (nonatomic, strong) NSMutableArray *symbols;
 
@@ -31,7 +31,6 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     [self setupUI];
-    [self requestTokenList];
 }
 
 - (void)viewDidLayoutSubviews {
@@ -62,69 +61,37 @@
 }
 
 - (void)reloadData {
-//    NSArray *tokens = [XXTokenModel mj_objectArrayWithKeyValuesArray:[XXUserData sharedUserData].verifiedTokens];
     [self.tokenList removeAllObjects];
-//    [self.symbols removeAllObjects];
-//    for (XXTokenModel *model in tokens) {
-//        if ([model.chain isEqualToString:self.chain]) {
-//            [self.tokenList addObject:model];
-//            [self.symbols addObject:model.symbol];
-//        }
-//    }
     for (XXTokenModel *token in [[XXSqliteManager sharedSqlite] showTokens]) {
-        [self.tokenList addObject:token];
+        if (self.filterNativeChainFlag) {
+            if (!token.is_native) {
+                if (IsEmpty(self.headerView.searchTextField.text)) {
+                    [self.tokenList addObject:token];
+                } else {
+                    if ([token.name containsString:self.headerView.searchTextField.text]) {
+                        [self.tokenList addObject:token];
+                    }
+                }
+            }
+        } else {
+            if (IsEmpty(self.headerView.searchTextField.text)) {
+                [self.tokenList addObject:token];
+            } else {
+                if ([token.name containsString:self.headerView.searchTextField.text]) {
+                    [self.tokenList addObject:token];
+                }
+            }
+        }
     }
+    NSSortDescriptor *sort = [[NSSortDescriptor alloc] initWithKey:@"name" ascending:!KUser.tokenSortDes];
+    NSArray *sortedArray = [self.tokenList sortedArrayUsingDescriptors:@[sort]];
+    self.tokenList = [[NSMutableArray alloc] initWithArray:sortedArray];
     [self.tableView reloadData];
 }
 
-#pragma mark request
-/// 请求推荐列表
-- (void)requestTokenList {
-    MJWeakSelf
-    [MBProgressHUD showActivityMessageInView:@""];
-    [HttpManager getWithPath:@"/api/v1/verified_tokens" params:nil andBlock:^(id data, NSString *msg, NSInteger code) {
-        [MBProgressHUD hideHUD];
-        [weakSelf.tableView.mj_header endRefreshing];
-        if (code == 0) {
-            NSString *verifiedString = [data mj_JSONString];
-            NSString *localString = [XXUserData sharedUserData].verifiedTokens;
-            if (!IsEmpty(verifiedString) && ![localString isEqualToString:verifiedString]) {
-                [XXUserData sharedUserData].verifiedTokens = verifiedString;
-            }
-            [weakSelf reloadData];
-        }
-    }];
-}
-
-/// 搜索币
-- (void)requestSearchToken:(NSString *)text {
-    MJWeakSelf
-    NSMutableDictionary *dic = [NSMutableDictionary dictionary];
-    dic[@"token"] = text;
-//    dic[@"chain"] = self.chain;
-    [MBProgressHUD showActivityMessageInView:@""];
-    [HttpManager getWithPath:@"/api/v1/search_tokens" params:dic andBlock:^(id data, NSString *msg, NSInteger code) {
-        [MBProgressHUD hideHUD];
-        [weakSelf.tableView.mj_header endRefreshing];
-        if (code == 0) {
-            weakSelf.tokenList = [XXTokenModel mj_objectArrayWithKeyValuesArray:data];
-            [[XXSqliteManager sharedSqlite] insertTokens:weakSelf.tokenList];
-            [weakSelf.tableView reloadData];
-        }
-    }];
-}
-
 #pragma mark textField delegate
-- (void)textFieldDidEndEditing:(UITextField *)textField reason:(UITextFieldDidEndEditingReason)reason {
-    if (reason == UITextFieldDidEndEditingReasonCommitted && !IsEmpty(textField.text)) {
-        [self requestSearchToken:textField.text];
-    } else {
-        [self reloadData];
-    }
-}
-
 - (void)textFieldValueChange:(UITextField *)textField {
-    if (IsEmpty(textField.text)) {
+    if (!IsEmpty(textField.text)) {
         [self reloadData];
     }
 }
@@ -139,11 +106,7 @@
 
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
     if (self.tokenList.count == 0) {
-        if ([KUser.netWorkStatus isEqualToString:@"notReachable"]) {
-            return self.failureView.height;
-        } else {
-            return self.emptyView.height;
-        }
+        return self.emptyView.height;
     } else {
         return 0;
     }
@@ -151,11 +114,6 @@
 
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
     if (self.tokenList.count == 0) {
-        if ([KUser.netWorkStatus isEqualToString:@"notReachable"]) {
-            return self.failureView;
-        } else {
-            return self.emptyView ;
-        }
         return self.emptyView ;
     } else {
         return [UIView new];
@@ -188,7 +146,6 @@
 #pragma mark property
 - (UITableView *)tableView {
     if (_tableView == nil) {
-        MJWeakSelf
         _tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, kNavHeight, kScreen_Width, self.view.height - kNavHeight) style:UITableViewStylePlain];
         _tableView.dataSource = self;
         _tableView.delegate = self;
@@ -198,24 +155,20 @@
         if (@available(iOS 11.0, *)) {
             _tableView.contentInsetAdjustmentBehavior = UIScrollViewContentInsetAdjustmentNever;
         }
-        _tableView.mj_header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
-            if (!IsEmpty(weakSelf.headerView.searchTextField.text)) {
-                [weakSelf requestSearchToken:weakSelf.headerView.searchTextField.text];
-            } else {
-                [weakSelf requestTokenList];
-            }
-        }];
     }
     return _tableView;
 }
 
-- (XXAssetSearchHeaderView  *)headerView {
+- (XXChooseTokenHeaderView *)headerView {
     if (!_headerView) {
-        _headerView = [[XXAssetSearchHeaderView alloc] initWithFrame:CGRectMake(K375(16), 0, kScreen_Width - K375(32), 32 + 16)];
+        _headerView = [[XXChooseTokenHeaderView alloc] initWithFrame:CGRectMake(0, 0, kScreen_Width - K375(32), 96)];
         _headerView.searchTextField.placeholder = LocalizedString(@"MoreTokenSearch");
         _headerView.searchTextField.delegate = self;
         [_headerView.searchTextField addTarget:self action:@selector(textFieldValueChange:) forControlEvents:UIControlEventEditingChanged];
-
+        MJWeakSelf
+        _headerView.sortBlock = ^{
+            [weakSelf reloadData];
+        };
     }
     return _headerView;
 }
@@ -225,17 +178,6 @@
         _emptyView = [[XXEmptyView alloc] initWithFrame:CGRectMake(0, 0, kScreen_Width, self.tableView.height - K375(32)) iamgeName:@"noData" alert:LocalizedString(@"NoData")];
     }
     return _emptyView;
-}
-
-- (XXFailureView *)failureView {
-    if (_failureView == nil) {
-        _failureView = [[XXFailureView alloc] initWithFrame:CGRectMake(0, 0, kScreen_Width, self.tableView.height - K375(32))];
-        MJWeakSelf
-        _failureView.reloadBlock = ^{
-            [weakSelf requestTokenList];
-        };
-    }
-    return _failureView;
 }
 
 - (NSMutableArray *)tokenList {

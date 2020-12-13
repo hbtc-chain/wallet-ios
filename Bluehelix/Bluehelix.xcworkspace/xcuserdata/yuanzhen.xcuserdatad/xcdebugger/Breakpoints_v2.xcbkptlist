@@ -890,48 +890,16 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "33A5540C-A749-4375-9D25-0D857BDEB4AA"
+            uuid = "F4B9B87A-3126-433D-8C55-CEB299CA5093"
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "Bluehelix/Class/Web/XXWebViewController.m"
+            filePath = "Bluehelix/Class/Asset/TokenInfo/view/XXChooseTokenHeaderView.m"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "212"
-            endingLineNumber = "212"
-            landmarkName = "-webView:createWebViewWithConfiguration:forNavigationAction:windowFeatures:"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "88D2B617-A00B-45CB-BBB6-333AC3D193C5"
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "Bluehelix/Class/Asset/Transaction/Withdraw/ViewController/XXTransferVC.m"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "161"
-            endingLineNumber = "161"
-            landmarkName = "-requestTransfer"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "222C1D28-153E-4512-A548-C7C8F8882AED"
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "Bluehelix/Class/User/Account/Model/XXUserData.m"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "28"
-            endingLineNumber = "28"
-            landmarkName = "-cleanAllData"
+            startingLineNumber = "93"
+            endingLineNumber = "93"
+            landmarkName = "-sortBtn"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

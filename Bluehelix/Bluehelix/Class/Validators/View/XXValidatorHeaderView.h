@@ -17,6 +17,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @property (nonatomic, strong) NSArray *delegations; //委托列表
 
+@property (nonatomic, copy) void(^getRewardBlock) (void);
 @end
 
 NS_ASSUME_NONNULL_END

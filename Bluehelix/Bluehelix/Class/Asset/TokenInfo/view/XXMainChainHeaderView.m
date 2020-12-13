@@ -113,7 +113,7 @@
 - (XXButton *)codeBtn {
     if (!_codeBtn) {
         _codeBtn = [XXButton buttonWithFrame:CGRectMake(CGRectGetMaxX(self.copyButton.frame) + 10, self.addressLabel.top, 24, 24) block:^(UIButton *button) {
-            [XXChainAddressView showWithAddress:KUser.address];
+            [XXChainAddressView showMainAccountAddress];
         }];
         [_codeBtn setImage:[UIImage imageNamed:@"codeCircle"] forState:UIControlStateNormal];
     }
