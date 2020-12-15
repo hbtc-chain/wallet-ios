@@ -9,7 +9,7 @@
 #import "XXPledgeViewController.h"
 
 #import "XXPledgeView.h"
-#import "XXPasswordView.h"
+#import "XXPasswordAlertView.h"
 #import "XXTokenModel.h"
 #import "XXHadDelegateModel.h"
 #import "XXMsg.h"
@@ -76,7 +76,7 @@
             return;
         }
         if (kShowPassword) {
-            [XXPasswordView showWithSureBtnBlock:^(NSString * _Nonnull text) {
+            [XXPasswordAlertView showWithSureBtnBlock:^(NSString * _Nonnull text) {
                 @strongify(self)
                 self.text = text;
                 [self requestPledge];

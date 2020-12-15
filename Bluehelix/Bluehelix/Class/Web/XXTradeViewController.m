@@ -319,9 +319,9 @@
 //#pragma mark - || 懒加载
 - (void)setUrlString:(NSString *)urlString {
     if ([urlString containsString:@"?"]) {
-        _urlString = [NSString stringWithFormat:@"%@&lang=%@", urlString, [[LocalizeHelper sharedLocalSystem] getRequestHeaderLanguageCode]];
+        _urlString = [NSString stringWithFormat:@"%@&lang=%@", urlString, [[LocalizeHelper sharedLocalSystem] getWebHeaderLanguageCode]];
     } else {
-        _urlString = [NSString stringWithFormat:@"%@?lang=%@", urlString, [[LocalizeHelper sharedLocalSystem] getRequestHeaderLanguageCode]];
+        _urlString = [NSString stringWithFormat:@"%@?lang=%@", urlString, [[LocalizeHelper sharedLocalSystem] getWebHeaderLanguageCode]];
     }
     _urlString = [_urlString stringByAddingPercentEncodingWithAllowedCharacters:[NSCharacterSet URLQueryAllowedCharacterSet]];
 }

@@ -58,25 +58,7 @@
     [self.contentView addSubview:self.typeLabel];
     [self.contentView addSubview:self.amountLabel];
     [self.contentView addSubview:self.lineView];
-//    self.leftUtilityButtons = [self leftButtons];
-//    self.rightUtilityButtons = [self rightButtons];
-//    self.delegate = self;
 }
-
-//- (NSArray *)leftButtons
-//{
-//    NSMutableArray *leftUtilityButtons = [NSMutableArray new];
-//    [leftUtilityButtons sw_addUtilityButtonWithColor:kPrimaryMain
-//                                               title:LocalizedString(@"ReceiveMoney")];
-//    return leftUtilityButtons;
-//}
-//
-//- (NSArray *)rightButtons {
-//    NSMutableArray *rightUtilityButtons = [NSMutableArray new];
-//    [rightUtilityButtons sw_addUtilityButtonWithColor:kPrimaryMain
-//                                               title:LocalizedString(@"Transfer")];
-//    return rightUtilityButtons;
-//}
 
 - (void)configData:(XXTokenModel *)model {
     self.tokenModel = model;
@@ -99,10 +81,17 @@
         self.typeLabel.hidden = YES;
     } else {
         if (model.is_native && ![model.symbol isEqualToString:kMainToken]) {
-            self.typeLabel.text = LocalizedString(@"NativeCoin");
-            self.typeLabel.textColor = kGreen100;
-            self.typeLabel.backgroundColor = [kGreen100 colorWithAlphaComponent:0.2];
-            self.typeLabel.frame = CGRectMake(CGRectGetMaxX(self.coinNameLabel.frame) +5, 20, [NSString widthWithText:LocalizedString(@"NativeCoin") font:kFont10] + 8, 16);
+            if (model.is_verified) {
+                self.typeLabel.text = LocalizedString(@"Verified");
+                self.typeLabel.textColor = kGreen100;
+                self.typeLabel.backgroundColor = [kGreen100 colorWithAlphaComponent:0.2];
+                self.typeLabel.frame = CGRectMake(CGRectGetMaxX(self.coinNameLabel.frame) +5, 20, [NSString widthWithText:LocalizedString(@"Verified") font:kFont10] + 8, 16);
+            } else {
+                self.typeLabel.text = LocalizedString(@"NoVerify");
+                self.typeLabel.textColor = [UIColor colorWithHexString:@"#FF922E"];
+                self.typeLabel.backgroundColor = [[UIColor colorWithHexString:@"#FF922E"] colorWithAlphaComponent:0.2];
+                self.typeLabel.frame = CGRectMake(CGRectGetMaxX(self.coinNameLabel.frame) +5, 20, [NSString widthWithText:LocalizedString(@"NoVerify") font:kFont10] + 8, 16);
+            }
         } else {
             self.typeLabel.text = LocalizedString(@"UnnativeCoin");
             self.typeLabel.textColor = kGray500;
@@ -113,20 +102,6 @@
         self.amountLabel.frame = CGRectMake(CGRectGetMaxX(self.typeLabel.frame), 16, kScreen_Width - 16 - CGRectGetMaxX(self.typeLabel.frame), 24);
     }
 }
-
-//- (void)swipeableTableViewCell:(SWTableViewCell *)cell didTriggerLeftUtilityButtonWithIndex:(NSInteger)index {
-//    XXDepositCoinVC *depositVC = [[XXDepositCoinVC alloc] init];
-//    depositVC.symbol = self.tokenModel.symbol;
-//    [self.viewController.navigationController pushViewController:depositVC animated:YES];
-//    [cell hideUtilityButtonsAnimated:YES];
-//}
-//
-//- (void)swipeableTableViewCell:(SWTableViewCell *)cell didTriggerRightUtilityButtonWithIndex:(NSInteger)index {
-//    XXTransferVC *transferVC = [[XXTransferVC alloc] init];
-//    transferVC.symbol = self.tokenModel.symbol;
-//    [self.viewController.navigationController pushViewController:transferVC animated:YES];
-//    [cell hideUtilityButtonsAnimated:YES];
-//}
 
 - (UIImageView *)iconView {
     if (_iconView == nil) {
@@ -161,7 +136,7 @@
     if (_typeLabel == nil) {
         _typeLabel = [XXLabel labelWithFrame:CGRectMake(CGRectGetMaxX(self.coinNameLabel.frame) +2, 20, 60, 16) text:@"" font:kFont10 textColor:kGray900];
         _typeLabel.textAlignment = NSTextAlignmentCenter;
-        _typeLabel.layer.cornerRadius = 2;
+        _typeLabel.layer.cornerRadius = 8;
         _typeLabel.layer.masksToBounds = YES;
     }
     return _typeLabel;

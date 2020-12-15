@@ -53,7 +53,7 @@
         [self addSubview:self.addressLabel];
         [self addSubview:self.codeBtn];
         [self addSubview:self.addAccountBtn];
-        [self addSubview:self.scanBtn];
+//        [self addSubview:self.scanBtn];
         [self addSubview:self.contentView];
         [self.contentView addSubview:self.logoImageView];
         [self.contentView addSubview:self.logoLabel];
@@ -104,6 +104,11 @@
     [self.viewController.navigationController pushViewController:addVC animated:YES];
 }
 
+#pragma mark -展示地址
+- (void)addressTapAction {
+    [XXChainAddressView showMainAccountAddress];
+}
+
 - (double)getRatesFromToken:(NSString *)token {
     NSDictionary *dic = [RatesManager shareRatesManager].dataDic[token];
         if (dic) {
@@ -136,6 +141,9 @@
         width = width > maxWidth ? maxWidth : width;
         _addressLabel = [XXLabel labelWithFrame:CGRectMake(K375(16), CGRectGetMaxY(self.nameLabel.frame) + 10, width, 16) font:kFont12 textColor:[UIColor whiteColor]];
         _addressLabel.text = kAddressReplace(KUser.address);
+        UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(addressTapAction)];
+        [_addressLabel addGestureRecognizer:tap];
+        _addressLabel.userInteractionEnabled = YES;
     }
     return _addressLabel;
 }

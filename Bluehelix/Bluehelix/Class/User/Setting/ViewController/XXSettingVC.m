@@ -218,7 +218,7 @@
                 KUser.isNightType = isOn;
                 KUser.isSettedNightType = YES;
                 XXTabBarController *tabVC = [[XXTabBarController alloc] init];
-                [tabVC setIndex:3];
+                [tabVC setIndex:2];
                 KWindow.rootViewController = tabVC;
                 XXSettingVC *vc = [[XXSettingVC alloc] init];
                 [tabVC.selectedViewController pushViewController:vc animated:NO];

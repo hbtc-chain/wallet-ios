@@ -50,6 +50,18 @@
     self.validatorDelegateNumberValue.text = [NSString stringWithFormat:@"%@%@",model.self_delegate_proportion,@"%"];
     NSNumber *number = [NSNumber numberWithFloat:model.commission.rate.floatValue];
     self.validatorCommissionRateValue.text = [NSString stringWithFormat:@"%@%@",[NSString stringWithFormat:@"%.2f",number.floatValue],@"%"];
+    if (model.status.intValue == 2) {
+        self.validatorVoteValue.textColor = kMainLabelColor;
+        self.validatorDelegateNumberValue.textColor = kMainLabelColor;
+        self.validatorCommissionRateValue.textColor = kMainLabelColor;
+        self.validatorStatusImageview.image = [UIImage imageNamed:@"Validator_valid"];
+
+    } else {
+        self.validatorVoteValue.textColor = kSubLabelColor;
+        self.validatorDelegateNumberValue.textColor = kSubLabelColor;
+        self.validatorCommissionRateValue.textColor = kSubLabelColor;
+        self.validatorStatusImageview.image = [UIImage imageNamed:@"Validator_invalid"];
+    }
 }
 #pragma mark layout
 - (void)layoutSubviews{
@@ -105,20 +117,6 @@
     }];
 }
 
-#pragma mark set/get
-- (void)setValidOrInvalid:(BOOL)validOrInvalid{
-    _validOrInvalid = validOrInvalid;
-    self.validatorStatusImageview.image = _validOrInvalid ? [UIImage imageNamed:@"Validator_valid"] : [UIImage imageNamed:@"Validator_invalid"];
-    if (validOrInvalid) {
-        self.validatorVoteValue.textColor = kMainLabelColor;
-        self.validatorDelegateNumberValue.textColor = kMainLabelColor;
-        self.validatorCommissionRateValue.textColor = kMainLabelColor;
-    }else{
-        self.validatorVoteValue.textColor = kSubLabelColor;
-        self.validatorDelegateNumberValue.textColor = kSubLabelColor;
-        self.validatorCommissionRateValue.textColor = kSubLabelColor;
-    }
-}
 #pragma mark lazy load
 - (UIView *)shadowView{
     if (!_shadowView) {

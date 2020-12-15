@@ -33,4 +33,9 @@
  得到request header language code
  */
 - (NSString *)getRequestHeaderLanguageCode;
+
+/**
+web 语言切换
+*/
+- (NSString *)getWebHeaderLanguageCode;
 @end

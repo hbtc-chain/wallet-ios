@@ -195,7 +195,7 @@
 
 - (XXLabel *)addressLabel {
     if (!_addressLabel) {
-        _addressLabel = [XXLabel labelWithFrame:CGRectMake(0, CGRectGetMaxY(self.codeImageView.frame), kScreen_Width, 40) text:@"" font:kFont(13) textColor:[UIColor colorWithHexString:@"#0A1825"]];
+        _addressLabel = [XXLabel labelWithFrame:CGRectMake(0, CGRectGetMaxY(self.codeImageView.frame), kScreen_Width, 40) text:@"" font:kFont(13) textColor:kGray500];
         _addressLabel.textAlignment = NSTextAlignmentCenter;
         _addressLabel.text = self.address;
     }

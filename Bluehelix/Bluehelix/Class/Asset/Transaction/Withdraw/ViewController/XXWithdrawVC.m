@@ -11,7 +11,7 @@
 #import "XXMsg.h"
 #import "XXMsgRequest.h"
 #import "XXTokenModel.h"
-#import "XXPasswordView.h"
+#import "XXPasswordAlertView.h"
 #import "XXAssetSingleManager.h"
 #import "XXChooseTokenVC.h"
 
@@ -132,7 +132,7 @@
         }
         if (kShowPassword) {
             MJWeakSelf
-            [XXPasswordView showWithSureBtnBlock:^(NSString * _Nonnull text) {
+            [XXPasswordAlertView showWithSureBtnBlock:^(NSString * _Nonnull text) {
                 weakSelf.text = text;
                 [weakSelf requestWithdraw];
             }];

@@ -41,6 +41,7 @@
     [self addSubview:self.contentView];
     [self.contentView addSubview:self.icon];
     [self.contentView addSubview:self.textLabel];
+    [self.contentView addSubview:self.closeBtn];
 }
 
 - (UIView *)contentView {
@@ -61,10 +62,24 @@
 
 - (UILabel *)textLabel {
     if (_textLabel == nil) {
-        _textLabel = [[UILabel alloc] initWithFrame:CGRectMake(45, 0, self.contentView.width - 30, 32)];
+        _textLabel = [[UILabel alloc] initWithFrame:CGRectMake(45, 0, self.contentView.width - 80, 32)];
         _textLabel.font = kFont12;
         _textLabel.textColor = kGray700;
     }
     return _textLabel;
+}
+
+- (XXButton *)closeBtn {
+    if (_closeBtn == nil) {
+        MJWeakSelf
+        _closeBtn = [XXButton buttonWithFrame:CGRectMake(self.contentView.width - 28, 8, 16, 16) block:^(UIButton *button) {
+            KUser.closeNoticeFlag = YES;
+            if (weakSelf.closeBlock) {
+                weakSelf.closeBlock();
+            }
+        }];
+        [_closeBtn setImage:[UIImage textImageName:@"dismiss"] forState:UIControlStateNormal];
+    }
+    return _closeBtn;
 }
 @end

@@ -35,7 +35,7 @@
 @property (nonatomic, strong) XXEmptyView *emptyView;
 @property (nonatomic, strong) XXFailureView *failureView; //无网络
 @property (nonatomic, strong) XXNoticeView *noticeView;
-//@property (nonatomic, assign) CGFloat tipHeight; //测试网提示view height;
+@property (nonatomic, strong) NSArray *noticeArr; //公告data
 @end
 
 @implementation XXChainAssertVC
@@ -83,6 +83,7 @@
     [HttpManager getWithPath:@"/api/v1/announcements" params:nil andBlock:^(id data, NSString *msg, NSInteger code) {
         if (code == 0) {
             NSLog(@"%@",data);
+            weakSelf.noticeArr = data;
             [weakSelf.noticeView reloadData:data];
         }
     }];
@@ -103,7 +104,11 @@
             return self.emptyView.height;
         }
     } else {
-        return 32;
+        if (self.noticeArr.count > 0 && !KUser.closeNoticeFlag) {
+            return 32;
+        } else {
+            return 0;
+        }
     }
 }
 
@@ -116,7 +121,11 @@
         }
         return self.emptyView ;
     } else {
-        return self.noticeView;
+        if (self.noticeArr.count > 0 && !KUser.closeNoticeFlag) {
+            return self.noticeView;
+        } else {
+            return [[UIView alloc] init];
+        }
     }
 }
 
@@ -224,6 +233,10 @@
 - (XXNoticeView *)noticeView {
     if (!_noticeView) {
         _noticeView = [[XXNoticeView alloc] initWithFrame:CGRectMake(0, 0, kScreen_Width, 46)];
+        MJWeakSelf
+        _noticeView.closeBlock = ^{
+            [weakSelf.tableView reloadData];
+        };
     }
     return _noticeView;
 }

@@ -11,7 +11,7 @@
 #import "XXMsgRequest.h"
 #import "XXTokenModel.h"
 #import "XXTransferView.h"
-#import "XXPasswordView.h"
+#import "XXPasswordAlertView.h"
 #import "XXAssetSingleManager.h"
 #import "XXChooseTokenVC.h"
 
@@ -113,6 +113,12 @@
         }
         NSString *availableAmount;
         if ([self.tokenModel.symbol isEqualToString:kMainToken]) {
+            if (self.tokenModel.amount <= 0) {
+                Alert *alert = [[Alert alloc] initWithTitle:LocalizedString(@"TransferErrorTip") duration:kAlertDuration completion:^{
+                }];
+                [alert showAlert];
+                return;
+            }
             NSDecimalNumber *amountDecimal = [NSDecimalNumber decimalNumberWithString:self.tokenModel.amount];
             NSDecimalNumber *feeAmountDecimal = [NSDecimalNumber decimalNumberWithString:self.transferView.feeView.textField.text];
             availableAmount = [[amountDecimal decimalNumberBySubtracting:feeAmountDecimal] stringValue];
@@ -137,7 +143,7 @@
         }
         if (kShowPassword) {
             MJWeakSelf
-            [XXPasswordView showWithSureBtnBlock:^(NSString * _Nonnull text) {
+            [XXPasswordAlertView showWithSureBtnBlock:^(NSString * _Nonnull text) {
                 weakSelf.text = text;
                 [weakSelf requestTransfer];
             }];

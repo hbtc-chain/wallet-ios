@@ -7,12 +7,15 @@
 //
 
 #import "XXValidatorHeaderView.h"
+#import "XXAddressCodeView.h"
+#import "XXChainAddressView.h"
 
 @interface XXValidatorHeaderView ()
 
+@property (nonatomic, strong) CAGradientLayer *gradientLayer; //渐变填充色
 @property (nonatomic, strong) XXLabel *accountLabel; //账户名
+@property (nonatomic, strong) XXAddressCodeView *addressCodeView; //链展示
 @property (nonatomic, strong) UIView *backView;
-@property (nonatomic, strong) UIView *lineView;
 @property (nonatomic, strong) XXLabel *titleLabel1; //可用
 @property (nonatomic, strong) XXLabel *titleLabel2; //委托中
 @property (nonatomic, strong) XXLabel *titleLabel3; //赎回中
@@ -40,7 +43,9 @@
 }
 
 - (void)buildUI {
+    [self.layer addSublayer:self.gradientLayer];
     [self addSubview:self.accountLabel];
+    [self addSubview:self.addressCodeView];
     [self addSubview:self.backView];
     [self.backView addSubview:self.titleLabel1];
     [self.backView addSubview:self.titleLabel2];
@@ -53,7 +58,6 @@
     [self.backView addSubview:self.valueLabel4];
     [self.backView addSubview:self.valueLabel5];
     [self.backView addSubview:self.getRewardBtn];
-    [self.backView addSubview:self.lineView];
 }
 
 - (void)setAssetModel:(XXAssetModel *)assetModel {
@@ -74,11 +78,37 @@
     self.valueLabel5.text = sum.stringValue;
 }
 
+#pragma mark - 展示address
+- (void)showAddress {
+    [XXChainAddressView showMainAccountAddress];
+}
+
+- (CAGradientLayer *)gradientLayer {
+    if (_gradientLayer == nil) {
+        _gradientLayer = [CAGradientLayer layer];
+        _gradientLayer.frame = CGRectMake(0, 0.5, self.width, self.height - 0.5);
+        _gradientLayer.colors = @[(id)[kPrimaryMain CGColor],(id)[kWhite100 CGColor]];
+    }
+    return _gradientLayer;
+}
+
 - (XXLabel *)accountLabel {
     if (!_accountLabel) {
-        _accountLabel = [XXLabel labelWithFrame:CGRectMake(K375(16), 0, self.width/2, 24) text:KUser.currentAccount.userName font:kFont17 textColor:kGray900 alignment:NSTextAlignmentLeft];
+        _accountLabel = [XXLabel labelWithFrame:CGRectMake(K375(16), 0, self.width/2, 24) text:KUser.currentAccount.userName font:kFont17 textColor:kWhite100 alignment:NSTextAlignmentLeft];
     }
     return _accountLabel;
+}
+
+- (XXAddressCodeView *)addressCodeView {
+    if (_addressCodeView == nil) {
+        _addressCodeView = [[XXAddressCodeView alloc] initWithFrame:CGRectMake(self.width - 165 - K375(16), 0, 165, 24)];
+        _addressCodeView.backgroundColor = [kGray900 colorWithAlphaComponent:0.2];
+        _addressCodeView.layer.cornerRadius = 10;
+        UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(showAddress)];
+        [_addressCodeView addGestureRecognizer:tap];
+        _addressCodeView.address = [NSString addressShortReplace:KUser.address];
+    }
+    return _addressCodeView;
 }
 
 - (UIView *)backView {
@@ -168,8 +198,8 @@
 
 - (XXLabel *)valueLabel5 {
     if (!_valueLabel5) {
-        _valueLabel5 = [XXLabel labelWithFrame:CGRectMake(K375(16) + (self.backView.width - K375(32))/4, CGRectGetMaxY(self.titleLabel4.frame) + 2, (self.backView.width - K375(32))/4 -5, 24) font:kFont15 textColor:kGray900];
-        _valueLabel5.textAlignment = NSTextAlignmentRight;
+        _valueLabel5 = [XXLabel labelWithFrame:CGRectMake(K375(16) + (self.backView.width - K375(32))/3, CGRectGetMaxY(self.titleLabel5.frame) + 2, (self.backView.width - K375(32))/3, 24) font:kFont15 textColor:kGray900];
+        _valueLabel5.textAlignment = NSTextAlignmentCenter;
     }
     return _valueLabel5;
 }
@@ -177,21 +207,14 @@
 - (XXButton *)getRewardBtn {
     if (!_getRewardBtn) {
         MJWeakSelf
-        _getRewardBtn = [XXButton buttonWithFrame:CGRectMake(self.backView.width/2 +5, CGRectGetMaxY(self.titleLabel4.frame) + 2, (self.backView.width - K375(32))/4, 24) title:LocalizedString(@"GetReward") font:kFont15 titleColor:kPrimaryMain block:^(UIButton *button) {
+        _getRewardBtn = [XXButton buttonWithFrame:CGRectMake(self.backView.width - K375(16) - 90, CGRectGetMaxY(self.titleLabel5.frame) - 4, 90, 32) title:LocalizedString(@"GetReward") font:kFont15 titleColor:[UIColor whiteColor] block:^(UIButton *button) {
             if (weakSelf.getRewardBlock) {
                 weakSelf.getRewardBlock();
             }
         }];
-        [_getRewardBtn setContentHorizontalAlignment:UIControlContentHorizontalAlignmentLeft];
+        _getRewardBtn.backgroundColor = kPrimaryMain;
+        _getRewardBtn.layer.cornerRadius = 16;
     }
     return _getRewardBtn;
-}
-
-- (UIView *)lineView {
-    if (!_lineView) {
-        _lineView = [[UIView alloc] initWithFrame:CGRectMake(self.backView.width/2, CGRectGetMaxY(self.titleLabel4.frame) + 2, 1, 24)];
-        _lineView.backgroundColor = KLine_Color;
-    }
-    return _lineView;
 }
 @end

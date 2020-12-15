@@ -10,7 +10,7 @@
 #import "XXExchangeView.h"
 #import "XXMsg.h"
 #import "XXMsgRequest.h"
-#import "XXPasswordView.h"
+#import "XXPasswordAlertView.h"
 #import "XXTokenModel.h"
 
 @interface XXExchangeVC ()
@@ -42,7 +42,7 @@
     if (!IsEmpty(self.backView.topField.text)) {
         if (kShowPassword) {
             MJWeakSelf
-            [XXPasswordView showWithSureBtnBlock:^(NSString * _Nonnull text) {
+            [XXPasswordAlertView showWithSureBtnBlock:^(NSString * _Nonnull text) {
                 weakSelf.text = text;
                 [weakSelf requestSwap];
             }];

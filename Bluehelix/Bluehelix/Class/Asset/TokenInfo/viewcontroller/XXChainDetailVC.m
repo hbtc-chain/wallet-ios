@@ -27,6 +27,7 @@
 #import "XXTabBarController.h"
 #import "XXExchangeVC.h"
 #import "XXWithdrawVC.h"
+#import "XXTradeViewController.h"
 
 @interface XXChainDetailVC ()<UITableViewDataSource, UITableViewDelegate>
 
@@ -96,6 +97,19 @@
     }
 }
 
+#pragma mark 底部第三个按钮点击事件 交易或闪兑
+- (void)thirdAction {
+    if ([self.chainName isEqualToString:kMainToken]) {
+        [self tradeAction];
+    } else {
+        if ([[XXSqliteManager sharedSqlite] existMapModel:self.chainName]) {
+            [self exchangeAction];
+        } else {
+            [self tradeAction];
+        }
+    }
+}
+
 #pragma mark 兑换
 - (void)exchangeAction {
     XXExchangeVC *exchangeVC = [[XXExchangeVC alloc] init];
@@ -105,8 +119,11 @@
 
 #pragma mark 交易
 - (void)tradeAction {
-    [self.navigationController popToRootViewControllerAnimated:NO];
     XXTabBarController *tabBarVC = (XXTabBarController *)KWindow.rootViewController;
+    XXNavigationController *nav = tabBarVC.viewControllers[1];
+    XXTradeViewController *tradeVC = nav.viewControllers[0];
+    tradeVC.urlString = [NSString stringWithFormat:@"%@/%@",kWebUrl,self.chainName];
+    [tradeVC loadRequest];
     [tabBarVC setIndex:1];
 }
 
@@ -259,7 +276,7 @@
             } else if(index == 1) {
                 [weakSelf secondAction];
             } else if(index == 2) {
-                [weakSelf exchangeAction];
+                [weakSelf thirdAction];
             } else if(index == 3) {
                 [weakSelf tradeAction];
             } else {

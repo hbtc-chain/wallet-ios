@@ -8,7 +8,7 @@
 
 #import "XXVotingViewController.h"
 #import "XXVotingView.h"
-#import "XXPasswordView.h"
+#import "XXPasswordAlertView.h"
 #import "XXTokenModel.h"
 #import "XXMsg.h"
 #import "XXMsgRequest.h"
@@ -76,7 +76,7 @@
             return;
         }
         if (kShowPassword) {
-            [XXPasswordView showWithSureBtnBlock:^(NSString * _Nonnull text) {
+            [XXPasswordAlertView showWithSureBtnBlock:^(NSString * _Nonnull text) {
                 @strongify(self)
                 self.text = text;
                 [self requestPledge];

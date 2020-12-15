@@ -14,6 +14,7 @@
 #import "XXAddNewAssetVC.h"
 #import "XXChainAddressView.h"
 #import "XXWithdrawChainVC.h"
+#import "XXAddressCodeView.h"
 
 @interface XXChainHeaderView ()
 
@@ -22,8 +23,8 @@
 @property (nonatomic, strong) XXLabel *chainNameLabel;
 @property (nonatomic, strong) XXLabel *titleLabel;
 @property (nonatomic, strong) XXButton *addTokenBtn; //添加币种
+@property (nonatomic, strong) XXAddressCodeView *addressCodeView; //链展示
 @property (nonatomic, copy) NSString *chainAddress; //跨链地址
-@property (nonatomic, strong) XXButton *chainBtn; //链展示
 
 @end
 
@@ -43,7 +44,7 @@
     [self addSubview:self.topBackView];
     [self addSubview:self.bottomBackView];
     [self.topBackView addSubview:self.chainNameLabel];
-    [self.topBackView addSubview:self.chainBtn];
+    [self.topBackView addSubview:self.addressCodeView];
     [self.bottomBackView addSubview:self.titleLabel];
     [self.bottomBackView addSubview:self.addTokenBtn];
 }
@@ -58,12 +59,18 @@
 // 更新跨链地址展示
 - (void)setChainButtonTitle {
     if (IsEmpty(self.chain) || [self.chain isEqualToString:kMainToken]) {
-        [self.chainBtn setTitle:[NSString addressShortReplace:KUser.address] forState:UIControlStateNormal];
+        CGFloat width = [NSString widthWithText:[NSString addressShortReplace:KUser.address] font:kFont12] + 40;
+        self.addressCodeView.frame = CGRectMake(self.topBackView.width - width - 20, 20, width, 24);
+        self.addressCodeView.address = [NSString addressShortReplace:KUser.address];
     } else {
         if (IsEmpty(self.chainAddress)) {
-            [self.chainBtn setTitle:LocalizedString(@"CreateChainAddress") forState:UIControlStateNormal];
+            CGFloat width = [NSString widthWithText:LocalizedString(@"CreateChainAddress") font:kFont12] + 40;
+            self.addressCodeView.frame = CGRectMake(self.topBackView.width - width - 20, 20, width, 24);
+            self.addressCodeView.address = LocalizedString(@"CreateChainAddress");
         } else {
-            [self.chainBtn setTitle:[NSString addressShortReplace:self.chainAddress] forState:UIControlStateNormal];
+            CGFloat width = [NSString widthWithText:[NSString addressShortReplace:KUser.address] font:kFont12] + 40;
+            self.addressCodeView.frame = CGRectMake(self.topBackView.width - width - 20, 20, width, 24);
+            self.addressCodeView.address = [NSString addressShortReplace:self.chainAddress];
         }
     }
 }
@@ -109,25 +116,20 @@
 
 - (XXLabel *)chainNameLabel {
     if (!_chainNameLabel) {
-        _chainNameLabel = [XXLabel labelWithFrame:CGRectMake(K375(16), 20, kScreen_Width, 24) font:kFont20 textColor:[UIColor whiteColor]];
+        _chainNameLabel = [XXLabel labelWithFrame:CGRectMake(K375(16), 20, 100, 24) font:kFont20 textColor:[UIColor whiteColor]];
     }
     return _chainNameLabel;
 }
 
-- (XXButton *)chainBtn {
-    if (!_chainBtn) {
-        MJWeakSelf
-        _chainBtn = [XXButton buttonWithFrame:CGRectMake(self.topBackView.width - 160, 20, 140, 24) block:^(UIButton *button) {
-            [weakSelf chainAction];
-        }];
-        [_chainBtn setContentHorizontalAlignment:UIControlContentHorizontalAlignmentCenter];
-        _chainBtn.backgroundColor = [kGray900 colorWithAlphaComponent:0.2];
-        _chainBtn.layer.cornerRadius = 10;
-        [_chainBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
-        [_chainBtn.titleLabel setFont:kFont12];
-        [self setChainButtonTitle];
+- (XXAddressCodeView *)addressCodeView {
+    if (_addressCodeView == nil) {
+        _addressCodeView = [[XXAddressCodeView alloc] initWithFrame:CGRectMake(self.topBackView.width - 160, 20, 140, 24)];
+        _addressCodeView.backgroundColor = [kGray900 colorWithAlphaComponent:0.2];
+        _addressCodeView.layer.cornerRadius = 10;
+        UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(chainAction)];
+        [_addressCodeView addGestureRecognizer:tap];
     }
-    return _chainBtn;
+    return _addressCodeView;
 }
 
 - (XXLabel *)titleLabel {
@@ -140,11 +142,14 @@
 
 - (XXButton *)addTokenBtn {
     if (!_addTokenBtn) {
-        _addTokenBtn = [XXButton buttonWithFrame:CGRectMake(self.bottomBackView.width - 100, 24, 60, 20) title:LocalizedString(@"AddToken") font:kFont13 titleColor:kPrimaryMain block:^(UIButton *button) {
+        CGFloat width = [NSString widthWithText:LocalizedString(@"AddToken") font:kFont13];
+        _addTokenBtn = [XXButton buttonWithFrame:CGRectMake(self.bottomBackView.width - 100, 24, width + 40 , 20) title:LocalizedString(@"AddToken") font:kFont13 titleColor:kPrimaryMain block:^(UIButton *button) {
             XXAddNewAssetVC *addVC = [[XXAddNewAssetVC alloc] init];
             addVC.chain = self.chain;
             [self.viewController.navigationController pushViewController:addVC animated:YES];
         }];
+        [_addTokenBtn setImage:[UIImage imageNamed:@"addTokenIcon"] forState:UIControlStateNormal];
+        [_addTokenBtn setImageEdgeInsets:UIEdgeInsetsMake(0, -2, 0, 2)];
         [_addTokenBtn setContentHorizontalAlignment:UIControlContentHorizontalAlignmentCenter];
         _addTokenBtn.backgroundColor = kGray100;
         _addTokenBtn.layer.cornerRadius = 10;

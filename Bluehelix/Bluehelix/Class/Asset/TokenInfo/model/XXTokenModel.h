@@ -26,6 +26,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, assign) BOOL is_withdrawal_enabled; //是否可以提币
 @property (nonatomic, copy) NSString *frozen_amount;
 @property (nonatomic, copy) NSString *deposit_threshold; //最小充币数量
+@property (nonatomic, assign) BOOL is_verified; //是否认证
 
 @end
 

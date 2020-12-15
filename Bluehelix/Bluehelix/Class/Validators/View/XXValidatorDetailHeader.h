@@ -13,8 +13,6 @@ NS_ASSUME_NONNULL_BEGIN
 @interface XXValidatorDetailHeader : UITableViewHeaderFooterView
 @property (nonatomic, strong) XXValidatorListModel *validatorModel;
 /**有效或者无效*/
-@property (nonatomic, strong) NSString *validOrInvalid;
-
 @end
 
 NS_ASSUME_NONNULL_END

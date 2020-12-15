@@ -12,7 +12,6 @@
 NS_ASSUME_NONNULL_BEGIN
 
 @interface XXValidatorCell : UITableViewCell
-@property (nonatomic, assign) BOOL validOrInvalid;
 
 - (void)loadData:(XXValidatorListModel*)model;
 

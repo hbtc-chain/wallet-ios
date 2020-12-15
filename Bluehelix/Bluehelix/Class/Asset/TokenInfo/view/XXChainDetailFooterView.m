@@ -31,8 +31,13 @@
         imageArr = kIsNight ? @[@"receiveMoney_Night",@"payMoney_Night",@"chainPayMoney_Night"] : @[@"receiveMoney",@"payMoney",@"chainPayMoney"];
         titleArr = @[LocalizedString(@"ReceiveMoney"),LocalizedString(@"Transfer"),LocalizedString(@"TradesTabbar")];
     } else {
-        imageArr = kIsNight ? @[@"receiveMoney_Night",@"payMoney_Night",@"chainReceiveMoney_Night",@"chainPayMoney_Night"] : @[@"receiveMoney",@"payMoney",@"chainReceiveMoney",@"chainPayMoney"];
-        titleArr = @[LocalizedString(@"Recharge"),LocalizedString(@"Withdraw"),LocalizedString(@"Exchange"),LocalizedString(@"TradesTabbar")];
+        if ([[XXSqliteManager sharedSqlite] existMapModel:self.chain]) {
+            imageArr = kIsNight ? @[@"receiveMoney_Night",@"payMoney_Night",@"chainReceiveMoney_Night",@"chainPayMoney_Night"] : @[@"receiveMoney",@"payMoney",@"chainReceiveMoney",@"chainPayMoney"];
+            titleArr = @[LocalizedString(@"Recharge"),LocalizedString(@"Withdraw"),LocalizedString(@"TradesTabbar")];
+        } else {
+            imageArr = kIsNight ? @[@"receiveMoney_Night",@"payMoney_Night",@"chainPayMoney_Night"] : @[@"receiveMoney",@"payMoney",@"chainPayMoney"];
+            titleArr = @[LocalizedString(@"Recharge"),LocalizedString(@"Withdraw"),LocalizedString(@"TradesTabbar")];
+        }
     }
     CGFloat btnWidth = (kScreen_Width - K375(15))/titleArr.count;
     for (NSInteger i=0; i < imageArr.count; i ++) {

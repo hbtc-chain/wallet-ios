@@ -184,6 +184,7 @@
         [_savePasswordBtn setImage:[UIImage mainImageName:@"selected"] forState:UIControlStateSelected];
         _savePasswordBtn.selected = KUser.isQuickTextOpen; //记录是否开启
         [_savePasswordBtn setTitle:LocalizedString(@"NoNeedPassword") forState:UIControlStateNormal];
+        [_savePasswordBtn setTitleColor:kGray900 forState:UIControlStateNormal];
     }
     return _savePasswordBtn;
 }

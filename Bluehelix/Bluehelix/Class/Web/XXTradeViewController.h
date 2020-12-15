@@ -20,6 +20,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 /** 页面消失 */
 @property (strong, nonatomic) void(^dismissBlock)(void);
+
+- (void)loadRequest;
 @end
 
 NS_ASSUME_NONNULL_END

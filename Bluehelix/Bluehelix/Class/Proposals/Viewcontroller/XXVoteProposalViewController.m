@@ -9,7 +9,7 @@
 #import "XXVoteProposalViewController.h"
 #import "XXMsg.h"
 #import "XXMsgRequest.h"
-#import "XXPasswordView.h"
+#import "XXPasswordAlertView.h"
 #import "XXTokenModel.h"
 #import "XXAssetSingleManager.h"
 
@@ -80,7 +80,7 @@
         }
         if (kShowPassword) {
             MJWeakSelf
-            [XXPasswordView showWithSureBtnBlock:^(NSString * _Nonnull text) {
+            [XXPasswordAlertView showWithSureBtnBlock:^(NSString * _Nonnull text) {
                 @strongify(self)
                 weakSelf.text = text;
                 [self requestCreateProposal];

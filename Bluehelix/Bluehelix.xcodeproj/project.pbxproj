@@ -144,6 +144,7 @@
 		EA71E14F25024A3600B52558 /* XXExchangeView.m in Sources */ = {isa = PBXBuildFile; fileRef = EA71E14E25024A3600B52558 /* XXExchangeView.m */; };
 		EA71E1522502534500B52558 /* XXExchangeBtn.m in Sources */ = {isa = PBXBuildFile; fileRef = EA71E1512502534500B52558 /* XXExchangeBtn.m */; };
 		EA71E1552504955300B52558 /* XXChainAddressView.m in Sources */ = {isa = PBXBuildFile; fileRef = EA71E1542504955300B52558 /* XXChainAddressView.m */; };
+		EA7F392D2588C1750063FC15 /* XXAddressCodeView.m in Sources */ = {isa = PBXBuildFile; fileRef = EA7F392C2588C1740063FC15 /* XXAddressCodeView.m */; };
 		EA811AC42479144400C1038F /* XXMessageSegmentButton.m in Sources */ = {isa = PBXBuildFile; fileRef = EA811AC32479144400C1038F /* XXMessageSegmentButton.m */; };
 		EA811AC72479214100C1038F /* XXMessageSegmentView.m in Sources */ = {isa = PBXBuildFile; fileRef = EA811AC62479214100C1038F /* XXMessageSegmentView.m */; };
 		EA82664C253ED4F7006249B4 /* MBProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = EA826647253ED4F7006249B4 /* MBProgressHUD.m */; };
@@ -674,6 +675,8 @@
 		EA71E1512502534500B52558 /* XXExchangeBtn.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = XXExchangeBtn.m; sourceTree = "<group>"; };
 		EA71E1532504955300B52558 /* XXChainAddressView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = XXChainAddressView.h; sourceTree = "<group>"; };
 		EA71E1542504955300B52558 /* XXChainAddressView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = XXChainAddressView.m; sourceTree = "<group>"; };
+		EA7F392B2588C1740063FC15 /* XXAddressCodeView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = XXAddressCodeView.h; sourceTree = "<group>"; };
+		EA7F392C2588C1740063FC15 /* XXAddressCodeView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = XXAddressCodeView.m; sourceTree = "<group>"; };
 		EA811AC22479144400C1038F /* XXMessageSegmentButton.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = XXMessageSegmentButton.h; sourceTree = "<group>"; };
 		EA811AC32479144400C1038F /* XXMessageSegmentButton.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = XXMessageSegmentButton.m; sourceTree = "<group>"; };
 		EA811AC52479214000C1038F /* XXMessageSegmentView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = XXMessageSegmentView.h; sourceTree = "<group>"; };
@@ -2386,6 +2389,8 @@
 				EA8CE940253436A0007E3591 /* XXChangeMapTokenView.m */,
 				EA920D7625861E950077775D /* XXChooseTokenHeaderView.h */,
 				EA920D7725861E950077775D /* XXChooseTokenHeaderView.m */,
+				EA7F392B2588C1740063FC15 /* XXAddressCodeView.h */,
+				EA7F392C2588C1740063FC15 /* XXAddressCodeView.m */,
 			);
 			path = view;
 			sourceTree = "<group>";
@@ -3167,6 +3172,7 @@
 				EA920D712585F0100077775D /* GYNoticeViewCell.m in Sources */,
 				EAE285DC246E4BA4006D9F24 /* NS+BTCBase58.m in Sources */,
 				EAE28621247285C3006D9F24 /* XXImportKeystoreVC.m in Sources */,
+				EA7F392D2588C1750063FC15 /* XXAddressCodeView.m in Sources */,
 				EA811AC72479214100C1038F /* XXMessageSegmentView.m in Sources */,
 				F30EAF6320D26536005ADD5C /* NSDate+Helper.m in Sources */,
 				EABD7187244AFCD4008AA188 /* XXFailureView.m in Sources */,

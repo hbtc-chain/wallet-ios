@@ -53,6 +53,12 @@
 - (__kindof GYNoticeViewCell *)rollingNoticeView:(GYRollingNoticeView *)rollingView cellAtIndex:(NSUInteger)index
 {
     GYNoticeViewCell *cell = [rollingView dequeueReusableCellWithIdentifier:@"GYNoticeViewCell"];
+    MJWeakSelf
+    cell.closeBlock = ^{
+        if (weakSelf.closeBlock) {
+            weakSelf.closeBlock();
+        }
+    };
     if (self.data.count >0) {
         NSDictionary *dic = self.data[index];
         cell.textLabel.text = [NSString stringWithFormat:@"%@", dic[@"text"]];
@@ -92,12 +98,5 @@
         }
     }
 }
-/*
-// Only override drawRect: if you perform custom drawing.
-// An empty implementation adversely affects performance during animation.
-- (void)drawRect:(CGRect)rect {
-    // Drawing code
-}
-*/
 
 @end

@@ -75,7 +75,11 @@
     [controllers addObject:nav0];
     
     XXTradeViewController *webVC = [[XXTradeViewController alloc] init];
-    webVC.urlString = kWebUrl;
+    if (IsEmpty(KUser.tradeUrl)) {
+        webVC.urlString = kWebUrl;
+    } else {
+        webVC.urlString = KUser.tradeUrl;
+    }
     webVC.navTitle = LocalizedString(@"TradesTabbar");
     XXNavigationController *nav1 = [[XXNavigationController alloc] initWithRootViewController:webVC];
     [controllers addObject:nav1];

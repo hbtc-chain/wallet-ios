@@ -71,7 +71,7 @@
     
     //The first is that create a new tabbar and that's what I choosed (like wechat)
     XXTabBarController *tabVC = [[XXTabBarController alloc] init];
-    [tabVC setIndex:3];
+    [tabVC setIndex:2];
     AppDelegate *delegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
     delegate.window.rootViewController = tabVC;
     

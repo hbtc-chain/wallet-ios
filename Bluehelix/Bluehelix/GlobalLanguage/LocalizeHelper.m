@@ -78,6 +78,23 @@ static LocalizeHelper *_sharedManager = nil;
 - (NSString *)getRequestHeaderLanguageCode {
     NSString *code = [self getLanguageCode];
     if ([code isEqualToString:@"zh-Hans"] || [code isEqualToString:@"zh-Hant"]) {
+        return @"zh";
+    } else if ([code isEqualToString:@"ko"]) {
+        return @"ko-kr";
+    } else if ([code isEqualToString:@"vi-VN"]) {
+        return @"vi-VN";
+    } else if ([code isEqualToString:@"ja"]) {
+        return @"ja-jp";
+    } else if ([code isEqualToString:@"tr"]) {
+        return @"tr";
+    } else {
+        return @"en-us";
+    }
+}
+
+- (NSString *)getWebHeaderLanguageCode {
+    NSString *code = [self getLanguageCode];
+    if ([code isEqualToString:@"zh-Hans"] || [code isEqualToString:@"zh-Hant"]) {
         return @"zh-cn";
     } else if ([code isEqualToString:@"ko"]) {
         return @"ko-kr";

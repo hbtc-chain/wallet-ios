@@ -9,7 +9,7 @@
 #import "XXDelegateTransferViewController.h"
 
 #import "XXDelegateTransferView.h"
-#import "XXPasswordView.h"
+#import "XXPasswordAlertView.h"
 #import "XXTokenModel.h"
 #import "XXHadDelegateModel.h"
 #import "XXMsg.h"
@@ -149,7 +149,7 @@
         }
         if (kShowPassword) {
             MJWeakSelf
-            [XXPasswordView showWithSureBtnBlock:^(NSString * _Nonnull text) {
+            [XXPasswordAlertView showWithSureBtnBlock:^(NSString * _Nonnull text) {
                 weakSelf.text = text;
                 switch (self.delegateNodeType) {
                     case XXDelegateNodeTypeAdd:

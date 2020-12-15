@@ -18,7 +18,7 @@
 #import "XXAssetSingleManager.h"
 #import "XXTokenModel.h"
 #import "XXRewardView.h"
-#import "XXPasswordView.h"
+#import "XXPasswordAlertView.h"
 #import "XXMsg.h"
 #import "XXMsgRequest.h"
 
@@ -69,14 +69,24 @@ static NSString *KValidatorGripSectionHeader = @"XXValidatorGripSectionHeader";
 }
 - (void)viewWillDisappear:(BOOL)animated{
     [super viewWillDisappear:animated];
+    [KSystem statusBarSetUpDefault];
     [MBProgressHUD hideHUD];
 }
 - (void)viewDidDisappear:(BOOL)animated{
     [super viewDidDisappear:animated];
     self.sectionHeader.searchView.searchTextField.text = @"";
 }
+
+- (void)viewDidAppear:(BOOL)animated {
+    [super viewDidAppear:animated];
+    [KSystem statusBarSetUpWhiteColor];
+}
 #pragma mark UI
 - (void)setupUI{
+    self.navView.backgroundColor = kPrimaryMain;
+    self.navLineView.hidden = YES;
+    self.titleLabel.textColor = [UIColor whiteColor];
+    [self.leftButton setImage:[UIImage imageNamed:@"white_back"] forState:UIControlStateNormal];
     self.titleLabel.text = LocalizedString(@"DelegateAndRelieve");
     [self.view addSubview:self.validatorsListTableView];
     self.validatorsListTableView.tableHeaderView = self.headerView;
@@ -99,6 +109,7 @@ static NSString *KValidatorGripSectionHeader = @"XXValidatorGripSectionHeader";
 }
 
 - (NSMutableArray *)getTypeArray {
+    // 共识节点是 is_key_node=false && is_elected=true
     NSMutableArray *tempArray = [NSMutableArray array];
     if (self.validatorType == XXValidatorTypeKeyNode) {
         for (XXValidatorListModel*model in self.validatorsDataArray) {
@@ -109,7 +120,7 @@ static NSString *KValidatorGripSectionHeader = @"XXValidatorGripSectionHeader";
     }
     if (self.validatorType == XXValidatorTypeElectedNode) {
         for (XXValidatorListModel*model in self.validatorsDataArray) {
-            if (model.is_elected) {
+            if (model.is_elected && !model.is_key_node) {
                 [tempArray addObject:model];
             }
         }
@@ -161,14 +172,11 @@ static NSString *KValidatorGripSectionHeader = @"XXValidatorGripSectionHeader";
         //首次加载展示
         [MBProgressHUD showActivityMessageInView:@""];
     }
-    NSMutableDictionary *dic = [NSMutableDictionary dictionary];
-    [dic setObject:@"1" forKey:@"valid"];
     NSString *path = [NSString stringWithFormat:@"/api/v1/validators"];
-    [HttpManager getWithPath:path params:dic andBlock:^(id data, NSString *msg, NSInteger code) {
+    [HttpManager getWithPath:path params:nil andBlock:^(id data, NSString *msg, NSInteger code) {
         [weakSelf.validatorsListTableView.mj_header endRefreshing];
         [MBProgressHUD hideHUD];
         if (code == 0) {
-//            NSLog(@"%@",data);
             NSArray *listArray = [XXValidatorListModel mj_objectArrayWithKeyValuesArray:data];
             [self.validatorsDataArray addObjectsFromArray:listArray];
             [self configData];
@@ -210,7 +218,7 @@ static NSString *KValidatorGripSectionHeader = @"XXValidatorGripSectionHeader";
     MJWeakSelf
     [XXRewardView showWithTitle:LocalizedString(@"WithdrawMoney") icon:@"withdrawMoneyAlert" content:content sureBlock:^{
         if (kShowPassword) {
-            [XXPasswordView showWithSureBtnBlock:^(NSString * _Nonnull text) {
+            [XXPasswordAlertView showWithSureBtnBlock:^(NSString * _Nonnull text) {
                 [weakSelf requestWithdrawBonus:text];
             }];
         } else {
@@ -299,7 +307,6 @@ static NSString *KValidatorGripSectionHeader = @"XXValidatorGripSectionHeader";
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
     cell.backgroundColor = kBackgroundLeverFirst;
     XXValidatorListModel *model = self.filtValidatorsDataArray[indexPath.row];
-    cell.validOrInvalid = YES;
     [cell loadData:model];
     return cell;
 }
@@ -308,7 +315,6 @@ static NSString *KValidatorGripSectionHeader = @"XXValidatorGripSectionHeader";
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     XXValidatorDetailViewController *detailValidator = [[XXValidatorDetailViewController alloc]init];
     detailValidator.validatorModel = self.filtValidatorsDataArray[indexPath.row];
-    detailValidator.validOrInvalid = @"1";
     [self.navigationController pushViewController:detailValidator animated:YES];
 }
 #pragma mark layout
@@ -319,7 +325,7 @@ static NSString *KValidatorGripSectionHeader = @"XXValidatorGripSectionHeader";
 - (UITableView *)validatorsListTableView {
     MJWeakSelf
     if (_validatorsListTableView == nil) {
-        _validatorsListTableView = [[UITableView alloc] initWithFrame:CGRectMake(0, kNavHeight, kScreen_Width, kScreen_Height - kNavHeight) style:UITableViewStylePlain];
+        _validatorsListTableView = [[UITableView alloc] initWithFrame:CGRectMake(0, kNavHeight-1, kScreen_Width, kScreen_Height - kNavHeight+1) style:UITableViewStylePlain];
         _validatorsListTableView.dataSource = self;
         _validatorsListTableView.delegate = self;
         _validatorsListTableView.backgroundColor = kWhiteColor;

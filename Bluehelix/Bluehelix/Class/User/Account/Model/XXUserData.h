@@ -19,8 +19,10 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, assign) BOOL isHideSmallCoin; //是否隐藏小额币种
 @property (nonatomic, assign) BOOL isHideAsset; //是否隐藏资产
 @property (nonatomic, assign) BOOL tokenSortDes; //币种降序
+@property (nonatomic, assign) BOOL closeNoticeFlag; //关闭公告
 @property (nonatomic, strong) NSArray *accounts;
 @property (nonatomic, strong) XXAccountModel *currentAccount; //当前用户
+@property (nonatomic, copy) NSString *tradeUrl; //交易Url
 @property (nonatomic, copy) NSString *localUserName;
 @property (nonatomic, copy) NSString *localPassword;
 @property (nonatomic, copy) NSString *localPhraseString; //临时助记词
