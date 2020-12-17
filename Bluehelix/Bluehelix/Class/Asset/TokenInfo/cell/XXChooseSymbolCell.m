@@ -47,7 +47,7 @@
 - (void)configModel:(XXTokenModel *)model {
     [self.iconView sd_setImageWithURL:[NSURL URLWithString:model.logo] placeholderImage:[UIImage imageNamed:@"placeholderToken"]];
     self.coinNameLabel.text = [NSString stringWithFormat:@"%@",[model.name uppercaseString]];
-    self.symbolLabel.text = model.symbol;
+    self.symbolLabel.text = [NSString addressShortReplace:model.symbol];
 }
 
 - (UIImageView *)iconView {
@@ -66,7 +66,7 @@
 
 - (XXLabel *)symbolLabel {
     if (_symbolLabel == nil) {
-        _symbolLabel = [XXLabel labelWithFrame:CGRectMake(self.coinNameLabel.left, CGRectGetMaxY(self.coinNameLabel.frame), 100, 16) text:@"" font:kNumberFont(13) textColor:kGray500];
+        _symbolLabel = [XXLabel labelWithFrame:CGRectMake(self.coinNameLabel.left, CGRectGetMaxY(self.coinNameLabel.frame), self.width - K375(16) - self.coinNameLabel.left, 16) text:@"" font:kNumberFont(13) textColor:kGray500];
     }
     return _symbolLabel;
 }

@@ -152,11 +152,10 @@
 //提币手续费withdraw_fee会有更新 需要每次进来保持最新的
 - (void)requestTokens {
     MJWeakSelf
-    [HttpManager getWithPath:@"/api/v1/tokens" params:nil andBlock:^(id data, NSString *msg, NSInteger code) {
+    NSString *path = [NSString stringWithFormat:@"/api/v1/tokens/%@",self.symbol];
+    [HttpManager getWithPath:path params:nil andBlock:^(id data, NSString *msg, NSInteger code) {
         if (code == 0) {
-            NSArray *tokens = [XXTokenModel mj_objectArrayWithKeyValuesArray:data[@"items"]];
-            [[XXSqliteManager sharedSqlite] insertTokens:tokens];
-            weakSelf.withdrawFeeModel = [[XXSqliteManager sharedSqlite] withdrawFeeToken:weakSelf.tokenModel];
+            weakSelf.withdrawFeeModel = [XXTokenModel mj_objectWithKeyValues:data];
             weakSelf.withdrawView.chainFeeView.textField.text = weakSelf.tokenModel.withdrawal_fee;
         }
     }];

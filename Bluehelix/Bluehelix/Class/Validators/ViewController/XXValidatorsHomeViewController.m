@@ -153,7 +153,8 @@ static NSString *KValidatorGripSectionHeader = @"XXValidatorGripSectionHeader";
 
 /// 资产请求回来 刷新header
 - (void)refreshHeader {
-    XXAssetModel *assetModel = [[XXAssetModel alloc] init];
+    [self requestDelegations];
+    XXAssetModel *assetModel = [XXAssetSingleManager sharedManager].assetModel;
     for (XXTokenModel *tokenModel in [XXAssetSingleManager sharedManager].assetModel.assets) {
         if ([tokenModel.symbol isEqualToString:kMainToken]) {
             assetModel.amount = kAmountLongTrim(tokenModel.amount);
@@ -195,6 +196,7 @@ static NSString *KValidatorGripSectionHeader = @"XXValidatorGripSectionHeader";
     NSString *path = [NSString stringWithFormat:@"/api/v1/cus/%@/delegations",KUser.address];
     [HttpManager getWithPath:path params:nil andBlock:^(id data, NSString *msg, NSInteger code) {
         if (code == 0) {
+            weakSelf.delegations = data;
             weakSelf.headerView.delegations = data;
         }
     }];
@@ -352,6 +354,7 @@ static NSString *KValidatorGripSectionHeader = @"XXValidatorGripSectionHeader";
         _headerView = [[XXValidatorHeaderView alloc] initWithFrame:CGRectMake(0, 0, kScreen_Width, 220)];
         MJWeakSelf
         _headerView.getRewardBlock = ^{
+            [weakSelf requestDelegations];
             [weakSelf withdrawBonus];
         };
     }

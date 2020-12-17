@@ -36,7 +36,7 @@ static RatesManager *_ratesManager;
     NSMutableDictionary *params = [NSMutableDictionary dictionary];
     params[@"symbols"] = self.tokenString;
     MJWeakSelf
-    [HttpManager getWithPath:@"/api/v1/tokenprices" params:params andBlock:^(id data, NSString *msg, NSInteger code) {
+    [HttpManager postWithPath:@"/api/v1/tokenprices" params:params andBlock:^(id data, NSString *msg, NSInteger code) {
         if (code == 0) {
             if (IsEmpty(data)) {
                 [weakSelf performSelector:@selector(loadDataOfRates) withObject:nil afterDelay:3];

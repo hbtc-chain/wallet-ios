@@ -213,7 +213,7 @@ typedef NS_ENUM(NSUInteger, NetworkMethod) {
 #define kMsgPledge @"hbtcchain/gov/MsgDeposit" //质押
 #define kMsgVote @"hbtcchain/gov/MsgVote" //投票
 #define kMsgWithdrawalDelegationReward @"hbtcchain/MsgWithdrawDelegationReward" //提取收益
-#define kMsgNewToken @"hbtcchain/hrc20/MsgNewToken" //发行代币
+#define kMsgNewToken @"hbtcchain/hrc10/MsgNewToken" //发行代币
 #define kMsgMappingSwap @"hbtcchain/mapping/MsgMappingSwap" //映射
 #define kMsgAddLiquidity @"hbtcchain/openswap/MsgAddLiquidity" //添加流动性
 #define kMsgRemoveLiquidity @"hbtcchain/openswap/MsgRemoveLiquidity" //移除流动性

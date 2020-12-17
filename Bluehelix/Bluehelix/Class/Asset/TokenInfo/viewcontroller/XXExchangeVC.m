@@ -59,11 +59,10 @@
 }
 
 - (void)requestSwap {
-    XXTokenModel *tokenModel = [[XXSqliteManager sharedSqlite] tokenBySymbol:self.backView.mappingModel.target_symbol];
     NSDecimalNumber *amountDecimal = [NSDecimalNumber decimalNumberWithString:self.backView.topField.text];
     NSDecimalNumber *feeAmountDecimal = [NSDecimalNumber decimalNumberWithString:kMinFee];
-    NSString *amount = [[amountDecimal decimalNumberByMultiplyingBy:kPrecisionDecimalPower(tokenModel.decimals)] stringValue];
-    NSString *feeAmount = [[feeAmountDecimal decimalNumberByMultiplyingBy:kPrecisionDecimalPower(tokenModel.decimals)] stringValue];
+    NSString *amount = [[amountDecimal decimalNumberByMultiplyingBy:kPrecisionDecimalPower(self.backView.mappingModel.target_token.decimals)] stringValue];
+    NSString *feeAmount = [[feeAmountDecimal decimalNumberByMultiplyingBy:kPrecisionDecimalPower(self.backView.mappingModel.target_token.decimals)] stringValue];
     XXMsg *model = [[XXMsg alloc] initWithfrom:KUser.address to:self.backView.mappingModel.issue_symbol amount:amount denom:self.backView.mappingModel.target_symbol feeAmount:feeAmount feeGas:@"" feeDenom:kMainToken memo:@"" type:kMsgMappingSwap withdrawal_fee:@"" text:self.text];
     _msgRequest = [[XXMsgRequest alloc] init];
     MJWeakSelf

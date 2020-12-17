@@ -71,37 +71,33 @@
             }
         }
     
-    XXTokenModel *leftToken = [[XXSqliteManager sharedSqlite] tokenBySymbol:mappingModel.target_symbol];
-    XXTokenModel *rightToken = [[XXSqliteManager sharedSqlite] tokenBySymbol:mappingModel.map_symbol];
-    [self.topExchangeBtn.customImageView sd_setImageWithURL:[NSURL URLWithString:leftToken.logo] placeholderImage:[UIImage imageNamed:@"placeholderToken"]];
-    [self.bottomExchangeBtn.customImageView sd_setImageWithURL:[NSURL URLWithString:rightToken.logo] placeholderImage:[UIImage imageNamed:@"placeholderToken"]];
-    self.topExchangeBtn.customLabel.text = [mappingModel.target_symbol uppercaseString];
-    self.bottomExchangeBtn.customLabel.text = [NSString stringWithFormat:@"%@",[mappingModel.map_symbol uppercaseString]];
+//    XXTokenModel *leftToken = [[XXSqliteManager sharedSqlite] tokenBySymbol:mappingModel.target_symbol];
+//    XXTokenModel *rightToken = [[XXSqliteManager sharedSqlite] tokenBySymbol:mappingModel.map_symbol];
+    [self.topExchangeBtn.customImageView sd_setImageWithURL:[NSURL URLWithString:mappingModel.target_token.logo] placeholderImage:[UIImage imageNamed:@"placeholderToken"]];
+    [self.bottomExchangeBtn.customImageView sd_setImageWithURL:[NSURL URLWithString:mappingModel.issue_token.logo] placeholderImage:[UIImage imageNamed:@"placeholderToken"]];
+//    self.topExchangeBtn.customLabel.text = [mappingModel.target_symbol uppercaseString];
+//    self.bottomExchangeBtn.customLabel.text = [NSString stringWithFormat:@"%@",[mappingModel.map_symbol uppercaseString]];
+    
+    
+    self.topExchangeBtn.customLabel.text = [mappingModel.target_token.name uppercaseString];
+    self.bottomExchangeBtn.customLabel.text = [NSString stringWithFormat:@"%@",[mappingModel.issue_token.name uppercaseString]];
+    
+    
     self
     .bottomExchangeBtn.arrowImageView.hidden = arr.count > 1 ? NO : YES;
     self.bottomExchangeBtn.enabled = arr.count > 1 ? YES : NO;
-        _rateDetailLabel.text = [NSString stringWithFormat:@"1 %@=1 %@",[mappingModel.target_symbol uppercaseString],[mappingModel.map_symbol uppercaseString]];    
+    _rateDetailLabel.text = [NSString stringWithFormat:@"1%@(%@)=1%@ (%@)",[mappingModel.target_token.name uppercaseString],[NSString addressShortReplace:mappingModel.target_symbol],[mappingModel.issue_token.name uppercaseString],[NSString addressShortReplace:mappingModel.map_symbol]];
 }
 
 - (void)textFieldChanged:(XXFloadtTextField *)textField {
-    
+    self.topField.text = textField.text;
+    self.bottomField.text = textField.text;
 }
 
 // 交换
 - (void)exchangeAction {
     self.mainTokenFlag = !self.mainTokenFlag;
     self.mappingModel = [[XXSqliteManager sharedSqlite] mappingModelBySymbol:self.mappingModel.map_symbol];
-//    [UIView animateWithDuration:0.3 animations:^{
-//        if (self.mainTokenFlag) {
-//            self.leftExchangeBtn.left = K375(16) + K375(15);
-//            self.rightExchangeBtn.left = CGRectGetMaxX(self.switchBtn.frame);
-//        } else {
-//            self.leftExchangeBtn.left = CGRectGetMaxX(self.switchBtn.frame);
-//            self.rightExchangeBtn.left = K375(16) + K375(15);
-//        }
-//    } completion:^(BOOL finished) {
-//        self.mappingModel = [[XXSqliteManager sharedSqlite] mappingModelBySymbol:self.mappingModel.issue_symbol];
-//    }];
 }
 
 - (void)topAction {
@@ -235,7 +231,7 @@
 
 - (XXLabel *)rateDetailLabel {
     if (!_rateDetailLabel) {
-        _rateDetailLabel = [XXLabel labelWithFrame:CGRectMake(CGRectGetMaxX(self.rateNameLabel.frame)+8, CGRectGetMaxY(self.topBackView.frame), self.backView.width - K375(32), 64) font:kFont15 textColor:kGray900];
+        _rateDetailLabel = [XXLabel labelWithFrame:CGRectMake(CGRectGetMaxX(self.rateNameLabel.frame)+8, CGRectGetMaxY(self.topBackView.frame), self.backView.width - K375(32), 64) font:kFont14 textColor:kGray900];
     }
     return _rateDetailLabel;
 }

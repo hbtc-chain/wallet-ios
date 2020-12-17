@@ -46,17 +46,17 @@
     NSArray *sqliteArray = [[XXSqliteManager sharedSqlite] mappingTokens];
     NSMutableSet *set = [[NSMutableSet alloc] init];
     // 赋值 logo name chain decimals
-    for (XXTokenModel *token in [[XXSqliteManager sharedSqlite] tokens]) {
-        for (XXMappingModel *map in sqliteArray) {
-            if ([token.symbol isEqualToString:map.target_symbol]) {
-                map.amount = @"0";
-                map.name = token.name;
-                map.logo = token.logo;
-                map.chain = token.chain;
-                map.decimals = token.decimals;
-            }
-        }
-    }
+//    for (XXTokenModel *token in [[XXSqliteManager sharedSqlite] tokens]) {
+//        for (XXMappingModel *map in sqliteArray) {
+//            if ([token.symbol isEqualToString:map.target_symbol]) {
+//                map.amount = @"0";
+////                map.name = token.name;
+////                map.logo = token.logo;
+////                map.chain = token.chain;
+////                map.decimals = token.decimals;
+//            }
+//        }
+//    }
     
     // 赋值 数量
     for (XXTokenModel *assetsToken in [XXAssetSingleManager sharedManager].assetModel.assets) {
@@ -67,14 +67,14 @@
         }
     }
     
-    // 过滤search
+    // 过滤search 左边token选择 过滤数据
     [self.showArray removeAllObjects];
     NSString *searchString = [self.searchView.searchTextField.text lowercaseString];
     for (XXMappingModel *map in sqliteArray) {
         if (![set containsObject:map.target_symbol]) {
             [set addObject:map.target_symbol];
             if (searchString.length > 0) {
-                if ([map.name containsString:searchString]) {
+                if ([map.target_token.name containsString:searchString]) {
                     [self.showArray addObject:map];
                 }
             } else {
@@ -89,7 +89,7 @@
         for (XXMappingModel *map in sqliteArray) {
             if ([map.target_symbol isEqualToString:self.targetSymbol]) {
                 if (searchString.length > 0) {
-                    if ([map.name containsString:searchString]) {
+                    if ([map.target_token.name containsString:searchString]) {
                         [self.showArray addObject:map];
                     }
                 } else {

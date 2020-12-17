@@ -22,8 +22,8 @@
             XXMsgAddLiquidityModel *model = [XXMsgAddLiquidityModel mj_objectWithKeyValues:value];
             self.titleArr = @[LocalizedString(@"PayInfo"),LocalizedString(@"PayToken"),LocalizedString(@"PayToken"),LocalizedString(@"PayAddress"),LocalizedString(@"Gas")];
             
-            NSString *aTokenAmount = [self amountWithToken:model.token_a amount:model.min_token_a_amount];
-            NSString *bTokenAmount = [self amountWithToken:model.token_b amount:model.min_token_b_amount];
+            NSString *aTokenAmount = [self amountWithToken:model.token_a amount:model.max_token_a_amount];
+            NSString *bTokenAmount = [self amountWithToken:model.token_b amount:model.max_token_b_amount];
             [self.valueArr addObject:LocalizedString(@"MsgAddLiquidity")];
             [self.valueArr addObject:aTokenAmount];
             [self.valueArr addObject:bTokenAmount];

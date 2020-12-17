@@ -18,6 +18,8 @@
     mapModel.issue_pool = map.issue_pool;
     mapModel.total_supply = map.total_supply;
     mapModel.enabled = map.enabled;
+    mapModel.target_token = map.issue_token;
+    mapModel.issue_token = map.target_token;
     return mapModel;
 }
 
