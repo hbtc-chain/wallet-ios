@@ -94,10 +94,7 @@
             if (responseCallback) {
                 weakSelf.responseCallback = responseCallback;
             }
-            XXPayInfoModel *model = [[XXPayInfoModel alloc] initWithData:data];
-            [XXPayInfoView showWithSureBlock:^{
-                [weakSelf alertPassword:data];
-            } model:model];
+            [weakSelf analysisModel:data]; //判断是否需要获取新token 然后弹出确认信息
         } else {
             if (responseCallback) {
                 weakSelf.responseCallback = responseCallback;
@@ -107,6 +104,45 @@
         NSLog(@"=========js%@",data);
     }];
     [self.bridge setWebViewDelegate:self];
+}
+
+// 展示支付确认信息
+- (void)showPayInfo:(id)data {
+    XXPayInfoModel *model = [[XXPayInfoModel alloc] initWithData:data];
+    [XXPayInfoView showWithSureBlock:^{
+        [self alertPassword:data];
+    } model:model];
+}
+
+// 分析是否需要请求token信息
+- (void)analysisModel:(id)data {
+   NSString *symbols = [XXPayInfoModel analysisSymbol:data];
+    if (IsEmpty(symbols)) {
+        [self showPayInfo:data];
+    } else {
+        [self requestSymbols:symbols responseData:data];
+    }
+}
+
+#pragma mark 网络请求 - token 信息
+- (void)requestSymbols:(NSString *)symbols responseData:(id)responseData{
+    NSLog(@"%@",[[XXSqliteManager sharedSqlite] tokens]);
+    MJWeakSelf
+    NSString *path = [NSString stringWithFormat:@"/api/v1/batch_tokens/%@",symbols];
+    NSMutableDictionary *param = [NSMutableDictionary dictionary];
+    [HttpManager getWithPath:path params:param andBlock:^(id data, NSString *msg, NSInteger code) {
+        if (code == 0) {
+            NSArray *arr = [symbols componentsSeparatedByString:@","];
+            for (NSString *symbol in arr) {
+                if (data && [data objectForKey:symbol]) {
+                    XXTokenModel *token = [XXTokenModel mj_objectWithKeyValues:[data objectForKey:symbol]];
+                    [[XXSqliteManager sharedSqlite] insertToken:token];
+                }
+            }
+            [weakSelf showPayInfo:responseData];
+            NSLog(@"%@",[[XXSqliteManager sharedSqlite] tokens]);
+        }
+    }];
 }
 
 /// 弹出密码

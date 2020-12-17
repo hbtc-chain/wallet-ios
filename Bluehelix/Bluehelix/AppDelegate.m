@@ -51,9 +51,6 @@
             self.window.rootViewController = [[BHFaceIDLockVC alloc] init];
         } else {
             self.window.rootViewController = [[XXTabBarController alloc] init];
-//            XXLoginVC *loginVC = [[XXLoginVC alloc] init];
-//            XXNavigationController *loginNav = [[XXNavigationController alloc] initWithRootViewController:loginVC];
-//            self.window.rootViewController = loginNav;
         }
     } else {
         XXStartWalletVC *startVC = [[XXStartWalletVC alloc] init];
