@@ -45,18 +45,6 @@
 - (void)reloadData {
     NSArray *sqliteArray = [[XXSqliteManager sharedSqlite] mappingTokens];
     NSMutableSet *set = [[NSMutableSet alloc] init];
-    // 赋值 logo name chain decimals
-//    for (XXTokenModel *token in [[XXSqliteManager sharedSqlite] tokens]) {
-//        for (XXMappingModel *map in sqliteArray) {
-//            if ([token.symbol isEqualToString:map.target_symbol]) {
-//                map.amount = @"0";
-////                map.name = token.name;
-////                map.logo = token.logo;
-////                map.chain = token.chain;
-////                map.decimals = token.decimals;
-//            }
-//        }
-//    }
     
     // 赋值 数量
     for (XXTokenModel *assetsToken in [XXAssetSingleManager sharedManager].assetModel.assets) {

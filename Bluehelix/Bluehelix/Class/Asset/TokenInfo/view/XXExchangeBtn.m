@@ -15,7 +15,7 @@
 {
     self = [super initWithFrame:frame];
     if (self) {
-        self.backgroundColor = kWhiteColor;
+        self.backgroundColor = kGray50;
         [self addSubview:self.customImageView];
         [self addSubview:self.customLabel];
         [self addSubview:self.arrowImageView];

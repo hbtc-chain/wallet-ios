@@ -94,7 +94,7 @@
 
 - (XXLabel *)accountLabel {
     if (!_accountLabel) {
-        _accountLabel = [XXLabel labelWithFrame:CGRectMake(K375(16), 0, self.width/2, 24) text:KUser.currentAccount.userName font:kFont17 textColor:kWhite100 alignment:NSTextAlignmentLeft];
+        _accountLabel = [XXLabel labelWithFrame:CGRectMake(K375(16), 0, self.width/2, 24) text:KUser.currentAccount.userName font:kFont17 textColor:[UIColor whiteColor] alignment:NSTextAlignmentLeft];
     }
     return _accountLabel;
 }
