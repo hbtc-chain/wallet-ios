@@ -32,8 +32,8 @@
         titleArr = @[LocalizedString(@"ReceiveMoney"),LocalizedString(@"Transfer"),LocalizedString(@"TradesTabbar")];
     } else {
         if ([[XXSqliteManager sharedSqlite] existMapModel:self.chain]) {
-            imageArr = kIsNight ? @[@"receiveMoney_Night",@"payMoney_Night",@"chainReceiveMoney_Night",@"chainPayMoney_Night"] : @[@"receiveMoney",@"payMoney",@"chainReceiveMoney",@"chainPayMoney"];
-            titleArr = @[LocalizedString(@"Recharge"),LocalizedString(@"Withdraw"),LocalizedString(@"Exchange"),LocalizedString(@"TradesTabbar")];
+            imageArr = kIsNight ? @[@"receiveMoney_Night",@"payMoney_Night",@"chainPayMoney_Night",@"chainReceiveMoney_Night"] : @[@"receiveMoney",@"payMoney",@"chainPayMoney",@"chainReceiveMoney"];
+            titleArr = @[LocalizedString(@"Recharge"),LocalizedString(@"Withdraw"),LocalizedString(@"TradesTabbar"),LocalizedString(@"Exchange")];
         } else {
             imageArr = kIsNight ? @[@"receiveMoney_Night",@"payMoney_Night",@"chainPayMoney_Night"] : @[@"receiveMoney",@"payMoney",@"chainPayMoney"];
             titleArr = @[LocalizedString(@"Recharge"),LocalizedString(@"Withdraw"),LocalizedString(@"TradesTabbar")];

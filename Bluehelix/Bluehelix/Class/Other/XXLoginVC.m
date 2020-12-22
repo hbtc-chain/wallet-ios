@@ -53,7 +53,7 @@
 - (void)okAction {
     NSString *inputPws = self.textFieldView.textField.text;
     NSString *pws = KUser.currentAccount.password;
-    if ([[NSString md5:inputPws] isEqualToString: pws]) {
+    if ([[NSString md5:inputPws] isEqualToString:pws]) {
         KWindow.rootViewController = [[XXTabBarController alloc] init];
     } else {
     Alert *alert = [[Alert alloc] initWithTitle:LocalizedString(@"PasswordWrong") duration:kAlertDuration completion:^{

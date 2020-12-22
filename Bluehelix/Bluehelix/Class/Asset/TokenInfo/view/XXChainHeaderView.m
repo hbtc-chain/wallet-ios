@@ -9,12 +9,11 @@
 #import "XXChainHeaderView.h"
 #import "XXChainAddressView.h"
 #import "XXAssetSingleManager.h"
-#import "XXWithdrawChainVC.h"
 #import "XXTokenModel.h"
 #import "XXAddNewAssetVC.h"
 #import "XXChainAddressView.h"
-#import "XXWithdrawChainVC.h"
 #import "XXAddressCodeView.h"
+#import "XXPasswordView.h"
 
 @interface XXChainHeaderView ()
 
@@ -84,9 +83,19 @@
         [XXChainAddressView showMainAccountAddress];
     } else {
         if (IsEmpty(self.chainAddress)) {
-            XXWithdrawChainVC *chain = [[XXWithdrawChainVC alloc] init];
-            chain.tokenModel = [[XXSqliteManager sharedSqlite] tokenBySymbol:self.chain];
-            [self.viewController.navigationController pushViewController:chain animated:YES];
+            MJWeakSelf
+            [XXPasswordView showWithContent:[NSString stringWithFormat:@"%@%@%@",LocalizedString(@"CreateChainAddressFee"),[XXUserData sharedUserData].showFee,[kMainToken uppercaseString]] sureBtnBlock:^(NSString * _Nonnull text) {
+                XXTokenModel *tokenModel = [[XXAssetSingleManager sharedManager] assetTokenBySymbol:kMainToken];
+                if (tokenModel.amount.doubleValue < [XXUserData sharedUserData].showFee.doubleValue) {
+                    Alert *alert = [[Alert alloc] initWithTitle:LocalizedString(@"FeeNotEnough") duration:kAlertDuration completion:^{
+                    }];
+                    [alert showAlert];
+                } else {
+                    if (weakSelf.createChainAddressBlock) {
+                        weakSelf.createChainAddressBlock(text);
+                    }
+                }
+            }];
         } else {
             [XXChainAddressView showWithChain:self.chain];
         }

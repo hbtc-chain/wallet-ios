@@ -38,13 +38,12 @@
 - (void)initPhraseData {
     XXAccountModel *model = [[XXSqliteManager sharedSqlite] accountByAddress:KUser.address];
         NSString *sectureStr = model.mnemonicPhrase;
-    NSString *phraseStr = [AESCrypt decrypt:sectureStr password:self.text];
+    NSString *phraseStr = [AESCrypt decrypt:sectureStr password:[NSString md5:self.text]];
     self.phraseArray = [phraseStr componentsSeparatedByString:@" "];
     self.drawArray = [self randomArray];
 }
 
 - (void)buildUI {
-    
     [self.scrollView addSubview:self.tipLabel];
     [self drawFormView]; //画顶部表格
     [self drawWords]; //画下边可选单词

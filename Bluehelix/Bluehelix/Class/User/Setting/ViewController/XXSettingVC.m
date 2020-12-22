@@ -19,6 +19,7 @@
 #import "XYHAlertView.h"
 #import "XXTabBarController.h"
 #import "XXPasswordSettingVC.h"
+#import "XXChangePasswordVC.h"
 
 @interface XXSettingVC()<UITableViewDelegate,UITableViewDataSource>
 @property (strong, nonatomic) NSMutableArray *itemsArray;
@@ -49,12 +50,12 @@
     self.itemsArray = [NSMutableArray array];
     NSArray *itemOne = @[LocalizedString(@"Language"), LocalizedString(@"ExchangeRate"),LocalizedString(@"NightMode")];
     [self.itemsArray addObject:itemOne];
+    
     if (SecurityHelperSupportFaceID) {
-        [self.itemsArray addObject:@[LocalizedString(@"FaceUnlock")]];
+        [self.itemsArray addObject:@[LocalizedString(@"ModifyPassword"),LocalizedString(@"FaceUnlock"),LocalizedString(@"SecuritySetting")]];
     } else {
-        [self.itemsArray addObject:@[LocalizedString(@"FingerprintUnlock")]];
+        [self.itemsArray addObject:@[LocalizedString(@"ModifyPassword"),LocalizedString(@"FingerprintUnlock"),LocalizedString(@"SecuritySetting")]];
     }
-    [self.itemsArray addObject:@[LocalizedString(@"SecuritySetting")]];
     [self.view addSubview:self.loginOutButton];
     [self.tableView registerClass:[XXSettingCell class] forCellReuseIdentifier:@"XXSettingCell"];
 }
@@ -224,7 +225,7 @@
                 [tabVC.selectedViewController pushViewController:vc animated:NO];
             }
         };
-    } else if (indexPath.section == 1 && indexPath.row == 0) {
+    } else if (indexPath.section == 1 && indexPath.row == 1) {
         cell.rightIconImageView.hidden = YES;
         cell.typeSwitch.hidden = NO;
         if (SecurityHelperSupportFaceID) {
@@ -246,7 +247,7 @@
                 }
             }
         };
-    } else if(indexPath.section == 2 && indexPath.row == 0) {
+    } else if(indexPath.section == 1 && indexPath.row == 2) {
         cell.rightIconImageView.hidden = NO;
         if (kShowPassword) {
             cell.valueLabel.text = LocalizedString(@"NeedPassword");
@@ -282,6 +283,9 @@
         [self.navigationController pushViewController:vc animated:YES];
     } else if ([itemString isEqualToString:LocalizedString(@"SecuritySetting")]) {
         XXPasswordSettingVC *vc = [[XXPasswordSettingVC alloc] init];
+        [self.navigationController pushViewController:vc animated:YES];
+    } else if ([itemString isEqualToString:LocalizedString(@"ModifyPassword")]) {
+        XXChangePasswordVC *vc = [[XXChangePasswordVC alloc] init];
         [self.navigationController pushViewController:vc animated:YES];
     } else {
         

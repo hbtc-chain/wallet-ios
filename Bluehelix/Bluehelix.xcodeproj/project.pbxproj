@@ -144,6 +144,8 @@
 		EA71E14F25024A3600B52558 /* XXExchangeView.m in Sources */ = {isa = PBXBuildFile; fileRef = EA71E14E25024A3600B52558 /* XXExchangeView.m */; };
 		EA71E1522502534500B52558 /* XXExchangeBtn.m in Sources */ = {isa = PBXBuildFile; fileRef = EA71E1512502534500B52558 /* XXExchangeBtn.m */; };
 		EA71E1552504955300B52558 /* XXChainAddressView.m in Sources */ = {isa = PBXBuildFile; fileRef = EA71E1542504955300B52558 /* XXChainAddressView.m */; };
+		EA7A678A258FA36E00BF1780 /* XXAboutUsVC.m in Sources */ = {isa = PBXBuildFile; fileRef = EA7A6789258FA36E00BF1780 /* XXAboutUsVC.m */; };
+		EA7A678D2590BBDC00BF1780 /* XXAboutUsHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = EA7A678C2590BBDC00BF1780 /* XXAboutUsHeaderView.m */; };
 		EA7F392D2588C1750063FC15 /* XXAddressCodeView.m in Sources */ = {isa = PBXBuildFile; fileRef = EA7F392C2588C1740063FC15 /* XXAddressCodeView.m */; };
 		EA811AC42479144400C1038F /* XXMessageSegmentButton.m in Sources */ = {isa = PBXBuildFile; fileRef = EA811AC32479144400C1038F /* XXMessageSegmentButton.m */; };
 		EA811AC72479214100C1038F /* XXMessageSegmentView.m in Sources */ = {isa = PBXBuildFile; fileRef = EA811AC62479214100C1038F /* XXMessageSegmentView.m */; };
@@ -675,6 +677,10 @@
 		EA71E1512502534500B52558 /* XXExchangeBtn.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = XXExchangeBtn.m; sourceTree = "<group>"; };
 		EA71E1532504955300B52558 /* XXChainAddressView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = XXChainAddressView.h; sourceTree = "<group>"; };
 		EA71E1542504955300B52558 /* XXChainAddressView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = XXChainAddressView.m; sourceTree = "<group>"; };
+		EA7A6788258FA36E00BF1780 /* XXAboutUsVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = XXAboutUsVC.h; sourceTree = "<group>"; };
+		EA7A6789258FA36E00BF1780 /* XXAboutUsVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = XXAboutUsVC.m; sourceTree = "<group>"; };
+		EA7A678B2590BBDC00BF1780 /* XXAboutUsHeaderView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = XXAboutUsHeaderView.h; path = Bluehelix/Class/User/Setting/ViewController/XXAboutUsHeaderView.h; sourceTree = SOURCE_ROOT; };
+		EA7A678C2590BBDC00BF1780 /* XXAboutUsHeaderView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = XXAboutUsHeaderView.m; path = Bluehelix/Class/User/Setting/ViewController/XXAboutUsHeaderView.m; sourceTree = SOURCE_ROOT; };
 		EA7F392B2588C1740063FC15 /* XXAddressCodeView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = XXAddressCodeView.h; sourceTree = "<group>"; };
 		EA7F392C2588C1740063FC15 /* XXAddressCodeView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = XXAddressCodeView.m; sourceTree = "<group>"; };
 		EA811AC22479144400C1038F /* XXMessageSegmentButton.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = XXMessageSegmentButton.h; sourceTree = "<group>"; };
@@ -2008,6 +2014,8 @@
 		EAA8DE95244D7E7C00161698 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				EA7A678B2590BBDC00BF1780 /* XXAboutUsHeaderView.h */,
+				EA7A678C2590BBDC00BF1780 /* XXAboutUsHeaderView.m */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -2021,6 +2029,8 @@
 				EAA8DED3244D99C900161698 /* XXRatesListVC.m */,
 				EAAFCC222539423E0071B6E6 /* XXPasswordSettingVC.h */,
 				EAAFCC232539423E0071B6E6 /* XXPasswordSettingVC.m */,
+				EA7A6788258FA36E00BF1780 /* XXAboutUsVC.h */,
+				EA7A6789258FA36E00BF1780 /* XXAboutUsVC.m */,
 			);
 			path = ViewController;
 			sourceTree = "<group>";
@@ -3107,6 +3117,7 @@
 				EA8266582541D7F6006249B4 /* UIButton+LLXLoading.m in Sources */,
 				EABD1BA6241BB25900B1A03A /* SecureData.m in Sources */,
 				EAE28624247285C3006D9F24 /* XXBackupPrivateKeyView.m in Sources */,
+				EA7A678D2590BBDC00BF1780 /* XXAboutUsHeaderView.m in Sources */,
 				EAA8DEBF244D7E7C00161698 /* XXUserHeaderView.m in Sources */,
 				EABD1B8F241BB25900B1A03A /* base58.c in Sources */,
 				EA6E5B39248B6E40000AAAF7 /* XXServiceView.m in Sources */,
@@ -3191,6 +3202,7 @@
 				EA9D744724F91DD100B53997 /* MJRefreshAutoNormalFooter.m in Sources */,
 				EA8CE94425343FAA007E3591 /* XXChooseTokenCell.m in Sources */,
 				EAA8DED1244D81CE00161698 /* XXAccountCell.m in Sources */,
+				EA7A678A258FA36E00BF1780 /* XXAboutUsVC.m in Sources */,
 				EAE2862C2472D4EC006D9F24 /* XXUserHeaderItemView.m in Sources */,
 				F30EAF5B20D26536005ADD5C /* UITableViewCell+Extension.m in Sources */,
 				EAE2864024742483006D9F24 /* YZAuthID.m in Sources */,

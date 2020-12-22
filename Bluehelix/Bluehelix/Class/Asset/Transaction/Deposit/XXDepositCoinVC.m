@@ -117,7 +117,9 @@
     self.addressLabel.text = self.showAddress;
     self.codeImageView.image = [XCQrCodeTool createQrCodeWithContent:self.showAddress];
     [self.symbolImageView sd_setImageWithURL:[NSURL URLWithString:self.tokenModel.logo] placeholderImage:[UIImage imageNamed:@"placeholderToken"]];
-    self.tipContentLabel.text = NSLocalizedFormatString(LocalizedString(@"LeastPayAmount"),[NSString stringWithFormat:@"%@%@",self.tokenModel.deposit_threshold,[self.tokenModel.name uppercaseString]]);
+    if (!IsEmpty(self.tokenModel.deposit_threshold) && self.tokenModel.deposit_threshold.doubleValue > 0) {
+        self.tipContentLabel.text = NSLocalizedFormatString(LocalizedString(@"LeastPayAmount"),[NSString stringWithFormat:@"%@%@",self.tokenModel.deposit_threshold,[self.tokenModel.name uppercaseString]]);
+    }
     [self configChainColor];
 }
 
@@ -364,7 +366,7 @@
 
 - (void)setTitle {
     NSString *name = self.crossChainFlag ? LocalizedString(@"Recharge") : LocalizedString(@"ReceiveMoney");
-    NSString *text = [NSString stringWithFormat:@"%@ %@",[self.tokenModel.name uppercaseString],name];
+    NSString *text = [NSString stringWithFormat:@"%@ %@",name, [self.tokenModel.name uppercaseString]];
     CGFloat width = [NSString widthWithText:text font:kFontBold17];
     [self.titleButton setTitle:text forState:UIControlStateNormal];
     [self.titleButton setTitleEdgeInsets:UIEdgeInsetsMake(0, -self.titleButton.imageView.bounds.size.width -2, 0, self.titleButton.imageView.bounds.size.width +2)];

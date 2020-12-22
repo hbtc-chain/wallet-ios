@@ -35,7 +35,7 @@
 }
 
 - (void)nextStepAction {
-    NSString *privateKeyString = [AESCrypt decrypt:KUser.currentAccount.privateKey password:self.text];
+    NSString *privateKeyString = [AESCrypt decrypt:KUser.currentAccount.privateKey password:[NSString md5:self.text]];
     XXBackupPrivateKeyVC *privateKeyVC = [[XXBackupPrivateKeyVC alloc] init];
     privateKeyVC.text = privateKeyString;
     [self.navigationController pushViewController:privateKeyVC animated:YES];

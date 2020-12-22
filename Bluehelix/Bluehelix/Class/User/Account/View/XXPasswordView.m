@@ -7,7 +7,6 @@
 //
 
 #import "XXPasswordView.h"
-#import "AESCrypt.h"
 #import "XXPasswordNumTextFieldView.h"
 
 @interface XXPasswordView()<UITextFieldDelegate>
@@ -17,6 +16,8 @@
 @property (nonatomic, strong) XXLabel *titleLabel;
 @property (nonatomic, strong) XXPasswordNumTextFieldView *passwordView;
 @property (nonatomic, strong) XXButton *cancelButton;
+@property (nonatomic, strong) XXLabel *contentLabel;
+@property (nonatomic, copy) NSString *content;
 
 @end
 
@@ -35,6 +36,9 @@
 - (void)buildUI {
     [self addSubview:self.backView];
     [self addSubview:self.contentView];
+    if (!IsEmpty(self.content)) {
+        [self.contentView addSubview:self.contentLabel];
+    }
     [self.contentView addSubview:self.titleLabel];
     [self.contentView addSubview:self.passwordView];
     [self.contentView addSubview:self.cancelButton];
@@ -42,6 +46,26 @@
 
 + (void)showWithSureBtnBlock:(void (^)(NSString *text))sureBtnBlock {
     XXPasswordView *passwordView = [[XXPasswordView alloc] initWithFrame:CGRectMake(0, 0, kScreen_Width, kScreen_Height)];
+    [passwordView buildUI];
+    [KWindow addSubview:passwordView];
+    
+    passwordView.sureBtnBlock = sureBtnBlock;
+    passwordView.contentView.alpha = 1;
+    passwordView.backView.alpha = 0;
+    passwordView.contentView.transform = CGAffineTransformMakeScale(0.1, 0.1);
+    [UIView animateWithDuration:0.2 animations:^{
+        passwordView.backView.alpha = 0.3;
+        passwordView.contentView.transform = CGAffineTransformMakeScale(1.1, 1.1);
+    } completion:^(BOOL finished) {
+        [UIView animateWithDuration:0.1 animations:^{
+            passwordView.contentView.transform = CGAffineTransformIdentity;
+        }];
+    }];
+}
+
++ (void)showWithContent:(NSString *)content sureBtnBlock:(void (^)(NSString *text))sureBtnBlock {
+    XXPasswordView *passwordView = [[XXPasswordView alloc] initWithFrame:CGRectMake(0, 0, kScreen_Width, kScreen_Height)];
+    passwordView.content = content;
     [passwordView buildUI];
     [KWindow addSubview:passwordView];
     
@@ -154,9 +178,17 @@
     return _titleLabel;
 }
 
+- (XXLabel *)contentLabel {
+    if (_contentLabel == nil) {
+        _contentLabel = [XXLabel labelWithFrame:CGRectMake(K375(16), K375(64), self.contentView.width - K375(32), 21) text:self.content font:kFont14 textColor:kGray700 alignment:NSTextAlignmentCenter];
+    }
+    return _contentLabel;
+}
+
 - (XXPasswordNumTextFieldView *)passwordView {
     if (_passwordView == nil) {
-        _passwordView = [[XXPasswordNumTextFieldView alloc] initWithFrame:CGRectMake(K375(20), K375(88), self.contentView.width - K375(40), K375(56))];
+        CGFloat top = IsEmpty(self.content) ? K375(88) : K375(108);
+        _passwordView = [[XXPasswordNumTextFieldView alloc] initWithFrame:CGRectMake(K375(20), top, self.contentView.width - K375(40), K375(56))];
         MJWeakSelf
         _passwordView.finishBlock = ^(NSString * _Nonnull text) {
             [weakSelf finishText:text];

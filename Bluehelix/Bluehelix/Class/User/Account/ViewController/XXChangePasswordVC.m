@@ -54,12 +54,12 @@
 - (void)changePassword {
     NSString *oldPassword = self.oldPasswordView.textField.text;
     NSString *newPassword = self.okPasswordView.textField.text;
-    NSString *privateKeyString = [AESCrypt decrypt:KUser.currentAccount.privateKey password:oldPassword];
-    NSString *newPrivateKey = [AESCrypt encrypt:privateKeyString password:newPassword];
+    NSString *privateKeyString = [AESCrypt decrypt:KUser.currentAccount.privateKey password:[NSString md5:oldPassword]];
+    NSString *newPrivateKey = [AESCrypt encrypt:privateKeyString password:[NSString md5:newPassword]];
     [[XXSqliteManager sharedSqlite] updateAccountColumn:@"privateKey" value:newPrivateKey];
     if (!IsEmpty(KUser.currentAccount.mnemonicPhrase)) {
-        NSString *oldMnemonicPhrase = [AESCrypt decrypt:KUser.currentAccount.mnemonicPhrase password:oldPassword];
-        NSString *newMnemonicPhrase = [AESCrypt encrypt:oldMnemonicPhrase password:newPassword];
+        NSString *oldMnemonicPhrase = [AESCrypt decrypt:KUser.currentAccount.mnemonicPhrase password:[NSString md5:oldPassword]];
+        NSString *newMnemonicPhrase = [AESCrypt encrypt:oldMnemonicPhrase password:[NSString md5:newPassword]];
         [[XXSqliteManager sharedSqlite] updateAccountColumn:@"mnemonicPhrase" value:newMnemonicPhrase];
     }
     [[XXSqliteManager sharedSqlite] updateAccountColumn:@"password" value:[NSString md5:newPassword]];

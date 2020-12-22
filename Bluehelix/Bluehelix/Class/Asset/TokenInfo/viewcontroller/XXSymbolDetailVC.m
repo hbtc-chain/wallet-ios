@@ -8,29 +8,17 @@
 
 #import "XXSymbolDetailVC.h"
 #import "XXTransactionCell.h"
-#import "XXSymbolDetailFooterView.h"
-#import "XXDepositCoinVC.h"
 #import "XXSymbolDetailHeaderView.h"
-#import "XXTransferVC.h"
 #import "XXTokenModel.h"
 #import "XXTransferDetailVC.h"
-#import "XXWithdrawChainVC.h"
 #import "XXEmptyView.h"
-#import "XXRewardView.h"
 #import "XXMsg.h"
 #import "XXMsgRequest.h"
-#import "XXPasswordView.h"
-#import "XXValidatorsHomeViewController.h"
-#import "XYHPickerView.h"
-#import "XXExchangeVC.h"
-#import "XXTabBarController.h"
 #import "XXAssetSingleManager.h"
-#import "XXWithdrawVC.h"
 
 @interface XXSymbolDetailVC ()<UITableViewDataSource, UITableViewDelegate>
 
 @property (nonatomic, strong) UITableView *tableView;
-@property (nonatomic, strong) XXSymbolDetailFooterView *footerView;
 @property (nonatomic, strong) NSMutableArray *txs;
 @property (nonatomic, strong) XXAssetModel *assetModel;
 @property (nonatomic, strong) XXSymbolDetailHeaderView *symbolDetailHeaderView; //其它币没有分红等信息
@@ -58,7 +46,6 @@
 - (void)buildUI {
     self.titleLabel.text = [self.tokenModel.name uppercaseString];
     [self.view addSubview:self.tableView];
-    [self.view addSubview:self.footerView];
     self.tableView.tableHeaderView = self.symbolDetailHeaderView;
 }
 
@@ -83,11 +70,11 @@
 #pragma mark 网络请求 - 刷新资产
 - (void)refreshHeader {
     self.assetModel = [[XXAssetModel alloc] init];
+    self.assetModel.symbol = self.tokenModel.symbol;
     [self.tableView.mj_header endRefreshing];
     for (XXTokenModel *tokenModel in [XXAssetSingleManager sharedManager].assetModel.assets) {
         if ([tokenModel.symbol isEqualToString:self.tokenModel.symbol]) {
             self.assetModel.amount = kAmountLongTrim(tokenModel.amount);
-            self.assetModel.symbol = self.tokenModel.symbol;
         }
     }
     self.symbolDetailHeaderView.assetModel = self.assetModel;
@@ -121,49 +108,6 @@
             [alert showAlert];
         }
     }];
-}
-
-#pragma mark 底部第一个按钮点击事件 收款或者充值
-- (void)firstAction {
-    XXDepositCoinVC *depositVC = [[XXDepositCoinVC alloc] init];
-    depositVC.symbol = self.tokenModel.symbol;
-    depositVC.crossChainFlag = self.tokenModel.is_native ? NO : YES;
-    [self.navigationController pushViewController:depositVC animated:YES];
-}
-
-#pragma mark 底部第二个按钮点击事件 转账或者提币
-- (void)secondAction {
-    if (self.tokenModel.is_native) {
-        XXTransferVC *transferVC = [[XXTransferVC alloc] init];
-        transferVC.symbol = self.tokenModel.symbol;
-        [self.navigationController pushViewController:transferVC animated:YES];
-    } else {
-        XXWithdrawVC  *withdrawVC = [[XXWithdrawVC alloc] init];
-        withdrawVC.symbol = self.tokenModel.symbol;
-        [self.navigationController pushViewController:withdrawVC animated:YES];
-    }
-}
-
-#pragma mark 底部第三个按钮点击事件 闪兑或者交易
-- (void)thirdAction {
-    if ([[XXSqliteManager sharedSqlite] existMapModel:self.tokenModel.symbol]) {
-        [self exchangeAction];
-    } else {
-        [self tradeAction];
-    }
-}
-#pragma mark 兑换
-- (void)exchangeAction {
-    XXExchangeVC *exchangeVC = [[XXExchangeVC alloc] init];
-    exchangeVC.swapToken = self.tokenModel.symbol;
-    [self.navigationController pushViewController:exchangeVC animated:YES];
-}
-
-#pragma mark 交易
-- (void)tradeAction {
-    [self.navigationController popToRootViewControllerAnimated:NO];
-    XXTabBarController *tabBarVC = (XXTabBarController *)KWindow.rootViewController;
-    [tabBarVC setIndex:1];
 }
 
 #pragma mark - tableview delegate
@@ -217,7 +161,7 @@
 #pragma mark 控件
 - (UITableView *)tableView {
     if (_tableView == nil) {
-        _tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, kNavHeight, kScreen_Width, kScreen_Height - kNavHeight - 104) style:UITableViewStylePlain];
+        _tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, kNavHeight, kScreen_Width, kScreen_Height - kNavHeight) style:UITableViewStylePlain];
         _tableView.dataSource = self;
         _tableView.delegate = self;
         _tableView.backgroundColor = kWhiteColor;
@@ -241,28 +185,6 @@
         _symbolDetailHeaderView = [[XXSymbolDetailHeaderView alloc] initWithFrame:CGRectMake(0, 0, kScreen_Width, 120)];
     }
     return _symbolDetailHeaderView;
-}
-
-- (XXSymbolDetailFooterView *)footerView {
-    if (!_footerView) {
-        MJWeakSelf
-        _footerView = [[XXSymbolDetailFooterView alloc] initWithFrame:CGRectMake(0, kScreen_Height - 72, kScreen_Width, 72)];
-        _footerView.tokenModel = self.tokenModel;
-        _footerView.actionBlock = ^(NSInteger index) {
-            if (index == 0) {
-                [weakSelf firstAction];
-            } else if(index == 1) {
-                [weakSelf secondAction];
-            } else if(index == 2) {
-                [weakSelf thirdAction];
-            } else if(index == 3) {
-                [weakSelf tradeAction];
-            } else {
-                
-            }
-        };
-    }
-    return _footerView;
 }
 
 - (XXEmptyView *)emptyView {

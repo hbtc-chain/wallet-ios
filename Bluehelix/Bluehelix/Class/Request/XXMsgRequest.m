@@ -41,6 +41,9 @@
     NSMutableDictionary *tx = [self buildData];
     NSData *serializeData = [self serializeData:tx];
     NSString *signString = [self signData:serializeData];
+    if (IsEmpty(signString)) {
+        return;
+    }
     NSMutableDictionary *rpc = [self buildRpc:signString];
     [self sendTxRequest:rpc];
 }
@@ -86,8 +89,12 @@
 /// @param data 交易数据
 - (NSString *)signData:(NSData *)data {
     NSData *sec256Data = [SecureData SHA256:data];
-    
-    NSString *privateKeyString = [AESCrypt decrypt:KUser.currentAccount.privateKey password:self.msgModel.text];
+    NSString *privateKeyString = [AESCrypt decrypt:KUser.currentAccount.privateKey password:[NSString md5:self.msgModel.text]];
+    if (IsEmpty(privateKeyString)) {
+        [MBProgressHUD hideHUD];
+        [MBProgressHUD showErrorMessage:LocalizedString(@"PasswordWrong")];
+        return nil;
+    }
     NSData *privateKey = [[SecureData secureDataWithHexString:privateKeyString] data];
     if (sec256Data.length == 32) {
         SecureData *signatureData = [SecureData secureDataWithLength:64];;

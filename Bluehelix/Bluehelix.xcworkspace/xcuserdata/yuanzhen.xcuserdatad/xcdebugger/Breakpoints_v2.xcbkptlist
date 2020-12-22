@@ -931,7 +931,7 @@
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "88"
                   endingLineNumber = "88"
-                  offsetFromSymbolStart = "172">
+                  offsetFromSymbolStart = "283">
                </Location>
                <Location
                   uuid = "0B991246-7C46-4AA9-BF8A-40C7CC0F282F - 3a3ed370222c8625"
@@ -964,6 +964,22 @@
             startingLineNumber = "90"
             endingLineNumber = "90"
             landmarkName = "-requestSearchToken:"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "55D73633-5BE8-4440-8900-410DD2889BD8"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Bluehelix/Class/User/Account/ViewController/XXUserHomeVC.m"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "211"
+            endingLineNumber = "211"
+            landmarkName = "-pushBackupPrivateKey"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

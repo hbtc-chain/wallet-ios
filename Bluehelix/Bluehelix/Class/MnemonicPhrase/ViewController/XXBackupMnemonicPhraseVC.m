@@ -40,7 +40,7 @@
 - (void)drawPhraseBtn {
     XXAccountModel *model = [[XXSqliteManager sharedSqlite] accountByAddress:KUser.address];
     NSString *sectureStr = model.mnemonicPhrase;
-    NSString *phraseStr = [AESCrypt decrypt:sectureStr password:self.text];
+    NSString *phraseStr = [AESCrypt decrypt:sectureStr password:[NSString md5:self.text]];
     NSArray *phraseArr = [phraseStr componentsSeparatedByString:@" "];
     int HSpace = K375(16);
     int VSpace = K375(8);

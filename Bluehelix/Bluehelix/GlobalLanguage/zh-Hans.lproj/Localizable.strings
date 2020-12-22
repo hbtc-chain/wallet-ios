@@ -450,3 +450,5 @@
 "TokenNameTitle" = "币种名称";
 "NoVerify" = "未认证";
 "Verified" = "已认证";
+"CreateChainAddressFee" = "生成跨链地址手续费";
+"Notice" = "公告";

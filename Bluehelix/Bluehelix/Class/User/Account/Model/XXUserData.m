@@ -7,7 +7,6 @@
 //
 
 #import "XXUserData.h"
-#import "AESCrypt.h"
 
 static NSString *salt = @"XX";
 
