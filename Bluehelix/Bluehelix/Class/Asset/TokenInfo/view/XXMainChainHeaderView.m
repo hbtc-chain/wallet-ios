@@ -99,11 +99,17 @@
 - (XXButton *)copyButton {
     if (_copyButton == nil) {
         _copyButton = [XXButton buttonWithFrame:CGRectMake(CGRectGetMaxX(self.addressLabel.frame) + 10, self.addressLabel.top, 24, 24) block:^(UIButton *button) {
-            UIPasteboard *pab = [UIPasteboard generalPasteboard];
-            [pab setString:KUser.address];
-            Alert *alert = [[Alert alloc] initWithTitle:LocalizedString(@"CopySuccessfully") duration:kAlertDuration completion:^{
-            }];
-            [alert showAlert];
+            if (IsEmpty(KUser.address)) {
+                Alert *alert = [[Alert alloc] initWithTitle:LocalizedString(@"CopyFailed") duration:kAlertDuration completion:^{
+                }];
+                [alert showAlert];
+            } else {
+                UIPasteboard *pab = [UIPasteboard generalPasteboard];
+                [pab setString:KUser.address];
+                Alert *alert = [[Alert alloc] initWithTitle:LocalizedString(@"CopySuccessfully") duration:kAlertDuration completion:^{
+                }];
+                [alert showAlert];
+            }
         }];
         [_copyButton setImage:[UIImage imageNamed:@"copyCircle"] forState:UIControlStateNormal];
     }

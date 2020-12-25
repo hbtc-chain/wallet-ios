@@ -6,7 +6,7 @@
 //  Copyright © 2020 Bhex. All rights reserved.
 //
 
-#import "XXDepositCoinVC.h"
+#import "XXDepositCrossVC.h"
 #import "XCQrCodeTool.h"
 #import "XXTokenModel.h"
 #import <UIImageView+WebCache.h>
@@ -15,10 +15,13 @@
 #import "XYHNumbersLabel.h"
 #import "XXChooseTokenVC.h"
 #import "XXWithdrawChainVC.h"
+#import "XXDepositChooseTokenView.h"
+#import "XXCrossDepositAlert.h"
 
-@interface XXDepositCoinVC ()
+@interface XXDepositCrossVC ()
 
 @property (nonatomic, strong) UIScrollView *scrollView;
+@property (nonatomic, strong) XXLabel *depositTitleLabel;// 充值标题
 @property (nonatomic, strong) UIView *backView;
 @property (nonatomic, strong) UIImageView *codeImageView;
 @property (nonatomic, strong) XXButton *copyAddressBtn;
@@ -30,26 +33,32 @@
 @property (nonatomic, strong) XXLabel *addressLabel;
 @property (nonatomic, strong) UIView *symbolBackView;
 @property (nonatomic, strong) UIImageView *symbolImageView;
-@property (nonatomic, strong) XYHNumbersLabel *tipContentLabel;
+@property (nonatomic, strong) XXLabel *tipTitleLabel;
+@property (nonatomic, strong) XXLabel *minDepositLabel;
+@property (nonatomic, strong) XXButton *recordBtn; //跨链充值入账费 提示
+@property (nonatomic, strong) XXDepositChooseTokenView *chooseTokenView;
 
 @end
 
-@implementation XXDepositCoinVC
+@implementation XXDepositCrossVC
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    self.symbol = self.chain;
     [self buildUI];
 }
 
 #pragma mark UI
 - (void)buildUI {
-    self.titleLabel.text = LocalizedString(@"ReceiveMoney");
+    self.titleLabel.text = LocalizedString(@"ChainReceiveMoney");
     self.leftButton.imageView.image = [UIImage imageNamed:@"white_back"];
     self.navView.backgroundColor = kPrimaryMain;
     self.scrollView.backgroundColor = kPrimaryMain;
     self.titleLabel.textColor = [UIColor whiteColor];
     [self.view addSubview:self.scrollView];
+    [self.scrollView addSubview:self.depositTitleLabel];
+    [self.scrollView addSubview:self.chooseTokenView];
     [self.scrollView addSubview:self.backView];
     [self.backView addSubview:self.symbolBackView];
     [self.symbolBackView addSubview:self.symbolImageView];
@@ -61,7 +70,22 @@
     [self.backView addSubview:self.lineView];
     [self.backView addSubview:self.copyAddressBtn];
     [self.backView addSubview:self.dashLineView];
-    [self.scrollView addSubview:self.tipContentLabel];
+    [self.scrollView addSubview:self.tipTitleLabel];
+    [self.scrollView addSubview:self.minDepositLabel];
+    [self.scrollView addSubview:self.recordBtn];
+    [self refreshUI];
+}
+
+#pragma mark 切换symbol 刷新UI
+- (void)refreshUI {
+    XXTokenModel *token = [[XXSqliteManager sharedSqlite] tokenBySymbol:self.symbol];
+    self.minDepositLabel.text = [NSString stringWithFormat:@"%@%@: %@ %@",[token.name uppercaseString],LocalizedString(@"MinDepositAmount"),token.deposit_threshold,[token.name uppercaseString]];
+    NSString *recordText = [NSString stringWithFormat:@"%@: %@ %@",LocalizedString(@"CrossDepositFee"),token.collect_fee,[token.name uppercaseString]];
+    [self.recordBtn setTitle:recordText forState:UIControlStateNormal];
+    [self.recordBtn setImage:[UIImage imageNamed:@"deposit_question"] forState:UIControlStateNormal];
+    CGFloat width = [NSString widthWithText:recordText font:kFont13];
+    [self.recordBtn setImageEdgeInsets:UIEdgeInsetsMake(2, width + 4, 0, -width-4)];
+    [self.recordBtn setTitleEdgeInsets:UIEdgeInsetsMake(0, -self.recordBtn.imageView.width, 0, self.recordBtn.imageView.width)];
 }
 
 - (void)savePhoto {
@@ -87,37 +111,39 @@
     return _scrollView;
 }
 
+- (XXLabel *)depositTitleLabel {
+    if (!_depositTitleLabel) {
+        _depositTitleLabel = [XXLabel labelWithFrame:CGRectMake(K375(24), K375(32), kScreen_Width-K375(48), 24) text:LocalizedString(@"DepositToken") font:kFont14 textColor:[UIColor whiteColor] alignment:NSTextAlignmentLeft];
+    }
+    return _depositTitleLabel;
+}
+
+- (XXDepositChooseTokenView *)chooseTokenView {
+    if (!_chooseTokenView) {
+        _chooseTokenView = [[XXDepositChooseTokenView alloc] initWithFrame:CGRectMake(K375(24), CGRectGetMaxY(self.depositTitleLabel.frame) + 8, kScreen_Width - K375(48), 48) symbol:self.chain];
+        _chooseTokenView.backgroundColor = [UIColor whiteColor];
+        _chooseTokenView.layer.cornerRadius = 8;
+        MJWeakSelf
+        _chooseTokenView.changeSymbolBlock = ^(NSString * symbol) {
+            weakSelf.symbol = symbol;
+            [weakSelf refreshUI];
+        };
+    }
+    return _chooseTokenView;
+}
+
 - (UIView *)backView {
     if (!_backView) {
-        _backView = [[UIView alloc] initWithFrame:CGRectMake(K375(24), K375(32), kScreen_Width-K375(48), 416)];
+        _backView = [[UIView alloc] initWithFrame:CGRectMake(K375(24), CGRectGetMaxY(self.chooseTokenView.frame) + 8, kScreen_Width-K375(48), 392)];
         _backView.backgroundColor = [UIColor whiteColor];
         _backView.layer.cornerRadius = 8;
     }
     return _backView;
 }
 
-- (UIView *)symbolBackView {
-    if (!_symbolBackView) {
-        _symbolBackView = [[UIView alloc] initWithFrame:CGRectMake(self.backView.width/2 - K375(56)/2, -K375(28), K375(56), K375(56))];
-        _symbolBackView.backgroundColor = [UIColor whiteColor];
-        _symbolBackView.layer.cornerRadius = _symbolBackView.width/2;
-        _symbolBackView.layer.masksToBounds = YES;
-    }
-    return _symbolBackView;
-}
-
-- (UIImageView *)symbolImageView {
-    if (!_symbolImageView) {
-        _symbolImageView = [[UIImageView alloc] initWithFrame:CGRectMake(self.symbolBackView.width/2-K375(52)/2, self.symbolBackView.height/2-K375(52)/2, K375(52), K375(52))];
-        XXTokenModel *token = [[XXSqliteManager sharedSqlite] tokenBySymbol:kMainToken];
-        [_symbolImageView sd_setImageWithURL:[NSURL URLWithString:token.logo] placeholderImage:[UIImage imageNamed:@"placeholderToken"]];
-    }
-    return _symbolImageView;
-}
-
 - (XXLabel *)symbolLabel {
     if (!_symbolLabel) {
-        _symbolLabel = [XXLabel labelWithFrame:CGRectMake(0, 48, self.backView.width, 16) text:[NSString stringWithFormat:@"HBTC %@",LocalizedString(@"DepositChainAddress")] font:kFont17 textColor:[UIColor blackColor]];
+        _symbolLabel = [XXLabel labelWithFrame:CGRectMake(0, 24, self.backView.width, 16) text:LocalizedString(@"CrossChainAddress") font:kFont17 textColor:[UIColor blackColor]];
     }
     _symbolLabel.textAlignment = NSTextAlignmentCenter;
     return _symbolLabel;
@@ -125,7 +151,7 @@
 
 - (UIImageView *)codeImageView {
     if (!_codeImageView) {
-        _codeImageView = [[UIImageView alloc] initWithFrame:CGRectMake((self.backView.width - 168)/2, 88, 168, 168)];
+        _codeImageView = [[UIImageView alloc] initWithFrame:CGRectMake((self.backView.width - 168)/2, 64, 168, 168)];
         _codeImageView.image = [XCQrCodeTool createQrCodeWithContent:KUser.address];
     }
     return _codeImageView;
@@ -140,7 +166,8 @@
 
 - (XXLabel *)addressLabel {
     if (!_addressLabel) {
-        _addressLabel = [XXLabel labelWithFrame:CGRectMake(16, CGRectGetMaxY(self.addressTitleLabel.frame) + 16, self.backView.width - 32, 24) text:KUser.address font:kFont(13) textColor:kGray700];
+        NSString *address = [[XXAssetSingleManager sharedManager] externalAddressBySymbol:self.chain];
+        _addressLabel = [XXLabel labelWithFrame:CGRectMake(16, CGRectGetMaxY(self.addressTitleLabel.frame) + 16, self.backView.width - 32, 24) text:address font:kFont(13) textColor:kGray700];
         _addressLabel.textAlignment = NSTextAlignmentCenter;
     }
     return _addressLabel;
@@ -188,9 +215,10 @@
 - (XXButton *)copyAddressBtn {
     if (!_copyAddressBtn) {
         _copyAddressBtn = [XXButton buttonWithFrame:CGRectMake(self.backView.width/2, self.backView.height - 64, self.backView.width/2, 64) title:LocalizedString(@"CopyAddress") font:kFontBold(17) titleColor:kPrimaryMain block:^(UIButton *button) {
-            if (KUser.address.length > 0) {
+            NSString *address = [[XXAssetSingleManager sharedManager] externalAddressBySymbol:self.chain];
+            if (!IsEmpty(address)) {
                 UIPasteboard *pab = [UIPasteboard generalPasteboard];
-                [pab setString:KUser.address];
+                [pab setString:address];
                 Alert *alert = [[Alert alloc] initWithTitle:LocalizedString(@"CopySuccessfully") duration:kAlertDuration completion:^{
                 }];
                 [alert showAlert];
@@ -204,13 +232,28 @@
     return _copyAddressBtn;
 }
 
-- (XYHNumbersLabel *)tipContentLabel {
-    if (_tipContentLabel ==nil) {
-        _tipContentLabel = [[XYHNumbersLabel alloc] initWithFrame:CGRectMake(K375(32), CGRectGetMaxY(self.backView.frame) + 24, kScreen_Width - K375(64), 0) font:kFont(13)];
-        [_tipContentLabel setText:LocalizedString(@"DepositTipContent") alignment:NSTextAlignmentLeft];
-        _tipContentLabel.textColor = [UIColor whiteColor];
+- (XXLabel *)tipTitleLabel {
+    if (_tipTitleLabel == nil) {
+        _tipTitleLabel = [XXLabel labelWithFrame:CGRectMake(K375(32), CGRectGetMaxY(self.backView.frame) + 24, kScreen_Width - K375(64), 20) text:LocalizedString(@"Tip") font:kFont13 textColor:[UIColor whiteColor] alignment:NSTextAlignmentLeft];
     }
-    return _tipContentLabel;
+    return _tipTitleLabel;
 }
 
+- (XXLabel *)minDepositLabel {
+    if (_minDepositLabel == nil) {
+        _minDepositLabel = [XXLabel labelWithFrame:CGRectMake(K375(32), CGRectGetMaxY(self.tipTitleLabel.frame), kScreen_Width - K375(64), 20) text:@"" font:kFont13 textColor:[UIColor whiteColor] alignment:NSTextAlignmentLeft];
+    }
+    return _minDepositLabel;
+}
+
+- (XXButton *)recordBtn {
+    if (_recordBtn == nil) {
+        _recordBtn = [XXButton buttonWithFrame:CGRectMake(K375(32), CGRectGetMaxY(self.minDepositLabel.frame), kScreen_Width - K375(64), 20) block:^(UIButton *button) {
+            [XXCrossDepositAlert show];
+        }];
+        [_recordBtn.titleLabel setFont:kFont13];
+        [_recordBtn setContentHorizontalAlignment:UIControlContentHorizontalAlignmentLeft];
+    }
+    return _recordBtn;
+}
 @end

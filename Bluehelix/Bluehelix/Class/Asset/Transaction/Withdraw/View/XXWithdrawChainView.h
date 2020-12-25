@@ -8,16 +8,19 @@
 
 #import <UIKit/UIKit.h>
 #import "XXWithdrawFeeView.h"
+#import "XXTransferTipView.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
 @interface XXWithdrawChainView : UIScrollView
 
 @property (strong, nonatomic) UIView *mainView;
-
-/** 手续费 */
-@property (strong, nonatomic) XXWithdrawFeeView *feeView;
-
+/// 提示
+@property (nonatomic, strong) XXTransferTipView *tipView;
+@property (nonatomic, strong) XXLabel *createFeeNameLabel;
+@property (nonatomic, strong) XXLabel *feeNameLabel;
+@property (nonatomic, strong) XXLabel *createFeeLabel;
+@property (nonatomic, strong) XXLabel *feeLabel;
 
 @end
 

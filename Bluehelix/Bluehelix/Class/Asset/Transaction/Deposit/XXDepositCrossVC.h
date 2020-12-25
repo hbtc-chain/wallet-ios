@@ -1,8 +1,8 @@
 //
-//  XXChooseTokenVC.h
+//  XXDepositCrossVC.h
 //  Bluehelix
 //
-//  Created by 袁振 on 2020/12/4.
+//  Created by 袁振 on 2020/12/22.
 //  Copyright © 2020 Bhex. All rights reserved.
 //
 
@@ -11,10 +11,10 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface XXChooseTokenVC : BaseViewController
+@interface XXDepositCrossVC : BaseViewController
 
 @property (nonatomic, copy) NSString *chain;
-@property (nonatomic, copy) void (^changeSymbolBlock)(NSString *symbol);
+@property (nonatomic, copy) NSString *symbol;
 
 @end
 

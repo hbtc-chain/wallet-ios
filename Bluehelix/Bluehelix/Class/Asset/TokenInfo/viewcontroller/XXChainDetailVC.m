@@ -23,12 +23,14 @@
 #import "XXAddNewAssetVC.h"
 #import "XXChainDetailFooterView.h"
 #import "XXTransferVC.h"
-#import "XXDepositCoinVC.h"
 #import "XXTabBarController.h"
 #import "XXExchangeVC.h"
 #import "XXWithdrawVC.h"
 #import "XXTradeViewController.h"
 #import "XXMsgRequest.h"
+#import "XXDepositCrossVC.h"
+#import "XXDepositCoinVC.h"
+#import "XXWithdrawChainVC.h"
 
 @interface XXChainDetailVC ()<UITableViewDataSource, UITableViewDelegate>
 
@@ -41,7 +43,6 @@
 @property (nonatomic, strong) XXEmptyView *emptyView;
 @property (nonatomic, strong) XXFailureView *failureView; //无网络
 @property (nonatomic, strong) UIView *sectionHeader;
-@property (strong, nonatomic) XXMsgRequest *keyGenRequest; //跨链请求
 
 @end
 
@@ -76,27 +77,23 @@
 
 }
 
-#pragma mark 生成跨链地址
-- (void)requestWithdrawVerify:(NSString *)text {
-    NSString *feeAmount = [XXUserData sharedUserData].fee;
-    [MBProgressHUD showActivityMessageInView:@""];
-    XXMsg *model = [[XXMsg alloc] initWithfrom:KUser.address to:KUser.address amount:@"" denom:self.chainName feeAmount:feeAmount feeGas:@"" feeDenom:kMainToken memo:@"" type:kMsgKeyGen withdrawal_fee:@"" text:text];
-    _keyGenRequest = [[XXMsgRequest alloc] init];
-    _keyGenRequest.msgSendSuccessBlock = ^(id  _Nonnull responseObject) {
-        [MBProgressHUD hideHUD];
-    };
-    _keyGenRequest.msgSendFaildBlock = ^(NSString * _Nonnull msg) {
-        [MBProgressHUD hideHUD];
-    };
-    [_keyGenRequest sendMsg:model];
-}
-
-#pragma mark 底部第一个按钮点击事件 收款或者充值
+#pragma mark 底部第一个按钮充值
 - (void)firstAction {
-    XXDepositCoinVC *depositVC = [[XXDepositCoinVC alloc] init];
-    depositVC.symbol = self.chainName;
-    depositVC.crossChainFlag = YES;
-    [self.navigationController pushViewController:depositVC animated:YES];
+    if ([self.chainName isEqualToString:kMainToken]) {
+        XXDepositCoinVC *depositVC = [[XXDepositCoinVC alloc] init];
+        [self.navigationController pushViewController:depositVC animated:YES];
+    } else {
+        NSString *address = [[XXAssetSingleManager sharedManager] externalAddressBySymbol:self.chainName];
+        if (IsEmpty(address)) {
+            XXWithdrawChainVC *chainVC = [[XXWithdrawChainVC alloc] init];
+            chainVC.tokenModel = [[XXSqliteManager sharedSqlite] tokenBySymbol:self.chainName];
+            [self.navigationController pushViewController:chainVC animated:YES];
+        } else {
+            XXDepositCrossVC *depositVC = [[XXDepositCrossVC alloc] init];
+            depositVC.chain = self.chainName;
+            [self.navigationController pushViewController:depositVC animated:YES];
+        }
+    }
 }
 
 #pragma mark 底部第二个按钮点击事件 转账或者提币
@@ -111,19 +108,6 @@
         [self.navigationController pushViewController:withdrawVC animated:YES];
     }
 }
-
-#pragma mark 底部第三个按钮点击事件 交易或闪兑
-//- (void)exchangeAction {
-//    if ([self.chainName isEqualToString:kMainToken]) {
-//        [self tradeAction];
-//    } else {
-//        if ([[XXSqliteManager sharedSqlite] existMapModel:self.chainName]) {
-//            [self exchangeAction];
-//        } else {
-//            [self tradeAction];
-//        }
-//    }
-//}
 
 #pragma mark 兑换
 - (void)exchangeAction {
@@ -241,12 +225,8 @@
 
 - (XXChainHeaderView *)headerView {
     if (!_headerView) {
-        _headerView = [[XXChainHeaderView alloc] initWithFrame:CGRectMake(0, 0, kScreen_Width, 132)];
+        _headerView = [[XXChainHeaderView alloc] initWithFrame:CGRectMake(0, 0, kScreen_Width, 210)];
         _headerView.chain = self.chainName;
-        MJWeakSelf
-        _headerView.createChainAddressBlock = ^(NSString * _Nonnull text) {
-            [weakSelf requestWithdrawVerify:text];
-        };
     }
     return _headerView;
 }

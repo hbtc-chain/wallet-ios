@@ -35,21 +35,17 @@
 }
 
 - (void)setupUI {
-    self.titleLabel.text = LocalizedString(@"WithdrawChainAddress");
+    self.titleLabel.text = LocalizedString(@"CreateCrossDepositAddress");
     [self.view addSubview:self.chainView];
-    self.chainView.feeView.unitLabel.text = [kMainToken uppercaseString];
     [self.view addSubview:self.withdrawButton];
+    self.chainView.tipView.tipTextView.text = NSLocalizedFormatString(LocalizedString(@"CreateChainAddressTip"), kApp_Name);
+    self.chainView.createFeeLabel.text = [NSString stringWithFormat:@"%@ %@",self.tokenModel.open_fee,[kMainToken uppercaseString]];
+    self.chainView.feeLabel.text = [NSString stringWithFormat:@"%@ %@",[XXUserData sharedUserData].showFee,[kMainToken uppercaseString]];
 }
 
 - (void)withdrawButtonClick {
-    if (self.chainView.feeView.textField.text.length <= 0) {
-        Alert *alert = [[Alert alloc] initWithTitle:LocalizedString(@"PleaseEnterFee") duration:kAlertDuration completion:^{
-        }];
-        [alert showAlert];
-        return;
-    }
     XXTokenModel *tokenModel = [[XXAssetSingleManager sharedManager] assetTokenBySymbol:kMainToken];
-    if (tokenModel.amount.doubleValue < self.chainView.feeView.textField.text.doubleValue) {
+    if (tokenModel.amount.doubleValue < [XXUserData sharedUserData].showFee.doubleValue) {
         Alert *alert = [[Alert alloc] initWithTitle:LocalizedString(@"FeeNotEnough") duration:kAlertDuration completion:^{
         }];
         [alert showAlert];
@@ -84,8 +80,7 @@
 /** 提币视图 */
 - (XXWithdrawChainView *)chainView {
     if (_chainView == nil) {
-        _chainView = [[XXWithdrawChainView alloc] initWithFrame:CGRectMake(0, kNavHeight, kScreen_Width, 108)];
-        _chainView.feeView.textField.text = [XXUserData sharedUserData].showFee;
+        _chainView = [[XXWithdrawChainView alloc] initWithFrame:CGRectMake(0, kNavHeight, kScreen_Width, 400)];
     }
     return _chainView;
 }
@@ -94,7 +89,7 @@
 - (XXButton *)withdrawButton {
     if (_withdrawButton == nil) {
         MJWeakSelf
-        _withdrawButton = [XXButton buttonWithFrame:CGRectMake(KSpacing, CGRectGetMaxY(self.chainView.frame) + 30, kScreen_Width - KSpacing*2, 48) title:LocalizedString(@"WithdrawChainAddress") font:kFontBold14 titleColor:[UIColor whiteColor] block:^(UIButton *button) {
+        _withdrawButton = [XXButton buttonWithFrame:CGRectMake(KSpacing, self.view.height - 80, kScreen_Width - KSpacing*2, 48) title:LocalizedString(@"CreateConfim") font:kFontBold14 titleColor:[UIColor whiteColor] block:^(UIButton *button) {
             [weakSelf withdrawButtonClick];
         }];
         _withdrawButton.backgroundColor = kPrimaryMain;

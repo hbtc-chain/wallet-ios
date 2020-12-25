@@ -62,8 +62,7 @@
 
 #pragma mark UI
 - (void)setupUI {
-    self.titleLabel.hidden = YES;
-    [self.navView addSubview:self.titleButton];
+    self.titleLabel.text = LocalizedString(@"Transfer");
     [self.view addSubview:self.transferView];
     if (self.tokenModel.amount.floatValue) {
         self.transferView.amountView.currentlyAvailable = kAmountLongTrim(self.tokenModel.amount);
@@ -72,6 +71,7 @@
     }
     self.transferView.amountView.tokenLabel.text = [self.tokenModel.name uppercaseString];
     self.transferView.feeView.textField.text = [XXUserData sharedUserData].showFee;
+    self.transferView.chooseTokenView.textField.text = [self.tokenModel.name uppercaseString];
     [self.view addSubview:self.transferButton];
 }
 
@@ -79,19 +79,6 @@
 - (void)reloadUI {
     [self refreshAsset];
     self.transferView.amountView.tokenLabel.text = [self.tokenModel.name uppercaseString];
-    [self setTitle];
-}
-
-#pragma mark 事件 切换symbol
-- (void)changeSymbol {
-    MJWeakSelf
-    XXChooseTokenVC *vc = [[XXChooseTokenVC alloc] init];
-    vc.changeSymbolBlock = ^(NSString * _Nonnull symbol) {
-        weakSelf.symbol = symbol;
-        weakSelf.tokenModel = [[XXSqliteManager sharedSqlite] tokenBySymbol:symbol];
-        [weakSelf reloadUI];
-    };
-    [self presentViewController:vc animated:YES completion:nil];
 }
 
 #pragma mark 事件 转账
@@ -186,6 +173,11 @@
     if (_transferView == nil) {
         _transferView = [[XXTransferView alloc] initWithFrame:CGRectMake(0, kNavHeight, kScreen_Width, kScreen_Height - kNavHeight - 90)];
         MJWeakSelf
+        _transferView.chooseTokenView.chooseTokenBlock = ^(NSString * symbol) {
+            weakSelf.symbol = symbol;
+            weakSelf.tokenModel = [[XXSqliteManager sharedSqlite] tokenBySymbol:symbol];
+            [weakSelf reloadUI];
+        };
         _transferView.amountView.allButtonActionBlock = ^{
             NSDecimalNumber *availableDecimal = [NSDecimalNumber decimalNumberWithString:weakSelf.tokenModel.amount];
             if ([weakSelf.tokenModel.symbol isEqualToString:kMainToken]) {
@@ -214,33 +206,9 @@
         _transferButton.backgroundColor = kPrimaryMain;
         _transferButton.layer.cornerRadius = kBtnBorderRadius;
         _transferButton.layer.masksToBounds = YES;
-        if (self.tokenModel.is_native) {
-            [_transferButton setTitle:LocalizedString(@"Transfer") forState:UIControlStateNormal];
-        } else {
-            [_transferButton setTitle:LocalizedString(@"Withdraw") forState:UIControlStateNormal];
-        }
+        [_transferButton setTitle:LocalizedString(@"TransferConfirm") forState:UIControlStateNormal];
     }
     return _transferButton;
 }
 
-- (XXButton *)titleButton {
-    if (_titleButton == nil) {
-        MJWeakSelf
-        _titleButton = [XXButton buttonWithFrame:CGRectMake(K375(64), kStatusBarHeight + 12, K375(247), kNavHeight - (kStatusBarHeight + 14)) block:^(UIButton *button) {
-            [weakSelf changeSymbol];
-        }];
-        [_titleButton setTitleColor:kGray900 forState:UIControlStateNormal];
-        [_titleButton setImage:[UIImage textImageName:@"arrowdown"] forState:UIControlStateNormal];
-        [self setTitle];
-    }
-    return _titleButton;
-}
-
-- (void)setTitle {
-    NSString *text = [NSString stringWithFormat:@"%@ %@",[self.tokenModel.name uppercaseString],LocalizedString(@"Transfer")];
-    CGFloat width = [NSString widthWithText:text font:kFontBold17];
-    [self.titleButton setTitle:text forState:UIControlStateNormal];
-    [self.titleButton setTitleEdgeInsets:UIEdgeInsetsMake(0, -self.titleButton.imageView.bounds.size.width -2, 0, self.titleButton.imageView.bounds.size.width +2)];
-    [self.titleButton setImageEdgeInsets:UIEdgeInsetsMake(0, width+2, 0, -width-2)];
-}
 @end

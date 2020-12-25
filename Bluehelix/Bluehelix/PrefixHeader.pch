@@ -193,8 +193,10 @@ typedef NS_ENUM(NSUInteger, NetworkMethod) {
 #define kBuglyID @"bb0f612e68"
 
 //#define kServerUrl @"https://explorer.hbtcchain.io"
+//#define kWebUrl @"https://juswap.io/swap"
+
 #define kServerUrl @"http://hbtc.yym.plus"
-#define kWebUrl @"https://juswap.io/swap"
+#define kWebUrl @"https://swap.yym.plus/"
 
 #define kChainId @"hbtc-testnet" //链名称
 #define kCu_number @"0"

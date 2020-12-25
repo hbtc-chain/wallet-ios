@@ -24,15 +24,12 @@
 
 #pragma mark - 1. 初始化UI
 - (void)setupUI {
-    // 提币主视图
     [self addSubview:self.mainView];
-    
-    /** 手续费 */
-    [self.mainView addSubview:self.feeView];
-}
-
--(void)sliderValueChanged:(UISlider *)slider {
-    self.feeView.textField.text = [NSString stringWithFormat:@"%.3f",slider.value];
+    [self.mainView addSubview:self.tipView];
+    [self.mainView addSubview:self.createFeeNameLabel];
+    [self.mainView addSubview:self.feeNameLabel];
+    [self.mainView addSubview:self.createFeeLabel];
+    [self.mainView addSubview:self.feeLabel];
 }
 
 /** 地址视图 */
@@ -44,14 +41,39 @@
     return _mainView;
 }
 
-/** 手续费 */
-- (XXWithdrawFeeView *)feeView {
-    if (_feeView == nil) {
-        _feeView = [[XXWithdrawFeeView alloc] initWithFrame:CGRectMake(0, 20, kScreen_Width, 88)];
-        _feeView.textField.placeholder = LocalizedString(@"PleaseEnterFee");
-        _feeView.textField.enabled = NO;
+- (XXTransferTipView *)tipView {
+    if (_tipView == nil) {
+        _tipView = [[XXTransferTipView alloc] initWithFrame:CGRectMake(0, 0, kScreen_Width, 143)];
     }
-    return _feeView;
+    return _tipView;
+}
+
+- (XXLabel *)createFeeNameLabel {
+    if (_createFeeNameLabel == nil) {
+        _createFeeNameLabel = [XXLabel labelWithFrame:CGRectMake(K375(16), CGRectGetMaxY(self.tipView.frame) + 32, 100, 24) text:LocalizedString(@"CreateFee") font:kFont14 textColor:kGray500 alignment:NSTextAlignmentLeft];
+    }
+    return _createFeeNameLabel;
+}
+
+- (XXLabel *)feeNameLabel {
+    if (_feeNameLabel == nil) {
+        _feeNameLabel = [XXLabel labelWithFrame:CGRectMake(K375(16), CGRectGetMaxY(self.createFeeNameLabel.frame) + 32, 100, 24) text:LocalizedString(@"Fee") font:kFont14 textColor:kGray500 alignment:NSTextAlignmentLeft];
+    }
+    return _feeNameLabel;
+}
+
+- (XXLabel *)createFeeLabel {
+    if (_createFeeLabel == nil) {
+        _createFeeLabel = [XXLabel labelWithFrame:CGRectMake(CGRectGetMaxX(self.createFeeNameLabel.frame), CGRectGetMaxY(self.tipView.frame) + 32, kScreen_Width - CGRectGetMaxX(self.createFeeNameLabel.frame) - 22, 24) text:@"" font:kFont15 textColor:kGray700 alignment:NSTextAlignmentRight];
+    }
+    return _createFeeLabel;
+}
+
+- (XXLabel *)feeLabel {
+    if (_feeLabel == nil) {
+        _feeLabel = [XXLabel labelWithFrame:CGRectMake(CGRectGetMaxX(self.feeNameLabel.frame), CGRectGetMaxY(self.createFeeLabel.frame) + 32, kScreen_Width - CGRectGetMaxX(self.feeNameLabel.frame) - 22, 24) text:@"" font:kFont15 textColor:kGray700 alignment:NSTextAlignmentRight];
+    }
+    return _feeLabel;
 }
 
 @end

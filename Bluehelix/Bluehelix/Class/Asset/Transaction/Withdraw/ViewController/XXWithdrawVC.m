@@ -17,8 +17,6 @@
 
 @interface XXWithdrawVC ()
 
-@property (nonatomic, strong) XXButton *titleButton;
-
 @property (nonatomic, strong) XXTokenModel *tokenModel;
 
 /** 提币视图 */
@@ -66,8 +64,7 @@
 #pragma mark UI
 - (void)setupUI {
     [self requestTokens];
-    self.titleLabel.hidden = YES;
-    [self.navView addSubview:self.titleButton];
+    self.titleLabel.text = LocalizedString(@"ChainPayMoney");
     [self.view addSubview:self.withdrawView];
     if (self.tokenModel.amount.floatValue) {
         self.withdrawView.amountView.currentlyAvailable = kAmountLongTrim(self.tokenModel.amount);
@@ -81,6 +78,7 @@
     self.withdrawView.chainFeeView.unitLabel.text = [self.withdrawFeeModel.name uppercaseString];
     self.withdrawView.chainFeeView.textField.text = self.tokenModel.withdrawal_fee;
     self.withdrawView.feeView.textField.text = [XXUserData sharedUserData].showFee;
+    self.withdrawView.chooseTokenView.textField.text = [self.tokenModel.name uppercaseString];
     [self.view addSubview:self.withdrawButton];
 }
 
@@ -92,20 +90,6 @@
     self.withdrawFeeModel = [[XXSqliteManager sharedSqlite] withdrawFeeToken:self.tokenModel];
     self.withdrawView.chainFeeView.unitLabel.text = [self.withdrawFeeModel.name uppercaseString];
     self.withdrawView.chainFeeView.textField.text = self.tokenModel.withdrawal_fee;
-    [self setTitle];
-}
-
-#pragma mark 事件 切换symbol
-- (void)changeSymbol {
-    MJWeakSelf
-    XXChooseTokenVC *vc = [[XXChooseTokenVC alloc] init];
-    vc.filterNativeChainFlag = YES;
-    vc.changeSymbolBlock = ^(NSString * _Nonnull symbol) {
-        weakSelf.symbol = symbol;
-        weakSelf.tokenModel = [[XXSqliteManager sharedSqlite] tokenBySymbol:symbol];
-        [weakSelf reloadUI];
-    };
-    [self presentViewController:vc animated:YES completion:nil];
 }
 
 #pragma mark 事件 提币验证
@@ -190,6 +174,12 @@
     if (_withdrawView == nil) {
         _withdrawView = [[XXWithdrawView alloc] initWithFrame:CGRectMake(0, kNavHeight, kScreen_Width, kScreen_Height - kNavHeight - 90)];
         MJWeakSelf
+        _withdrawView.chooseTokenView.chain = self.tokenModel.chain;
+        _withdrawView.chooseTokenView.chooseTokenBlock = ^(NSString * symbol) {
+            weakSelf.symbol = symbol;
+            weakSelf.tokenModel = [[XXSqliteManager sharedSqlite] tokenBySymbol:symbol];
+            [weakSelf reloadUI];
+        };
         _withdrawView.amountView.allButtonActionBlock = ^{
             NSDecimalNumber *availableDecimal = [NSDecimalNumber decimalNumberWithString:weakSelf.tokenModel.amount];
             if ([weakSelf.tokenModel.chain isEqualToString:weakSelf.tokenModel.symbol]) {
@@ -218,33 +208,8 @@
         _withdrawButton.backgroundColor = kPrimaryMain;
         _withdrawButton.layer.cornerRadius = kBtnBorderRadius;
         _withdrawButton.layer.masksToBounds = YES;
-        if (self.tokenModel.is_native) {
-            [_withdrawButton setTitle:LocalizedString(@"Transfer") forState:UIControlStateNormal];
-        } else {
-            [_withdrawButton setTitle:LocalizedString(@"Withdraw") forState:UIControlStateNormal];
-        }
+        [_withdrawButton setTitle:LocalizedString(@"WithdrawConfirm") forState:UIControlStateNormal];
     }
     return _withdrawButton;
-}
-
-- (XXButton *)titleButton {
-    if (_titleButton == nil) {
-        MJWeakSelf
-        _titleButton = [XXButton buttonWithFrame:CGRectMake(K375(64), kStatusBarHeight + 12, K375(247), kNavHeight - (kStatusBarHeight + 14)) block:^(UIButton *button) {
-            [weakSelf changeSymbol];
-        }];
-        [_titleButton setTitleColor:kGray900 forState:UIControlStateNormal];
-        [_titleButton setImage:[UIImage textImageName:@"arrowdown"] forState:UIControlStateNormal];
-        [self setTitle];
-    }
-    return _titleButton;
-}
-
-- (void)setTitle {
-    NSString *text = [NSString stringWithFormat:@"%@ %@",[self.tokenModel.name uppercaseString],LocalizedString(@"Withdraw")];
-    CGFloat width = [NSString widthWithText:text font:kFontBold17];
-    [self.titleButton setTitle:text forState:UIControlStateNormal];
-    [self.titleButton setTitleEdgeInsets:UIEdgeInsetsMake(0, -self.titleButton.imageView.bounds.size.width -2, 0, self.titleButton.imageView.bounds.size.width +2)];
-    [self.titleButton setImageEdgeInsets:UIEdgeInsetsMake(0, width+2, 0, -width-2)];
 }
 @end

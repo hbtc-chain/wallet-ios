@@ -205,7 +205,7 @@
 - (XXButton *)copyAddressBtn {
     if (!_copyAddressBtn) {
         _copyAddressBtn = [XXButton buttonWithFrame:CGRectMake(K375(24), self.contentView.height - K375(138), kScreen_Width - K375(48), K375(56)) title:LocalizedString(@"ClickCopyAddress") font:kFontBold(17) titleColor:kPrimaryMain block:^(UIButton *button) {
-            if (KUser.address  > 0) {
+            if (!IsEmpty(self.address)) {
                 UIPasteboard *pab = [UIPasteboard generalPasteboard];
                 [pab setString:self.address];
                 Alert *alert = [[Alert alloc] initWithTitle:LocalizedString(@"CopySuccessfully") duration:kAlertDuration completion:^{

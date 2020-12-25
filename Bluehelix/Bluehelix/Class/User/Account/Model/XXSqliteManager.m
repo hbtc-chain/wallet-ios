@@ -93,13 +93,13 @@ static XXSqliteManager *_sqliteManager;
 #pragma mark 币
 - (BOOL)existsTokens {
     [self.myFmdb open];
-    BOOL result = [self.myFmdb executeUpdate:@"create table if not exists tokens(ID INTEGER PRIMARY KEY AUTOINCREMENT,deposit_threshold TEXT,name TEXT,symbol TEXT,chain TEXT,decimals INTEGER,is_native BOOLEAN,withdrawal_fee TEXT,logo TEXT,is_withdrawal_enabled BOOLEAN,is_verified BOOLEAN)"];
+    BOOL result = [self.myFmdb executeUpdate:@"create table if not exists tokens(ID INTEGER PRIMARY KEY AUTOINCREMENT,deposit_threshold TEXT,name TEXT,symbol TEXT,chain TEXT,decimals INTEGER,is_native BOOLEAN,withdrawal_fee TEXT,logo TEXT,is_withdrawal_enabled BOOLEAN,is_verified BOOLEAN,open_fee TEXT,collect_fee TEXT)"];
     return result;
 }
 
 
 - (void)insertTokens:(NSArray *)tokens {
-    if (![self.myFmdb columnExists:@"is_verified" inTableWithName:@"tokens"]) {
+    if (![self.myFmdb columnExists:@"collect_fee" inTableWithName:@"tokens"]) {
         [self.myFmdb executeUpdate:@"drop table if exists tokens"];
     }
     BOOL existsTable = [self existsTokens];
@@ -130,10 +130,12 @@ static XXSqliteManager *_sqliteManager;
         [argumentsArr addObject:model.chain];
         [argumentsArr addObject:[NSNumber numberWithInt:model.is_withdrawal_enabled]];
         [argumentsArr addObject:[NSNumber numberWithInt:model.is_verified]];
-        if (argumentsArr.count != 10) {
+        [argumentsArr addObject:model.open_fee];
+        [argumentsArr addObject:model.collect_fee];
+        if (argumentsArr.count != 12) {
             return;
         }
-        [self.myFmdb executeUpdate:@"insert into 'tokens'(deposit_threshold,name,symbol,decimals,is_native,withdrawal_fee,logo,chain,is_withdrawal_enabled,is_verified) values(?,?,?,?,?,?,?,?,?,?)" withArgumentsInArray:argumentsArr];
+        [self.myFmdb executeUpdate:@"insert into 'tokens'(deposit_threshold,name,symbol,decimals,is_native,withdrawal_fee,logo,chain,is_withdrawal_enabled,is_verified,open_fee,collect_fee) values(?,?,?,?,?,?,?,?,?,?,?,?)" withArgumentsInArray:argumentsArr];
     }
 }
 
@@ -152,11 +154,13 @@ static XXSqliteManager *_sqliteManager;
     [argumentsArr addObject:model.chain];
     [argumentsArr addObject:[NSNumber numberWithInt:model.is_withdrawal_enabled]];
     [argumentsArr addObject:[NSNumber numberWithInt:model.is_verified]];
+    [argumentsArr addObject:model.open_fee];
+    [argumentsArr addObject:model.collect_fee];
     [argumentsArr addObject:model.symbol];
     if (argumentsArr.count != 10) {
         return;
     }
-    NSString *sql = [NSString stringWithFormat:@"update 'tokens' set deposit_threshold = ?,name = ?,decimals = ?,is_native = ?,withdrawal_fee = ?,logo = ?,chain = ?,is_withdrawal_enabled = ?,is_verified = ? where symbol = ?"];
+    NSString *sql = [NSString stringWithFormat:@"update 'tokens' set deposit_threshold = ?,name = ?,decimals = ?,is_native = ?,withdrawal_fee = ?,logo = ?,chain = ?,is_withdrawal_enabled = ?,is_verified = ?,open_fee = ?,collect_fee = ? where symbol = ?"];
     [self.myFmdb executeUpdate:sql withArgumentsInArray:argumentsArr];
 }
 
@@ -172,6 +176,8 @@ static XXSqliteManager *_sqliteManager;
     model.chain = [set stringForColumn:@"chain"];
     model.is_withdrawal_enabled = [set boolForColumn:@"is_withdrawal_enabled"];
     model.is_verified = [set boolForColumn:@"is_verified"];
+    model.open_fee = [set stringForColumn:@"open_fee"];
+    model.collect_fee = [set stringForColumn:@"collect_fee"];
     return model;
 }
 

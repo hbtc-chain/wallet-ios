@@ -19,6 +19,7 @@
 #import "BHFaceIDLockVC.h"
 #import <WebKit/WebKit.h>
 #import <Bugly/Bugly.h>
+#import "XXIntegrityChecking.h"
 @interface AppDelegate ()
 
 /** 闪屏 */
@@ -31,6 +32,8 @@
 
 #pragma mark - 1. 程序开始
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
+    [XXIntegrityChecking checkJailBreak];
+    [XXIntegrityChecking checkVPN];
     [KUser cleanTestData];
     KUser.isQuickTextOpen = NO;
     [Bugly startWithAppId:kBuglyID];

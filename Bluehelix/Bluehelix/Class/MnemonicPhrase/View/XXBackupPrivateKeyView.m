@@ -49,11 +49,17 @@
 }
 
 - (void)copyAction {
-    UIPasteboard *pab = [UIPasteboard generalPasteboard];
-    [pab setString:self.text];
-    Alert *alert = [[Alert alloc] initWithTitle:LocalizedString(@"CopySuccessfully") duration:kAlertDuration completion:^{
-    }];
-    [alert showAlert];
+    if (IsEmpty(self.text)) {
+        Alert *alert = [[Alert alloc] initWithTitle:LocalizedString(@"CopyFailed") duration:kAlertDuration completion:^{
+        }];
+        [alert showAlert];
+    } else {
+        UIPasteboard *pab = [UIPasteboard generalPasteboard];
+        [pab setString:self.text];
+        Alert *alert = [[Alert alloc] initWithTitle:LocalizedString(@"CopySuccessfully") duration:kAlertDuration completion:^{
+        }];
+        [alert showAlert];
+    }
 }
 
 - (XXLabel *)tipLabel1 {

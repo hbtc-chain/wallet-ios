@@ -63,8 +63,16 @@
 - (void)reloadData {
     [self.tokenList removeAllObjects];
     for (XXTokenModel *token in [[XXSqliteManager sharedSqlite] showTokens]) {
-        if (self.filterNativeChainFlag) {
-            if (!token.is_native) {
+        if (IsEmpty(self.chain)) {
+                if (IsEmpty(self.headerView.searchTextField.text)) {
+                    [self.tokenList addObject:token];
+                } else {
+                    if ([token.name containsString:self.headerView.searchTextField.text]) {
+                        [self.tokenList addObject:token];
+                    }
+                }
+        } else {
+            if ([token.chain isEqualToString:self.chain]) {
                 if (IsEmpty(self.headerView.searchTextField.text)) {
                     [self.tokenList addObject:token];
                 } else {
@@ -73,15 +81,8 @@
                     }
                 }
             }
-        } else {
-            if (IsEmpty(self.headerView.searchTextField.text)) {
-                [self.tokenList addObject:token];
-            } else {
-                if ([token.name containsString:self.headerView.searchTextField.text]) {
-                    [self.tokenList addObject:token];
-                }
-            }
         }
+        
     }
     NSSortDescriptor *sort = [[NSSortDescriptor alloc] initWithKey:@"name" ascending:!KUser.tokenSortDes];
     NSArray *sortedArray = [self.tokenList sortedArrayUsingDescriptors:@[sort]];
@@ -123,6 +124,7 @@
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
     return [XXChooseSymbolCell  getCellHeight];
 }
+
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     XXChooseSymbolCell *cell = [tableView dequeueReusableCellWithIdentifier:@"XXChooseSymbolCell"];
     if (!cell) {

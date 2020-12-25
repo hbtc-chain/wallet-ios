@@ -13,6 +13,7 @@
 #import "XXWithdrawSpeedView.h"
 #import "XXWithdrawTipView.h"
 #import "XXTransferMemoView.h"
+#import "XXTransferChooseTokenView.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
@@ -21,11 +22,17 @@ NS_ASSUME_NONNULL_BEGIN
 /** 转账主视图 */
 @property (strong, nonatomic) UIView *mainView;
 
+/** 转出地址 */
+@property (strong, nonatomic) XXWithdrawAddressView *outAddress;
+
 /** 转账地址视图 */
 @property (strong, nonatomic) XXWithdrawAddressView *addressView;
 
 /** 转账数量 */
 @property (strong, nonatomic) XXTransferAmountView *amountView;
+
+/** 选择币种 */
+@property (strong, nonatomic) XXTransferChooseTokenView *chooseTokenView;
 
 /** 手续费 */
 @property (strong, nonatomic) XXWithdrawFeeView *feeView;

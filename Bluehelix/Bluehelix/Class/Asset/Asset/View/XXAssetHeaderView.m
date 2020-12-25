@@ -214,11 +214,17 @@
 - (XXButton *)copyButton {
     if (_copyButton == nil) {
         _copyButton = [XXButton buttonWithFrame:CGRectMake(CGRectGetMaxX(self.addressLabel.frame), self.addressLabel.top - 12, 40, 40) block:^(UIButton *button) {
-            UIPasteboard *pab = [UIPasteboard generalPasteboard];
-            [pab setString:KUser.address];
-            Alert *alert = [[Alert alloc] initWithTitle:LocalizedString(@"CopySuccessfully") duration:kAlertDuration completion:^{
-            }];
-            [alert showAlert];
+            if (IsEmpty(KUser.address)) {
+                Alert *alert = [[Alert alloc] initWithTitle:LocalizedString(@"CopyFailed") duration:kAlertDuration completion:^{
+                }];
+                [alert showAlert];
+            } else {
+                UIPasteboard *pab = [UIPasteboard generalPasteboard];
+                [pab setString:KUser.address];
+                Alert *alert = [[Alert alloc] initWithTitle:LocalizedString(@"CopySuccessfully") duration:kAlertDuration completion:^{
+                }];
+                [alert showAlert];
+            }
         }];
         [_copyButton setImage:[UIImage imageNamed:@"paste"] forState:UIControlStateNormal];
     }
@@ -279,7 +285,6 @@
         MJWeakSelf
         _receiveMoneyBtn = [XXButton buttonWithFrame:CGRectMake(0, 129, self.contentView.width/3, self.contentView.height - 129) title:LocalizedString(@"ReceiveMoney") font:kFont13 titleColor:kGray500 block:^(UIButton *button) {
             XXDepositCoinVC *depositVC = [[XXDepositCoinVC alloc] init];
-            depositVC.symbol = kMainToken;
             [weakSelf.viewController.navigationController pushViewController:depositVC animated:YES];
         }];
         _receiveMoneyBtn.titleEdgeInsets = UIEdgeInsetsMake(0, 8, 0, 0);

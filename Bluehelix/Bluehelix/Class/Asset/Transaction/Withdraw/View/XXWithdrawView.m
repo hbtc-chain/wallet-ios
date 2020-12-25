@@ -32,18 +32,14 @@
     // 提币主视图
     [self addSubview:self.mainView];
     
-    [self.mainView addSubview:self.tipLabel];
-    
     /** 地址  */
     [self.mainView addSubview:self.addressView];
     
-//    [self.mainView addSubview:self.memoView];
+    /** 选择币种  */
+    [self.mainView addSubview:self.chooseTokenView];
     
     /** 提币数量 */
     [self.mainView addSubview:self.amountView];
-
-    /** 到账数量 */
-//    [self.mainView addSubview:self.receivedView];
 
     /** 手续费 */
     [self.mainView addSubview:self.chainFeeView];
@@ -51,16 +47,9 @@
     /** 手续费 */
     [self.mainView addSubview:self.feeView];
 
-    /** 提币加速视图 */
-//    [self.mainView addSubview:self.speedView];
-
     /** 提示语视图 */
     [self.mainView addSubview:self.tipView];
 }
-
-//-(void)sliderValueChanged:(UISlider *)slider {
-//    self.feeView.textField.text = [NSString stringWithFormat:@"%.3f",slider.value];
-//}
 
 - (void)scanCodeGetAddress {
     MJWeakSelf
@@ -80,15 +69,6 @@
     return _mainView;
 }
 
-- (XYHNumbersLabel *)tipLabel {
-    if (!_tipLabel) {
-        _tipLabel = [[XYHNumbersLabel alloc] initWithFrame:CGRectMake(KSpacing, 10, kScreen_Width - KSpacing*2, 0) font:kFont14];
-        _tipLabel.textColor = kGray700;
-        _tipLabel.text = LocalizedString(@"WithdrawTip");
-    }
-    return _tipLabel;
-}
-
 - (XXWithdrawAddressView *)addressView {
     if (_addressView == nil) {
         MJWeakSelf
@@ -100,17 +80,18 @@
     return _addressView;
 }
 
-- (XXTransferMemoView *)memoView {
-    if (_memoView == nil) {
-        _memoView = [[XXTransferMemoView alloc] initWithFrame:CGRectMake(0, CGRectGetMaxY(self.addressView.frame) + 15, kScreen_Width, 88)];
+- (XXTransferChooseTokenView *)chooseTokenView {
+    if (_chooseTokenView == nil) {
+        _chooseTokenView = [[XXTransferChooseTokenView alloc] initWithFrame:CGRectMake(0, CGRectGetMaxY(self.addressView.frame) + 15, kScreen_Width, 88)];
+        _chooseTokenView.nameLabel.text = LocalizedString(@"ChooseWithdrawToken");
     }
-    return _memoView;
+    return _chooseTokenView;
 }
 
 /** 提币数量 */
 - (XXWithdrawAmountView *)amountView {
     if (_amountView == nil) {
-        _amountView = [[XXWithdrawAmountView alloc] initWithFrame:CGRectMake(0, CGRectGetMaxY(self.addressView.frame) + 15, kScreen_Width, 88)];
+        _amountView = [[XXWithdrawAmountView alloc] initWithFrame:CGRectMake(0, CGRectGetMaxY(self.chooseTokenView.frame) + 15, kScreen_Width, 88)];
         _amountView.userInteractionEnabled = YES;
         _amountView.nameLabel.text = LocalizedString(@"WithdrawAmount");
         _amountView.textField.placeholder = LocalizedString(@"PleaseEnterAmount");
@@ -133,26 +114,17 @@
     if (_feeView == nil) {
         _feeView = [[XXWithdrawFeeView alloc] initWithFrame:CGRectMake(0, CGRectGetMaxY(self.chainFeeView.frame) + 15, kScreen_Width, 88)];
         _feeView.textField.placeholder = LocalizedString(@"PleaseEnterFee");
-        _feeView.nameLabel.text = LocalizedString(@"TransferFee");
+        _feeView.nameLabel.text = LocalizedString(@"Fee");
         _feeView.textField.enabled = NO;
     }
     return _feeView;
 }
 
-///** 提币加速视图 */
-//- (XXWithdrawSpeedView *)speedView {
-//    if (_speedView == nil) {
-//        _speedView = [[XXWithdrawSpeedView alloc] initWithFrame:CGRectMake(0, CGRectGetMaxY(self.feeView.frame) + 15, kScreen_Width, 72)];
-//        _speedView.nameLabel.text = LocalizedString(@"TransferSpeed");
-//        [_speedView.slider addTarget:self action:@selector(sliderValueChanged:) forControlEvents:UIControlEventValueChanged];
-//    }
-//    return _speedView;
-//}
-
 /** 提示语视图 */
 - (XXWithdrawTipView *)tipView {
     if (_tipView == nil) {
-        _tipView = [[XXWithdrawTipView alloc] initWithFrame:CGRectMake(0, CGRectGetMaxY(self.feeView.frame), kScreen_Width, 10)];
+        _tipView = [[XXWithdrawTipView alloc] initWithFrame:CGRectMake(0, CGRectGetMaxY(self.feeView.frame) + 15, kScreen_Width, 0)];
+        _tipView.alertLabel.text = LocalizedString(@"WithdrawTip");
     }
     return _tipView;
 }

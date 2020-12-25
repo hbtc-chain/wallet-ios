@@ -146,6 +146,11 @@
 		EA71E1552504955300B52558 /* XXChainAddressView.m in Sources */ = {isa = PBXBuildFile; fileRef = EA71E1542504955300B52558 /* XXChainAddressView.m */; };
 		EA7A678A258FA36E00BF1780 /* XXAboutUsVC.m in Sources */ = {isa = PBXBuildFile; fileRef = EA7A6789258FA36E00BF1780 /* XXAboutUsVC.m */; };
 		EA7A678D2590BBDC00BF1780 /* XXAboutUsHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = EA7A678C2590BBDC00BF1780 /* XXAboutUsHeaderView.m */; };
+		EA7A679025923AE100BF1780 /* XXDepositCrossVC.m in Sources */ = {isa = PBXBuildFile; fileRef = EA7A678F25923AE100BF1780 /* XXDepositCrossVC.m */; };
+		EA7A67932592FD7F00BF1780 /* XXIntegrityChecking.m in Sources */ = {isa = PBXBuildFile; fileRef = EA7A67912592FD7F00BF1780 /* XXIntegrityChecking.m */; };
+		EA7A679625932A7A00BF1780 /* XXDepositChooseTokenView.m in Sources */ = {isa = PBXBuildFile; fileRef = EA7A679525932A7A00BF1780 /* XXDepositChooseTokenView.m */; };
+		EA7A67992594606E00BF1780 /* XXTransferChooseTokenView.m in Sources */ = {isa = PBXBuildFile; fileRef = EA7A67982594606E00BF1780 /* XXTransferChooseTokenView.m */; };
+		EA7A679C2594CDEA00BF1780 /* XXCrossDepositAlert.m in Sources */ = {isa = PBXBuildFile; fileRef = EA7A679B2594CDEA00BF1780 /* XXCrossDepositAlert.m */; };
 		EA7F392D2588C1750063FC15 /* XXAddressCodeView.m in Sources */ = {isa = PBXBuildFile; fileRef = EA7F392C2588C1740063FC15 /* XXAddressCodeView.m */; };
 		EA811AC42479144400C1038F /* XXMessageSegmentButton.m in Sources */ = {isa = PBXBuildFile; fileRef = EA811AC32479144400C1038F /* XXMessageSegmentButton.m */; };
 		EA811AC72479214100C1038F /* XXMessageSegmentView.m in Sources */ = {isa = PBXBuildFile; fileRef = EA811AC62479214100C1038F /* XXMessageSegmentView.m */; };
@@ -681,6 +686,16 @@
 		EA7A6789258FA36E00BF1780 /* XXAboutUsVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = XXAboutUsVC.m; sourceTree = "<group>"; };
 		EA7A678B2590BBDC00BF1780 /* XXAboutUsHeaderView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = XXAboutUsHeaderView.h; path = Bluehelix/Class/User/Setting/ViewController/XXAboutUsHeaderView.h; sourceTree = SOURCE_ROOT; };
 		EA7A678C2590BBDC00BF1780 /* XXAboutUsHeaderView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = XXAboutUsHeaderView.m; path = Bluehelix/Class/User/Setting/ViewController/XXAboutUsHeaderView.m; sourceTree = SOURCE_ROOT; };
+		EA7A678E25923AE100BF1780 /* XXDepositCrossVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = XXDepositCrossVC.h; sourceTree = "<group>"; };
+		EA7A678F25923AE100BF1780 /* XXDepositCrossVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = XXDepositCrossVC.m; sourceTree = "<group>"; };
+		EA7A67912592FD7F00BF1780 /* XXIntegrityChecking.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XXIntegrityChecking.m; sourceTree = "<group>"; };
+		EA7A67922592FD7F00BF1780 /* XXIntegrityChecking.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XXIntegrityChecking.h; sourceTree = "<group>"; };
+		EA7A679425932A7900BF1780 /* XXDepositChooseTokenView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = XXDepositChooseTokenView.h; sourceTree = "<group>"; };
+		EA7A679525932A7A00BF1780 /* XXDepositChooseTokenView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = XXDepositChooseTokenView.m; sourceTree = "<group>"; };
+		EA7A67972594606E00BF1780 /* XXTransferChooseTokenView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = XXTransferChooseTokenView.h; sourceTree = "<group>"; };
+		EA7A67982594606E00BF1780 /* XXTransferChooseTokenView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = XXTransferChooseTokenView.m; sourceTree = "<group>"; };
+		EA7A679A2594CDEA00BF1780 /* XXCrossDepositAlert.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = XXCrossDepositAlert.h; sourceTree = "<group>"; };
+		EA7A679B2594CDEA00BF1780 /* XXCrossDepositAlert.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = XXCrossDepositAlert.m; sourceTree = "<group>"; };
 		EA7F392B2588C1740063FC15 /* XXAddressCodeView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = XXAddressCodeView.h; sourceTree = "<group>"; };
 		EA7F392C2588C1740063FC15 /* XXAddressCodeView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = XXAddressCodeView.m; sourceTree = "<group>"; };
 		EA811AC22479144400C1038F /* XXMessageSegmentButton.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = XXMessageSegmentButton.h; sourceTree = "<group>"; };
@@ -1503,6 +1518,8 @@
 				EA15E96F2417BC6B00A3E14A /* XXCreateWalletSuccessVC.m */,
 				EA15E9782417E24100A3E14A /* XXScreenShotAlert.h */,
 				EA15E9792417E24100A3E14A /* XXScreenShotAlert.m */,
+				EA7A679A2594CDEA00BF1780 /* XXCrossDepositAlert.h */,
+				EA7A679B2594CDEA00BF1780 /* XXCrossDepositAlert.m */,
 				EA20EAC324261661004EBD7F /* XXSecurityAlertView.h */,
 				EA20EAC424261661004EBD7F /* XXSecurityAlertView.m */,
 				EA20EAC02425FBC8004EBD7F /* XXServiceAgreementVC.h */,
@@ -1619,6 +1636,10 @@
 				EA3E58D524441C7B0080B98F /* XXDepositCoinVC.m */,
 				EA9D3E3E24546D820060778C /* XXDepositAlert.h */,
 				EA9D3E3F24546D820060778C /* XXDepositAlert.m */,
+				EA7A678E25923AE100BF1780 /* XXDepositCrossVC.h */,
+				EA7A678F25923AE100BF1780 /* XXDepositCrossVC.m */,
+				EA7A679425932A7900BF1780 /* XXDepositChooseTokenView.h */,
+				EA7A679525932A7A00BF1780 /* XXDepositChooseTokenView.m */,
 			);
 			path = Deposit;
 			sourceTree = "<group>";
@@ -1706,6 +1727,8 @@
 				EA3E594424445B510080B98F /* XXTransferView.m */,
 				EA3E593224441D950080B98F /* XXWithdrawView.h */,
 				EA3E592A24441D950080B98F /* XXWithdrawView.m */,
+				EA7A67972594606E00BF1780 /* XXTransferChooseTokenView.h */,
+				EA7A67982594606E00BF1780 /* XXTransferChooseTokenView.m */,
 				EA3E594624445DAE0080B98F /* XXTransferAmountView.h */,
 				EA3E594724445DAE0080B98F /* XXTransferAmountView.m */,
 				EA3E592424441D950080B98F /* XXWithdrawAmountView.h */,
@@ -2567,6 +2590,8 @@
 		EAE2863624742482006D9F24 /* Security */ = {
 			isa = PBXGroup;
 			children = (
+				EA7A67922592FD7F00BF1780 /* XXIntegrityChecking.h */,
+				EA7A67912592FD7F00BF1780 /* XXIntegrityChecking.m */,
 				EAE2863824742482006D9F24 /* YZAuthID.m */,
 				EAE2863924742482006D9F24 /* SecurityHelper.m */,
 				EAE2863A24742482006D9F24 /* BHFaceIDLockVC.h */,
@@ -2990,6 +3015,7 @@
 				EA9D743C24F91DD100B53997 /* MJRefreshConst.m in Sources */,
 				EA3E593F24441D950080B98F /* XXWithdrawAmountView.m in Sources */,
 				EA92EDBE244809E800B194DA /* XXMsg.m in Sources */,
+				EA7A67992594606E00BF1780 /* XXTransferChooseTokenView.m in Sources */,
 				EA95370324558CC40060D1FC /* XXMsgDelegateModel.m in Sources */,
 				EA3E5968244723200080B98F /* XXMsgSendModel.m in Sources */,
 				EABD1BA0241BB25900B1A03A /* RoundRobinProvider.m in Sources */,
@@ -3047,6 +3073,7 @@
 				EA3E591D24441D160080B98F /* XXAssetModel.m in Sources */,
 				EA3E595C24471F190080B98F /* XXTokenModel.m in Sources */,
 				EABD1B9C241BB25900B1A03A /* InfuraProvider.m in Sources */,
+				EA7A679C2594CDEA00BF1780 /* XXCrossDepositAlert.m in Sources */,
 				EABBC08C24232DCD00B7E412 /* NSData+Base64.m in Sources */,
 				6C791E2B245684DE00F22CD0 /* XXProposalDetailInfomationCell.m in Sources */,
 				6C791E012451A33700F22CD0 /* XXProposalDetailViewController.m in Sources */,
@@ -3116,6 +3143,8 @@
 				EAAFCC242539423E0071B6E6 /* XXPasswordSettingVC.m in Sources */,
 				EA8266582541D7F6006249B4 /* UIButton+LLXLoading.m in Sources */,
 				EABD1BA6241BB25900B1A03A /* SecureData.m in Sources */,
+				EA7A679025923AE100BF1780 /* XXDepositCrossVC.m in Sources */,
+				EA7A67932592FD7F00BF1780 /* XXIntegrityChecking.m in Sources */,
 				EAE28624247285C3006D9F24 /* XXBackupPrivateKeyView.m in Sources */,
 				EA7A678D2590BBDC00BF1780 /* XXAboutUsHeaderView.m in Sources */,
 				EAA8DEBF244D7E7C00161698 /* XXUserHeaderView.m in Sources */,
@@ -3180,6 +3209,7 @@
 				EABD1B8A241BB25900B1A03A /* ripemd160.c in Sources */,
 				EAC68719214F931200701874 /* NullSafe.m in Sources */,
 				6C3E66FC244AD0700057B514 /* XXDelegateTransferView.m in Sources */,
+				EA7A679625932A7A00BF1780 /* XXDepositChooseTokenView.m in Sources */,
 				EA920D712585F0100077775D /* GYNoticeViewCell.m in Sources */,
 				EAE285DC246E4BA4006D9F24 /* NS+BTCBase58.m in Sources */,
 				EAE28621247285C3006D9F24 /* XXImportKeystoreVC.m in Sources */,

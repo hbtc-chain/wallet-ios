@@ -1,8 +1,8 @@
 //
-//  XXChainHeaderView.h
+//  XXCrossDepositAlert.h
 //  Bluehelix
 //
-//  Created by 袁振 on 2020/9/3.
+//  Created by 袁振 on 2020/12/24.
 //  Copyright © 2020 Bhex. All rights reserved.
 //
 
@@ -10,9 +10,11 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface XXChainHeaderView : UIView
+@interface XXCrossDepositAlert : UIView
 
-@property (nonatomic, copy) NSString *chain;
++ (void)show;
+
++ (void)dismiss;
 
 @end
 

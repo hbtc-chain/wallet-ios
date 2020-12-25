@@ -28,6 +28,12 @@
     [self buildUI];
 }
 
+- (void)viewDidDisappear:(BOOL)animated {
+    [super viewDidDisappear:animated];
+    UIPasteboard *pb = [UIPasteboard generalPasteboard];
+    [pb setValue:@"" forPasteboardType:UIPasteboardNameGeneral];
+}
+
 - (void)buildUI {
     self.titleLabel.text = LocalizedString(@"BackupPrivateKey");
     [self.view addSubview:self.toolBar];

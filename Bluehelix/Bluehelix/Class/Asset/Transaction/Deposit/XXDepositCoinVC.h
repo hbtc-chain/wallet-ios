@@ -11,8 +11,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface XXDepositCoinVC : BaseViewController
 
-@property (nonatomic, assign) BOOL crossChainFlag; //跨链 默认NO
-@property (nonatomic, copy) NSString *symbol;
+//@property (nonatomic, assign) BOOL crossChainFlag; //跨链 默认NO
+//@property (nonatomic, copy) NSString *symbol;
 
 @end
 
