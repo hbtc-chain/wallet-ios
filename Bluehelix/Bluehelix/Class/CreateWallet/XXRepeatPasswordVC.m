@@ -84,7 +84,7 @@
     model.publicKey = self.account.pubKey;
     model.address = self.account.BHAddress;
     model.userName = KUser.localUserName;
-    model.password = [NSString md5:KUser.localPassword];
+    model.password = [NSString generatePassword:KUser.localPassword];
     model.keystore = json;
     if (self.account.mnemonicPhrase && IsEmpty(KUser.localPhraseString)) { //如果是通过助记词导入的 不需要备份和保留助记词
         NSString *mnemonicPhrase = [AESCrypt encrypt:self.account.mnemonicPhrase password:[NSString md5:KUser.localPassword]];

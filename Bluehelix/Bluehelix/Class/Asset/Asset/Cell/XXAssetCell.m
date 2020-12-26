@@ -105,7 +105,7 @@
 
 - (UIImageView *)iconView {
     if (_iconView == nil) {
-        _iconView = [[UIImageView alloc] initWithFrame:CGRectMake(K375(16), 16, 40, 40)];
+        _iconView = [[UIImageView alloc] initWithFrame:CGRectMake(K375(16), 20, 32, 32)];
     }
     return _iconView;
 }

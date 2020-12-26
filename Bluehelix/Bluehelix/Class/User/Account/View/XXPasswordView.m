@@ -84,8 +84,7 @@
 }
 
 - (void)finishText:(NSString *)text {
-    NSString *pwd = [NSString md5:text];
-    if ([pwd isEqualToString:KUser.currentAccount.password] && self.sureBtnBlock) {
+    if ([NSString verifyPassword:text md5:KUser.currentAccount.password] && self.sureBtnBlock) {
         [[self class] removeFromSuperView];
         self.sureBtnBlock(text);
     } else {

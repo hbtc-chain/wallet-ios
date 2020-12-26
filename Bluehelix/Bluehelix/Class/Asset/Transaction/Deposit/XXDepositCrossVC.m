@@ -80,7 +80,7 @@
 - (void)refreshUI {
     XXTokenModel *token = [[XXSqliteManager sharedSqlite] tokenBySymbol:self.symbol];
     self.minDepositLabel.text = [NSString stringWithFormat:@"%@%@: %@ %@",[token.name uppercaseString],LocalizedString(@"MinDepositAmount"),token.deposit_threshold,[token.name uppercaseString]];
-    NSString *recordText = [NSString stringWithFormat:@"%@: %@ %@",LocalizedString(@"CrossDepositFee"),token.collect_fee,[token.name uppercaseString]];
+    NSString *recordText = [NSString stringWithFormat:@"%@: %@ %@",LocalizedString(@"CrossDepositFee"),token.collect_fee,[token.chain uppercaseString]];
     [self.recordBtn setTitle:recordText forState:UIControlStateNormal];
     [self.recordBtn setImage:[UIImage imageNamed:@"deposit_question"] forState:UIControlStateNormal];
     CGFloat width = [NSString widthWithText:recordText font:kFont13];
@@ -167,8 +167,9 @@
 - (XXLabel *)addressLabel {
     if (!_addressLabel) {
         NSString *address = [[XXAssetSingleManager sharedManager] externalAddressBySymbol:self.chain];
-        _addressLabel = [XXLabel labelWithFrame:CGRectMake(16, CGRectGetMaxY(self.addressTitleLabel.frame) + 16, self.backView.width - 32, 24) text:address font:kFont(13) textColor:kGray700];
+        _addressLabel = [XXLabel labelWithFrame:CGRectMake(16, CGRectGetMaxY(self.addressTitleLabel.frame) + 16, self.backView.width - 32, 48) text:address font:kFont(13) textColor:kGray700];
         _addressLabel.textAlignment = NSTextAlignmentCenter;
+        _addressLabel.numberOfLines = 0;
     }
     return _addressLabel;
 }

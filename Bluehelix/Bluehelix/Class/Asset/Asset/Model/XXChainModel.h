@@ -15,6 +15,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, copy) NSString *chain;
 @property (nonatomic, copy) NSString *full_name;
 @property (nonatomic, copy) NSString *typeName;
+@property (nonatomic, assign) BOOL single_coin;
 
 - (XXChainModel *)initWithSymbol:(NSString *)symbol detailName:(NSString *)detailName typeName:(NSString *)typeName;
 @end

@@ -52,7 +52,7 @@
 - (void)setChain:(NSString *)chain {
     _chain = chain;
     if ([chain isEqualToString:kMainToken]) {
-        self.chainNameLabel.text = [NSString stringWithFormat:@"%@ %@",[chain uppercaseString],LocalizedString(@"DepositChainAddress")];
+        self.chainNameLabel.text = [NSString stringWithFormat:@"HBTC %@",LocalizedString(@"DepositChainAddress")];
     } else {
         self.chainNameLabel.text = LocalizedString(@"WithdrawChainTitle");
     }
@@ -118,8 +118,8 @@
     if (_addressLabel == nil) {
         _addressLabel = [[XXLabel alloc] initWithFrame:CGRectMake((self.width - 140)/2, CGRectGetMaxY(self.chainNameLabel.frame) + 13, 140, 24)];
         _addressLabel.font = kFont12;
-        _addressLabel.textColor = [UIColor whiteColor];
-        _addressLabel.backgroundColor = [kGray900 colorWithAlphaComponent:0.2];
+        _addressLabel.textColor = kGray500;
+        _addressLabel.backgroundColor = [kGray500 colorWithAlphaComponent:0.2];
         _addressLabel.layer.cornerRadius = 10;
         _addressLabel.layer.masksToBounds = YES;
         _addressLabel.userInteractionEnabled = YES;

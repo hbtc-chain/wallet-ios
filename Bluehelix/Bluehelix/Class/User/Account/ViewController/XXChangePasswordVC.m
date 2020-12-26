@@ -42,7 +42,7 @@
 }
 
 - (void)textFiledValueChange:(UITextField *)textField {
-    if (self.oldPasswordView.textField.text.length > 0 && [[self.passwordView.textField.text trimmingCharacters] isValidPasswordString] && [[self.okPasswordView.textField.text trimmingCharacters] isValidPasswordString]) {
+    if (self.oldPasswordView.textField.text.length > 0 && self.passwordView.textField.text.length > 0 && self.okPasswordView.textField.text.length > 0) {
         self.okButton.enabled = YES;
         self.okButton.backgroundColor = kPrimaryMain;
     } else {
@@ -62,7 +62,7 @@
         NSString *newMnemonicPhrase = [AESCrypt encrypt:oldMnemonicPhrase password:[NSString md5:newPassword]];
         [[XXSqliteManager sharedSqlite] updateAccountColumn:@"mnemonicPhrase" value:newMnemonicPhrase];
     }
-    [[XXSqliteManager sharedSqlite] updateAccountColumn:@"password" value:[NSString md5:newPassword]];
+    [[XXSqliteManager sharedSqlite] updateAccountColumn:@"password" value:[NSString generatePassword:newPassword]];
     Alert *alert = [[Alert alloc] initWithTitle:LocalizedString(@"ChangePasswordSuccess") duration:kAlertDuration completion:^{
         [self.navigationController popViewControllerAnimated:YES];
     }];
@@ -76,8 +76,7 @@
         [alert showAlert];
         return;
     }
-    NSString *pwd = [NSString md5:self.oldPasswordView.textField.text];
-    if ([pwd isEqualToString:KUser.currentAccount.password]) {
+    if ([NSString verifyPassword:self.oldPasswordView.textField.text md5:KUser.currentAccount.password]) {
         [self changePassword];
     } else {
         Alert *alert = [[Alert alloc] initWithTitle:LocalizedString(@"PasswordWrong") duration:kAlertDuration completion:^{

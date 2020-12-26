@@ -90,7 +90,7 @@
     self.bottomExchangeBtn.customLabel.text = [NSString stringWithFormat:@"%@",[mappingModel.issue_token.name uppercaseString]];
     self.bottomExchangeBtn.arrowImageView.hidden = arr.count > 1 ? NO : YES;
     self.bottomExchangeBtn.enabled = arr.count > 1 ? YES : NO;
-    _rateDetailLabel.text = [NSString stringWithFormat:@"1%@(%@)=1%@ (%@)",[mappingModel.target_token.name uppercaseString],[NSString addressShortReplace:mappingModel.target_symbol],[mappingModel.issue_token.name uppercaseString],[NSString addressShortReplace:mappingModel.map_symbol]];
+    _rateDetailLabel.text = [NSString stringWithFormat:@"1%@ = 1%@ ",[mappingModel.target_token.name uppercaseString],[mappingModel.issue_token.name uppercaseString]];
     
     for (XXTokenModel *assetsToken in [XXAssetSingleManager sharedManager].assetModel.assets) {
         if ([mappingModel.target_symbol isEqualToString:assetsToken.symbol] && assetsToken.amount.floatValue > 0) {
