@@ -31,7 +31,7 @@
 @implementation AppDelegate
 #pragma mark - 1. 程序开始
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
-//    [XXIntegrityChecking checkJailBreak];
+    [XXIntegrityChecking checkJailBreak];
     [XXIntegrityChecking checkVPN];
     [KUser cleanTestData];
     KUser.isQuickTextOpen = NO;

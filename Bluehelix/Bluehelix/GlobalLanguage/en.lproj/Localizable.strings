@@ -119,7 +119,7 @@
 "UnnativeCoin" = "Cross-chain token";
 "AddNewAsset" = "Add new asset";
 "EnterTokenNameSearch" = "Enter the token name";
-"TotalAsset" = "Total asset(%@)";
+"TotalAsset" = "Total asset";
 "NoAsset" = "No asset";
 "MsgSuccess" = "The request was sent successfully";
 "CompleteInfomation" = "Please complete the information";
@@ -473,5 +473,7 @@
 "Token" = "Token";
 "CreateCrossDepositAddress" = "Create cross-chain deposit address";
 "CreateConfim" = "Confirm to creat";
-
-
+"MainNet" = "MainChain";
+"OldPassword6Number" = "Enter the Current password(6-digit)";
+"NewPassword6Number" = "Enter your new password(6-digit)";
+"ConfirmNewPassword6Number" = "Enter your new password(6-digit)";

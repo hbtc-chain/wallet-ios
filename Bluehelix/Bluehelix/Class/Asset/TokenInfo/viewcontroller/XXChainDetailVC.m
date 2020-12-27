@@ -65,7 +65,7 @@
 
 #pragma mark UI
 - (void)setupUI {
-    self.titleLabel.text = [self.chainName uppercaseString];
+    self.titleLabel.text = [self.chainModel.chain uppercaseString];
     [self.view addSubview:self.tableView];
     [self.view addSubview:self.footerView];
     self.tableView.separatorColor = KLine_Color;
@@ -79,18 +79,18 @@
 
 #pragma mark 底部第一个按钮充值
 - (void)firstAction {
-    if ([self.chainName isEqualToString:kMainToken]) {
+    if ([self.chainModel.chain isEqualToString:kMainToken]) {
         XXDepositCoinVC *depositVC = [[XXDepositCoinVC alloc] init];
         [self.navigationController pushViewController:depositVC animated:YES];
     } else {
-        NSString *address = [[XXAssetSingleManager sharedManager] externalAddressBySymbol:self.chainName];
+        NSString *address = [[XXAssetSingleManager sharedManager] externalAddressBySymbol:self.chainModel.chain];
         if (IsEmpty(address)) {
             XXWithdrawChainVC *chainVC = [[XXWithdrawChainVC alloc] init];
-            chainVC.tokenModel = [[XXSqliteManager sharedSqlite] tokenBySymbol:self.chainName];
+            chainVC.tokenModel = [[XXSqliteManager sharedSqlite] tokenBySymbol:self.chainModel.chain];
             [self.navigationController pushViewController:chainVC animated:YES];
         } else {
             XXDepositCrossVC *depositVC = [[XXDepositCrossVC alloc] init];
-            depositVC.chain = self.chainName;
+            depositVC.chain = self.chainModel.chain;
             [self.navigationController pushViewController:depositVC animated:YES];
         }
     }
@@ -98,13 +98,13 @@
 
 #pragma mark 底部第二个按钮点击事件 转账或者提币
 - (void)secondAction {
-    if ([self.chainName isEqualToString:kMainToken]) {
+    if ([self.chainModel.chain isEqualToString:kMainToken]) {
         XXTransferVC *transferVC = [[XXTransferVC alloc] init];
-        transferVC.symbol = self.chainName;
+        transferVC.symbol = self.chainModel.chain;
         [self.navigationController pushViewController:transferVC animated:YES];
     } else {
         XXWithdrawVC  *withdrawVC = [[XXWithdrawVC alloc] init];
-        withdrawVC.symbol = self.chainName;
+        withdrawVC.symbol = self.chainModel.chain;
         [self.navigationController pushViewController:withdrawVC animated:YES];
     }
 }
@@ -112,7 +112,7 @@
 #pragma mark 兑换
 - (void)exchangeAction {
     XXExchangeVC *exchangeVC = [[XXExchangeVC alloc] init];
-    exchangeVC.swapToken = self.chainName;
+    exchangeVC.swapToken = self.chainModel.chain;
     [self.navigationController pushViewController:exchangeVC animated:YES];
 }
 
@@ -121,7 +121,7 @@
     XXTabBarController *tabBarVC = (XXTabBarController *)KWindow.rootViewController;
     XXNavigationController *nav = tabBarVC.viewControllers[1];
     XXTradeViewController *tradeVC = nav.viewControllers[0];
-    tradeVC.urlString = [NSString stringWithFormat:@"%@/%@",kWebUrl,self.chainName];
+    tradeVC.urlString = [NSString stringWithFormat:@"%@/%@",kWebUrl,self.chainModel.chain];
     [tradeVC loadRequest];
     [tabBarVC setIndex:1];
 }
@@ -186,7 +186,7 @@
     NSArray *sqliteArray = [[XXSqliteManager sharedSqlite] showTokens];
     [self.showArray removeAllObjects];
     for (XXTokenModel *sModel in sqliteArray) {
-        if ([sModel.chain isEqualToString:self.chainName]) {
+        if ([sModel.chain isEqualToString:self.chainModel.chain]) {
             sModel.amount = @"0";
             [self.showArray addObject:sModel];
         }
@@ -198,7 +198,7 @@
             }
         }
     }
-    self.headerView.chain = self.chainName;
+    self.headerView.chainModel = self.chainModel;
     [self.tableView reloadData];
 }
 
@@ -226,7 +226,7 @@
 - (XXChainHeaderView *)headerView {
     if (!_headerView) {
         _headerView = [[XXChainHeaderView alloc] initWithFrame:CGRectMake(0, 0, kScreen_Width, 210)];
-        _headerView.chain = self.chainName;
+        _headerView.chainModel = self.chainModel;
     }
     return _headerView;
 }
@@ -268,7 +268,7 @@
     if (!_footerView) {
         MJWeakSelf
         _footerView = [[XXChainDetailFooterView alloc] initWithFrame:CGRectMake(0, kScreen_Height - 104, kScreen_Width, 104)];
-        _footerView.chain = self.chainName;
+        _footerView.chain = self.chainModel.chain;
         _footerView.actionBlock = ^(NSInteger index) {
             if (index == 0) {
                 [weakSelf firstAction];

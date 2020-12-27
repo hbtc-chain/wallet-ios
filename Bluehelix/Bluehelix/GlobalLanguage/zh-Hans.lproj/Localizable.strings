@@ -120,7 +120,7 @@
 "UnnativeCoin" = "跨链代币";
 "AddNewAsset" = "添加新资产";
 "EnterTokenNameSearch" = "输入币种名称";
-"TotalAsset" = "总资产(%@)";
+"TotalAsset" = "总资产";
 "NoAsset" = "暂无资产";
 "MsgSuccess" = "交易请求发送成功";
 "CompleteInfomation" = "请填写完整信息";
@@ -478,3 +478,7 @@
 "Token" = "币种";
 "CreateCrossDepositAddress" = "创建跨链充值地址";
 "CreateConfim" = "确认创建";
+"MainNet" = "MainChain";
+"OldPassword6Number" = "请输入原密码（6位数字）";
+"NewPassword6Number" = "请输入新密码（6位数字）";
+"ConfirmNewPassword6Number" = "请输入新密码（6位数字）";

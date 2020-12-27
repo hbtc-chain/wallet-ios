@@ -151,8 +151,9 @@
 
 - (UIImageView *)codeImageView {
     if (!_codeImageView) {
+        NSString *address = [[XXAssetSingleManager sharedManager] externalAddressBySymbol:self.chain];
         _codeImageView = [[UIImageView alloc] initWithFrame:CGRectMake((self.backView.width - 168)/2, 64, 168, 168)];
-        _codeImageView.image = [XCQrCodeTool createQrCodeWithContent:KUser.address];
+        _codeImageView.image = [XCQrCodeTool createQrCodeWithContent:address];
     }
     return _codeImageView;
 }

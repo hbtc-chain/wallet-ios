@@ -8,12 +8,13 @@
 
 #import <UIKit/UIKit.h>
 #import "BaseViewController.h"
+#import "XXChainModel.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
 @interface XXChainDetailVC : BaseViewController
 
-@property (nonatomic, copy) NSString *chainName;
+@property (nonatomic, strong) XXChainModel *chainModel;
 
 @end
 

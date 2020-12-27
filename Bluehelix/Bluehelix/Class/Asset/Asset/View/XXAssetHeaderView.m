@@ -21,24 +21,20 @@
 
 @property (nonatomic, strong) UIImageView *backImageView;
 @property (nonatomic, strong) XXLabel *nameLabel;
-@property (nonatomic, strong) XXLabel *addressLabel;
-@property (nonatomic, strong) XXButton *codeBtn;
+@property (nonatomic, strong) XXLabel *mainNetLabel;
 @property (nonatomic, strong) XXButton *scanBtn;
 @property (nonatomic, strong) XXButton *addAccountBtn;
 @property (nonatomic, strong) UIView *contentView;
 @property (nonatomic, strong) UIImageView *logoImageView;
 @property (nonatomic, strong) XXLabel *logoLabel;
 @property (nonatomic, strong) XXButton *hidenAssetsButton;
+@property (nonatomic, strong) XXButton *getTestCoinBtn;
 @property (nonatomic, strong) XXLabel *assetNameLabel;
 @property (nonatomic, strong) XXLabel *totalAssetLabel;
 @property (nonatomic, strong) XXLabel *assetSymbolLabel;
-@property (nonatomic, strong) UIView *lineView;
 @property (nonatomic, strong) XXButton *receiveMoneyBtn;
 @property (nonatomic, strong) XXButton *transferMoneyBtn;
 @property (nonatomic, strong) XXButton *delegateBtn;
-@property (nonatomic, strong) XXButton *copyButton;
-@property (nonatomic, strong) UIView *lineView1;
-@property (nonatomic, strong) UIView *lineView2;
 @end
 
 @implementation XXAssetHeaderView
@@ -48,27 +44,39 @@
     self = [super initWithFrame:frame];
     if (self) {
         self.backgroundColor = kWhiteColor;
-        [self addSubview:self.backImageView];
-        [self addSubview:self.nameLabel];
-        [self addSubview:self.addressLabel];
-        [self addSubview:self.codeBtn];
+        [self addSubview:self.logoImageView];
+        [self addSubview:self.logoLabel];
         [self addSubview:self.addAccountBtn];
 //        [self addSubview:self.scanBtn];
         [self addSubview:self.contentView];
-        [self.contentView addSubview:self.logoImageView];
-        [self.contentView addSubview:self.logoLabel];
+        [self.contentView addSubview:self.backImageView];
+        [self.contentView addSubview:self.mainNetLabel];
+        [self.contentView addSubview:self.nameLabel];
         [self.contentView addSubview:self.assetNameLabel];
         [self.contentView addSubview:self.assetSymbolLabel];
         [self.contentView addSubview:self.totalAssetLabel];
-        [self.contentView addSubview:self.lineView];
+        [self.contentView addSubview:self.getTestCoinBtn];
         [self.contentView addSubview:self.receiveMoneyBtn];
         [self.contentView addSubview:self.transferMoneyBtn];
         [self.contentView addSubview:self.delegateBtn];
-        [self.contentView addSubview:self.lineView1];
-        [self.contentView addSubview:self.lineView2];
         [self.contentView addSubview:self.hidenAssetsButton];
     }
     return self;
+}
+
+- (void)requestGetTestCoin:(NSString *)denom {
+    NSString *path = [NSString stringWithFormat:@"%@%@%@%@",@"/api/v1/cus/",KUser.address,@"/send_test_token?denom=",denom];
+    [HttpManager getWithPath:path params:nil andBlock:^(id data, NSString *msg, NSInteger code) {
+        if (code == 0) {
+           Alert *alert = [[Alert alloc] initWithTitle:LocalizedString(@"GetTestCoinSuccess") duration:kAlertDuration completion:^{
+           }];
+           [alert showAlert];
+        } else {
+            Alert *alert = [[Alert alloc] initWithTitle:msg duration:kAlertDuration completion:^{
+            }];
+            [alert showAlert];
+        }
+    }];
 }
 
 - (void)configData:(XXAssetModel *)model {
@@ -118,53 +126,31 @@
         }
 }
 
-- (UIImageView *)backImageView {
-    if (!_backImageView) {
-        _backImageView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, kScreen_Width, 180)];
-        _backImageView.image = [UIImage imageNamed:@"assetHeaderBack"];
+- (UIImageView *)logoImageView {
+    if (_logoImageView == nil) {
+        _logoImageView = [[UIImageView alloc] initWithFrame:CGRectMake(20, 64, 21.5, 19)];
+        _logoImageView.contentMode = UIViewContentModeScaleAspectFit;
+        _logoImageView.image = [UIImage textImageName:@"asset_logo"];
     }
-    return _backImageView;
+    return _logoImageView;
 }
 
-- (XXLabel *)nameLabel {
-    if (!_nameLabel) {
-        _nameLabel = [XXLabel labelWithFrame:CGRectMake(K375(16), 44, kScreen_Width - K375(90), 24) font:kFontBold(20) textColor:[UIColor whiteColor]];
-        _nameLabel.text = [NSString stringWithFormat:@"Hello, %@",KUser.currentAccount.userName];
+- (XXLabel *)logoLabel {
+    if (!_logoLabel) {
+        _logoLabel = [XXLabel labelWithFrame:CGRectMake(43, 64, 200, 18) font:kFontBold(20) textColor:kGray900];
+        _logoLabel.text = LocalizedString(@"logoName");
+        _logoLabel.textAlignment = NSTextAlignmentLeft;
     }
-    return _nameLabel;
-}
-
-- (XXLabel *)addressLabel {
-    if (!_addressLabel) {
-        CGFloat width = [NSString widthWithText:kAddressReplace(KUser.address) font:kFont12];
-        CGFloat maxWidth = kScreen_Width - K375(16) - 40;
-        width = width > maxWidth ? maxWidth : width;
-        _addressLabel = [XXLabel labelWithFrame:CGRectMake(K375(16), CGRectGetMaxY(self.nameLabel.frame) + 10, width, 16) font:kFont12 textColor:[UIColor whiteColor]];
-        _addressLabel.text = kAddressReplace(KUser.address);
-        UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(addressTapAction)];
-        [_addressLabel addGestureRecognizer:tap];
-        _addressLabel.userInteractionEnabled = YES;
-    }
-    return _addressLabel;
-}
-
-- (XXButton *)codeBtn {
-    if (!_codeBtn) {
-        _codeBtn = [XXButton buttonWithFrame:CGRectMake(CGRectGetMaxX(self.addressLabel.frame) + 6, self.addressLabel.top, 16, 16) block:^(UIButton *button) {
-            [XXChainAddressView showMainAccountAddress];
-        }];
-        [_codeBtn setImage:[UIImage imageNamed:@"codeCircle"] forState:UIControlStateNormal];
-    }
-    return _codeBtn;
+    return _logoLabel;
 }
 
 - (XXButton *)addAccountBtn {
     if (_addAccountBtn == nil) {
         MJWeakSelf
-        _addAccountBtn = [XXButton buttonWithFrame:CGRectMake(kScreen_Width - 44, 74, 24, 24) block:^(UIButton *button) {
+        _addAccountBtn = [XXButton buttonWithFrame:CGRectMake(kScreen_Width - 44, 61, 24, 24) block:^(UIButton *button) {
             [weakSelf addAccountAction];
         }];
-        [_addAccountBtn setImage:[UIImage imageNamed:@"asset_addAccount"] forState:UIControlStateNormal];
+        [_addAccountBtn setImage:[UIImage textImageName:@"asset_addAccount"] forState:UIControlStateNormal];
     }
     return _addAccountBtn;
 }
@@ -182,7 +168,7 @@
 
 - (UIView *)contentView {
     if (_contentView == nil) {
-        _contentView = [[UIView alloc] initWithFrame:CGRectMake(K375(16), 110, kScreen_Width - K375(32), 180)];
+        _contentView = [[UIView alloc] initWithFrame:CGRectMake(K375(16), 100, kScreen_Width - K375(32), 188)];
         _contentView.layer.cornerRadius = 10;
         _contentView.backgroundColor = kBackgroundLeverSecond;
         _contentView.layer.shadowColor = [kShadowColor CGColor];
@@ -193,105 +179,102 @@
     return _contentView;
 }
 
-- (UIImageView *)logoImageView {
-    if (_logoImageView == nil) {
-        _logoImageView = [[UIImageView alloc] initWithFrame:CGRectMake(20, 18, 18, 16)];
-        _logoImageView.contentMode = UIViewContentModeScaleAspectFit;
-        _logoImageView.image = [UIImage imageNamed:@"asset_logo"];
+- (UIImageView *)backImageView {
+    if (!_backImageView) {
+        _backImageView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, self.contentView.width, 140)];
+        _backImageView.image = [UIImage imageNamed:@"assetHeaderBack"];
     }
-    return _logoImageView;
+    return _backImageView;
 }
 
-- (XXLabel *)logoLabel {
-    if (!_logoLabel) {
-        _logoLabel = [XXLabel labelWithFrame:CGRectMake(40, 18, 100, 16) font:kFontBold(13) textColor:kGray700];
-        _logoLabel.text = LocalizedString(@"logoName");
-        _logoLabel.textAlignment = NSTextAlignmentLeft;
+- (XXLabel *)nameLabel {
+    if (!_nameLabel) {
+        _nameLabel = [XXLabel labelWithFrame:CGRectMake(20, 20, self.contentView.width, 24) font:kFontBold(17) textColor:[UIColor whiteColor]];
+        _nameLabel.text = [NSString stringWithFormat:@"Hello, %@",KUser.currentAccount.userName];
     }
-    return _logoLabel;
+    return _nameLabel;
 }
 
-- (XXButton *)copyButton {
-    if (_copyButton == nil) {
-        _copyButton = [XXButton buttonWithFrame:CGRectMake(CGRectGetMaxX(self.addressLabel.frame), self.addressLabel.top - 12, 40, 40) block:^(UIButton *button) {
-            if (IsEmpty(KUser.address)) {
-                Alert *alert = [[Alert alloc] initWithTitle:LocalizedString(@"CopyFailed") duration:kAlertDuration completion:^{
-                }];
-                [alert showAlert];
-            } else {
-                UIPasteboard *pab = [UIPasteboard generalPasteboard];
-                [pab setString:KUser.address];
-                Alert *alert = [[Alert alloc] initWithTitle:LocalizedString(@"CopySuccessfully") duration:kAlertDuration completion:^{
-                }];
-                [alert showAlert];
-            }
-        }];
-        [_copyButton setImage:[UIImage imageNamed:@"paste"] forState:UIControlStateNormal];
+- (XXLabel *)mainNetLabel {
+    if (!_mainNetLabel) {
+        _mainNetLabel = [XXLabel labelWithFrame:CGRectMake(self.contentView.width - 96, 0, 96, 24) text:LocalizedString(@"MainNet") font:kFont(11) textColor:[UIColor whiteColor] alignment:NSTextAlignmentCenter cornerRadius:8];
+        _mainNetLabel.layer.maskedCorners = kCALayerMinXMaxYCorner;
+        _mainNetLabel.backgroundColor = kPrimaryMain;
     }
-    return _copyButton;
+    return _mainNetLabel;
+}
+
+- (XXLabel *)assetNameLabel {
+    if (!_assetNameLabel) {
+        NSString *text = LocalizedString(@"TotalAsset");
+        CGFloat width = [NSString widthWithText:text font:kFont13];
+        _assetNameLabel = [XXLabel labelWithFrame:CGRectMake(20, CGRectGetMaxY(self.nameLabel.frame) + 20, width, 16) font:kFont(13) textColor:[UIColor whiteColor]];
+        _assetNameLabel.text = text;
+    }
+    return _assetNameLabel;
 }
 
 - (XXButton *)hidenAssetsButton {
     if (_hidenAssetsButton == nil) {
         MJWeakSelf
-        _hidenAssetsButton = [XXButton buttonWithFrame:CGRectMake(self.contentView.width - 44, 16, 24, 24) block:^(UIButton *button) {
+        _hidenAssetsButton = [XXButton buttonWithFrame:CGRectMake(CGRectGetMaxX(self.assetNameLabel.frame) + 3, CGRectGetMaxY(self.nameLabel.frame) + 18, 22, 22) block:^(UIButton *button) {
             KUser.isHideAsset = !KUser.isHideAsset;
             weakSelf.hidenAssetsButton.selected = KUser.isHideAsset;
             if (weakSelf.actionBlock) {
                 weakSelf.actionBlock();
             }
         }];
-        [_hidenAssetsButton setImage:[UIImage imageNamed:@"unhidden"] forState:UIControlStateNormal];
-        [_hidenAssetsButton setImage:[UIImage subTextImageName:@"eyehidden"] forState:UIControlStateSelected];
+        [_hidenAssetsButton setImage:[UIImage imageNamed:@"unHiddenAssets"] forState:UIControlStateNormal];
+        [_hidenAssetsButton setImage:[UIImage subTextImageName:@"hiddenAssets"] forState:UIControlStateSelected];
         _hidenAssetsButton.selected = KUser.isHideAsset;
     }
     return _hidenAssetsButton;
 }
 
-- (XXLabel *)assetNameLabel {
-    if (!_assetNameLabel) {
-        NSString *text = NSLocalizedFormatString(LocalizedString(@"TotalAsset"),[KUser.ratesKey uppercaseString]);
-        CGFloat width = [NSString widthWithText:text font:kFont12];
-        _assetNameLabel = [XXLabel labelWithFrame:CGRectMake(20, CGRectGetMaxY(self.logoLabel.frame) + 20, width, 16) font:kFont(12) textColor:kGray700];
-        _assetNameLabel.text = text;
-    }
-    return _assetNameLabel;
-}
-
 - (XXLabel *)assetSymbolLabel {
     if (!_assetSymbolLabel) {
-        _assetSymbolLabel = [XXLabel labelWithFrame:CGRectMake(20, CGRectGetMaxY(self.assetNameLabel.frame) + 14, 12, 19) text:@"" font:kFontBold16 textColor:kGray700];
+        _assetSymbolLabel = [XXLabel labelWithFrame:CGRectMake(20, CGRectGetMaxY(self.assetNameLabel.frame) + 17, 12, 19) text:@"" font:kFontBold16 textColor:[UIColor whiteColor]];
     }
     return _assetSymbolLabel;
 }
 
 - (XXLabel *)totalAssetLabel {
     if (!_totalAssetLabel) {
-        _totalAssetLabel = [XXLabel labelWithFrame:CGRectMake(CGRectGetMaxX(self.assetSymbolLabel.frame), CGRectGetMaxY(self.assetNameLabel.frame) + 4, self.contentView.width - K375(40), 32) font:kNumberFontBold(30) textColor:kGray700Special];
+        _totalAssetLabel = [XXLabel labelWithFrame:CGRectMake(CGRectGetMaxX(self.assetSymbolLabel.frame), CGRectGetMaxY(self.assetNameLabel.frame) + 8, self.contentView.width - K375(40), 32) font:kNumberFontBold(32) textColor:[UIColor whiteColor]];
     }
     return _totalAssetLabel;
 }
 
-- (UIView *)lineView {
-    if (_lineView == nil) {
-        _lineView = [[UIView alloc] initWithFrame:CGRectMake(0, 128, self.contentView.width, KLine_Height)];
-        _lineView.backgroundColor = KLine_Color;
+- (XXButton *)getTestCoinBtn {
+    if (!_getTestCoinBtn) {
+        MJWeakSelf
+        CGFloat width = [NSString widthWithText:LocalizedString(@"GetTestCoin") font:kFont13] + 26;
+        _getTestCoinBtn = [XXButton buttonWithFrame:CGRectMake(self.contentView.width - width - 20, 60, width, 32) block:^(UIButton *button) {
+            [weakSelf requestGetTestCoin:@"hbc"];
+            [weakSelf requestGetTestCoin:@"kiwi"];
+        }];
+        _getTestCoinBtn.layer.cornerRadius = 16;
+        [_getTestCoinBtn setTitle:LocalizedString(@"GetTestCoin") forState:UIControlStateNormal];
+        _getTestCoinBtn.backgroundColor = [UIColor whiteColor];
+        [_getTestCoinBtn setTitleColor:kPrimaryMain forState:UIControlStateNormal];
+        _getTestCoinBtn.titleLabel.font = kFont13;
+        [_getTestCoinBtn setContentHorizontalAlignment:UIControlContentHorizontalAlignmentCenter];
     }
-    return _lineView;
+    return _getTestCoinBtn;
 }
 
 - (XXButton *)receiveMoneyBtn {
     if (_receiveMoneyBtn == nil) {
         MJWeakSelf
-        _receiveMoneyBtn = [XXButton buttonWithFrame:CGRectMake(0, 129, self.contentView.width/3, self.contentView.height - 129) title:LocalizedString(@"ReceiveMoney") font:kFont13 titleColor:kGray500 block:^(UIButton *button) {
+        _receiveMoneyBtn = [XXButton buttonWithFrame:CGRectMake(0, 140, self.contentView.width/3, self.contentView.height - 140) title:LocalizedString(@"ReceiveMoney") font:kFont13 titleColor:kGray900 block:^(UIButton *button) {
             XXDepositCoinVC *depositVC = [[XXDepositCoinVC alloc] init];
             [weakSelf.viewController.navigationController pushViewController:depositVC animated:YES];
         }];
         _receiveMoneyBtn.titleEdgeInsets = UIEdgeInsetsMake(0, 8, 0, 0);
         if (kIsNight) {
-            [_receiveMoneyBtn setImage:[UIImage imageNamed:@"receiveMoney_Night"] forState:UIControlStateNormal];
+            [_receiveMoneyBtn setImage:[UIImage imageNamed:@"assert_receiveMoney"] forState:UIControlStateNormal];
         } else {
-            [_receiveMoneyBtn setImage:[UIImage imageNamed:@"receiveMoney"] forState:UIControlStateNormal];
+            [_receiveMoneyBtn setImage:[UIImage imageNamed:@"assert_receiveMoney"] forState:UIControlStateNormal];
         }
     }
     return _receiveMoneyBtn;
@@ -300,18 +283,16 @@
 - (XXButton *)transferMoneyBtn {
     if (_transferMoneyBtn == nil) {
         MJWeakSelf
-        _transferMoneyBtn = [XXButton buttonWithFrame:CGRectMake(self.contentView.width/3, 129, self.contentView.width/3, self.contentView.height - 129) title:LocalizedString(@"Transfer") font:kFont13 titleColor:kGray500 block:^(UIButton *button) {
+        _transferMoneyBtn = [XXButton buttonWithFrame:CGRectMake(self.contentView.width/3, 140, self.contentView.width/3, self.contentView.height - 140) title:LocalizedString(@"Transfer") font:kFont13 titleColor:kGray900 block:^(UIButton *button) {
             XXTransferVC *transferVC = [[XXTransferVC alloc] init];
             transferVC.symbol = kMainToken;
             [weakSelf.viewController.navigationController pushViewController:transferVC animated:YES];
         }];
         _transferMoneyBtn.titleEdgeInsets = UIEdgeInsetsMake(0, 8, 0, 0);
         if (kIsNight) {
-            [_transferMoneyBtn setImage:[UIImage imageNamed:@"payMoney_Night"] forState:UIControlStateNormal
-            ];
+            [_transferMoneyBtn setImage:[UIImage imageNamed:@"assert_payMoney"] forState:UIControlStateNormal];
         } else {
-            [_transferMoneyBtn setImage:[UIImage imageNamed:@"payMoney"] forState:UIControlStateNormal
-            ];
+            [_transferMoneyBtn setImage:[UIImage imageNamed:@"assert_payMoney"] forState:UIControlStateNormal];
         }
     }
     return _transferMoneyBtn;
@@ -320,34 +301,13 @@
 - (XXButton *)delegateBtn {
     if (_delegateBtn == nil) {
         MJWeakSelf
-        _delegateBtn = [XXButton buttonWithFrame:CGRectMake(self.contentView.width*2/3, 129, self.contentView.width/3, self.contentView.height - 129) title:LocalizedString(@"Delegate") font:kFont13 titleColor:kGray500 block:^(UIButton *button) {
+        _delegateBtn = [XXButton buttonWithFrame:CGRectMake(self.contentView.width*2/3, 140, self.contentView.width/3, self.contentView.height - 140) title:LocalizedString(@"Delegate") font:kFont13 titleColor:kGray900 block:^(UIButton *button) {
             XXValidatorsHomeViewController *validatorVC = [[XXValidatorsHomeViewController alloc] init];
             [weakSelf.viewController.navigationController pushViewController:validatorVC animated:YES];
         }];
         _delegateBtn.titleEdgeInsets = UIEdgeInsetsMake(0, 8, 0, 0);
-        if (kIsNight) {
-            [_delegateBtn setImage:[UIImage imageNamed:@"withdrawMoney_Night"] forState:UIControlStateNormal];
-        } else {
-            [_delegateBtn setImage:[UIImage imageNamed:@"withdrawMoney"] forState:UIControlStateNormal];
-        }
-        
+        [_delegateBtn setImage:[UIImage imageNamed:@"assert_delegate"] forState:UIControlStateNormal];
     }
     return _delegateBtn;
-}
-
-- (UIView *)lineView1 {
-    if (_lineView1 == nil) {
-        _lineView1 = [[UIView alloc] initWithFrame:CGRectMake(self.contentView.width/3, CGRectGetMaxY(self.lineView.frame) + 18, 1, 16)];
-        _lineView1.backgroundColor = KLine_Color;
-    }
-    return _lineView1;
-}
-
-- (UIView *)lineView2 {
-    if (_lineView2 == nil) {
-        _lineView2 = [[UIView alloc] initWithFrame:CGRectMake(self.contentView.width*2/3, CGRectGetMaxY(self.lineView.frame) + 18, 1, 16)];
-        _lineView2.backgroundColor = KLine_Color;
-    }
-    return _lineView2;
 }
 @end

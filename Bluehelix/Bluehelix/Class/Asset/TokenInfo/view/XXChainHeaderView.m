@@ -49,22 +49,23 @@
     [self addSubview:self.addTokenBtn];
 }
 
-- (void)setChain:(NSString *)chain {
-    _chain = chain;
-    if ([chain isEqualToString:kMainToken]) {
+- (void)setChainModel:(XXChainModel *)chainModel {
+    _chainModel = chainModel;
+    if ([chainModel.chain isEqualToString:kMainToken]) {
         self.chainNameLabel.text = [NSString stringWithFormat:@"HBTC %@",LocalizedString(@"DepositChainAddress")];
     } else {
         self.chainNameLabel.text = LocalizedString(@"WithdrawChainTitle");
     }
-    XXTokenModel *token = [[XXSqliteManager sharedSqlite] tokenBySymbol:chain];
+    XXTokenModel *token = [[XXSqliteManager sharedSqlite] tokenBySymbol:chainModel.chain];
     [self.logoIcon sd_setImageWithURL:[NSURL URLWithString:token.logo] placeholderImage:[UIImage imageNamed:@"placeholderToken"]];
-    self.chainAddress = [[XXAssetSingleManager sharedManager] externalAddressBySymbol:chain];
+    self.chainAddress = [[XXAssetSingleManager sharedManager] externalAddressBySymbol:chainModel.chain];
+    self.addTokenBtn.hidden = self.chainModel.single_coin;
     [self setChainButtonTitle];
 }
 
 // 更新跨链地址展示
 - (void)setChainButtonTitle {
-    if (IsEmpty(self.chain) || [self.chain isEqualToString:kMainToken]) {
+    if (IsEmpty(self.chainModel.chain) || [self.chainModel.chain isEqualToString:kMainToken]) {
         CGFloat width = [NSString widthWithText:[NSString addressShortReplace:KUser.address] font:kFont12] + 20;
         self.addressLabel.frame = CGRectMake((self.width - width)/2, CGRectGetMaxY(self.chainNameLabel.frame) + 13, width, 24);
         self.addressLabel.text = [NSString addressShortReplace:KUser.address];
@@ -86,15 +87,15 @@
 }
 
 - (void)chainAction {
-    if (IsEmpty(self.chain) || [self.chain isEqualToString:kMainToken]) {
+    if (IsEmpty(self.chainModel.chain) || [self.chainModel.chain isEqualToString:kMainToken]) {
         [XXChainAddressView showMainAccountAddress];
     } else {
         if (IsEmpty(self.chainAddress)) {
             XXWithdrawChainVC *chain = [[XXWithdrawChainVC alloc] init];
-            chain.tokenModel = [[XXSqliteManager sharedSqlite] tokenBySymbol:self.chain];
+            chain.tokenModel = [[XXSqliteManager sharedSqlite] tokenBySymbol:self.chainModel.chain];
             [self.viewController.navigationController pushViewController:chain animated:YES];
         } else {
-            [XXChainAddressView showWithChain:self.chain];
+            [XXChainAddressView showWithChain:self.chainModel.chain];
         }
     }
 }
@@ -149,9 +150,9 @@
 - (XXButton *)addTokenBtn {
     if (!_addTokenBtn) {
         CGFloat width = [NSString widthWithText:LocalizedString(@"AddToken") font:kFont13];
-        _addTokenBtn = [XXButton buttonWithFrame:CGRectMake(self.width - 100, CGRectGetMaxY(self.lineView.frame) + 18, width + 40 , 20) title:LocalizedString(@"AddToken") font:kFont13 titleColor:kPrimaryMain block:^(UIButton *button) {
+        _addTokenBtn = [XXButton buttonWithFrame:CGRectMake(self.width - width - 40 - K375(16), CGRectGetMaxY(self.lineView.frame) + 18, width + 40 , 20) title:LocalizedString(@"AddToken") font:kFont13 titleColor:kPrimaryMain block:^(UIButton *button) {
             XXAddNewAssetVC *addVC = [[XXAddNewAssetVC alloc] init];
-            addVC.chain = self.chain;
+            addVC.chain = self.chainModel.chain;
             [self.viewController.navigationController pushViewController:addVC animated:YES];
         }];
         [_addTokenBtn setImage:[UIImage imageNamed:@"addTokenIcon"] forState:UIControlStateNormal];

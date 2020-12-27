@@ -37,17 +37,17 @@
 
 - (void)setupInitialUI
 {
-    self.backgroundColor = kWhite100;
+//    self.backgroundColor = kWhite100;
     [self addSubview:self.contentView];
-    [self.contentView addSubview:self.icon];
+//    [self.contentView addSubview:self.icon];
     [self.contentView addSubview:self.textLabel];
-    [self.contentView addSubview:self.closeBtn];
+//    [self.contentView addSubview:self.closeBtn];
 }
 
 - (UIView *)contentView {
     if (_contentView == nil) {
-        _contentView = [[UIView alloc] initWithFrame:CGRectMake(15, 2, kScreen_Width - 30, 32)];
-        _contentView.layer.cornerRadius = 16;
+        _contentView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, kScreen_Width - 115, 40)];
+//        _contentView.layer.cornerRadius = 16;
     }
     return _contentView;
 }
@@ -62,7 +62,7 @@
 
 - (UILabel *)textLabel {
     if (_textLabel == nil) {
-        _textLabel = [[UILabel alloc] initWithFrame:CGRectMake(45, 0, self.contentView.width - 80, 32)];
+        _textLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, self.contentView.width, self.contentView.height)];
         _textLabel.font = kFont12;
         _textLabel.textColor = kGray700;
     }

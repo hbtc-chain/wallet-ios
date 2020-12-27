@@ -88,7 +88,7 @@
 - (XXTextFieldView *)oldPasswordView {
     if (_oldPasswordView == nil) {
         _oldPasswordView = [[XXTextFieldView alloc] initWithFrame:CGRectMake(K375(32), kNavHeight + 10, kScreen_Width - K375(64), ItemHeight)];
-        _oldPasswordView.placeholder = LocalizedString(@"OldPassword");
+        _oldPasswordView.placeholder = LocalizedString(@"OldPassword6Number");
         _oldPasswordView.showLookBtn = YES;
         _oldPasswordView.textField.delegate = self;
         _oldPasswordView.textField.keyboardType = UIKeyboardTypeNumberPad;
@@ -100,7 +100,7 @@
 - (XXTextFieldView *)passwordView {
     if (_passwordView == nil) {
         _passwordView = [[XXTextFieldView alloc] initWithFrame:CGRectMake(K375(32), CGRectGetMaxY(self.oldPasswordView.frame) + 30, kScreen_Width - K375(64), ItemHeight)];
-        _passwordView.placeholder = LocalizedString(@"NewPassword");
+        _passwordView.placeholder = LocalizedString(@"NewPassword6Number");
         _passwordView.showLookBtn = YES;
         _passwordView.textField.delegate = self;
         _passwordView.textField.keyboardType = UIKeyboardTypeNumberPad;
@@ -112,7 +112,7 @@
 - (XXTextFieldView *)okPasswordView {
     if (_okPasswordView == nil) {
         _okPasswordView = [[XXTextFieldView alloc] initWithFrame:CGRectMake(K375(32), CGRectGetMaxY(self.passwordView.frame) + 30, kScreen_Width - K375(64), ItemHeight)];
-        _okPasswordView.placeholder = LocalizedString(@"ConfirmNewPassword");
+        _okPasswordView.placeholder = LocalizedString(@"ConfirmNewPassword6Number");
         _okPasswordView.showLookBtn = YES;
         _okPasswordView.textField.delegate = self;
         _okPasswordView.textField.keyboardType = UIKeyboardTypeNumberPad;

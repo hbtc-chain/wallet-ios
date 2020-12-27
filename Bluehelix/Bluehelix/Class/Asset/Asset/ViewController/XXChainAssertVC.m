@@ -50,16 +50,6 @@
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(refreshAsset) name:kNotificationAssetRefresh object:nil];
 }
 
-- (void)viewWillDisappear:(BOOL)animated {
-    [super viewWillDisappear:animated];
-    [KSystem statusBarSetUpDefault];
-}
-
-- (void)viewDidAppear:(BOOL)animated {
-    [super viewDidAppear:animated];
-    [KSystem statusBarSetUpWhiteColor];
-}
-
 - (void)setupUI {
     self.navView.hidden = YES;
     [self.view addSubview:self.tableView];
@@ -105,7 +95,7 @@
         }
     } else {
         if (self.noticeArr.count > 0 && !KUser.closeNoticeFlag) {
-            return 32;
+            return 50;
         } else {
             return 0;
         }
@@ -146,8 +136,7 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     XXChainDetailVC *detailVC = [[XXChainDetailVC alloc] init];
-    XXChainModel *model = self.chainArray[indexPath.row];
-    detailVC.chainName = model.chain;
+    detailVC.chainModel = self.chainArray[indexPath.row];
     [self.navigationController pushViewController:detailVC animated:YES];
 }
 
@@ -232,7 +221,7 @@
 
 - (XXNoticeView *)noticeView {
     if (!_noticeView) {
-        _noticeView = [[XXNoticeView alloc] initWithFrame:CGRectMake(0, 0, kScreen_Width, 46)];
+        _noticeView = [[XXNoticeView alloc] initWithFrame:CGRectMake(0, 0, kScreen_Width, 50)];
         MJWeakSelf
         _noticeView.closeBlock = ^{
             [weakSelf.tableView reloadData];
