@@ -145,7 +145,7 @@
 
 - (UIView *)lineView {
     if (_lineView == nil) {
-        _lineView = [[UIView alloc] initWithFrame:CGRectMake(self.coinNameLabel.left, [[self class] getCellHeight] - 1, kScreen_Width - K375(15), 1)];
+        _lineView = [[UIView alloc] initWithFrame:CGRectMake(0, [[self class] getCellHeight] - 1, kScreen_Width - K375(15), 1)];
         _lineView.backgroundColor = KLine_Color;
     }
     return _lineView;

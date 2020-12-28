@@ -473,7 +473,7 @@
 "Token" = "Token";
 "CreateCrossDepositAddress" = "Create cross-chain deposit address";
 "CreateConfim" = "Confirm to creat";
-"MainNet" = "MainChain";
+"MainNet" = "Testnet";
 "OldPassword6Number" = "Enter the Current password(6-digit)";
 "NewPassword6Number" = "Enter your new password(6-digit)";
 "ConfirmNewPassword6Number" = "Enter your new password(6-digit)";

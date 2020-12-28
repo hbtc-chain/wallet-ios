@@ -26,7 +26,7 @@
     self = [super initWithFrame:frame];
     if (self) {
         
-        self.backgroundColor = kViewBackgroundColor;
+        self.backgroundColor = kIsNight ? kWhite100 : [UIColor colorWithHexString:@"#F9F9FB"];
         
         [self setupUI];
     }
@@ -108,7 +108,7 @@
 - (UIView *)contentView {
     if (_contentView == nil) {
         _contentView = [[UIView alloc] initWithFrame:CGRectMake(16, 0, kScreen_Width - 32, 40)];
-        _contentView.backgroundColor = kWhite100;
+        _contentView.backgroundColor = kBackgroundLeverSecond;
         _contentView.layer.cornerRadius = 6;
     }
     return _contentView;

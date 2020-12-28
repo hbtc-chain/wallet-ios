@@ -3386,7 +3386,7 @@
 				CODE_SIGN_ENTITLEMENTS = "";
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 13;
 				DEFINES_MODULE = NO;
 				DEVELOPMENT_TEAM = 768MYA9JJQ;
 				ENABLE_BITCODE = NO;
@@ -3404,12 +3404,12 @@
 				INFOPLIST_FILE = "$(SRCROOT)/Bluehelix/AppResource/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				MARKETING_VERSION = 0.3;
+				MARKETING_VERSION = 1.0;
 				OTHER_LDFLAGS = (
 					"$(inherited)",
 					"-ObjC",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.bluehelix.wallet.main;
+				PRODUCT_BUNDLE_IDENTIFIER = com.bluehelix.wallet.ios;
 				PRODUCT_NAME = "HBTC Wallet";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "Bluehelix/Tools/bech32/Bluehelix-Bridging-Header.h";
@@ -3430,7 +3430,7 @@
 				CODE_SIGN_ENTITLEMENTS = "";
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 13;
 				DEFINES_MODULE = NO;
 				DEVELOPMENT_TEAM = 768MYA9JJQ;
 				ENABLE_BITCODE = NO;
@@ -3448,12 +3448,12 @@
 				INFOPLIST_FILE = "$(SRCROOT)/Bluehelix/AppResource/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				MARKETING_VERSION = 0.3;
+				MARKETING_VERSION = 1.0;
 				OTHER_LDFLAGS = (
 					"$(inherited)",
 					"-ObjC",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.bluehelix.wallet.main;
+				PRODUCT_BUNDLE_IDENTIFIER = com.bluehelix.wallet.ios;
 				PRODUCT_NAME = "HBTC Wallet";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "Bluehelix/Tools/bech32/Bluehelix-Bridging-Header.h";

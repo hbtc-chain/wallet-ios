@@ -26,7 +26,7 @@
 @property (nonatomic, strong) XXButton *addAccountBtn;
 @property (nonatomic, strong) UIView *contentView;
 @property (nonatomic, strong) UIImageView *logoImageView;
-@property (nonatomic, strong) XXLabel *logoLabel;
+//@property (nonatomic, strong) XXLabel *logoLabel;
 @property (nonatomic, strong) XXButton *hidenAssetsButton;
 @property (nonatomic, strong) XXButton *getTestCoinBtn;
 @property (nonatomic, strong) XXLabel *assetNameLabel;
@@ -43,9 +43,9 @@
 {
     self = [super initWithFrame:frame];
     if (self) {
-        self.backgroundColor = kWhiteColor;
+        self.backgroundColor = kIsNight ? kWhite100 : [UIColor colorWithHexString:@"#F9F9FB"];
         [self addSubview:self.logoImageView];
-        [self addSubview:self.logoLabel];
+//        [self addSubview:self.logoLabel];
         [self addSubview:self.addAccountBtn];
 //        [self addSubview:self.scanBtn];
         [self addSubview:self.contentView];
@@ -128,21 +128,21 @@
 
 - (UIImageView *)logoImageView {
     if (_logoImageView == nil) {
-        _logoImageView = [[UIImageView alloc] initWithFrame:CGRectMake(20, 64, 21.5, 19)];
+        _logoImageView = [[UIImageView alloc] initWithFrame:CGRectMake(20, 64, 158, 20)];
         _logoImageView.contentMode = UIViewContentModeScaleAspectFit;
         _logoImageView.image = [UIImage textImageName:@"asset_logo"];
     }
     return _logoImageView;
 }
 
-- (XXLabel *)logoLabel {
-    if (!_logoLabel) {
-        _logoLabel = [XXLabel labelWithFrame:CGRectMake(43, 64, 200, 18) font:kFontBold(20) textColor:kGray900];
-        _logoLabel.text = LocalizedString(@"logoName");
-        _logoLabel.textAlignment = NSTextAlignmentLeft;
-    }
-    return _logoLabel;
-}
+//- (XXLabel *)logoLabel {
+//    if (!_logoLabel) {
+//        _logoLabel = [XXLabel labelWithFrame:CGRectMake(43, 64, 200, 18) font:kFontBold(20) textColor:kGray900];
+//        _logoLabel.text = LocalizedString(@"logoName");
+//        _logoLabel.textAlignment = NSTextAlignmentLeft;
+//    }
+//    return _logoLabel;
+//}
 
 - (XXButton *)addAccountBtn {
     if (_addAccountBtn == nil) {
@@ -168,7 +168,7 @@
 
 - (UIView *)contentView {
     if (_contentView == nil) {
-        _contentView = [[UIView alloc] initWithFrame:CGRectMake(K375(16), 100, kScreen_Width - K375(32), 188)];
+        _contentView = [[UIView alloc] initWithFrame:CGRectMake(K375(16), 102, kScreen_Width - K375(32), 188)];
         _contentView.layer.cornerRadius = 10;
         _contentView.backgroundColor = kBackgroundLeverSecond;
         _contentView.layer.shadowColor = [kShadowColor CGColor];
@@ -197,9 +197,10 @@
 
 - (XXLabel *)mainNetLabel {
     if (!_mainNetLabel) {
-        _mainNetLabel = [XXLabel labelWithFrame:CGRectMake(self.contentView.width - 96, 0, 96, 24) text:LocalizedString(@"MainNet") font:kFont(11) textColor:[UIColor whiteColor] alignment:NSTextAlignmentCenter cornerRadius:8];
-        _mainNetLabel.layer.maskedCorners = kCALayerMinXMaxYCorner;
-        _mainNetLabel.backgroundColor = kPrimaryMain;
+        CGFloat width = [NSString widthWithText:LocalizedString(@"MainNet") font:kFont(11)] + 30;
+        _mainNetLabel = [XXLabel labelWithFrame:CGRectMake(self.contentView.width - width, 0, width, 24) text:LocalizedString(@"MainNet") font:kFont(11) textColor:[UIColor whiteColor] alignment:NSTextAlignmentCenter cornerRadius:8];
+        _mainNetLabel.layer.maskedCorners = kCALayerMinXMaxYCorner | kCALayerMaxXMinYCorner;
+        _mainNetLabel.backgroundColor = [[UIColor colorWithHexString:@"#0A1825"] colorWithAlphaComponent:0.12];
     }
     return _mainNetLabel;
 }
@@ -256,7 +257,7 @@
         _getTestCoinBtn.layer.cornerRadius = 16;
         [_getTestCoinBtn setTitle:LocalizedString(@"GetTestCoin") forState:UIControlStateNormal];
         _getTestCoinBtn.backgroundColor = [UIColor whiteColor];
-        [_getTestCoinBtn setTitleColor:kPrimaryMain forState:UIControlStateNormal];
+        [_getTestCoinBtn setTitleColor:[UIColor colorWithHexString:@"#2D54E5"] forState:UIControlStateNormal];
         _getTestCoinBtn.titleLabel.font = kFont13;
         [_getTestCoinBtn setContentHorizontalAlignment:UIControlContentHorizontalAlignmentCenter];
     }
@@ -266,7 +267,7 @@
 - (XXButton *)receiveMoneyBtn {
     if (_receiveMoneyBtn == nil) {
         MJWeakSelf
-        _receiveMoneyBtn = [XXButton buttonWithFrame:CGRectMake(0, 140, self.contentView.width/3, self.contentView.height - 140) title:LocalizedString(@"ReceiveMoney") font:kFont13 titleColor:kGray900 block:^(UIButton *button) {
+        _receiveMoneyBtn = [XXButton buttonWithFrame:CGRectMake(0, 140, self.contentView.width/3, self.contentView.height - 140) title:LocalizedString(@"ReceiveMoney") font:kFont14 titleColor:kGray900 block:^(UIButton *button) {
             XXDepositCoinVC *depositVC = [[XXDepositCoinVC alloc] init];
             [weakSelf.viewController.navigationController pushViewController:depositVC animated:YES];
         }];
@@ -283,7 +284,7 @@
 - (XXButton *)transferMoneyBtn {
     if (_transferMoneyBtn == nil) {
         MJWeakSelf
-        _transferMoneyBtn = [XXButton buttonWithFrame:CGRectMake(self.contentView.width/3, 140, self.contentView.width/3, self.contentView.height - 140) title:LocalizedString(@"Transfer") font:kFont13 titleColor:kGray900 block:^(UIButton *button) {
+        _transferMoneyBtn = [XXButton buttonWithFrame:CGRectMake(self.contentView.width/3, 140, self.contentView.width/3, self.contentView.height - 140) title:LocalizedString(@"Transfer") font:kFont14 titleColor:kGray900 block:^(UIButton *button) {
             XXTransferVC *transferVC = [[XXTransferVC alloc] init];
             transferVC.symbol = kMainToken;
             [weakSelf.viewController.navigationController pushViewController:transferVC animated:YES];
@@ -301,7 +302,7 @@
 - (XXButton *)delegateBtn {
     if (_delegateBtn == nil) {
         MJWeakSelf
-        _delegateBtn = [XXButton buttonWithFrame:CGRectMake(self.contentView.width*2/3, 140, self.contentView.width/3, self.contentView.height - 140) title:LocalizedString(@"Delegate") font:kFont13 titleColor:kGray900 block:^(UIButton *button) {
+        _delegateBtn = [XXButton buttonWithFrame:CGRectMake(self.contentView.width*2/3, 140, self.contentView.width/3, self.contentView.height - 140) title:LocalizedString(@"Delegate") font:kFont14 titleColor:kGray900 block:^(UIButton *button) {
             XXValidatorsHomeViewController *validatorVC = [[XXValidatorsHomeViewController alloc] init];
             [weakSelf.viewController.navigationController pushViewController:validatorVC animated:YES];
         }];

@@ -61,8 +61,7 @@
 }
 
 - (void)finishText:(NSString *)text {
-    NSString *pwd = [NSString md5:text];
-    if ([pwd isEqualToString:KUser.currentAccount.password] && self.sureBtnBlock) {
+    if ([NSString verifyPassword:text md5:KUser.currentAccount.password] && self.sureBtnBlock) {
         if (KUser.isQuickTextOpen) {
             KUser.lastPasswordTime = [NSString stringWithFormat:@"%f",[[NSDate date] timeIntervalSince1970]];
             KUser.text = text;

@@ -69,7 +69,7 @@
         }
         NSDecimalNumber *aTokenAmountDecimal = [NSDecimalNumber decimalNumberWithString:amount];
         NSString *aTokenAmountString = [[aTokenAmountDecimal decimalNumberByDividingBy:kPrecisionDecimalPower(token_a.decimals)] stringValue];
-        return [NSString stringWithFormat:@"%@ %@",aTokenAmountString, [token uppercaseString]];
+        return [NSString stringWithFormat:@"%@ %@",aTokenAmountString, [token_a.name uppercaseString]];
     }
 }
 
