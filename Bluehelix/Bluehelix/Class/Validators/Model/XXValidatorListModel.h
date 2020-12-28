@@ -23,6 +23,9 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, copy) NSString *up_time;
 @property (nonatomic, strong) XXValidatorCommission *commission;
 @property (nonatomic, strong) XXValidatorDescription *validatorDescription;
+@property (nonatomic, assign) BOOL is_key_node; //是否为托管节点
+@property (nonatomic, assign) BOOL is_elected; //是否为共识节点
+@property (nonatomic, strong) NSNumber *status; //状态 2是有效，0，1是无效
 
 @end
 

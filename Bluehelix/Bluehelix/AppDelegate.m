@@ -19,6 +19,7 @@
 #import "BHFaceIDLockVC.h"
 #import <WebKit/WebKit.h>
 #import <Bugly/Bugly.h>
+#import "XXIntegrityChecking.h"
 @interface AppDelegate ()
 
 /** 闪屏 */
@@ -28,10 +29,12 @@
 @end
 
 @implementation AppDelegate
-
 #pragma mark - 1. 程序开始
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
-    kIsQuickTextOpen = NO;
+    [XXIntegrityChecking checkJailBreak];
+    [XXIntegrityChecking checkVPN];
+    [KUser cleanTestData];
+    KUser.isQuickTextOpen = NO;
     [Bugly startWithAppId:kBuglyID];
     [self registerWebViewUserAgent];
     KUser.shouldVerify = YES;
@@ -39,6 +42,7 @@
     [[XXSqliteManager sharedSqlite] requestChain];
     [[XXSqliteManager sharedSqlite] requestDefaultTokens];
     [[XXSqliteManager sharedSqlite] requestMapping];
+    [[XXSqliteManager sharedSqlite] requestFee];
     if (!KUser.isSettedNightType) {
         KUser.isNightType = KSystem.isDarkStyle;
     }
@@ -49,9 +53,6 @@
             self.window.rootViewController = [[BHFaceIDLockVC alloc] init];
         } else {
             self.window.rootViewController = [[XXTabBarController alloc] init];
-//            XXLoginVC *loginVC = [[XXLoginVC alloc] init];
-//            XXNavigationController *loginNav = [[XXNavigationController alloc] initWithRootViewController:loginVC];
-//            self.window.rootViewController = loginNav;
         }
     } else {
         XXStartWalletVC *startVC = [[XXStartWalletVC alloc] init];

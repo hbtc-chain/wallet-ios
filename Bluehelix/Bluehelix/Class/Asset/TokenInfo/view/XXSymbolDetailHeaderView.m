@@ -8,6 +8,7 @@
 
 #import "XXSymbolDetailHeaderView.h"
 #import "XXTokenModel.h"
+#import <UIImageView+WebCache.h>
 
 @interface XXSymbolDetailHeaderView ()
 
@@ -36,7 +37,7 @@
     [self addSubview:self.backView];
     [self.backView.layer insertSublayer:self.shadowLayer atIndex:0];
     [self.backView addSubview:self.imageBackView];
-//    [self.imageBackView addSubview:self.imageView];
+    [self.imageBackView addSubview:self.imageView];
     [self.backView addSubview:self.tipLabel];
     [self.backView addSubview:self.amountLabel];
     [self.backView addSubview:self.assetLabel];
@@ -46,6 +47,8 @@
     _assetModel = assetModel;
     self.amountLabel.text = assetModel.amount;
     self.assetLabel.text = [[RatesManager shareRatesManager] getRatesWithToken:assetModel.symbol priceValue:assetModel.amount.doubleValue];
+    XXTokenModel *token = [[XXSqliteManager sharedSqlite] tokenBySymbol:assetModel.symbol];
+    [self.imageView sd_setImageWithURL:[NSURL URLWithString:token.logo]];
 }
 
 - (UIView *)backView {
@@ -81,7 +84,7 @@
 - (UIImageView *)imageView {
     if (!_imageView) {
         _imageView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 112, 112)];
-        _imageView.image = [UIImage imageNamed:@"placeholderToken"];
+//        _imageView.image = [UIImage imageNamed:@"placeholderToken"];
     }
     return _imageView;
 }

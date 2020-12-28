@@ -67,29 +67,6 @@ NS_ASSUME_NONNULL_BEGIN
               withdrawal_fee:(NSString *)withdrawal_fee
                         text:(NSString *)text;
 
-
-/// 添加流动性model
-/// @param from 交易发起人
-/// @param token_a 币种 a
-/// @param token_b 币种 b
-/// @param min_token_a_amount 币种的最小数量
-/// @param min_token_b_amount 币种的最小数量
-/// @param expired_at 交易过期时间，-1 表示不过期
-/// @param memo 备注 暂无
-/// @param type 交易类型
-/// @param text password
-- (instancetype)initWithfrom:(NSString *)from
-         feeAmount:(NSString *)feeAmount
-          feeDenom:(NSString *)feeDenom
-           token_a:(NSString *)token_a
-           token_b:(NSString *)token_b
-min_token_a_amount:(NSString *)min_token_a_amount
-min_token_b_amount:(NSString *)min_token_b_amount
-        expired_at:(NSString *)expired_at
-              memo:(NSString *)memo
-              type:(NSString *)type
-              text:(NSString *)text;
-
 @property (nonatomic, copy) NSString *fromAddress; // 转出地址
 @property (nonatomic, copy) NSString *toAddress; // 交易对方账户
 @property (nonatomic, copy) NSString *amount; // 交易数

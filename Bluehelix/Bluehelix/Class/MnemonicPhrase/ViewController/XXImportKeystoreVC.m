@@ -74,7 +74,7 @@
 
 - (void)pushNameVC:(Account *)account {
     XXAccountModel *model = [[XXAccountModel alloc] init];
-    model.privateKey = [AESCrypt encrypt:account.privateKeyString password:self.textFieldView.textField.text];
+    model.privateKey = [AESCrypt encrypt:account.privateKeyString password:[NSString md5:self.textFieldView.textField.text]];
     model.publicKey = account.pubKey;
     model.address = account.BHAddress;
     model.password = [NSString md5:self.textFieldView.textField.text];

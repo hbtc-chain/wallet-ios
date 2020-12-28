@@ -12,7 +12,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface XXChooseTokenCell : UITableViewCell
 
-- (void)configData:(XXMappingModel *)model;
+- (void)configData:(XXMappingModel *)model symbol:(NSString *)targetSymbol;
 
 @end
 

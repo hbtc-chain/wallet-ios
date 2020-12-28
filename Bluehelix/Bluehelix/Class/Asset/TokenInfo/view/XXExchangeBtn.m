@@ -15,7 +15,7 @@
 {
     self = [super initWithFrame:frame];
     if (self) {
-        self.backgroundColor = kWhiteColor;
+        self.backgroundColor = kGray50;
         [self addSubview:self.customImageView];
         [self addSubview:self.customLabel];
         [self addSubview:self.arrowImageView];
@@ -25,7 +25,7 @@
 
 - (UIImageView *)customImageView {
     if (!_customImageView) {
-        _customImageView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, self.height, self.height)];
+        _customImageView = [[UIImageView alloc] initWithFrame:CGRectMake(12, (self.height - 24)/2, 24, 24)];
     }
     return _customImageView;
 }

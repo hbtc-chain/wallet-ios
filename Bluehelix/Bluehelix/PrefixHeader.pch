@@ -110,6 +110,7 @@ typedef NS_ENUM(NSUInteger, NetworkMethod) {
 #define kGray100 kIsNight ? [UIColor colorWithHexString:@"#202F44"] : [UIColor colorWithHexString:@"#E7ECF4"]
 #define kGray50 kIsNight ? [UIColor colorWithHexString:@"#1A2233"] : [UIColor colorWithHexString:@"#F9F9FB"]
 #define kPriceFall kIsNight ? [UIColor colorWithHexString:@"#ED3756"] : [UIColor colorWithHexString:@"#ED3756"]
+#define kPriceRise kIsNight ? [UIColor colorWithHexString:@"#35E5DB"] : [UIColor colorWithHexString:@"#35E5DB"]
 #define kGreen100  kIsNight ? [UIColor colorWithHexString:@"#51D372"] : [UIColor colorWithHexString:@"#51D372"]
 #define kRed100 kIsNight ? [UIColor colorWithHexString:@"#F73A46"] : [UIColor colorWithHexString:@"#F73A46"]
 #define kOrange100 kIsNight ? [UIColor colorWithHexString:@"#FF922E"] : [UIColor colorWithHexString:@"#FF922E"]
@@ -192,7 +193,10 @@ typedef NS_ENUM(NSUInteger, NetworkMethod) {
 #define kBuglyID @"bb0f612e68"
 
 #define kServerUrl @"https://explorer.hbtcchain.io"
-#define kWebUrl @"https://juswap.io/swap"
+#define kWebUrl @"https://dex.hbtcchain.io/"
+
+//#define kServerUrl @"http://hbtc.yym.plus"
+//#define kWebUrl @"http://swap.yym.plus/"
 
 #define kChainId @"hbtc-testnet" //链名称
 #define kCu_number @"0"
@@ -211,7 +215,7 @@ typedef NS_ENUM(NSUInteger, NetworkMethod) {
 #define kMsgPledge @"hbtcchain/gov/MsgDeposit" //质押
 #define kMsgVote @"hbtcchain/gov/MsgVote" //投票
 #define kMsgWithdrawalDelegationReward @"hbtcchain/MsgWithdrawDelegationReward" //提取收益
-#define kMsgNewToken @"hbtcchain/hrc20/MsgNewToken" //发行代币
+#define kMsgNewToken @"hbtcchain/hrc10/MsgNewToken" //发行代币
 #define kMsgMappingSwap @"hbtcchain/mapping/MsgMappingSwap" //映射
 #define kMsgAddLiquidity @"hbtcchain/openswap/MsgAddLiquidity" //添加流动性
 #define kMsgRemoveLiquidity @"hbtcchain/openswap/MsgRemoveLiquidity" //移除流动性
@@ -220,7 +224,7 @@ typedef NS_ENUM(NSUInteger, NetworkMethod) {
 #define kMsgSwapExactOut @"hbtcchain/openswap/MsgSwapExactOut" //兑换（输出确定）
 #define kMsgSwapExactIn @"hbtcchain/openswap/MsgSwapExactIn" //兑换（输入确定）
 
-#define kIsQuickTextOpen [XXUserData sharedUserData].isQuickTextOpen
+#define kShowPassword [XXUserData sharedUserData].showPassword
 #define kText [XXUserData sharedUserData].text
 #define kHideAssetText @"***"
 #define kPrecision 1000000000000000000 //精度是10的18次方

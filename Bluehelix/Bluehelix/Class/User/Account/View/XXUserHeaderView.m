@@ -7,9 +7,9 @@
 #import "XXAccountManageVC.h"
 #import "XXAccountBtn.h"
 #import "XXUserHeaderItemView.h"
-#import "XXCoinPublishApplyVC.h"
 #import "XXMessageCenterVC.h"
 #import "XXUserNameView.h"
+#import "XXWebViewController.h"
 
 @interface XXUserHeaderView ()
 
@@ -129,11 +129,17 @@
 - (XXButton *)copyButton {
     if (_copyButton == nil) {
         _copyButton = [XXButton buttonWithFrame:CGRectMake(CGRectGetMaxX(self.addressLabel.frame), self.addressLabel.top - 12, 40, 40) block:^(UIButton *button) {
-            UIPasteboard *pab = [UIPasteboard generalPasteboard];
-            [pab setString:KUser.address];
-            Alert *alert = [[Alert alloc] initWithTitle:LocalizedString(@"CopySuccessfully") duration:kAlertDuration completion:^{
-            }];
-            [alert showAlert];
+            if (IsEmpty(KUser.address)) {
+                Alert *alert = [[Alert alloc] initWithTitle:LocalizedString(@"CopyFailed") duration:kAlertDuration completion:^{
+                }];
+                [alert showAlert];
+            } else {
+                UIPasteboard *pab = [UIPasteboard generalPasteboard];
+                [pab setString:KUser.address];
+                Alert *alert = [[Alert alloc] initWithTitle:LocalizedString(@"CopySuccessfully") duration:kAlertDuration completion:^{
+                }];
+                [alert showAlert];
+            }
         }];
         [_copyButton setImage:[UIImage imageNamed:@"paste"] forState:UIControlStateNormal];
     }
@@ -144,11 +150,16 @@
     if (!_leftItemView) {
         _leftItemView = [[XXUserHeaderItemView alloc] initWithFrame:CGRectMake(K375(16), CGRectGetMaxY(self.addressLabel.frame) + 30, (kScreen_Width - K375(40))/2, 88)];
         _leftItemView.icon.image = [UIImage imageNamed:@"UserHeaderCoin"];
-        _leftItemView.nameLabel.text = LocalizedString(@"CoinPublishApply");
+        _leftItemView.nameLabel.text = LocalizedString(@"TradeHistory");
         MJWeakSelf
         _leftItemView.block = ^{
-            XXCoinPublishApplyVC *coinVC = [[XXCoinPublishApplyVC alloc] init];
-            [weakSelf.viewController.navigationController pushViewController:coinVC animated:YES];
+            XXWebViewController *webVC = [[XXWebViewController alloc] init];
+            if ([[[LocalizeHelper sharedLocalSystem] getLanguageCode] hasPrefix:@"zh-"]) {
+                webVC.urlString = [NSString stringWithFormat:@"%@%@%@%@",kServerUrl,@"/account/",KUser.address,@"?lang=zh-cn&type=transactions"];
+            } else {
+                webVC.urlString = [NSString stringWithFormat:@"%@%@%@%@",kServerUrl,@"/account/",KUser.address,@"?lang=zh-cn&type=transactions"];
+            }
+            [weakSelf.viewController.navigationController pushViewController:webVC animated:YES];
         };
     }
     return _leftItemView;
@@ -167,17 +178,5 @@
     }
     return _rightItemView;
 }
-
-//- (void)configIcon{
-//    NSArray *colorArr = @[@"#54E19E",@"#66A3FF",@"#38a1e6",@"#E2C97F",@"#7887C5",@"#68B38F",@"#8B58DF",@"#66D0D7",@"#BEC65D",@"#F4934D"];
-//    if (!IsEmpty(KUser.currentAccount.userName)) {
-//        NSString *lastNumStr =[KUser.currentAccount.userName substringFromIndex:[KUser.currentAccount.userName length] - 1];
-//        int colorIndex = lastNumStr.intValue % 10;
-//        self.icon.backgroundColor = [UIColor colorWithHexString:colorArr[colorIndex]];
-//    }
-//    if (!IsEmpty(KUser.currentAccount.userName)) {
-//        self.icon.text = [KUser.currentAccount.userName substringToIndex:1];
-//    }
-//}
 
 @end

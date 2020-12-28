@@ -538,4 +538,42 @@
         return address;
     }
 }
+
++ (NSString *)generatePassword:(NSString *)password {
+    NSMutableString *salt = [[NSMutableString alloc] init];
+    for (int i = 0; i < 16; i++) {
+        [salt appendString:[NSString stringWithFormat:@"%d",arc4random_uniform(10)]];
+    }
+    NSLog(@"%@",salt);
+    NSString *md5String = [NSString md5:[NSString stringWithFormat:@"%@%@",password,salt]];
+    char cs[48];
+    for (int i = 0; i < 48; i += 3) {
+       cs[i] = [md5String characterAtIndex:(i/3*2)];
+        char c = [salt characterAtIndex:(i/3)];
+        cs[i+1] = c;
+        cs[i+2] = [md5String characterAtIndex:(i / 3 * 2 + 1)];
+    }
+    NSLog(@"%@",[NSString stringWithFormat:@"%s",cs]);
+    return [NSString stringWithFormat:@"%s",cs];
+}
+
++ (BOOL)verifyPassword:(NSString *)password md5:(NSString *)md5 {
+    if (IsEmpty(md5) || IsEmpty(password)) {
+        return NO;
+    }
+    if (md5.length < 48) {
+        return NO;
+    }
+    NSMutableString *salt = [[NSMutableString alloc] init];
+    NSMutableString *oldMd5 = [[NSMutableString alloc] init];
+    for (int i = 0; i < 48; i += 3) {
+       char m1 = [md5 characterAtIndex:i];
+       char m2 = [md5 characterAtIndex:(i + 2)];
+       [oldMd5 appendString:[NSString stringWithFormat:@"%c%c",m1,m2]];
+       char a = [md5 characterAtIndex:(i + 1)];
+       [salt appendString:[NSString stringWithFormat:@"%c",a]];
+    }
+    NSString *newMd5 = [NSString md5:[NSString stringWithFormat:@"%@%@",password,salt]];
+    return [newMd5 isEqualToString:oldMd5];
+}
 @end

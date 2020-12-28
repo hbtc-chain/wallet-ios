@@ -50,7 +50,7 @@
     
     KUser.ratesKey = self.data[indexPath.row][@"rateMark"];
     XXTabBarController *tabVC = [[XXTabBarController alloc] init];
-    [tabVC setIndex:3];
+    [tabVC setIndex:2];
     KWindow.rootViewController = tabVC;
     XXSettingVC *settingVC = [[XXSettingVC alloc] init];
     [tabVC.selectedViewController pushViewController:settingVC animated:NO];

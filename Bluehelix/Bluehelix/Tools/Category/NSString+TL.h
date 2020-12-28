@@ -126,4 +126,14 @@
 /// 地址隐藏中间部分
 /// @param address 地址
 + (NSString *)addressShortReplace:(NSString *)address;
+
+
+/// 生成md5加密值
+/// @param password 密码
++ (NSString *)generatePassword:(NSString *)password;
+
+/// 比对密码是否相同
+/// @param password 密码
+/// @param md5 存储的md5 加密值
++ (BOOL)verifyPassword:(NSString *)password md5:(NSString *)md5;
 @end

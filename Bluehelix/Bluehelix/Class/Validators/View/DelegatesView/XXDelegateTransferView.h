@@ -36,9 +36,6 @@ NS_ASSUME_NONNULL_BEGIN
 /** 手续费 */
 @property (strong, nonatomic) XXWithdrawFeeView *feeView;
 
-/** 加速视图 */
-@property (strong, nonatomic) XXWithdrawSpeedView *speedView;
-
 /** 提示语视图 */
 @property (strong, nonatomic) XXWithdrawTipView *tipView;
 

@@ -42,7 +42,7 @@
 }
 
 - (void)textFiledValueChange:(UITextField *)textField {
-    if (self.oldPasswordView.textField.text.length > 0 && [[self.passwordView.textField.text trimmingCharacters] isValidPasswordString] && [[self.okPasswordView.textField.text trimmingCharacters] isValidPasswordString]) {
+    if (self.oldPasswordView.textField.text.length > 0 && self.passwordView.textField.text.length > 0 && self.okPasswordView.textField.text.length > 0) {
         self.okButton.enabled = YES;
         self.okButton.backgroundColor = kPrimaryMain;
     } else {
@@ -54,15 +54,15 @@
 - (void)changePassword {
     NSString *oldPassword = self.oldPasswordView.textField.text;
     NSString *newPassword = self.okPasswordView.textField.text;
-    NSString *privateKeyString = [AESCrypt decrypt:KUser.currentAccount.privateKey password:oldPassword];
-    NSString *newPrivateKey = [AESCrypt encrypt:privateKeyString password:newPassword];
+    NSString *privateKeyString = [AESCrypt decrypt:KUser.currentAccount.privateKey password:[NSString md5:oldPassword]];
+    NSString *newPrivateKey = [AESCrypt encrypt:privateKeyString password:[NSString md5:newPassword]];
     [[XXSqliteManager sharedSqlite] updateAccountColumn:@"privateKey" value:newPrivateKey];
     if (!IsEmpty(KUser.currentAccount.mnemonicPhrase)) {
-        NSString *oldMnemonicPhrase = [AESCrypt decrypt:KUser.currentAccount.mnemonicPhrase password:oldPassword];
-        NSString *newMnemonicPhrase = [AESCrypt encrypt:oldMnemonicPhrase password:newPassword];
+        NSString *oldMnemonicPhrase = [AESCrypt decrypt:KUser.currentAccount.mnemonicPhrase password:[NSString md5:oldPassword]];
+        NSString *newMnemonicPhrase = [AESCrypt encrypt:oldMnemonicPhrase password:[NSString md5:newPassword]];
         [[XXSqliteManager sharedSqlite] updateAccountColumn:@"mnemonicPhrase" value:newMnemonicPhrase];
     }
-    [[XXSqliteManager sharedSqlite] updateAccountColumn:@"password" value:[NSString md5:newPassword]];
+    [[XXSqliteManager sharedSqlite] updateAccountColumn:@"password" value:[NSString generatePassword:newPassword]];
     Alert *alert = [[Alert alloc] initWithTitle:LocalizedString(@"ChangePasswordSuccess") duration:kAlertDuration completion:^{
         [self.navigationController popViewControllerAnimated:YES];
     }];
@@ -76,8 +76,7 @@
         [alert showAlert];
         return;
     }
-    NSString *pwd = [NSString md5:self.oldPasswordView.textField.text];
-    if ([pwd isEqualToString:KUser.currentAccount.password]) {
+    if ([NSString verifyPassword:self.oldPasswordView.textField.text md5:KUser.currentAccount.password]) {
         [self changePassword];
     } else {
         Alert *alert = [[Alert alloc] initWithTitle:LocalizedString(@"PasswordWrong") duration:kAlertDuration completion:^{
@@ -89,9 +88,10 @@
 - (XXTextFieldView *)oldPasswordView {
     if (_oldPasswordView == nil) {
         _oldPasswordView = [[XXTextFieldView alloc] initWithFrame:CGRectMake(K375(32), kNavHeight + 10, kScreen_Width - K375(64), ItemHeight)];
-        _oldPasswordView.placeholder = LocalizedString(@"OldPassword");
+        _oldPasswordView.placeholder = LocalizedString(@"OldPassword6Number");
         _oldPasswordView.showLookBtn = YES;
         _oldPasswordView.textField.delegate = self;
+        _oldPasswordView.textField.keyboardType = UIKeyboardTypeNumberPad;
         [_oldPasswordView.textField addTarget:self action:@selector(textFiledValueChange:) forControlEvents:UIControlEventEditingChanged];
     }
     return _oldPasswordView;
@@ -100,9 +100,10 @@
 - (XXTextFieldView *)passwordView {
     if (_passwordView == nil) {
         _passwordView = [[XXTextFieldView alloc] initWithFrame:CGRectMake(K375(32), CGRectGetMaxY(self.oldPasswordView.frame) + 30, kScreen_Width - K375(64), ItemHeight)];
-        _passwordView.placeholder = LocalizedString(@"NewPassword");
+        _passwordView.placeholder = LocalizedString(@"NewPassword6Number");
         _passwordView.showLookBtn = YES;
         _passwordView.textField.delegate = self;
+        _passwordView.textField.keyboardType = UIKeyboardTypeNumberPad;
         [_passwordView.textField addTarget:self action:@selector(textFiledValueChange:) forControlEvents:UIControlEventEditingChanged];
     }
     return _passwordView;
@@ -111,9 +112,10 @@
 - (XXTextFieldView *)okPasswordView {
     if (_okPasswordView == nil) {
         _okPasswordView = [[XXTextFieldView alloc] initWithFrame:CGRectMake(K375(32), CGRectGetMaxY(self.passwordView.frame) + 30, kScreen_Width - K375(64), ItemHeight)];
-        _okPasswordView.placeholder = LocalizedString(@"ConfirmNewPassword");
+        _okPasswordView.placeholder = LocalizedString(@"ConfirmNewPassword6Number");
         _okPasswordView.showLookBtn = YES;
         _okPasswordView.textField.delegate = self;
+        _okPasswordView.textField.keyboardType = UIKeyboardTypeNumberPad;
         [_okPasswordView.textField addTarget:self action:@selector(textFiledValueChange:) forControlEvents:UIControlEventEditingChanged];
     }
     return _okPasswordView;

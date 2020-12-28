@@ -106,7 +106,7 @@
 }
 
 - (void)textFieldValueChange:(UITextField *)textField {
-    if (IsEmpty(textField.text)) {
+    if (!IsEmpty(textField.text)) {
         [self reloadData];
     }
 }

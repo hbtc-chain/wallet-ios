@@ -19,6 +19,8 @@
 #import "XXBackupPrivateKeyTipVC.h"
 #import "XXBackupKeystoreTipVC.h"
 #import "XYHAlertView.h"
+#import "XXWebViewController.h"
+#import "XXAboutUsVC.h"
 
 @interface XXUserHomeVC () <UITableViewDataSource, UITableViewDelegate, UIGestureRecognizerDelegate>
 
@@ -27,8 +29,6 @@
 @property (strong, nonatomic) XXButton *settingButton;
 
 @property (strong, nonatomic) UITableView *tableView;
-
-@property (strong, nonatomic) NSMutableArray *iconArray;
 
 @property (strong, nonatomic) XXUserHeaderView *headerView;
 
@@ -66,16 +66,15 @@
 
 - (void)initData {
     self.itemsArray = [NSMutableArray array];
-    self.iconArray = [NSMutableArray array];
     NSMutableArray *firstSectionArray = [NSMutableArray array];
-    [firstSectionArray addObject:LocalizedString(@"ModifyPassword")];
     if (KUser.currentAccount.mnemonicPhrase && !KUser.currentAccount.backupFlag) {
         [firstSectionArray addObject:LocalizedString(@"BackupMnemonicPhrase")];
     }
     [firstSectionArray addObject:LocalizedString(@"BackupPrivateKey")];
     [firstSectionArray addObject:LocalizedString(@"BackupKeystore")];
     self.itemsArray[0] = firstSectionArray;
-    self.itemsArray[1] = @[LocalizedString(@"Setting"),LocalizedString(@"ContactUs"),LocalizedString(@"Version")];
+    self.itemsArray[1] = @[LocalizedString(@"Notice"),LocalizedString(@"HelpCenter")];
+    self.itemsArray[2] = @[LocalizedString(@"AboutUs"),LocalizedString(@"Setting")];
 }
 
 /// 请求消息列表
@@ -137,17 +136,8 @@
     NSArray *namesArray = self.itemsArray[indexPath.section];
     NSString *name = namesArray[indexPath.row];
     cell.nameLabel.text = name;
-    if ([name isEqualToString:LocalizedString(@"Version")]) {
-        cell.rightIconImageView.hidden = YES;
-        cell.valueLabel.hidden = NO;
-        NSDictionary *info = [[NSBundle mainBundle] infoDictionary];
-        NSString *version = [info objectForKey:@"CFBundleShortVersionString"];
-        NSString *buildVersion = [info objectForKey:@"CFBundleVersion"];
-        cell.valueLabel.text = [NSString stringWithFormat:@"v%@_%@",version,buildVersion];
-    } else {
-        cell.rightIconImageView.hidden = NO;
-        cell.valueLabel.hidden = YES;
-    }
+    cell.rightIconImageView.hidden = NO;
+    cell.valueLabel.hidden = YES;
     return cell;
 }
 
@@ -178,15 +168,17 @@
     if ([itemString isEqualToString:LocalizedString(@"BackupPrivateKey")]) { // 备份私钥
         [self pushBackupPrivateKey];
     }
-    if ([itemString isEqualToString:LocalizedString(@"ModifyPassword")]) {
-        XXChangePasswordVC *vc = [[XXChangePasswordVC alloc] init];
-        [self.navigationController pushViewController:vc animated:YES];
-    }
     if ([itemString isEqualToString:LocalizedString(@"Setting")]) {
         [self pushSetting];
     }
-    if ([itemString isEqualToString:LocalizedString(@"ContactUs")]) {
-        [self contactUs];
+    if ([itemString isEqualToString:LocalizedString(@"Notice")]) {
+        [self pushNotice];
+    }
+    if ([itemString isEqualToString:LocalizedString(@"HelpCenter")]) {
+        [self pushHelpCenter];
+    }
+    if ([itemString isEqualToString:LocalizedString(@"AboutUs")]) {
+        [self pushAboutUs];
     }
 }
 
@@ -227,19 +219,34 @@
 }
 
 
-/// 联系我们
-- (void)contactUs {
-    [XYHAlertView showAlertViewWithTitle:LocalizedString(@"ContactUs") message:LocalizedString(@"ContactMail") titlesArray:@[LocalizedString(@"CopyMail")] andBlock:^(NSInteger index) {
-        [self performSelector:@selector(copyMail) withObject:nil afterDelay:0.1];
-    }];
+/// 关于我们
+- (void)pushAboutUs {
+    XXAboutUsVC *aboutUs = [[XXAboutUsVC alloc] init];
+    [self.navigationController pushViewController:aboutUs animated:YES];
 }
 
-- (void)copyMail {
-    UIPasteboard *pab = [UIPasteboard generalPasteboard];
-    [pab setString:LocalizedString(@"ContactMail")];
-    Alert *alert = [[Alert alloc] initWithTitle:LocalizedString(@"CopySuccessfully") duration:kAlertDuration completion:^{
-    }];
-    [alert showAlert];
+// 公告
+- (void)pushNotice {
+    XXWebViewController *webVC = [[XXWebViewController alloc] init];
+    if ([[[LocalizeHelper sharedLocalSystem] getLanguageCode] hasPrefix:@"zh-"]) {
+        webVC.urlString = @"https://hbtcwallet.gitbook.io/hbtc-chain-guide/gong-gao/";
+    } else {
+        webVC.urlString = @"https://hbtcwallet.gitbook.io/hbtc-chain-guide/v/english/announcement/";
+    }
+    webVC.navTitle = LocalizedString(@"Notice");
+    [self.navigationController pushViewController:webVC animated:YES];
+}
+
+// 帮助中心
+- (void)pushHelpCenter {
+    XXWebViewController *webVC = [[XXWebViewController alloc] init];
+    if ([[[LocalizeHelper sharedLocalSystem] getLanguageCode] hasPrefix:@"zh-"]) {
+        webVC.urlString = @"https://hbtcwallet.gitbook.io/hbtc-chain-guide/qian-bao-app/";
+    } else {
+        webVC.urlString = @"https://hbtcwallet.gitbook.io/hbtc-chain-guide/v/english/wallet-app/";
+    }
+    webVC.navTitle = LocalizedString(@"HelpCenter");
+    [self.navigationController pushViewController:webVC animated:YES];
 }
 
 - (UITableView *)tableView {

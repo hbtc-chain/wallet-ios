@@ -34,11 +34,11 @@
 - (void)refreshSwitch {
     NSIndexPath *indexPath0 = [NSIndexPath indexPathForRow:0 inSection:0];
     XXSettingCell *cell0 = [self.tableView cellForRowAtIndexPath: indexPath0];
-    [cell0.typeSwitch setOn:!kIsQuickTextOpen];
+    [cell0.typeSwitch setOn:![XXUserData sharedUserData].isQuickTextOpen];
 
     NSIndexPath *indexPath1 = [NSIndexPath indexPathForRow:1 inSection:0];
     XXSettingCell *cell1 = [self.tableView cellForRowAtIndexPath: indexPath1];
-    [cell1.typeSwitch setOn:kIsQuickTextOpen];
+    [cell1.typeSwitch setOn:[XXUserData sharedUserData].isQuickTextOpen];
 }
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
@@ -79,16 +79,17 @@
     if (indexPath.section == 0 && indexPath.row == 0) {
         cell.rightIconImageView.hidden = YES;
         cell.typeSwitch.hidden = NO;
-        cell.typeSwitch.on = !kIsQuickTextOpen;
+        cell.typeSwitch.on = ![XXUserData sharedUserData].isQuickTextOpen;
         MJWeakSelf
         cell.switchBlock = ^(BOOL isOn, NSInteger indexCell) {
             if (indexCell == 0) {
                 if (isOn) {
-                    kIsQuickTextOpen = NO;
+                    [XXUserData sharedUserData].isQuickTextOpen = NO;
                 } else {
                     [XXPasswordView showWithSureBtnBlock:^(NSString * _Nonnull text) {
-                        kIsQuickTextOpen = YES;
+                        [XXUserData sharedUserData].isQuickTextOpen = YES;
                         KUser.text = text;
+                        KUser.lastPasswordTime = [NSString stringWithFormat:@"%f",[[NSDate date] timeIntervalSince1970]];
                         [weakSelf refreshSwitch];
                     }];
                 }
@@ -98,18 +99,19 @@
     } else if (indexPath.section == 0 && indexPath.row == 1) {
         cell.rightIconImageView.hidden = YES;
         cell.typeSwitch.hidden = NO;
-        cell.typeSwitch.on = kIsQuickTextOpen;
+        cell.typeSwitch.on = [XXUserData sharedUserData].isQuickTextOpen;
         MJWeakSelf
         cell.switchBlock = ^(BOOL isOn, NSInteger indexCell) {
             if (indexCell == 0) {
                 if (isOn) {
                     [XXPasswordView showWithSureBtnBlock:^(NSString * _Nonnull text) {
-                        kIsQuickTextOpen = YES;
+                        [XXUserData sharedUserData].isQuickTextOpen = YES;
                         KUser.text = text;
+                        KUser.lastPasswordTime = [NSString stringWithFormat:@"%f",[[NSDate date] timeIntervalSince1970]];
                         [weakSelf refreshSwitch];
                     }];
                 } else {
-                    kIsQuickTextOpen = NO;
+                    [XXUserData sharedUserData].isQuickTextOpen = NO;
                 }
                  [weakSelf refreshSwitch];
             }

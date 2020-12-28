@@ -13,6 +13,7 @@ NS_ASSUME_NONNULL_BEGIN
 @interface XXPayInfoModel : NSObject
 
 - (id)initWithData:(id)data;
++ (NSString *)analysisSymbol:(id)data; //判断是否需要网络获取新token
 
 @property (nonatomic, copy) NSArray *titleArr;
 @property (nonatomic, copy) NSMutableArray *valueArr;

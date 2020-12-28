@@ -24,58 +24,56 @@
 
 #pragma mark - 1. 初始化UI
 - (void)setupUI {
-    self.contentSize = CGSizeMake(0, 500);
-    // 提币主视图
     [self addSubview:self.mainView];
-    
-    /** 手续费 */
-    [self.mainView addSubview:self.feeView];
-
-    /** 提币加速视图 */
-    [self.mainView addSubview:self.speedView];
-
-    /** 提示语视图 */
     [self.mainView addSubview:self.tipView];
-}
-
--(void)sliderValueChanged:(UISlider *)slider {
-    self.feeView.textField.text = [NSString stringWithFormat:@"%.3f",slider.value];
+    [self.mainView addSubview:self.createFeeNameLabel];
+    [self.mainView addSubview:self.feeNameLabel];
+    [self.mainView addSubview:self.createFeeLabel];
+    [self.mainView addSubview:self.feeLabel];
 }
 
 /** 地址视图 */
 - (UIView *)mainView {
     if (_mainView == nil) {
-        _mainView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, kScreen_Width, 500)];
+        _mainView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, kScreen_Width, self.height)];
         _mainView.backgroundColor = kWhiteColor;
     }
     return _mainView;
 }
 
-/** 手续费 */
-- (XXWithdrawFeeView *)feeView {
-    if (_feeView == nil) {
-        _feeView = [[XXWithdrawFeeView alloc] initWithFrame:CGRectMake(0, 20, kScreen_Width, 88)];
-        _feeView.textField.placeholder = LocalizedString(@"PleaseEnterFee");
-        _feeView.textField.enabled = NO;
-    }
-    return _feeView;
-}
-
-/** 提币加速视图 */
-- (XXWithdrawSpeedView *)speedView {
-    if (_speedView == nil) {
-        _speedView = [[XXWithdrawSpeedView alloc] initWithFrame:CGRectMake(0, CGRectGetMaxY(self.feeView.frame) + 15, kScreen_Width, 72)];
-        [_speedView.slider addTarget:self action:@selector(sliderValueChanged:) forControlEvents:UIControlEventValueChanged];
-    }
-    return _speedView;
-}
-
-/** 提示语视图 */
-- (XXWithdrawTipView *)tipView {
+- (XXTransferTipView *)tipView {
     if (_tipView == nil) {
-        _tipView = [[XXWithdrawTipView alloc] initWithFrame:CGRectMake(0, CGRectGetMaxY(self.speedView.frame), kScreen_Width, 10)];
+        _tipView = [[XXTransferTipView alloc] initWithFrame:CGRectMake(0, 0, kScreen_Width, 143)];
     }
     return _tipView;
+}
+
+- (XXLabel *)createFeeNameLabel {
+    if (_createFeeNameLabel == nil) {
+        _createFeeNameLabel = [XXLabel labelWithFrame:CGRectMake(K375(16), CGRectGetMaxY(self.tipView.frame) + 32, 100, 24) text:LocalizedString(@"CreateFee") font:kFont14 textColor:kGray500 alignment:NSTextAlignmentLeft];
+    }
+    return _createFeeNameLabel;
+}
+
+- (XXLabel *)feeNameLabel {
+    if (_feeNameLabel == nil) {
+        _feeNameLabel = [XXLabel labelWithFrame:CGRectMake(K375(16), CGRectGetMaxY(self.createFeeNameLabel.frame) + 32, 100, 24) text:LocalizedString(@"Fee") font:kFont14 textColor:kGray500 alignment:NSTextAlignmentLeft];
+    }
+    return _feeNameLabel;
+}
+
+- (XXLabel *)createFeeLabel {
+    if (_createFeeLabel == nil) {
+        _createFeeLabel = [XXLabel labelWithFrame:CGRectMake(CGRectGetMaxX(self.createFeeNameLabel.frame), CGRectGetMaxY(self.tipView.frame) + 32, kScreen_Width - CGRectGetMaxX(self.createFeeNameLabel.frame) - 22, 24) text:@"" font:kFont15 textColor:kGray700 alignment:NSTextAlignmentRight];
+    }
+    return _createFeeLabel;
+}
+
+- (XXLabel *)feeLabel {
+    if (_feeLabel == nil) {
+        _feeLabel = [XXLabel labelWithFrame:CGRectMake(CGRectGetMaxX(self.feeNameLabel.frame), CGRectGetMaxY(self.createFeeLabel.frame) + 32, kScreen_Width - CGRectGetMaxX(self.feeNameLabel.frame) - 22, 24) text:@"" font:kFont15 textColor:kGray700 alignment:NSTextAlignmentRight];
+    }
+    return _feeLabel;
 }
 
 @end

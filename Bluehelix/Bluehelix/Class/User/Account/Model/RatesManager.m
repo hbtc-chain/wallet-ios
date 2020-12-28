@@ -36,7 +36,7 @@ static RatesManager *_ratesManager;
     NSMutableDictionary *params = [NSMutableDictionary dictionary];
     params[@"symbols"] = self.tokenString;
     MJWeakSelf
-    [HttpManager getWithPath:@"/api/v1/tokenprices" params:params andBlock:^(id data, NSString *msg, NSInteger code) {
+    [HttpManager postWithPath:@"/api/v1/tokenprices" params:params andBlock:^(id data, NSString *msg, NSInteger code) {
         if (code == 0) {
             if (IsEmpty(data)) {
                 [weakSelf performSelector:@selector(loadDataOfRates) withObject:nil afterDelay:3];
@@ -179,7 +179,7 @@ static RatesManager *_ratesManager;
 
 - (void)setRatesArray:(NSMutableArray *)ratesArray {
     _ratesArray = ratesArray;
-    [self saveValeu:[ratesArray mj_JSONString] forKey:@"ratesArrayKey"];
+    [self saveValue:[ratesArray mj_JSONString] forKey:@"ratesArrayKey"];
 }
 
 - (void)updataDataDic {
@@ -197,7 +197,8 @@ static RatesManager *_ratesManager;
     id value = [[NSUserDefaults standardUserDefaults] objectForKey:key];
     return value;
 }
--(void)saveValeu:(id)value forKey:(NSString *)key{
+
+-(void)saveValue:(id)value forKey:(NSString *)key{
     [[NSUserDefaults standardUserDefaults] setObject:value forKey:key];
     [[NSUserDefaults standardUserDefaults] synchronize];
 }

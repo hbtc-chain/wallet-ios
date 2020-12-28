@@ -9,28 +9,21 @@
 #import "XXChainHeaderView.h"
 #import "XXChainAddressView.h"
 #import "XXAssetSingleManager.h"
-#import "XXWithdrawChainVC.h"
 #import "XXTokenModel.h"
+#import "XXAddNewAssetVC.h"
+#import "XXAddressCodeView.h"
+#import "XXPasswordView.h"
+#import "XXWithdrawChainVC.h"
+#import <UIImageView+WebCache.h>
 
 @interface XXChainHeaderView ()
 
-@property (strong, nonatomic) UIView *backView;
-@property (strong, nonatomic) UIView *topBackView;
-@property (strong, nonatomic) XXLabel *chainNameLabel;
-
-@property (strong, nonatomic) XXLabel *titleAddressLabel;
-@property (strong, nonatomic) XXLabel *addressLabel;
-@property (strong, nonatomic) XXButton *copyButton;
-@property (strong, nonatomic) XXButton *codeBtn;
-
-@property (strong, nonatomic) UIView *lineView;
-
-@property (strong, nonatomic) XXLabel *titleChainAddressLabel;
-@property (strong, nonatomic) XXLabel *chainAddressLabel;
-@property (strong, nonatomic) XXButton *chainCopyButton;
-@property (strong, nonatomic) XXButton *chainCodeBtn;
-@property (strong, nonatomic) XXButton *createChainBtn;
-
+@property (nonatomic, strong) UIImageView *logoIcon;
+@property (nonatomic, strong) XXLabel *chainNameLabel;
+@property (nonatomic, strong) XXLabel *titleLabel;
+@property (nonatomic, strong) UIView *lineView;
+@property (nonatomic, strong) XXButton *addTokenBtn; //添加币种
+@property (nonatomic, strong) XXLabel *addressLabel; //链展示
 @property (nonatomic, copy) NSString *chainAddress; //跨链地址
 
 @end
@@ -41,186 +34,133 @@
 {
     self = [super initWithFrame:frame];
     if (self) {
-        
+        [self buildUI];
     }
     return self;
 }
 
 - (void)buildUI {
     self.backgroundColor = kWhiteColor;
-    [self addSubview:self.backView];
-    [self.backView addSubview:self.topBackView];
-    [self.backView addSubview:self.chainNameLabel];
-    [self.backView addSubview:self.titleAddressLabel];
-    [self.backView addSubview:self.addressLabel];
-    [self.backView addSubview:self.copyButton];
-    [self.backView addSubview:self.codeBtn];
-    [self.backView addSubview:self.lineView];
-    [self.backView addSubview:self.titleChainAddressLabel];
-    if (IsEmpty(self.chainAddress)) {
-        [self.backView addSubview:self.createChainBtn];
+    [self addSubview:self.logoIcon];
+    [self addSubview:self.chainNameLabel];
+    [self addSubview:self.addressLabel];
+    [self addSubview:self.lineView];
+    [self addSubview:self.titleLabel];
+    [self addSubview:self.addTokenBtn];
+}
+
+- (void)setChainModel:(XXChainModel *)chainModel {
+    _chainModel = chainModel;
+    if ([chainModel.chain isEqualToString:kMainToken]) {
+        self.chainNameLabel.text = [NSString stringWithFormat:@"HBTC %@",LocalizedString(@"DepositChainAddress")];
     } else {
-        [self.backView addSubview:self.chainAddressLabel];
-        [self.backView addSubview:self.chainCopyButton];
-        [self.backView addSubview:self.chainCodeBtn];
+        self.chainNameLabel.text = LocalizedString(@"WithdrawChainTitle");
     }
+    XXTokenModel *token = [[XXSqliteManager sharedSqlite] tokenBySymbol:chainModel.chain];
+    [self.logoIcon sd_setImageWithURL:[NSURL URLWithString:token.logo] placeholderImage:[UIImage imageNamed:@"placeholderToken"]];
+    self.chainAddress = [[XXAssetSingleManager sharedManager] externalAddressBySymbol:chainModel.chain];
+    self.addTokenBtn.hidden = self.chainModel.single_coin;
+    [self setChainButtonTitle];
 }
 
-// TODO 这里到底是chain 还是token
-- (void)createChain {
-    XXWithdrawChainVC *chain = [[XXWithdrawChainVC alloc] init];
-    chain.tokenModel = [[XXSqliteManager sharedSqlite] tokenBySymbol:self.chain];
-    [self.viewController.navigationController pushViewController:chain animated:YES];
-}
-
-- (void)setChain:(NSString *)chain {
-    _chain = chain;
-    self.chainAddress = [[XXAssetSingleManager sharedManager] externalAddressBySymbol:chain];
-    [self.backView removeAllSubviews];
-    [self removeAllSubviews];
-    [self buildUI];
-    self.chainNameLabel.text = [chain uppercaseString];
+// 更新跨链地址展示
+- (void)setChainButtonTitle {
+    if (IsEmpty(self.chainModel.chain) || [self.chainModel.chain isEqualToString:kMainToken]) {
+        CGFloat width = [NSString widthWithText:[NSString addressShortReplace:KUser.address] font:kFont12] + 20;
+        self.addressLabel.frame = CGRectMake((self.width - width)/2, CGRectGetMaxY(self.chainNameLabel.frame) + 13, width, 24);
+        self.addressLabel.text = [NSString addressShortReplace:KUser.address];
+    } else {
+        if (IsEmpty(self.chainAddress)) {
+            CGFloat width = [NSString widthWithText:LocalizedString(@"CreateChainAddress") font:kFont12] + 20;
+            self.addressLabel.frame = CGRectMake((self.width - width)/2, CGRectGetMaxY(self.chainNameLabel.frame) + 13, width, 24);
+            self.addressLabel.text = LocalizedString(@"CreateChainAddress");
+        } else {
+            CGFloat width = [NSString widthWithText:[NSString addressShortReplace:KUser.address] font:kFont12] + 20;
+            self.addressLabel.frame = CGRectMake((self.width - width)/2, CGRectGetMaxY(self.chainNameLabel.frame) + 13, width, 24);
+            self.addressLabel.text = [NSString addressShortReplace:self.chainAddress];
+        }
+    }
 }
 
 - (void)setChainAddress:(NSString *)chainAddress {
     _chainAddress = chainAddress;
 }
 
-- (UIView *)backView {
-    if (!_backView) {
-        _backView = [[UIView alloc] initWithFrame:CGRectMake(16, 0, kScreen_Width - 32, self.height)];
-        _backView.layer.cornerRadius = 10;
-        _backView.backgroundColor = kWhite100;
-        _backView.layer.shadowColor = [kShadowColor CGColor];
-        _backView.layer.shadowOffset = CGSizeMake(0, 0);
-        _backView.layer.shadowOpacity = 1.0;
-        _backView.layer.shadowRadius = 8;
+- (void)chainAction {
+    if (IsEmpty(self.chainModel.chain) || [self.chainModel.chain isEqualToString:kMainToken]) {
+        [XXChainAddressView showMainAccountAddress];
+    } else {
+        if (IsEmpty(self.chainAddress)) {
+            XXWithdrawChainVC *chain = [[XXWithdrawChainVC alloc] init];
+            chain.tokenModel = [[XXSqliteManager sharedSqlite] tokenBySymbol:self.chainModel.chain];
+            [self.viewController.navigationController pushViewController:chain animated:YES];
+        } else {
+            [XXChainAddressView showWithChain:self.chainModel.chain];
+        }
     }
-    return _backView;
 }
 
-- (UIView *)topBackView {
-    if (!_topBackView) {
-        _topBackView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, self.backView.width, 48)];
-        _topBackView.backgroundColor = kPrimaryMain;
-        UIBezierPath *maskPath = [UIBezierPath bezierPathWithRoundedRect:_topBackView.bounds byRoundingCorners:UIRectCornerTopLeft | UIRectCornerTopRight cornerRadii:CGSizeMake(10,10)];
-        CAShapeLayer *maskLayer = [[CAShapeLayer alloc] init];
-        maskLayer.frame = _topBackView.bounds;
-        maskLayer.path = maskPath.CGPath;
-        _topBackView.layer.mask = maskLayer;
+- (UIImageView *)logoIcon {
+    if (_logoIcon == nil) {
+        _logoIcon = [[UIImageView alloc] initWithFrame:CGRectMake((self.width - 48)/2, 0, 48, 48)];
     }
-    return _topBackView;
+    return _logoIcon;
 }
 
 - (XXLabel *)chainNameLabel {
     if (!_chainNameLabel) {
-        _chainNameLabel = [XXLabel labelWithFrame:CGRectMake(K375(16), 8, kScreen_Width, 32) font:kFont20 textColor:[UIColor whiteColor]];
+        _chainNameLabel = [XXLabel labelWithFrame:CGRectMake(K375(16), CGRectGetMaxY(self.logoIcon.frame) + 16, self.width - K375(32), 24) font:kFont14 textColor:kGray700];
+        _chainNameLabel.textAlignment = NSTextAlignmentCenter;
     }
     return _chainNameLabel;
 }
 
-- (XXLabel *)titleAddressLabel {
-    if (!_titleAddressLabel) {
-        _titleAddressLabel = [XXLabel labelWithFrame:CGRectMake(K375(16), 64, self.backView.width - K375(32), 24) text:LocalizedString(@"ChainTitle") font:kFont13 textColor:kGray500];
-    }
-    return _titleAddressLabel;
-}
-
 - (XXLabel *)addressLabel {
-    if (!_addressLabel) {
-        CGFloat width = [NSString widthWithText:[NSString addressShortReplace:KUser.address] font:kFont13];
-        _addressLabel = [XXLabel labelWithFrame:CGRectMake(K375(16), CGRectGetMaxY(self.titleAddressLabel.frame), width, 24) font:kFont13 textColor:kGray700];
-        _addressLabel.text = [NSString addressShortReplace:KUser.address];
+    if (_addressLabel == nil) {
+        _addressLabel = [[XXLabel alloc] initWithFrame:CGRectMake((self.width - 140)/2, CGRectGetMaxY(self.chainNameLabel.frame) + 13, 140, 24)];
+        _addressLabel.font = kFont12;
+        _addressLabel.textColor = kGray500;
+        _addressLabel.backgroundColor = [kGray500 colorWithAlphaComponent:0.2];
+        _addressLabel.layer.cornerRadius = 10;
+        _addressLabel.layer.masksToBounds = YES;
+        _addressLabel.userInteractionEnabled = YES;
+        _addressLabel.textAlignment = NSTextAlignmentCenter;
+        UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(chainAction)];
+        [_addressLabel addGestureRecognizer:tap];
     }
     return _addressLabel;
 }
 
-- (XXButton *)copyButton {
-    if (_copyButton == nil) {
-        _copyButton = [XXButton buttonWithFrame:CGRectMake(self.backView.width - 80, self.addressLabel.top, 24, 24) block:^(UIButton *button) {
-            UIPasteboard *pab = [UIPasteboard generalPasteboard];
-            [pab setString:KUser.address];
-            Alert *alert = [[Alert alloc] initWithTitle:LocalizedString(@"CopySuccessfully") duration:kAlertDuration completion:^{
-            }];
-            [alert showAlert];
-        }];
-        [_copyButton setImage:[UIImage imageNamed:@"ValidatorPaste"] forState:UIControlStateNormal];
-    }
-    return _copyButton;
-}
-
-- (XXButton *)codeBtn {
-    if (!_codeBtn) {
-        _codeBtn = [XXButton buttonWithFrame:CGRectMake(self.backView.width - 45, self.addressLabel.top, 24, 24) block:^(UIButton *button) {
-            [XXChainAddressView showWithAddress:KUser.address];
-        }];
-        [_codeBtn setImage:[UIImage imageNamed:@"chainCodeBlue"] forState:UIControlStateNormal];
-    }
-    return _codeBtn;
-}
-
 - (UIView *)lineView {
-    if (!_lineView) {
-        _lineView = [[UIView alloc] initWithFrame:CGRectMake(K375(16), CGRectGetMaxY(self.addressLabel.frame) + 8, self.backView.width - K375(32), 1)];
-        _lineView.backgroundColor = kGray200;
+    if (_lineView == nil) {
+        _lineView = [[UIView alloc] initWithFrame:CGRectMake(0, CGRectGetMaxY(self.addressLabel.frame) + 24, self.width, 8)];
+        _lineView.backgroundColor = KLine_Color;
     }
     return _lineView;
 }
 
-- (XXLabel *)titleChainAddressLabel {
-    if (!_titleChainAddressLabel) {
-        _titleChainAddressLabel = [XXLabel labelWithFrame:CGRectMake(K375(16), CGRectGetMaxY(self.lineView.frame) + 8, self.backView.width - K375(32), 24) text:LocalizedString(@"WithdrawChainTitle") font:kFont13 textColor:kGray500];
+- (XXLabel *)titleLabel {
+    if (!_titleLabel) {
+        _titleLabel = [XXLabel labelWithFrame:CGRectMake(K375(16), CGRectGetMaxY(self.lineView.frame) + 16, 100, 24) font:kFont14 textColor:kGray900];
+        _titleLabel.text = LocalizedString(@"Token");
     }
-    return _titleChainAddressLabel;
+    return _titleLabel;
 }
 
-- (XXButton *)createChainBtn {
-    if (_createChainBtn == nil) {
-        MJWeakSelf
-        _createChainBtn = [XXButton buttonWithFrame:CGRectMake(K375(16), CGRectGetMaxY(self.titleChainAddressLabel.frame), 200, 24) block:^(UIButton *button) {
-            [weakSelf createChain];
+- (XXButton *)addTokenBtn {
+    if (!_addTokenBtn) {
+        CGFloat width = [NSString widthWithText:LocalizedString(@"AddToken") font:kFont13];
+        _addTokenBtn = [XXButton buttonWithFrame:CGRectMake(self.width - width - 40 - K375(16), CGRectGetMaxY(self.lineView.frame) + 18, width + 40 , 20) title:LocalizedString(@"AddToken") font:kFont13 titleColor:kPrimaryMain block:^(UIButton *button) {
+            XXAddNewAssetVC *addVC = [[XXAddNewAssetVC alloc] init];
+            addVC.chain = self.chainModel.chain;
+            [self.viewController.navigationController pushViewController:addVC animated:YES];
         }];
-        [_createChainBtn.titleLabel setFont:kFont13];
-        [_createChainBtn setTitle:LocalizedString(@"ClickWithdrawChainAddress") forState:UIControlStateNormal];
-        [_createChainBtn setTitleColor:kPrimaryMain forState:UIControlStateNormal];
-        [_createChainBtn setContentHorizontalAlignment:(UIControlContentHorizontalAlignmentLeft)];
+        [_addTokenBtn setImage:[UIImage imageNamed:@"addTokenIcon"] forState:UIControlStateNormal];
+        [_addTokenBtn setImageEdgeInsets:UIEdgeInsetsMake(0, -2, 0, 2)];
+        [_addTokenBtn setContentHorizontalAlignment:UIControlContentHorizontalAlignmentCenter];
+        _addTokenBtn.backgroundColor = kGray100;
+        _addTokenBtn.layer.cornerRadius = 10;
     }
-    return _createChainBtn;
+    return _addTokenBtn;
 }
-
-- (XXLabel *)chainAddressLabel {
-    if (!_chainAddressLabel) {
-        CGFloat width = [NSString widthWithText:[NSString addressShortReplace:self.chainAddress] font:kFont13];
-        _chainAddressLabel = [XXLabel labelWithFrame:CGRectMake(K375(16), CGRectGetMaxY(self.titleChainAddressLabel.frame), width, 24) font:kFont13 textColor:kGray700];
-        _chainAddressLabel.text = [NSString addressShortReplace:self.chainAddress];
-    }
-    return _chainAddressLabel;
-}
-
-- (XXButton *)chainCopyButton {
-    if (_chainCopyButton == nil) {
-        MJWeakSelf
-        _chainCopyButton = [XXButton buttonWithFrame:CGRectMake(self.backView.width - 80, self.chainAddressLabel.top, 24, 24) block:^(UIButton *button) {
-            UIPasteboard *pab = [UIPasteboard generalPasteboard];
-            [pab setString:weakSelf.chainAddress];
-            Alert *alert = [[Alert alloc] initWithTitle:LocalizedString(@"CopySuccessfully") duration:kAlertDuration completion:^{
-            }];
-            [alert showAlert];
-        }];
-        [_chainCopyButton setImage:[UIImage imageNamed:@"ValidatorPaste"] forState:UIControlStateNormal];
-    }
-    return _chainCopyButton;
-}
-
-- (XXButton *)chainCodeBtn {
-    if (!_chainCodeBtn) {
-        MJWeakSelf
-        _chainCodeBtn = [XXButton buttonWithFrame:CGRectMake(self.backView.width - 45, self.chainAddressLabel.top, 24, 24) block:^(UIButton *button) {
-            [XXChainAddressView showWithChain:weakSelf.chain];
-        }];
-        [_chainCodeBtn setImage:[UIImage imageNamed:@"chainCodeBlue"] forState:UIControlStateNormal];
-    }
-    return _chainCodeBtn;
-}
-
 @end

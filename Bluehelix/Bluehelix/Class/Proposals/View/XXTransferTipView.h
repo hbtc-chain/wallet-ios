@@ -12,6 +12,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface XXTransferTipView : UIView
 
+@property (nonatomic, strong) UITextView *tipTextView;
+
 @end
 
 NS_ASSUME_NONNULL_END

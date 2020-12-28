@@ -25,6 +25,8 @@
 @property (nonatomic, assign) CGFloat contentViewHeight;
 @property (nonatomic, strong) NSMutableArray *showArray;
 @property (nonatomic, strong) UIButton *dismissBtn;
+@property (nonatomic, strong) NSString *targetSymbol;
+
 @end
 
 @implementation XXChangeMapTokenView
@@ -42,18 +44,7 @@
 #pragma mark 构造数据
 - (void)reloadData {
     NSArray *sqliteArray = [[XXSqliteManager sharedSqlite] mappingTokens];
-    // 赋值 logo name chain decimals
-    for (XXTokenModel *token in [[XXSqliteManager sharedSqlite] tokens]) {
-        for (XXMappingModel *map in sqliteArray) {
-            if ([token.symbol isEqualToString:map.target_symbol]) {
-                map.amount = @"0";
-                map.name = token.name;
-                map.logo = token.logo;
-                map.chain = token.chain;
-                map.decimals = token.decimals;
-            }
-        }
-    }
+    NSMutableSet *set = [[NSMutableSet alloc] init];
     
     // 赋值 数量
     for (XXTokenModel *assetsToken in [XXAssetSingleManager sharedManager].assetModel.assets) {
@@ -64,18 +55,37 @@
         }
     }
     
-    // 过滤search
+    // 过滤search 左边token选择 过滤数据
     [self.showArray removeAllObjects];
     NSString *searchString = [self.searchView.searchTextField.text lowercaseString];
-       for (XXMappingModel *map in sqliteArray) {
-           if (searchString.length > 0) {
-               if ([map.name containsString:searchString]) {
-                   [self.showArray addObject:map];
-               }
-           } else {
-               [self.showArray addObject:map];
-           }
-       }
+    for (XXMappingModel *map in sqliteArray) {
+        if (![set containsObject:map.target_symbol]) {
+            [set addObject:map.target_symbol];
+            if (searchString.length > 0) {
+                if ([map.target_token.name containsString:searchString]) {
+                    [self.showArray addObject:map];
+                }
+            } else {
+                [self.showArray addObject:map];
+            }
+        }
+    }
+    
+    if (self.targetSymbol) { //如果是过滤右边
+        [self.showArray removeAllObjects];
+        NSString *searchString = [self.searchView.searchTextField.text lowercaseString];
+        for (XXMappingModel *map in sqliteArray) {
+            if ([map.target_symbol isEqualToString:self.targetSymbol]) {
+                if (searchString.length > 0) {
+                    if ([map.target_token.name containsString:searchString]) {
+                        [self.showArray addObject:map];
+                    }
+                } else {
+                    [self.showArray addObject:map];
+                }
+            }
+        }
+    }
     [self.tableView reloadData];
 }
 
@@ -86,7 +96,6 @@
     [self.contentView addSubview:self.dismissBtn];
     [self.contentView addSubview:self.searchView];
     [self.contentView addSubview:self.tableView];
-//    [self.contentView addSubview:self.lineView];
     [self.contentView addSubview:self.cancelBtn];
     [self reloadData];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(reloadData) name:kNotificationAssetRefresh object:nil];
@@ -96,6 +105,25 @@
     
     XXChangeMapTokenView *alert = [[XXChangeMapTokenView alloc] initWithFrame:CGRectMake(0, 0, kScreen_Width, kScreen_Height)];
     [KWindow addSubview:alert];
+    [alert buildUI];
+    alert.sureBlock = sureBlock;
+    
+    alert.contentView.alpha = 1;
+    alert.backView.alpha = 0;
+    alert.contentView.top = kScreen_Height;
+    [UIView animateWithDuration:0.3 animations:^{
+        alert.backView.alpha = 0.3;
+        alert.contentView.top = kScreen_Height - alert.contentViewHeight;
+    } completion:^(BOOL finished) {
+        
+    }];
+}
+
++ (void)showWithTargetSymbol:(NSString *)symbol sureBlock:(void (^)(XXMappingModel *model))sureBlock {
+    
+    XXChangeMapTokenView *alert = [[XXChangeMapTokenView alloc] initWithFrame:CGRectMake(0, 0, kScreen_Width, kScreen_Height)];
+    [KWindow addSubview:alert];
+    alert.targetSymbol = symbol;
     [alert buildUI];
     alert.sureBlock = sureBlock;
     
@@ -154,7 +182,7 @@
         cell = [[XXChooseTokenCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"XXChooseTokenCell"];
     }
     XXMappingModel *model = self.showArray[indexPath.row];
-    [cell configData:model];
+    [cell configData:model symbol:self.targetSymbol];
     return cell;
 }
 
@@ -213,13 +241,13 @@
 
 - (XXAssetSearchView *)searchView {
     if (!_searchView) {
-         _searchView = [[XXAssetSearchView alloc] initWithFrame:CGRectMake(0, 64, kScreen_Width, 48)];
-               _searchView.backgroundColor = kWhiteColor;
-               [_searchView.searchTextField addTarget:self action:@selector(textFieldValueChange:) forControlEvents:UIControlEventEditingChanged];
-               MJWeakSelf
-               _searchView.actionBlock = ^{
-                   [weakSelf reloadData];
-               };
+        _searchView = [[XXAssetSearchView alloc] initWithFrame:CGRectMake(0, 64, kScreen_Width, 48)];
+        _searchView.backgroundColor = kWhiteColor;
+        [_searchView.searchTextField addTarget:self action:@selector(textFieldValueChange:) forControlEvents:UIControlEventEditingChanged];
+        MJWeakSelf
+        _searchView.actionBlock = ^{
+            [weakSelf reloadData];
+        };
     }
     return _searchView;
 }
@@ -253,15 +281,5 @@
     }
     return _showArray;
 }
-
-//- (XXButton *)cancelBtn {
-//    if (_cancelBtn == nil) {
-//        _cancelBtn = [XXButton buttonWithFrame:CGRectMake(0, self.contentViewHeight - 68, kScreen_Width, 68) title:LocalizedString(@"Cancel") font:kFontBold(17) titleColor:kPrimaryMain block:^(UIButton *button) {
-//            [[self class] dismiss];
-//        }];
-//        _cancelBtn.backgroundColor = kWhiteColor;
-//    }
-//    return _cancelBtn;
-//}
 
 @end

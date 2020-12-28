@@ -10,7 +10,7 @@
 #import "XXCoinPublishApplyView.h"
 #import "XXMsg.h"
 #import "XXMsgRequest.h"
-#import "XXPasswordView.h"
+#import "XXPasswordAlertView.h"
 #import "XXTokenModel.h"
 #import "XXAssetSingleManager.h"
 
@@ -63,15 +63,15 @@
             [alert showAlert];
             return;
         }
-        if (kIsQuickTextOpen) {
-            self.text = kText;
-            [self requestApply];
-        } else {
+        if (kShowPassword) {
             MJWeakSelf
-            [XXPasswordView showWithSureBtnBlock:^(NSString * _Nonnull text) {
+            [XXPasswordAlertView showWithSureBtnBlock:^(NSString * _Nonnull text) {
                 weakSelf.text = text;
                 [weakSelf requestApply];
             }];
+        } else {
+            self.text = kText;
+            [self requestApply];
         }
     } else {
         Alert *alert = [[Alert alloc] initWithTitle:LocalizedString(@"CompleteInfomation") duration:kAlertDuration completion:^{

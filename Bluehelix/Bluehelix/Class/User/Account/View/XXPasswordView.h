@@ -16,6 +16,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 + (void)showWithSureBtnBlock:(void (^)(NSString *text))sureBtnBlock;
 
++ (void)showWithContent:(NSString *)content sureBtnBlock:(void (^)(NSString *text))sureBtnBlock;
+
 @end
 
 NS_ASSUME_NONNULL_END

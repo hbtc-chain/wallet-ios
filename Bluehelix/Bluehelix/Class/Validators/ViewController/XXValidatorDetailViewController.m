@@ -52,9 +52,9 @@ static NSString *KValidatorDetailInfoCell = @"ValidatorDetailInfoCell";
     self.sectionSectionValueArray = @[[NSString addressReplace:KString(self.validatorModel.operator_address)],KString(self.validatorModel.validatorDescription.website)];
     
     [self.validatorsDetailTableView reloadData];
-    if ([self.validOrInvalid isEqualToString:@"1"]) {
+    if (self.validatorModel.status.intValue == 2) {
         self.delegateBar.hidden = NO;
-    }else{
+    } else {
         self.delegateBar.hidden = YES;
     }
 }
@@ -100,7 +100,7 @@ static NSString *KValidatorDetailInfoCell = @"ValidatorDetailInfoCell";
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
     if (section == 0) {
           self.detailHeader = [tableView dequeueReusableHeaderFooterViewWithIdentifier:kSectionDetailHeader];
-            self.detailHeader.validOrInvalid = self.validOrInvalid;
+//            self.detailHeader.validOrInvalid = self.validOrInvalid;
           self.detailHeader.validatorModel = self.validatorModel;
           return self.detailHeader;
      }else{

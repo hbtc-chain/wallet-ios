@@ -14,8 +14,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface XXExchangeView : UIView
 
-@property (nonatomic, strong) XXFloadtTextField *leftField;
-
+@property (nonatomic, strong) XXFloadtTextField *topField;
+@property (nonatomic, strong) XXFloadtTextField *bottomField;
 @property (nonatomic, strong) XXMappingModel *mappingModel;
 @property (nonatomic, copy) void (^sureBlock)(void);
 

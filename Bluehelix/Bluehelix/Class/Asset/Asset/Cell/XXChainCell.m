@@ -67,6 +67,13 @@
     self.typeLabel.text = type;
     CGFloat typeWidth = [NSString widthWithText:type font:kFont10];
     self.typeLabel.frame = CGRectMake(CGRectGetMaxX(self.coinNameLabel.frame) + 4, 20, typeWidth + 8, 16);
+    if ([model.chain isEqualToString:kMainToken]) {
+        self.typeLabel.backgroundColor = [kPrimaryMain colorWithAlphaComponent:0.2];
+        self.typeLabel.textColor = kPrimaryMain;
+    } else {
+        self.typeLabel.backgroundColor = [kGray200 colorWithAlphaComponent:0.2];
+        self.typeLabel.textColor = kGray500;
+    }
     
     self.detailNameLabel.text = model.full_name;
     self.moneyLabel.text = [[RatesManager shareRatesManager] getPriceFromToken:model.chain];
@@ -98,7 +105,7 @@
 
 - (UIImageView *)iconView {
     if (_iconView == nil) {
-        _iconView = [[UIImageView alloc] initWithFrame:CGRectMake(K375(16), 16, 40, 40)];
+        _iconView = [[UIImageView alloc] initWithFrame:CGRectMake(K375(16), 20, 32, 32)];
     }
     return _iconView;
 }
@@ -122,7 +129,7 @@
         _typeLabel = [XXLabel labelWithFrame:CGRectMake(CGRectGetMaxX(self.coinNameLabel.frame) + 6, 16, 0, 24) font:kFont10 textColor:kGray500];
         _typeLabel.backgroundColor = [kGray200 colorWithAlphaComponent:0.2];
         _typeLabel.textAlignment = NSTextAlignmentCenter;
-        _typeLabel.layer.cornerRadius = 2;
+        _typeLabel.layer.cornerRadius = 8;
         _typeLabel.layer.masksToBounds = YES;
     }
     return _typeLabel;
@@ -138,7 +145,7 @@
 
 - (UIView *)lineView {
     if (_lineView == nil) {
-        _lineView = [[UIView alloc] initWithFrame:CGRectMake(self.coinNameLabel.left, [[self class] getCellHeight] - 1, kScreen_Width - K375(15), 1)];
+        _lineView = [[UIView alloc] initWithFrame:CGRectMake(0, [[self class] getCellHeight] - 1, kScreen_Width - K375(15), 1)];
         _lineView.backgroundColor = KLine_Color;
     }
     return _lineView;

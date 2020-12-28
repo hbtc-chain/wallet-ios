@@ -84,35 +84,6 @@ proposalDescription:(NSString *)proposalDescription
     return self;
 }
 
-- (instancetype)initWithfrom:(NSString *)from
-                   feeAmount:(NSString *)feeAmount
-                    feeDenom:(NSString *)feeDenom
-                     token_a:(NSString *)token_a
-                     token_b:(NSString *)token_b
-          min_token_a_amount:(NSString *)min_token_a_amount
-          min_token_b_amount:(NSString *)min_token_b_amount
-                  expired_at:(NSString *)expired_at
-                        memo:(NSString *)memo
-                        type:(NSString *)type
-                        text:(NSString *)text {
-    self = [super init];
-    if (self) {
-        _fromAddress = from;
-        _feeAmount = feeAmount;
-        _feeDenom = feeDenom;
-        _token_a = token_a;
-        _token_b = token_b;
-        _min_token_a_amount = min_token_a_amount;
-        _min_token_b_amount = min_token_b_amount;
-        _expired_at = expired_at;
-        _memo = memo;
-        _type = type;
-        _text = text;
-        [self buildMsgs];
-    }
-    return self;
-}
-
 /// 构造msgs
 - (void)buildMsgs {
     _uuid  = [FCUUID uuid];
@@ -227,7 +198,7 @@ proposalDescription:(NSString *)proposalDescription
         NSMutableDictionary *value = [NSMutableDictionary dictionary];
         value[@"from"] = KUser.address;
         value[@"to"] = _toAddress;
-        value[@"symbol"] = _denom;
+        value[@"name"] = _denom;
         value[@"decimals"] = _decimals;
         value[@"total_supply"] = _amount;
         

@@ -27,8 +27,8 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, copy) NSString *from;
 @property (nonatomic, copy) NSString *token_a;
 @property (nonatomic, copy) NSString *token_b;
-@property (nonatomic, copy) NSString *min_token_a_amount;
-@property (nonatomic, copy) NSString *min_token_b_amount;
+@property (nonatomic, copy) NSString *max_token_a_amount;
+@property (nonatomic, copy) NSString *max_token_b_amount;
 @property (nonatomic, copy) NSString *expired_at;
 
 @end

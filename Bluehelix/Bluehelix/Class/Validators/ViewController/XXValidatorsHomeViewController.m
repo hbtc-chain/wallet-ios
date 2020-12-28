@@ -14,8 +14,22 @@
 #import "XXValidatorGripSectionHeader.h"
 #import "XXEmptyView.h"
 #import "XXFailureView.h"
+#import "XXValidatorHeaderView.h"
+#import "XXAssetSingleManager.h"
+#import "XXTokenModel.h"
+#import "XXRewardView.h"
+#import "XXPasswordAlertView.h"
+#import "XXMsg.h"
+#import "XXMsgRequest.h"
+
 /**models*/
 #import "XXValidatorListModel.h"
+/**提案状态*/
+typedef NS_ENUM(NSInteger, XXValidatorType) {
+    XXValidatorTypeKeyNode = 0,//托管节点
+    XXValidatorTypeElectedNode = 1,//共识节点
+    XXValidatorTypeRunNode = 2,//竞选节点
+};
 static NSString *KValidatorsListReuseCell = @"validatorsListReuseCell";
 static NSString *KValidatorGripSectionHeader = @"XXValidatorGripSectionHeader";
 @interface XXValidatorsHomeViewController ()<UITableViewDelegate,UITableViewDataSource,UIScrollViewDelegate>
@@ -26,19 +40,19 @@ static NSString *KValidatorGripSectionHeader = @"XXValidatorGripSectionHeader";
 @property (nonatomic, strong) NSMutableArray *filtValidatorsDataArray;
 /**过滤数据源*/
 /**tableview header*/
-@property (nonatomic, strong) XXValidatorHeader *bigHeaderView;
+@property (nonatomic, strong) XXValidatorHeaderView *headerView;
 /**section header*/
 @property (nonatomic, strong) XXValidatorGripSectionHeader *sectionHeader;
 /**无数据空白页面*/
 @property (nonatomic, strong) XXEmptyView *emptyView;
 /**无网络*/
 @property (nonatomic, strong) XXFailureView *failureView;
-/**有效或者无效*/
-@property (nonatomic, copy) NSString *validOrInvalid;
-/**是否在搜索*/
-@property (nonatomic, assign) BOOL isFilting;
 /**是否数据请求失败*/
 @property (nonatomic, assign) BOOL isFailedNetworking;
+
+@property (nonatomic, strong) NSArray *delegations; //委托列表
+@property (nonatomic, strong) XXMsgRequest *msgRequest; //提取分红
+@property (nonatomic, assign) XXValidatorType validatorType; //节点类型
 @end
 
 @implementation XXValidatorsHomeViewController
@@ -47,26 +61,35 @@ static NSString *KValidatorGripSectionHeader = @"XXValidatorGripSectionHeader";
     [super viewDidLoad];
     [self setupUI];
     [self layoutViews];
-    self.validOrInvalid = @"1";
+    self.validatorType = XXValidatorTypeKeyNode;
     [self loadData];
+    [self refreshHeader];
+    [self requestDelegations];
+       [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(refreshHeader) name:kNotificationAssetRefresh object:nil];
 }
 - (void)viewWillDisappear:(BOOL)animated{
     [super viewWillDisappear:animated];
+    [KSystem statusBarSetUpDefault];
     [MBProgressHUD hideHUD];
 }
 - (void)viewDidDisappear:(BOOL)animated{
     [super viewDidDisappear:animated];
     self.sectionHeader.searchView.searchTextField.text = @"";
 }
+
+- (void)viewDidAppear:(BOOL)animated {
+    [super viewDidAppear:animated];
+    [KSystem statusBarSetUpWhiteColor];
+}
 #pragma mark UI
 - (void)setupUI{
-//    self.titleLabel.text = LocalizedString(@"ValidatorTitle");
-//    self.leftButton.hidden = YES;
-   // [self.rightButton setTitle:LocalizedString(@"ValidatorNewCreate") forState:UIControlStateNormal];
+    self.navView.backgroundColor = kPrimaryMain;
+    self.navLineView.hidden = YES;
+    self.titleLabel.textColor = [UIColor whiteColor];
+    [self.leftButton setImage:[UIImage imageNamed:@"white_back"] forState:UIControlStateNormal];
+    self.titleLabel.text = LocalizedString(@"DelegateAndRelieve");
     [self.view addSubview:self.validatorsListTableView];
-    self.validatorsListTableView.tableHeaderView = self.bigHeaderView;
-    [self.bigHeaderView bringSubviewToFront:self.validatorsListTableView];
-    
+    self.validatorsListTableView.tableHeaderView = self.headerView;
 }
 #pragma mark 数据
 - (void)loadData{
@@ -78,24 +101,67 @@ static NSString *KValidatorGripSectionHeader = @"XXValidatorGripSectionHeader";
     self.sectionHeader.searchView.searchTextField.text = @"";
     [self requestValidatorsList];
 }
+
+- (void)configData {
+    [self.filtValidatorsDataArray removeAllObjects];
+    [self.filtValidatorsDataArray addObjectsFromArray:[self getTypeArray]];
+    [self.validatorsListTableView reloadData];
+}
+
+- (NSMutableArray *)getTypeArray {
+    // 共识节点是 is_key_node=false && is_elected=true
+    NSMutableArray *tempArray = [NSMutableArray array];
+    if (self.validatorType == XXValidatorTypeKeyNode) {
+        for (XXValidatorListModel*model in self.validatorsDataArray) {
+            if (model.is_key_node) {
+                [tempArray addObject:model];
+            }
+        }
+    }
+    if (self.validatorType == XXValidatorTypeElectedNode) {
+        for (XXValidatorListModel*model in self.validatorsDataArray) {
+            if (model.is_elected && !model.is_key_node) {
+                [tempArray addObject:model];
+            }
+        }
+    }
+    if (self.validatorType == XXValidatorTypeRunNode) {
+        for (XXValidatorListModel*model in self.validatorsDataArray) {
+            if (!model.is_key_node && !model.is_elected) {
+                [tempArray addObject:model];
+            }
+        }
+    }
+    return tempArray;
+}
+
 - (void)searchLoadData:(NSString*)inputSting{
     if (inputSting.length ==0) {
-        self.isFilting = NO;
-        [self.filtValidatorsDataArray removeAllObjects];
-        [self.filtValidatorsDataArray addObjectsFromArray:self.validatorsDataArray];
-        [self.validatorsListTableView reloadData];
+        [self configData];
         return;
     }
     NSMutableArray *tempArray = [NSMutableArray array];
-    for (XXValidatorListModel*model in self.validatorsDataArray) {
+    for (XXValidatorListModel*model in [self getTypeArray]) {
         if ([[model.validatorDescription.moniker lowercaseString] containsString:[inputSting lowercaseString]]) {
             [tempArray addObject:model];
         }
     }
-    self.isFilting = YES;
     [self.filtValidatorsDataArray removeAllObjects];
     [self.filtValidatorsDataArray addObjectsFromArray:tempArray];
     [self.validatorsListTableView reloadData];
+}
+
+/// 资产请求回来 刷新header
+- (void)refreshHeader {
+    [self requestDelegations];
+    XXAssetModel *assetModel = [XXAssetSingleManager sharedManager].assetModel;
+    for (XXTokenModel *tokenModel in [XXAssetSingleManager sharedManager].assetModel.assets) {
+        if ([tokenModel.symbol isEqualToString:kMainToken]) {
+            assetModel.amount = kAmountLongTrim(tokenModel.amount);
+            assetModel.symbol = tokenModel.symbol;
+        }
+    }
+    self.headerView.assetModel = assetModel;
 }
 
 #pragma mark 请求
@@ -107,18 +173,14 @@ static NSString *KValidatorGripSectionHeader = @"XXValidatorGripSectionHeader";
         //首次加载展示
         [MBProgressHUD showActivityMessageInView:@""];
     }
-    NSMutableDictionary *dic = [NSMutableDictionary dictionary];
-    [dic setObject:self.validOrInvalid forKey:@"valid"];
     NSString *path = [NSString stringWithFormat:@"/api/v1/validators"];
-    [HttpManager getWithPath:path params:dic andBlock:^(id data, NSString *msg, NSInteger code) {
+    [HttpManager getWithPath:path params:nil andBlock:^(id data, NSString *msg, NSInteger code) {
         [weakSelf.validatorsListTableView.mj_header endRefreshing];
         [MBProgressHUD hideHUD];
         if (code == 0) {
-            NSLog(@"%@",data);
             NSArray *listArray = [XXValidatorListModel mj_objectArrayWithKeyValuesArray:data];
             [self.validatorsDataArray addObjectsFromArray:listArray];
-            [self.filtValidatorsDataArray addObjectsFromArray:listArray];
-            [self.validatorsListTableView reloadData];
+            [self configData];
         } else {
             self.isFailedNetworking = YES;
             Alert *alert = [[Alert alloc] initWithTitle:msg duration:kAlertDuration completion:^{
@@ -127,28 +189,71 @@ static NSString *KValidatorGripSectionHeader = @"XXValidatorGripSectionHeader";
         }
     }];
 }
-#pragma mark UIScrollViewDelegate
-- (void)scrollViewDidScroll:(UIScrollView *)scrollView{
-    NSLog(@"%@",NSStringFromCGPoint(scrollView.contentOffset));
-    if (scrollView.contentOffset.y >35) {
-        self.titleLabel.text = LocalizedString(@"ValidatorTitle");
-        //section header 背景
-        if (scrollView.contentOffset.y >128) {
-            self.sectionHeader.coverView.backgroundColor = kBackgroundLeverFirst;
-        }else{
-            self.sectionHeader.coverView.backgroundColor = [UIColor clearColor];
+
+#pragma mark 请求委托地址列表
+- (void)requestDelegations {
+    MJWeakSelf
+    NSString *path = [NSString stringWithFormat:@"/api/v1/cus/%@/delegations",KUser.address];
+    [HttpManager getWithPath:path params:nil andBlock:^(id data, NSString *msg, NSInteger code) {
+        if (code == 0) {
+            weakSelf.delegations = data;
+            weakSelf.headerView.delegations = data;
         }
-    }else{
-        self.sectionHeader.coverView.backgroundColor = [UIColor clearColor];
-        self.titleLabel.text = @"";
-    }
+    }];
 }
+
+/// 提取分红
+- (void)withdrawBonus {
+    NSDecimalNumber *sum = [NSDecimalNumber decimalNumberWithString:@"0"];
+    for (NSDictionary *dic in self.delegations) {
+        NSString *unclaimedReward = dic[@"unclaimed_reward"];
+        NSDecimalNumber *unclaimedRewardDecimal = [NSDecimalNumber decimalNumberWithString:unclaimedReward];
+        sum = [sum decimalNumberByAdding:unclaimedRewardDecimal];
+    }
+    if (sum.floatValue <= 0) {
+        Alert *alert = [[Alert alloc] initWithTitle:LocalizedString(@"NoReward") duration:kAlertDuration completion:^{
+        }];
+        [alert showAlert];
+        return;
+    }
+    NSString *content = NSLocalizedFormatString(LocalizedString(@"WithdrawMoneyContent"),sum.stringValue,kMinFee);
+    MJWeakSelf
+    [XXRewardView showWithTitle:LocalizedString(@"WithdrawMoney") icon:@"withdrawMoneyAlert" content:content sureBlock:^{
+        if (kShowPassword) {
+            [XXPasswordAlertView showWithSureBtnBlock:^(NSString * _Nonnull text) {
+                [weakSelf requestWithdrawBonus:text];
+            }];
+        } else {
+            [weakSelf requestWithdrawBonus:kText];
+        }
+    }];
+}
+
+/// 发送提取分红请求
+- (void)requestWithdrawBonus:(NSString *)text {
+    XXMsg *model = [[XXMsg alloc] initWithfrom:@"" to:@"" amount:@"" denom:kMainToken feeAmount:@"2000000000000000000" feeGas:@"2000000" feeDenom:kMainToken memo:@"" type:kMsgWithdrawalDelegationReward withdrawal_fee:@"" text:text];
+    NSMutableArray *msgs = [NSMutableArray array];
+    for (NSDictionary *dic in self.delegations) {
+        NSMutableDictionary *value = [NSMutableDictionary dictionary];
+        value[@"delegator_address"] = KUser.address;
+        value[@"validator_address"] = dic[@"validator"];
+        
+        NSMutableDictionary *msg = [NSMutableDictionary dictionary];
+        msg[@"type"] = kMsgWithdrawalDelegationReward;
+        msg[@"value"] = value;
+        [msgs addObject:msg];
+    }
+    model.msgs = msgs;
+    _msgRequest = [[XXMsgRequest alloc] init];
+    [_msgRequest sendMsg:model];
+}
+
 #pragma mark UITableViewDelegate UITableViewDataSource
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-    return self.validatorsDataArray.count == 0 ? 2 : 1;
+    return self.filtValidatorsDataArray.count == 0 ? 2 : 1;
 }
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return self.isFilting ? self.filtValidatorsDataArray.count : self.validatorsDataArray.count;
+    return self.filtValidatorsDataArray.count;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
@@ -170,9 +275,8 @@ static NSString *KValidatorGripSectionHeader = @"XXValidatorGripSectionHeader";
         self.sectionHeader.backgroundColor = kBackgroundLeverFirst;
         self.sectionHeader.selectValidOrInvalidCallBack = ^(NSInteger index) {
             @strongify(self)
-            NSNumber *number = [NSNumber numberWithInteger:index];
-            self.validOrInvalid = number.integerValue == 1 ? @"0" : @"1";
-            [self loadData];
+            self.validatorType = index;
+            [self configData];
         };
         self.sectionHeader.textfieldValueChangeBlock = ^(NSString * _Nonnull textfiledText) {
             @strongify(self)
@@ -180,7 +284,7 @@ static NSString *KValidatorGripSectionHeader = @"XXValidatorGripSectionHeader";
         };
         return self.sectionHeader;
     }else {
-        if (self.validatorsDataArray.count == 0) {
+        if (self.filtValidatorsDataArray.count == 0) {
             if ([KUser.netWorkStatus isEqualToString:@"notReachable"] || self.isFailedNetworking) {
                 return self.failureView;
             } else {
@@ -193,11 +297,7 @@ static NSString *KValidatorGripSectionHeader = @"XXValidatorGripSectionHeader";
     }
 
 }
-- (void)tableView:(UITableView *)tableView willDisplayHeaderView:(UIView *)view forSection:(NSInteger)section {
-    if ([view isKindOfClass:[UITableViewHeaderFooterView class]]) {
-        ((UITableViewHeaderFooterView *)view).backgroundView.backgroundColor = [UIColor clearColor];
-    }
-}
+
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
     return 120;
 }
@@ -208,8 +308,7 @@ static NSString *KValidatorGripSectionHeader = @"XXValidatorGripSectionHeader";
     }
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
     cell.backgroundColor = kBackgroundLeverFirst;
-    XXValidatorListModel *model = self.isFilting ? self.filtValidatorsDataArray[indexPath.row] : self.validatorsDataArray[indexPath.row];
-    cell.validOrInvalid = [self.validOrInvalid isEqualToString:@"1"] ? YES :NO;
+    XXValidatorListModel *model = self.filtValidatorsDataArray[indexPath.row];
     [cell loadData:model];
     return cell;
 }
@@ -217,8 +316,7 @@ static NSString *KValidatorGripSectionHeader = @"XXValidatorGripSectionHeader";
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     XXValidatorDetailViewController *detailValidator = [[XXValidatorDetailViewController alloc]init];
-    detailValidator.validatorModel = self.isFilting ? self.filtValidatorsDataArray[indexPath.row] : self.validatorsDataArray[indexPath.row];
-    detailValidator.validOrInvalid = self.validOrInvalid;
+    detailValidator.validatorModel = self.filtValidatorsDataArray[indexPath.row];
     [self.navigationController pushViewController:detailValidator animated:YES];
 }
 #pragma mark layout
@@ -229,7 +327,7 @@ static NSString *KValidatorGripSectionHeader = @"XXValidatorGripSectionHeader";
 - (UITableView *)validatorsListTableView {
     MJWeakSelf
     if (_validatorsListTableView == nil) {
-        _validatorsListTableView = [[UITableView alloc] initWithFrame:CGRectMake(0, kNavHeight, kScreen_Width, kScreen_Height - kNavHeight) style:UITableViewStylePlain];
+        _validatorsListTableView = [[UITableView alloc] initWithFrame:CGRectMake(0, kNavHeight-1, kScreen_Width, kScreen_Height - kNavHeight+1) style:UITableViewStylePlain];
         _validatorsListTableView.dataSource = self;
         _validatorsListTableView.delegate = self;
         _validatorsListTableView.backgroundColor = kWhiteColor;
@@ -250,11 +348,17 @@ static NSString *KValidatorGripSectionHeader = @"XXValidatorGripSectionHeader";
     }
     return _validatorsListTableView;
 }
-- (XXValidatorHeader*)bigHeaderView{
-    if (!_bigHeaderView) {
-        _bigHeaderView = [[XXValidatorHeader alloc]initWithFrame:CGRectMake(0, 0, kScreen_Width, 82)];
+
+- (XXValidatorHeaderView *)headerView {
+    if (!_headerView) {
+        _headerView = [[XXValidatorHeaderView alloc] initWithFrame:CGRectMake(0, 0, kScreen_Width, 220)];
+        MJWeakSelf
+        _headerView.getRewardBlock = ^{
+            [weakSelf requestDelegations];
+            [weakSelf withdrawBonus];
+        };
     }
-    return _bigHeaderView;;
+    return _headerView;
 }
 - (XXEmptyView *)emptyView {
     if (_emptyView == nil) {

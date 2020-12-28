@@ -21,7 +21,6 @@ static dispatch_once_t onceToken;
     }
     self.responseSerializer = [AFHTTPResponseSerializer serializer];
     self.responseSerializer.acceptableContentTypes = [NSSet setWithObjects:@"application/json", @"text/plain", @"text/javascript", @"text/json", @"text/html", nil];
-    [self.requestSerializer setValue:[[LocalizeHelper sharedLocalSystem] getRequestHeaderLanguageCode] forHTTPHeaderField:@"local"];
     return self;
 }
 
@@ -43,11 +42,14 @@ static dispatch_once_t onceToken;
     aPath = [aPath stringByAddingPercentEncodingWithAllowedCharacters:[NSCharacterSet URLQueryAllowedCharacterSet]];
 //    NSLog(@"\n===========数据请求===========\nmethod:%@\naPath:%@\nparams%@", kNetworkMethodName[method], aPath, params);
     [self.requestSerializer setTimeoutInterval:15];
+    NSMutableDictionary *headerDict =  [NSMutableDictionary dictionary];
+    headerDict[@"Accept-Language"] = [[LocalizeHelper sharedLocalSystem] getRequestHeaderLanguageCode];
+    
             
     //发起请求
     switch (method) {
         case Get:{
-            [self GET:aPath parameters:params headers:nil progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+            [self GET:aPath parameters:params headers:headerDict progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
                 id data = [NSJSONSerialization JSONObjectWithData:responseObject options:NSJSONReadingMutableContainers error:nil];
                 if ([data isKindOfClass:[NSArray class]] || [data isKindOfClass:[NSDictionary class]]) {
                     block(data, @"网络请求正常！", 0);
@@ -73,7 +75,7 @@ static dispatch_once_t onceToken;
             break;
         }
         case Post:{
-            [self POST:aPath parameters:params headers:nil progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+            [self POST:aPath parameters:params headers:headerDict progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
                 id data = [NSJSONSerialization JSONObjectWithData:responseObject options:NSJSONReadingMutableContainers error:nil];
                 if ([data isKindOfClass:[NSArray class]] || [data isKindOfClass:[NSDictionary class]]) {
                     block(data, @"网络请求正常！", 0);

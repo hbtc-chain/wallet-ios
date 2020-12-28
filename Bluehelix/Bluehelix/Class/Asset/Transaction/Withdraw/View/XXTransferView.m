@@ -26,19 +26,18 @@
     // 提币主视图
     [self addSubview:self.mainView];
     
+    [self.mainView addSubview:self.outAddress];
+    
     /** 地址  */
     [self.mainView addSubview:self.addressView];
     
-//    [self.mainView addSubview:self.memoView];
+    [self.mainView addSubview:self.chooseTokenView];
     
     /** 提币数量 */
     [self.mainView addSubview:self.amountView];
 
     /** 手续费 */
     [self.mainView addSubview:self.feeView];
-
-    /** 提币加速视图 */
-    [self.mainView addSubview:self.speedView];
 
     /** 提示语视图 */
     [self.mainView addSubview:self.tipView];
@@ -66,11 +65,23 @@
     return _mainView;
 }
 
+- (XXWithdrawAddressView *)outAddress {
+    if (_outAddress == nil) {
+        _outAddress = [[XXWithdrawAddressView alloc] initWithFrame:CGRectMake(0, 0, kScreen_Width, 88)];
+        _outAddress.nameLabel.text = LocalizedString(@"TransferOutAddress");
+        _outAddress.codeButton.hidden = YES;
+        _outAddress.textField.enabled = NO;
+        _outAddress.textField.width = _outAddress.banView.width - K375(16);
+        _outAddress.textField.text = KUser.address;
+    }
+    return _outAddress;
+}
+
 - (XXWithdrawAddressView *)addressView {
     if (_addressView == nil) {
         MJWeakSelf
-        _addressView = [[XXWithdrawAddressView alloc] initWithFrame:CGRectMake(0, 0, kScreen_Width, 88)];
-        _addressView.nameLabel.text = LocalizedString(@"TransferAddress");
+        _addressView = [[XXWithdrawAddressView alloc] initWithFrame:CGRectMake(0, CGRectGetMaxY(self.outAddress.frame) + 15, kScreen_Width, 88)];
+        _addressView.nameLabel.text = LocalizedString(@"TransferInAddress");
         _addressView.codeBlock = ^{
             [weakSelf scanCodeGetAddress];
         };
@@ -85,10 +96,18 @@
     return _memoView;
 }
 
+- (XXTransferChooseTokenView *)chooseTokenView {
+    if (_chooseTokenView == nil) {
+        _chooseTokenView = [[XXTransferChooseTokenView alloc] initWithFrame:CGRectMake(0, CGRectGetMaxY(self.addressView.frame) + 15, kScreen_Width, 88)];
+        _chooseTokenView.nameLabel.text = LocalizedString(@"ChooseTransferToken");
+    }
+    return _chooseTokenView;
+}
+
 /** 转账数量 */
 - (XXTransferAmountView *)amountView {
     if (_amountView == nil) {
-        _amountView = [[XXTransferAmountView alloc] initWithFrame:CGRectMake(0, CGRectGetMaxY(self.addressView.frame) + 15, kScreen_Width, 88)];
+        _amountView = [[XXTransferAmountView alloc] initWithFrame:CGRectMake(0, CGRectGetMaxY(self.chooseTokenView.frame) + 15, kScreen_Width, 88)];
         _amountView.userInteractionEnabled = YES;
         _amountView.nameLabel.text = LocalizedString(@"TransferAmount");
         _amountView.textField.placeholder = LocalizedString(@"PleaseEnterTransferAmount");
@@ -120,7 +139,8 @@
 /** 提示语视图 */
 - (XXWithdrawTipView *)tipView {
     if (_tipView == nil) {
-        _tipView = [[XXWithdrawTipView alloc] initWithFrame:CGRectMake(0, CGRectGetMaxY(self.speedView.frame), kScreen_Width, 10)];
+        _tipView = [[XXWithdrawTipView alloc] initWithFrame:CGRectMake(0, CGRectGetMaxY(self.feeView.frame) + 15, kScreen_Width, 10)];
+        _tipView.alertLabel.text = LocalizedString(@"TransferTip");
     }
     return _tipView;
 }

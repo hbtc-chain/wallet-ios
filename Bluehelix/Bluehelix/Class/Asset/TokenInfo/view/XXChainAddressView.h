@@ -12,7 +12,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface XXChainAddressView : UIView
 
-+ (void)showWithAddress:(NSString *)address;
++ (void)showMainAccountAddress;
 
 + (void)showWithChain:(NSString *)chain;
 

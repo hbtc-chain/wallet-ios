@@ -27,6 +27,12 @@
     [self buildUI];
 }
 
+- (void)viewDidDisappear:(BOOL)animated {
+    [super viewDidDisappear:animated];
+    UIPasteboard *pb = [UIPasteboard generalPasteboard];
+    [pb setValue:@"" forPasteboardType:UIPasteboardNameGeneral];
+}
+
 - (void)buildUI {
     self.titleLabel.text = LocalizedString(@"BackupKeystore");
     [self.view addSubview:self.tipLabel];

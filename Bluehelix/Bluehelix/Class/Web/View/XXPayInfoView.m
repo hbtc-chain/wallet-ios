@@ -12,15 +12,13 @@
 
 @property (nonatomic, strong) UIView *backView;
 @property (nonatomic, strong) UIView *contentView;
-@property (nonatomic, strong) UIScrollView *scrollView;
+@property (nonatomic, strong) UIView *contentBackView;
 @property (nonatomic, strong) UIButton *dismissBtn;
-@property (nonatomic, strong) UIButton *keyBtn;
 @property (nonatomic, strong) UILabel *titleLabel;
-@property (nonatomic, strong) UILabel *amountLabel;
 @property (nonatomic, strong) XXButton *okBtn;
 @property (nonatomic, strong) NSMutableArray *labelArray;
 @property (nonatomic, strong) XXPayInfoModel *model;
-
+@property (nonatomic, assign) CGFloat contentViewHeight;
 @end
 
 @implementation XXPayInfoView
@@ -37,26 +35,21 @@
 - (void)buildUI {
     [self addSubview:self.backView];
     [self addSubview:self.contentView];
-    [self.contentView addSubview:self.scrollView];
-//    [self.contentView addSubview:self.keyBtn];
+    [self.contentView addSubview:self.contentBackView];
     [self.contentView addSubview:self.dismissBtn];
     [self.contentView addSubview:self.titleLabel];
-    [self.contentView addSubview:self.amountLabel];
-    [self.contentView addSubview:self.okBtn];
+    [self.contentBackView addSubview:self.okBtn];
     [self buildPayInfoLabels];
-    
-    // TODO 测试
-//    self.amountLabel.text = @"1000 ETH";
 }
 
 - (void)buildPayInfoLabels {
     CGFloat offsetY = 24;
     for (NSInteger i=0; i < self.model.titleArr.count; i ++) {
         
-        XXLabel *leftLabel = [XXLabel labelWithFrame:CGRectMake(K375(24), offsetY, K375(120), 32) text:self.model.titleArr[i] font:kFont15 textColor:kGray500];
-        [self.scrollView addSubview:leftLabel];
+        XXLabel *leftLabel = [XXLabel labelWithFrame:CGRectMake(K375(24), offsetY, K375(120), 32) text:self.model.titleArr[i] font:kFont14 textColor:kGray500];
+        [self.contentBackView addSubview:leftLabel];
         
-        XXLabel *rightLabel = [XXLabel labelWithFrame:CGRectMake(K375(151), offsetY, K375(200),32) text:self.model.valueArr[i] font:kFont15 textColor:kGray900];
+        XXLabel *rightLabel = [XXLabel labelWithFrame:CGRectMake(K375(151), offsetY, K375(200),32) text:self.model.valueArr[i] font:kFont14 textColor:kGray900];
         rightLabel.numberOfLines = 0;
         CGSize size = [rightLabel sizeThatFits:CGSizeMake(K375(200),32)];
         if (size.height < 32) {
@@ -65,7 +58,7 @@
             rightLabel.size = size;
         }
         [rightLabel addClickCopyFunction];
-        [self.scrollView addSubview:rightLabel];
+        [self.contentBackView addSubview:rightLabel];
         [self.labelArray addObject:rightLabel];
         
         offsetY += 48;
@@ -77,6 +70,7 @@
     XXPayInfoView *alert = [[XXPayInfoView alloc] initWithFrame:CGRectMake(0, 0, kScreen_Width, kScreen_Height)];
     [KWindow addSubview:alert];
     alert.model = model;
+    alert.contentViewHeight = 168 + 48*model.titleArr.count;
     [alert buildUI];
     alert.sureBlock = sureBlock;
     
@@ -85,7 +79,7 @@
     alert.contentView.top = kScreen_Height;
     [UIView animateWithDuration:0.3 animations:^{
         alert.backView.alpha = 0.3;
-        alert.contentView.top = kScreen_Height - 350;
+        alert.contentView.top = kScreen_Height - alert.contentViewHeight;
     } completion:^(BOOL finished) {
        
     }];
@@ -144,28 +138,12 @@
 
 - (UIView *)contentView {
     if (_contentView == nil) {
-        _contentView = [[UIView alloc] initWithFrame:CGRectMake(0, kScreen_Height - 350, kScreen_Width, 350)];
+        _contentView = [[UIView alloc] initWithFrame:CGRectMake(0, kScreen_Height - self.contentViewHeight, kScreen_Width, self.contentViewHeight)];
         _contentView.backgroundColor = [UIColor whiteColor];
         _contentView.layer.cornerRadius = 10;
         _contentView.layer.masksToBounds = YES;
     }
     return _contentView;
-}
-
-- (UIScrollView *)scrollView {
-    if (_scrollView == nil) {
-        _scrollView = [[UIScrollView alloc] initWithFrame:CGRectMake(0, 30, self.contentView.width, self.contentView.height - 30)];
-    }
-    return _scrollView;
-}
-
-- (UIButton *)keyBtn {
-    if (_keyBtn == nil ) {
-        _keyBtn = [[UIButton alloc] initWithFrame:CGRectMake(0, 10, K375(50), K375(50))];
-        [_keyBtn setImage:[UIImage imageNamed:@"keyBtn"] forState:UIControlStateNormal];
-        [_keyBtn addTarget:self action:@selector(keyAction) forControlEvents:UIControlEventTouchUpInside];
-    }
-    return _keyBtn;
 }
 
 - (UIButton *)dismissBtn {
@@ -188,20 +166,18 @@
     return _titleLabel;
 }
 
-- (UILabel *)amountLabel {
-    if (_amountLabel == nil) {
-        _amountLabel = [[UILabel alloc] initWithFrame:CGRectMake(16, 72, kScreen_Width - 32, 56)];
-        _amountLabel.font = kNumberFontBold(30);
-        _amountLabel.textColor = kGray900NoChange;
-        _amountLabel.textAlignment = NSTextAlignmentCenter;
+- (UIView *)contentBackView {
+    if (_contentBackView == nil) {
+        _contentBackView = [[UIView alloc] initWithFrame:CGRectMake(0, CGRectGetMaxY(self.titleLabel.frame) + 24, self.contentView.width, self.contentViewHeight - CGRectGetMaxY(self.titleLabel.frame) - 24)];
+        _contentBackView.backgroundColor = kGray50;
     }
-    return _amountLabel;
+    return _contentBackView;
 }
 
 - (XXButton *)okBtn {
     if (!_okBtn) {
         MJWeakSelf
-        _okBtn = [XXButton buttonWithFrame:CGRectMake(16, self.contentView.height - kBtnHeight - 24, kScreen_Width - 32, kBtnHeight) title:LocalizedString(@"Sure") font:kFont(17) titleColor:[UIColor whiteColor] block:^(UIButton *button) {
+        _okBtn = [XXButton buttonWithFrame:CGRectMake(16, self.contentBackView.height - kBtnHeight - 24, kScreen_Width - 32, kBtnHeight) title:LocalizedString(@"Sure") font:kFont(17) titleColor:[UIColor whiteColor] block:^(UIButton *button) {
             [weakSelf okAction];
         }];
         _okBtn.backgroundColor = kPrimaryMain;

@@ -14,6 +14,7 @@
 #import "XXWithdrawSpeedView.h"
 #import "XXWithdrawTipView.h"
 #import "XXTransferMemoView.h"
+#import "XXTransferChooseTokenView.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
@@ -27,6 +28,9 @@ NS_ASSUME_NONNULL_BEGIN
 /** 提币地址视图 */
 @property (strong, nonatomic) XXWithdrawAddressView *addressView;
 
+/** 选择币种 */
+@property (strong, nonatomic) XXTransferChooseTokenView *chooseTokenView;
+
 /** 提币数量 */
 @property (strong, nonatomic) XXWithdrawAmountView *amountView;
 
@@ -38,9 +42,6 @@ NS_ASSUME_NONNULL_BEGIN
 
 /** 跨链手续费 */
 @property (strong, nonatomic) XXWithdrawFeeView *chainFeeView;
-
-/** 提币加速视图 */
-@property (strong, nonatomic) XXWithdrawSpeedView *speedView;
 
 /** 提示语视图 */
 @property (strong, nonatomic) XXWithdrawTipView *tipView;

@@ -7,12 +7,13 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "XXChainModel.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
 @interface XXChainHeaderView : UIView
 
-@property (nonatomic, copy) NSString *chain;
+@property (nonatomic, strong) XXChainModel *chainModel;
 
 @end
 

@@ -9,7 +9,7 @@
 #import "XXVoteProposalViewController.h"
 #import "XXMsg.h"
 #import "XXMsgRequest.h"
-#import "XXPasswordView.h"
+#import "XXPasswordAlertView.h"
 #import "XXTokenModel.h"
 #import "XXAssetSingleManager.h"
 
@@ -78,16 +78,16 @@
             [alert showAlert];
             return;
         }
-        if (kIsQuickTextOpen) {
-            self.text = kText;
-            [self requestCreateProposal];
-        } else {
+        if (kShowPassword) {
             MJWeakSelf
-            [XXPasswordView showWithSureBtnBlock:^(NSString * _Nonnull text) {
+            [XXPasswordAlertView showWithSureBtnBlock:^(NSString * _Nonnull text) {
                 @strongify(self)
                 weakSelf.text = text;
                 [self requestCreateProposal];
             }];
+        } else {
+            self.text = kText;
+            [self requestCreateProposal];
         }
     } else {
         Alert *alert = [[Alert alloc] initWithTitle:LocalizedString(@"PleaseFillAll") duration:kAlertDuration completion:^{

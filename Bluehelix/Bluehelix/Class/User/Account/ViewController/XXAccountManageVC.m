@@ -11,6 +11,7 @@
 #import "XXAccountFooterView.h"
 #import "XXTabBarController.h"
 #import "AppDelegate.h"
+#import "XYHAlertView.h"
 
 @interface XXAccountManageVC () <UITableViewDataSource, UITableViewDelegate, UIGestureRecognizerDelegate>
 
@@ -33,11 +34,13 @@
     self.currentAddress = KUser.address;
 }
 
+#pragma mark 返回判断是否需要更换地址 刷新app
 - (void)viewDidDisappear:(BOOL)animated {
     [super viewDidDisappear:animated];
     if (![KUser.address isEqualToString:self.currentAddress]) {
+        KUser.isQuickTextOpen = NO;
         XXTabBarController *tabVC = [[XXTabBarController alloc] init];
-        [tabVC setIndex:3];
+        [tabVC setIndex:2];
         AppDelegate *delegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
         delegate.window.rootViewController = tabVC;
     }
@@ -49,6 +52,7 @@
     [self.view addSubview:self.footView];
 }
 
+#pragma mark tableview
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     return KUser.accounts.count;
 }
@@ -82,17 +86,25 @@
 }
 
 - (NSArray *)tableView:(UITableView *)tableView editActionsForRowAtIndexPath:(nonnull NSIndexPath *)indexPath {
+    MJWeakSelf
     UITableViewRowAction *deleteAction = [UITableViewRowAction rowActionWithStyle:UITableViewRowActionStyleNormal title:LocalizedString(@"Delete") handler:^(UITableViewRowAction * _Nonnull action, NSIndexPath * _Nonnull indexPath) {
-        XXAccountModel *selectedAccount = KUser.accounts[indexPath.row];
-        if ([selectedAccount.address isEqualToString:KUser.address]) {
-            XXAccountModel *firstAccount = [KUser.accounts firstObject];
-            KUser.address = firstAccount.address;
-        }
-        [[XXSqliteManager sharedSqlite] deleteAccountByAddress:selectedAccount.address];
-        [self.tableView reloadData];
+        [XYHAlertView showAlertViewWithTitle:LocalizedString(@"DeleteAccount") message:LocalizedString(@"DeleteAccountTip") titlesArray:@[LocalizedString(@"Sure")] andBlock:^(NSInteger index) {
+            [weakSelf deleteAccountWithIndexPath:indexPath];
+        }];
     }];
     deleteAction.backgroundColor = kPrimaryMain;
     return @[deleteAction];
+}
+
+#pragma mark 删除账户
+- (void)deleteAccountWithIndexPath:(NSIndexPath *)indexPath {
+    XXAccountModel *selectedAccount = KUser.accounts[indexPath.row];
+    if ([selectedAccount.address isEqualToString:KUser.address]) {
+        XXAccountModel *firstAccount = [KUser.accounts firstObject];
+        KUser.address = firstAccount.address;
+    }
+    [[XXSqliteManager sharedSqlite] deleteAccountByAddress:selectedAccount.address];
+    [self.tableView reloadData];
 }
 
 #pragma mark - || 懒加载

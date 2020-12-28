@@ -14,9 +14,8 @@
 #import "XXServiceAgreementVC.h"
 #import "XYHNumbersLabel.h"
 #import "XXTabBarController.h"
-#import "YZAuthID.h"
-#import "SecurityHelper.h"
 #import "XYHAlertView.h"
+#import "XXSetPasswordNumTextFieldView.h"
 
 @interface XXRepeatPasswordVC () <UITextViewDelegate>
 
@@ -24,8 +23,7 @@
 @property (nonatomic, strong) XXLabel *stepTipLabel;
 @property (nonatomic, strong) XYHNumbersLabel *contentLabel;
 @property (nonatomic, strong) XXLabel *nameLabel;
-@property (nonatomic, strong) XXTextFieldView *textFieldView;
-@property (nonatomic, strong) XXLabel *charCountLabel;
+@property (nonatomic, strong) XXSetPasswordNumTextFieldView *passwordView;
 @property (nonatomic, strong) XXButton *createBtn;
 @property (nonatomic, strong) XXButton *isAgreeButton;
 @property (nonatomic, strong) UITextView *textView;
@@ -48,20 +46,19 @@
 
 - (void)buildUI {
     self.titleLabel.text = LocalizedString(@"CreateWallet");
-    KUser.agreeService = NO;
+    KUser.agreeService = YES;
     [self.view addSubview:self.tipLabel];
     [self.view addSubview:self.stepTipLabel];
     [self.view addSubview:self.contentLabel];
     [self.view addSubview:self.nameLabel];
-    [self.view addSubview:self.textFieldView];
+    [self.view addSubview:self.passwordView];
     [self.view addSubview:self.isAgreeButton];
     [self.view addSubview:self.textView];
-    [self.view addSubview:self.charCountLabel];
     [self.view addSubview:self.createBtn];
 }
 
 - (void)createAction {
-    if (![self.textFieldView.textField.text isEqualToString:KUser.localPassword]) {
+    if (![self.passwordView.text isEqualToString:KUser.localPassword]) {
         Alert *alert = [[Alert alloc] initWithTitle:LocalizedString(@"TwoPasswordInconsistent") duration:kAlertDuration completion:^{
         }];
         [alert showAlert];
@@ -83,14 +80,14 @@
 
 - (void)backupKeystore:(NSString *)json {
     XXAccountModel *model = [[XXAccountModel alloc] init];
-    model.privateKey = [AESCrypt encrypt:self.account.privateKeyString password:KUser.localPassword];
+    model.privateKey = [AESCrypt encrypt:self.account.privateKeyString password:[NSString md5:KUser.localPassword]];
     model.publicKey = self.account.pubKey;
     model.address = self.account.BHAddress;
     model.userName = KUser.localUserName;
-    model.password = [NSString md5:KUser.localPassword];
+    model.password = [NSString generatePassword:KUser.localPassword];
     model.keystore = json;
     if (self.account.mnemonicPhrase && IsEmpty(KUser.localPhraseString)) { //如果是通过助记词导入的 不需要备份和保留助记词
-        NSString *mnemonicPhrase = [AESCrypt encrypt:self.account.mnemonicPhrase password:KUser.localPassword];
+        NSString *mnemonicPhrase = [AESCrypt encrypt:self.account.mnemonicPhrase password:[NSString md5:KUser.localPassword]];
         model.mnemonicPhrase = mnemonicPhrase;
         model.backupFlag = NO;
     } else {
@@ -115,14 +112,12 @@
     if (model.backupFlag) { //导入的不需要备份助记词
         Alert *alert = [[Alert alloc] initWithTitle:LocalizedString(@"ImportSuccess") duration:kAlertDuration completion:^{
             KWindow.rootViewController = [[XXTabBarController alloc] init];
-//            [self showBiometricAlert];
         }];
         [alert showAlert];
     } else {
         XXCreateWalletSuccessVC *successVC = [[XXCreateWalletSuccessVC alloc] init];
         successVC.text = KUser.localPassword;
         [self.navigationController pushViewController:successVC animated:YES];
-//        [self showBiometricAlert];
     }
     KUser.localPassword = @"";
     KUser.localUserName = @"";
@@ -130,17 +125,8 @@
     KUser.localPrivateKey = @"";
 }
 
-- (void)textFiledValueChange:(UITextField *)textField {
-    [self reloadCreateBtn];
-    if (textField.text.length) {
-        self.charCountLabel.text = NSLocalizedFormatString(LocalizedString(@"CharCount"),[NSString stringWithFormat:@"%lu",(unsigned long)textField.text.length]);
-    } else {
-        self.charCountLabel.text = @"";
-    }
-}
-
 - (void)reloadCreateBtn {
-    if (self.textFieldView.textField.text.length && KUser.agreeService) {
+    if (self.passwordView.text.length && KUser.agreeService) {
         self.createBtn.enabled = YES;
         self.createBtn.backgroundColor = kPrimaryMain;
     } else {
@@ -175,41 +161,29 @@
 
 - (XXLabel *)nameLabel {
     if (!_nameLabel) {
-        _nameLabel = [XXLabel labelWithFrame:CGRectMake(K375(16), CGRectGetMaxY(self.contentLabel.frame) + 24, kScreen_Width - K375(32), 40) text:LocalizedString(@"RepeatPassword") font:kFont15 textColor:kGray700 alignment:NSTextAlignmentLeft];
+        _nameLabel = [XXLabel labelWithFrame:CGRectMake(K375(16), CGRectGetMaxY(self.contentLabel.frame) + 24, kScreen_Width - K375(32), 40) text:LocalizedString(@"SetPasswordRuleTipAgain") font:kFont15 textColor:kGray700 alignment:NSTextAlignmentLeft];
     }
     return _nameLabel;
 }
 
-- (XXTextFieldView *)textFieldView {
-    if (!_textFieldView) {
-        _textFieldView = [[XXTextFieldView alloc] initWithFrame:CGRectMake(K375(16), CGRectGetMaxY(self.nameLabel.frame), kScreen_Width - K375(32), 48)];
-        _textFieldView.placeholder = LocalizedString(@"SetPasswordPlaceHolder");
-        _textFieldView.showLookBtn = YES;
-        [_textFieldView.textField addTarget:self action:@selector(textFiledValueChange:) forControlEvents:UIControlEventEditingChanged];
+- (XXSetPasswordNumTextFieldView *)passwordView {
+    if (_passwordView == nil) {
+        _passwordView = [[XXSetPasswordNumTextFieldView alloc] initWithFrame:CGRectMake(K375(16), CGRectGetMaxY(self.nameLabel.frame) + 24, kScreen_Width - K375(32), 24)];
+        MJWeakSelf
+        _passwordView.finishBlock = ^(NSString * _Nonnull text) {
+            [weakSelf reloadCreateBtn];
+        };
     }
-    return _textFieldView;
-}
-
-- (XXLabel *)charCountLabel {
-    if (!_charCountLabel) {
-        _charCountLabel = [XXLabel labelWithFrame:CGRectMake(K375(16), CGRectGetMaxY(self.textFieldView.frame)+3, kScreen_Width - K375(32), 20) text:@"" font:kFont(15) textColor:kGray500 alignment:NSTextAlignmentRight];
-    }
-    return _charCountLabel;
+    return _passwordView;
 }
 
 - (XXButton *)isAgreeButton {
     if (_isAgreeButton == nil) {
         MJWeakSelf
-        _isAgreeButton = [XXButton buttonWithFrame:CGRectMake(K375(24), CGRectGetMaxY(self.textFieldView.frame) + 23, 30, 24) block:^(UIButton *button) {
+        _isAgreeButton = [XXButton buttonWithFrame:CGRectMake(K375(16), CGRectGetMaxY(self.passwordView.frame) + 23, 30, 24) block:^(UIButton *button) {
             weakSelf.isAgreeButton.selected = !weakSelf.isAgreeButton.selected;
             KUser.agreeService = weakSelf.isAgreeButton.selected;
-            if (KUser.agreeService && weakSelf.textFieldView.textField.text.length) {
-                weakSelf.createBtn.enabled = YES;
-                weakSelf.createBtn.backgroundColor = kPrimaryMain;
-            } else {
-                weakSelf.createBtn.enabled = NO;
-                weakSelf.createBtn.backgroundColor = kGray100;
-            }
+            [weakSelf reloadCreateBtn];
         }];
         _isAgreeButton.contentHorizontalAlignment =UIControlContentHorizontalAlignmentLeft;
         _isAgreeButton.contentVerticalAlignment = UIControlContentVerticalAlignmentCenter;
@@ -264,91 +238,6 @@
         _createBtn.enabled = NO;
     }
     return _createBtn;
-}
-
-#pragma mark faceID
-- (void)showBiometricAlert {
-    if (SecurityHelperSupportFaceID) {
-        [XYHAlertView showAlertViewWithTitle:LocalizedString(@"SetFacialLogin") message:LocalizedString(@"CancelFacialLogin") titlesArray:@[LocalizedString(@"QueDing")] andBlock:^(NSInteger index) {
-            if (index == 0) {
-                [self openFaceID];
-            }
-        }];
-    } else {
-        [XYHAlertView showAlertViewWithTitle:LocalizedString(@"SetTouchIDLogin") message:LocalizedString(@"CancelTouchIDLogin") titlesArray:@[LocalizedString(@"QueDing")] andBlock:^(NSInteger index) {
-            if (index == 0) {
-                [self openFingerprint];
-            }
-        }];
-    }
-}
-
-- (void)openFingerprint {
-    LAContext *myContext = [[LAContext alloc] init];
-    NSError *authError = nil;
-    if ([myContext canEvaluatePolicy:LAPolicyDeviceOwnerAuthenticationWithBiometrics error:&authError])
-    {
-    } else {
-        if (@available(iOS 11.0, *)) {
-            if (authError.code == LAErrorBiometryLockout) {
-                
-            } else if (authError.code == LAErrorBiometryNotAvailable) {
-                [MBProgressHUD showInfoMessage:LocalizedString(@"NotSupportTouchID")];
-                return;
-            } else {
-                [MBProgressHUD showInfoMessage:LocalizedString(@"NotSetTouchID")];
-                return;
-            }
-        }
-    }
-    
-    YZAuthID *authID = [[YZAuthID alloc] init];
-    [authID yz_showAuthIDWithDescribe:nil block:^(YZAuthIDState state, NSError *error) {
-        if (state == YZAuthIDStateNotSupport) {
-            [MBProgressHUD showInfoMessage:LocalizedString(@"NotSupportTouchID")];
-        } else if (state == YZAuthIDStateSuccess) {
-            KUser.isTouchIDLockOpen = YES;
-            [[SecurityHelper sharedSecurityHelper] saveBiometricData];
-            [MBProgressHUD showSuccessMessage:LocalizedString(@"TouchIdIsOn")];
-        } else if (state == YZAuthIDStatePasswordNotSet) {
-            [MBProgressHUD showInfoMessage:LocalizedString(@"NotSetTouchID")];
-        } else {
-        }
-    }];
-}
-
-#pragma mark open faceID
-- (void)openFaceID {
-    LAContext *myContext = [[LAContext alloc] init];
-    NSError *authError = nil;
-    if ([myContext canEvaluatePolicy:LAPolicyDeviceOwnerAuthenticationWithBiometrics error:&authError])
-    {
-    } else {
-        if (@available(iOS 11.0, *)) {
-            if (authError.code == LAErrorBiometryLockout) {
-                
-            } else if (authError.code == LAErrorBiometryNotAvailable) {
-                [MBProgressHUD showInfoMessage:NSLocalizedFormatString(LocalizedString(@"NotAllowFaceID"), kApp_Name)];
-                return;
-            } else {
-                [MBProgressHUD showInfoMessage:LocalizedString(@"NotSetFaceID")];
-                return;
-            }
-        }
-    }
-    
-    YZAuthID *authID = [[YZAuthID alloc] init];
-    [authID yz_showAuthIDWithDescribe:nil block:^(YZAuthIDState state, NSError *error) {
-        if (state == YZAuthIDStateNotSupport) {
-            [XYHAlertView showAlertViewWithTitle:LocalizedString(@"NotSupportFaceID") message:nil titlesArray:nil andBlock:nil];
-        } else if (state == YZAuthIDStateSuccess) {
-            KUser.isFaceIDLockOpen = YES;
-            [[SecurityHelper sharedSecurityHelper] saveBiometricData];
-        } else if (state == YZAuthIDStatePasswordNotSet) {
-            [XYHAlertView showAlertViewWithTitle:LocalizedString(@"NotSetFaceID") message:nil titlesArray:nil andBlock:nil];
-        } else {
-        }
-    }];
 }
 
 @end

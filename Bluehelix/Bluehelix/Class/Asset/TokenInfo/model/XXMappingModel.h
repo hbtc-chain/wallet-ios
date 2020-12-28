@@ -7,7 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
-
+#import "XXTokenModel.h"
 NS_ASSUME_NONNULL_BEGIN
 
 @interface XXMappingModel : NSObject
@@ -17,13 +17,15 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, copy) NSString *total_supply;
 @property (nonatomic, copy) NSString *issue_pool;
 @property (nonatomic, assign) BOOL enabled;
-
-@property (nonatomic, copy) NSString *name;
+@property (nonatomic, strong) XXTokenModel *issue_token;
+@property (nonatomic, strong) XXTokenModel *target_token;
 @property (nonatomic, copy) NSString *map_symbol; //映射为 （映射后的，就是右边的 自己添加的字段）
-@property (nonatomic, copy) NSString *chain; //所属链名
 @property (nonatomic, copy) NSString *amount; //数量
-@property (nonatomic, copy) NSString *logo; //图片
-@property (nonatomic, assign) int decimals; //精度
+
+//@property (nonatomic, copy) NSString *name;
+//@property (nonatomic, copy) NSString *chain; //所属链名
+//@property (nonatomic, copy) NSString *logo; //图片
+//@property (nonatomic, assign) int decimals; //精度
 
 - (XXMappingModel *)initWithMap:(XXMappingModel *)map;
 @end

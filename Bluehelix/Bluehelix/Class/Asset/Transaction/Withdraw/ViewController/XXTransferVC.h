@@ -7,13 +7,12 @@
 //
 
 #import <UIKit/UIKit.h>
-@class XXTokenModel;
+
 NS_ASSUME_NONNULL_BEGIN
 
 @interface XXTransferVC : BaseViewController
 
-@property (nonatomic, strong) XXTokenModel *tokenModel;
-@property (nonatomic, assign) BOOL InnerChain; //链内
+@property (nonatomic, strong) NSString *symbol;
 
 @end
 

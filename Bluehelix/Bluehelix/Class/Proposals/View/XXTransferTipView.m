@@ -9,7 +9,6 @@
 #import "XXTransferTipView.h"
 @interface XXTransferTipView ()
 @property (nonatomic, strong) UIView *tipBackgroundView;
-@property (nonatomic, strong) UITextView *tipTextView;
 @end
 @implementation XXTransferTipView
 
