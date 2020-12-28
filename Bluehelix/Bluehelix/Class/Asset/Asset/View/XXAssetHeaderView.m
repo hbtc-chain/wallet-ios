@@ -66,17 +66,35 @@
 
 - (void)requestGetTestCoin:(NSString *)denom {
     NSString *path = [NSString stringWithFormat:@"%@%@%@%@",@"/api/v1/cus/",KUser.address,@"/send_test_token?denom=",denom];
+    [MBProgressHUD showActivityMessageInView:@""];
+    MJWeakSelf
     [HttpManager getWithPath:path params:nil andBlock:^(id data, NSString *msg, NSInteger code) {
+        [MBProgressHUD hideHUD];
         if (code == 0) {
-           Alert *alert = [[Alert alloc] initWithTitle:LocalizedString(@"GetTestCoinSuccess") duration:kAlertDuration completion:^{
-           }];
-           [alert showAlert];
+           [weakSelf requestGetTestCoinShowAlert:@"kiwi"];
         } else {
             Alert *alert = [[Alert alloc] initWithTitle:msg duration:kAlertDuration completion:^{
             }];
             [alert showAlert];
         }
     }];
+}
+
+- (void)requestGetTestCoinShowAlert:(NSString *)denom {
+    NSString *path = [NSString stringWithFormat:@"%@%@%@%@",@"/api/v1/cus/",KUser.address,@"/send_test_token?denom=",denom];
+        [MBProgressHUD showActivityMessageInView:@""];
+        [HttpManager getWithPath:path params:nil andBlock:^(id data, NSString *msg, NSInteger code) {
+            [MBProgressHUD hideHUD];
+            if (code == 0) {
+               Alert *alert = [[Alert alloc] initWithTitle:LocalizedString(@"GetTestCoinSuccess") duration:kAlertDuration completion:^{
+               }];
+               [alert showAlert];
+            } else {
+                Alert *alert = [[Alert alloc] initWithTitle:msg duration:kAlertDuration completion:^{
+                }];
+                [alert showAlert];
+            }
+        }];
 }
 
 - (void)configData:(XXAssetModel *)model {
@@ -252,7 +270,6 @@
         CGFloat width = [NSString widthWithText:LocalizedString(@"GetTestCoin") font:kFont13] + 26;
         _getTestCoinBtn = [XXButton buttonWithFrame:CGRectMake(self.contentView.width - width - 20, 60, width, 32) block:^(UIButton *button) {
             [weakSelf requestGetTestCoin:@"hbc"];
-            [weakSelf requestGetTestCoin:@"kiwi"];
         }];
         _getTestCoinBtn.layer.cornerRadius = 16;
         [_getTestCoinBtn setTitle:LocalizedString(@"GetTestCoin") forState:UIControlStateNormal];
