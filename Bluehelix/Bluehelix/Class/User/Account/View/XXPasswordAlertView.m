@@ -179,8 +179,8 @@
         [_savePasswordBtn.titleLabel setFont:kFont12];
         _savePasswordBtn.contentHorizontalAlignment =UIControlContentHorizontalAlignmentLeft;
         _savePasswordBtn.contentVerticalAlignment = UIControlContentVerticalAlignmentCenter;
-        [_savePasswordBtn setImage:[UIImage subTextImageName:@"unSelected"] forState:UIControlStateNormal];
-        [_savePasswordBtn setImage:[UIImage mainImageName:@"selected"] forState:UIControlStateSelected];
+        [_savePasswordBtn setImage:[UIImage subTextImageName:@"password_uncheck"] forState:UIControlStateNormal];
+        [_savePasswordBtn setImage:[UIImage mainImageName:@"password_check"] forState:UIControlStateSelected];
         _savePasswordBtn.selected = KUser.isQuickTextOpen; //记录是否开启
         [_savePasswordBtn setTitle:LocalizedString(@"NoNeedPassword") forState:UIControlStateNormal];
         [_savePasswordBtn setTitleColor:kGray900 forState:UIControlStateNormal];

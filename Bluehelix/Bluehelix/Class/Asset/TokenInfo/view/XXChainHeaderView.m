@@ -74,6 +74,7 @@
             CGFloat width = [NSString widthWithText:LocalizedString(@"CreateChainAddress") font:kFont12] + 20;
             self.addressLabel.frame = CGRectMake((self.width - width)/2, CGRectGetMaxY(self.chainNameLabel.frame) + 13, width, 24);
             self.addressLabel.text = LocalizedString(@"CreateChainAddress");
+            self.addressLabel.textColor = kPrimaryMain;
         } else {
             CGFloat width = [NSString widthWithText:[NSString addressShortReplace:KUser.address] font:kFont12] + 20;
             self.addressLabel.frame = CGRectMake((self.width - width)/2, CGRectGetMaxY(self.chainNameLabel.frame) + 13, width, 24);
@@ -120,7 +121,7 @@
         _addressLabel = [[XXLabel alloc] initWithFrame:CGRectMake((self.width - 140)/2, CGRectGetMaxY(self.chainNameLabel.frame) + 13, 140, 24)];
         _addressLabel.font = kFont12;
         _addressLabel.textColor = kGray500;
-        _addressLabel.backgroundColor = [kGray500 colorWithAlphaComponent:0.2];
+        _addressLabel.backgroundColor = kDarkGray;
         _addressLabel.layer.cornerRadius = 10;
         _addressLabel.layer.masksToBounds = YES;
         _addressLabel.userInteractionEnabled = YES;
