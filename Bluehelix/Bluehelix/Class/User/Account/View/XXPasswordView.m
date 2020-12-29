@@ -172,7 +172,7 @@
 
 - (XXLabel *)titleLabel {
     if (_titleLabel == nil) {
-        _titleLabel = [XXLabel labelWithFrame:CGRectMake(0, K375(16), self.contentView.width, K375(24)) text:LocalizedString(@"PleaseInputPassword") font:kFontBold20 textColor:kGray900 alignment:NSTextAlignmentCenter];
+        _titleLabel = [XXLabel labelWithFrame:CGRectMake(0, K375(24), self.contentView.width, K375(24)) text:LocalizedString(@"PleaseInputPassword") font:kFontBold20 textColor:kGray900 alignment:NSTextAlignmentCenter];
     }
     return _titleLabel;
 }
@@ -187,7 +187,7 @@
 - (XXPasswordNumTextFieldView *)passwordView {
     if (_passwordView == nil) {
         CGFloat top = IsEmpty(self.content) ? K375(88) : K375(108);
-        _passwordView = [[XXPasswordNumTextFieldView alloc] initWithFrame:CGRectMake(K375(20), top, self.contentView.width - K375(40), K375(56))];
+        _passwordView = [[XXPasswordNumTextFieldView alloc] initWithFrame:CGRectMake(K375(24), top, self.contentView.width - K375(48), K375(56))];
         MJWeakSelf
         _passwordView.finishBlock = ^(NSString * _Nonnull text) {
             [weakSelf finishText:text];
@@ -199,7 +199,7 @@
 - (XXButton *)cancelButton {
     if (_cancelButton == nil) {
         MJWeakSelf
-        _cancelButton = [XXButton buttonWithFrame:CGRectMake(self.contentView.width - 50, 0, 50, 50) block:^(UIButton *button) {
+        _cancelButton = [XXButton buttonWithFrame:CGRectMake(self.contentView.width - 50, 5, 50, 50) block:^(UIButton *button) {
             [[weakSelf class] dismiss];
         }];
         [_cancelButton setImage:[UIImage textImageName:@"dismiss"] forState:UIControlStateNormal];

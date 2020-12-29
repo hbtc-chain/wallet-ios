@@ -241,9 +241,9 @@
 - (void)pushHelpCenter {
     XXWebViewController *webVC = [[XXWebViewController alloc] init];
     if ([[[LocalizeHelper sharedLocalSystem] getLanguageCode] hasPrefix:@"zh-"]) {
-        webVC.urlString = @"https://hbtcwallet.gitbook.io/hbtc-chain-guide/qian-bao-app/";
+        webVC.urlString = @"https://hbtcwallet.gitbook.io/hbtc-chain-guide/";
     } else {
-        webVC.urlString = @"https://hbtcwallet.gitbook.io/hbtc-chain-guide/v/english/wallet-app/";
+        webVC.urlString = @"https://hbtcwallet.gitbook.io/hbtc-chain-guide/v/english/";
     }
     webVC.navTitle = LocalizedString(@"HelpCenter");
     [self.navigationController pushViewController:webVC animated:YES];

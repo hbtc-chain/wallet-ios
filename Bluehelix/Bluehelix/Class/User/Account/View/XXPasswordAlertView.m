@@ -153,14 +153,14 @@
 
 - (XXLabel *)titleLabel {
     if (_titleLabel == nil) {
-        _titleLabel = [XXLabel labelWithFrame:CGRectMake(0, K375(16), self.contentView.width, K375(24)) text:LocalizedString(@"PleaseInputPassword") font:kFontBold20 textColor:kGray900 alignment:NSTextAlignmentCenter];
+        _titleLabel = [XXLabel labelWithFrame:CGRectMake(0, K375(24), self.contentView.width, K375(24)) text:LocalizedString(@"PleaseInputPassword") font:kFontBold20 textColor:kGray900 alignment:NSTextAlignmentCenter];
     }
     return _titleLabel;
 }
 
 - (XXPasswordNumTextFieldView *)passwordView {
     if (_passwordView == nil) {
-        _passwordView = [[XXPasswordNumTextFieldView alloc] initWithFrame:CGRectMake(K375(20), K375(64), self.contentView.width - K375(40), K375(56))];
+        _passwordView = [[XXPasswordNumTextFieldView alloc] initWithFrame:CGRectMake(K375(24), K375(88), self.contentView.width - K375(48), K375(56))];
         MJWeakSelf
         _passwordView.finishBlock = ^(NSString * _Nonnull text) {
             [weakSelf finishText:text];
@@ -172,7 +172,7 @@
 - (XXButton *)savePasswordBtn {
     if (_savePasswordBtn == nil) {
         MJWeakSelf
-        _savePasswordBtn = [XXButton buttonWithFrame:CGRectMake(24, CGRectGetMaxY(self.passwordView.frame) + 23, self.contentView.width - 48, 24) block:^(UIButton *button) {
+        _savePasswordBtn = [XXButton buttonWithFrame:CGRectMake(K375(24), CGRectGetMaxY(self.passwordView.frame) + 20, self.contentView.width - K375(48), 24) block:^(UIButton *button) {
             weakSelf.savePasswordBtn.selected = !weakSelf.savePasswordBtn.selected;
             KUser.isQuickTextOpen = !KUser.isQuickTextOpen;
         }];

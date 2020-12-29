@@ -208,7 +208,7 @@
 - (XXLabel *)nameLabel {
     if (!_nameLabel) {
         _nameLabel = [XXLabel labelWithFrame:CGRectMake(20, 20, self.contentView.width, 24) font:kFontBold(17) textColor:[UIColor whiteColor]];
-        _nameLabel.text = [NSString stringWithFormat:@"Hello, %@",KUser.currentAccount.userName];
+        _nameLabel.text = KUser.currentAccount.userName;
     }
     return _nameLabel;
 }

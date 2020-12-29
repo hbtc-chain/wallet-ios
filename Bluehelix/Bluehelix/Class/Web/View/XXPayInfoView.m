@@ -139,7 +139,7 @@
 - (UIView *)contentView {
     if (_contentView == nil) {
         _contentView = [[UIView alloc] initWithFrame:CGRectMake(0, kScreen_Height - self.contentViewHeight, kScreen_Width, self.contentViewHeight)];
-        _contentView.backgroundColor = [UIColor whiteColor];
+        _contentView.backgroundColor = kWhite100;
         _contentView.layer.cornerRadius = 10;
         _contentView.layer.masksToBounds = YES;
     }
@@ -149,7 +149,7 @@
 - (UIButton *)dismissBtn {
     if (_dismissBtn == nil ) {
         _dismissBtn = [[UIButton alloc] initWithFrame:CGRectMake(kScreen_Width - K375(50), 10, K375(50), K375(50))];
-        [_dismissBtn setImage:[UIImage imageNamed:@"dismiss"] forState:UIControlStateNormal];
+        [_dismissBtn setImage:[UIImage textImageName:@"dismiss"] forState:UIControlStateNormal];
         [_dismissBtn addTarget:self action:@selector(cancelAction) forControlEvents:UIControlEventTouchUpInside];
     }
     return _dismissBtn;
@@ -160,7 +160,7 @@
         _titleLabel = [[UILabel alloc] initWithFrame:CGRectMake(68, 24, kScreen_Width - 136, 24)];
         _titleLabel.text = LocalizedString(@"PayDetail");
         _titleLabel.font = kFont(20);
-        _titleLabel.textColor = kGray900NoChange;
+        _titleLabel.textColor = kGray900;
         _titleLabel.textAlignment = NSTextAlignmentCenter;
     }
     return _titleLabel;
