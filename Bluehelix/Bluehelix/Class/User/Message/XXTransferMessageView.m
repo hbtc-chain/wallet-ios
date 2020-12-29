@@ -45,7 +45,9 @@
     param[@"page"] = [NSString stringWithFormat:@"%d",self.page];
     param[@"size"] = [NSString stringWithFormat:@"%d",self.pageSize];
     param[@"type"] = @"1";
+    [MBProgressHUD showActivityMessageInView:@""];
     [HttpManager getWithPath:path params:param andBlock:^(id data, NSString *msg, NSInteger code) {
+        [MBProgressHUD hideHUD];
         [weakSelf.tableView.mj_header endRefreshing];
         [weakSelf.tableView.mj_footer endRefreshing];
         if (code == 0) {
@@ -77,7 +79,7 @@
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
-    if (self.txs.count == 0) {
+    if (self.txs && self.txs.count == 0) {
         return self.emptyView.height;
     } else {
         return 0;
@@ -85,7 +87,7 @@
 }
 
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
-    if (self.txs.count == 0) {
+    if (self.txs && self.txs.count == 0) {
         return self.emptyView ;
     } else {
         return [UIView new];

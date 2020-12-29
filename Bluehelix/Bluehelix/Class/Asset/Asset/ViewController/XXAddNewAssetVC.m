@@ -111,6 +111,16 @@
     }
 }
 
+- (BOOL)textFieldShouldReturn:(UITextField *)textField {
+    if (!IsEmpty(textField.text)) {
+        [self requestSearchToken:textField.text];
+    } else {
+        [self reloadData];
+    }
+    [textField resignFirstResponder];
+    return YES;
+}
+
 #pragma mark tableView delegate
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
     return 1;

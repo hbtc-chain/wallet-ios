@@ -101,7 +101,7 @@
 
 - (XXAddressCodeView *)addressCodeView {
     if (_addressCodeView == nil) {
-        _addressCodeView = [[XXAddressCodeView alloc] initWithFrame:CGRectMake(self.width - 165 - K375(16), 0, 165, 24)];
+        _addressCodeView = [[XXAddressCodeView alloc] initWithFrame:CGRectMake(self.width - 175 - K375(16), 0, 175, 24)];
         _addressCodeView.backgroundColor = [kGray900 colorWithAlphaComponent:0.2];
         _addressCodeView.layer.cornerRadius = 10;
         UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(showAddress)];
@@ -158,8 +158,9 @@
 
 - (XXLabel *)titleLabel5 {
     if (!_titleLabel5) {
-        _titleLabel5 = [XXLabel labelWithFrame:CGRectMake(K375(16) + (self.backView.width - K375(32))/3, 90, (self.backView.width - K375(32))/3, 20) text:LocalizedString(@"GetEarnings") font:kFont13 textColor:kGray500];
+        _titleLabel5 = [XXLabel labelWithFrame:CGRectMake(K375(16) + (self.backView.width - K375(32))/3, 80, (self.backView.width - K375(32))/3, 40) text:LocalizedString(@"GetEarnings") font:kFont13 textColor:kGray500];
         _titleLabel5.textAlignment = NSTextAlignmentCenter;
+        _titleLabel5.numberOfLines = 0;
     }
     return _titleLabel5;
 }
@@ -207,7 +208,8 @@
 - (XXButton *)getRewardBtn {
     if (!_getRewardBtn) {
         MJWeakSelf
-        _getRewardBtn = [XXButton buttonWithFrame:CGRectMake(self.backView.width - K375(16) - 90, CGRectGetMaxY(self.titleLabel5.frame) - 4, 90, 32) title:LocalizedString(@"GetReward") font:kFont15 titleColor:[UIColor whiteColor] block:^(UIButton *button) {
+        CGFloat width = [NSString widthWithText:LocalizedString(@"GetReward") font:kFont15] + 32;
+        _getRewardBtn = [XXButton buttonWithFrame:CGRectMake(self.backView.width - K375(16) - width, CGRectGetMaxY(self.titleLabel5.frame) - 4, width, 32) title:LocalizedString(@"GetReward") font:kFont15 titleColor:[UIColor whiteColor] block:^(UIButton *button) {
             if (weakSelf.getRewardBlock) {
                 weakSelf.getRewardBlock();
             }

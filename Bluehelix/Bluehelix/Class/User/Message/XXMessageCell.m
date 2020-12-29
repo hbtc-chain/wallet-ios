@@ -8,6 +8,7 @@
 
 #import "XXMessageCell.h"
 #import "XXMessageModel.h"
+#import "XXTokenModel.h"
 
 @interface XXMessageCell ()
 
@@ -40,7 +41,12 @@
 }
 
 - (void)configData:(XXMessageModel *)model {
-    self.amountLabel.text = [NSString stringWithFormat:@"%@ %@",model.amount, [model.symbol uppercaseString]];
+    XXTokenModel *tokenModel = [[XXSqliteManager sharedSqlite] tokenBySymbol:model.symbol];
+    if (tokenModel) {
+        self.amountLabel.text = [NSString stringWithFormat:@"%@ %@",model.amount, [tokenModel.name uppercaseString]];
+    } else {
+        self.amountLabel.text = [NSString stringWithFormat:@"%@ %@",model.amount, [model.name uppercaseString]];
+    }
     NSString *time = model.time;
     self.timeLabel.text = [NSString dateStringFromTimestampWithTimeTamp:[time longLongValue]];
     if (model.tx_type.intValue == 1) {

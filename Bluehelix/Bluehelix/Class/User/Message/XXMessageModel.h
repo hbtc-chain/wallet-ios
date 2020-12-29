@@ -18,6 +18,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, strong) NSNumber *tx_type;
 @property (nonatomic, copy) NSString *symbol;
 @property (nonatomic, copy) NSString *tx_hash;
+@property (nonatomic, copy) NSString *name;
 @property (nonatomic, assign) BOOL read;
 
 @end
