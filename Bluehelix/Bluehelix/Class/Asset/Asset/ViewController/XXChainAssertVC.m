@@ -50,6 +50,16 @@
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(refreshAsset) name:kNotificationAssetRefresh object:nil];
 }
 
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+    [KSystem statusBarSetUpDefault];
+}
+
+- (void)viewWillDisappear:(BOOL)animated {
+    [super viewWillDisappear:animated];
+    [KSystem statusBarSetUpDefault];
+}
+
 - (void)setupUI {
     self.navView.hidden = YES;
     [self.view addSubview:self.tableView];

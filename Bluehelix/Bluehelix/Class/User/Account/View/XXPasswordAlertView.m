@@ -8,6 +8,7 @@
 
 #import "XXPasswordAlertView.h"
 #import "XXPasswordNumTextFieldView.h"
+#import "XYHAlertView.h"
 
 @interface XXPasswordAlertView ()
 
@@ -179,11 +180,12 @@
         [_savePasswordBtn.titleLabel setFont:kFont12];
         _savePasswordBtn.contentHorizontalAlignment =UIControlContentHorizontalAlignmentLeft;
         _savePasswordBtn.contentVerticalAlignment = UIControlContentVerticalAlignmentCenter;
-        [_savePasswordBtn setImage:[UIImage subTextImageName:@"password_uncheck"] forState:UIControlStateNormal];
-        [_savePasswordBtn setImage:[UIImage mainImageName:@"password_check"] forState:UIControlStateSelected];
+        [_savePasswordBtn setImage:[UIImage imageNamed:@"password_uncheck"] forState:UIControlStateNormal];
+        [_savePasswordBtn setImage:[UIImage imageNamed:@"password_check"] forState:UIControlStateSelected];
         _savePasswordBtn.selected = KUser.isQuickTextOpen; //记录是否开启
         [_savePasswordBtn setTitle:LocalizedString(@"NoNeedPassword") forState:UIControlStateNormal];
         [_savePasswordBtn setTitleColor:kGray900 forState:UIControlStateNormal];
+        [_savePasswordBtn setTitleEdgeInsets:UIEdgeInsetsMake(0, 8, 0, -8)];
     }
     return _savePasswordBtn;
 }
@@ -191,7 +193,7 @@
 - (XXButton *)cancelButton {
     if (_cancelButton == nil) {
         MJWeakSelf
-        _cancelButton = [XXButton buttonWithFrame:CGRectMake(self.contentView.width - 50, 0, 50, 50) block:^(UIButton *button) {
+        _cancelButton = [XXButton buttonWithFrame:CGRectMake(10, 18, 50, 50) block:^(UIButton *button) {
             [[weakSelf class] dismiss];
         }];
         [_cancelButton setImage:[UIImage textImageName:@"dismiss"] forState:UIControlStateNormal];

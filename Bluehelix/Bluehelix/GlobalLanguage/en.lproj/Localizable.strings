@@ -477,3 +477,5 @@
 "OldPassword6Number" = "Enter the Current password(6-digit)";
 "NewPassword6Number" = "Enter your new password(6-digit)";
 "ConfirmNewPassword6Number" = "Enter your new password(6-digit)";
+"PasswordWrongTryAgain" = "密码错误，请重试";
+"TryAgain" = "重试";

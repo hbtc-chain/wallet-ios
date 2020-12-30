@@ -50,6 +50,11 @@
     [self addGestureRecognizer:tap];
 }
 
+- (void)cleanText {
+    self.textField.text = @"";
+    self.text = @"";
+}
+
 - (void)tapAction {
     [self.textField becomeFirstResponder];
 }
@@ -100,7 +105,7 @@
 
 - (XXLabel *)firstLabel {
     if (_firstLabel == nil) {
-        _firstLabel = [XXLabel labelWithFrame:CGRectMake(0, 0, width, self.height) text:@"" font:kFont24 textColor:kDark100 alignment:NSTextAlignmentCenter];
+        _firstLabel = [XXLabel labelWithFrame:CGRectMake(0, 0, width, self.height) text:@"" font:kFont12 textColor:kDark100 alignment:NSTextAlignmentCenter];
         _firstLabel.layer.borderColor = [kPrimaryMain CGColor];
         _firstLabel.layer.cornerRadius = 4;
         _firstLabel.layer.borderWidth = KLine_Height;
@@ -111,7 +116,7 @@
 
 - (XXLabel *)secondLabel {
     if (_secondLabel == nil) {
-        _secondLabel = [XXLabel labelWithFrame:CGRectMake(CGRectGetMaxX(self.firstLabel.frame) + space, 0, width, self.height) text:@"" font:kFont24 textColor:kDark100 alignment:NSTextAlignmentCenter];
+        _secondLabel = [XXLabel labelWithFrame:CGRectMake(CGRectGetMaxX(self.firstLabel.frame) + space, 0, width, self.height) text:@"" font:kFont12 textColor:kDark100 alignment:NSTextAlignmentCenter];
         _secondLabel.layer.borderColor = [kGray500 CGColor];
         _secondLabel.layer.cornerRadius = 4;
         _secondLabel.layer.borderWidth = KLine_Height;
@@ -122,7 +127,7 @@
 
 - (XXLabel *)thirdLabel {
     if (_thirdLabel == nil) {
-        _thirdLabel = [XXLabel labelWithFrame:CGRectMake(CGRectGetMaxX(self.secondLabel.frame) + space, 0, width, self.height) text:@"" font:kFont24 textColor:kDark100 alignment:NSTextAlignmentCenter];
+        _thirdLabel = [XXLabel labelWithFrame:CGRectMake(CGRectGetMaxX(self.secondLabel.frame) + space, 0, width, self.height) text:@"" font:kFont12 textColor:kDark100 alignment:NSTextAlignmentCenter];
         _thirdLabel.layer.borderColor = [kGray500 CGColor];
         _thirdLabel.layer.cornerRadius = 4;
         _thirdLabel.layer.borderWidth = KLine_Height;
@@ -133,7 +138,7 @@
 
 - (XXLabel *)forthLabel {
     if (_forthLabel == nil) {
-        _forthLabel = [XXLabel labelWithFrame:CGRectMake(CGRectGetMaxX(self.thirdLabel.frame) + space, 0, width, self.height) text:@"" font:kFont24 textColor:kDark100 alignment:NSTextAlignmentCenter];
+        _forthLabel = [XXLabel labelWithFrame:CGRectMake(CGRectGetMaxX(self.thirdLabel.frame) + space, 0, width, self.height) text:@"" font:kFont12 textColor:kDark100 alignment:NSTextAlignmentCenter];
         _forthLabel.layer.borderColor = [kGray500 CGColor];
         _forthLabel.layer.cornerRadius = 4;
         _forthLabel.layer.borderWidth = KLine_Height;
@@ -144,7 +149,7 @@
 
 - (XXLabel *)fifthLabel {
     if (_fifthLabel == nil) {
-        _fifthLabel = [XXLabel labelWithFrame:CGRectMake(CGRectGetMaxX(self.forthLabel.frame) + space, 0, width, self.height) text:@"" font:kFont24 textColor:kDark100 alignment:NSTextAlignmentCenter];
+        _fifthLabel = [XXLabel labelWithFrame:CGRectMake(CGRectGetMaxX(self.forthLabel.frame) + space, 0, width, self.height) text:@"" font:kFont12 textColor:kDark100 alignment:NSTextAlignmentCenter];
         _fifthLabel.layer.borderColor = [kGray500 CGColor];
         _fifthLabel.layer.cornerRadius = 4;
         _fifthLabel.layer.borderWidth = KLine_Height;
@@ -155,7 +160,7 @@
 
 - (XXLabel *)sixLabel {
     if (_sixLabel == nil) {
-        _sixLabel = [XXLabel labelWithFrame:CGRectMake(CGRectGetMaxX(self.fifthLabel.frame) + space, 0, width, self.height) text:@"" font:kFont24 textColor:kDark100 alignment:NSTextAlignmentCenter];
+        _sixLabel = [XXLabel labelWithFrame:CGRectMake(CGRectGetMaxX(self.fifthLabel.frame) + space, 0, width, self.height) text:@"" font:kFont12 textColor:kDark100 alignment:NSTextAlignmentCenter];
         _sixLabel.layer.borderColor = [kGray500 CGColor];
         _sixLabel.layer.cornerRadius = 4;
         _sixLabel.layer.borderWidth = KLine_Height;

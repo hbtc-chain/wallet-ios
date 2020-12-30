@@ -199,7 +199,7 @@
 - (XXButton *)cancelButton {
     if (_cancelButton == nil) {
         MJWeakSelf
-        _cancelButton = [XXButton buttonWithFrame:CGRectMake(self.contentView.width - 50, 5, 50, 50) block:^(UIButton *button) {
+        _cancelButton = [XXButton buttonWithFrame:CGRectMake(10, 18, 50, 50) block:^(UIButton *button) {
             [[weakSelf class] dismiss];
         }];
         [_cancelButton setImage:[UIImage textImageName:@"dismiss"] forState:UIControlStateNormal];
