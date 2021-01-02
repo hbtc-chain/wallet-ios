@@ -80,18 +80,15 @@
 
 - (void)backupKeystore:(NSString *)json {
     XXAccountModel *model = [[XXAccountModel alloc] init];
-    model.privateKey = [AESCrypt encrypt:self.account.privateKeyString password:[NSString md5:KUser.localPassword]];
     model.publicKey = self.account.pubKey;
     model.address = self.account.BHAddress;
     model.userName = KUser.localUserName;
-    model.password = [NSString generatePassword:KUser.localPassword];
     model.keystore = json;
-    if (self.account.mnemonicPhrase && IsEmpty(KUser.localPhraseString)) { //如果是通过助记词导入的 不需要备份和保留助记词
-        NSString *mnemonicPhrase = [AESCrypt encrypt:self.account.mnemonicPhrase password:[NSString md5:KUser.localPassword]];
-        model.mnemonicPhrase = mnemonicPhrase;
+    KUser.passwordText = KUser.localPassword;
+    if (IsEmpty(KUser.localPhraseString)) { //如果是通过助记词导入的 不需要备份和保留助记词
+        KUser.mnemonicPhrase = self.account.mnemonicPhrase;
         model.backupFlag = NO;
     } else {
-        model.mnemonicPhrase = @"";
         model.backupFlag = YES;
     }
     model.symbols = [[XXSqliteManager sharedSqlite] defaultTokenSymbols];
@@ -99,9 +96,6 @@
     if (KUser.accounts) {
         for (XXAccountModel *a in KUser.accounts) {
             if ([a.address isEqualToString:model.address]) {
-                Alert *alert = [[Alert alloc] initWithTitle:LocalizedString(@"PrivateKeyRepetition") duration:kAlertDuration completion:^{
-                }];
-                [alert showAlert];
                 [[XXSqliteManager sharedSqlite] deleteAccountByAddress:model.address];
             }
         }
@@ -116,7 +110,6 @@
         [alert showAlert];
     } else {
         XXCreateWalletSuccessVC *successVC = [[XXCreateWalletSuccessVC alloc] init];
-        successVC.text = KUser.localPassword;
         [self.navigationController pushViewController:successVC animated:YES];
     }
     KUser.localPassword = @"";

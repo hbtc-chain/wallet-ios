@@ -76,13 +76,11 @@
             return;
         }
         if (kShowPassword) {
-            [XXPasswordAlertView showWithSureBtnBlock:^(NSString * _Nonnull text) {
+            [XXPasswordAlertView showWithSureBtnBlock:^() {
                 @strongify(self)
-                self.text = text;
                 [self requestPledge];
             }];
         } else {
-            self.text = kText;
             [self requestPledge];
         }
     } else {
@@ -112,8 +110,7 @@
                                           proposalDescription:@""
                                                    proposalId:self.proposalModel.proposalId
                                                proposalOption:self.voteResultSting
-                                               withdrawal_fee:@""
-                                                         text:self.text];
+                                               withdrawal_fee:@""];
     
     
     _msgRequest = [[XXMsgRequest alloc] init];

@@ -83,29 +83,34 @@ static XXSqliteManager *_sqliteManager;
     return path;
 }
 
-- (FMDatabase *)myFmdb {
-    if (!_myFmdb) {
-        _myFmdb = [FMDatabase databaseWithPath:[self sqlitePath]];
+//- (FMDatabase *)myFmdb {
+//    if (!_myFmdb) {
+//        _myFmdb = [FMDatabase databaseWithPath:[self sqlitePath]];
+//    }
+//    return _myFmdb;
+//}
+
+- (FMDatabaseQueue *)dbQueue {
+    if (!_dbQueue) {
+        _dbQueue = [FMDatabaseQueue databaseQueueWithPath:[self sqlitePath]];
     }
-    return _myFmdb;
+    return _dbQueue;
 }
 
 #pragma mark 币
 - (BOOL)existsTokens {
-    [self.myFmdb open];
-    BOOL result = [self.myFmdb executeUpdate:@"create table if not exists tokens(ID INTEGER PRIMARY KEY AUTOINCREMENT,deposit_threshold TEXT,name TEXT,symbol TEXT,chain TEXT,decimals INTEGER,is_native BOOLEAN,withdrawal_fee TEXT,logo TEXT,is_withdrawal_enabled BOOLEAN,is_verified BOOLEAN,open_fee TEXT,collect_fee TEXT)"];
+    __block BOOL result;
+    [self.dbQueue inDatabase:^(FMDatabase * _Nonnull db) {
+        if (![db columnExists:@"collect_fee" inTableWithName:@"tokens"]) {
+            [db executeUpdate:@"drop table if exists tokens"];
+        }
+        result = [db executeUpdate:@"create table if not exists tokens(ID INTEGER PRIMARY KEY AUTOINCREMENT,deposit_threshold TEXT,name TEXT,symbol TEXT,chain TEXT,decimals INTEGER,is_native BOOLEAN,withdrawal_fee TEXT,logo TEXT,is_withdrawal_enabled BOOLEAN,is_verified BOOLEAN,open_fee TEXT,collect_fee TEXT)"];
+    }];
     return result;
 }
 
 
 - (void)insertTokens:(NSArray *)tokens {
-    if (![self.myFmdb columnExists:@"collect_fee" inTableWithName:@"tokens"]) {
-        [self.myFmdb executeUpdate:@"drop table if exists tokens"];
-    }
-    BOOL existsTable = [self existsTokens];
-    if (!existsTable) {
-        return;
-    }
     for (XXTokenModel *model  in tokens) {
         [self insertToken:model];
     }
@@ -135,7 +140,9 @@ static XXSqliteManager *_sqliteManager;
         if (argumentsArr.count != 12) {
             return;
         }
-        [self.myFmdb executeUpdate:@"insert into 'tokens'(deposit_threshold,name,symbol,decimals,is_native,withdrawal_fee,logo,chain,is_withdrawal_enabled,is_verified,open_fee,collect_fee) values(?,?,?,?,?,?,?,?,?,?,?,?)" withArgumentsInArray:argumentsArr];
+        [self.dbQueue inDatabase:^(FMDatabase * _Nonnull db) {
+            [db executeUpdate:@"insert into 'tokens'(deposit_threshold,name,symbol,decimals,is_native,withdrawal_fee,logo,chain,is_withdrawal_enabled,is_verified,open_fee,collect_fee) values(?,?,?,?,?,?,?,?,?,?,?,?)" withArgumentsInArray:argumentsArr];
+        }];
     }
 }
 
@@ -160,8 +167,10 @@ static XXSqliteManager *_sqliteManager;
     if (argumentsArr.count != 10) {
         return;
     }
-    NSString *sql = [NSString stringWithFormat:@"update 'tokens' set deposit_threshold = ?,name = ?,decimals = ?,is_native = ?,withdrawal_fee = ?,logo = ?,chain = ?,is_withdrawal_enabled = ?,is_verified = ?,open_fee = ?,collect_fee = ? where symbol = ?"];
-    [self.myFmdb executeUpdate:sql withArgumentsInArray:argumentsArr];
+    [self.dbQueue inDatabase:^(FMDatabase * _Nonnull db) {
+        NSString *sql = [NSString stringWithFormat:@"update 'tokens' set deposit_threshold = ?,name = ?,decimals = ?,is_native = ?,withdrawal_fee = ?,logo = ?,chain = ?,is_withdrawal_enabled = ?,is_verified = ?,open_fee = ?,collect_fee = ? where symbol = ?"];
+        [db executeUpdate:sql withArgumentsInArray:argumentsArr];
+    }];
 }
 
 - (XXTokenModel *)tokenModel:(FMResultSet *)set {
@@ -186,13 +195,16 @@ static XXSqliteManager *_sqliteManager;
     if (!existsTable) {
         return @[];
     }
-    NSString *sql = @"select * from 'tokens'";
-    FMResultSet *set = [self.myFmdb executeQuery:sql];
-    NSMutableArray *resultArr = [NSMutableArray array];
-    while ([set next]) {
-        XXTokenModel *model = [self tokenModel:set];
-        [resultArr addObject:model];
-    }
+    __block NSMutableArray *resultArr;
+    [self.dbQueue inDatabase:^(FMDatabase * _Nonnull db) {
+        NSString *sql = @"select * from 'tokens'";
+        FMResultSet *set = [db executeQuery:sql];
+        resultArr = [NSMutableArray array];
+        while ([set next]) {
+            XXTokenModel *model = [self tokenModel:set];
+            [resultArr addObject:model];
+        }
+    }];
     return resultArr;
 }
 
@@ -201,12 +213,15 @@ static XXSqliteManager *_sqliteManager;
     if (!existsTable) {
         return nil;
     }
-    FMResultSet *set = [self.myFmdb executeQuery:@"select * from tokens where symbol = ? limit 1",symbol];
-    NSMutableArray *resultArr = [NSMutableArray array];
-    while ([set next]) {
-        XXTokenModel *model = [self tokenModel:set];
-        [resultArr addObject:model];
-    }
+    __block NSMutableArray *resultArr;
+    [self.dbQueue inDatabase:^(FMDatabase * _Nonnull db) {
+        FMResultSet *set = [db executeQuery:@"select * from tokens where symbol = ? limit 1",symbol];
+        resultArr = [NSMutableArray array];
+        while ([set next]) {
+            XXTokenModel *model = [self tokenModel:set];
+            [resultArr addObject:model];
+        }
+    }];
     return [resultArr firstObject];
 }
 
@@ -218,12 +233,15 @@ static XXSqliteManager *_sqliteManager;
         if (!existsTable) {
             return nil;
         }
-        FMResultSet *set = [self.myFmdb executeQuery:@"select * from tokens where symbol = ? limit 1",token.chain];
-        NSMutableArray *resultArr = [NSMutableArray array];
-        while ([set next]) {
-            XXTokenModel *model = [self tokenModel:set];
-            [resultArr addObject:model];
-        }
+        __block NSMutableArray *resultArr;
+        [self.dbQueue inDatabase:^(FMDatabase * _Nonnull db) {
+            FMResultSet *set = [db executeQuery:@"select * from tokens where symbol = ? limit 1",token.chain];
+            NSMutableArray *resultArr = [NSMutableArray array];
+            while ([set next]) {
+                XXTokenModel *model = [self tokenModel:set];
+                [resultArr addObject:model];
+            }
+        }];
         return [resultArr firstObject];
     }
 }
@@ -234,50 +252,58 @@ static XXSqliteManager *_sqliteManager;
         return @"";
     }
     NSString *sql = @"select * from 'tokens'";
-    FMResultSet *set = [self.myFmdb executeQuery:sql];
-    NSMutableArray *resultArr = [NSMutableArray array];
-    while ([set next]) {
-        XXTokenModel *model = [self tokenModel:set];
-        [resultArr addObject:model];
-    }
-    NSString *result = @"";
-    for (XXTokenModel *token in resultArr) {
-        if (result.length == 0) {
-            result = token.symbol;
-        } else {
-            result = [result stringByAppendingString:[NSString stringWithFormat:@",%@",token.symbol]];
+    __block NSString *result = @"";
+    [self.dbQueue inDatabase:^(FMDatabase * _Nonnull db) {
+        FMResultSet *set = [db executeQuery:sql];
+        NSMutableArray *resultArr = [NSMutableArray array];
+        while ([set next]) {
+            XXTokenModel *model = [self tokenModel:set];
+            [resultArr addObject:model];
         }
-    }
+        for (XXTokenModel *token in resultArr) {
+            if (result.length == 0) {
+                result = token.symbol;
+            } else {
+                result = [result stringByAppendingString:[NSString stringWithFormat:@",%@",token.symbol]];
+            }
+        }
+    }];
     return result;
 }
 
 - (NSArray *)showTokens {
+    NSArray *symbols = [KUser.currentAccount.symbols componentsSeparatedByString:@","];
     BOOL existsTable = [self existsTokens];
     if (!existsTable) {
         return @[];
     }
     NSString *sql = @"select * from 'tokens'";
-    FMResultSet *set = [self.myFmdb executeQuery:sql];
-    if (IsEmpty(KUser.currentAccount.symbols)) {
-        return @[];
-    } else {
-        NSArray *symbols = [KUser.currentAccount.symbols componentsSeparatedByString:@","];
-        NSMutableArray *resultArr = [NSMutableArray array];
-        while ([set next]) {
-            XXTokenModel *model = [self tokenModel:set];
-            if ([symbols containsObject:model.symbol]) {
-                [resultArr addObject:model];
+    __block NSArray *resultArr;
+    [self.dbQueue inDatabase:^(FMDatabase * _Nonnull db) {
+        FMResultSet *set = [db executeQuery:sql];
+        if (IsEmpty(symbols)) {
+            resultArr = @[];
+        } else {
+            NSMutableArray *arr = [NSMutableArray array];
+            while ([set next]) {
+                XXTokenModel *model = [self tokenModel:set];
+                if ([symbols containsObject:model.symbol]) {
+                    [arr addObject:model];
+                }
             }
+            resultArr = [NSArray arrayWithArray:arr];
         }
-        return resultArr;
-    }
+    }];
+    return resultArr;
 }
 
 #pragma mark 账户
 - (BOOL)existsAccount {
-    [self.myFmdb open];
-    NSString *sql = @"create table if not exists account(ID INTEGER PRIMARY KEY AUTOINCREMENT,address TEXT,userName TEXT,password TEXT,backupFlag INTEGER,mnemonicPhrase TEXT,publicKey,privateKey TEXT,keystore TEXT,symbols TEXT)";
-    BOOL result = [self.myFmdb executeUpdate:sql];
+    NSString *sql = @"create table if not exists account(ID INTEGER PRIMARY KEY AUTOINCREMENT,address TEXT,userName TEXT,backupFlag INTEGER,publicKey,keystore TEXT,symbols TEXT)";
+    __block BOOL result;
+    [self.dbQueue inDatabase:^(FMDatabase * _Nonnull db) {
+        result = [db executeUpdate:sql];
+    }];
     return result;
 }
 
@@ -289,15 +315,14 @@ static XXSqliteManager *_sqliteManager;
     NSMutableArray *argumentsArr = [[NSMutableArray alloc] init];
     [argumentsArr addObject:model.address];
     [argumentsArr addObject:model.userName];
-    [argumentsArr addObject:model.password];
     [argumentsArr addObject:[NSString stringWithFormat:@"%d",model.backupFlag]];
     [argumentsArr addObject:model.publicKey];
-    [argumentsArr addObject:model.privateKey];
-    [argumentsArr addObject:model.mnemonicPhrase];
     [argumentsArr addObject:model.symbols];
     [argumentsArr addObject:model.keystore];
-    BOOL result = [self.myFmdb executeUpdate:@"insert into 'account'(address,userName,password,backupFlag,publicKey,privateKey,mnemonicPhrase,symbols,keystore) values(?,?,?,?,?,?,?,?,?)" withArgumentsInArray:argumentsArr];
-    
+    __block BOOL result;
+    [self.dbQueue inDatabase:^(FMDatabase * _Nonnull db) {
+        result = [db executeUpdate:@"insert into 'account'(address,userName,backupFlag,publicKey,symbols,keystore) values(?,?,?,?,?,?)" withArgumentsInArray:argumentsArr];
+    }];
     return result;
 }
 
@@ -306,7 +331,9 @@ static XXSqliteManager *_sqliteManager;
     if (!existsTable) {
         return;
     }
-    [self.myFmdb executeUpdate:@"delete from 'account' where address = ?" withArgumentsInArray:@[address]];
+    [self.dbQueue inDatabase:^(FMDatabase * _Nonnull db) {
+        [db executeUpdate:@"delete from 'account' where address = ?" withArgumentsInArray:@[address]];
+    }];
 }
 
 - (void)updateAccountColumn:(NSString *)column value:(id)value {
@@ -315,7 +342,9 @@ static XXSqliteManager *_sqliteManager;
         return;
     }
     NSString *sql = [NSString stringWithFormat:@"update 'account' set %@ = ? where address = ?",column];
-    [self.myFmdb executeUpdate:sql withArgumentsInArray:@[value,KUser.address]];
+    [self.dbQueue inDatabase:^(FMDatabase * _Nonnull db) {
+        [db executeUpdate:sql withArgumentsInArray:@[value,KUser.address]];
+    }];
 }
 
 - (XXAccountModel *)accountByAddress:(NSString *)address {
@@ -323,12 +352,18 @@ static XXSqliteManager *_sqliteManager;
     if (!existsTable) {
         return nil;
     }
-    FMResultSet *set = [self.myFmdb executeQuery:@"select * from account where address = ?",address];
-    while ([set next]) {
-        XXAccountModel *model = [self accountModel:set];
+    __block XXAccountModel *model;
+    [self.dbQueue inDatabase:^(FMDatabase * _Nonnull db) {
+        FMResultSet *set = [db executeQuery:@"select * from account where address = ?",address];
+        while ([set next]) {
+            model = [self accountModel:set];
+        }
+    }];
+    if (model) {
         return model;
+    } else {
+        return nil;
     }
-    return nil;
 }
 
 - (XXAccountModel *)accountModel:(FMResultSet *)set {
@@ -337,10 +372,7 @@ static XXSqliteManager *_sqliteManager;
     model.userName = [set stringForColumn:@"userName"];
     model.symbols = [set stringForColumn:@"symbols"];
     model.backupFlag = [set boolForColumn:@"backupFlag"];
-    model.password = [set stringForColumn:@"password"];
     model.publicKey = [set dataForColumn:@"publicKey"];
-    model.privateKey = [set stringForColumn:@"privateKey"];
-    model.mnemonicPhrase = [set stringForColumn:@"mnemonicPhrase"];
     model.keystore = [set stringForColumn:@"keystore"];
     return model;
 }
@@ -351,12 +383,15 @@ static XXSqliteManager *_sqliteManager;
         return @[];
     }
     NSString *sql = @"select * from 'account'";
-    FMResultSet *set = [self.myFmdb executeQuery:sql];
-    NSMutableArray *resultArr = [NSMutableArray array];
-    while ([set next]) {
-        XXAccountModel *model = [self accountModel:set];
-        [resultArr addObject:model];
-    }
+    __block NSMutableArray *resultArr;
+    [self.dbQueue inDatabase:^(FMDatabase * _Nonnull db) {
+        FMResultSet *set = [db executeQuery:sql];
+        resultArr = [NSMutableArray array];
+        while ([set next]) {
+            XXAccountModel *model = [self accountModel:set];
+            [resultArr addObject:model];
+        }
+    }];
     return resultArr;
 }
 

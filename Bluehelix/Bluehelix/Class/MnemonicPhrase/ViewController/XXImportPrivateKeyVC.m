@@ -38,17 +38,6 @@
     SecureData * data = [SecureData secureDataWithHexString:self.textView.text];
     Account *account = [Account accountWithPrivateKey:data.data];
     if (account) {
-        //判断是否重复导入
-//        if (KUser.accounts) {
-//            for (XXAccountModel *model in KUser.accounts) {
-//                if ([model.address isEqualToString:account.BHAddress]) {
-//                    Alert *alert = [[Alert alloc] initWithTitle:LocalizedString(@"PrivateKeyRepetition") duration:kAlertDuration completion:^{
-//                    }];
-//                    [alert showAlert];
-//                    return;
-//                }
-//            }
-//        }
         KUser.localPrivateKey = self.textView.text;
         KUser.localPhraseString = @"";
         XXCreateWalletVC *createVC = [[XXCreateWalletVC alloc] init];

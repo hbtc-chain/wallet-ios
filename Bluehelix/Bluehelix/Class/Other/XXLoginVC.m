@@ -11,7 +11,7 @@
 #import "XXAccountFooterView.h"
 #import "XXImportWalletVC.h"
 #import "XXAddressView.h"
-
+#import "Account.h"
 
 @interface XXLoginVC ()
 
@@ -52,12 +52,26 @@
 
 - (void)okAction {
     NSString *inputPws = self.textFieldView.textField.text;
-    if ([NSString verifyPassword:inputPws md5:KUser.currentAccount.password]) {
-        KWindow.rootViewController = [[XXTabBarController alloc] init];
+    if (IsEmpty(KUser.passwordText)) {
+        [Account decryptSecretStorageJSON:KUser.currentAccount.keystore password:inputPws callback:^(Account *account, NSError *NSError) {
+            if (account) {
+                KUser.passwordText = inputPws;
+                KUser.privateKey = account.privateKeyString;
+                KWindow.rootViewController = [[XXTabBarController alloc] init];
+            } else {
+                Alert *alert = [[Alert alloc] initWithTitle:LocalizedString(@"PasswordWrong") duration:kAlertDuration completion:^{
+                }];
+                [alert showAlert];
+            }
+        }];
     } else {
-    Alert *alert = [[Alert alloc] initWithTitle:LocalizedString(@"PasswordWrong") duration:kAlertDuration completion:^{
-           }];
-    [alert showAlert];
+        if ([KUser.passwordText isEqualToString:inputPws]) {
+            KWindow.rootViewController = [[XXTabBarController alloc] init];
+        } else {
+            Alert *alert = [[Alert alloc] initWithTitle:LocalizedString(@"PasswordWrong") duration:kAlertDuration completion:^{
+            }];
+            [alert showAlert];
+        }
     }
 }
 
@@ -148,13 +162,13 @@
 }
 
 /*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
+ #pragma mark - Navigation
+ 
+ // In a storyboard-based application, you will often want to do a little preparation before navigation
+ - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+ // Get the new view controller using [segue destinationViewController].
+ // Pass the selected object to the new view controller.
+ }
+ */
 
 @end

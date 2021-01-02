@@ -25,8 +25,7 @@
                     feeDenom:(NSString *)feeDenom
                         memo:(NSString *)memo
                         type:(NSString *)type
-              withdrawal_fee:(NSString *)withdrawal_fee
-                        text:(NSString *)text {
+              withdrawal_fee:(NSString *)withdrawal_fee {
     self = [super init];
     if (self) {
         _fromAddress = from;
@@ -39,7 +38,6 @@
         _memo = memo;
         _type = type;
         _withdrawal_fee = withdrawal_fee;
-        _text = text;
         [self buildMsgs];
     }
     return self;
@@ -59,8 +57,7 @@
 proposalDescription:(NSString *)proposalDescription
          proposalId:(NSString*)proposalId
     proposalOption:(NSString*)proposalOption
-     withdrawal_fee:(NSString *)withdrawal_fee
-              text:(NSString *)text{
+     withdrawal_fee:(NSString *)withdrawal_fee {
     self = [super init];
     if (self) {
         _fromAddress = from;
@@ -78,7 +75,6 @@ proposalDescription:(NSString *)proposalDescription
         _proposalId = proposalId;
         _proposalOption = proposalOption;
         _withdrawal_fee = withdrawal_fee;
-        _text = text;
         [self buildMsgs];
     }
     return self;
@@ -243,14 +239,12 @@ proposalDescription:(NSString *)proposalDescription
 - (instancetype)initWithFeeAmount:(NSString *)feeAmount
                     feeDenom:(NSString *)feeDenom
                               msg:(id)msg
-                        memo:(NSString *)memo
-                        text:(NSString *)text {
+                        memo:(NSString *)memo {
     self = [super init];
     if (self) {
         _feeAmount = feeAmount;
         _feeDenom = feeDenom;
         _memo = memo;
-        _text = text;
         _uuid  = [FCUUID uuid];
         _msgs = [NSMutableArray array];
         [_msgs addObject:msg];

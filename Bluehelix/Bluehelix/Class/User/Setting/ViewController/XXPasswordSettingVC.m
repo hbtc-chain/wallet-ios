@@ -86,9 +86,8 @@
                 if (isOn) {
                     [XXUserData sharedUserData].isQuickTextOpen = NO;
                 } else {
-                    [XXPasswordView showWithSureBtnBlock:^(NSString * _Nonnull text) {
+                    [XXPasswordView showWithSureBtnBlock:^{
                         [XXUserData sharedUserData].isQuickTextOpen = YES;
-                        KUser.text = text;
                         KUser.lastPasswordTime = [NSString stringWithFormat:@"%f",[[NSDate date] timeIntervalSince1970]];
                         [weakSelf refreshSwitch];
                     }];
@@ -104,9 +103,8 @@
         cell.switchBlock = ^(BOOL isOn, NSInteger indexCell) {
             if (indexCell == 0) {
                 if (isOn) {
-                    [XXPasswordView showWithSureBtnBlock:^(NSString * _Nonnull text) {
+                    [XXPasswordView showWithSureBtnBlock:^{
                         [XXUserData sharedUserData].isQuickTextOpen = YES;
-                        KUser.text = text;
                         KUser.lastPasswordTime = [NSString stringWithFormat:@"%f",[[NSDate date] timeIntervalSince1970]];
                         [weakSelf refreshSwitch];
                     }];

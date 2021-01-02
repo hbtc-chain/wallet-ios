@@ -29,7 +29,6 @@
              window.hidden = YES;
         }];
         action.indexTap = i;
-        //TODO
         [action setValue:kDark100 forKey:@"titleTextColor"];
         [alert addAction:action];
     }
@@ -37,7 +36,6 @@
     UIAlertAction *action = [UIAlertAction actionWithTitle:LocalizedString(@"Cancel") style:UIAlertActionStyleCancel handler:^(UIAlertAction * _Nonnull action) {
          window.hidden = YES;
     }];
-    //TODO
     [action setValue:kDark100 forKey:@"titleTextColor"];
     [alert addAction:action];
     
@@ -65,7 +63,6 @@
             window.hidden = YES;
         }];
         action.indexTap = i;
-        //TODO
         [action setValue:kDark100 forKey:@"titleTextColor"];
 //        [action setValue:ActionColor forKey:@"titleTextColor"];
         [alert addAction:action];

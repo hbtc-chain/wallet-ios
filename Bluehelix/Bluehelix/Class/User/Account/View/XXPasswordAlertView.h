@@ -12,9 +12,9 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface XXPasswordAlertView : UIView
 
-@property (nonatomic, copy) void (^sureBtnBlock)(NSString *text);
+@property (nonatomic, copy) void (^sureBtnBlock)(void);
 
-+ (void)showWithSureBtnBlock:(void (^)(NSString *text))sureBtnBlock;
++ (void)showWithSureBtnBlock:(void (^)(void))sureBtnBlock;
 
 @end
 

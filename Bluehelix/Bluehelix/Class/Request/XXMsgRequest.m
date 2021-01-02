@@ -18,7 +18,6 @@
 #import "FCUUID.h"
 #include "ecdsa.h"
 #include "secp256k1.h"
-#import "AESCrypt.h"
 
 @interface XXMsgRequest ()
 
@@ -89,13 +88,12 @@
 /// @param data 交易数据
 - (NSString *)signData:(NSData *)data {
     NSData *sec256Data = [SecureData SHA256:data];
-    NSString *privateKeyString = [AESCrypt decrypt:KUser.currentAccount.privateKey password:[NSString md5:self.msgModel.text]];
-    if (IsEmpty(privateKeyString)) {
+    if (IsEmpty(KUser.privateKey)) {
         [MBProgressHUD hideHUD];
         [MBProgressHUD showErrorMessage:LocalizedString(@"PasswordWrong")];
         return nil;
     }
-    NSData *privateKey = [[SecureData secureDataWithHexString:privateKeyString] data];
+    NSData *privateKey = [[SecureData secureDataWithHexString:KUser.privateKey] data];
     if (sec256Data.length == 32) {
         SecureData *signatureData = [SecureData secureDataWithLength:64];;
         uint8_t pby;

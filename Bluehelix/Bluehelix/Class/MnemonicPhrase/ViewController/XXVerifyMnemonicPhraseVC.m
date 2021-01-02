@@ -9,8 +9,6 @@
 #import "XXVerifyMnemonicPhraseVC.h"
 #import "XXMnemonicBtn.h"
 #import "XXTabBarController.h"
-#import "AESCrypt.h"
-
 
 @interface XXVerifyMnemonicPhraseVC ()
 
@@ -36,9 +34,7 @@
 }
 
 - (void)initPhraseData {
-    XXAccountModel *model = [[XXSqliteManager sharedSqlite] accountByAddress:KUser.address];
-        NSString *sectureStr = model.mnemonicPhrase;
-    NSString *phraseStr = [AESCrypt decrypt:sectureStr password:[NSString md5:self.text]];
+    NSString *phraseStr = KUser.mnemonicPhrase;
     self.phraseArray = [phraseStr componentsSeparatedByString:@" "];
     self.drawArray = [self randomArray];
 }

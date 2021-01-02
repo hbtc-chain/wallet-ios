@@ -11,7 +11,6 @@
 #import "SecureData.h"
 #import "Account.h"
 #import "XXImportKeystoreSetName.h"
-#import "AESCrypt.h"
 @interface XXImportKeystoreVC () <UITextViewDelegate,UITextFieldDelegate>
 
 @property (nonatomic, strong) XXLabel *tipLabel;
@@ -45,17 +44,6 @@
     [Account decryptSecretStorageJSON:self.textView.text password:self.textFieldView.textField.text callback:^(Account *account, NSError *NSError) {
         [MBProgressHUD hideHUD];
         if (account) {
-            //判断是否重复导入
-//            if (KUser.accounts) {
-//                for (XXAccountModel *model in KUser.accounts) {
-//                    if ([model.address isEqualToString:account.BHAddress]) {
-//                        Alert *alert = [[Alert alloc] initWithTitle:LocalizedString(@"KeystoreRepetition") duration:kAlertDuration completion:^{
-//                        }];
-//                        [alert showAlert];
-//                        return;
-//                    }
-//                }
-//            }
             [self pushNameVC:account];
         } else {
             NSString *errorMsg = NSError.userInfo[@"reason"];
@@ -74,10 +62,8 @@
 
 - (void)pushNameVC:(Account *)account {
     XXAccountModel *model = [[XXAccountModel alloc] init];
-    model.privateKey = [AESCrypt encrypt:account.privateKeyString password:[NSString md5:self.textFieldView.textField.text]];
     model.publicKey = account.pubKey;
     model.address = account.BHAddress;
-    model.password = [NSString md5:self.textFieldView.textField.text];
     model.keystore = self.textView.text;
     
     XXImportKeystoreSetName *nameVC = [[XXImportKeystoreSetName alloc] init];
@@ -146,8 +132,9 @@
 - (XXTextFieldView *)textFieldView {
     if (!_textFieldView) {
         _textFieldView = [[XXTextFieldView alloc] initWithFrame:CGRectMake(K375(16), CGRectGetMaxY(self.nameLabel.frame), kScreen_Width - K375(32), 48)];
-        _textFieldView.placeholder = LocalizedString(@"SetPasswordPlaceHolder");
+        _textFieldView.placeholder = LocalizedString(@"SetPasswordRuleTip");
         _textFieldView.showLookBtn = YES;
+        _textFieldView.textField.keyboardType = UIKeyboardTypeNumberPad;
         _textFieldView.textField.delegate = self;
         [_textFieldView.textField addTarget:self action:@selector(textFiledValueChange:) forControlEvents:UIControlEventEditingChanged];
     }

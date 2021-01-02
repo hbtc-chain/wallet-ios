@@ -149,8 +149,7 @@
         }
         if (kShowPassword) {
             MJWeakSelf
-            [XXPasswordAlertView showWithSureBtnBlock:^(NSString * _Nonnull text) {
-                weakSelf.text = text;
+            [XXPasswordAlertView showWithSureBtnBlock:^{
                 switch (self.delegateNodeType) {
                     case XXDelegateNodeTypeAdd:
                         [weakSelf requestDelegate];
@@ -165,7 +164,6 @@
                 }
             }];
         } else {
-            self.text = kText;
             switch (self.delegateNodeType) {
                 case XXDelegateNodeTypeAdd:
                     [self requestDelegate];
@@ -195,7 +193,7 @@
     NSString *feeAmount = [XXUserData sharedUserData].fee;
     
     [MBProgressHUD showActivityMessageInView:@""];
-    XXMsg *model = [[XXMsg alloc] initWithfrom:KUser.address to:toAddress amount:amount denom:tokenModel.symbol feeAmount:feeAmount feeGas:@"" feeDenom:tokenModel.symbol memo:@"" type:kMsgDelegate withdrawal_fee:@"" text:self.text];
+    XXMsg *model = [[XXMsg alloc] initWithfrom:KUser.address to:toAddress amount:amount denom:tokenModel.symbol feeAmount:feeAmount feeGas:@"" feeDenom:tokenModel.symbol memo:@"" type:kMsgDelegate withdrawal_fee:@""];
     _msgRequest = [[XXMsgRequest alloc] init];
     [_msgRequest sendMsg:model];
     MJWeakSelf
@@ -216,7 +214,7 @@
     NSString *feeAmount = [XXUserData sharedUserData].fee;
     
     [MBProgressHUD showActivityMessageInView:@""];
-    XXMsg *model = [[XXMsg alloc] initWithfrom:KUser.address to:toAddress amount:amount denom:tokenModel.symbol feeAmount:feeAmount feeGas:@"" feeDenom:tokenModel.symbol memo:@"" type:kMsgUndelegate withdrawal_fee:@"" text:self.text];
+    XXMsg *model = [[XXMsg alloc] initWithfrom:KUser.address to:toAddress amount:amount denom:tokenModel.symbol feeAmount:feeAmount feeGas:@"" feeDenom:tokenModel.symbol memo:@"" type:kMsgUndelegate withdrawal_fee:@""];
     _msgRequest = [[XXMsgRequest alloc] init];
     [_msgRequest sendMsg:model];
     MJWeakSelf

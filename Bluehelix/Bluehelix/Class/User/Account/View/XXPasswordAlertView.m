@@ -9,6 +9,7 @@
 #import "XXPasswordAlertView.h"
 #import "XXPasswordNumTextFieldView.h"
 #import "XYHAlertView.h"
+#import "Account.h"
 
 @interface XXPasswordAlertView ()
 
@@ -42,7 +43,7 @@
     [self.contentView addSubview:self.cancelButton];
 }
 
-+ (void)showWithSureBtnBlock:(void (^)(NSString *text))sureBtnBlock {
++ (void)showWithSureBtnBlock:(void (^)(void))sureBtnBlock {
     XXPasswordAlertView *passwordView = [[XXPasswordAlertView alloc] initWithFrame:CGRectMake(0, 0, kScreen_Width, kScreen_Height)];
     [passwordView buildUI];
     [KWindow addSubview:passwordView];
@@ -62,17 +63,37 @@
 }
 
 - (void)finishText:(NSString *)text {
-    if ([NSString verifyPassword:text md5:KUser.currentAccount.password] && self.sureBtnBlock) {
-        if (KUser.isQuickTextOpen) {
-            KUser.lastPasswordTime = [NSString stringWithFormat:@"%f",[[NSDate date] timeIntervalSince1970]];
-            KUser.text = text;
-        }
-        [[self class] removeFromSuperView];
-        self.sureBtnBlock(text);
-    } else {
-        Alert *alert = [[Alert alloc] initWithTitle:LocalizedString(@"PasswordWrong") duration:kAlertDuration completion:^{
+    MJWeakSelf
+    if (IsEmpty(KUser.passwordText)) {
+        [Account decryptSecretStorageJSON:KUser.currentAccount.keystore password:text callback:^(Account *account, NSError *NSError) {
+            if (account) {
+                KUser.passwordText = text;
+                KUser.privateKey = account.privateKeyString;
+                KUser.mnemonicPhrase = account.mnemonicPhrase;
+                if (KUser.isQuickTextOpen) {
+                    KUser.lastPasswordTime = [NSString stringWithFormat:@"%f",[[NSDate date] timeIntervalSince1970]];
+                }
+                [[weakSelf class] removeFromSuperView];
+                if (weakSelf.sureBtnBlock) {
+                    weakSelf.sureBtnBlock();
+                }
+            } else {
+                Alert *alert = [[Alert alloc] initWithTitle:LocalizedString(@"PasswordWrong") duration:kAlertDuration completion:^{
+                }];
+                [alert showAlert];
+            }
         }];
-        [alert showAlert];
+    } else {
+        if ([KUser.passwordText isEqualToString:text]) {
+            [[self class] removeFromSuperView];
+            if (self.sureBtnBlock) {
+                self.sureBtnBlock();
+            }
+        } else {
+            Alert *alert = [[Alert alloc] initWithTitle:LocalizedString(@"PasswordWrong") duration:kAlertDuration completion:^{
+            }];
+            [alert showAlert];
+        }
     }
 }
 

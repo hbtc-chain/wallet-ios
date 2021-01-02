@@ -9,9 +9,8 @@
 #import "XXBackupMnemonicPhraseVC.h"
 #import "XXMnemonicBtn.h"
 #import "XXVerifyMnemonicPhraseVC.h"
-#import "AESCrypt.h"
 #import "XXSqliteManager.h"
-
+#import "Account.h"
 
 @interface XXBackupMnemonicPhraseVC ()
 
@@ -38,9 +37,7 @@
 }
 
 - (void)drawPhraseBtn {
-    XXAccountModel *model = [[XXSqliteManager sharedSqlite] accountByAddress:KUser.address];
-    NSString *sectureStr = model.mnemonicPhrase;
-    NSString *phraseStr = [AESCrypt decrypt:sectureStr password:[NSString md5:self.text]];
+    NSString *phraseStr = KUser.mnemonicPhrase;
     NSArray *phraseArr = [phraseStr componentsSeparatedByString:@" "];
     int HSpace = K375(16);
     int VSpace = K375(8);
@@ -81,7 +78,6 @@
         MJWeakSelf
         _backupBtn = [XXButton buttonWithFrame:CGRectMake(K375(16), kScreen_Height - kBtnHeight - K375(16), kScreen_Width - K375(32), 44) title:LocalizedString(@"StartBackup") font:kFontBold18 titleColor:[UIColor whiteColor] block:^(UIButton *button) {
             XXVerifyMnemonicPhraseVC *verifyVC = [[XXVerifyMnemonicPhraseVC alloc] init];
-            verifyVC.text = weakSelf.text;
             [weakSelf.navigationController pushViewController:verifyVC animated:YES];
         }];
         _backupBtn.backgroundColor = kPrimaryMain;

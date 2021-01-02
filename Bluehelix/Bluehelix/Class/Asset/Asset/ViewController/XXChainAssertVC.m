@@ -65,12 +65,11 @@
     [self.view addSubview:self.tableView];
     self.tableView.separatorColor = KLine_Color;
     self.tableView.tableHeaderView = self.headerView;
-    if (!KUser.currentAccount.backupFlag && !IsEmpty(KUser.currentAccount.mnemonicPhrase)) {
+    if (!KUser.currentAccount.backupFlag) {
         MJWeakSelf
         [XXSecurityAlertView showWithSureBlock:^{
-            [XXPasswordView showWithSureBtnBlock:^(NSString * _Nonnull text) {
+            [XXPasswordView showWithSureBtnBlock:^{
                 XXBackupMnemonicPhraseVC *backupVC = [[XXBackupMnemonicPhraseVC alloc] init];
-                backupVC.text = text;
                 [weakSelf.navigationController pushViewController:backupVC animated:YES];
             }];
         }];

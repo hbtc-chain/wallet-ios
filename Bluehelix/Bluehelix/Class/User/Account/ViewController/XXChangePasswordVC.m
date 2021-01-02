@@ -9,7 +9,8 @@
 #import "XXChangePasswordVC.h"
 #import "XXTextFieldView.h"
 #import "XYHNumbersLabel.h"
-#import "AESCrypt.h"
+#import "SecureData.h"
+#import "Account.h"
 
 #define ItemHeight 40
 
@@ -52,21 +53,17 @@
 }
 
 - (void)changePassword {
-    NSString *oldPassword = self.oldPasswordView.textField.text;
     NSString *newPassword = self.okPasswordView.textField.text;
-    NSString *privateKeyString = [AESCrypt decrypt:KUser.currentAccount.privateKey password:[NSString md5:oldPassword]];
-    NSString *newPrivateKey = [AESCrypt encrypt:privateKeyString password:[NSString md5:newPassword]];
-    [[XXSqliteManager sharedSqlite] updateAccountColumn:@"privateKey" value:newPrivateKey];
-    if (!IsEmpty(KUser.currentAccount.mnemonicPhrase)) {
-        NSString *oldMnemonicPhrase = [AESCrypt decrypt:KUser.currentAccount.mnemonicPhrase password:[NSString md5:oldPassword]];
-        NSString *newMnemonicPhrase = [AESCrypt encrypt:oldMnemonicPhrase password:[NSString md5:newPassword]];
-        [[XXSqliteManager sharedSqlite] updateAccountColumn:@"mnemonicPhrase" value:newMnemonicPhrase];
-    }
-    [[XXSqliteManager sharedSqlite] updateAccountColumn:@"password" value:[NSString generatePassword:newPassword]];
-    Alert *alert = [[Alert alloc] initWithTitle:LocalizedString(@"ChangePasswordSuccess") duration:kAlertDuration completion:^{
-        [self.navigationController popViewControllerAnimated:YES];
+    SecureData * data = [SecureData secureDataWithHexString:KUser.privateKey];
+    Account *account = [Account accountWithPrivateKey:data.data];
+    [account encryptSecretStorageJSON:newPassword callback:^(NSString *json) {
+        KUser.passwordText = newPassword;
+        [[XXSqliteManager sharedSqlite] updateAccountColumn:@"keystore" value:json];
+        Alert *alert = [[Alert alloc] initWithTitle:LocalizedString(@"ChangePasswordSuccess") duration:kAlertDuration completion:^{
+            [self.navigationController popViewControllerAnimated:YES];
+        }];
+        [alert showAlert];
     }];
-    [alert showAlert];
 }
 
 - (void)okButtonClick:(UIButton *)sender {
@@ -76,12 +73,28 @@
         [alert showAlert];
         return;
     }
-    if ([NSString verifyPassword:self.oldPasswordView.textField.text md5:KUser.currentAccount.password]) {
-        [self changePassword];
-    } else {
-        Alert *alert = [[Alert alloc] initWithTitle:LocalizedString(@"PasswordWrong") duration:kAlertDuration completion:^{
+    NSString *text = self.oldPasswordView.textField.text;
+    MJWeakSelf
+    if (IsEmpty(KUser.passwordText)) {
+        [Account decryptSecretStorageJSON:KUser.currentAccount.keystore password:text callback:^(Account *account, NSError *NSError) {
+            if (account) {
+                KUser.privateKey = account.privateKeyString;
+                KUser.mnemonicPhrase = account.mnemonicPhrase;
+                [weakSelf changePassword];
+            } else {
+                Alert *alert = [[Alert alloc] initWithTitle:LocalizedString(@"PasswordWrong") duration:kAlertDuration completion:^{
+                }];
+                [alert showAlert];
+            }
         }];
-        [alert showAlert];
+    } else {
+        if ([KUser.passwordText isEqualToString:text]) {
+            [weakSelf changePassword];
+        } else {
+            Alert *alert = [[Alert alloc] initWithTitle:LocalizedString(@"PasswordWrong") duration:kAlertDuration completion:^{
+            }];
+            [alert showAlert];
+        }
     }
 }
 

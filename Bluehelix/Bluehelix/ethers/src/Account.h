@@ -96,7 +96,7 @@
 @property (nonatomic, readonly) NSString *privateKeyString; //hexString
 @property (nonatomic, readonly) NSData *pubKey;
 
-@property (nonatomic, readonly) NSString *mnemonicPhrase; //助记词
+@property (nonatomic, copy) NSString *mnemonicPhrase; //助记词
 @property (nonatomic, readonly) NSData *mnemonicData;
 
 
