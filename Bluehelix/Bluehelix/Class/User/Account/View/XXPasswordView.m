@@ -8,6 +8,7 @@
 
 #import "XXPasswordView.h"
 #import "XXPasswordNumTextFieldView.h"
+#import "Account.h"
 
 @interface XXPasswordView()<UITextFieldDelegate>
 
@@ -44,7 +45,7 @@
     [self.contentView addSubview:self.cancelButton];
 }
 
-+ (void)showWithSureBtnBlock:(void (^)(NSString *text))sureBtnBlock {
++ (void)showWithSureBtnBlock:(void (^)(void))sureBtnBlock {
     XXPasswordView *passwordView = [[XXPasswordView alloc] initWithFrame:CGRectMake(0, 0, kScreen_Width, kScreen_Height)];
     [passwordView buildUI];
     [KWindow addSubview:passwordView];
@@ -63,7 +64,7 @@
     }];
 }
 
-+ (void)showWithContent:(NSString *)content sureBtnBlock:(void (^)(NSString *text))sureBtnBlock {
++ (void)showWithContent:(NSString *)content sureBtnBlock:(void (^)(void))sureBtnBlock {
     XXPasswordView *passwordView = [[XXPasswordView alloc] initWithFrame:CGRectMake(0, 0, kScreen_Width, kScreen_Height)];
     passwordView.content = content;
     [passwordView buildUI];
@@ -84,13 +85,36 @@
 }
 
 - (void)finishText:(NSString *)text {
-    if ([NSString verifyPassword:text md5:KUser.currentAccount.password] && self.sureBtnBlock) {
-        [[self class] removeFromSuperView];
-        self.sureBtnBlock(text);
-    } else {
-        Alert *alert = [[Alert alloc] initWithTitle:LocalizedString(@"PasswordWrong") duration:kAlertDuration completion:^{
+    MJWeakSelf
+    if (IsEmpty(KUser.passwordText)) {
+        [Account decryptSecretStorageJSON:KUser.currentAccount.keystore password:text callback:^(Account *account, NSError *NSError) {
+            if (account) {
+                KUser.passwordText = text;
+                KUser.privateKey = account.privateKeyString;
+                KUser.mnemonicPhrase = account.mnemonicPhrase;
+                [[weakSelf class] removeFromSuperView];
+                if (weakSelf.sureBtnBlock) {
+                    weakSelf.sureBtnBlock();
+                }
+            } else {
+                [weakSelf.passwordView cleanText];
+                Alert *alert = [[Alert alloc] initWithTitle:LocalizedString(@"PasswordWrong") duration:kAlertDuration completion:^{
+                }];
+                [alert showAlert];
+            }
         }];
-        [alert showAlert];
+    } else {
+        if ([KUser.passwordText isEqualToString:text]) {
+            [[self class] removeFromSuperView];
+            if (self.sureBtnBlock) {
+                self.sureBtnBlock();
+            }
+        } else {
+            [weakSelf.passwordView cleanText];
+            Alert *alert = [[Alert alloc] initWithTitle:LocalizedString(@"PasswordWrong") duration:kAlertDuration completion:^{
+            }];
+            [alert showAlert];
+        }
     }
 }
 
@@ -172,7 +196,7 @@
 
 - (XXLabel *)titleLabel {
     if (_titleLabel == nil) {
-        _titleLabel = [XXLabel labelWithFrame:CGRectMake(0, K375(16), self.contentView.width, K375(24)) text:LocalizedString(@"PleaseInputPassword") font:kFontBold20 textColor:kGray900 alignment:NSTextAlignmentCenter];
+        _titleLabel = [XXLabel labelWithFrame:CGRectMake(0, K375(24), self.contentView.width, K375(24)) text:LocalizedString(@"PleaseInputPassword") font:kFontBold20 textColor:kGray900 alignment:NSTextAlignmentCenter];
     }
     return _titleLabel;
 }
@@ -187,7 +211,7 @@
 - (XXPasswordNumTextFieldView *)passwordView {
     if (_passwordView == nil) {
         CGFloat top = IsEmpty(self.content) ? K375(88) : K375(108);
-        _passwordView = [[XXPasswordNumTextFieldView alloc] initWithFrame:CGRectMake(K375(20), top, self.contentView.width - K375(40), K375(56))];
+        _passwordView = [[XXPasswordNumTextFieldView alloc] initWithFrame:CGRectMake(K375(24), top, self.contentView.width - K375(48), K375(56))];
         MJWeakSelf
         _passwordView.finishBlock = ^(NSString * _Nonnull text) {
             [weakSelf finishText:text];
@@ -199,7 +223,7 @@
 - (XXButton *)cancelButton {
     if (_cancelButton == nil) {
         MJWeakSelf
-        _cancelButton = [XXButton buttonWithFrame:CGRectMake(self.contentView.width - 50, 0, 50, 50) block:^(UIButton *button) {
+        _cancelButton = [XXButton buttonWithFrame:CGRectMake(10, 18, 50, 50) block:^(UIButton *button) {
             [[weakSelf class] dismiss];
         }];
         [_cancelButton setImage:[UIImage textImageName:@"dismiss"] forState:UIControlStateNormal];

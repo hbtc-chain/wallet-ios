@@ -40,8 +40,8 @@
     [self.view addSubview:self.scrollView];
     [self.scrollView addSubview:self.privateKeyView];
     [self.scrollView addSubview:self.backupCodeView];
-    self.privateKeyView.text = self.text;
-    self.backupCodeView.text = self.text;
+    self.privateKeyView.text = KUser.privateKey;
+    self.backupCodeView.text = KUser.privateKey;
 }
 
 - (XXBackupSegmentView*)toolBar {

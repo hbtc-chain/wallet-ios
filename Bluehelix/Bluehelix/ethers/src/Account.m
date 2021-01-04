@@ -38,6 +38,7 @@
 #import "BTCBase58.h"
 #import "NSData+Base64.h"
 #import "NSString+Base64.h"
+#import "AESCrypt.h"
 static NSErrorDomain ErrorDomain = @"io.ethers.AccountError";
 
 NSObject *getPath(NSObject *object, NSString *path, Class expectedClass) {
@@ -329,7 +330,7 @@ static NSDateFormatter *TimeFormatter = nil;
         return nil;
     }
     
-    NSString *cipher = (NSString*)getPath(data, @"crypto/cipher", [NSString class]);
+//    NSString *cipher = (NSString*)getPath(data, @"crypto/cipher", [NSString class]);
     NSData *iv = getHexData((NSString*)getPath(data, @"crypto/cipherparams/iv", [NSString class]));
     NSData *cipherText = getHexData((NSString*)getPath(data, @"crypto/ciphertext", [NSString class]));
     
@@ -376,8 +377,17 @@ static NSDateFormatter *TimeFormatter = nil;
         
         SecureData *privateKey = [SecureData secureDataWithLength:32];
         
-        {
+//        {
             SecureData *encryptionKey = [derivedKey subdataWithRange:NSMakeRange(0, 16)];
+            
+            
+            //助记词
+            NSString *mnemonicText = (NSString*)getPath(data, @"mnemonicText", [NSString class]);
+            NSString *mnemonicPhrase = [AESCrypt decrypt:mnemonicText password:[encryptionKey hexString]];
+            //
+            
+            
+            
             unsigned char counter[16];
             [iv getBytes:counter length:iv.length];
             
@@ -396,11 +406,12 @@ static NSDateFormatter *TimeFormatter = nil;
                 sendError(kAccountErrorUnknownError, @"AES Error");
                 return;
             }
-        }
+//        }
         
         Account *account = [[Account alloc] initWithPrivateKey:privateKey.data];
+        account.mnemonicPhrase = mnemonicPhrase;
         
-        if (![[account.BHAddress lowercaseString] isEqualToString:expectedAddress]) {
+        if (![[account.BHAddress lowercaseString] isEqualToString:[expectedAddress lowercaseString]]) {
             sendError(kAccountErrorJSONInvalidParameter, @"Address mismatch");
             return;
         }
@@ -433,7 +444,7 @@ static NSDateFormatter *TimeFormatter = nil;
     
     NSUUID *uuid = [NSUUID UUID];
     
-    SecureData *iv = [SecureData secureDataWithLength:16];;
+    SecureData *iv = [SecureData secureDataWithLength:16];
     {
         int failure = SecRandomCopyBytes(kSecRandomDefault, (int)iv.length, iv.mutableBytes);
         if (failure) {
@@ -442,7 +453,7 @@ static NSDateFormatter *TimeFormatter = nil;
         }
     }
     
-    SecureData *salt = [SecureData secureDataWithLength:32];;
+    SecureData *salt = [SecureData secureDataWithLength:32];
     {
         int failure = SecRandomCopyBytes(kSecRandomDefault, (int)salt.length, salt.mutableBytes);
         if (failure) {
@@ -494,7 +505,7 @@ static NSDateFormatter *TimeFormatter = nil;
         }
         
         SecureData *cipherText = [SecureData secureDataWithLength:32];
-        {
+//        {
             unsigned char counter[16];
             memcpy(counter, iv.bytes, MIN(iv.length, sizeof(counter)));
             
@@ -503,9 +514,9 @@ static NSDateFormatter *TimeFormatter = nil;
             aes_encrypt_ctx context;
             aes_encrypt_key128(encryptionKey.bytes, &context);
             
-            AES_RETURN aesStatus = aes_ctr_encrypt([_privateKey bytes],
+            AES_RETURN aesStatus = aes_ctr_encrypt([self.privateKey bytes],
                                                    [cipherText mutableBytes],
-                                                   (int)_privateKey.length,
+                                                   (int)self.privateKey.length,
                                                    counter,
                                                    &aes_ctr_cbuf_inc,
                                                    &context);
@@ -514,9 +525,18 @@ static NSDateFormatter *TimeFormatter = nil;
                 sendResult(nil);
                 return;
             }
-        }
+//        }
         
         [crypto setObject:[[cipherText hexString] substringFromIndex:0] forKey:@"ciphertext"];
+        
+        //--------------------------助记词
+        if (!IsEmpty(self.mnemonicPhrase)) {
+            NSString *mnemonicText = [AESCrypt encrypt:self.mnemonicPhrase password:[encryptionKey hexString]];
+            if (!IsEmpty(mnemonicText)) {
+                [json setObject:mnemonicText forKey:@"mnemonicText"];
+            }
+        }
+        //
         // Compute the MAC
         {
             SecureData *macCheck = [SecureData secureDataWithCapacity:(16 + 32)];

@@ -51,6 +51,7 @@
 }
 
 - (void)configData:(NSDictionary *)dic symbol:(NSString *)symbol {
+    XXTokenModel *tokenModel = [[XXSqliteManager sharedSqlite] tokenBySymbol:symbol];
     self.amountLabel.text = @"";
     self.timeLabel.text = [NSString dateStringFromTimestampWithTimeTamp:[dic[@"time"] longLongValue]];
     NSArray *activities = dic[@"activities"];
@@ -66,7 +67,11 @@
     if (balance_flows && balance_flows.count > 0) {
         for (NSDictionary *b in balance_flows) {
             if ([b[@"address"] isEqualToString:KUser.address] && [b[@"symbol"] isEqualToString:symbol]) {
-                self.amountLabel.text = [NSString stringWithFormat:@"%@ %@",kAmountShortTrim(b[@"amount"]),[b[@"symbol"] uppercaseString]];
+                if (tokenModel) {
+                    self.amountLabel.text = [NSString stringWithFormat:@"%@ %@",kAmountShortTrim(b[@"amount"]),[tokenModel.name uppercaseString]];
+                } else {
+                    self.amountLabel.text = [NSString stringWithFormat:@"%@ %@",kAmountShortTrim(b[@"amount"]),[b[@"symbol"] uppercaseString]];
+                }
             }
         }
     }

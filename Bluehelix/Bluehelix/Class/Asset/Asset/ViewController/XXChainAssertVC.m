@@ -50,17 +50,26 @@
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(refreshAsset) name:kNotificationAssetRefresh object:nil];
 }
 
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+    [KSystem statusBarSetUpDefault];
+}
+
+- (void)viewWillDisappear:(BOOL)animated {
+    [super viewWillDisappear:animated];
+    [KSystem statusBarSetUpDefault];
+}
+
 - (void)setupUI {
     self.navView.hidden = YES;
     [self.view addSubview:self.tableView];
     self.tableView.separatorColor = KLine_Color;
     self.tableView.tableHeaderView = self.headerView;
-    if (!KUser.currentAccount.backupFlag && !IsEmpty(KUser.currentAccount.mnemonicPhrase)) {
+    if (!KUser.currentAccount.backupFlag) {
         MJWeakSelf
         [XXSecurityAlertView showWithSureBlock:^{
-            [XXPasswordView showWithSureBtnBlock:^(NSString * _Nonnull text) {
+            [XXPasswordView showWithSureBtnBlock:^{
                 XXBackupMnemonicPhraseVC *backupVC = [[XXBackupMnemonicPhraseVC alloc] init];
-                backupVC.text = text;
                 [weakSelf.navigationController pushViewController:backupVC animated:YES];
             }];
         }];

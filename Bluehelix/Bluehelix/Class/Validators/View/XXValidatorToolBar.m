@@ -52,9 +52,16 @@
         //[itemButton setBackgroundImage:[UIImage createImageWithColor:KRGBA(44, 69, 241, 12)] forState:UIControlStateSelected];
         itemButton.tag = i;
         [itemButton addTarget:self action:@selector(buttonAction:) forControlEvents:UIControlEventTouchUpInside];
-        itemButton.contentHorizontalAlignment = UIControlContentHorizontalAlignmentCenter;
+        if (i == 0) {
+            itemButton.contentHorizontalAlignment = UIControlContentHorizontalAlignmentLeft;
+        } else if (i == _itemsArray.count - 1) {
+            itemButton.contentHorizontalAlignment = UIControlContentHorizontalAlignmentRight;
+        } else {
+            itemButton.contentHorizontalAlignment = UIControlContentHorizontalAlignmentCenter;
+        }
         itemButton.adjustsImageWhenHighlighted = NO;
-        itemButton.titleLabel.font = kFont15;
+        itemButton.titleLabel.font = kFont14;
+        itemButton.titleLabel.adjustsFontSizeToFitWidth = YES;
         if (self.indexBtn == i) {
             self.selectedButton = itemButton;
             itemButton.selected = YES;
@@ -82,16 +89,15 @@
         [v mas_makeConstraints:^(MASConstraintMaker *make) {
             if (preButton) {
                 make.width.height.centerY.equalTo(preButton);
-                make.left.equalTo(preButton.mas_right).offset(16);
-
+                make.left.equalTo(preButton.mas_right).offset(0);
             }
             else {//first one
+                CGFloat btnWidth = (kScreen_Width - K375(48))/3;
                 make.left.equalTo(self).offset(K375(24));
-                make.width.mas_equalTo(kButtonWidth);
+                make.width.mas_equalTo(btnWidth);
                 make.top.mas_equalTo(12);
                 make.height.mas_equalTo(16);
             }
-            
         }];
         preButton = v;
     }

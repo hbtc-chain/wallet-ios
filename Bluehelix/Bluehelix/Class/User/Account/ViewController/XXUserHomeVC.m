@@ -67,7 +67,7 @@
 - (void)initData {
     self.itemsArray = [NSMutableArray array];
     NSMutableArray *firstSectionArray = [NSMutableArray array];
-    if (KUser.currentAccount.mnemonicPhrase && !KUser.currentAccount.backupFlag) {
+    if (!KUser.currentAccount.backupFlag) {
         [firstSectionArray addObject:LocalizedString(@"BackupMnemonicPhrase")];
     }
     [firstSectionArray addObject:LocalizedString(@"BackupPrivateKey")];
@@ -185,9 +185,8 @@
 /// 备份助记词
 - (void)pushBackupPhrase {
     MJWeakSelf
-    [XXPasswordView showWithSureBtnBlock:^(NSString * _Nonnull text) {
+    [XXPasswordView showWithSureBtnBlock:^{
         XXBackupMnemonicPhraseVC *backup = [[XXBackupMnemonicPhraseVC alloc] init];
-        backup.text = text;
         [weakSelf.navigationController pushViewController:backup animated:YES];
     }];
 }
@@ -195,9 +194,8 @@
 /// 备份Keystore
 - (void)pushBackupKeystore {
     MJWeakSelf
-    [XXPasswordView showWithSureBtnBlock:^(NSString * _Nonnull text) {
+    [XXPasswordView showWithSureBtnBlock:^{
         XXBackupKeystoreTipVC *tipVC = [[XXBackupKeystoreTipVC alloc] init];
-        tipVC.text = text;
         [weakSelf.navigationController pushViewController:tipVC animated:YES];
     }];
 }
@@ -205,9 +203,8 @@
 /// 备份Private
 - (void)pushBackupPrivateKey {
     MJWeakSelf
-    [XXPasswordView showWithSureBtnBlock:^(NSString * _Nonnull text) {
+    [XXPasswordView showWithSureBtnBlock:^{
         XXBackupPrivateKeyTipVC *privateKeyTipVC = [[XXBackupPrivateKeyTipVC alloc] init];
-        privateKeyTipVC.text = text;
         [weakSelf.navigationController pushViewController:privateKeyTipVC animated:YES];
     }];
 }
@@ -241,9 +238,9 @@
 - (void)pushHelpCenter {
     XXWebViewController *webVC = [[XXWebViewController alloc] init];
     if ([[[LocalizeHelper sharedLocalSystem] getLanguageCode] hasPrefix:@"zh-"]) {
-        webVC.urlString = @"https://hbtcwallet.gitbook.io/hbtc-chain-guide/qian-bao-app/";
+        webVC.urlString = @"https://hbtcwallet.gitbook.io/hbtc-chain-guide/";
     } else {
-        webVC.urlString = @"https://hbtcwallet.gitbook.io/hbtc-chain-guide/v/english/wallet-app/";
+        webVC.urlString = @"https://hbtcwallet.gitbook.io/hbtc-chain-guide/v/english/";
     }
     webVC.navTitle = LocalizedString(@"HelpCenter");
     [self.navigationController pushViewController:webVC animated:YES];

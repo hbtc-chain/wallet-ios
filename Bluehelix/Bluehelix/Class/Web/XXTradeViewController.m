@@ -149,20 +149,20 @@
 - (void)alertPassword:(id)data {
     if (KUser.showPassword) {
         MJWeakSelf
-        [XXPasswordAlertView showWithSureBtnBlock:^(NSString * _Nonnull text) {
-            [weakSelf requestWebTrade:text data:data];
+        [XXPasswordAlertView showWithSureBtnBlock:^{
+            [weakSelf requestWebTrade:data];
         }];
     } else {
-        [self requestWebTrade:kText data:data];
+        [self requestWebTrade:data];
     }
 }
 
-- (void)requestWebTrade:(NSString *)text data:(id)data {
+- (void)requestWebTrade:(id)data {
     XXTokenModel *mainToken = [[XXSqliteManager sharedSqlite] tokenBySymbol:kMainToken];
     NSDecimalNumber *feeAmountDecimal = [NSDecimalNumber decimalNumberWithString:kMinFee];
     NSString *feeAmount = [[feeAmountDecimal decimalNumberByMultiplyingBy:kPrecisionDecimalPower(mainToken.decimals)] stringValue];
     
-    XXMsg *model = [[XXMsg alloc] initWithFeeAmount:feeAmount feeDenom:kMainToken msg:data memo:@"" text:text];
+    XXMsg *model = [[XXMsg alloc] initWithFeeAmount:feeAmount feeDenom:kMainToken msg:data memo:@""];
     _signRequest = [[XXMsgRequest alloc] init];
     MJWeakSelf
     _signRequest.msgSendSuccessBlock = ^(id  _Nonnull responseObject) {

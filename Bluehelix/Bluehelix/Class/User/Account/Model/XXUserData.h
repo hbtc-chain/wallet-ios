@@ -22,6 +22,12 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, assign) BOOL closeNoticeFlag; //关闭公告
 @property (nonatomic, strong) NSArray *accounts;
 @property (nonatomic, strong) XXAccountModel *currentAccount; //当前用户
+
+@property (nonatomic, copy) NSString *passwordText; //密码
+@property (nonatomic, copy) NSString *privateKey; //私钥
+@property (nonatomic, copy) NSString *mnemonicPhrase; //助记词
+
+
 @property (nonatomic, copy) NSString *localUserName;
 @property (nonatomic, copy) NSString *localPassword;
 @property (nonatomic, copy) NSString *localPhraseString; //临时助记词
@@ -57,7 +63,6 @@ NS_ASSUME_NONNULL_BEGIN
  */
 @property (nonatomic, assign) BOOL shouldVerify;
 
-@property (nonatomic, copy) NSString *text;
 @property (nonatomic, copy) NSString *lastPasswordTime; //记录上次最后输入密码的时间 30分钟免密码
 @property (nonatomic, assign) BOOL isQuickTextOpen; //30分钟免密码
 @property (nonatomic, assign) BOOL showPassword; //弹出密码框

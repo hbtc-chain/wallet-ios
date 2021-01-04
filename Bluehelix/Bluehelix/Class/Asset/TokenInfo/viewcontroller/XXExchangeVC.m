@@ -42,12 +42,10 @@
     if (!IsEmpty(self.backView.topField.text)) {
         if (kShowPassword) {
             MJWeakSelf
-            [XXPasswordAlertView showWithSureBtnBlock:^(NSString * _Nonnull text) {
-                weakSelf.text = text;
+            [XXPasswordAlertView showWithSureBtnBlock:^{
                 [weakSelf requestSwap];
             }];
         } else {
-            self.text = kText;
             [self requestSwap];
         }
     } else {
@@ -63,7 +61,7 @@
     NSDecimalNumber *feeAmountDecimal = [NSDecimalNumber decimalNumberWithString:kMinFee];
     NSString *amount = [[amountDecimal decimalNumberByMultiplyingBy:kPrecisionDecimalPower(self.backView.mappingModel.target_token.decimals)] stringValue];
     NSString *feeAmount = [[feeAmountDecimal decimalNumberByMultiplyingBy:kPrecisionDecimalPower(self.backView.mappingModel.target_token.decimals)] stringValue];
-    XXMsg *model = [[XXMsg alloc] initWithfrom:KUser.address to:self.backView.mappingModel.issue_symbol amount:amount denom:self.backView.mappingModel.target_symbol feeAmount:feeAmount feeGas:@"" feeDenom:kMainToken memo:@"" type:kMsgMappingSwap withdrawal_fee:@"" text:self.text];
+    XXMsg *model = [[XXMsg alloc] initWithfrom:KUser.address to:self.backView.mappingModel.issue_symbol amount:amount denom:self.backView.mappingModel.target_symbol feeAmount:feeAmount feeGas:@"" feeDenom:kMainToken memo:@"" type:kMsgMappingSwap withdrawal_fee:@""];
     _msgRequest = [[XXMsgRequest alloc] init];
     MJWeakSelf
     [MBProgressHUD showActivityMessageInView:@""];

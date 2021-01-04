@@ -94,9 +94,9 @@
     XXTransactionSectionModel *sectionModel = [[XXTransactionSectionModel alloc] init];
     sectionModel.name = LocalizedString(@"Transfer");
     if ([model.from_address isEqualToString:KUser.address]) {
-        sectionModel.value = [NSString stringWithFormat:@"-%@ %@",amountStr,[amount[@"denom"] uppercaseString]];
+        sectionModel.value = [NSString stringWithFormat:@"-%@ %@",amountStr,[token.name uppercaseString]];
     } else {
-        sectionModel.value = [NSString stringWithFormat:@"%@ %@",amountStr,[amount[@"denom"] uppercaseString]];
+        sectionModel.value = [NSString stringWithFormat:@"%@ %@",amountStr,[token.name uppercaseString]];
     }
     [self.sectionArray addObject:sectionModel];
     NSMutableArray *cellData = [NSMutableArray array];

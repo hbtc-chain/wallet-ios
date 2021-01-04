@@ -833,8 +833,8 @@
             filePath = "Bluehelix/Class/User/Setting/ViewController/XXPasswordSettingVC.m"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "93"
-            endingLineNumber = "93"
+            startingLineNumber = "92"
+            endingLineNumber = "92"
             landmarkName = "-tableView:cellForRowAtIndexPath:"
             landmarkType = "7">
          </BreakpointContent>
@@ -858,22 +858,6 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "21BCB40B-F7B0-4DDA-9BC0-66344B7C6BFB"
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "Bluehelix/ethers/src/Account.m"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "369"
-            endingLineNumber = "369"
-            landmarkName = "+decryptSecretStorageJSON:password:callback:"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
             uuid = "F4B9B87A-3126-433D-8C55-CEB299CA5093"
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
@@ -890,63 +874,143 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "2AA0F778-5F72-4507-A7FA-994FC0D2EED6"
+            uuid = "4A57EEEA-6944-443F-A75F-159A201B9394"
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "Bluehelix/Class/MnemonicPhrase/ViewController/XXImportKeystoreVC.m"
+            filePath = "Bluehelix/Class/Web/XXWebViewController.m"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "76"
-            endingLineNumber = "76"
-            landmarkName = "-pushNameVC:"
+            startingLineNumber = "218"
+            endingLineNumber = "218"
+            landmarkName = "-setUrlString:"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "0B991246-7C46-4AA9-BF8A-40C7CC0F282F"
+            uuid = "4F7B5CCF-053C-45D1-8E2C-0ED0BCA59D13"
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "Bluehelix/Class/Asset/Asset/ViewController/XXAddNewAssetVC.m"
+            filePath = "Bluehelix/ethers/src/Account.m"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "88"
-            endingLineNumber = "88"
-            landmarkName = "-requestSearchToken:"
+            startingLineNumber = "533"
+            endingLineNumber = "533"
+            landmarkName = "-encryptSecretStorageJSON:callback:"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "36B8D24A-8570-47E9-B7D2-B29252BFFFB1"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Bluehelix/ethers/src/Account.m"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "411"
+            endingLineNumber = "411"
+            landmarkName = "+decryptSecretStorageJSON:password:callback:"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "928B08B4-D039-4D26-9961-41E1C7D19161"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Bluehelix/Class/MnemonicPhrase/ViewController/XXBackupMnemonicPhraseVC.m"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "40"
+            endingLineNumber = "40"
+            landmarkName = "-drawPhraseBtn"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "F1E327F0-F9CF-43A6-8AEA-4AE339C5F5E5"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Bluehelix/Class/User/Account/View/XXPasswordView.m"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "108"
+            endingLineNumber = "108"
+            landmarkName = "-finishText:"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "60506DC3-838B-4C4C-9C8F-92E484034876"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Bluehelix/Class/CreateWallet/XXRepeatPasswordVC.m"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "82"
+            endingLineNumber = "82"
+            landmarkName = "-backupKeystore:"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "E04B11C5-28DB-496D-A5FF-7D49017156C4"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Bluehelix/Class/CreateWallet/XXRepeatPasswordVC.m"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "76"
+            endingLineNumber = "76"
+            landmarkName = "-createAction"
             landmarkType = "7">
             <Locations>
                <Location
-                  uuid = "0B991246-7C46-4AA9-BF8A-40C7CC0F282F - 2105d61daa698b74"
+                  uuid = "E04B11C5-28DB-496D-A5FF-7D49017156C4 - 549c16620f5db55a"
                   shouldBeEnabled = "Yes"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
-                  symbolName = "-[XXAddNewAssetVC requestSearchToken:]"
+                  symbolName = "-[XXRepeatPasswordVC createAction]"
                   moduleName = "HBTC Wallet"
                   usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/yuanzhen/wallet-ios/Bluehelix/Bluehelix/Class/Asset/Asset/ViewController/XXAddNewAssetVC.m"
+                  urlString = "file:///Users/yuanzhen/wallet-ios/Bluehelix/Bluehelix/Class/CreateWallet/XXRepeatPasswordVC.m"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "88"
-                  endingLineNumber = "88"
-                  offsetFromSymbolStart = "268">
+                  startingLineNumber = "76"
+                  endingLineNumber = "76"
+                  offsetFromSymbolStart = "1376">
                </Location>
                <Location
-                  uuid = "0B991246-7C46-4AA9-BF8A-40C7CC0F282F - 3a3ed370222c8625"
+                  uuid = "E04B11C5-28DB-496D-A5FF-7D49017156C4 - 514c67f724113c80"
                   shouldBeEnabled = "Yes"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
-                  symbolName = "__38-[XXAddNewAssetVC requestSearchToken:]_block_invoke"
+                  symbolName = "__34-[XXRepeatPasswordVC createAction]_block_invoke_2"
                   moduleName = "HBTC Wallet"
                   usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/yuanzhen/wallet-ios/Bluehelix/Bluehelix/Class/Asset/Asset/ViewController/XXAddNewAssetVC.m"
+                  urlString = "file:///Users/yuanzhen/wallet-ios/Bluehelix/Bluehelix/Class/CreateWallet/XXRepeatPasswordVC.m"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "89"
-                  endingLineNumber = "89"
-                  offsetFromSymbolStart = "108">
+                  startingLineNumber = "76"
+                  endingLineNumber = "76"
+                  offsetFromSymbolStart = "16">
                </Location>
             </Locations>
          </BreakpointContent>
@@ -954,16 +1018,16 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "CF207645-C47A-4088-9996-9438A1A8A6D5"
+            uuid = "67BF8E9F-4181-4B96-900D-16CC39AF1A4D"
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "Bluehelix/Class/Asset/Asset/ViewController/XXAddNewAssetVC.m"
+            filePath = "Bluehelix/Class/User/Account/View/XXPasswordView.m"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "90"
-            endingLineNumber = "90"
-            landmarkName = "-requestSearchToken:"
+            startingLineNumber = "113"
+            endingLineNumber = "113"
+            landmarkName = "-finishText:"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

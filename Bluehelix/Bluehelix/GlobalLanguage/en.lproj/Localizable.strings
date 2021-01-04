@@ -52,7 +52,7 @@
 "WeSuggest" = "We suggest that";
 "CreateWalletBackupTipContent" = "·Back up your wallet via mnemonic phrase\n·The mnemonic phrase consists of 12 English words\n·The mnemonic phrase allow you to restore your wallet\n·Do remember your 12 words mnemonics phrase";
 "WeSuggestContent" = "Do not send your 12 words mnemonics phrase via email or messaging tools\nNever share your mnemonic phrase with anyone\nPlease do not take screenshots, photos of your mnemonics phrase on your mobile device";
-"ImportMnemonicPhrase" = "Import mnemonic phrase";
+"ImportMnemonicPhrase" = "Mnemonic phrase";
 "ImportKeystore" = "Import Keystore";
 "ImportSecurity" = "Import private key";
 "ImportMnemonicPhraseTip" = "Please type the 12 words mnemonics phrase in sequence below and separate by spaces";
@@ -172,8 +172,8 @@
 "PayMoney" = "Transfer out";
 "WithdrawMoney" = "Withdraw dividends";
 "InMoney" = "Compound yield";
-"ChainReceiveMoney" = "Cross-chain deposit";
-"ChainPayMoney" = "Cross-chain withdrawal";
+"ChainReceiveMoney" = "Deposit";
+"ChainPayMoney" = "Withdrawal";
 "Transfer" = "Transfer";
 "Delegate" = "Delegate";
 "TransferDelegate" = "Transfer Delegate";
@@ -477,3 +477,5 @@
 "OldPassword6Number" = "Enter the Current password(6-digit)";
 "NewPassword6Number" = "Enter your new password(6-digit)";
 "ConfirmNewPassword6Number" = "Enter your new password(6-digit)";
+"PasswordWrongTryAgain" = "密码错误，请重试";
+"TryAgain" = "重试";

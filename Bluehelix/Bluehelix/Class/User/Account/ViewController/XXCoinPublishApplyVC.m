@@ -65,12 +65,10 @@
         }
         if (kShowPassword) {
             MJWeakSelf
-            [XXPasswordAlertView showWithSureBtnBlock:^(NSString * _Nonnull text) {
-                weakSelf.text = text;
+            [XXPasswordAlertView showWithSureBtnBlock:^{
                 [weakSelf requestApply];
             }];
         } else {
-            self.text = kText;
             [self requestApply];
         }
     } else {
@@ -103,7 +101,6 @@
     model.feeDenom = kMainToken;
     model.type = kMsgNewToken;
     model.memo = @"";
-    model.text = self.text;
     model.decimals = precision;
     [model buildMsgs];
     

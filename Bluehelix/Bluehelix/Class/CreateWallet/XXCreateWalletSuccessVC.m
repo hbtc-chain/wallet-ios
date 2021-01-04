@@ -129,7 +129,6 @@
         _immediatelyBtn = [XXButton buttonWithFrame:CGRectMake(kScreen_Width/2 + 4, kScreen_Height - kBtnHeight - 24, kScreen_Width/2 - K375(40)/2, kBtnHeight) title:LocalizedString(@"BackupImmediately") font:kFont(17) titleColor:[UIColor whiteColor] block:^(UIButton *button) {
             [XXScreenShotAlert showWithSureBlock:^{
                 XXBackupMnemonicPhraseVC *backupVC = [[XXBackupMnemonicPhraseVC alloc] init];
-                backupVC.text = weakSelf.text;
                 [weakSelf.navigationController pushViewController:backupVC animated:YES];
             }];
         }];

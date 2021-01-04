@@ -49,6 +49,11 @@
     self.tableView.tableHeaderView = self.symbolDetailHeaderView;
 }
 
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+    [MBProgressHUD showActivityMessageInView:@""];
+}
+
 - (void)viewDidAppear:(BOOL)animated {
     [super viewDidAppear:animated];
     self.timer = [NSTimer scheduledTimerWithTimeInterval:5 target:self selector:@selector(timerAction) userInfo:nil repeats:YES];
@@ -89,6 +94,7 @@
     param[@"page"] = [NSString stringWithFormat:@"%d",self.page];
     param[@"size"] = [NSString stringWithFormat:@"%d",self.pageSize];
     [HttpManager getWithPath:path params:param andBlock:^(id data, NSString *msg, NSInteger code) {
+        [MBProgressHUD hideHUD];
         [weakSelf.tableView.mj_header endRefreshing];
         [weakSelf.tableView.mj_footer endRefreshing];
         if (code == 0) {
@@ -103,9 +109,11 @@
             }
             [weakSelf.tableView reloadData];
         } else {
-            Alert *alert = [[Alert alloc] initWithTitle:msg duration:kAlertDuration completion:^{
-            }];
-            [alert showAlert];
+            if (![KUser.netWorkStatus isEqualToString:@"notReachable"]) {
+                Alert *alert = [[Alert alloc] initWithTitle:msg duration:kAlertDuration completion:^{
+                }];
+                [alert showAlert];
+            }
         }
     }];
 }
@@ -120,7 +128,7 @@
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
-    if (self.txs.count == 0) {
+    if (self.txs && self.txs.count == 0) {
         return self.emptyView.height;
     } else {
         return 0;
@@ -128,8 +136,8 @@
 }
 
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
-    if (self.txs.count == 0) {
-        return self.emptyView ;
+    if (self.txs && self.txs.count == 0) {
+        return self.emptyView;
     } else {
         return [UIView new];
     }

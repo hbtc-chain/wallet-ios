@@ -32,7 +32,7 @@ NS_ASSUME_NONNULL_BEGIN
                     feeDenom:(NSString *)feeDenom
                         memo:(NSString *)memo
                         type:(NSString *)type
-              withdrawal_fee:(NSString *)withdrawal_fee text:(NSString *)text;
+              withdrawal_fee:(NSString *)withdrawal_fee;
 
 
 /// 生成交易model
@@ -49,7 +49,6 @@ NS_ASSUME_NONNULL_BEGIN
 /// @param proposalTitle 提案标题
 /// @param proposalDescription 提案描述
 /// @param withdrawal_fee 跨链手续费
-/// @param text password
 - (instancetype)initProposalMessageWithfrom:(NSString *)from
                           to:(NSString *)to
                       amount:(NSString *)amount
@@ -64,8 +63,7 @@ NS_ASSUME_NONNULL_BEGIN
          proposalDescription:(NSString *)proposalDescription
                  proposalId:(NSString*)proposalId
               proposalOption:(NSString*)proposalOption
-              withdrawal_fee:(NSString *)withdrawal_fee
-                        text:(NSString *)text;
+              withdrawal_fee:(NSString *)withdrawal_fee;
 
 @property (nonatomic, copy) NSString *fromAddress; // 转出地址
 @property (nonatomic, copy) NSString *toAddress; // 交易对方账户
@@ -77,8 +75,6 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, copy) NSString *memo; //备注 暂无
 @property (nonatomic, copy) NSString *type; //交易类型
 @property (nonatomic, copy) NSString *withdrawal_fee; //跨链手续费
-@property (nonatomic, copy) NSString *text;
-
 @property (nonatomic, copy) NSString *proposalType;
 @property (nonatomic, copy) NSString *proposalTitle;//提案标题
 @property (nonatomic, copy) NSString *proposalDescription;//提案描述
@@ -97,14 +93,10 @@ NS_ASSUME_NONNULL_BEGIN
 
 - (void)buildMsgs;
 
-/// 构造msgs 外部传入msg
-- (void)buildMsgsWithMsg:(NSDictionary *)msg;
-
 - (instancetype)initWithFeeAmount:(NSString *)feeAmount
                          feeDenom:(NSString *)feeDenom
                               msg:(id)msg
-                             memo:(NSString *)memo
-                             text:(NSString *)text;
+                             memo:(NSString *)memo;
 @end
 
 NS_ASSUME_NONNULL_END

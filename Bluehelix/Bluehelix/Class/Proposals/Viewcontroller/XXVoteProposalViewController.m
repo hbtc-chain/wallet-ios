@@ -79,14 +79,11 @@
             return;
         }
         if (kShowPassword) {
-            MJWeakSelf
-            [XXPasswordAlertView showWithSureBtnBlock:^(NSString * _Nonnull text) {
+            [XXPasswordAlertView showWithSureBtnBlock:^{
                 @strongify(self)
-                weakSelf.text = text;
                 [self requestCreateProposal];
             }];
         } else {
-            self.text = kText;
             [self requestCreateProposal];
         }
     } else {
@@ -121,8 +118,7 @@
                                           proposalDescription:proposalDescription
                                                    proposalId:@""
                                                proposalOption:@""
-                                               withdrawal_fee:@""
-                                                         text:self.text];
+                                               withdrawal_fee:@""];
     _msgRequest = [[XXMsgRequest alloc] init];
     [_msgRequest sendMsg:model];
     MJWeakSelf

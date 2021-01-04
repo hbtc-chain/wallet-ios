@@ -61,9 +61,15 @@
 
 - (void)createAccount {
     self.account.userName = self.textFieldView.textField.text;
-    self.account.mnemonicPhrase = @"";
     self.account.backupFlag = YES; //keystore导入不需要备份助记词
     self.account.symbols = [[XXSqliteManager sharedSqlite] defaultTokenSymbols];
+    if (KUser.accounts) {
+        for (XXAccountModel *a in KUser.accounts) {
+            if ([a.address isEqualToString:self.account.address]) {
+                [[XXSqliteManager sharedSqlite] deleteAccountByAddress:self.account.address];
+            }
+        }
+    }
     [[XXSqliteManager sharedSqlite] insertAccount:self.account];
     KUser.address = self.account.address;
     Alert *alert = [[Alert alloc] initWithTitle:LocalizedString(@"ImportSuccess") duration:kAlertDuration completion:^{

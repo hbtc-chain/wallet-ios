@@ -12,7 +12,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface XXBackupPrivateKeyVC : BaseViewController
 
-@property (nonatomic, copy) NSString *text;
+//@property (nonatomic, copy) NSString *text;
 
 @end
 

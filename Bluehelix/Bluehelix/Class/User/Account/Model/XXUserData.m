@@ -124,7 +124,7 @@ static XXUserData *_sharedUserData = nil;
     if (!self.isQuickTextOpen) { //没有打开免密码
         return YES;
     }
-    if (IsEmpty(self.text)) { //没有保存密码
+    if (IsEmpty(self.passwordText)) { //没有保存密码
         return YES;
     }
     if (self.lastPasswordTime) {
@@ -212,7 +212,8 @@ static XXUserData *_sharedUserData = nil;
     if ([self.address isEqualToString:address]) {
         return;
     } else {
-        self.text = @"";
+        self.passwordText = @"";
+        self.privateKey = @"";
         self.lastPasswordTime = @"";
         self.isQuickTextOpen = NO;
         [self saveValue:address forKey:@"address"];

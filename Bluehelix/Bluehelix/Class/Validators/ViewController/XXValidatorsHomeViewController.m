@@ -220,18 +220,18 @@ static NSString *KValidatorGripSectionHeader = @"XXValidatorGripSectionHeader";
     MJWeakSelf
     [XXRewardView showWithTitle:LocalizedString(@"WithdrawMoney") icon:@"withdrawMoneyAlert" content:content sureBlock:^{
         if (kShowPassword) {
-            [XXPasswordAlertView showWithSureBtnBlock:^(NSString * _Nonnull text) {
-                [weakSelf requestWithdrawBonus:text];
+            [XXPasswordAlertView showWithSureBtnBlock:^{
+                [weakSelf requestWithdrawBonus];
             }];
         } else {
-            [weakSelf requestWithdrawBonus:kText];
+            [weakSelf requestWithdrawBonus];
         }
     }];
 }
 
 /// 发送提取分红请求
-- (void)requestWithdrawBonus:(NSString *)text {
-    XXMsg *model = [[XXMsg alloc] initWithfrom:@"" to:@"" amount:@"" denom:kMainToken feeAmount:@"2000000000000000000" feeGas:@"2000000" feeDenom:kMainToken memo:@"" type:kMsgWithdrawalDelegationReward withdrawal_fee:@"" text:text];
+- (void)requestWithdrawBonus{
+    XXMsg *model = [[XXMsg alloc] initWithfrom:@"" to:@"" amount:@"" denom:kMainToken feeAmount:@"2000000000000000000" feeGas:@"2000000" feeDenom:kMainToken memo:@"" type:kMsgWithdrawalDelegationReward withdrawal_fee:@""];
     NSMutableArray *msgs = [NSMutableArray array];
     for (NSDictionary *dic in self.delegations) {
         NSMutableDictionary *value = [NSMutableDictionary dictionary];

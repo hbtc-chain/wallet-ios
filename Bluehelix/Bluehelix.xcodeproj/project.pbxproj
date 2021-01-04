@@ -3386,7 +3386,7 @@
 				CODE_SIGN_ENTITLEMENTS = "";
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 13;
+				CURRENT_PROJECT_VERSION = 15;
 				DEFINES_MODULE = NO;
 				DEVELOPMENT_TEAM = 768MYA9JJQ;
 				ENABLE_BITCODE = NO;
@@ -3409,7 +3409,7 @@
 					"$(inherited)",
 					"-ObjC",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.bluehelix.wallet.ios;
+				PRODUCT_BUNDLE_IDENTIFIER = com.bluehelix.wallet.main;
 				PRODUCT_NAME = "HBTC Wallet";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "Bluehelix/Tools/bech32/Bluehelix-Bridging-Header.h";
@@ -3430,7 +3430,7 @@
 				CODE_SIGN_ENTITLEMENTS = "";
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 13;
+				CURRENT_PROJECT_VERSION = 15;
 				DEFINES_MODULE = NO;
 				DEVELOPMENT_TEAM = 768MYA9JJQ;
 				ENABLE_BITCODE = NO;
@@ -3453,7 +3453,7 @@
 					"$(inherited)",
 					"-ObjC",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.bluehelix.wallet.ios;
+				PRODUCT_BUNDLE_IDENTIFIER = com.bluehelix.wallet.main;
 				PRODUCT_NAME = "HBTC Wallet";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "Bluehelix/Tools/bech32/Bluehelix-Bridging-Header.h";

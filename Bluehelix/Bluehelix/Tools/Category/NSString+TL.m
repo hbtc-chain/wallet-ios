@@ -544,7 +544,6 @@
     for (int i = 0; i < 16; i++) {
         [salt appendString:[NSString stringWithFormat:@"%d",arc4random_uniform(10)]];
     }
-    NSLog(@"%@",salt);
     NSString *md5String = [NSString md5:[NSString stringWithFormat:@"%@%@",password,salt]];
     char cs[48];
     for (int i = 0; i < 48; i += 3) {
@@ -553,7 +552,6 @@
         cs[i+1] = c;
         cs[i+2] = [md5String characterAtIndex:(i / 3 * 2 + 1)];
     }
-    NSLog(@"%@",[NSString stringWithFormat:@"%s",cs]);
     return [NSString stringWithFormat:@"%s",cs];
 }
 

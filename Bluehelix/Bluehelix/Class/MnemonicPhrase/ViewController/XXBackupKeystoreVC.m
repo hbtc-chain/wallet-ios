@@ -34,8 +34,17 @@
     [self.view addSubview:self.scrollView];
     [self.scrollView addSubview:self.keystoreView];
     [self.scrollView addSubview:self.backupCodeView];
-    self.keystoreView.text = self.text;
-    self.backupCodeView.text = self.text;
+    
+    NSError *error = nil;
+    NSDictionary *data = [NSJSONSerialization JSONObjectWithData:[KUser.currentAccount.keystore dataUsingEncoding:NSUTF8StringEncoding] options:0 error:&error];
+    NSMutableDictionary *dic = [NSMutableDictionary dictionaryWithDictionary:data];
+    [dic removeObjectForKey:@"mnemonicText"];
+    
+    NSData *jsonData = [NSJSONSerialization dataWithJSONObject:dic options:NSJSONWritingSortedKeys error:nil];
+    NSString *jsonString = [[NSString alloc] initWithData:jsonData encoding:NSUTF8StringEncoding];
+    NSString *jsonKeystore = [jsonString stringByReplacingOccurrencesOfString:@"\\" withString:@""];
+    self.keystoreView.text = jsonKeystore;
+    self.backupCodeView.text = jsonKeystore;
 }
 
 - (XXBackupSegmentView*)toolBar {

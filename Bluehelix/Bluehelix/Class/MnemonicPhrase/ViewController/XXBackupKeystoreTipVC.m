@@ -43,7 +43,6 @@
 - (void)nextStepAction {
     [XXScreenShotAlert showWithSureBlock:^{
         XXBackupKeystoreVC *keystoreVC = [[XXBackupKeystoreVC alloc] init];
-        keystoreVC.text = KUser.currentAccount.keystore;
         [self.navigationController pushViewController:keystoreVC animated:YES];
     }];
 }

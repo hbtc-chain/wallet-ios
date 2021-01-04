@@ -53,18 +53,18 @@
     }
     if (kShowPassword) {
         MJWeakSelf
-        [XXPasswordView showWithSureBtnBlock:^(NSString * _Nonnull text) {
-            [weakSelf requestWithdrawVerify:text];
+        [XXPasswordView showWithSureBtnBlock:^{
+            [weakSelf requestWithdrawVerify];
         }];
     } else {
-        [self requestWithdrawVerify:kText];
+        [self requestWithdrawVerify];
     }
 }
 
-- (void)requestWithdrawVerify:(NSString *)text {
+- (void)requestWithdrawVerify{
     NSString *feeAmount = [XXUserData sharedUserData].fee;
     [MBProgressHUD showActivityMessageInView:@""];
-    XXMsg *model = [[XXMsg alloc] initWithfrom:KUser.address to:KUser.address amount:@"" denom:self.tokenModel.symbol feeAmount:feeAmount feeGas:@"" feeDenom:kMainToken memo:@"" type:kMsgKeyGen withdrawal_fee:@"" text:text];
+    XXMsg *model = [[XXMsg alloc] initWithfrom:KUser.address to:KUser.address amount:@"" denom:self.tokenModel.symbol feeAmount:feeAmount feeGas:@"" feeDenom:kMainToken memo:@"" type:kMsgKeyGen withdrawal_fee:@""];
     _keyGenRequest = [[XXMsgRequest alloc] init];
     MJWeakSelf
     _keyGenRequest.msgSendSuccessBlock = ^(id  _Nonnull responseObject) {

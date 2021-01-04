@@ -15,6 +15,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, copy) NSString *text;
 @property (nonatomic, copy) void(^finishBlock)(NSString *text);
 
+- (void)cleanText; //清空输入的密码
 @end
 
 NS_ASSUME_NONNULL_END

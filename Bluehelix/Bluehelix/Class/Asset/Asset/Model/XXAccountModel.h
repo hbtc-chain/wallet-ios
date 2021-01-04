@@ -14,14 +14,14 @@ NS_ASSUME_NONNULL_BEGIN
 
 @property (nonatomic, strong) NSString *address; //地址
 @property (nonatomic, strong) NSString *symbols; //保存的币种
-@property (nonatomic, strong) NSString *privateKey; //私钥
 @property (nonatomic, strong) NSString *keystore; //Keystore
 @property (nonatomic, strong) NSData *publicKey; //公钥
 @property (nonatomic, strong) NSString *userName; //昵称
-@property (nonatomic, strong) NSString *password; //密码
-@property (nonatomic, strong) NSString *mnemonicPhrase; //助记词
 @property (nonatomic, assign) BOOL backupFlag; //是否备份过助记词
-
+//内存中需要的
+//@property (nonatomic, strong) NSString *privateKey; //私钥
+//@property (nonatomic, strong) NSString *password; //密码
+//@property (nonatomic, strong) NSString *mnemonicPhrase; //助记词
 @end
 
 NS_ASSUME_NONNULL_END
