@@ -85,11 +85,11 @@
     model.userName = KUser.localUserName;
     model.keystore = json;
     KUser.passwordText = KUser.localPassword;
-    if (IsEmpty(KUser.localPhraseString)) { //如果是通过助记词导入的 不需要备份和保留助记词
+    if (!IsEmpty(KUser.localPhraseString) || !IsEmpty(KUser.localPrivateKey)) { //如果是通过导入方式创建 不需要备份和保留助记词
+        model.backupFlag = YES;
+    } else {
         KUser.mnemonicPhrase = self.account.mnemonicPhrase;
         model.backupFlag = NO;
-    } else {
-        model.backupFlag = YES;
     }
     model.symbols = [[XXSqliteManager sharedSqlite] defaultTokenSymbols];
     //判断是否重复导入

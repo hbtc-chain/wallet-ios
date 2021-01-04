@@ -53,6 +53,7 @@
 - (void)cleanText {
     self.textField.text = @"";
     self.text = @"";
+    [self reloadUI:@""];
 }
 
 - (void)tapAction {

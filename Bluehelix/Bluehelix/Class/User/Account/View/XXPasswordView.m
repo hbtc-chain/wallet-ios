@@ -97,6 +97,7 @@
                     weakSelf.sureBtnBlock();
                 }
             } else {
+                [weakSelf.passwordView cleanText];
                 Alert *alert = [[Alert alloc] initWithTitle:LocalizedString(@"PasswordWrong") duration:kAlertDuration completion:^{
                 }];
                 [alert showAlert];
@@ -109,6 +110,7 @@
                 self.sureBtnBlock();
             }
         } else {
+            [weakSelf.passwordView cleanText];
             Alert *alert = [[Alert alloc] initWithTitle:LocalizedString(@"PasswordWrong") duration:kAlertDuration completion:^{
             }];
             [alert showAlert];
